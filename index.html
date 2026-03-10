@@ -14,6 +14,10 @@
 /* --- BASE & MAP --- */
 body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #f0f2f5; }
 #map { height: 100vh; width: 100%; }
+.leaflet-top.leaflet-right { z-index: 10000 !important; margin-top: 6px !important; }
+.leaflet-control-layers {border-radius: 8px !important; border: none !important;box-shadow: 0 2px 10px rgba(0,0,0,0.2) !important;font-family: 'Segoe UI', sans-serif; font-size: 13px; background-color: white !important;}
+.leaflet-control-layers-toggle {width: 34px !important;height: 34px !important; background-size: 18px 18px !important;}
+.leaflet-control-layers-expanded {z-index: 10001 !important;}
 
 /* --- PANEL LATERAL & COMPONENTES --- */
 #info-panel { position: absolute; top: 10px; left: 10px; z-index: 1000; text-align: center; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); width: 250px; max-height: 92vh; overflow-y: auto; }
@@ -236,11 +240,18 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 <script>
 
 
-var map = L.map('map', { zoomControl: false }).setView([40.41, -3.70], 6);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors' }).addTo(map);
+// MAPAS
+var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+    attribution: '© OpenStreetMap contributors' });
+var satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'});
+var map = L.map('map', { zoomControl: false, layers: [osmLayer] }).setView([40.41, -3.70], 6);
+var baseMaps = {"Street Map": osmLayer, "Satelite": satelliteLayer};
 
-// ZOOM
+// ZOOM & LAYER
 L.control.zoom({ position: 'topright' }).addTo(map);
+
+L.control.layers(baseMaps, null, {position: 'topright', collapsed: true }).addTo(map);
 
 // ESCALA
 L.control.scale({imperial: false, metric: true, position: 'bottomright' }).addTo(map);
@@ -7782,5 +7793,6 @@ function updateNodeInfo(match) {
 </script>
 </body>
 </html>
+
 
 
