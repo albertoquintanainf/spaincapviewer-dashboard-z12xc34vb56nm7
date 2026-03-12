@@ -7161,13 +7161,13 @@ ZUZONES 400	443028.592	4616312.265	Burgos	400	TSO	REE	Tender pending	0	-	-	0	0	2
 
         let ranges = [
             { id: 'r0', limit: 0, radius: 5, color: "#991b1b", visible: true, count: 0, label: "= 0 MW" },
-            { id: 'r1', limit: 0.99, radius: 6, color: "#ef4444", visible: true, count: 0, label: "0 - 0.99 MW" },
-            { id: 'r2', limit: 9.99, radius: 7, color: "#f97316", visible: true, count: 0, label: "1 - 9.99 MW" },
-            { id: 'r3', limit: 24.99, radius: 9, color: "#facc15", visible: true, count: 0, label: "10 - 24.99 MW" },
-            { id: 'r4', limit: 40.00, radius: 11, color: "#84cc16", visible: true, count: 0, label: "25 - 49.99 MW" },
-            { id: 'r5', limit: 99.99, radius: 13, color: "#22c55e", visible: true, count: 0, label: "50 - 99.99 MW" },
-            { id: 'r6', limit: 249.99, radius: 15, color: "#065f46", visible: true, count: 0, label: "100 - 249.99 MW" },
-            { id: 'r7', limit: 499.99, radius: 17, color: "#1e40af", visible: true, count: 0, label: "250 - 499.99 MW" },
+            { id: 'r1', limit: 0.99, radius: 6, color: "#ef4444", visible: true, count: 0, label: "(0 - 1) MW" },
+            { id: 'r2', limit: 9.99, radius: 7, color: "#f97316", visible: true, count: 0, label: "[1 - 10) MW" },
+            { id: 'r3', limit: 24.99, radius: 9, color: "#facc15", visible: true, count: 0, label: "[10 - 25) MW" },
+            { id: 'r4', limit: 40.00, radius: 11, color: "#84cc16", visible: true, count: 0, label: "[25 - 50) MW" },
+            { id: 'r5', limit: 99.99, radius: 13, color: "#22c55e", visible: true, count: 0, label: "[50 - 100) MW" },
+            { id: 'r6', limit: 249.99, radius: 15, color: "#065f46", visible: true, count: 0, label: "[100 - 250) MW" },
+            { id: 'r7', limit: 499.99, radius: 17, color: "#1e40af", visible: true, count: 0, label: "[250 - 500) MW" },
             { id: 'r8', limit: Infinity, radius: 20, color: "#6d28d9", visible: true, count: 0, label: ">= 500 MW" }
         ];
         let noInfoConfig = { radius: 4, color: "#334155", visible: true, count: 0 };
@@ -7793,6 +7793,7 @@ function updateNodeInfo(match) {
 </script>
 </body>
 </html>
+
 
 
 
