@@ -156,12 +156,12 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
     <div style="display: flex; flex-direction: column; gap: 8px; background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
         <label style="font-size: 10px; font-weight:bold; color:#64748b;">MAIN SELECTION</label>
-        <select id="view-year" onchange="applyFilters()"><option value="25">2025</option><option value="26" selected>2026</option></select>
+        <select id="view-year" onchange="applyFilters()"><option value="26" selected>2026</option></select>
         <select id="view-month" onchange="applyFilters()"><option value="jan">January</option><option value="feb">February</option><option value="mar" selected>March</option><option value="apr">April</option><option value="may">May</option><option value="jun">June</option><option value="jul">July</option><option value="ago">August</option><option value="sep">September</option><option value="oct">October</option><option value="nov">November</option><option value="dec">December</option></select>
         <select id="view-type" onchange="applyFilters()"><option value="gen">Generation (MW)</option><option value="dem" selected>Demand (MW)</option><option value="stg-gen">Storage Generation (MW)</option><option value="stg-dem">Storage Demand (MW)</option></select>
         <select id="view-red" onchange="applyFilters()"><option value="ALL">DSO+TSO</option><option value="DSO">DSO</option><option value="TSO" selected>TSO</option></select>
     </div>
-
+	
     <div class="section-header">
     <span class="section-title">HECE Portfolio</span><button class="select-all-btn" onclick="toggleAll('projects-controls')">Select All</button></div>
     <div id="projects-controls"></div>
@@ -181,8 +181,6 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
     </div>
     <div id="ranges-container"></div>
 </div>
-
-
 
 
 <div id="map"></div>
@@ -7144,8 +7142,9 @@ ZUZONES 400	443028.592	4616312.265	Burgos	400	TSO	REE	Tender pending	0	-	-	0	0	2
            	{ name: "Cervera II", x: 551613.044, y: 4400559.528, type: "PV+WIND" },
 		{ name: "Piedrahita", x: 271225.199, y: 4619046.403, type: "PV+WIND" },
 		{ name: "Tomelloso", x: 510085.155, y: 4328958.97, type: "PV+WIND" },
-		{ name: "Baza", x: 519376.695, y: 4148837.545, type: "PV" },
-		{ name: "Jerez I & II", x: 229667.817, y: 4061517.884, type: "PV" },
+		{ name: "Baza", x: 520412.019, y: 4144496.024, type: "PV" },
+		{ name: "Jerez I", x: 234189.509, y: 4067879.634, type: "PV" },
+		{ name: "Jerez II", x: 231387.973, y: 4062128.324, type: "PV" },
 		{ name: "Olmedilla", x: 576031.924, y: 4383746.291, type: "PV" },
 		{ name: "La Venena", x: 374618.221, y: 4659052, type: "PV" },
 		{ name: "Lavanda", x: 318625.942, y: 4617985.317, type: "PV+WIND" },
@@ -7162,16 +7161,17 @@ ZUZONES 400	443028.592	4616312.265	Burgos	400	TSO	REE	Tender pending	0	-	-	0	0	2
 
         let ranges = [
             { id: 'r0', limit: 0, radius: 5, color: "#991b1b", visible: true, count: 0, label: "= 0 MW" },
-            { id: 'r1', limit: 1, radius: 6, color: "#ef4444", visible: true, count: 0, label: "0 - 1 MW" },
+            { id: 'r1', limit: 0.99, radius: 6, color: "#ef4444", visible: true, count: 0, label: "0 - 0.99 MW" },
             { id: 'r2', limit: 9.99, radius: 7, color: "#f97316", visible: true, count: 0, label: "1 - 9.99 MW" },
             { id: 'r3', limit: 24.99, radius: 9, color: "#facc15", visible: true, count: 0, label: "10 - 24.99 MW" },
-            { id: 'r4', limit: 50, radius: 11, color: "#84cc16", visible: true, count: 0, label: "25 - 50 MW" },
-            { id: 'r5', limit: 100, radius: 13, color: "#22c55e", visible: true, count: 0, label: "50 - 100 MW" },
-            { id: 'r6', limit: 250, radius: 15, color: "#065f46", visible: true, count: 0, label: "100 - 250 MW" },
-            { id: 'r7', limit: 500, radius: 17, color: "#1e40af", visible: true, count: 0, label: "250 - 500 MW" },
-            { id: 'r8', limit: Infinity, radius: 20, color: "#6d28d9", visible: true, count: 0, label: "> 500 MW" }
+            { id: 'r4', limit: 40.00, radius: 11, color: "#84cc16", visible: true, count: 0, label: "25 - 49.99 MW" },
+            { id: 'r5', limit: 99.99, radius: 13, color: "#22c55e", visible: true, count: 0, label: "50 - 99.99 MW" },
+            { id: 'r6', limit: 249.99, radius: 15, color: "#065f46", visible: true, count: 0, label: "100 - 249.99 MW" },
+            { id: 'r7', limit: 499.99, radius: 17, color: "#1e40af", visible: true, count: 0, label: "250 - 499.99 MW" },
+            { id: 'r8', limit: Infinity, radius: 20, color: "#6d28d9", visible: true, count: 0, label: ">= 500 MW" }
         ];
         let noInfoConfig = { radius: 4, color: "#334155", visible: true, count: 0 };
+
 
         var markersLayer = L.featureGroup().addTo(map);
         var projectsLayer = L.featureGroup().addTo(map);
@@ -7687,7 +7687,7 @@ function updateHistoryChart(node) {
     
     // 1. Definimos el orden real de los meses para que el buscador sepa qué buscar primero
     const monthMap = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dec'];
-    const years = ['25', '26', '27']; // He añadido 2027 por si acaso, no afecta si no hay datos
+    const years = ['26', '27', '28'];
     
     const labels = [];
     const datasets = {
@@ -7793,6 +7793,7 @@ function updateNodeInfo(match) {
 </script>
 </body>
 </html>
+
 
 
 
