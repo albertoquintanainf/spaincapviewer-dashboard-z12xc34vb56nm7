@@ -7295,15 +7295,14 @@ legendControl.update = function() {
         const currentKey = `${year}_${month}_${type}`;
 
         const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dec"];
-        const currentIndex = months.indexOf(month);
-       let prevMonth, prevYear;
-       if (currentIndex > 0) {
-        prevMonth = months[currentIndex - 1];
-        prevYear = year;
-        } else {
-        prevMonth = "dec";
-        prevYear = (parseInt(year) - 1).toString();}
-       const prevKey = `${prevYear}_${prevMonth}_${type}`;
+    let prevMonthIndex = months.indexOf(month) - 1;
+    let prevYear = year;
+    
+    if (prevMonthIndex < 0) {
+        prevMonthIndex = 11; // Diciembre
+        prevYear = (parseInt(year) - 1).toString(); // Año anterior
+    }
+    const prevKey = `${prevYear}_${months[prevMonthIndex]}_${type}`;
 
         const sel = {
             tens: Array.from(document.querySelectorAll('#m-tens input:checked')).map(cb => cb.value),
@@ -7357,13 +7356,15 @@ legendControl.update = function() {
                 
 			g.items.forEach(item => {
     			const val = item[currentKey];
-  			    const prevVal = item[prevKey]; // Valor del mes anterior
-            	let trendIcon = "";
-           		if (typeof val === 'number' && typeof prevVal === 'number') {
-                if (val > prevVal) trendIcon = '<span style="color:#22c55e; font-size:14px; margin-left:4px;">▲</span>';
-                else if (val < prevVal) trendIcon = '<span style="color:#ef4444; font-size:14px; margin-left:4px;">▼</span>';
-                else trendIcon = '<span style="color:#94a3b8; font-size:14px; margin-left:4px;">━</span>';
-            	}
+  			    const prevVal = item[prevKey];
+            
+                let trendHtml = "";
+                if (typeof val === 'number' && typeof prevVal === 'number' && !isNaN(val) && !isNaN(prevVal)) {
+                const diff = val - prevVal;
+                if (diff > 0) {trendHtml = `<span style="color: #22c55e; font-weight: bold; margin-left: 5px;">▲ +${diff}</span>`;
+                } else if (diff < 0) {trendHtml = `<span style="color: #ef4444; font-weight: bold; margin-left: 5px;">▼ ${diff}</span>`;
+                } else {trendHtml = `<span style="color: #94a3b8; margin-left: 5px;">━ 0</span>`;}}
+				
 				const displayVal = (typeof val === 'number' && !isNaN(val)) ? val + " MW" : "No Info";
     			const typeName = type === 'gen' ? 'Gen' : type === 'dem' ? 'Dem' : type === 'stg-dem' ? 'Stg-Dem' : 'Stg-Gen';
     
@@ -7372,8 +7373,8 @@ legendControl.update = function() {
            		<div style="color: #0078A8; font-weight: bold; font-size: 13px; margin-bottom: 4px;">${item.name}</div>
            		<table style="width: 100%; font-size: 11px; border-collapse: collapse;">
                 <tr>
-                    <td style="color: #666; padding: 2px 0;">Capacity (${typeName}):</td>
-                    <td style="font-weight: bold; text-align: right; color:#f97316;">${displayVal}</td>
+                   <td style="color: #666; padding: 2px 0;">Capacity (${typeName}):</td>
+                   <td style="font-weight: bold; text-align: right; color:#f97316;">${displayVal}${trendHtml}</td>
                 </tr>
                 <tr><td style="color: #666; padding: 2px 0;">Voltage:</td><td style="font-weight: bold; text-align: right;">${item.tens} kV</td></tr>
                 <tr><td style="color: #666; padding: 2px 0;">Grid:</td><td style="font-weight: bold; text-align: right;">${item.grid}</td></tr>
