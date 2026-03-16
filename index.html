@@ -7294,6 +7294,17 @@ legendControl.update = function() {
 
         const currentKey = `${year}_${month}_${type}`;
 
+        const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dec"];
+        const currentIndex = months.indexOf(month);
+       let prevMonth, prevYear;
+       if (currentIndex > 0) {
+        prevMonth = months[currentIndex - 1];
+        prevYear = year;
+        } else {
+        prevMonth = "dec";
+        prevYear = (parseInt(year) - 1).toString();}
+       const prevKey = `${prevYear}_${prevMonth}_${type}`;
+
         const sel = {
             tens: Array.from(document.querySelectorAll('#m-tens input:checked')).map(cb => cb.value),
             prov: Array.from(document.querySelectorAll('#m-prov input:checked')).map(cb => cb.value),
@@ -7306,10 +7317,8 @@ legendControl.update = function() {
         const matchesRed = (redFilter === 'ALL' || e.grid === redFilter);
         
         if (matchesRed && sel.tens.includes(e.tens) && sel.prov.includes(e.prov) && sel.oper.includes(e.oper)) {
-            
             const rawValue = e[currentKey];
             let rFound = null;
-
             if (typeof rawValue === 'number' && !isNaN(rawValue)) {
                 rFound = ranges.find(r => rawValue <= r.limit);
             } else {
@@ -7346,15 +7355,22 @@ legendControl.update = function() {
                 const c = proj4("EPSG:32630", "EPSG:4326", [g.x, g.y]);
                 let popupHtml = `<div style="max-height:250px; overflow-y:auto; min-width:200px; font-family: 'Segoe UI', sans-serif;">`;
                 
-g.items.forEach(item => {
-    const val = item[currentKey];
-    const displayVal = (typeof val === 'number' && !isNaN(val)) ? val + " MW" : "No Info";
-    const typeName = type === 'gen' ? 'Gen' : type === 'dem' ? 'Dem' : type === 'stg-dem' ? 'Stg-Dem' : 'Stg-Gen';
+			g.items.forEach(item => {
+    			const val = item[currentKey];
+  			    const prevVal = item[prevKey]; // Valor del mes anterior
+            	let trendIcon = "";
+           		if (typeof val === 'number' && typeof prevVal === 'number') {
+                if (val > prevVal) trendIcon = '<span style="color:#22c55e; font-size:14px; margin-left:4px;">▲</span>';
+                else if (val < prevVal) trendIcon = '<span style="color:#ef4444; font-size:14px; margin-left:4px;">▼</span>';
+                else trendIcon = '<span style="color:#94a3b8; font-size:14px; margin-left:4px;">━</span>';
+            	}
+				const displayVal = (typeof val === 'number' && !isNaN(val)) ? val + " MW" : "No Info";
+    			const typeName = type === 'gen' ? 'Gen' : type === 'dem' ? 'Dem' : type === 'stg-dem' ? 'Stg-Dem' : 'Stg-Gen';
     
-    popupHtml += `
-        <div style="border-bottom: 1px solid #eee; padding: 8px 0; margin-bottom: 4px;">
-            <div style="color: #0078A8; font-weight: bold; font-size: 13px; margin-bottom: 4px;">${item.name}</div>
-            <table style="width: 100%; font-size: 11px; border-collapse: collapse;">
+    			popupHtml += `
+        		<div style="border-bottom: 1px solid #eee; padding: 8px 0; margin-bottom: 4px;">
+           		<div style="color: #0078A8; font-weight: bold; font-size: 13px; margin-bottom: 4px;">${item.name}</div>
+           		<table style="width: 100%; font-size: 11px; border-collapse: collapse;">
                 <tr>
                     <td style="color: #666; padding: 2px 0;">Capacity (${typeName}):</td>
                     <td style="font-weight: bold; text-align: right; color:#f97316;">${displayVal}</td>
@@ -7362,14 +7378,13 @@ g.items.forEach(item => {
                 <tr><td style="color: #666; padding: 2px 0;">Voltage:</td><td style="font-weight: bold; text-align: right;">${item.tens} kV</td></tr>
                 <tr><td style="color: #666; padding: 2px 0;">Grid:</td><td style="font-weight: bold; text-align: right;">${item.grid}</td></tr>
                 <tr><td style="color: #666; padding: 2px 0;">Operator:</td><td style="font-weight: bold; text-align: right;">${item.oper}</td></tr>
-		<tr><td style="color: #666; padding: 2px 0;">Type:</td><td style="font-weight: bold; text-align: right;">${item.type}</td></tr>
-            </table>
-            <button class="popup-btn-hist" onclick="openHistory('${item.name}')">📊 View Historical Data</button>
-        </div>`;
-});
+				<tr><td style="color: #666; padding: 2px 0;">Type:</td><td style="font-weight: bold; text-align: right;">${item.type}</td></tr>
+                </table>
+            	<button class="popup-btn-hist" onclick="openHistory('${item.name}')">📊 View Historical Data</button>
+        	</div>`;
+			});
 
 		popupHtml += `</div>`;
-
                 const m = L.circleMarker([c[1], c[0]], { 
                     radius: g.mainConfig.radius, 
                     fillColor: g.mainConfig.color, 
@@ -7377,14 +7392,13 @@ g.items.forEach(item => {
                 }).bindPopup(popupHtml).addTo(markersLayer);
                 g.items.forEach(item => { markersInMap[item.name.toLowerCase()] = m; });
             }
-
             document.getElementById('count-dso').innerText = dsoT;
             document.getElementById('count-tso').innerText = tsoT;
             document.getElementById('count-total').innerText = dsoT + tsoT;
 	    renderRangeInputs();
             if (legendControl && legendControl._map) {
         legendControl.update(); 
-    }
+    	}
 }
 
 function openHistory(nodoABuscar = '') {
