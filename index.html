@@ -7363,7 +7363,7 @@ legendControl.update = function() {
                 const diff = val - prevVal;
                 if (diff > 0) {trendHtml = `<span style="color: #22c55e; font-weight: bold; margin-left: 5px;">▲ +${diff}</span>`;
                 } else if (diff < 0) {trendHtml = `<span style="color: #ef4444; font-weight: bold; margin-left: 5px;">▼ ${diff}</span>`;
-                } else {trendHtml = `<span style="color: #94a3b8; margin-left: 5px;">━ 0</span>`;}}
+                } else {trendHtml = `<span style="color: #94a3b8; margin-left: 5px;">=</span>`;}}
 				
 				const displayVal = (typeof val === 'number' && !isNaN(val)) ? val + " MW" : "No Info";
     			const typeName = type === 'gen' ? 'Gen' : type === 'dem' ? 'Dem' : type === 'stg-dem' ? 'Stg-Dem' : 'Stg-Gen';
