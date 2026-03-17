@@ -260,11 +260,19 @@ L.control.scale({imperial: false, metric: true, position: 'bottomright' }).addTo
 // MEDIDAS
 
 map.pm.addControls({ position: 'topright',drawMarker: false, drawCircleMarker: false, drawPolyline: true, drawRectangle: false, drawPolygon: true, drawCircle: false, drawText: true, editControls: true, editMode: false, dragMode: false, cutLayer: false, rotateMode: false, removalMode: true, oneBlock: true});
-map.pm.setGlobalOptions({ measurements: { measurement: true, displayFullDistance: true, showArea: true,totalLengthUnit: 'kilometers',  areaUnit: 'hectares' },
+map.pm.setGlobalOptions({ measurements: { measurement: true, displayFullDistance: true, showArea: true, totalLengthUnit: 'kilometers', areaUnit: 'hectares', showCurrentMeasurement: true},
     templineStyle: { color: '#f97316' }, // Naranja mientras dibujas
     hintlineStyle: { color: '#f97316', dashArray: [5, 5] },
     pathOptions: { color: '#0078A8', fillColor: '#0078A8', fillOpacity: 0.3 }});
-
+map.on('pm:create', (e) => {
+    const layer = e.layer;
+    if (layer.pm) {
+        layer.pm.enable({
+            allowSelfIntersection: false,
+        });
+    }
+    map.pm.disableDrawSelection();
+});
 	
 proj4.defs("EPSG:32630", "+proj=utm +zone=30 +ellps=WGS84 +datum=WGS84 +units=m +no_defs");
 
