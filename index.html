@@ -7391,42 +7391,48 @@ function applyFilters() {
 			};
 
             let capacityRows = "";
-if (type === 'storage') {
-    const isTSO = item.grid === 'TSO';
-    const suffixGen = isTSO ? 'stg-gen' : 'gen';
-    const suffixDem = isTSO ? 'stg-dem' : 'dem';
+			if (type === 'storage') {
+    		const isTSO = item.grid === 'TSO';
+   			const suffixGen = isTSO ? 'stg-gen' : 'gen';
+    		const suffixDem = isTSO ? 'stg-dem' : 'dem';
  
-    const vG = cleanNum(item[`${year}_${month}_${suffixGen}`]);
-    const vD = cleanNum(item[`${year}_${month}_${suffixDem}`]);
-    const pG = cleanNum(item[`${prevYear}_${pMonth}_${suffixGen}`]);
-    const pD = cleanNum(item[`${prevYear}_${pMonth}_${suffixDem}`]);
+    		const vG = cleanNum(item[`${year}_${month}_${suffixGen}`]);
+    		const vD = cleanNum(item[`${year}_${month}_${suffixDem}`]);
+    		const pG = cleanNum(item[`${prevYear}_${pMonth}_${suffixGen}`]);
+    		const pD = cleanNum(item[`${prevYear}_${pMonth}_${suffixDem}`]);
 
-    const displayG = isNaN(vG) ? 0 : vG;
-    const displayD = isNaN(vD) ? 0 : vD;
+    		const calcG = isNaN(vG) ? 0 : vG;
+    		const calcD = isNaN(vD) ? 0 : vD;
+    		const textG = isNaN(vG) ? 'No Info' : vG + ' MW';
+    		const textD = isNaN(vD) ? 'No Info' : vD + ' MW';
+
+   			capacityRows = `
+        <tr>
+            <td style="color: #666; padding: 2px 0;">Stg. Gen (Discharge):</td>
+            <td style="font-weight: bold; text-align: right; color:#f97316;">${textG}${getTrend(vG, pG)}</td>
+        </tr>
+        <tr>
+            <td style="color: #666; padding: 2px 0;">Stg. Dem (Charge):</td>
+            <td style="font-weight: bold; text-align: right; color:#0ea5e9;">${textD}${getTrend(vD, pD)}</td>
+        </tr>
+        <tr style="border-top: 1px dashed #ccc; background: #f8fafc;"> 
+            <td style="color: #000; padding: 4px 0; font-size:10px; font-weight:bold;">Effective (Min):</td>
+            <td style="font-weight: bold; text-align: right; font-size:10px;">${Math.min(calcG, calcD)} MW</td>
+        </tr>`;
+} else {
+    // Caso Gen o Dem puro
+    const v = cleanNum(item[`${year}_${month}_${type}`]);
+    const pV = cleanNum(item[`${prevYear}_${pMonth}_${type}`]);
+    const label = type === 'gen' ? 'Gen' : 'Dem';
+    
+    // Si v es NaN, mostramos 'No Info', si no, el valor + MW
+    const textV = isNaN(v) ? 'No Info' : v + ' MW';
 
     capacityRows = `<tr>
-			<td style="color: #666; padding: 2px 0;">Stg. Gen (Discharge):</td>
-            <td style="font-weight: bold; text-align: right; color:#f97316;">${displayG} MW${getTrend(vG, pG)}</td>
-        	</tr>
-        	<tr>
-            <td style="color: #666; padding: 2px 0;">Stg. Dem (Charge):</td>
-            <td style="font-weight: bold; text-align: right; color:#0ea5e9;">${displayD} MW${getTrend(vD, pD)}</td>
-        	</tr>
-        	<tr style="border-top: 1px dashed #ccc; background: #f8fafc;"> 
-            <td style="color: #000; padding: 4px 0; font-size:10px; font-weight:bold;">Effective (Min):</td>
-            <td style="font-weight: bold; text-align: right; font-size:10px;">${Math.min(displayG, displayD)} MW</td>
-        	</tr>`;
-			} else {
-    		// Caso Gen o Dem puro
-    		const v = cleanNum(item[`${year}_${month}_${type}`]);
-    		const pV = cleanNum(item[`${prevYear}_${pMonth}_${type}`]);
-    		const label = type === 'gen' ? 'Gen' : 'Dem';
-    
-    		capacityRows = `<tr>
-        	<td style="color: #666; padding: 2px 0;">Capacity (${label}):</td>
-        	<td style="font-weight: bold; text-align: right; color:#f97316;">${isNaN(v) ? '0 MW' : v + ' MW'}${getTrend(v, pV)}</td>
-    		</tr>`;
-			}
+        <td style="color: #666; padding: 2px 0;">Capacity (${label}):</td>
+        <td style="font-weight: bold; text-align: right; color:#f97316;">${textV}${getTrend(v, pV)}</td>
+    </tr>`;
+}
 
             popupHtml += `
                 <div style="border-bottom: 1px solid #eee; padding: 8px 0; margin-bottom: 4px;">
