@@ -3,16 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>SPAIN CAPACITY VIEWER</title>
-	
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/clhenrick/leaflet-betterscale@master/L.Control.BetterScale.css" />
-
 	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script src="https://cdn.jsdelivr.net/gh/clhenrick/leaflet-betterscale@master/L.Control.BetterScale.js"></script>
-	<link rel="stylesheet" href="https://unpkg.com/leaflet-measure/dist/leaflet-measure.css">
-	<script src="https://unpkg.com/leaflet-measure/dist/leaflet-measure.js"></script>
 	
 <style>
 
@@ -113,14 +109,6 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 /* --- BADGES & INFO --- */
 .type-badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; color: white; font-weight: bold; margin-right: 5px; }
 .voltage-info { font-size: 11px; color: #666; font-weight: bold; }
-
-/* Botón de medida */
-.leaflet-control-measure {border-radius: 8px !important; border: none !important;box-shadow: 0 2px 10px rgba(0,0,0,0.2) !important;}
-.leaflet-control-measure .leaflet-control-measure-toggle {background-size: 18px 18px !important; width: 34px !important;height: 34px !important;}
-.leaflet-right .leaflet-control-measure {margin-top: 10px;margin-right: 12px;}
-
-
-	
 
 /* ESCALA */
 .leaflet-control-better-scale {margin-bottom: 20px !important; margin-left: 10px !important;}
@@ -267,12 +255,6 @@ L.control.layers(baseMaps, null, {position: 'topright', collapsed: true }).addTo
 // ESCALA
 L.control.scale({imperial: false, metric: true, position: 'bottomright' }).addTo(map);
 
-// --- HERRAMIENTA DE MEDIDA ---
-const measureControl = new L.Control.Measure({position: 'topright',primaryLengthUnit: 'kilometers',  secondaryLengthUnit: 'meters', primaryAreaUnit: 'hectares', secondaryAreaUnit: 'sqmeters',activeColor: '#f97316',  completedColor: '#0078A8', localization: 'es',                // Interfaz en castellano
-    captureZIndex: 10000 });
-measureControl.addTo(map);
-
-	
 proj4.defs("EPSG:32630", "+proj=utm +zone=30 +ellps=WGS84 +datum=WGS84 +units=m +no_defs");
 
 
