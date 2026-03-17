@@ -269,53 +269,22 @@ map.pm.setGlobalOptions({ measurements: { measurement: true, displayFullDistance
     templineStyle: { color: '#f97316', weight: 3 },
     pathOptions: { color: '#0078A8', fillColor: '#0078A8', fillOpacity: 0.3, weight: 3 }
 });
-map.on('pm:create', function(e) {
-    const layer = e.layer;
-    let content = "";
-
-    // 1. CÁLCULO PARA LÍNEAS (KM)
-    if (layer instanceof L.Polyline && !(layer instanceof L.Polygon)) {
-        let coords = layer.getLatLngs();
-        let dist = 0;
-        for (let i = 0; i < coords.length - 1; i++) {
-            dist += coords[i].distanceTo(coords[i+1]);
-        }
-        content = `${(dist / 1000).toFixed(2)} km`;
-    } 
-    
-    // 2. CÁLCULO PARA ÁREAS (HECTÁREAS) - Algoritmo infalible
-    else if (layer instanceof L.Polygon) {
-        let coords = layer.getLatLngs()[0];
-        let area = 0;
-        let j = coords.length - 1;
-
-        for (let i = 0; i < coords.length; i++) {
-            // Conversión de grados a metros aproximada para el cálculo de área
+map.on('pm:create', function(e) {const layer = e.layer;
+		layer.setStyle({ interactive: false });
+		let content = "";
+        if (layer instanceof L.Polyline && !(layer instanceof L.Polygon)) { let coords = layer.getLatLngs(); let dist = 0; for (let i = 0; i < coords.length - 1; i++) { dist += coords[i].distanceTo(coords[i+1]); }
+        content = `${(dist / 1000).toFixed(2)} km`;  } 
+	    else if (layer instanceof L.Polygon) { let coords = layer.getLatLngs()[0]; let area = 0; let j = coords.length - 1;  for (let i = 0; i < coords.length; i++) {
             let p1 = coords[i];
             let p2 = coords[j];
-            area += (p2.lng + p1.lng) * (p2.lat - p1.lat);
-            j = i;
-        }
+            area += (p2.lng + p1.lng) * (p2.lat - p1.lat); j = i;}
         
-        // Ajuste del factor de área (aproximación para latitud media de España)
         let finalArea = Math.abs(area) * 111319.9 * 111319.9 * Math.cos(coords[0].lat * Math.PI / 180) / 2;
-        // Convertir de m2 a Hectáreas (m2 / 10,000)
-        content = `${(finalArea / 10000).toFixed(2)} ha`;
-    }
+        content = `${(finalArea / 10000).toFixed(2)} ha`;}
 
-    // 3. APLICAR ETIQUETA
-    if (content) {
-        layer.bindTooltip(content, {
-            permanent: true,
-            direction: 'center',
-            className: 'custom-measure-label'
-        }).openTooltip();
-    }
+    if (content) { layer.bindTooltip(content, { permanent: true, direction: 'center', className: 'custom-measure-label', interactive: false}).openTooltip(); }
 
-    // 4. FORZAR CIERRE DE HERRAMIENTA
-    // Esto evita que se sigan dibujando áreas una encima de otra
-    map.pm.disableDraw();
-});
+    map.pm.disableDraw();});
 	
 proj4.defs("EPSG:32630", "+proj=utm +zone=30 +ellps=WGS84 +datum=WGS84 +units=m +no_defs");
 
