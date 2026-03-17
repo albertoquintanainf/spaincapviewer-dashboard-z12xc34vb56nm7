@@ -259,7 +259,7 @@ L.control.scale({imperial: false, metric: true, position: 'bottomright' }).addTo
 
 // MEDIDAS
 
-map.pm.addControls({ position: 'topright',drawMarker: false, drawCircleMarker: false, drawPolyline: true, drawRectangle: false, drawPolygon: true, drawCircle: false, drawText: true, editMode: false, dragMode: false, cutLayer: false, rotateMode: false, removalMode: true, oneBlock: false, drawControls: true, editControls: false, customControls: true });
+map.pm.addControls({ position: 'topright',drawMarker: false, drawCircleMarker: false, drawPolyline: true, drawRectangle: false, drawPolygon: true, drawCircle: false, drawText: true, editControls: true, editMode: false, dragMode: false, cutLayer: false, rotateMode: false, removalMode: true, oneBlock: true});
 map.pm.setGlobalOptions({ measurements: { measurement: true, displayFullDistance: true, showArea: true,totalLengthUnit: 'kilometers',  areaUnit: 'hectares' },
     templineStyle: { color: '#f97316' }, // Naranja mientras dibujas
     hintlineStyle: { color: '#f97316', dashArray: [5, 5] },
