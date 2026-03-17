@@ -7808,13 +7808,11 @@ function updateHistoryChart(node) {
         gen: [], dem: [], stgGen: [], stgDem: []
     };
 
-    // 2. Recorremos año por año y mes por mes
-    years.forEach(year => {
+	years.forEach(year => {
         monthMap.forEach(month => {
             const prefix = `${year}_${month}`;
             const genKey = `${prefix}_gen`;
-            
-            // Si el nodo tiene la columna de ese mes (ej: 26_apr_gen), extraemos todos sus datos
+
             if (node.hasOwnProperty(genKey)) {
                 labels.push(`${month.toUpperCase()} '${year}`);
                 datasets.gen.push(node[`${prefix}_gen`]);
@@ -7829,16 +7827,21 @@ function updateHistoryChart(node) {
         historyChartInstance.destroy();
     }
 
+	const chartDatasets = [
+        { label: 'Gen (MW)', data: datasets.gen, borderColor: '#0078A8', tension: 0.3, fill: false },
+        { label: 'Dem (MW)', data: datasets.dem, borderColor: '#e74c3c', tension: 0.3, fill: false },
+        { label: 'Storage-Gen (MW)', data: datasets.stgGen, borderColor: '#38bdf8', tension: 0.3, fill: false },
+        { label: 'Storage-Dem (MW)', data: datasets.stgDem, borderColor: '#10b981', tension: 0.3, fill: false }
+    ].filter(ds => {
+        if (node.grid === 'DSO' && ds.label.includes('Storage')) return false;
+        return true;
+    });
+	
     historyChartInstance = new Chart(ctx, {
         type: 'line',
         data: {
             labels: labels,
-            datasets: [
-                { label: 'Gen (MW)', data: datasets.gen, borderColor: '#0078A8', tension: 0.3, fill: false },
-                { label: 'Dem (MW)', data: datasets.dem, borderColor: '#e74c3c', tension: 0.3, fill: false },
-                { label: 'Storage-Gen (MW)', data: datasets.stgGen, borderColor: '#38bdf8', tension: 0.3, fill: false },
-                { label: 'Storage-Dem (MW)', data: datasets.stgDem, borderColor: '#10b981', tension: 0.3, fill: false }
-            ]
+            datasets: chartDatasets // Usamos el array filtrado
         },
         options: {
             responsive: true,
