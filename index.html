@@ -8002,13 +8002,17 @@ function handleKML(input) {
     if (isKMZ) { reader.readAsArrayBuffer(file); } 
     else { reader.readAsText(file); }
 }
-
 function renderKML(xmlData) {
-    // Usamos parse para leer el string XML
+    // 1. Limpiamos lo anterior
+    if (window.currentParcel) { 
+        map.removeLayer(window.currentParcel); 
+    }
+
+    // 2. Creamos la capa desde el XML
     const layer = omnivore.kml.parse(xmlData);
     
     layer.on('ready', function() {
-        // Aplicamos estilo
+        // Aplicamos el estilo naranja
         this.setStyle({
             color: "#f97316",
             weight: 3,
@@ -8016,13 +8020,19 @@ function renderKML(xmlData) {
             interactive: false 
         });
 
-        // RECUPERAMOS EL ZOOM: fitBounds necesita que la capa esté en el mapa
+        // 3. SEGURO DE CENTRADO:
+        // Intentamos centrar inmediatamente
         const bounds = this.getBounds();
         if (bounds.isValid()) {
-            map.fitBounds(bounds, { 
-                padding: [50, 50],
-                maxZoom: 16 // Para que no se pegue demasiado si la parcela es pequeña
-            });
+            map.fitBounds(bounds, { padding: [50, 50] });
+        } else {
+            // Si falla por milisegundos de carga, reintentamos en el siguiente ciclo
+            setTimeout(() => {
+                const retryBounds = this.getBounds();
+                if (retryBounds.isValid()) {
+                    map.fitBounds(retryBounds, { padding: [50, 50] });
+                }
+            }, 50);
         }
     });
 
