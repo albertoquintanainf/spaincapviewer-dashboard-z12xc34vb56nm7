@@ -234,29 +234,26 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
     </div>
 </div>
 
-	
-<button id="btn-kml" class="btn-comp" onclick="document.getElementById('kml-upload').click()" title="Upload KML/KMZ" style="top: 210px; background: #10b981; display: none;">
-    <span style="font-size: 18px;">📂</span>
-</button>
-
 <input type="file" id="kml-upload" style="display: none;" accept=".kml,.kmz" onchange="handleKML(this)">
 
 
 <script>
     let isAppInitialized = false;
     function checkPassword() {
-        const input = document.getElementById('pwd-input');
-        const error = document.getElementById('pwd-error');
-        if (input.value === 'hece2026') {
-            document.getElementById('login-overlay').style.display = 'none';
-	    document.getElementById('search-container').style.display = 'flex';
-            if (!isAppInitialized) { init(); isAppInitialized = true; }
-        } else {
-            error.textContent = '❌ Wrong password. Try again.';
-            input.value = ''; input.focus();
-            setTimeout(() => error.textContent = '', 3000);
-        }
+    const input = document.getElementById('pwd-input');
+    const error = document.getElementById('pwd-error');
+    if (input.value === 'hece2026') {
+        document.getElementById('login-overlay').style.display = 'none';
+        document.getElementById('search-container').style.display = 'flex';
+        const kmlBtn = document.querySelector('.leaflet-control-kml');
+        if (kmlBtn) { kmlBtn.style.display = 'flex'; }
+        if (!isAppInitialized) { init(); isAppInitialized = true; }
+    } else {
+        error.textContent = '❌ Wrong password. Try again.';
+        input.value = ''; input.focus();
+        setTimeout(() => error.textContent = '', 3000);
     }
+}
 </script>
 
 <script>
@@ -7989,7 +7986,6 @@ function handleKML(input) {
 
         if (isKMZ) {
             JSZip.loadAsync(e.target.result).then(function(zip) {
-                // Buscamos el archivo .kml dentro del zip
                 const kmlFile = Object.keys(zip.files).find(f => f.endsWith('.kml'));
                 return zip.file(kmlFile).async("string");
             }).then(function(kmlText) {
@@ -8000,22 +7996,14 @@ function handleKML(input) {
         }
     };
 
-    if (isKMZ) {
-        reader.readAsArrayBuffer(file); // KMZ se lee como binario
-    } else {
-        reader.readAsText(file); // KML se lee como texto
-    }
+    if (isKMZ) { reader.readAsArrayBuffer(file); } 
+    else { reader.readAsText(file); }
 }
 
 function renderKML(xmlData) {
     window.currentParcel = omnivore.kml.parse(xmlData)
         .on('ready', function() {
-            this.setStyle({
-                color: "#f97316",
-                weight: 3,
-                fillOpacity: 0.1,
-                interactive: false 
-            });
+            this.setStyle({ color: "#f97316", weight: 3, fillOpacity: 0.1, interactive: false });
             map.fitBounds(this.getBounds(), { padding: [50, 50] });
         })
         .addTo(map);
