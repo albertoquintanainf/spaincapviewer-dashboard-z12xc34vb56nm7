@@ -225,6 +225,12 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
     </div>
 </div>
 
+	
+<button class="btn-comp" onclick="document.getElementById('kml-upload').click()" title="Cargar KML/KMZ" style="top: 150px; background: #10b981;">
+    <span style="font-size: 18px;">📂</span>
+</button>
+
+<input type="file" id="kml-upload" style="display: none;" accept=".kml,.kmz" onchange="handleKML(this)">
 
 
 <script>
@@ -288,16 +294,6 @@ map.on('pm:create', function(e) {const layer = e.layer;
     if (content) { layer.bindTooltip(content, { permanent: true, direction: 'center', className: 'custom-measure-label', interactive: false}).openTooltip(); }
 
     map.pm.disableDraw();});
-
-// KMZ/KML
-	
-<button class="btn-comp" onclick="document.getElementById('kml-upload').click()" title="Cargar KML/KMZ" style="top: 150px; background: #10b981;">
-    <span style="font-size: 18px;">📂</span>
-</button>
-
-<input type="file" id="kml-upload" style="display: none;" accept=".kml,.kmz" onchange="handleKML(this)">
-
-
 	
 proj4.defs("EPSG:32630", "+proj=utm +zone=30 +ellps=WGS84 +datum=WGS84 +units=m +no_defs");
 
