@@ -326,7 +326,7 @@ map.on('pm:create', function(e) {const layer = e.layer;
 proj4.defs("EPSG:32630", "+proj=utm +zone=30 +ellps=WGS84 +datum=WGS84 +units=m +no_defs");
 
 
-   	const rawData = `Name	Coordenada UTM X	Coordenada UTM Y	Province	Voltage	Grid	Operator	Type	26_jan_gen	26_jan_dem	26_jan_stg-dem	26_jan_stg-gen	26_feb_gen	26_feb_dem	26_feb_stg-dem	26_feb_stg-gen	26_mar_gen	26_mar_dem	26_mar_stg-dem	26_mar_stg-gen	26_apr_gen	26_apr_dem	26_apr_stg-dem	26_apr_stg-gen
+   	const rawData = `Name	Coordenada UTM X	Coordenada UTM Y	Province	Voltage	Grid	Operator	Type	26_jan_gen	26_jan_dem	26_jan_stg-gen	26_jan_stg-dem	26_feb_gen	26_feb_dem	26_feb_stg-gen	26_feb_stg-dem	26_mar_gen	26_mar_dem	26_mar_stg-gen	26_mar_stg-dem	26_apr_gen	26_apr_dem	26_apr_stg-gen	26_apr_stg-dem
 LADA        132.00	281121.13	4798501.24	Asturias	132	DSO	I-DE	-	10,2	4,37	-	-	10,2	0	-	-	10,2	0	-	-	-	-	-	-
 LADA T1 30	281121.13	4798501.24	Asturias	30	DSO	I-DE	-	10,2	4,37	-	-	10,2	0	-	-	10,2	0	-	-	-	-	-	-
 ARANDA T2 45	443023.38	4616294.43	Burgos	45	DSO	I-DE	-	0	0	-	-	0	0	-	-	0	0	-	-	-	-	-	-
@@ -6267,943 +6267,943 @@ SE GRADO 22	257469.17	4808405.89	Asturias	22	DSO	E-REDES	-	-	4.23	-	-	-	4.23	-	-
 SE COGERSA 132	273607.28	4819764.96	Asturias	132	DSO	E-REDES	-	-	0	-	-	-	0	-	-	-	0	-	-	-	-	-	-
 SE CAMARMEÑA 24	351385.01	4791225.37	Asturias	24	DSO	E-REDES	-	-	0.8	-	-	-	0.8	-	-	-	0.8	-	-	-	-	-	-
 CR MIRANDA 22	261850.87	4825028.95	Asturias	22	DSO	E-REDES	-	-	0	-	-	-	0	-	-	-	0	-	-	-	-	-	-
-ABADES 220	394336.542	4527876.414	Segovia	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ABADES 400	394353.39	4527876.173	Segovia	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ABADIANO 220	532825.425	4776363.353	Bizkaia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ABANILLAS 400	667522.381	4243743.304	Murcia	400	TSO	REE	Tender pending	0	-	-	0	0	753	847	0	0	753	847	0	-	-	-	-
-ABANTO 400	492467.186	4797163.526	Bizkaia	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ABEGONDO 220	71176.892	4798732.159	A Coruña	220	TSO	REE	Tender pending	0	-	-	0	0	135	841	0	0	135	841	0	-	-	-	-
-ABEGONDO 400	71193.139	4798731.131	A Coruña	400	TSO	REE	-	0	-	-	0	0	470	841	0	0	470	841	0	-	-	-	-
-ABONA 220	-833474.833	3180842.979	Santa Cruz de Tenerife	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ABONA 66	-833494.789	3180845.235	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	0	69	0	0	0	69	0	-	-	-	-
-ABRERA 220	908493.322	4606706.253	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ACECA 220	426698.173	4421610.575	Toledo	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ADRALL 220	862218.089	4695099.856	Lleida	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-AENA 220	449341.499	4484487.878	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-AENA OESTE 220	923261.214	4583931.121	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-AEROPUERTO BARCELONA 220	927239.277	4586298.177	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-AGUACATE 220	436468.015	4468542.793	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-AGUAYO 220	417035.323	4774576.01	Cantabria	220	TSO	REE	Tender pending	0	-	-	0	0	98	98	0	0	0	0	0	-	-	-	-
-AGUAYO 400	417051.593	4774575.812	Cantabria	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-AGÜIMES 66	-730849.863	3148061.085	Las Palmas	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ALARCOS 220	416626.415	4311437.519	Ciudad Real	220	TSO	REE	Tender pending	0	-	-	0	0	130	291	0	0	130	291	0	-	-	-	-
-ALBAL 220	719978.352	4364015.627	Valencia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ALBARELLOS 220	75372.854	4706828.349	Ourense	220	TSO	REE	-	0	-	-	0	0	1	280	0	0	1	280	0	-	-	-	-
-ALBATARREC 220	801983.158	4609205.812	Lleida	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ALCIRA 220	719718.093	4336466.585	Valencia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ALCOBENDAS 220	444868.763	4488860.353	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ALCOCERO DE MOLA 220	469941.899	4703847.944	Burgos	220	TSO	REE	-	2	-	-	2	2	1	564	2	1	1	564	1	-	-	-	-
-ALCORES 220	247102.082	4141480.945	Sevilla	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ALCUDIA BALEARES 66	1025905.946	4427684.376	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ALDAIA 220	715008.766	4369891.929	Valencia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ALDEA BLANCA 66	-734075.796	3143915.263	Las Palmas	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ALDEADAVILA 220	190926.177	4568482.234	Salamanca	220	TSO	REE	-	0	-	-	0	0	730	730	0	0	711	711	0	-	-	-	-
-ALDEADAVILA 400	191549.335	4568392.408	Salamanca	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ALGECIRAS 132	285338.006	4006958.221	Cádiz	132	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ALGECIRAS 220	285239.569	4006926.903	Cádiz	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ALGETE 220	453299.458	4493721.344	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ALHAURIN 220	359227.116	4057853.834	Málaga	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ALI 220	523892.732	4744911.508	Álava	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ALJARAFE 220	225923.172	4137556.447	Sevilla	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ALMADEN 400	339997.945	4287651.69	Ciudad Real	400	TSO	REE	-	0	-	-	0	0	548	972	0	0	548	972	0	-	-	-	-
-ALMARAZ CN 220	269560.162	4409837.652	Cáceres	220	TSO	REE	-	0	-	-	0	0	310	494	0	0	310	494	0	-	-	-	-
-ALMARAZ CN 400	269451.477	4409890.524	Cáceres	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ALMARAZ E.T. 220	271789.288	4411268.19	Cáceres	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ALMAZAN 400	541489.886	4587556.071	Soria	400	TSO	REE	Tender pending	0	-	-	0	0	128	1246	0	0	128	1246	0	-	-	-	-
-ALMENDRALES 400	767694.743	4580904.778	Zaragoza	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ALMODOVAR DEL RIO 220	321982.026	4180186.761	Córdoba	220	TSO	REE	-	0	-	-	11	0	-	-	11	0	-	-	11	-	-	-	-
-ALONSOTEGUI 220	501469.007	4788250.046	Bizkaia	220	TSO	REE	Tender pending	0	-	-	0	0	0	16	0	0	0	0	0	-	-	-	-
-ALVARADO 220	169886.863	4300002.308	Badajoz	220	TSO	REE	-	0	-	-	5	0	-	-	5	0	-	-	4	-	-	-	-
-AMOEIRO 220	91081.568	4704860.523	Ourense	220	TSO	REE	-	0	-	-	0	0	131	193	0	0	131	193	0	-	-	-	-
-AMOREBIETA 400	520353.886	4787044.442	Bizkaia	400	TSO	REE	Tender pending	0	-	-	0	0	140	140	0	0	40	40	0	-	-	-	-
-ANCHUELO 220	474836.682	4479387.537	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ANCHUELO 400	474853.638	4479387.48	Madrid	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ANDRATX 66	966073.68	4391274.463	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ANDUJAR 220	412542.472	4211040.245	Jaén	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ANOIA 220	889116.631	4613345.051	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ANTAS 400	595905.202	4120559.078	Almería	400	TSO	REE	Tender pending	0	-	-	0	0	548	653	0	0	548	653	0	-	-	-	-
-ANTONIO LEYVA 220	439095.279	4470897.56	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-AÑOVER 220	428480.944	4425979.001	Toledo	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-APARECIDA 400	180281.661	4660736.844	Zamora	400	TSO	REE	Tender pending	0	-	-	0	0	245	637	0	0	245	637	0	-	-	-	-
-AQUA 220	727242.413	4371584.284	Valencia	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ARAGON 400	728010.886	4566437.241	Teruel	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ARAÑUELO 400	278750.211	4425446.904	Cáceres	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ARAVACA 220	431655.187	4479640.184	Madrid	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ARBILLERA 220	206694.701	4661168.963	Zamora	220	TSO	REE	Tender pending	0	-	-	0	0	242	565	0	0	242	565	0	-	-	-	-
-ARBILLERA 400	206711.255	4661168.276	Zamora	400	TSO	REE	Tender pending	0	-	-	0	0	603	861	0	0	603	861	0	-	-	-	-
-ARCHIDONA 400	374262.65	4109156.892	Málaga	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ARCOS DE LA FRONTERA 400	248000.829	4062127.107	Cádiz	400	TSO	REE	Tender pending	0	-	-	0	0	177	797	0	0	177	797	0	-	-	-	-
-ARDOZ 220	459082.063	4476954.312	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ARENAL 66	996310.234	4391136.124	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	2	28	0	0	2	28	0	-	-	-	-
-ARENAS DE SAN JUAN 220	457564.654	4344043.469	Ciudad Real	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ARGANDA 220	460966.994	4461391.693	Madrid	220	TSO	REE	-	0	-	-	14	0	0	0	4	0	0	0	4	-	-	-	-
-ARGANZUELA 220	438895.378	4473256.777	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ARGUINEGUIN 66	-755073.297	3136845.246	Las Palmas	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ARICO2 66	-826784.176	3189330.179	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	0	56	0	0	0	56	0	-	-	-	-
-ARINAGA 66	-726778.676	3145312.835	Las Palmas	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ARKALE 220	593881.03	4795382.682	Gipuzkoa	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ARONA 66	-847917.804	3179137.091	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	13	26	0	0	13	26	0	-	-	-	-
-ARRIGORRIAGA 400	509027.592	4784026.757	Bizkaia	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ARROYO DE LA VEGA 220	449470.072	4487430.894	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ARROYO VALLE 220	367914.777	4228347.727	Córdoba	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ARTA 66	1044167.771	4411653.71	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ARUCAS 66	-736335.612	3172469.426	Las Palmas	66	TSO	REE	-	0	-	-	0	0	30	35	0	0	30	35	0	-	-	-	-
-ASCÓ 220	799410.656	4567615.039	Tarragona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ASCÓ 400	799427.428	4567615.729	Tarragona	400	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ASOMADA 400	679879.306	4167083.131	Murcia	400	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ASTILLERO 220	433109.816	4805112.641	Cantabria	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ATARFE 220	438152.266	4120064.82	Granada	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ATIOS 220	35396.454	4680388.539	Pontevedra	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-AVE ZARAGOZA 220	684341.1	4604413.38	Zaragoza	220	TSO	REE	-	15	-	-	58	15	-	-	58	0	-	-	0	-	-	-	-
-AYALA 220	499118.878	4770084.327	Álava	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-AYORA 400	672388.515	4323279.707	Valencia	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-AZCA 220	441101.234	4478227.485	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-AZPEITIA 400	560733.708	4784759.347	Gipuzkoa	400	TSO	REE	Tender pending	0	-	-	0	0	469	469	0	0	369	369	0	-	-	-	-
-BADALONA 220	937440.268	4599443.194	Barcelona	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BALBOA 220	175432.637	4248443.064	Badajoz	220	TSO	REE	Tender pending	0	-	-	0	0	125	565	0	0	125	565	0	-	-	-	-
-BALBOA 400	175443.463	4248324.631	Badajoz	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BALSICAS 220	679744.083	4185291.462	Murcia	220	TSO	REE	Tender pending	0	-	-	0	0	207	362	0	0	207	362	0	-	-	-	-
-BARATARIA 400	497745.487	4336367.687	Ciudad Real	400	TSO	REE	Tender pending	0	-	-	0	0	433	433	0	0	433	433	0	-	-	-	-
-BARCINA 400	482421.66	4736149.714	Burgos	400	TSO	REE	NTJ	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BARO DE VIVER 220	934220.51	4601666.657	Barcelona	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BARRANCO CALDERINA 66	-726275.31	3170148.684	Las Palmas	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BARRANCO DE TIRAJANA III 220	-730615.923	3138739.684	Las Palmas	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BARRANCO SECO 66	-727711.731	3168723.01	Las Palmas	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BARRANCO TIRAJANA (BARRANCO TIRAJANA B) 220	-730601.557	3139049.163	Las Palmas	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BARRANCO TIRAJANA (BARRANCO TIRAJANA B) 66	-734081.556	3143923.146	Las Palmas	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BARRANCO TIRAJANA 220	-730633.649	3138742.923	Las Palmas	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BARRANCO TIRAJANA 66	-730653.613	3138744.978	Las Palmas	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BARRUNDIA 220	544893.349	4749051.63	Álava	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-BASAURI 220	508541.85	4785301.264	Bizkaia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-BAZA 400	522310.635	4156905.696	Granada	400	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-BEARIZ 400	68563.045	4717478.873	Ourense	400	TSO	REE	-	0	-	-	0	0	653	791	0	0	653	791	0	-	-	-	-
-BECHI 220	741146.021	4423576.994	Castellón	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-BEGOÑA 220	442426.466	4481471.351	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-BEGUES (BEGUES B) 220	910191.415	4589860.122	Barcelona	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BEGUES 220	910111.267	4589818.65	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BEGUES 400	910128.005	4589819.599	Barcelona	400	TSO	REE	-	51	-	-	51	51	0	0	51	7	0	0	7	-	-	-	-
-BELESAR 220	113453.277	4730077.651	Lugo	220	TSO	REE	-	0	-	-	0	0	215	451	0	0	215	451	0	-	-	-	-
-BELGIDA 220	725856.365	4286766.105	Alicante	220	TSO	REE	Tender pending	0	-	-	0	0	178	312	0	0	178	312	0	-	-	-	-
-BELINCHON 400	493273.476	4431568.891	Cuenca	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BELLICENS 220	849591.42	4559926.427	Tarragona	220	TSO	REE	-	13	-	-	54	48	-	-	89	48	-	-	89	-	-	-	-
-BENADRESA 220	748742.184	4432243.528	Castellón	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-BENAHADUX 220	547561.554	4084899.757	Almería	220	TSO	REE	-	0	-	-	0	0	55	587	0	0	55	587	0	-	-	-	-
-BENAHAVIS 220	316579.877	4043006.571	Málaga	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-BENEJAMA 220	697953.165	4288070.528	Alicante	220	TSO	REE	Tender pending	0	-	-	0	0	231	897	0	0	231	897	0	-	-	-	-
-BENEJAMA 400	697970.555	4288070.96	Alicante	400	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-BENICULL 220	724349.819	4340502.974	Valencia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-BENIFERRI 220	722826	4374860	Valencia	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-BERJA 220	507127.584	4076485.728	Almería	220	TSO	REE	-	6	-	-	6	6	-	-	6	4	-	-	4	-	-	-	-
-BERNAT 220	719552.045	4336415.72	Valencia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-BESCANO 220	971969.67	4662454.631	Girona	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BESCANO 400	971986.249	4662455.736	Girona	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BESOS NUEVO 220	936969.389	4598613.246	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-BIENVENIDA 400	220416.292	4245860.373	Badajoz	400	TSO	REE	Tender pending	0	-	-	0	0	152	152	0	0	152	152	0	-	-	-	-
-BIESCAS 220	720116.359	4723045.117	Huesca	220	TSO	REE	-	0	-	-	122	0	-	-	122	0	-	-	122	-	-	-	-
-BIT 66	984762.407	4402297.601	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	12	46	0	0	12	46	0	-	-	-	-
-BOADILLA 220	422874.608	4473403.711	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-BOIMENTE 400	132394.319	4836335.426	Lugo	400	TSO	REE	Tender pending	0	-	-	0	0	73	261	0	0	73	161	0	-	-	-	-
-BOLARQUE 220	514417.222	4468252.603	Guadalajara	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-BOSSA 132	881656.561	4313694.181	Islas Baleares	132	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-BRAZATORTAS 220	390851.298	4278891.119	Ciudad Real	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-BRAZATORTAS 400	390917.767	4279022.16	Ciudad Real	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BROVALES 220	176200.436	4247961.372	Badajoz	220	TSO	REE	-	0	-	-	0	0	146	686	0	0	146	686	0	-	-	-	-
-BROVALES 400	176288.75	4247844.664	Badajoz	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BUDIA 400	520494.353	4497416.828	Guadalajara	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BUENAVISTA 220	436212.176	4462487.496	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-BUENAVISTA GC 66	-726826.563	3174187.168	Las Palmas	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BUENOS AIRES 220	-805476.941	3220457.737	Santa Cruz de Tenerife	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BUENOS AIRES 66	-805496.81	3220459.97	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BUNIEL 400	432402.6	4685892.481	Burgos	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-BUNYOLA 66	989265.837	4408317.102	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CABRA 400	367935.33	4146837.827	Córdoba	400	TSO	REE	Tender pending	0	-	-	0	0	827	1034	0	0	827	1034	0	-	-	-	-
-CACERES 220	211182.388	4375376.82	Cáceres	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CACICEDO 220	429824.786	4809611.975	Cantabria	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CALA BLAVA 66	1000855.717	4378413.359	Islas Baleares	66	TSO	REE	-	26	-	-	26	20	0	0	20	12	0	0	12	-	-	-	-
-CALA MESQUIDA 132	1050916.229	4418575.775	Islas Baleares	132	TSO	REE	-	0	-	-	0	0	18	49	0	0	18	49	0	-	-	-	-
-CALA MILLOR 66	1046669.006	4400907.914	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	16	0	0	0	16	0	-	-	-	-
-CALAMOCHA 220	644340.165	4530687.824	Teruel	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CALATORAO 220	638656.992	4597544.648	Zaragoza	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CALDERS 400	910253.652	4635655.737	Barcelona	400	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CALERA Y CHOZAS 220	344458.306	4429682.169	Toledo	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CALETILLAS 220	-815504.597	3213468.419	Santa Cruz de Tenerife	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CALLEJONES 66	-535675.644	3253545.619	Las Palmas	66	TSO	REE	-	0	-	-	0	0	0	21	0	0	0	21	0	-	-	-	-
-CALVIA 66	973478.371	4389725.888	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CAMARENA 220	407747.089	4443622.103	Toledo	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CAMARENA 400	407764.127	4443621.895	Toledo	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CAMINO FREGACEDOS 220	430562.348	4460435.521	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CAMPANARIO 400	649334.059	4305202.59	Albacete	400	TSO	REE	-	0	-	-	0	0	205	257	0	0	205	257	0	-	-	-	-
-CAMPO NACIONES 220	447305.551	4479496.882	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CAMPOAMOR 220	694830.185	4197833.885	Alicante	220	TSO	REE	-	0	-	-	0	0	17	337	0	0	17	337	0	-	-	-	-
-CAMPOS 400	640988.291	4213910.415	Murcia	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CAN BARBA 400	921769.711	4612446.2	Barcelona	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CAN JARDI (CAN JARDI B) 220	919579.332	4603587.525	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CAN JARDI 220	919483.42	4603721.105	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CAN JARDI 400	919474.77	4603708.207	Barcelona	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CAN PICAFORT 66	1027592.555	4417882.454	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	4	0	0	0	4	0	-	-	-	-
-CANDELARIA (CANDELARIA B) 66	-815327.158	3213286.575	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CANDELARIA 220	-815317.214	3213285.453	Santa Cruz de Tenerife	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CANDELARIA 66	-815337.103	3213287.698	Santa Cruz de Tenerife	66	TSO	REE	-	5	-	-	5	5	0	0	5	5	0	0	5	-	-	-	-
-CANILLEJAS 220	447863.817	4476178.809	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CANYET 220	937194.882	4603746.024	Barcelona	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CAÑADA DE LA BARCA 132	-612256.272	3162811.262	Las Palmas	132	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CAÑAVERAL 400	212236.979	4410856.589	Cáceres	400	TSO	REE	Tender pending	0	-	-	0	0	524	700	0	0	524	700	0	-	-	-	-
-CAÑUELO 220	279527	4010429	Cádiz	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CAPARACENA 220	435597.344	4124828.838	Granada	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CAPARACENA 400	435683.765	4124736.807	Granada	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CAPDEPERA 66	1050401.775	4413938.493	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CARDOSO 220	270118.796	4827779.074	Asturias	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CARDOSO 400	270134.947	4827778.52	Asturias	400	TSO	REE	-	0	-	-	0	0	96	96	0	0	-	-	0	-	-	-	-
-CARIÑENA 400	648288.824	4576104.217	Zaragoza	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CARMONA 220	256281.454	4160266.149	Sevilla	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CARMONA 400	256299.123	4160265.63	Sevilla	400	TSO	REE	Tender pending	0	-	-	0	0	809	832	0	0	809	832	0	-	-	-	-
-CARMONITA 400	208570.801	4332727.183	Badajoz	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CARRIL 400	613361.735	4144118.676	Murcia	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CARRIO 220	279604.346	4826201.283	Asturias	220	TSO	REE	NTJ	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CARRIZAL 66	-727888.197	3150630.343	Las Palmas	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CARROYUELAS 220	450042.979	4370687.806	Toledo	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CARTAMA 220	356689.728	4068440.037	Málaga	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CARTAMA 400	356707.583	4068439.738	Málaga	400	TSO	REE	Tender pending	0	-	-	0	0	488	830	0	0	488	830	0	-	-	-	-
-CARTELLE 220	82803.484	4690636.479	Ourense	220	TSO	REE	-	0	-	-	0	0	617	1024	0	0	617	1024	0	-	-	-	-
-CARTELLE 400	82819.987	4690635.497	Ourense	400	TSO	REE	-	0	-	-	0	0	447	447	0	0	447	447	0	-	-	-	-
-CARTUJA 220	220971.442	4057083.278	Cádiz	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CARTUJOS 220	679821.051	4606481.574	Zaragoza	220	TSO	REE	-	14	-	-	76	14	-	-	76	14	-	-	76	-	-	-	-
-CA'S TRESORER 220	988687.266	4395138.73	Islas Baleares	220	TSO	REE	-	1	-	-	1	1	0	0	1	1	0	0	1	-	-	-	-
-CA'S TRESORER 66	988695.226	4395139.818	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CASA DE CAMPO 220	437056.876	4476207.038	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CASAQUEMADA 220	211024.854	4148748.839	Sevilla	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CASATEJADA 220	269132.932	4428467.144	Cáceres	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CASILLAS 220	340535.399	4191597.83	Córdoba	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CASTALLA 220	702480	4275376	Alicante	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CASTEJON 400	609376.747	4669599.774	Navarra	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CASTELLAR DE LA FRONTERA 400	284629.693	4020503.891	Cádiz	400	TSO	REE	Tender pending	0	-	-	0	0	65	1069	0	0	65	1069	0	-	-	-	-
-CASTELLBISBAL 220	916566.849	4600232.121	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CASTELLET 220	883874.729	4577302.3	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CASTELLON, C.T. 400	756027.634	4427463.491	Castellón	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CASTRELO 220	78415.775	4694787.807	Ourense	220	TSO	REE	Posible Tender pending	91	-	-	91	91	47	744	91	0	47	744	0	-	-	-	-
-CATADAU 220	710415.54	4347449.842	Valencia	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CATADAU 400	710432.801	4347450.307	Valencia	400	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CEDILLO 400	111078.937	4400327.849	Cáceres	400	TSO	REE	-	0	-	-	0	0	203	972	0	0	203	972	0	-	-	-	-
-CENTELLES 220	933024.617	4641620.127	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CENTENARIO 220	233319.286	4142594.919	Sevilla	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CERCS 220	901023.804	4680549.731	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CERDA 220	929964.108	4589598.006	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CERRATO 400	385345.884	4638367.15	Palencia	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CERRO PLATA 220	442213.992	4472372.815	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CERVELLO 220	917072.496	4595854.055	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CHANTADA 220	108925.536	4730245.743	Lugo	220	TSO	REE	-	0	-	-	0	0	128	186	0	0	128	186	0	-	-	-	-
-CHAYOFA 66	-853238.436	3182083.53	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	1	8	0	0	1	8	0	-	-	-	-
-CHIO 66	-861774.002	3200251.321	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CHUCENA 220	200108.271	4138187.175	Huelva	220	TSO	REE	Tender pending	0	-	-	0	0	160	204	0	0	160	204	0	-	-	-	-
-CICERO 220	457596.623	4804578.042	Cantabria	220	TSO	REE	-	0	-	-	0	0	65	197	0	0	65	97	0	-	-	-	-
-CILLAMAYOR 220	397096.694	4747149.715	Palencia	220	TSO	REE	Tender pending	0	-	-	0	0	53	234	0	0	53	234	0	-	-	-	-
-CINCA 220	764857.104	4646286.804	Huesca	220	TSO	REE	Tender pending	0	-	-	0	0	0	132	0	0	0	132	0	-	-	-	-
-CINSA 66	-723154.448	3157417.693	Las Palmas	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CISNEROS 220	475271.197	4486196.868	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CIUDAD DEPORTIVA 220	447376.978	4480676.792	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CIUDAD RODRIGO 400	199688.548	4505114.761	Salamanca	400	TSO	REE	Tender pending	0	-	-	0	0	486	872	0	0	486	853	0	-	-	-	-
-CIUDADELA 132	1085368.085	4450709.15	Islas Baleares	132	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CODONYERS 220	925787.685	4604387.35	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-COFRENTES 400	667981.612	4342351.5	Valencia	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-COLISEO 66	985744.057	4396868.697	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-COLLBLANC 220	926952.611	4593244.494	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-COMPLUTUM 220	467150.567	4480255.701	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-COMPOSTILLA 220	207485.697	4724066.364	León	220	TSO	REE	NTJ	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-COMPOSTILLA 400	207302.768	4723467.641	León	400	TSO	REE	NTJ	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-CONSO 220	155281.009	4677054.036	Ourense	220	TSO	REE	-	10	-	-	10	10	134	134	10	60	134	134	60	-	-	-	-
-CONSTANTI 220	854645.004	4562434.233	Tarragona	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CORDOVILLA 220	611627.039	4737999.389	Navarra	220	TSO	REE	-	0	-	-	22	0	-	-	22	0	-	-	22	-	-	-	-
-CORNATEL 220	186394.133	4709084.087	Ourense	220	TSO	REE	-	87	-	-	117	17	78	120	17	17	78	120	17	-	-	-	-
-CORRALEJO 66	-565826.133	3225239.215	Las Palmas	66	TSO	REE	-	0	-	-	0	0	11	19	0	0	11	19	0	-	-	-	-
-COSCURITA 220	540808.685	4593632.191	Soria	220	TSO	REE	-	0	-	-	0	0	322	825	0	0	322	825	0	-	-	-	-
-COSLADA (COSLADA B) 220	451166.23	4474816.559	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-COSLADA 220	451166.23	4474816.559	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-COSTA DE LA LUZ 220	127045.258	4137252.773	Huelva	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-COSTASOL 220	333502.896	4043571.81	Málaga	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-COTORROS 400	435708.222	4687943.573	Burgos	400	TSO	REE	Tender pending	0	-	-	0	0	416	416	0	0	297	297	0	-	-	-	-
-CRISTOBAL COLON 220	150006.459	4126239.014	Huelva	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-CUESTA DE LA VILLA 66	-828811.274	3218969.825	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-DAGANZO 220	459477.309	4489370.604	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-DIQUE DEL ESTE 66	-798561.259	3224696.406	Santa Cruz de Tenerife	66	TSO	REE	-	44	-	-	44	44	0	0	44	35	0	0	35	-	-	-	-
-DON ALVARO 400	212571.284	4307718.949	Badajoz	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-DON RODRIGO (DON RODRIGO B) 220	247890.995	4125882.469	Sevilla	220	TSO	REE	-	0	-	-	0	0	1	595	0	0	1	595	0	-	-	-	-
-DON RODRIGO 220	247880.624	4125886.853	Sevilla	220	TSO	REE	Tender pending	0	-	-	0	0	53	859	0	0	53	859	0	-	-	-	-
-DON RODRIGO 400	247865.72	4125893.291	Sevilla	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-DOS HERMANAS 220	242433.472	4131959.221	Sevilla	220	TSO	REE	Tender pending	0	-	-	0	0	28	547	0	0	28	547	0	-	-	-	-
-DRAGO 66	-852109.553	3213502.076	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	18	33	0	0	18	33	0	-	-	-	-
-DRAGONERA 132	1118987.261	4440800.075	Islas Baleares	132	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-EBORA 220	347312.643	4425337.884	Toledo	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-EIRIS 220	62449.506	4813075.517	A Coruña	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-EIXAMPLE 220	932124.938	4597047.449	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-EL CANTALAR 220	725171.616	4256068.23	Alicante	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-EL CERRO 220	446822.279	4731409.267	Burgos	220	TSO	REE	-	0	-	-	0	0	0	283	0	0	0	283	0	-	-	-	-
-EL CONDADO 220	155291.439	4122432.151	Huelva	220	TSO	REE	-	0	-	-	0	0	0	210	0	0	0	210	0	-	-	-	-
-EL COTO 220	445438.539	4477943.707	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-EL EMPERADOR 220	424851.348	4354948.419	Toledo	220	TSO	REE	-	0	-	-	0	0	207	386	0	0	207	386	0	-	-	-	-
-EL MORELL 220	854290.656	4569822.88	Tarragona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-EL PALMAR 220	659193.284	4200791.021	Murcia	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-EL PALMAR 400	659210.859	4200791.362	Murcia	400	TSO	REE	-	0	-	-	0	0	183	844	0	0	183	844	0	-	-	-	-
-EL PALMAR DE LA GOMERA 66	-894597.459	3188818.441	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-EL PALMERAL 220	716831.687	4245200.645	Alicante	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-EL PALO 400	201610.371	4797398.168	Asturias	400	TSO	REE	Tender pending	0	-	-	0	0	261	261	0	0	161	161	0	-	-	-	-
-EL PETREL 220	693559.185	4256838.496	Alicante	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-EL ROSARIO 220	-812670.605	3220782.597	Santa Cruz de Tenerife	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-EL ROSARIO 66	-812690.479	3220784.842	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-EL SEQUERO 220	561498.839	4696397.092	La Rioja	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-EL SERRALLO 220	755867.965	4427397.692	Castellón	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-EL TABLERO 66	-747947.685	3135773.603	Las Palmas	66	TSO	REE	-	0	-	-	0	0	0	5	0	0	0	5	0	-	-	-	-
-EL ZUMAJO 220	231565.877	4020965.782	Cádiz	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ELCHE 220	706807.388	4237815.582	Alicante	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ELCOGAS 220	414220.452	4279400.183	Ciudad Real	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ELDA 220	692610.371	4263554.127	Alicante	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ELGEA 220	544901.677	4749030.447	Álava	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ELIANA (ELIANA B) 220	713921.324	4381308.116	Valencia	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ELIANA 220	713912.732	4381307.878	Valencia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ELIANA 400	713929.917	4381308.354	Valencia	400	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ELS AUBALS 220	805749.463	4558297.992	Tarragona	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ELS AUBALS 400	805757.114	4558186.838	Tarragona	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ENTRENUCLEOS 220	239155.35	4133748.958	Sevilla	220	TSO	REE	-	0	-	-	209	0	-	-	209	0	-	-	209	-	-	-	-
-ENTRERRIOS 220	650755.223	4623451.122	Zaragoza	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ERISTE 220	786525.9	4721080.066	Huesca	220	TSO	REE	Posible Tender pending	41	-	-	41	41	-	-	41	0	-	-	0	-	-	-	-
-ES BESSONS (ES BESSONS B) 66	1029091.558	4399533.852	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	15	105	0	0	15	105	0	-	-	-	-
-ES BESSONS 132	1029060.935	4399543.234	Islas Baleares	132	TSO	REE	-	0	-	-	0	0	25	84	0	0	25	84	0	-	-	-	-
-ES BESSONS 220	1029078.129	4399544.416	Islas Baleares	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ES BESSONS 66	1029069.532	4399543.825	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	15	81	0	0	15	81	0	-	-	-	-
-ESCALONA 220	758538.865	4706741.008	Huesca	220	TSO	REE	-	0	-	-	0	0	0	231	0	0	0	231	0	-	-	-	-
-ESCATRON 220	722590.048	4575088.324	Zaragoza	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ESCATRON 400	722606.795	4575088.837	Zaragoza	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ESCOBAR 66	-727891.446	3150635.342	Las Palmas	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ESCUCHA 220	684253.493	4518439.531	Teruel	220	TSO	REE	-	0	-	-	280	0	-	-	280	0	-	-	280	-	-	-	-
-ESPARTAL 220	693595.475	4601636.139	Zaragoza	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ESPINARDO 220	661722.245	4209297.559	Murcia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ESQUEDAS 220	700455.906	4676551.997	Huesca	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-FACINAS 220	255468.715	4003477.669	Cádiz	220	TSO	REE	-	0	-	-	0	0	0	511	0	0	0	511	0	-	-	-	-
-FACULTATS 220	928141.036	4594014.759	Barcelona	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-FADRELL 400	748735.071	4432216.746	Castellón	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-FALCA 66	984473.972	4396536.371	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-FARGUE 220	448960.454	4116814.51	Granada	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-FARNERS 220	970412.262	4649781.138	Girona	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-FARNERS 400	970428.87	4649782.238	Girona	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-FAUSITA 220	681085.131	4159451.239	Murcia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-FAUSITA 400	681102.92	4159445.969	Murcia	400	TSO	REE	Tender pending	0	-	-	0	0	269	864	0	0	269	864	0	-	-	-	-
-FERIA DE MUESTRAS 220	721325.269	4375923.503	Valencia	220	TSO	REE	-	0	-	-	0	0	48	418	0	0	48	418	0	-	-	-	-
-FOIX 220	890544.398	4572547.56	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-FONTEFRIA 220	61086.878	4692242.528	Pontevedra	220	TSO	REE	Tender pending	0	-	-	0	0	148	930	0	0	148	930	0	-	-	-	-
-FONTEFRIA 400	61383.84	4691500.501	Pontevedra	400	TSO	REE	-	0	-	-	0	0	0	791	0	0	0	791	0	-	-	-	-
-FORADADA 220	776721.607	4700036.209	Huesca	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-FORMENTERA 132	888294.888	4292100.256	Islas Baleares	132	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-FORMENTERA 30	888294.888	4292100.256	Islas Baleares	30	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-FORTUNA 220	433467.714	4466543.341	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-FRANCOLI 220	854735.731	4569490.325	Tarragona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-FRANQUESES 220	939969.049	4623577.718	Barcelona	220	TSO	REE	-	0	-	-	0	0	46	250	0	0	46	250	0	-	-	-	-
-FRIEIRA 220	70878.345	4679930.758	Ourense	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-FUENCALIENTE 66	-961540.82	3244298.185	Santa Cruz de Tenerife	66	TSO	REE	-	8	-	-	8	8	0	0	8	8	0	0	8	-	-	-	-
-FUENCARRAL 220	443069.199	4485626.112	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-FUENCARRAL 400	443086.141	4485625.983	Madrid	400	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-FUENDETODOS 220	669232.698	4578155.894	Zaragoza	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-FUENDETODOS 400	669249.433	4578156.284	Zaragoza	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-FUENLABRADA 220	433537.495	4458761.903	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-FUENTE DE CANTOS 400	218494.876	4234514.861	Badajoz	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-FUENTE DEL MAESTRE 400	195412.531	4266638.217	Badajoz	400	TSO	REE	Tender pending	0	-	-	0	0	458	458	0	0	458	458	0	-	-	-	-
-FUENTE HITO 220	447927.946	4487648.183	Madrid	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-FUENTE SAN LUIS 220	725968.105	4368814.999	Valencia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-FUENTEBUREBA 400	481772.618	4719243.064	Burgos	400	TSO	REE	Tender pending	0	-	-	0	0	447	580	0	0	447	480	0	-	-	-	-
-FUENTES DE LA ALCARRIA 400	501368.608	4510803.377	Guadalajara	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-GABIAS 220	440444.524	4111246.22	Granada	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-GALAPAGAR 220	414984.18	4494666.636	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-GALAPAGAR 400	415001.103	4494666.443	Madrid	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-GAMARRA 220	527259.004	4746387.718	Álava	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-GANDIA 220	743819.478	4318597.943	Valencia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-GAROÑA 220	483142	4735762	Burgos	220	TSO	REE	NTJ	0	-	-	0	0	55	556	0	0	55	456	0	-	-	-	-
-GARRAF 400	895416.239	4577827.491	Barcelona	400	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-GATICA 220	509610.346	4799697.16	Bizkaia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-GATICA 400	509626.555	4799697.183	Bizkaia	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-GAUSSA 400	730163.017	4393441.874	Valencia	400	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-GAVARROT 220	920848.78	4587058.54	Barcelona	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-GAZULES 220	250581.758	4042660.297	Cádiz	220	TSO	REE	-	0	-	-	0	0	30	915	0	0	30	915	0	-	-	-	-
-GENETO 66	-809979.126	3221310.541	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-GETAFE 220	441273.467	4463313.139	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-GODELLETA 220	700346.928	4368555.15	Valencia	220	TSO	REE	Tender pending	0	-	-	0	0	455	965	0	0	455	965	0	-	-	-	-
-GODELLETA 400	700364.14	4368555.594	Valencia	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-GRADO 220	767109.214	4671864.657	Huesca	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-GRAMANET (GRAMANET B) 220	933604.234	4602887.73	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-GRAMANET 220	933604.234	4602887.73	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-GRAN TARAJAL 132	-584836.577	3172783.582	Las Palmas	132	TSO	REE	-	5	-	-	5	5	0	0	5	3	0	0	3	-	-	-	-
-GRAN TARAJAL 66	-584856.4	3172785.408	Las Palmas	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-GRANADILLA (GRANADILLA B) 220	-833175.668	3181012.817	Santa Cruz de Tenerife	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-GRANADILLA 220	-832788.107	3181493.192	Santa Cruz de Tenerife	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-GRANADILLA 66	-832808.061	3181495.448	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-GRIJOTA 400	371236.47	4658960.123	Palencia	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-GUADAIRA 220	236502.177	4128194.614	Sevilla	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-GUADAME 220	395353.124	4211966.641	Jaén	220	TSO	REE	Tender pending	0	-	-	0	0	184	951	0	0	184	951	0	-	-	-	-
-GUADAME 400	395350.137	4211892.306	Jaén	400	TSO	REE	Tender pending	0	-	-	0	0	875	1034	0	0	875	1034	0	-	-	-	-
-GUADIANA 400	177398.711	4315600.466	Badajoz	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-GUAJARA 66	-808369.333	3222072.021	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-GUARDO 220	348542	4742280	Palencia	220	TSO	REE	NTJ	0	-	-	0	0	0	507	0	0	0	507	0	-	-	-	-
-GUEÑES 220	497486.854	4785111.171	Bizkaia	220	TSO	REE	Tender pending	0	-	-	0	0	0	16	0	0	0	0	0	-	-	-	-
-GUEÑES 400	497503.097	4785111.165	Bizkaia	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-GUIA 66	-744737.621	3176684.824	Las Palmas	66	TSO	REE	-	12	-	-	12	12	0	0	12	12	0	0	12	-	-	-	-
-GUIA DE ISORA 66	-861770.146	3200459.163	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-GUILLENA (GUILLENA B) 220	226854.678	4170035.122	Sevilla	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-GUILLENA 220	226771.287	4169929.999	Sevilla	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-GUILLENA 400	226674.481	4170039.907	Sevilla	400	TSO	REE	-	0	-	-	0	0	264	264	0	0	264	264	0	-	-	-	-
-GUINCHOS 66	-951719.551	3261857.221	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-GUIXERES 220	939339.595	4603458.316	Barcelona	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-GURREA 220	684255.69	4656390.437	Huesca	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-HARÍA 66	-523556.597	3267078.616	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-HARO 220	509427.34	4712897.344	La Rioja	220	TSO	REE	-	58	-	-	98	0	-	-	0	0	-	-	0	-	-	-	-
-HERNANI 220	583794.958	4790218.968	Gipuzkoa	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-HERNANI 400	583188.012	4789799.673	Gipuzkoa	400	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-HERRERA 220	389767.829	4716640.511	Palencia	220	TSO	REE	-	0	-	-	0	0	190	280	0	0	190	280	0	-	-	-	-
-HERRERA 400	389784.238	4716640.25	Palencia	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-HIJAR 220	716561.337	4561066.205	Teruel	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-HINOJOSA 400	186105.225	4547416.322	Salamanca	400	TSO	REE	-	0	-	-	0	0	522	522	0	0	503	503	0	-	-	-	-
-HORNILLO 220	439562.31	4458613.624	Madrid	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-HORTALEZA 220	443668.532	4480406.189	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-HOSPITALET 220	926747.737	4589744.301	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-HOYA MORENA 220	687269.03	4179254.275	Murcia	220	TSO	REE	Tender pending	0	-	-	0	0	17	337	0	0	17	337	0	-	-	-	-
-HUELVES 220	505174.194	4434306.21	Cuenca	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-HUENEJA 400	505088.496	4118971.539	Granada	400	TSO	REE	-	0	-	-	0	0	13	893	0	0	13	893	0	-	-	-	-
-IBIZA 132	884148.096	4317201.376	Islas Baleares	132	TSO	REE	-	10	-	-	10	10	-	-	10	0	-	-	0	-	-	-	-
-IBIZA 23 66	884195.043	4316980.205	Islas Baleares	66	TSO	REE	-	8	-	-	8	8	0	0	8	3	0	0	3	-	-	-	-
-IBIZA 66	884180.844	4317062.256	Islas Baleares	66	TSO	REE	-	8	-	-	8	8	0	0	8	3	0	0	3	-	-	-	-
-ICOD DE LOS VINOS 66	-849525.242	3215600.538	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	18	33	0	0	18	33	0	-	-	-	-
-ILLORA 220	421502.078	4121912.852	Granada	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-INCA 66	1007412.547	4412803.179	Islas Baleares	66	TSO	REE	-	18	-	-	18	19	9	9	19	35	9	9	35	-	-	-	-
-INGENIO 220	754864.193	4429627.973	Castellón	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-IRUN 220	596356.561	4799046.558	Gipuzkoa	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ISONA 220	828605.782	4670941.891	Lleida	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ISONA 400	828622.318	4670942.662	Lleida	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ITXASO 220	559173.857	4767851.93	Gipuzkoa	220	TSO	REE	-	0	-	-	0	0	103	335	0	0	103	235	0	-	-	-	-
-ITXASO 400	559133.888	4767886.161	Gipuzkoa	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-IZNALLOZ 400	452876.558	4137228.852	Granada	400	TSO	REE	-	0	-	-	0	0	514	728	0	0	514	728	0	-	-	-	-
-J.M.ORIOL 220	167610.138	4404359.944	Cáceres	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-J.M.ORIOL 400	167898.854	4404337.567	Cáceres	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-JALON 220	642415.065	4617584.411	Zaragoza	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-JARES 132	-593186.902	3174093.92	Las Palmas	132	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-JIJONA 220	719978.861	4263431.279	Alicante	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-JINAMAR 220	-725369.044	3165048.698	Las Palmas	220	TSO	REE	-	0	-	-	0	0	29	29	0	0	29	29	0	-	-	-	-
-JINAMAR 66	-725345.691	3164970.471	Las Palmas	66	TSO	REE	-	34	-	-	34	34	29	29	34	34	29	29	34	-	-	-	-
-JORDANA 220	301131.678	4035485.579	Málaga	220	TSO	REE	Tender pending	0	-	-	0	0	104	1121	0	0	104	1121	0	-	-	-	-
-JORDANA 400	301149.606	4035485.166	Málaga	400	TSO	REE	Tender pending	0	-	-	0	0	81	1083	0	0	81	1083	0	-	-	-	-
-JOSE CABRERA 220	509718.902	4466574.044	Guadalajara	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-JUIA 220	988598.332	4669164.519	Girona	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-JUNDIZ 220	520715.391	4742658.708	Álava	220	TSO	REE	Tender pending	0	-	-	0	0	21	21	0	0	188	456	0	-	-	-	-
-JUNEDA 220	819358.256	4604747.542	Lleida	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LA CANONJA 220	851960.913	4559301.426	Tarragona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LA CEREAL 220	438813.924	4494663.305	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LA CEREAL 400	438830.846	4494663.166	Madrid	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LA ESPLUGA 220	844745.176	4591937.86	Tarragona	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LA ESPLUGA 400	844964.105	4591955.2	Tarragona	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LA ESTRELLA 220	443519.263	4474303.084	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LA FARGA 220	986827.194	4673515.008	Girona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LA FARGA 400	986843.75	4673516.151	Girona	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LA FORTUNADA 220	762560.893	4715006.215	Huesca	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LA GRELA 220	59918.116	4813205.05	A Coruña	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LA JARA 220	491541.45	4783446.135	Bizkaia	220	TSO	REE	-	0	-	-	0	0	16	16	0	0	0	0	0	-	-	-	-
-LA LORA 400	429455.61	4715715.807	Burgos	400	TSO	REE	-	0	-	-	0	75	0	0	75	75	0	0	75	-	-	-	-
-LA NAVA 220	400276.247	4281675.905	Ciudad Real	220	TSO	REE	-	0	-	-	0	0	67	108	0	0	67	108	0	-	-	-	-
-LA OLIVA 132	-565672.859	3229201.643	Las Palmas	132	TSO	REE	-	7	-	-	7	7	21	21	7	0	21	21	0	-	-	-	-
-LA OLIVA 66	-565692.576	3229203.466	Las Palmas	66	TSO	REE	-	0	-	-	0	0	11	19	0	0	11	19	0	-	-	-	-
-LA PALOMA 220	467484.158	4319163.329	Ciudad Real	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LA PATERNA 66	-728866.913	3170822.341	Las Palmas	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LA PEREDA 220	271976.428	4795031.636	Asturias	220	TSO	REE	NTJ	24	-	-	24	24	73	73	24	24	73	73	24	-	-	-	-
-LA PINILLA 400	621441.657	4291589.573	Albacete	400	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LA PLANA 220	748016.452	4428117.627	Castellón	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LA PLANA 400	747856.396	4428174.205	Castellón	400	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LA ROCA 220	943537.041	4617698.946	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	46	250	0	0	46	250	0	-	-	-	-
-LA SAGRA 220	430111.554	4442739.984	Toledo	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LA SAGRA 400	430128.594	4442739.827	Toledo	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LA SECUITA 220	854285.545	4569822.929	Tarragona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LA SECUITA 400	854302.32	4569823.745	Tarragona	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LA SELVA 220	847963.615	4570289.716	Tarragona	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LA SOLANA 220	400445.001	4281930.014	Ciudad Real	220	TSO	REE	-	0	-	-	0	0	0	108	0	0	0	108	0	-	-	-	-
-LA TORRECILLA 220	447885.198	4463335.393	Madrid	220	TSO	REE	-	4	-	-	4	4	0	0	4	4	0	0	4	-	-	-	-
-LADA 400	281157.954	4798309.722	Asturias	400	TSO	REE	NTJ	0	-	-	0	0	13	121	0	0	13	21	0	-	-	-	-
-LAGUARDIA 220	534114.002	4706261.084	Álava	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LANCHA 220	349735.413	4197994.412	Córdoba	220	TSO	REE	NTJ	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LANZAS AGUDAS 220	608506.184	4635354.849	Zaragoza	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LAS ARROYADAS 220	356981.426	4598506.302	Valladolid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LAS BREÑAS 66	-952590.937	3258700.084	Santa Cruz de Tenerife	66	TSO	REE	-	11	-	-	11	11	0	0	11	0	0	0	0	-	-	-	-
-LAS MAZORRAS 220	447906.868	4744667.686	Burgos	220	TSO	REE	-	0	-	-	0	0	0	247	0	0	0	247	0	-	-	-	-
-LAS PALMAS OESTE (LAS CANTERAS) 66	-727474.734	3175203.744	Las Palmas	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LAS ROSAS 220	-809970.968	3221307.972	Santa Cruz de Tenerife	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LAS ROSAS 66	-809990.839	3221310.214	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	19	52	0	0	19	52	0	-	-	-	-
-LASTRAS 400	387135.324	4526373.266	Segovia	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LEGANES 220	434000.806	4462850.93	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LES CORTS 220	929638.193	4594516.394	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LITORAL 400	597185.562	4093032.424	Almería	400	TSO	REE	NTJ	0	-	-	0	0	514	698	0	0	514	698	0	-	-	-	-
-LLATZER 66	988684.939	4395136.844	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LLAVORSI 220	846258.653	4713505.12	Lleida	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LLUBI 220	1018171.364	4408994.914	Islas Baleares	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LLUBI 66	1018154.193	4408993.754	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LLUCMAJOR 66	1007505.371	4388722.58	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	11	40	0	0	11	40	0	-	-	-	-
-LOECHES (LOECHES B) 220	464423.541	4470804.592	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LOECHES 220	464146.521	4470890.071	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LOECHES 400	464163.496	4470889.99	Madrid	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LOGROÑO 220	541848.805	4700789.708	La Rioja	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LOMBA 220	202586.736	4721218.945	León	220	TSO	REE	Tender pending	0	-	-	0	0	602	685	0	0	602	685	0	-	-	-	-
-LOMBA 400	202603.15	4721218.242	León	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LOMO APOLINARIO 66	-727372.443	3171002.015	Las Palmas	66	TSO	REE	-	0	-	-	0	0	7	7	0	0	7	7	0	-	-	-	-
-LOMO MASPALOMAS 66	-745255.976	3136340.481	Las Palmas	66	TSO	REE	-	0	-	-	0	0	11	24	0	0	11	24	0	-	-	-	-
-LOS ARENALES 220	205611.73	4378614.668	Cáceres	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LOS BARRIOS 220	282297.795	4007133.351	Cádiz	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LOS LEONES 220	676991.925	4617669.525	Zaragoza	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LOS MONTES 220	376033.824	4067458.755	Málaga	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LOS OLIVOS 66	-856997.564	3188806.407	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LOS RAMOS 220	368491	4065740.804	Málaga	220	TSO	REE	-	41	-	-	41	0	-	-	0	0	-	-	0	-	-	-	-
-LOS REALEJOS 66	-836704.208	3215815.014	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LOS VIENTOS 220	655410.745	4595204.81	Zaragoza	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LOURIZAN 220	33859.722	4711723.753	Pontevedra	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LOUSAME 220	27374.018	4756835.744	A Coruña	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LUBIAN 220	177764.939	4661444.489	Zamora	220	TSO	REE	-	2	-	-	2	2	1	179	2	1	1	179	1	-	-	-	-
-LUCERO 220	424956.924	4465955.552	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-LUDRIO 400	140755.17	4784580.637	Lugo	400	TSO	REE	Tender pending	0	-	-	0	0	260	841	0	0	260	841	0	-	-	-	-
-LUENGOS 400	304974.213	4702442.971	León	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-LUMINABASO 220	519596.617	4784417.376	Bizkaia	220	TSO	REE	-	0	-	-	0	0	0	195	0	0	0	195	0	-	-	-	-
-MACHER 66	-544416.875	3250120.961	Las Palmas	66	TSO	REE	-	0	-	-	0	0	21	21	0	0	21	21	0	-	-	-	-
-MACIÑEIRA 400	102148.303	4822041.738	A Coruña	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MADRIDEJOS 220	454306.364	4370977.21	Toledo	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MAGALLON 220	634426.487	4634041.157	Zaragoza	220	TSO	REE	-	0	-	-	0	0	-	-	0	7	-	-	7	-	-	-	-
-MAGALLON 400	634625.992	4634120.917	Zaragoza	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MAGAÑA 220	566292.432	4644940.534	Soria	220	TSO	REE	-	0	-	-	0	0	0	415	0	0	0	415	0	-	-	-	-
-MAGUILLA 400	248626.267	4248442.061	Badajoz	400	TSO	REE	Tender pending	0	-	-	0	0	627	930	0	0	627	930	0	-	-	-	-
-MAHON 132	1120774.933	4441628.369	Islas Baleares	132	TSO	REE	-	0	-	-	0	0	20	84	0	0	20	84	0	-	-	-	-
-MAIALS 400	793088.256	4587829.966	Lleida	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MAJADAHONDA 220	425030.018	4477914.854	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MANACOR 66	1031899.834	4398772.741	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MANCHEGA 400	521133.864	4342199.806	Albacete	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MANGRANERS 220	805636.712	4613204.315	Lleida	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MANUEL BECERRA 220	443948.611	4476142.107	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MANUEL CRUZ 66	-806064.235	3222162.355	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MANZANARES 220	470191.301	4321803.486	Ciudad Real	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MANZANARES 400	470208.609	4321803.421	Ciudad Real	400	TSO	REE	Tender pending	0	-	-	0	0	406	406	0	0	406	406	0	-	-	-	-
-MARAGALL 220	932966.236	4598020.792	Barcelona	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MARIA 220	665778.988	4596740.94	Zaragoza	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MARRATXI (MARRATXI B) 66	991710.271	4400355.735	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	55	62	0	0	55	62	0	-	-	-	-
-MARRATXI 66	991710.271	4400355.735	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	31	35	0	0	31	35	0	-	-	-	-
-MARZAGAN 66	-726188.619	3163664.481	Las Palmas	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MAS FIGUERES 220	921012.397	4612696.869	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MASDENVERGE 400	798942.043	4513870.733	Tarragona	400	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MATA 220	932600.363	4593155.566	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MATAPORQUERA 220	405225.466	4748100.172	Cantabria	220	TSO	REE	-	0	-	-	0	0	86	229	0	0	86	229	0	-	-	-	-
-MATAS BLANCAS 132	-612168.735	3162774.035	Las Palmas	132	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MATAS BLANCAS 66	-612220.972	3162800.643	Las Palmas	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MATORRAL 66	-730596.471	3139055.778	Las Palmas	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MAZARICOS 220	7594.219	4766464.536	A Coruña	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MAZARREDO 220	438975.97	4473781.281	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MECO 220	473479.33	4487901.601	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MEDIANO 220	764707.336	4689536.814	Huesca	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MEDINA DEL CAMPO 220	340092.654	4576867.969	Valladolid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MEDINACELI 400	552528.948	4550726.7	Soria	400	TSO	REE	Tender pending	0	-	-	0	0	97	218	0	0	97	218	0	-	-	-	-
-MEDIODIA 220	441367.076	4473465.55	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MEIRAMA 220	60232.469	4793799.89	A Coruña	220	TSO	REE	NTJ	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MELANCOLICOS 220	438901.483	4473305.408	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MEQUINENZA 220	774145.015	4584767.108	Zaragoza	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MEQUINENZA 400	774040.479	4584859.919	Zaragoza	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MERCADAL 132	1106146.914	4449413.125	Islas Baleares	132	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MERCEDES BENZ 220	523638.049	4744352.956	Álava	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MERIDA 220	210185.121	4310601.934	Badajoz	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MESON D.V. 220	64694.507	4793563.391	A Coruña	220	TSO	REE	-	0	-	-	0	0	0	537	0	0	0	537	0	-	-	-	-
-MESON D.V. 400	64571.579	4793292.683	A Coruña	400	TSO	REE	Tender pending	0	-	-	0	0	809	841	0	0	809	841	0	-	-	-	-
-MEZQUITA 220	681599.72	4510350.31	Teruel	220	TSO	REE	-	0	-	-	5	0	-	-	5	39	-	-	47	-	-	-	-
-MEZQUITA 400	681616.612	4510350.724	Teruel	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MINGLANILLA 400	623337.374	4375991.587	Cuenca	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MIRABAL 220	226140.632	4065714.95	Cádiz	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MIRANDA DE EBRO 220	506483.249	4727028.679	Burgos	220	TSO	REE	-	58	-	-	98	0	-	-	0	0	-	-	0	-	-	-	-
-MIRASIERRA 220	439249.483	4482498.563	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MOGAN 66	-758231.469	3150390.2	Las Palmas	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MOLINES 66	987573.696	4395195.961	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MONCAYO 220	589468.726	4622182.403	Soria	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MONTALBANEJO 400	537485.612	4403384.73	Cuenca	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MONTBLANC 220	845660.498	4590958.449	Tarragona	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MONTEARENAS 220	208620.654	4719543.942	León	220	TSO	REE	NTJ	0	-	-	0	0	47	155	0	0	47	155	0	-	-	-	-
-MONTEARENAS 400	208637.071	4719543.253	León	400	TSO	REE	NTJ	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MONTEBELLO 220	749116.884	4275833.236	Alicante	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MONTECILLO BAJO 220	361312.558	4197589.573	Córdoba	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MONTESA 400	703838.733	4311499.848	Valencia	400	TSO	REE	Tender pending	0	-	-	0	0	665	665	0	0	665	665	0	-	-	-	-
-MONTETORRERO 220	678797.473	4607245.127	Zaragoza	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MONTOUTO 220	60964.953	4677464.272	Pontevedra	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MONZON 220	763300.022	4647263.428	Huesca	220	TSO	REE	Tender pending	0	-	-	0	0	0	202	0	0	0	202	0	-	-	-	-
-MORA 220	431192.18	4392608.185	Toledo	220	TSO	REE	-	0	-	-	0	0	268	361	0	0	268	361	0	-	-	-	-
-MORALEJA 220	425547.814	4456953.01	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MORALEJA 400	425564.822	4456952.842	Madrid	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MORALETS 220	808317.129	4719822.443	Huesca	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MORATA 220	462347.872	4456259.867	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MORATA 400	462364.88	4456259.782	Madrid	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MORELLA 400	737264.301	4499354.558	Castellón	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MORERUELA 400	272559.302	4614648.555	Zamora	400	TSO	REE	Tender pending	0	-	-	0	0	620	934	0	0	601	915	0	-	-	-	-
-MORVEDRE 400	737144.037	4391692.261	Valencia	400	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MORVEDRE B 220	736179.706	4392470.596	Valencia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MOTORS 220	929274.007	4589818.137	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MUDARRA 220	339063.926	4628217.062	Valladolid	220	TSO	REE	Tender pending	0	-	-	0	0	0	678	0	0	0	678	0	-	-	-	-
-MUDARRA 400	339080.545	4628216.687	Valladolid	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MUDARRITA 220	338631.664	4628190.246	Valladolid	220	TSO	REE	-	0	-	-	0	0	25	678	0	0	25	678	0	-	-	-	-
-MUDEJAR 400	720065.334	4544620.902	Teruel	400	TSO	REE	NTJ	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MUELA 400	678494.979	4345869.76	Valencia	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MUELLE GRANDE 66	-724512.292	3177406.095	Las Palmas	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MUNIESA 400	681601.948	4544672.346	Teruel	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-MURCIA 220	663815.545	4203562.811	Murcia	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-MURTERAR 220	1021822.475	4424818.561	Islas Baleares	220	TSO	REE	-	19	-	-	19	0	0	0	0	1	0	0	1	-	-	-	-
-MURUARTE 220	610086.907	4724918.129	Navarra	220	TSO	REE	-	0	-	-	22	0	-	-	22	0	-	-	4	-	-	-	-
-MURUARTE 400	610289.177	4724994.822	Navarra	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-NARAIO 400	89895.042	4830887.134	A Coruña	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-NARCEA 400	224569.667	4798783.099	Asturias	400	TSO	REE	NTJ	0	-	-	0	0	14	226	0	0	14	126	0	-	-	-	-
-NORTE 220	440660.527	4475755.207	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-NOVELDA 220	695946.737	4249756.975	Alicante	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-NUDO VIARIO 220	923215.045	4588021.139	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-NUEVA CASARES 220	300928.663	4031215.369	Málaga	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-NUEVA ESCOMBRERAS (NUEVA ESCOMBRERAS B) 400	680602.287	4159431.767	Murcia	400	TSO	REE	-	0	-	-	0	0	370	863	0	0	370	863	0	-	-	-	-
-NUEVA ESCOMBRERAS 400	681770.731	4160472.484	Murcia	400	TSO	REE	-	0	-	-	0	0	370	863	0	0	370	863	0	-	-	-	-
-NUEVA MECO 220	472088.475	4486232.585	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-NUEVO CAUCE 220	723306	4369741	Valencia	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-NUEVO VIGO 220	29522.604	4689020.349	Pontevedra	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-NUREDDUNA 66	986135.869	4395605.946	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-O INCIO 220	134366.737	4736751.608	Lugo	220	TSO	REE	-	0	-	-	0	0	281	424	0	0	281	424	0	-	-	-	-
-OLITE 220	608625.616	4696503.938	Navarra	220	TSO	REE	-	0	-	-	22	0	-	-	22	0	-	-	22	-	-	-	-
-OLIVARES 220	429465.277	4183817.6	Jaén	220	TSO	REE	Tender pending	0	-	-	0	0	259	373	0	0	259	373	0	-	-	-	-
-OLMEDILLA (COFRENTES) 400	578594.062	4388006.358	Cuenca	400	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-OLMEDILLA 220	578569.999	4388051.842	Cuenca	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-OLMEDO 400	355454.967	4575721.367	Valladolid	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ONCALA 220	562421.394	4645951.598	Soria	400	TSO	REE	-	0	-	-	0	0	0	337	0	0	0	337	0	-	-	-	-
-ONDINAS 220	216440.759	4749207.961	León	220	TSO	REE	-	70	-	-	70	70	56	200	70	56	56	200	56	-	-	-	-
-ONUBA 220	152046.718	4135333.849	Huelva	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ORCOYEN 220	605493.394	4741587.082	Navarra	220	TSO	REE	-	0	-	-	22	0	-	-	22	0	-	-	22	-	-	-	-
-ORGIVA 220	462495.089	4083318.203	Granada	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ORMAIZTEGUI 220	561752.26	4765951.564	Gipuzkoa	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ORTIGUERO 220	346325	4799687	Asturias	220	TSO	REE	Tender pending	0	-	-	0	0	227	432	0	0	227	432	0	-	-	-	-
-ORTUELLA 220	496986.784	4795740.526	Bizkaia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-OTERO 220	398018.197	4517566.691	Segovia	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-PALAFOX 220	440544.079	4475822.798	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PALAU 220	932420.108	4614826.271	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-PALENCIA 220	375820.676	4650744.525	Palencia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PALMA NOVA 66	975802.215	4388551.781	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-PALOS 220	155280.031	4122430.962	Huelva	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PALOS 400	155297.795	4122430.233	Huelva	400	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PARAMO DE POZA 220	454893.875	4725622.377	Burgos	220	TSO	REE	-	25	-	-	25	25	0	294	25	0	0	294	0	-	-	-	-
-PARLA 220	434902.212	4452733.63	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PARQUE CENTRAL 220	725194	4370780	Valencia	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PARQUE EOLICO DO SIL 220	118156.497	4699935.015	Ourense	220	TSO	REE	Tender pending	0	-	-	0	0	176	397	0	0	176	397	0	-	-	-	-
-PARQUE INGENIEROS 220	440352.981	4466865.501	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PATRAIX 220	724397.88	4370598.082	Valencia	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PAZOS DE BORBEN 220	38896.897	4694144.828	Pontevedra	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PENAGOS 220	433077.238	4799614.9	Cantabria	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PENAGOS 400	433094.176	4799616.539	Cantabria	400	TSO	REE	-	0	-	-	0	0	306	306	0	0	206	206	0	-	-	-	-
-PENEDES 220	893834.628	4589923.459	Barcelona	220	TSO	REE	-	40	-	-	251	40	-	-	251	40	-	-	251	-	-	-	-
-PEÑADRADA 220	210961.479	4741021.65	León	220	TSO	REE	-	92	-	-	93	92	72	150	93	113	72	150	113	-	-	-	-
-PEÑAFLOR 220	687819.357	4621399.798	Zaragoza	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PEÑAFLOR 400	687817.037	4621291.733	Zaragoza	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-PEÑALBA 220	741915.12	4601186.042	Huesca	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PEÑALBA 400	741917.567	4601202.365	Huesca	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-PEÑARRUBIA 400	645317.383	4265167.444	Murcia	400	TSO	REE	Tender pending	0	-	-	0	0	224	847	0	0	224	847	0	-	-	-	-
-PERAFORT 220	856289.206	4569057.685	Tarragona	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PESOZ 400	186107.441	4795101.529	Asturias	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-PICON 220	404086.766	4319663.27	Ciudad Real	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-PIELAGOS 220	422492.416	4801177.797	Cantabria	220	TSO	REE	Tender pending	0	-	-	0	0	183	464	0	0	183	464	0	-	-	-	-
-PIEROLA 220	902997.888	4608141.989	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-PIEROLA 400	903014.582	4608142.924	Barcelona	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-PILAR, EL 220	440604.624	4480586.824	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PINAR DE REY (PINAR DE REY B) 220	283257.527	4014191.873	Cádiz	220	TSO	REE	NTJ	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PINAR DE REY 220	283287.452	4014189.704	Cádiz	220	TSO	REE	NTJ	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PINAR DE REY 400	283278.088	4014108.289	Cádiz	400	TSO	REE	NTJ	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-PINTO 220	437037.031	4456167.909	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PINTO AYUDEN 220	438539.358	4457250.442	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-PLASENCIA 220	235927.974	4434808.396	Cáceres	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PLATEA 400	659501.73	4478421.314	Teruel	400	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PLAYA BLANCA 132	-556612.548	3241903.738	Las Palmas	132	TSO	REE	-	0	-	-	0	0	21	21	0	0	21	21	0	-	-	-	-
-PLAYA BLANCA 66	-556576.061	3241958.928	Las Palmas	66	TSO	REE	-	0	-	-	0	0	9	9	0	0	9	9	0	-	-	-	-
-PLAZA 220	666801.439	4610636.73	Zaragoza	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PLAZA II (MONCASI) 220	666015.757	4607904.236	Zaragoza	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-POBLA 220	827728.958	4685174.266	Lleida	220	TSO	REE	Tender pending	0	-	-	0	0	0	175	0	0	0	175	0	-	-	-	-
-POLA DE GORDON 400	281926.114	4747326.115	León	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-POLIGONO 220	368993.803	4061995.952	Málaga	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-POLIGONO BALEARES 66	985945.569	4399618.701	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	58	0	0	0	58	0	-	-	-	-
-POLIGONO C 220	435261.99	4470141.589	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-POLIGONO GRANADILLA 66	-833175.668	3181012.817	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-POLIGONO GUIMAR 66	-817355.403	3208511.871	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	20	32	0	0	20	32	0	-	-	-	-
-POLLENSA 66	1018004.058	4432519.695	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-PONT DE SUERT 220	807664.779	4701346.223	Lleida	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PORIS 220	-826811.338	3189417.969	Santa Cruz de Tenerife	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-PORIS 66	-826839.404	3189411.071	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	0	56	0	0	0	56	0	-	-	-	-
-PORTO COLOM 66	1036977.375	4382091.804	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	1	10	0	0	1	10	0	-	-	-	-
-PORTODEMOUROS 220	75960.348	4757632.989	Pontevedra	220	TSO	REE	Tender pending	0	-	-	0	0	142	454	0	0	142	454	0	-	-	-	-
-POZA DE LA SAL 220	460001.117	4723981.79	Burgos	220	TSO	REE	-	0	-	-	0	0	1	608	0	0	1	608	0	-	-	-	-
-PRADA 220	167275.471	4694260.768	Ourense	220	TSO	REE	-	0	-	-	0	0	151	179	0	0	151	179	0	-	-	-	-
-PRADILLOS 220	430109.334	4442738.931	Toledo	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PRADO SANTO DOMINGO 220	428773.473	4464236.146	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PROSPERIDAD 220	443476.08	4477124.935	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PTE.SAN FERNANDO 220	456375.877	4477806.376	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PUEBLA DE GUZMAN 220	125270.191	4164258.323	Huelva	220	TSO	REE	-	4	-	-	4	4	0	108	4	3	0	108	3	-	-	-	-
-PUEBLA DE GUZMAN 400	125287.87	4164257.524	Huelva	400	TSO	REE	-	0	-	-	0	0	552	1026	0	0	552	1026	0	-	-	-	-
-PUEBLA DE SANABRIA 220	200149.588	4662975.284	Zamora	220	TSO	REE	-	0	-	-	0	0	151	179	0	0	151	179	0	-	-	-	-
-PUENTE BIBEY 220	151947.829	4693341.951	Ourense	220	TSO	REE	Tender pending	0	-	-	0	0	585	834	0	0	585	834	0	-	-	-	-
-PUENTE PRINCESA 220	441073.399	4470686.451	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PUENTE S.MIGUEL 220	412568.766	4801000.052	Cantabria	220	TSO	REE	Tender pending	0	-	-	0	0	217	453	0	0	217	369	0	-	-	-	-
-PUENTELARRA 220	496047.808	4733778.609	Álava	220	TSO	REE	Tender pending	0	-	-	0	0	0	556	0	0	0	456	0	-	-	-	-
-PUENTES G.R. 400	106629.729	4821083.197	A Coruña	400	TSO	REE	NTJ	0	-	-	0	0	58	58	0	0	0	0	0	-	-	-	-
-PUERTO 220	62233.523	4815732.978	A Coruña	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PUERTO DE LA CRUZ 220	264519.222	3995105.916	Cádiz	220	TSO	REE	-	34	-	-	34	34	0	339	34	0	0	339	0	-	-	-	-
-PUERTO DE LA CRUZ 400	264537.237	3995105.431	Cádiz	400	TSO	REE	-	0	-	-	0	0	0	619	0	0	0	619	0	-	-	-	-
-PUERTO DE PALMA 66	981432.573	4393920.612	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-PUERTO DE SANTA MARIA 220	204971.955	4063407.931	Cádiz	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PUERTO DEL ROSARIO 132	-567306.609	3203620.863	Las Palmas	132	TSO	REE	-	0	-	-	0	0	21	21	0	0	21	21	0	-	-	-	-
-PUERTO DEL ROSARIO 66	-567326.371	3203622.675	Las Palmas	66	TSO	REE	-	0	-	-	0	0	0	21	0	0	0	21	0	-	-	-	-
-PUERTO REAL 220	217456.551	4046031.94	Cádiz	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PUERTOLLANO 220	402153.239	4278262.59	Ciudad Real	220	TSO	REE	NTJ	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PUIGPELAT 220	859403.037	4579097.856	Tarragona	220	TSO	REE	-	40	-	-	369	40	-	-	369	40	-	-	307	-	-	-	-
-PUJALT 220	870089.858	4623786.243	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-PUNTA GRANDE 66	-527688.292	3251784.692	Las Palmas	66	TSO	REE	-	0	-	-	0	0	9	21	0	0	9	21	0	-	-	-	-
-QUART DE POBLET 220	712727.595	4373031.648	Valencia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-QUEL 220	580908.308	4681151.831	La Rioja	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-QUEREÑO 220	184756.84	4703164.383	Ourense	220	TSO	REE	-	17	-	-	37	87	19	155	107	87	19	155	89	-	-	-	-
-QUINTANA DE LA SERENA 400	265676	4295046	Badajoz	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-QUINTOS 220	238522.766	4137750.861	Sevilla	220	TSO	REE	-	0	-	-	288	0	-	-	288	0	-	-	288	-	-	-	-
-RAFAL 66	983804.948	4397580.116	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-REGOELLE 220	6835.158	4780174.952	A Coruña	220	TSO	REE	-	0	-	-	27	27	14	140	27	14	14	140	14	-	-	-	-
-RENEDO 220	360264.202	4611546.911	Valladolid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-REQUENA 400	673052.041	4369689.377	Valencia	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-RETAMAR 220	438599.12	4465183.121	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-RIBA-ROJA 220	787484.943	4571340.353	Tarragona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-RICOBAYO 220	250725.82	4601656.519	Zamora	220	TSO	REE	Tender pending	0	-	-	0	0	99	293	0	0	99	293	0	-	-	-	-
-RIERA DE CALDES 220	931455.765	4612612.696	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-RIOCAYA 400	152891.963	4315219.742	Badajoz	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-RIUDARENES 220	975187.084	4644675.163	Girona	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ROBLA 400	284548	4741395	León	400	TSO	REE	NTJ	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ROCAMORA 400	679908.079	4224298.454	Alicante	400	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ROCIO 220	189691.19	4116607.262	Huelva	220	TSO	REE	Tender pending	0	-	-	0	0	160	204	0	0	160	204	0	-	-	-	-
-RODA DE ANDALUCIA 400	342395.811	4124632.253	Sevilla	400	TSO	REE	Tender pending	0	-	-	0	0	218	1009	0	0	218	1009	0	-	-	-	-
-ROJALES 220	698558.689	4214460.608	Alicante	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ROMICA 400	603881.051	4322326.076	Albacete	400	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-RONDA 400	310051.418	4070520.224	Málaga	400	TSO	REE	Tender pending	0	-	-	0	0	81	1069	0	0	81	1069	0	-	-	-	-
-RUBI 220	918421.604	4603365.183	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-RUBI 400	918338.39	4603445.069	Barcelona	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-RUBIO 220	882383.561	4620931.216	Barcelona	220	TSO	REE	-	0	-	-	8	0	0	327	8	0	0	327	8	-	-	-	-
-RUEDA DE JALON 400	641857.334	4612290.58	Zaragoza	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-S.AGUSTIN 220	164287.603	4674839.224	Ourense	220	TSO	REE	-	0	-	-	20	0	151	179	20	0	151	179	20	-	-	-	-
-SA POBLA 66	1016811.466	4418956.167	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SA VINYETA 66	1005716.765	4412139.856	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SABINAL 220	-725927.207	3165236.388	Las Palmas	220	TSO	REE	-	0	-	-	0	0	29	29	0	0	29	29	0	-	-	-	-
-SABINAL 66	-725947.122	3165238.45	Las Palmas	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SABIÑANIGO 220	716954.48	4710558.598	Huesca	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SABON 220	53957.89	4812082.361	A Coruña	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SAGRERA, LA 220	934110.407	4599213.833	Barcelona	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SAGUNTO 220	734383.246	4394953.579	Valencia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SAGUNTO GIS 220	734347.513	4395057.415	Valencia	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SAGUNTUM 220	734027.552	4392834.806	Valencia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SAGUNTUM 400	734044.713	4392835.328	Valencia	400	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SALADAS 220	708085.612	4241723.629	Alicante	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SALAS 400	232461.578	4806813.527	Asturias	400	TSO	REE	Tender pending	0	-	-	0	0	153	226	0	0	126	126	0	-	-	-	-
-SALERES 220	445157.635	4090841.499	Granada	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SALINAS 66	-564743.539	3201749.089	Las Palmas	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SALLENTE 400	827941.094	4713776.54	Lleida	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SALTERAS 220	228551.508	4152740.115	Sevilla	220	TSO	REE	Tender pending	0	-	-	0	0	0	359	0	0	0	359	0	-	-	-	-
-SAN AGUSTIN BALEARES 66	980686.381	4393186.71	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SAN AGUSTIN GC 66	-742646.117	3135626.047	Las Palmas	66	TSO	REE	-	0	-	-	0	0	11	20	0	0	11	20	0	-	-	-	-
-SAN ANTONIO 66	875806.492	4320997.923	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SAN BARTOLOME 66	-535669.42	3253569.227	Las Palmas	66	TSO	REE	-	0	-	-	0	0	11	21	0	0	11	21	0	-	-	-	-
-SAN CAYETANO 220	48241.613	4763613.326	A Coruña	220	TSO	REE	Tender pending	0	-	-	0	0	117	260	0	0	117	260	0	-	-	-	-
-SAN ESTEBAN 220	117099.36	4706285.355	Ourense	220	TSO	REE	Tender pending	0	-	-	0	0	390	619	0	0	390	619	0	-	-	-	-
-SAN FERNANDO 220	456902.075	4477130.817	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SAN FERNANDO 400	456918.238	4477079.497	Madrid	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SAN ISIDRO 66	-839073.566	3181368.693	Santa Cruz de Tenerife	66	TSO	REE	-	15	-	-	15	15	0	0	15	15	0	0	15	-	-	-	-
-SAN JORGE 132	879710.234	4315308.086	Islas Baleares	132	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SAN JORGE 30	879692.274	4315319.501	Islas Baleares	30	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SAN JORGE 66	879692.881	4315307.252	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SAN JUAN BALEARES 66	990003.21	4393052.332	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SAN MARTIN BALEARES 220	1021778.155	4424831.53	Islas Baleares	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SAN MARTIN BALEARES 66	1021761.019	4424830.359	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SAN MATEO 66	-738756.518	3162523.866	Las Palmas	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SAN MIGUEL DE SALINAS (SAN MIGUEL DE SALINAS B) 220	696202.527	4208202.297	Alicante	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SAN MIGUEL DE SALINAS 220	696202.527	4208202.297	Alicante	220	TSO	REE	Tender pending	0	-	-	0	0	0	802	0	0	0	802	0	-	-	-	-
-SAN PEDRO 220	112416.647	4710635.954	Ourense	220	TSO	REE	Tender pending	0	-	-	0	0	281	442	0	0	281	442	0	-	-	-	-
-SAN PEDRO DEL PINATAR 220	692197.268	4192428.967	Murcia	220	TSO	REE	Tender pending	0	-	-	0	0	17	337	0	0	17	337	0	-	-	-	-
-SAN SERVAN 220	194675.274	4301208.961	Badajoz	220	TSO	REE	Tender pending	0	-	-	0	0	339	839	0	0	339	839	0	-	-	-	-
-SAN SERVAN 400	194692.647	4301208.292	Badajoz	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SAN VICENTE 220	714994.607	4252705.644	Alicante	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SANCHINARRO 220	444023.077	4482433.996	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SANCHO LLOP 220	745395.397	4317328.607	Valencia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SANGÜESA 220	641463.61	4717715.419	Navarra	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SANT ANDREU 220	933481.357	4601334.278	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SANT BOI 220	921806.122	4588296.352	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SANT CELONI 220	955231.705	4631692.011	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SANT CUGAT 220	923844.654	4605263.265	Barcelona	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SANT FOST 220	935501.816	4608773.366	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SANT JUST 220	924715.502	4594779.786	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SANTA AGUEDA 220	-753470.637	3136875.352	Las Palmas	220	TSO	REE	-	0	-	-	0	0	43	43	0	0	43	43	0	-	-	-	-
-SANTA AGUEDA 66	-753490.617	3136877.444	Las Palmas	66	TSO	REE	-	20	-	-	20	0	0	0	0	0	0	0	0	-	-	-	-
-SANTA CATALINA 66	984124.434	4395600.509	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SANTA ELVIRA 220	240566.674	4142114.981	Sevilla	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SANTA ENGRACIA 220	560607.969	4688641.929	La Rioja	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SANTA ENGRACIA 400	560730.715	4688565.17	La Rioja	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SANTA EULALIA 66	888876.374	4327091.317	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SANTA LLOGAIA 400	990738.956	4692446.944	Girona	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SANTA MARIA 66	998247.581	4405404.679	Islas Baleares	66	TSO	REE	-	1	-	-	1	1	-	-	1	1	-	-	1	-	-	-	-
-SANTA MARIA DE GRADO 400	257402.298	4808319.733	Asturias	400	TSO	REE	Tender pending	0	-	-	0	0	96	96	0	0	0	0	0	-	-	-	-
-SANTA MARINA 220	212107.945	4730139.52	León	220	TSO	REE	Tender pending	0	-	-	0	0	90	126	0	0	90	126	0	-	-	-	-
-SANTA POLA 220	714024.997	4232908.017	Alicante	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SANTA PONSA 132	973543.49	4390804.599	Islas Baleares	132	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SANTA PONSA 220	973563.518	4390779.469	Islas Baleares	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SANTA PONSA 66	973546.898	4390807.108	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SANTANYI 66	1027167.267	4375402.292	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SANTIAGO 220	163399.206	4701472.779	Ourense	220	TSO	REE	-	0	-	-	0	0	285	392	0	0	285	392	0	-	-	-	-
-SANTIAGO DE COMPOSTELA 220	44188.744	4759750.21	A Coruña	220	TSO	REE	Tender pending	0	-	-	0	0	205	508	0	0	205	508	0	-	-	-	-
-SANTIPONCE 220	231017.709	4146424.312	Sevilla	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SANTIZ 220	258779.875	4564610.954	Salamanca	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SANTURCE 220	495670.663	4798402.176	Bizkaia	220	TSO	REE	-	0	-	-	0	50	-	-	50	50	-	-	50	-	-	-	-
-SANTURCE 400	495698.159	4798397.641	Bizkaia	400	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SAUCELLE 220	179995.834	4550594.224	Salamanca	220	TSO	REE	Tender pending	0	-	-	0	0	109	289	0	0	109	289	0	-	-	-	-
-SAX 400	686276.969	4270325.315	Alicante	400	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SEGORBE 220	717664.628	4411681.673	Castellón	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SEGOVIA 400	401907.613	4532748.003	Segovia	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SENTMENAT 220	925930.058	4620129.998	Barcelona	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SENTMENAT 400	925946.728	4620130.988	Barcelona	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SERNA 220	610182.449	4661478.864	Navarra	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SERNA 400	610198.988	4661479.122	Navarra	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SES VELES 66	988089.391	4404931.968	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	6	33	0	0	6	33	0	-	-	-	-
-SESUE 220	784945.913	4715911.319	Huesca	220	TSO	REE	Posible Tender pending	12	-	-	12	12	-	-	12	0	-	-	0	-	-	-	-
-SIDEGASA 220	91538.462	4789933.79	A Coruña	220	TSO	REE	-	0	-	-	0	0	69	167	0	0	69	167	0	-	-	-	-
-SIDENOR 220	509690.814	4785537.444	Bizkaia	220	TSO	REE	Tender pending	0	-	-	0	0	0	178	0	0	0	178	0	-	-	-	-
-SIERO 220	276627.309	4806598.607	Asturias	220	TSO	REE	Tender pending	0	-	-	0	0	268	394	0	0	268	394	0	-	-	-	-
-SILLEDA 400	70177.181	4746093.271	Pontevedra	400	TSO	REE	Tender pending	0	-	-	0	0	542	1229	0	0	542	1229	0	-	-	-	-
-SIMANCAS 220	446498.907	4475961.351	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SOBRADELO 220	177414.755	4703239.532	Ourense	220	TSO	REE	Tender pending	0	-	-	0	0	251	448	0	0	251	448	0	-	-	-	-
-SOLLER 66	987928.87	4419544.243	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SOLORZANO 220	452473.017	4798788.753	Cantabria	220	TSO	REE	-	0	-	-	0	0	54	197	0	0	54	97	0	-	-	-	-
-SOLORZANO 400	452527.606	4798817.771	Cantabria	400	TSO	REE	Tender pending	0	-	-	0	0	197	197	0	0	97	97	0	-	-	-	-
-SON MOIX 220	983807.583	4397583.113	Islas Baleares	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SON MOIX 66	983790.394	4397582.033	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SON OMS 66	992907.882	4392150.076	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SON ORLANDIS 220	993361.09	4399201.112	Islas Baleares	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SON ORLANDIS 66	993343.903	4399200.01	Islas Baleares	66	TSO	REE	-	75	-	-	75	75	60	60	75	113	101	101	116	-	-	-	-
-SON PARDO 66	985847.971	4398257.362	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SON REUS 220	987354.872	4404439.806	Islas Baleares	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SON REUS 66	987508.17	4404332.575	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	94	0	0	0	94	0	-	-	-	-
-SOTO DE RIBERA 220	265926.89	4799796.281	Asturias	220	TSO	REE	NTJ	0	-	-	0	0	28	470	0	0	28	495	0	-	-	-	-
-SOTO DE RIBERA 400	265852.91	4799694.677	Asturias	400	TSO	REE	NTJ	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SS.REYES (SS.REYES B) 220	449587	4490812	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-SS.REYES 220	449504.934	4490667.869	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SS.REYES 400	449521.865	4490667.754	Madrid	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SUBIRATS 220	902909.293	4597372.244	Barcelona	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-SUIDO 220	65330.205	4692222.159	Pontevedra	220	TSO	REE	-	0	-	-	0	0	133	680	0	0	133	680	0	-	-	-	-
-TABARA 400	262091.113	4627043.256	Zamora	400	TSO	REE	Tender pending	0	-	-	0	0	434	444	0	0	434	444	0	-	-	-	-
-TABERNAS 220	561114.693	4103000.996	Almería	220	TSO	REE	Tender pending	0	-	-	0	0	181	860	0	0	181	860	0	-	-	-	-
-TABERNAS 400	561137.038	4102969.139	Almería	400	TSO	REE	Tender pending	0	-	-	0	0	124	815	0	0	124	815	0	-	-	-	-
-TABESCAN 220	849173.831	4730304.397	Lleida	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TABIELLA 220	266020.134	4828755.782	Asturias	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TACORONTE 66	-819724.123	3224324.668	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	28	32	0	0	28	32	0	-	-	-	-
-TAFALLA 220	608120.184	4706360.418	Navarra	220	TSO	REE	-	0	-	-	22	0	-	-	22	0	-	-	22	-	-	-	-
-TAGORO 66	-828524.58	3187082.068	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	14	14	0	0	14	14	0	-	-	-	-
-TAJO ENCANTADA 220	344381.13	4084681.305	Málaga	220	TSO	REE	-	129	-	-	129	129	-	-	129	66	-	-	66	-	-	-	-
-TAJO ENCANTADA 400	344492.273	4084675.308	Málaga	400	TSO	REE	Tender pending	0	-	-	0	0	123	721	0	0	123	721	0	-	-	-	-
-TALAVERA 220	344401.135	4429698.309	Toledo	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TAMBRE 220	22189.651	4758611.897	A Coruña	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TANGER (CATALUÑA) 220	934150.646	4596538.597	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TARRAGONA 220	852486.547	4559884.248	Tarragona	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TELDE 66	-728367.648	3159125.787	Las Palmas	66	TSO	REE	-	5	-	-	5	6	-	-	6	6	-	-	6	-	-	-	-
-TELLEDO 220	268745.476	4767692.499	Asturias	220	TSO	REE	-	0	-	-	0	0	73	73	0	0	73	73	0	-	-	-	-
-TERRER 400	608321.089	4575194.419	Zaragoza	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-TIAS 132	-544283.971	3250147.247	Las Palmas	132	TSO	REE	-	0	-	-	0	0	21	21	0	0	21	21	0	-	-	-	-
-TIAS 66	-544278.364	3250167.254	Las Palmas	66	TSO	REE	-	0	-	-	0	0	21	21	0	0	21	21	0	-	-	-	-
-TIBO 220	36896.611	4730219.292	Pontevedra	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TIERRA DE CAMPOS 400	316751.27	4618271.833	Valladolid	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-TIERRA ESTELLA 220	586070.157	4720767.043	Navarra	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TOMEZA 220	36277.52	4708678.824	Pontevedra	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TORDESILLAS 220	332021.725	4596992.642	Valladolid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TORDESILLAS 400	331992.48	4596985.315	Valladolid	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-TORREARENILLAS 220	153439.558	4123169.423	Huelva	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TORREJON 220	244170.293	4413809.359	Cáceres	220	TSO	REE	Tender pending	0	-	-	0	0	108	108	0	0	108	108	0	-	-	-	-
-TORREJON DE VELASCO 400	436567.841	4447657.883	Madrid	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-TORRELLANO 220	708085.612	4241723.629	Alicante	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TORREMENDO 400	684722.501	4203833.845	Alicante	400	TSO	REE	Tender pending	0	-	-	0	0	781	844	0	0	781	844	0	-	-	-	-
-TORRENT 132	884225.934	4319024.377	Islas Baleares	132	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-TORRENT 66	884156.842	4319015.707	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-TORRENTE 220	719027.865	4366797.168	Valencia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TORRENTE 400	719045.083	4366797.654	Valencia	400	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TORRES DE SEGRE 220	791609.8	4600184.252	Lleida	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TORREVIEJA 220	702025.596	4205442.8	Alicante	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TORRIJOS 220	391631.225	4428451.912	Toledo	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TOTANA 400	636930.564	4180952.503	Murcia	400	TSO	REE	Tender pending	0	-	-	0	0	110	809	0	0	110	809	0	-	-	-	-
-TRANSBADALONA 220	937272.983	4599444.556	Barcelona	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-TRES CANTOS 220	440373.395	4496526.919	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TRES CANTOS GIS 220	440297.566	4496415.358	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TREVAGO 220	572894.773	4636068.151	Soria	220	TSO	REE	-	0	-	-	0	0	0	343	0	0	0	343	0	-	-	-	-
-TRILLO 220	531602.909	4505937.913	Guadalajara	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TRILLO 400	531654.037	4505876.085	Guadalajara	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-TRINITAT 220	933519.298	4601545.407	Barcelona	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-TRIVES 220	147274.587	4696996.687	Ourense	220	TSO	REE	Tender pending	0	-	-	0	0	308	710	0	0	308	710	0	-	-	-	-
-TRIVES 400	147315.262	4696962.414	Ourense	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-TRUJILLO 220	251264.987	4371245.043	Cáceres	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-TUDELA 220	614570.452	4656341.628	Navarra	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-UNINSA 220	279631.151	4822211.105	Asturias	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-URGELL 220	930365.05	4594627.074	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VAGUADAS 220	154609.759	4306319.657	Badajoz	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VALDECABALLEROS 400	311838.828	4351336.196	Badajoz	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VALDECARRETAS 400	302366.634	4591387.04	Zamora	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VALDECONEJOS 220	678680.302	4517947.022	Teruel	220	TSO	REE	-	4	-	-	5	4	-	-	5	2	-	-	2	-	-	-	-
-VALDEMORO 220	445113.013	4446035.312	Madrid	220	TSO	REE	-	0	-	-	14	0	0	0	4	0	0	0	4	-	-	-	-
-VALL D'UXO 220	737929.073	4408529.66	Castellón	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VALLADOLID NUEVO 220	354865.249	4612139.488	Valladolid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VALLDIGNA 220	735414.172	4327056.339	Valencia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VALLDURGENT 220	976683.082	4396392.987	Islas Baleares	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VALLDURGENT 66	976665.892	4396391.922	Islas Baleares	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VALLE DE ARIDANE 66	-966421.941	3263712.311	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VALLE DEL ARCIPRESTE 220	424212.746	4482288.949	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VALLE DEL CARCER 220	714470.049	4326569.631	Valencia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VALLECAS 220	447375.907	4471103.969	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VALLEJERA 220	403404.445	4669164.684	Burgos	220	TSO	REE	-	5	-	-	5	5	3	617	5	3	3	617	3	-	-	-	-
-VALLITOS 220	-853770.96	3184353.17	Santa Cruz de Tenerife	220	TSO	REE	-	8	-	-	8	8	53	53	8	8	53	53	8	-	-	-	-
-VALLITOS 66	-853790.924	3184355.463	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	-	0	0	46	53	0	0	46	53	0	-	-	-	-
-VALPARAISO 220	228842.679	4654668.128	Zamora	220	TSO	REE	Tender pending	0	-	-	0	0	267	473	0	0	267	473	0	-	-	-	-
-VANDELLOS 400	826397.714	4543442.983	Tarragona	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VANDELLOS CN 220	825414.248	4540601.041	Tarragona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VELILLA 400	348064.001	4742717.568	Palencia	400	TSO	REE	NTJ	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VELLE 220	100654.293	4700903.069	Ourense	220	TSO	REE	Tender pending	0	-	-	0	0	219	422	0	0	219	422	0	-	-	-	-
-VENTA INES 220	375689.52	4269402.781	Ciudad Real	220	TSO	REE	-	0	-	-	0	0	26	33	0	0	26	33	0	-	-	-	-
-VENTAS DEL BATAN 220	435413.955	4472532.274	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VENTILLA 220	348210.737	4047099.717	Málaga	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VERNEDA 220	934553.799	4599224.505	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VIANA 400	155183.784	4676845.808	Ourense	400	TSO	REE	Tender pending	0	-	-	0	0	482	482	0	0	482	482	0	-	-	-	-
-VIC 220	937806.828	4658424.295	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VIC 400	937821.116	4658567.385	Barcelona	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VILADECANS (VILADECANS B) 220	920734.656	4587123.481	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VILADECANS 220	920873.241	4587087.466	Barcelona	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VILADECANS 400	920889.987	4587088.439	Barcelona	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VILANOVA 220	933340.991	4595295.23	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VILECHA 400	288550.69	4714365.375	León	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VILLABLINO 220	231762.172	4759282.618	León	220	TSO	REE	-	0	-	-	0	0	73	73	0	0	73	73	0	-	-	-	-
-VILLALBILLA 220	435708.222	4687943.573	Burgos	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VILLALCAMPO 220	242097.991	4597877.241	Zamora	220	TSO	REE	Tender pending	0	-	-	0	0	183	305	0	0	183	305	0	-	-	-	-
-VILLAMAYOR 220	273754.317	4541050.336	Salamanca	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VILLAMECA 400	250649.934	4724403.958	León	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VILLANUEVA DE GALLEGO 220	679064.563	4623440.036	Zaragoza	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VILLANUEVA DE LOS ESCUDEROS 400	557775.011	4431317.108	Cuenca	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VILLANUEVA DEL REY 220	308768.535	4155590.26	Sevilla	220	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VILLANUEVA DEL REY 400	308786.21	4155589.853	Sevilla	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VILLARES DEL SAZ 220	536752.412	4412502.284	Cuenca	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VILLARINO 220	207752.258	4572989.321	Salamanca	220	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VILLARINO 400	207769.017	4572988.647	Salamanca	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VILLATORO 220	441767.807	4692199.537	Burgos	220	TSO	REE	Tender pending	0	-	-	0	0	5	71	0	0	5	71	0	-	-	-	-
-VILLAVERDE 220	443147.082	4465968.567	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VILLAVERDE BAJO (VILLAVERDE BAJO B) 220	443154.633	4465939.61	Madrid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VILLAVICIOSA (VILLAVICIOSA B) 220	423176.865	4466774.948	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VILLAVICIOSA 220	423168.373	4466775.035	Madrid	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VILLAVICIOSA 400	423185.358	4466774.861	Madrid	400	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VILLIMAR 220	446347.478	4691274.808	Burgos	220	TSO	REE	-	4	-	-	4	89	2	564	89	88	2	501	88	-	-	-	-
-VIMIANZO 220	7799.997	4789874.834	A Coruña	220	TSO	REE	Tender pending	0	-	-	0	0	123	140	0	0	123	140	0	-	-	-	-
-VIRGEN DE AFRICA 132	290173.575	3974625.814	Ceuta	132	TSO	REE	-	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-VIRTUS 400	431111.859	4761417.885	Burgos	400	TSO	REE	Tender pending	0	-	-	0	0	255	297	0	0	197	197	0	-	-	-	-
-VITORIA 220	532545.233	4748008.245	Álava	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-VITORIA 400	532363.759	4747970.604	Álava	400	TSO	REE	Tender pending	0	-	-	0	0	505	505	0	0	405	405	0	-	-	-	-
-XOVE 400	137036.342	4847680.991	Lugo	400	TSO	REE	Tender pending	0	-	-	0	0	0	0	0	0	0	0	0	-	-	-	-
-ZAL 220	929554.409	4586248.594	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ZAMORA 220	271795.248	4601854.734	Zamora	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ZAMUDIO 220	511023.76	4794266.018	Bizkaia	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ZARATAN 220	348988.869	4611223.73	Valladolid	220	TSO	REE	Tender pending	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ZARZON 400	212534.913	4447835.504	Cáceres	220	TSO	REE	-	0	-	-	0	0	3	1290	0	0	3	1290	0	-	-	-	-
-ZIERBENA 400	492612.972	4800659.25	Bizkaia	400	TSO	REE	-	0	-	-	0	50	-	-	50	100	-	-	100	-	-	-	-
-ZONA FRANCA 220	929663.907	4587365.906	Barcelona	220	TSO	REE	-	0	-	-	0	0	-	-	0	0	-	-	0	-	-	-	-
-ZUMARRAGA 220	555377.689	4770170.119	Gipuzkoa	220	TSO	REE	Tender pending	0	-	-	0	0	15	356	0	0	15	356	0	-	-	-	-
-ZUZONES 400	443028.592	4616312.265	Burgos	400	TSO	REE	Tender pending	0	-	-	0	0	270	830	0	0	270	830	0	-	-	-	-`;
+ABADES 220	394336.542	4527876.414	Segovia	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ABADES 400	394353.39	4527876.173	Segovia	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ABADIANO 220	532825.425	4776363.353	Bizkaia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	336
+ABANILLA 400	667522.381	4243743.304	Murcia	400	TSO	REE	Tender pending	0	-	0	-	0	753	0	847	0	753	0	847	0	753	0	847
+ABANTO 400	492467.186	4797163.526	Bizkaia	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ABEGONDO 220	71176.892	4798732.159	A Coruña	220	TSO	REE	Tender pending	0	-	0	-	0	135	0	841	0	135	0	841	0	135	0	841
+ABEGONDO 400	71193.139	4798731.131	A Coruña	400	TSO	REE	-	0	-	0	-	0	470	0	841	0	470	0	841	0	470	0	841
+ABONA 220	-833474.833	3180842.979	Santa Cruz de Tenerife	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ABONA 66	-833494.789	3180845.235	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	0	0	69	0	0	0	69	0	0	0	69
+ABRERA 220	908493.322	4606706.253	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ACECA 220	426698.173	4421610.575	Toledo	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ADRALL 220	862218.089	4695099.856	Lleida	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+AENA 220	449341.499	4484487.878	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+AENA OESTE 220	923261.214	4583931.121	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+AEROPUERTO BARCELONA 220	927239.277	4586298.177	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+AGUACATE 220	436468.015	4468542.793	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+AGUAYO 220	417035.323	4774576.01	Cantabria	220	TSO	REE	Tender pending	0	-	0	-	0	98	0	98	0	0	0	0	0	23	0	23
+AGUAYO 400	417051.593	4774575.812	Cantabria	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+AGÜIMES 66	-730849.863	3148061.085	Las Palmas	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ALARCOS 220	416626.415	4311437.519	Ciudad Real	220	TSO	REE	Tender pending	0	-	0	-	0	130	0	291	0	130	0	291	0	130	0	291
+ALBAL 220	719978.352	4364015.627	Valencia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	234
+ALBARELLOS 220	75372.854	4706828.349	Ourense	220	TSO	REE	-	0	-	0	-	0	1	0	280	0	1	0	280	0	1	0	280
+ALBATARREC 220	801983.158	4609205.812	Lleida	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ALCIRA 220	719718.093	4336466.585	Valencia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ALCOBENDAS 220	444868.763	4488860.353	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ALCOCERO DE MOLA 220	469941.899	4703847.944	Burgos	220	TSO	REE	-	2	-	2	-	2	1	2	564	1	1	1	564	1	1	1	564
+ALCORES 220	247102.082	4141480.945	Sevilla	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ALCUDIA BALEARES 66	1025905.946	4427684.376	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ALDAIA 220	715008.766	4369891.929	Valencia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	241
+ALDEA BLANCA 66	-734075.796	3143915.263	Las Palmas	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ALDEADAVILA 220	190926.177	4568482.234	Salamanca	220	TSO	REE	-	0	-	0	-	0	730	0	730	0	711	0	711	0	711	0	711
+ALDEADAVILA 400	191549.335	4568392.408	Salamanca	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ALGECIRAS 132	285338.006	4006958.221	Cádiz	132	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ALGECIRAS 220	285239.569	4006926.903	Cádiz	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+ALGETE 220	453299.458	4493721.344	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ALHAURIN 220	359227.116	4057853.834	Málaga	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ALI 220	523892.732	4744911.508	Álava	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ALJARAFE 220	225923.172	4137556.447	Sevilla	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ALMADEN 400	339997.945	4287651.69	Ciudad Real	400	TSO	REE	-	0	-	0	-	0	548	0	972	0	548	0	972	0	548	0	972
+ALMARAZ CN 220	269560.162	4409837.652	Cáceres	220	TSO	REE	-	0	-	0	-	0	310	0	494	0	310	0	494	0	310	0	547
+ALMARAZ CN 400	269451.477	4409890.524	Cáceres	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ALMARAZ E.T. 220	271789.288	4411268.19	Cáceres	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ALMAZAN 400	541489.886	4587556.071	Soria	400	TSO	REE	Tender pending	0	-	0	-	0	128	0	1246	0	128	0	1246	0	128	0	1246
+ALMENDRALES 400	767694.743	4580904.778	Zaragoza	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ALMODOVAR DEL RIO 220	321982.026	4180186.761	Córdoba	220	TSO	REE	-	0	-	11	-	0	-	11	-	0	-	11	-	0	-	0	-
+ALONSOTEGUI 220	501469.007	4788250.046	Bizkaia	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	16	0	0	0	0	0	0	0	0
+ALVARADO 220	169886.863	4300002.308	Badajoz	220	TSO	REE	-	0	-	5	-	0	-	5	-	0	-	4	-	0	137	4	341
+AMOEIRO 220	91081.568	4704860.523	Ourense	220	TSO	REE	-	0	-	0	-	0	131	0	193	0	131	0	193	0	131	0	193
+AMOREBIETA 400	520353.886	4787044.442	Bizkaia	400	TSO	REE	Tender pending	0	-	0	-	0	140	0	140	0	40	0	40	0	65	0	65
+ANCHUELO 220	474836.682	4479387.537	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ANCHUELO 400	474853.638	4479387.48	Madrid	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ANDRATX 66	966073.68	4391274.463	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ANDUJAR 220	412542.472	4211040.245	Jaén	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ANOIA 220	889116.631	4613345.051	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	63	0	122
+ANTAS 400	595905.202	4120559.078	Almería	400	TSO	REE	Tender pending	0	-	0	-	0	548	0	653	0	548	0	653	0	548	0	653
+ANTONIO LEYVA 220	439095.279	4470897.56	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+AÑOVER 220	428480.944	4425979.001	Toledo	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+APARECIDA 400	180281.661	4660736.844	Zamora	400	TSO	REE	Tender pending	0	-	0	-	0	245	0	637	0	245	0	637	0	245	0	637
+AQUA 220	727242.413	4371584.284	Valencia	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ARAGON 400	728010.886	4566437.241	Teruel	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ARAÑUELO 400	278750.211	4425446.904	Cáceres	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ARAVACA 220	431655.187	4479640.184	Madrid	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ARBILLERA 220	206694.701	4661168.963	Zamora	220	TSO	REE	Tender pending	0	-	0	-	0	242	0	565	0	242	0	565	0	242	0	565
+ARBILLERA 400	206711.255	4661168.276	Zamora	400	TSO	REE	Tender pending	0	-	0	-	0	603	0	861	0	603	0	861	0	603	0	861
+ARCHIDONA 400	374262.65	4109156.892	Málaga	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ARCOS DE LA FRONTERA 400	248000.829	4062127.107	Cádiz	400	TSO	REE	Tender pending	0	-	0	-	0	177	0	797	0	177	0	797	0	177	0	797
+ARDOZ 220	459082.063	4476954.312	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ARENAL 66	996310.234	4391136.124	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	2	0	28	0	2	0	28	0	2	0	28
+ARENAS DE SAN JUAN 220	457564.654	4344043.469	Ciudad Real	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ARGANDA 220	460966.994	4461391.693	Madrid	220	TSO	REE	-	0	-	14	-	0	0	4	0	0	0	4	0	0	0	14	0
+ARGANZUELA 220	438895.378	4473256.777	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ARGUINEGUIN 66	-755073.297	3136845.246	Las Palmas	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ARICO2 66	-826784.176	3189330.179	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	0	0	56	0	0	0	56	0	0	0	56
+ARINAGA 66	-726778.676	3145312.835	Las Palmas	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ARKALE 220	593881.03	4795382.682	Gipuzkoa	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ARONA 66	-847917.804	3179137.091	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	13	0	26	0	13	0	26	0	13	0	26
+ARRIGORRIAGA 400	509027.592	4784026.757	Bizkaia	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ARROYO DE LA VEGA 220	449470.072	4487430.894	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+ARROYO VALLE 220	367914.777	4228347.727	Córdoba	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ARTA 66	1044167.771	4411653.71	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ARUCAS 66	-736335.612	3172469.426	Las Palmas	66	TSO	REE	-	0	-	0	-	0	30	0	35	0	30	0	35	0	30	0	35
+ASCÓ 220	799410.656	4567615.039	Tarragona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+ASCÓ 400	799427.428	4567615.729	Tarragona	400	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+ASOMADA 400	679879.306	4167083.131	Murcia	400	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	620	0	864
+ASTILLERO 220	433109.816	4805112.641	Cantabria	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ATARFE 220	438152.266	4120064.82	Granada	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ATIOS 220	35396.454	4680388.539	Pontevedra	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+AVE ZARAGOZA 220	684341.1	4604413.38	Zaragoza	220	TSO	REE	-	15	-	58	-	15	-	58	-	0	-	0	-	0	-	0	-
+AYALA 220	499118.878	4770084.327	Álava	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	85	0	161
+AYORA 400	672388.515	4323279.707	Valencia	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+AZCA 220	441101.234	4478227.485	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+AZPEITIA 400	560733.708	4784759.347	Gipuzkoa	400	TSO	REE	Tender pending	0	-	0	-	0	469	0	469	0	369	0	369	0	394	0	394
+BADALONA 220	937440.268	4599443.194	Barcelona	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BALBOA 220	175432.637	4248443.064	Badajoz	220	TSO	REE	Tender pending	0	-	0	-	0	125	0	565	0	125	0	565	0	125	0	565
+BALBOA 400	175443.463	4248324.631	Badajoz	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BALSICAS 220	679744.083	4185291.462	Murcia	220	TSO	REE	Tender pending	0	-	0	-	0	207	0	362	0	207	0	362	0	207	0	362
+BARATARIA 400	497745.487	4336367.687	Ciudad Real	400	TSO	REE	Tender pending	0	-	0	-	0	433	0	433	0	433	0	433	0	433	0	433
+BARCINA 400	482421.66	4736149.714	Burgos	400	TSO	REE	NTJ	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BARO DE VIVER 220	934220.51	4601666.657	Barcelona	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BARRANCO CALDERINA 66	-726275.31	3170148.684	Las Palmas	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BARRANCO DE TIRAJANA III 220	-730615.923	3138739.684	Las Palmas	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BARRANCO SECO 66	-727711.731	3168723.01	Las Palmas	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BARRANCO TIRAJANA (BARRANCO TIRAJANA B) 220	-730601.557	3139049.163	Las Palmas	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BARRANCO TIRAJANA (BARRANCO TIRAJANA B) 66	-734081.556	3143923.146	Las Palmas	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BARRANCO TIRAJANA 220	-730633.649	3138742.923	Las Palmas	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BARRANCO TIRAJANA 66	-730653.613	3138744.978	Las Palmas	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BARRUNDIA 220	544893.349	4749051.63	Álava	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	110	0	142
+BASAURI 220	508541.85	4785301.264	Bizkaia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	23	0	306
+BAZA 400	522310.635	4156905.696	Granada	400	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	266	0	698
+BEARIZ 400	68563.045	4717478.873	Ourense	400	TSO	REE	-	0	-	0	-	0	653	0	791	0	653	0	791	75	653	75	791
+BECHI 220	741146.021	4423576.994	Castellón	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+BEGOÑA 220	442426.466	4481471.351	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+BEGUES (BEGUES B) 220	910191.415	4589860.122	Barcelona	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BEGUES 220	910111.267	4589818.65	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BEGUES 400	910128.005	4589819.599	Barcelona	400	TSO	REE	-	51	-	51	-	51	0	51	0	7	0	7	0	7	0	7	0
+BELESAR 220	113453.277	4730077.651	Lugo	220	TSO	REE	-	0	-	0	-	0	215	0	451	0	215	0	451	0	215	0	451
+BELGIDA 220	725856.365	4286766.105	Alicante	220	TSO	REE	Tender pending	0	-	0	-	0	178	0	312	0	178	0	312	0	178	0	312
+BELINCHON 400	493273.476	4431568.891	Cuenca	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BELLICENS 220	849591.42	4559926.427	Tarragona	220	TSO	REE	-	13	-	54	-	48	-	89	-	48	-	89	-	48	-	89	-
+BENADRESA 220	748742.184	4432243.528	Castellón	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+BENAHADUX 220	547561.554	4084899.757	Almería	220	TSO	REE	-	0	-	0	-	0	55	0	587	0	55	0	587	0	55	0	587
+BENAHAVIS 220	316579.877	4043006.571	Málaga	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+BENEJAMA 220	697953.165	4288070.528	Alicante	220	TSO	REE	Tender pending	0	-	0	-	0	231	0	897	0	231	0	897	0	231	0	897
+BENEJAMA 400	697970.555	4288070.96	Alicante	400	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+BENICULL 220	724349.819	4340502.974	Valencia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+BENIFERRI 220	722826	4374860	Valencia	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+BERJA 220	507127.584	4076485.728	Almería	220	TSO	REE	-	6	-	6	-	6	-	6	-	4	-	4	-	4	-	4	-
+BERNAT 220	719552.045	4336415.72	Valencia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+BESCANO 220	971969.67	4662454.631	Girona	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BESCANO 400	971986.249	4662455.736	Girona	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BESOS NUEVO 220	936969.389	4598613.246	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+BIENVENIDA 400	220416.292	4245860.373	Badajoz	400	TSO	REE	Tender pending	0	-	0	-	0	152	0	152	0	152	0	152	0	239	0	452
+BIESCAS 220	720116.359	4723045.117	Huesca	220	TSO	REE	-	0	-	122	-	0	-	122	-	0	-	122	-	0	-	122	-
+BIT 66	984762.407	4402297.601	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	12	0	46	0	12	0	46	0	12	0	46
+BOADILLA 220	422874.608	4473403.711	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+BOIMENTE 400	132394.319	4836335.426	Lugo	400	TSO	REE	Tender pending	0	-	0	-	0	73	0	261	0	73	0	161	0	73	0	186
+BOLARQUE 220	514417.222	4468252.603	Guadalajara	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+BOSSA 132	881656.561	4313694.181	Islas Baleares	132	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+BRAZATORTAS 220	390851.298	4278891.119	Ciudad Real	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	76	0	558
+BRAZATORTAS 400	390917.767	4279022.16	Ciudad Real	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BROVALES 220	176200.436	4247961.372	Badajoz	220	TSO	REE	-	0	-	0	-	0	146	0	686	0	146	0	686	0	146	0	686
+BROVALES 400	176288.75	4247844.664	Badajoz	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BUDIA (YELAMOS) 400	520494.353	4497416.828	Guadalajara	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BUENAVISTA 220	436212.176	4462487.496	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+BUENAVISTA GC 66	-726826.563	3174187.168	Las Palmas	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BUENOS AIRES 220	-805476.941	3220457.737	Santa Cruz de Tenerife	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BUENOS AIRES 66	-805496.81	3220459.97	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BUNIEL 400	432402.6	4685892.481	Burgos	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+BUNYOLA 66	989265.837	4408317.102	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CABRA 400	367935.33	4146837.827	Córdoba	400	TSO	REE	Tender pending	0	-	0	-	0	827	0	1034	0	827	0	1034	0	827	0	1034
+CACERES 220	211182.388	4375376.82	Cáceres	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CACICEDO 220	429824.786	4809611.975	Cantabria	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CALA BLAVA 66	1000855.717	4378413.359	Islas Baleares	66	TSO	REE	-	26	-	26	-	20	0	20	0	12	0	12	0	12	0	12	0
+CALA MESQUIDA 132	1050916.229	4418575.775	Islas Baleares	132	TSO	REE	-	0	-	0	-	0	18	0	49	0	18	0	49	0	18	0	49
+CALA MILLOR 66	1046669.006	4400907.914	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	16	0	0	0	16	0	0	0	16
+CALAMOCHA 220	644340.165	4530687.824	Teruel	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+CALATORAO 220	638656.992	4597544.648	Zaragoza	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+CALDERS 400	910253.652	4635655.737	Barcelona	400	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CALERA Y CHOZAS 220	344458.306	4429682.169	Toledo	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CALETILLAS 220	-815504.597	3213468.419	Santa Cruz de Tenerife	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CALLEJONES 66	-535675.644	3253545.619	Las Palmas	66	TSO	REE	-	0	-	0	-	0	0	0	21	0	0	0	21	0	0	0	21
+CALVIA 66	973478.371	4389725.888	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CAMARENA 220	407747.089	4443622.103	Toledo	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CAMARENA 400	407764.127	4443621.895	Toledo	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CAMINO FREGACEDOS 220	430562.348	4460435.521	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CAMPANARIO 400	649334.059	4305202.59	Albacete	400	TSO	REE	-	0	-	0	-	0	205	0	257	0	205	0	257	0	155	0	155
+CAMPO NACIONES 220	447305.551	4479496.882	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CAMPOAMOR 220	694830.185	4197833.885	Alicante	220	TSO	REE	-	0	-	0	-	0	17	0	337	0	17	0	337	0	17	0	337
+CAMPOS 400	640988.291	4213910.415	Murcia	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CAN BARBA 400	921769.711	4612446.2	Barcelona	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CAN JARDI (CAN JARDI B) 220	919579.332	4603587.525	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CAN JARDI 220	919483.42	4603721.105	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CAN JARDI 400	919474.77	4603708.207	Barcelona	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CAN PICAFORT 66	1027592.555	4417882.454	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	4	0	0	0	4	0	0	0	4
+CANDELARIA (CANDELARIA B) 66	-815327.158	3213286.575	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CANDELARIA 220	-815317.214	3213285.453	Santa Cruz de Tenerife	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CANDELARIA 66	-815337.103	3213287.698	Santa Cruz de Tenerife	66	TSO	REE	-	5	-	5	-	5	0	5	0	5	0	5	0	5	0	5	0
+CANILLEJAS 220	447863.817	4476178.809	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CANYET 220	937194.882	4603746.024	Barcelona	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CAÑADA DE LA BARCA 132	-612256.272	3162811.262	Las Palmas	132	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CAÑAVERAL 400	212236.979	4410856.589	Cáceres	400	TSO	REE	Tender pending	0	-	0	-	0	524	0	700	0	524	0	700	0	524	0	753
+CAÑUELO 220	279527	4010429	Cádiz	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CAPARACENA 220	435597.344	4124828.838	Granada	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CAPARACENA 400	435683.765	4124736.807	Granada	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CAPDEPERA 66	1050401.775	4413938.493	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CARDOSO 220	270118.796	4827779.074	Asturias	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CARDOSO 400	270134.947	4827778.52	Asturias	400	TSO	REE	-	0	-	0	-	0	96	0	96	0	-	0	-	0	-	0	-
+CARIÑENA 400	648288.824	4576104.217	Zaragoza	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CARMONA 220	256281.454	4160266.149	Sevilla	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CARMONA 400	256299.123	4160265.63	Sevilla	400	TSO	REE	Tender pending	0	-	0	-	0	809	0	832	0	809	0	832	0	809	0	832
+CARMONITA 400	208570.801	4332727.183	Badajoz	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	176	0	176
+CARRIL 400	613361.735	4144118.676	Murcia	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CARRIO 220	279604.346	4826201.283	Asturias	220	TSO	REE	NTJ	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CARRIZAL 66	-727888.197	3150630.343	Las Palmas	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CARROYUELAS 220	450042.979	4370687.806	Toledo	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CARTAMA 220	356689.728	4068440.037	Málaga	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CARTAMA 400	356707.583	4068439.738	Málaga	400	TSO	REE	Tender pending	0	-	0	-	0	488	0	830	0	488	0	830	0	488	0	830
+CARTELLE 220	82803.484	4690636.479	Ourense	220	TSO	REE	-	0	-	0	-	0	617	0	1024	0	617	0	1024	0	617	0	1024
+CARTELLE 400	82819.987	4690635.497	Ourense	400	TSO	REE	-	0	-	0	-	0	447	0	447	0	447	0	447	0	447	0	447
+CARTUJA 220	220971.442	4057083.278	Cádiz	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CARTUJOS 220	679821.051	4606481.574	Zaragoza	220	TSO	REE	-	14	-	76	-	14	-	76	-	14	-	76	-	14	-	76	-
+CA'S TRESORER 220	988687.266	4395138.73	Islas Baleares	220	TSO	REE	-	1	-	1	-	1	0	1	0	1	0	1	0	1	0	1	0
+CA'S TRESORER 66	988695.226	4395139.818	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CASA DE CAMPO 220	437056.876	4476207.038	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+CASAQUEMADA 220	211024.854	4148748.839	Sevilla	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CASATEJADA 220	269132.932	4428467.144	Cáceres	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CASILLAS 220	340535.399	4191597.83	Córdoba	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CASTALLA 220	702480	4275376	Alicante	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CASTEJON 400	609376.747	4669599.774	Navarra	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CASTELLAR DE LA FRONTERA 400	284629.693	4020503.891	Cádiz	400	TSO	REE	Tender pending	0	-	0	-	0	65	0	1069	0	65	0	1069	0	65	0	1069
+CASTELLBISBAL 220	916566.849	4600232.121	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CASTELLET 220	883874.729	4577302.3	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CASTELLON C.T. 400	756027.634	4427463.491	Castellón	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CASTRELO 220	78415.775	4694787.807	Ourense	220	TSO	REE	Posible Tender pending	91	-	91	-	91	47	91	744	0	47	0	744	0	47	0	744
+CATADAU 220	710415.54	4347449.842	Valencia	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CATADAU 400	710432.801	4347450.307	Valencia	400	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+CEDILLO 400	111078.937	4400327.849	Cáceres	400	TSO	REE	-	0	-	0	-	0	203	0	972	0	203	0	972	0	203	0	1025
+CENTELLES 220	933024.617	4641620.127	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CENTENARIO 220	233319.286	4142594.919	Sevilla	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	108
+CERCS 220	901023.804	4680549.731	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CERDA 220	929964.108	4589598.006	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CERRATO 400	385345.884	4638367.15	Palencia	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CERRO PLATA 220	442213.992	4472372.815	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+CERVELLO 220	917072.496	4595854.055	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CHANTADA 220	108925.536	4730245.743	Lugo	220	TSO	REE	-	0	-	0	-	0	128	0	186	0	128	0	186	0	128	0	186
+CHAYOFA 66	-853238.436	3182083.53	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	1	0	8	0	1	0	8	0	1	0	8
+CHIO 66	-861774.002	3200251.321	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CHUCENA 220	200108.271	4138187.175	Huelva	220	TSO	REE	Tender pending	0	-	0	-	0	160	0	204	0	160	0	204	0	160	0	204
+CICERO 220	457596.623	4804578.042	Cantabria	220	TSO	REE	-	0	-	0	-	0	65	0	197	0	65	0	97	0	65	0	122
+CILLAMAYOR 220	397096.694	4747149.715	Palencia	220	TSO	REE	Tender pending	0	-	0	-	0	53	0	234	0	53	0	234	0	53	0	234
+CINCA 220	764857.104	4646286.804	Huesca	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	132	0	0	0	132	0	0	0	132
+CINSA 66	-723154.448	3157417.693	Las Palmas	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CISNEROS 220	475271.197	4486196.868	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CIUDAD DEPORTIVA 220	447376.978	4480676.792	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CIUDAD RODRIGO 400	199688.548	4505114.761	Salamanca	400	TSO	REE	Tender pending	0	-	0	-	0	486	0	872	0	486	0	853	0	486	0	853
+CIUDADELA 132	1085368.085	4450709.15	Islas Baleares	132	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	13
+CODONYERS 220	925787.685	4604387.35	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+COFRENTES 400	667981.612	4342351.5	Valencia	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+COLISEO 66	985744.057	4396868.697	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+COLLBLANC 220	926952.611	4593244.494	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+COMPLUTUM 220	467150.567	4480255.701	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+COMPOSTILLA 220	207485.697	4724066.364	León	220	TSO	REE	NTJ	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+COMPOSTILLA 400	207302.768	4723467.641	León	400	TSO	REE	NTJ	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+CONSO 220	155281.009	4677054.036	Ourense	220	TSO	REE	-	10	-	10	-	10	134	10	134	60	134	60	134	91	134	91	134
+CONSTANTI 220	854645.004	4562434.233	Tarragona	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CORDOVILLA 220	611627.039	4737999.389	Navarra	220	TSO	REE	-	0	-	22	-	0	-	22	-	0	-	22	-	0	-	22	-
+CORNATEL 220	186394.133	4709084.087	Ourense	220	TSO	REE	-	87	-	117	-	17	78	17	120	17	78	17	120	17	78	17	120
+CORRALEJO 66	-565826.133	3225239.215	Las Palmas	66	TSO	REE	-	0	-	0	-	0	11	0	19	0	11	0	19	0	11	0	19
+COSCURITA 220	540808.685	4593632.191	Soria	220	TSO	REE	-	0	-	0	-	0	322	0	825	0	322	0	825	0	322	0	825
+COSLADA (COSLADA B) 220	451166.23	4474816.559	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+COSLADA 220	451166.23	4474816.559	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+COSTA DE LA LUZ 220	127045.258	4137252.773	Huelva	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+COSTASOL 220	333502.896	4043571.81	Málaga	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+COTORROS 400	435708.222	4687943.573	Burgos	400	TSO	REE	Tender pending	0	-	0	-	0	416	0	416	0	297	0	297	0	322	0	322
+CRISTOBAL COLON 220	150006.459	4126239.014	Huelva	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+CUESTA DE LA VILLA 66	-828811.274	3218969.825	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+DAGANZO 220	459477.309	4489370.604	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+DIQUE DEL ESTE 66	-798561.259	3224696.406	Santa Cruz de Tenerife	66	TSO	REE	-	44	-	44	-	44	0	44	0	35	0	35	0	35	0	35	0
+DON ALVARO 400	212571.284	4307718.949	Badajoz	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+DON RODRIGO (DON RODRIGO B) 220	247890.995	4125882.469	Sevilla	220	TSO	REE	-	0	-	0	-	0	1	0	595	0	1	0	595	0	1	0	595
+DON RODRIGO 220	247880.624	4125886.853	Sevilla	220	TSO	REE	Tender pending	0	-	0	-	0	53	0	859	0	53	0	859	0	53	0	859
+DON RODRIGO 400	247865.72	4125893.291	Sevilla	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+DOS HERMANAS 220	242433.472	4131959.221	Sevilla	220	TSO	REE	Tender pending	0	-	0	-	0	28	0	547	0	28	0	547	0	28	0	547
+DRAGO 66	-852109.553	3213502.076	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	18	0	33	0	18	0	33	0	18	0	33
+DRAGONERA 132	1118987.261	4440800.075	Islas Baleares	132	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+EBORA 220	347312.643	4425337.884	Toledo	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+EIRIS 220	62449.506	4813075.517	A Coruña	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+EIXAMPLE 220	932124.938	4597047.449	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+EL CANTALAR 220	725171.616	4256068.23	Alicante	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+EL CERRO 220	446822.279	4731409.267	Burgos	220	TSO	REE	-	0	-	0	-	0	0	0	283	0	0	0	283	0	0	0	283
+EL CONDADO 220	155291.439	4122432.151	Huelva	220	TSO	REE	-	0	-	0	-	0	0	0	210	0	0	0	210	0	0	0	210
+EL COTO 220	445438.539	4477943.707	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+EL EMPERADOR 220	424851.348	4354948.419	Toledo	220	TSO	REE	-	0	-	0	-	0	207	0	386	0	207	0	386	0	207	0	386
+EL MORELL 220	854290.656	4569822.88	Tarragona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+EL PALMAR 220	659193.284	4200791.021	Murcia	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+EL PALMAR 400	659210.859	4200791.362	Murcia	400	TSO	REE	-	0	-	0	-	0	183	0	844	0	183	0	844	0	183	0	844
+EL PALMAR DE LA GOMERA 66	-894597.459	3188818.441	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+EL PALMERAL 220	716831.687	4245200.645	Alicante	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+EL PALO 400	201610.371	4797398.168	Asturias	400	TSO	REE	Tender pending	0	-	0	-	0	261	0	261	0	161	0	161	0	186	0	186
+EL PETREL 220	693559.185	4256838.496	Alicante	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+EL PILAR 220	440604.624	4480586.824	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+EL ROSARIO 220	-812670.605	3220782.597	Santa Cruz de Tenerife	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+EL ROSARIO 66	-812690.479	3220784.842	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+EL SEQUERO 220	561498.839	4696397.092	La Rioja	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	97	0	500
+EL SERRALLO 220	755867.965	4427397.692	Castellón	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+EL TABLERO 66	-747947.685	3135773.603	Las Palmas	66	TSO	REE	-	0	-	0	-	0	0	0	5	0	0	0	5	0	0	0	5
+EL ZUMAJO 220	231565.877	4020965.782	Cádiz	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	126	0	228
+ELCHE 220	706807.388	4237815.582	Alicante	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	22	0	475
+ELCOGAS 220	414220.452	4279400.183	Ciudad Real	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	76	0	382
+ELDA 220	692610.371	4263554.127	Alicante	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ELGEA 220	544901.677	4749030.447	Álava	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	22	0	142
+ELIANA (ELIANA B) 220	713921.324	4381308.116	Valencia	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ELIANA 220	713912.732	4381307.878	Valencia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ELIANA 400	713929.917	4381308.354	Valencia	400	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ELS AUBALS 220	805749.463	4558297.992	Tarragona	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ELS AUBALS 400	805757.114	4558186.838	Tarragona	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ENTRENUCLEOS 220	239155.35	4133748.958	Sevilla	220	TSO	REE	-	0	-	209	-	0	-	209	-	0	-	209	-	0	0	209	0
+ENTRERRIOS 220	650755.223	4623451.122	Zaragoza	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ERISTE 220	786525.9	4721080.066	Huesca	220	TSO	REE	Posible Tender pending	41	-	41	-	41	-	41	-	0	-	0	-	0	-	0	-
+ES BESSONS (ES BESSONS B) 66	1029091.558	4399533.852	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	15	0	105	0	15	0	105	0	15	0	110
+ES BESSONS 132	1029060.935	4399543.234	Islas Baleares	132	TSO	REE	-	0	-	0	-	0	25	0	84	0	25	0	84	0	25	0	84
+ES BESSONS 220	1029078.129	4399544.416	Islas Baleares	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ES BESSONS 66	1029069.532	4399543.825	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	15	0	81	0	15	0	81	0	15	0	81
+ESCALONA 220	758538.865	4706741.008	Huesca	220	TSO	REE	-	0	-	0	-	0	0	0	231	0	0	0	231	0	0	0	231
+ESCATRON 220	722590.048	4575088.324	Zaragoza	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ESCATRON 400	722606.795	4575088.837	Zaragoza	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ESCOBAR 66	-727891.446	3150635.342	Las Palmas	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ESCUCHA 220	684253.493	4518439.531	Teruel	220	TSO	REE	-	0	-	280	-	0	-	280	-	0	-	280	-	0	0	280	0
+ESPARTAL 220	693595.475	4601636.139	Zaragoza	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ESPINARDO 220	661722.245	4209297.559	Murcia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ESQUEDAS 220	700455.906	4676551.997	Huesca	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+FACINAS 220	255468.715	4003477.669	Cádiz	220	TSO	REE	-	0	-	0	-	0	0	0	511	0	0	0	511	0	0	0	511
+FACULTATS 220	928141.036	4594014.759	Barcelona	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+FADRELL 400	748735.071	4432216.746	Castellón	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+FALCA 66	984473.972	4396536.371	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+FARGUE 220	448960.454	4116814.51	Granada	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+FARNERS 220	970412.262	4649781.138	Girona	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+FARNERS 400	970428.87	4649782.238	Girona	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+FAUSITA 220	681085.131	4159451.239	Murcia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+FAUSITA 400	681102.92	4159445.969	Murcia	400	TSO	REE	Tender pending	0	-	0	-	0	269	0	864	0	269	0	864	0	269	0	864
+FERIA DE MUESTRAS 220	721325.269	4375923.503	Valencia	220	TSO	REE	-	0	-	0	-	0	48	0	418	0	48	0	418	0	48	0	418
+FOIX 220	890544.398	4572547.56	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+FONTEFRIA 220	61086.878	4692242.528	Pontevedra	220	TSO	REE	Tender pending	0	-	0	-	0	148	0	930	0	148	0	930	0	148	0	930
+FONTEFRIA 400	61383.84	4691500.501	Pontevedra	400	TSO	REE	-	0	-	0	-	0	0	0	791	0	0	0	791	0	0	0	791
+FORADADA 220	776721.607	4700036.209	Huesca	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+FORMENTERA 132	888294.888	4292100.256	Islas Baleares	132	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+FORMENTERA 30	888294.888	4292100.256	Islas Baleares	30	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+FORTUNA 220	433467.714	4466543.341	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+FRANCOLI 220	854735.731	4569490.325	Tarragona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+FRANQUESES 220	939969.049	4623577.718	Barcelona	220	TSO	REE	-	0	-	0	-	0	46	0	250	0	46	0	250	0	46	0	250
+FRIEIRA 220	70878.345	4679930.758	Ourense	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+FUENCALIENTE 66	-961540.82	3244298.185	Santa Cruz de Tenerife	66	TSO	REE	-	8	-	8	-	8	0	8	0	8	0	8	0	8	0	8	0
+FUENCARRAL 220	443069.199	4485626.112	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+FUENCARRAL 400	443086.141	4485625.983	Madrid	400	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+FUENDETODOS 220	669232.698	4578155.894	Zaragoza	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+FUENDETODOS 400	669249.433	4578156.284	Zaragoza	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+FUENLABRADA 220	433537.495	4458761.903	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+FUENTE DE CANTOS 400	218494.876	4234514.861	Badajoz	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+FUENTE DEL MAESTRE 400	195412.531	4266638.217	Badajoz	400	TSO	REE	Tender pending	0	-	0	-	0	458	0	458	0	458	0	458	0	624	0	811
+FUENTE HITO 220	447927.946	4487648.183	Madrid	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+FUENTE SAN LUIS 220	725968.105	4368814.999	Valencia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+FUENTEBUREBA 400	481772.618	4719243.064	Burgos	400	TSO	REE	Tender pending	0	-	0	-	0	447	0	580	0	447	0	480	0	447	0	505
+FUENTES DE LA ALCARRIA 400	501368.608	4510803.377	Guadalajara	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+GABIAS 220	440444.524	4111246.22	Granada	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+GALAPAGAR 220	414984.18	4494666.636	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+GALAPAGAR 400	415001.103	4494666.443	Madrid	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+GAMARRA 220	527259.004	4746387.718	Álava	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+GANDIA 220	743819.478	4318597.943	Valencia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+GAROÑA 220	483142	4735762	Burgos	220	TSO	REE	NTJ	0	-	0	-	0	55	0	556	0	55	0	456	0	55	0	481
+GARRAF 400	895416.239	4577827.491	Barcelona	400	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+GATICA 220	509610.346	4799697.16	Bizkaia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+GATICA 400	509626.555	4799697.183	Bizkaia	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+GAUSSA 400	730163.017	4393441.874	Valencia	400	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+GAVARROT 220	920848.78	4587058.54	Barcelona	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+GAZULES 220	250581.758	4042660.297	Cádiz	220	TSO	REE	-	0	-	0	-	0	30	0	915	0	30	0	915	0	30	0	915
+GENETO 66	-809979.126	3221310.541	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+GETAFE 220	441273.467	4463313.139	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+GODELLETA 220	700346.928	4368555.15	Valencia	220	TSO	REE	Tender pending	0	-	0	-	0	455	0	965	0	455	0	965	0	455	0	965
+GODELLETA 400	700364.14	4368555.594	Valencia	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+GRADO 220	767109.214	4671864.657	Huesca	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	302
+GRAMANET (GRAMANET B) 220	933604.234	4602887.73	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+GRAMANET 220	933604.234	4602887.73	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+GRAN TARAJAL 132	-584836.577	3172783.582	Las Palmas	132	TSO	REE	-	5	-	5	-	5	0	5	0	3	0	3	0	0	0	0	0
+GRAN TARAJAL 66	-584856.4	3172785.408	Las Palmas	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+GRANADILLA (GRANADILLA B) 220	-833175.668	3181012.817	Santa Cruz de Tenerife	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+GRANADILLA 220	-832788.107	3181493.192	Santa Cruz de Tenerife	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+GRANADILLA 66	-832808.061	3181495.448	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+GRIJOTA 400	371236.47	4658960.123	Palencia	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+GUADAIRA 220	236502.177	4128194.614	Sevilla	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+GUADAME 220	395353.124	4211966.641	Jaén	220	TSO	REE	Tender pending	0	-	0	-	0	184	0	951	0	184	0	951	0	184	0	951
+GUADAME 400	395350.137	4211892.306	Jaén	400	TSO	REE	Tender pending	0	-	0	-	0	875	0	1034	0	875	0	1034	0	875	0	1034
+GUADIANA 400	177398.711	4315600.466	Badajoz	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+GUAJARA 66	-808369.333	3222072.021	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+GUARDO 220	348542	4742280	Palencia	220	TSO	REE	NTJ	0	-	0	-	0	0	0	507	0	0	0	507	0	0	0	507
+GUEÑES 220	497486.854	4785111.171	Bizkaia	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	16	0	0	0	0	0	0	0	0
+GUEÑES 400	497503.097	4785111.165	Bizkaia	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+GUIA 66	-744737.621	3176684.824	Las Palmas	66	TSO	REE	-	12	-	12	-	12	0	12	0	12	0	12	0	12	0	12	0
+GUIA DE ISORA 66	-861770.146	3200459.163	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+GUILLENA (GUILLENA B) 220	226854.678	4170035.122	Sevilla	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+GUILLENA 220	226771.287	4169929.999	Sevilla	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+GUILLENA 400	226674.481	4170039.907	Sevilla	400	TSO	REE	-	0	-	0	-	0	264	0	264	0	264	0	264	0	617	0	617
+GUINCHOS 66	-951719.551	3261857.221	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+GUIXERES 220	939339.595	4603458.316	Barcelona	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+GURREA 220	684255.69	4656390.437	Huesca	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+HARÍA 66	-523556.597	3267078.616	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+HARO 220	509427.34	4712897.344	La Rioja	220	TSO	REE	-	58	-	98	-	0	-	0	-	0	-	0	-	0	-	0	-
+HERNANI 220	583794.958	4790218.968	Gipuzkoa	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+HERNANI 400	583188.012	4789799.673	Gipuzkoa	400	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	14	0	14
+HERRERA 220	389767.829	4716640.511	Palencia	220	TSO	REE	-	0	-	0	-	0	190	0	280	0	190	0	280	0	190	0	280
+HERRERA 400	389784.238	4716640.25	Palencia	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+HIJAR 220	716561.337	4561066.205	Teruel	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+HINOJOSA 400	186105.225	4547416.322	Salamanca	400	TSO	REE	-	0	-	0	-	0	522	0	522	0	503	0	503	0	503	0	503
+HORNILLO 220	439562.31	4458613.624	Madrid	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+HORTALEZA 220	443668.532	4480406.189	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+HOSPITALET 220	926747.737	4589744.301	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+HOYA MORENA 220	687269.03	4179254.275	Murcia	220	TSO	REE	Tender pending	0	-	0	-	0	17	0	337	0	17	0	337	0	17	0	337
+HUELVES 220	505174.194	4434306.21	Cuenca	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+HUENEJA 400	505088.496	4118971.539	Granada	400	TSO	REE	-	0	-	0	-	0	13	0	893	0	13	0	893	0	13	0	893
+IBIZA 132	884148.096	4317201.376	Islas Baleares	132	TSO	REE	-	10	-	10	-	10	-	10	-	0	-	0	-	0	-	0	-
+IBIZA 23 66	884195.043	4316980.205	Islas Baleares	66	TSO	REE	-	8	-	8	-	8	0	8	0	3	0	3	0	3	0	3	0
+IBIZA 66	884180.844	4317062.256	Islas Baleares	66	TSO	REE	-	8	-	8	-	8	0	8	0	3	0	3	0	3	0	3	0
+ICOD DE LOS VINOS 66	-849525.242	3215600.538	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	18	0	33	0	18	0	33	0	18	0	33
+ILLORA 220	421502.078	4121912.852	Granada	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+INCA 66	1007412.547	4412803.179	Islas Baleares	66	TSO	REE	-	18	-	18	-	19	9	19	9	35	9	35	9	0	23	0	64
+INGENIO 220	754864.193	4429627.973	Castellón	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+IRUN 220	596356.561	4799046.558	Gipuzkoa	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ISONA 220	828605.782	4670941.891	Lleida	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ISONA 400	828622.318	4670942.662	Lleida	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ITXASO 220	559173.857	4767851.93	Gipuzkoa	220	TSO	REE	-	0	-	0	-	0	103	0	335	0	103	0	235	0	103	0	260
+ITXASO 400	559133.888	4767886.161	Gipuzkoa	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+IZNALLOZ 400	452876.558	4137228.852	Granada	400	TSO	REE	-	0	-	0	-	0	514	0	728	0	514	0	728	0	514	0	728
+J.M.ORIOL 220	167610.138	4404359.944	Cáceres	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+J.M.ORIOL 400	167898.854	4404337.567	Cáceres	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+JALON 220	642415.065	4617584.411	Zaragoza	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+JARES 132	-593186.902	3174093.92	Las Palmas	132	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+JIJONA 220	719978.861	4263431.279	Alicante	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+JINAMAR 220	-725369.044	3165048.698	Las Palmas	220	TSO	REE	-	0	-	0	-	0	29	0	29	0	29	0	29	0	29	0	29
+JINAMAR 66	-725345.691	3164970.471	Las Palmas	66	TSO	REE	-	34	-	34	-	34	29	34	29	34	29	34	29	34	29	34	29
+JORDANA 220	301131.678	4035485.579	Málaga	220	TSO	REE	Tender pending	0	-	0	-	0	104	0	1121	0	104	0	1121	0	104	0	1121
+JORDANA 400	301149.606	4035485.166	Málaga	400	TSO	REE	Tender pending	0	-	0	-	0	81	0	1083	0	81	0	1083	0	81	0	1083
+JOSE CABRERA 220	509718.902	4466574.044	Guadalajara	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+JUIA 220	988598.332	4669164.519	Girona	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+JUNDIZ 220	520715.391	4742658.708	Álava	220	TSO	REE	Tender pending	0	-	0	-	0	21	0	21	0	188	0	456	0	188	0	481
+JUNEDA 220	819358.256	4604747.542	Lleida	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LA CANONJA 220	851960.913	4559301.426	Tarragona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LA CEREAL 220	438813.924	4494663.305	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LA CEREAL 400	438830.846	4494663.166	Madrid	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LA ESPLUGA 220	844745.176	4591937.86	Tarragona	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LA ESPLUGA 400	844964.105	4591955.2	Tarragona	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LA ESTRELLA 220	443519.263	4474303.084	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LA FARGA 220	986827.194	4673515.008	Girona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LA FARGA 400	986843.75	4673516.151	Girona	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LA FORTUNADA 220	762560.893	4715006.215	Huesca	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	170
+LA GRELA 220	59918.116	4813205.05	A Coruña	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LA JARA 220	491541.45	4783446.135	Bizkaia	220	TSO	REE	-	0	-	0	-	0	16	0	16	0	0	0	0	0	0	0	0
+LA LORA 400	429455.61	4715715.807	Burgos	400	TSO	REE	-	0	-	0	-	75	0	75	0	75	0	75	0	75	0	75	0
+LA NAVA 220	400276.247	4281675.905	Ciudad Real	220	TSO	REE	-	0	-	0	-	0	67	0	108	0	67	0	108	0	67	0	105
+LA OLIVA 132	-565672.859	3229201.643	Las Palmas	132	TSO	REE	-	7	-	7	-	7	21	7	21	0	21	0	21	0	21	0	21
+LA OLIVA 66	-565692.576	3229203.466	Las Palmas	66	TSO	REE	-	0	-	0	-	0	11	0	19	0	11	0	19	0	11	0	19
+LA PALOMA 220	467484.158	4319163.329	Ciudad Real	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LA PATERNA 66	-728866.913	3170822.341	Las Palmas	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LA PEREDA 220	271976.428	4795031.636	Asturias	220	TSO	REE	NTJ	24	-	24	-	24	73	24	73	24	73	24	73	35	73	35	73
+LA PINILLA 400	621441.657	4291589.573	Albacete	400	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+LA PLANA 220	748016.452	4428117.627	Castellón	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LA PLANA 400	747856.396	4428174.205	Castellón	400	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+LA ROCA 220	943537.041	4617698.946	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	46	0	250	0	46	0	250	0	46	0	250
+LA SAGRA 220	430111.554	4442739.984	Toledo	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LA SAGRA 400	430128.594	4442739.827	Toledo	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LA SAGRERA 220	934110.407	4599213.833	Barcelona	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LA SECUITA 220	854285.545	4569822.929	Tarragona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LA SECUITA 400	854302.32	4569823.745	Tarragona	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LA SELVA 220	847963.615	4570289.716	Tarragona	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LA SOLANA 220	400445.001	4281930.014	Ciudad Real	220	TSO	REE	-	0	-	0	-	0	0	0	108	0	0	0	108	4	0	4	105
+LA TORRECILLA 220	447885.198	4463335.393	Madrid	220	TSO	REE	-	4	-	4	-	4	0	4	0	4	0	4	0	4	0	4	0
+LADA 400	281157.954	4798309.722	Asturias	400	TSO	REE	NTJ	0	-	0	-	0	13	0	121	0	13	0	21	0	13	0	46
+LAGUARDIA 220	534114.002	4706261.084	Álava	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LANCHA 220	349735.413	4197994.412	Córdoba	220	TSO	REE	NTJ	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LANZAS AGUDAS 220	608506.184	4635354.849	Zaragoza	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LAS ARROYADAS 220	356981.426	4598506.302	Valladolid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	150	0	299
+LAS BREÑAS 66	-952590.937	3258700.084	Santa Cruz de Tenerife	66	TSO	REE	-	11	-	11	-	11	0	11	0	0	0	0	0	0	0	0	0
+LAS MAZORRAS 220	447906.868	4744667.686	Burgos	220	TSO	REE	-	0	-	0	-	0	0	0	247	0	0	0	247	0	0	0	247
+LAS PALMAS OESTE 66	-727474.734	3175203.744	Las Palmas	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LAS ROSAS 220	-809970.968	3221307.972	Santa Cruz de Tenerife	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LAS ROSAS 66	-809990.839	3221310.214	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	19	0	52	0	19	0	52	0	19	0	52
+LASTRAS 400	387135.324	4526373.266	Segovia	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LEGANES 220	434000.806	4462850.93	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LES CORTS 220	929638.193	4594516.394	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+LITORAL 400	597185.562	4093032.424	Almería	400	TSO	REE	NTJ	0	-	0	-	0	514	0	698	0	514	0	698	0	514	0	698
+LLATZER 66	988684.939	4395136.844	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LLAVORSI 220	846258.653	4713505.12	Lleida	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LLUBI 220	1018171.364	4408994.914	Islas Baleares	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LLUBI 66	1018154.193	4408993.754	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LLUCMAJOR 66	1007505.371	4388722.58	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	11	0	40	0	11	0	40	0	11	0	40
+LOECHES (LOECHES B) 220	464423.541	4470804.592	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LOECHES 220	464146.521	4470890.071	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LOECHES 400	464163.496	4470889.99	Madrid	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LOGROÑO 220	541848.805	4700789.708	La Rioja	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LOMBA 220	202586.736	4721218.945	León	220	TSO	REE	Tender pending	0	-	0	-	0	602	0	685	0	602	0	685	0	602	0	685
+LOMBA 400	202603.15	4721218.242	León	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LOMO APOLINARIO 66	-727372.443	3171002.015	Las Palmas	66	TSO	REE	-	0	-	0	-	0	7	0	7	0	7	0	7	0	7	0	7
+LOMO MASPALOMAS 66	-745255.976	3136340.481	Las Palmas	66	TSO	REE	-	0	-	0	-	0	11	0	24	0	11	0	24	0	11	0	24
+LOS ARENALES 220	205611.73	4378614.668	Cáceres	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LOS BARRIOS 220	282297.795	4007133.351	Cádiz	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LOS LEONES 220	676991.925	4617669.525	Zaragoza	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+LOS MONTES 220	376033.824	4067458.755	Málaga	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LOS OLIVOS 66	-856997.564	3188806.407	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LOS RAMOS 220	368491	4065740.804	Málaga	220	TSO	REE	-	41	-	41	-	0	-	0	-	0	-	0	-	0	-	0	-
+LOS REALEJOS 66	-836704.208	3215815.014	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LOS VIENTOS 220	655410.745	4595204.81	Zaragoza	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+LOURIZAN 220	33859.722	4711723.753	Pontevedra	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LOUSAME 220	27374.018	4756835.744	A Coruña	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	35	0	309
+LUBIAN 220	177764.939	4661444.489	Zamora	220	TSO	REE	-	2	-	2	-	2	1	2	179	1	1	1	179	1	1	1	179
+LUCERO 220	424956.924	4465955.552	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+LUDRIO 400	140755.17	4784580.637	Lugo	400	TSO	REE	Tender pending	0	-	0	-	0	260	0	841	0	260	0	841	0	260	0	841
+LUENGOS 400	304974.213	4702442.971	León	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+LUMINABASO 220	519596.617	4784417.376	Bizkaia	220	TSO	REE	-	0	-	0	-	0	0	0	195	0	0	0	195	0	0	0	195
+MACHER 66	-544416.875	3250120.961	Las Palmas	66	TSO	REE	-	0	-	0	-	0	21	0	21	0	21	0	21	0	21	0	21
+MACIÑEIRA 400	102148.303	4822041.738	A Coruña	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MADRIDEJOS 220	454306.364	4370977.21	Toledo	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MAGALLON 220	634426.487	4634041.157	Zaragoza	220	TSO	REE	-	0	-	0	-	0	-	0	-	7	-	7	-	7	-	7	-
+MAGALLON 400	634625.992	4634120.917	Zaragoza	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MAGAÑA 220	566292.432	4644940.534	Soria	220	TSO	REE	-	0	-	0	-	0	0	0	415	0	0	0	415	0	0	0	0
+MAGUILLA (LLENERA) 400	248626.267	4248442.061	Badajoz	400	TSO	REE	Tender pending	0	-	0	-	0	627	0	930	0	627	0	930	0	627	0	930
+MAHON 132	1120774.933	4441628.369	Islas Baleares	132	TSO	REE	-	0	-	0	-	0	20	0	84	0	20	0	84	0	20	0	84
+MAIALS 400	793088.256	4587829.966	Lleida	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MAJADAHONDA 220	425030.018	4477914.854	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MANACOR 66	1031899.834	4398772.741	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MANCHEGA 400	521133.864	4342199.806	Albacete	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MANGRANERS 220	805636.712	4613204.315	Lleida	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MANUEL BECERRA 220	443948.611	4476142.107	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+MANUEL CRUZ 66	-806064.235	3222162.355	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MANZANARES 220	470191.301	4321803.486	Ciudad Real	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MANZANARES 400	470208.609	4321803.421	Ciudad Real	400	TSO	REE	Tender pending	0	-	0	-	0	406	0	406	0	406	0	406	0	406	0	406
+MARAGALL 220	932966.236	4598020.792	Barcelona	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MARIA 220	665778.988	4596740.94	Zaragoza	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MARRATXI (MARRATXI B) 66	991710.271	4400355.735	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	55	0	62	0	55	0	62	0	55	0	62
+MARRATXI 66	991710.271	4400355.735	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	31	0	35	0	31	0	35	0	31	0	35
+MARZAGAN 66	-726188.619	3163664.481	Las Palmas	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MAS FIGUERES 220	921012.397	4612696.869	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MASDENVERGE 400	798942.043	4513870.733	Tarragona	400	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+MATA 220	932600.363	4593155.566	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MATAPORQUERA 220	405225.466	4748100.172	Cantabria	220	TSO	REE	-	0	-	0	-	0	86	0	229	0	86	0	229	0	86	0	229
+MATAS BLANCAS 132	-612168.735	3162774.035	Las Palmas	132	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MATAS BLANCAS 66	-612220.972	3162800.643	Las Palmas	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MATORRAL 66	-730596.471	3139055.778	Las Palmas	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+MAZARICOS 220	7594.219	4766464.536	A Coruña	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	95	0	140
+MAZARREDO 220	438975.97	4473781.281	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+MECO 220	473479.33	4487901.601	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MEDIANO 220	764707.336	4689536.814	Huesca	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	234
+MEDINA DEL CAMPO 220	340092.654	4576867.969	Valladolid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MEDINACELI 400	552528.948	4550726.7	Soria	400	TSO	REE	Tender pending	0	-	0	-	0	97	0	218	0	97	0	218	0	97	0	218
+MEDIODIA 220	441367.076	4473465.55	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+MEIRAMA 220	60232.469	4793799.89	A Coruña	220	TSO	REE	NTJ	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MELANCOLICOS 220	438901.483	4473305.408	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MEQUINENZA 220	774145.015	4584767.108	Zaragoza	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MEQUINENZA 400	774040.479	4584859.919	Zaragoza	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MERCADAL 132	1106146.914	4449413.125	Islas Baleares	132	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	4	0	13
+MERCEDES BENZ 220	523638.049	4744352.956	Álava	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MERIDA 220	210185.121	4310601.934	Badajoz	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	52	0	436
+MESON D.V. 220	64694.507	4793563.391	A Coruña	220	TSO	REE	-	0	-	0	-	0	0	0	537	0	0	0	537	0	0	0	442
+MESON D.V. 400	64571.579	4793292.683	A Coruña	400	TSO	REE	Tender pending	0	-	0	-	0	809	0	841	0	809	0	841	0	809	0	841
+MEZQUITA 220	681599.72	4510350.31	Teruel	220	TSO	REE	-	0	-	5	-	0	-	5	-	39	-	47	-	39	0	47	0
+MEZQUITA 400	681616.612	4510350.724	Teruel	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MINGLANILLA 400	623337.374	4375991.587	Cuenca	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MIRABAL 220	226140.632	4065714.95	Cádiz	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MIRANDA DE EBRO 220	506483.249	4727028.679	Burgos	220	TSO	REE	-	58	-	98	-	0	-	0	-	0	-	0	-	0	-	0	-
+MIRASIERRA 220	439249.483	4482498.563	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MOGAN 66	-758231.469	3150390.2	Las Palmas	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MOLINES 66	987573.696	4395195.961	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MONCAYO 220	589468.726	4622182.403	Soria	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MONTALBANEJO 400	537485.612	4403384.73	Cuenca	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MONTBLANC 220	845660.498	4590958.449	Tarragona	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MONTEARENAS 220	208620.654	4719543.942	León	220	TSO	REE	NTJ	0	-	0	-	0	47	0	155	0	47	0	155	0	47	0	180
+MONTEARENAS 400	208637.071	4719543.253	León	400	TSO	REE	NTJ	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MONTEBELLO 220	749116.884	4275833.236	Alicante	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MONTECILLO BAJO 220	361312.558	4197589.573	Córdoba	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MONTESA 400	703838.733	4311499.848	Valencia	400	TSO	REE	Tender pending	0	-	0	-	0	665	0	665	0	665	0	665	0	665	0	665
+MONTETORRERO 220	678797.473	4607245.127	Zaragoza	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MONTOUTO 220	60964.953	4677464.272	Pontevedra	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MONZON 220	763300.022	4647263.428	Huesca	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	202	0	0	0	202	0	0	0	202
+MORA 220	431192.18	4392608.185	Toledo	220	TSO	REE	-	0	-	0	-	0	268	0	361	0	268	0	361	0	268	0	361
+MORALEJA 220	425547.814	4456953.01	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MORALEJA 400	425564.822	4456952.842	Madrid	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MORALETS 220	808317.129	4719822.443	Huesca	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	18
+MORATA 220	462347.872	4456259.867	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MORATA 400	462364.88	4456259.782	Madrid	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MORELLA 400	737264.301	4499354.558	Castellón	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MORERUELA 400	272559.302	4614648.555	Zamora	400	TSO	REE	Tender pending	0	-	0	-	0	620	0	934	0	601	0	915	0	601	0	915
+MORVEDRE 400	737144.037	4391692.261	Valencia	400	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MORVEDRE B 220	736179.706	4392470.596	Valencia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MOTORS 220	929274.007	4589818.137	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MUDARRA 220	339063.926	4628217.062	Valladolid	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	678	0	0	0	678	0	0	0	678
+MUDARRA 400	339080.545	4628216.687	Valladolid	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MUDARRITA 220	338631.664	4628190.246	Valladolid	220	TSO	REE	-	0	-	0	-	0	25	0	678	0	25	0	678	0	25	0	678
+MUDEJAR 400	720065.334	4544620.902	Teruel	400	TSO	REE	NTJ	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MUELA 400	678494.979	4345869.76	Valencia	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MUELLE GRANDE 66	-724512.292	3177406.095	Las Palmas	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MUNIESA 400	681601.948	4544672.346	Teruel	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+MURCIA 220	663815.545	4203562.811	Murcia	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+MURTERAR 220	1021822.475	4424818.561	Islas Baleares	220	TSO	REE	-	19	-	19	-	0	0	0	0	1	0	1	0	0	0	0	0
+MURUARTE 220	610086.907	4724918.129	Navarra	220	TSO	REE	-	0	-	22	-	0	-	22	-	0	-	4	-	0	-	4	-
+MURUARTE 400	610289.177	4724994.822	Navarra	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+NARAIO 400	89895.042	4830887.134	A Coruña	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+NARCEA 400	224569.667	4798783.099	Asturias	400	TSO	REE	NTJ	0	-	0	-	0	14	0	226	0	14	0	126	0	14	0	151
+NORTE 220	440660.527	4475755.207	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+NOVELDA 220	695946.737	4249756.975	Alicante	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	155	0	752
+NUDO VIARIO 220	923215.045	4588021.139	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+NUEVA CASARES 220	300928.663	4031215.369	Málaga	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+NUEVA ESCOMBRERAS (NUEVA ESCOMBRERAS B) 400	680602.287	4159431.767	Murcia	400	TSO	REE	-	0	-	0	-	0	370	0	863	0	370	0	863	0	370	0	863
+NUEVA ESCOMBRERAS 400	681770.731	4160472.484	Murcia	400	TSO	REE	-	0	-	0	-	0	370	0	863	0	370	0	863	0	370	0	863
+NUEVA MECO 220	472088.475	4486232.585	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+NUEVO CAUCE 220	723306	4369741	Valencia	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+NUEVO VIGO (BATEAS) 220	29522.604	4689020.349	Pontevedra	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+NUREDDUNA 66	986135.869	4395605.946	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+O INCIO 220	134366.737	4736751.608	Lugo	220	TSO	REE	-	0	-	0	-	0	281	0	424	0	281	0	424	0	281	0	424
+OLITE 220	608625.616	4696503.938	Navarra	220	TSO	REE	-	0	-	22	-	0	-	22	-	0	-	22	-	0	-	22	-
+OLIVARES 220	429465.277	4183817.6	Jaén	220	TSO	REE	Tender pending	0	-	0	-	0	259	0	373	0	259	0	373	0	259	0	373
+OLMEDILLA 220	578569.999	4388051.842	Cuenca	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+OLMEDILLA 400	578594.062	4388006.358	Cuenca	400	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+OLMEDO 400	355454.967	4575721.367	Valladolid	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ONCALA 220	562421.394	4645951.598	Soria	400	TSO	REE	-	0	-	0	-	0	0	0	337	0	0	0	337	0	0	0	0
+ONDINAS 220	216440.759	4749207.961	León	220	TSO	REE	-	70	-	70	-	70	56	70	200	56	56	56	200	56	56	56	200
+ONUBA 220	152046.718	4135333.849	Huelva	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ORCOYEN 220	605493.394	4741587.082	Navarra	220	TSO	REE	-	0	-	22	-	0	-	22	-	0	-	22	-	0	-	22	-
+ORGIVA 220	462495.089	4083318.203	Granada	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ORMAIZTEGUI 220	561752.26	4765951.564	Gipuzkoa	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ORTIGUERO 220	346325	4799687	Asturias	220	TSO	REE	Tender pending	0	-	0	-	0	227	0	432	0	227	0	432	0	227	0	406
+ORTUELLA 220	496986.784	4795740.526	Bizkaia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	31	0	31
+OTERO 220	398018.197	4517566.691	Segovia	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+PALAFOX 220	440544.079	4475822.798	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PALAU 220	932420.108	4614826.271	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+PALENCIA 220	375820.676	4650744.525	Palencia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+PALMA NOVA 66	975802.215	4388551.781	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+PALOS 220	155280.031	4122430.962	Huelva	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PALOS 400	155297.795	4122430.233	Huelva	400	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PARAMO DE POZA 220	454893.875	4725622.377	Burgos	220	TSO	REE	-	25	-	25	-	25	0	25	294	0	0	0	294	0	0	0	294
+PARLA 220	434902.212	4452733.63	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PARQUE CENTRAL 220	725194	4370780	Valencia	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PARQUE EOLICO DO SIL 220	118156.497	4699935.015	Ourense	220	TSO	REE	Tender pending	0	-	0	-	0	176	0	397	0	176	0	397	0	176	0	397
+PARQUE INGENIEROS 220	440352.981	4466865.501	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PATRAIX 220	724397.88	4370598.082	Valencia	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PAZOS DE BORBEN 220	38896.897	4694144.828	Pontevedra	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PENAGOS 220	433077.238	4799614.9	Cantabria	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PENAGOS 400	433094.176	4799616.539	Cantabria	400	TSO	REE	-	0	-	0	-	0	306	0	306	0	206	0	206	0	231	0	231
+PENEDES 220	893834.628	4589923.459	Barcelona	220	TSO	REE	-	40	-	251	-	40	-	251	-	40	-	251	-	40	-	251	-
+PEÑADRADA 220	210961.479	4741021.65	León	220	TSO	REE	-	92	-	93	-	92	72	93	150	113	72	113	150	113	72	113	150
+PEÑAFLOR 220	687819.357	4621399.798	Zaragoza	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+PEÑAFLOR 400	687817.037	4621291.733	Zaragoza	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+PEÑALBA 220	741915.12	4601186.042	Huesca	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PEÑALBA 400	741917.567	4601202.365	Huesca	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+PEÑARRUBIA 400	645317.383	4265167.444	Murcia	400	TSO	REE	Tender pending	0	-	0	-	0	224	0	847	0	224	0	847	0	224	0	847
+PERAFORT 220	856289.206	4569057.685	Tarragona	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PESOZ 400	186107.441	4795101.529	Asturias	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+PICON 220	404086.766	4319663.27	Ciudad Real	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+PIELAGOS 220	422492.416	4801177.797	Cantabria	220	TSO	REE	Tender pending	0	-	0	-	0	183	0	464	0	183	0	464	0	183	0	464
+PIEROLA 220	902997.888	4608141.989	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+PIEROLA 400	903014.582	4608142.924	Barcelona	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+PINAR DE REY (PINAR DE REY B) 220	283257.527	4014191.873	Cádiz	220	TSO	REE	NTJ	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PINAR DE REY 220	283287.452	4014189.704	Cádiz	220	TSO	REE	NTJ	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PINAR DE REY 400	283278.088	4014108.289	Cádiz	400	TSO	REE	NTJ	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+PINTO 220	437037.031	4456167.909	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PINTO AYUDEN 220	438539.358	4457250.442	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+PLASENCIA 220	235927.974	4434808.396	Cáceres	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PLATEA 400	659501.73	4478421.314	Teruel	400	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+PLAYA BLANCA 132	-556612.548	3241903.738	Las Palmas	132	TSO	REE	-	0	-	0	-	0	21	0	21	0	21	0	21	0	21	0	21
+PLAYA BLANCA 66	-556576.061	3241958.928	Las Palmas	66	TSO	REE	-	0	-	0	-	0	9	0	9	0	9	0	9	0	9	0	9
+PLAZA 220	666801.439	4610636.73	Zaragoza	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PLAZA II (MONCASI) 220	666015.757	4607904.236	Zaragoza	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+POBLA 220	827728.958	4685174.266	Lleida	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	175	0	0	0	175	0	0	0	175
+POLA DE GORDON 400	281926.114	4747326.115	León	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+POLIGONO 220	368993.803	4061995.952	Málaga	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+POLIGONO BALEARES 66	985945.569	4399618.701	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	58	0	0	0	58	0	0	0	58
+POLIGONO C 220	435261.99	4470141.589	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+POLIGONO GRANADILLA 66	-833175.668	3181012.817	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+POLIGONO GUIMAR 66	-817355.403	3208511.871	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	20	0	32	0	20	0	32	0	20	0	32
+POLLENSA 66	1018004.058	4432519.695	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+PONT DE SUERT 220	807664.779	4701346.223	Lleida	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	18
+PORIS 220	-826811.338	3189417.969	Santa Cruz de Tenerife	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+PORIS 66	-826839.404	3189411.071	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	0	0	56	0	0	0	56	0	0	0	56
+PORTO COLOM 66	1036977.375	4382091.804	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	1	0	10	0	1	0	10	0	1	0	10
+PORTODEMOUROS 220	75960.348	4757632.989	Pontevedra	220	TSO	REE	Tender pending	0	-	0	-	0	142	0	454	0	142	0	454	0	142	0	454
+POZA DE LA SAL 220	460001.117	4723981.79	Burgos	220	TSO	REE	-	0	-	0	-	0	1	0	608	0	1	0	608	0	1	0	608
+PRADA 220	167275.471	4694260.768	Ourense	220	TSO	REE	-	0	-	0	-	0	151	0	179	0	151	0	179	0	151	0	179
+PRADILLOS 220	430109.334	4442738.931	Toledo	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PRADO SANTO DOMINGO 220	428773.473	4464236.146	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PROSPERIDAD 220	443476.08	4477124.935	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+PTE.SAN FERNANDO 220	456375.877	4477806.376	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PUEBLA DE GUZMAN 220	125270.191	4164258.323	Huelva	220	TSO	REE	-	4	-	4	-	4	0	4	108	3	0	3	108	3	0	3	108
+PUEBLA DE GUZMAN 400	125287.87	4164257.524	Huelva	400	TSO	REE	-	0	-	0	-	0	552	0	1026	0	552	0	1026	0	552	0	1026
+PUEBLA DE SANABRIA 220	200149.588	4662975.284	Zamora	220	TSO	REE	-	0	-	0	-	0	151	0	179	0	151	0	179	0	151	0	179
+PUENTE BIBEY 220	151947.829	4693341.951	Ourense	220	TSO	REE	Tender pending	0	-	0	-	0	585	0	834	0	585	0	834	0	585	0	834
+PUENTE PRINCESA 220	441073.399	4470686.451	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+PUENTE S.MIGUEL 220	412568.766	4801000.052	Cantabria	220	TSO	REE	Tender pending	0	-	0	-	0	217	0	453	0	217	0	369	0	217	0	394
+PUENTELARRA 220	496047.808	4733778.609	Álava	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	556	0	0	0	456	0	0	0	481
+PUENTES G.R. 400	106629.729	4821083.197	A Coruña	400	TSO	REE	NTJ	0	-	0	-	0	58	0	58	0	0	0	0	0	0	0	0
+PUERTO 220	62233.523	4815732.978	A Coruña	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PUERTO DE LA CRUZ 220	264519.222	3995105.916	Cádiz	220	TSO	REE	-	34	-	34	-	34	0	34	339	0	0	0	339	0	0	0	339
+PUERTO DE LA CRUZ 400	264537.237	3995105.431	Cádiz	400	TSO	REE	-	0	-	0	-	0	0	0	619	0	0	0	619	0	0	0	619
+PUERTO DE PALMA 66	981432.573	4393920.612	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+PUERTO DE SANTA MARIA 220	204971.955	4063407.931	Cádiz	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PUERTO DEL ROSARIO 132	-567306.609	3203620.863	Las Palmas	132	TSO	REE	-	0	-	0	-	0	21	0	21	0	21	0	21	0	21	0	21
+PUERTO DEL ROSARIO 66	-567326.371	3203622.675	Las Palmas	66	TSO	REE	-	0	-	0	-	0	0	0	21	0	0	0	21	0	0	0	21
+PUERTO REAL 220	217456.551	4046031.94	Cádiz	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PUERTOLLANO 220	402153.239	4278262.59	Ciudad Real	220	TSO	REE	NTJ	0	-	0	-	0	-	0	-	0	-	0	-	0	76	0	558
+PUIGPELAT 220	859403.037	4579097.856	Tarragona	220	TSO	REE	-	40	-	369	-	40	-	369	-	40	-	307	-	40	-	307	-
+PUJALT 220	870089.858	4623786.243	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+PUNTA GRANDE 66	-527688.292	3251784.692	Las Palmas	66	TSO	REE	-	0	-	0	-	0	9	0	21	0	9	0	21	0	9	0	21
+QUART DE POBLET 220	712727.595	4373031.648	Valencia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	241
+QUEL 220	580908.308	4681151.831	La Rioja	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	55	0	333
+QUEREÑO 220	184756.84	4703164.383	Ourense	220	TSO	REE	-	17	-	37	-	87	19	107	155	87	19	89	155	112	19	114	180
+QUINTANA DE LA SERENA 400	265676	4295046	Badajoz	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+QUINTOS 220	238522.766	4137750.861	Sevilla	220	TSO	REE	-	0	-	288	-	0	-	288	-	0	-	288	-	0	0	288	0
+RAFAL 66	983804.948	4397580.116	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+REGOELLE 220	6835.158	4780174.952	A Coruña	220	TSO	REE	-	0	-	27	-	27	14	27	140	14	14	14	140	26	14	26	140
+RENEDO 220	360264.202	4611546.911	Valladolid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+REQUENA 400	673052.041	4369689.377	Valencia	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+RETAMAR 220	438599.12	4465183.121	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+RIBA-ROJA 220	787484.943	4571340.353	Tarragona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+RICOBAYO 220	250725.82	4601656.519	Zamora	220	TSO	REE	Tender pending	0	-	0	-	0	99	0	293	0	99	0	293	0	99	0	293
+RIERA DE CALDES 220	931455.765	4612612.696	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+RIOCAYA (CAMPO MAIOR) 400	152891.963	4315219.742	Badajoz	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+RIUDARENES 220	975187.084	4644675.163	Girona	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ROBLA 400	284548	4741395	León	400	TSO	REE	NTJ	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ROCAMORA 400	679908.079	4224298.454	Alicante	400	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ROCIO 220	189691.19	4116607.262	Huelva	220	TSO	REE	Tender pending	0	-	0	-	0	160	0	204	0	160	0	204	0	160	0	204
+RODA DE ANDALUCIA 400	342395.811	4124632.253	Sevilla	400	TSO	REE	Tender pending	0	-	0	-	0	218	0	1009	0	218	0	1009	0	218	0	1009
+ROJALES 220	698558.689	4214460.608	Alicante	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	22	0	409
+ROMICA 400	603881.051	4322326.076	Albacete	400	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+RONDA 400	310051.418	4070520.224	Málaga	400	TSO	REE	Tender pending	0	-	0	-	0	81	0	1069	0	81	0	1069	0	81	0	1069
+RUBI 220	918421.604	4603365.183	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+RUBI 400	918338.39	4603445.069	Barcelona	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+RUBIO 220	882383.561	4620931.216	Barcelona	220	TSO	REE	-	0	-	8	-	0	0	8	327	0	0	8	327	0	0	8	327
+RUEDA DE JALON 400	641857.334	4612290.58	Zaragoza	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+S.AGUSTIN 220	164287.603	4674839.224	Ourense	220	TSO	REE	-	0	-	20	-	0	151	20	179	0	151	20	179	0	151	20	179
+SA POBLA 66	1016811.466	4418956.167	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SA VINYETA 66	1005716.765	4412139.856	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SABINAL 220	-725927.207	3165236.388	Las Palmas	220	TSO	REE	-	0	-	0	-	0	29	0	29	0	29	0	29	0	29	0	29
+SABINAL 66	-725947.122	3165238.45	Las Palmas	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SABIÑANIGO 220	716954.48	4710558.598	Huesca	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SABON 220	53957.89	4812082.361	A Coruña	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SAGUNTO 220	734383.246	4394953.579	Valencia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SAGUNTO GIS 220	734347.513	4395057.415	Valencia	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SAGUNTUM 220	734027.552	4392834.806	Valencia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SAGUNTUM 400	734044.713	4392835.328	Valencia	400	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SALADAS 220	708085.612	4241723.629	Alicante	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	66	0	713
+SALAS 400	232461.578	4806813.527	Asturias	400	TSO	REE	Tender pending	0	-	0	-	0	153	0	226	0	126	0	126	0	151	0	151
+SALERES 220	445157.635	4090841.499	Granada	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SALINAS 66	-564743.539	3201749.089	Las Palmas	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	21
+SALLENTE 400	827941.094	4713776.54	Lleida	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SALTERAS 220	228551.508	4152740.115	Sevilla	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	359	0	0	0	359	0	0	0	359
+SAN AGUSTIN BALEARES 66	980686.381	4393186.71	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SAN AGUSTIN GC 66	-742646.117	3135626.047	Las Palmas	66	TSO	REE	-	0	-	0	-	0	11	0	20	0	11	0	20	0	11	0	20
+SAN ANTONIO 66	875806.492	4320997.923	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SAN BARTOLOME 66	-535669.42	3253569.227	Las Palmas	66	TSO	REE	-	0	-	0	-	0	11	0	21	0	11	0	21	0	11	0	21
+SAN CAYETANO 220	48241.613	4763613.326	A Coruña	220	TSO	REE	Tender pending	0	-	0	-	0	117	0	260	0	117	0	260	0	117	0	260
+SAN ESTEBAN 220	117099.36	4706285.355	Ourense	220	TSO	REE	Tender pending	0	-	0	-	0	390	0	619	0	390	0	619	0	390	0	619
+SAN FERNANDO 220	456902.075	4477130.817	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SAN FERNANDO 400	456918.238	4477079.497	Madrid	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SAN ISIDRO 66	-839073.566	3181368.693	Santa Cruz de Tenerife	66	TSO	REE	-	15	-	15	-	15	0	15	0	15	0	15	0	15	0	15	0
+SAN JORGE 132	879710.234	4315308.086	Islas Baleares	132	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SAN JORGE 30	879692.274	4315319.501	Islas Baleares	30	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SAN JORGE 66	879692.881	4315307.252	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SAN JUAN BALEARES 66	990003.21	4393052.332	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SAN MARTIN BALEARES 220	1021778.155	4424831.53	Islas Baleares	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SAN MARTIN BALEARES 66	1021761.019	4424830.359	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SAN MATEO 66	-738756.518	3162523.866	Las Palmas	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SAN MIGUEL DE SALINAS (SAN MIGUEL DE SALINAS B) 220	696202.527	4208202.297	Alicante	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	802
+SAN MIGUEL DE SALINAS 220	696202.527	4208202.297	Alicante	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	802	0	0	0	802	0	0	0	802
+SAN PEDRO 220	112416.647	4710635.954	Ourense	220	TSO	REE	Tender pending	0	-	0	-	0	281	0	442	0	281	0	442	0	281	0	442
+SAN PEDRO DEL PINATAR 220	692197.268	4192428.967	Murcia	220	TSO	REE	Tender pending	0	-	0	-	0	17	0	337	0	17	0	337	0	17	0	337
+SAN SERVAN 220	194675.274	4301208.961	Badajoz	220	TSO	REE	Tender pending	0	-	0	-	0	339	0	839	0	339	0	839	0	339	0	980
+SAN SERVAN 400	194692.647	4301208.292	Badajoz	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SAN VICENTE 220	714994.607	4252705.644	Alicante	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SANCHINARRO 220	444023.077	4482433.996	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SANCHO LLOP 220	745395.397	4317328.607	Valencia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SANGÜESA 220	641463.61	4717715.419	Navarra	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SANT ANDREU 220	933481.357	4601334.278	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SANT BOI 220	921806.122	4588296.352	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SANT CELONI 220	955231.705	4631692.011	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SANT CUGAT 220	923844.654	4605263.265	Barcelona	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SANT FOST 220	935501.816	4608773.366	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SANT JUST 220	924715.502	4594779.786	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SANTA AGUEDA 220	-753470.637	3136875.352	Las Palmas	220	TSO	REE	-	0	-	0	-	0	43	0	43	0	43	0	43	0	43	0	43
+SANTA AGUEDA 66	-753490.617	3136877.444	Las Palmas	66	TSO	REE	-	20	-	20	-	0	0	0	0	0	0	0	0	0	0	0	0
+SANTA CATALINA 66	984124.434	4395600.509	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SANTA ELVIRA 220	240566.674	4142114.981	Sevilla	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SANTA ENGRACIA 220	560607.969	4688641.929	La Rioja	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	108	0	500
+SANTA ENGRACIA 400	560730.715	4688565.17	La Rioja	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SANTA EULALIA 66	888876.374	4327091.317	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SANTA LLOGAIA 400	990738.956	4692446.944	Girona	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SANTA MARIA 66	998247.581	4405404.679	Islas Baleares	66	TSO	REE	-	1	-	1	-	1	-	1	-	1	-	1	-	1	-	1	-
+SANTA MARIA DE GRADO 400	257402.298	4808319.733	Asturias	400	TSO	REE	Tender pending	0	-	0	-	0	96	0	96	0	0	0	0	0	21	0	21
+SANTA MARINA 220	212107.945	4730139.52	León	220	TSO	REE	Tender pending	0	-	0	-	0	90	0	126	0	90	0	126	0	90	0	126
+SANTA POLA 220	714024.997	4232908.017	Alicante	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SANTA PONSA 132	973543.49	4390804.599	Islas Baleares	132	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SANTA PONSA 220	973563.518	4390779.469	Islas Baleares	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SANTA PONSA 66	973546.898	4390807.108	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SANTANYI 66	1027167.267	4375402.292	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SANTIAGO 220	163399.206	4701472.779	Ourense	220	TSO	REE	-	0	-	0	-	0	285	0	392	0	285	0	392	0	285	0	392
+SANTIAGO DE COMPOSTELA 220	44188.744	4759750.21	A Coruña	220	TSO	REE	Tender pending	0	-	0	-	0	205	0	508	0	205	0	508	0	205	0	508
+SANTIPONCE 220	231017.709	4146424.312	Sevilla	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SANTIZ 220	258779.875	4564610.954	Salamanca	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SANTURCE 220	495670.663	4798402.176	Bizkaia	220	TSO	REE	-	0	-	0	-	50	-	50	-	50	-	50	-	50	31	50	31
+SANTURCE 400	495698.159	4798397.641	Bizkaia	400	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+SAUCELLE 220	179995.834	4550594.224	Salamanca	220	TSO	REE	Tender pending	0	-	0	-	0	109	0	289	0	109	0	289	0	109	0	289
+SAX 400	686276.969	4270325.315	Alicante	400	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SEGORBE 220	717664.628	4411681.673	Castellón	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SEGOVIA 400	401907.613	4532748.003	Segovia	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SENTMENAT 220	925930.058	4620129.998	Barcelona	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SENTMENAT 400	925946.728	4620130.988	Barcelona	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SERNA 220	610182.449	4661478.864	Navarra	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+SERNA 400	610198.988	4661479.122	Navarra	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SES VELES 66	988089.391	4404931.968	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	6	0	33	0	6	0	33	0	6	0	33
+SESUE 220	784945.913	4715911.319	Huesca	220	TSO	REE	Posible Tender pending	12	-	12	-	12	-	12	-	0	-	0	-	0	-	0	-
+SIDEGASA 220	91538.462	4789933.79	A Coruña	220	TSO	REE	-	0	-	0	-	0	69	0	167	0	69	0	167	0	69	0	167
+SIDENOR 220	509690.814	4785537.444	Bizkaia	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	178	0	0	0	178	0	0	0	178
+SIERO 220	276627.309	4806598.607	Asturias	220	TSO	REE	Tender pending	0	-	0	-	0	268	0	394	0	268	0	394	0	238	0	364
+SILLEDA 400	70177.181	4746093.271	Pontevedra	400	TSO	REE	Tender pending	0	-	0	-	0	542	0	1229	0	542	0	1229	0	542	0	1229
+SIMANCAS 220	446498.907	4475961.351	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SOBRADELO 220	177414.755	4703239.532	Ourense	220	TSO	REE	Tender pending	0	-	0	-	0	251	0	448	0	251	0	448	0	251	0	448
+SOLLER 66	987928.87	4419544.243	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SOLORZANO 220	452473.017	4798788.753	Cantabria	220	TSO	REE	-	0	-	0	-	0	54	0	197	0	54	0	97	0	54	0	122
+SOLORZANO 400	452527.606	4798817.771	Cantabria	400	TSO	REE	Tender pending	0	-	0	-	0	197	0	197	0	97	0	97	0	122	0	122
+SON MOIX 220	983807.583	4397583.113	Islas Baleares	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SON MOIX 66	983790.394	4397582.033	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SON OMS 66	992907.882	4392150.076	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SON ORLANDIS 220	993361.09	4399201.112	Islas Baleares	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SON ORLANDIS 66	993343.903	4399200.01	Islas Baleares	66	TSO	REE	-	75	-	75	-	75	60	75	60	113	101	116	101	73	101	76	101
+SON PARDO 66	985847.971	4398257.362	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SON REUS 220	987354.872	4404439.806	Islas Baleares	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SON REUS 66	987508.17	4404332.575	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	94	0	0	0	94	0	0	0	94
+SOTO DE RIBERA 220	265926.89	4799796.281	Asturias	220	TSO	REE	NTJ	0	-	0	-	0	28	0	470	0	28	0	495	0	28	0	520
+SOTO DE RIBERA 400	265852.91	4799694.677	Asturias	400	TSO	REE	NTJ	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SS.REYES (SS.REYES B) 220	449587	4490812	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+SS.REYES 220	449504.934	4490667.869	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SS.REYES 400	449521.865	4490667.754	Madrid	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SUBIRATS 220	902909.293	4597372.244	Barcelona	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+SUIDO 220	65330.205	4692222.159	Pontevedra	220	TSO	REE	-	0	-	0	-	0	133	0	680	0	133	0	680	0	133	0	680
+TABARA 400	262091.113	4627043.256	Zamora	400	TSO	REE	Tender pending	0	-	0	-	0	434	0	444	0	434	0	444	0	434	0	444
+TABERNAS 220	561114.693	4103000.996	Almería	220	TSO	REE	Tender pending	0	-	0	-	0	181	0	860	0	181	0	860	0	181	0	860
+TABERNAS 400	561137.038	4102969.139	Almería	400	TSO	REE	Tender pending	0	-	0	-	0	124	0	815	0	124	0	815	0	124	0	815
+TABESCAN 220	849173.831	4730304.397	Lleida	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+TABIELLA 220	266020.134	4828755.782	Asturias	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+TACORONTE 66	-819724.123	3224324.668	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	28	0	32	0	28	0	32	0	28	0	32
+TAFALLA 220	608120.184	4706360.418	Navarra	220	TSO	REE	-	0	-	22	-	0	-	22	-	0	-	22	-	0	-	22	-
+TAGORO 66	-828524.58	3187082.068	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	14	0	14	0	14	0	14	0	14	0	14
+TAJO ENCANTADA 220	344381.13	4084681.305	Málaga	220	TSO	REE	-	129	-	129	-	129	-	129	-	66	-	66	-	66	-	66	-
+TAJO ENCANTADA 400	344492.273	4084675.308	Málaga	400	TSO	REE	Tender pending	0	-	0	-	0	123	0	721	0	123	0	721	0	123	0	721
+TALAVERA 220	344401.135	4429698.309	Toledo	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+TAMBRE 220	22189.651	4758611.897	A Coruña	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	76
+TANGER (CATALUÑA) 220	934150.646	4596538.597	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+TARRAGONA 220	852486.547	4559884.248	Tarragona	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+TELDE 66	-728367.648	3159125.787	Las Palmas	66	TSO	REE	-	5	-	5	-	6	-	6	-	6	-	6	-	23	-	23	-
+TELLEDO 220	268745.476	4767692.499	Asturias	220	TSO	REE	-	0	-	0	-	0	73	0	73	0	73	0	73	0	73	0	73
+TERRER 400	608321.089	4575194.419	Zaragoza	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+TIAS 132	-544283.971	3250147.247	Las Palmas	132	TSO	REE	-	0	-	0	-	0	21	0	21	0	21	0	21	0	21	0	21
+TIAS 66	-544278.364	3250167.254	Las Palmas	66	TSO	REE	-	0	-	0	-	0	21	0	21	0	21	0	21	0	21	0	21
+TIBO 220	36896.611	4730219.292	Pontevedra	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+TIERRA DE CAMPOS 400	316751.27	4618271.833	Valladolid	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+TIERRA ESTELLA 220	586070.157	4720767.043	Navarra	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+TOMEZA 220	36277.52	4708678.824	Pontevedra	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+TORDESILLAS 220	332021.725	4596992.642	Valladolid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+TORDESILLAS 400	331992.48	4596985.315	Valladolid	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+TORREARENILLAS 220	153439.558	4123169.423	Huelva	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+TORREJON 220	244170.293	4413809.359	Cáceres	220	TSO	REE	Tender pending	0	-	0	-	0	108	0	108	0	108	0	108	0	108	0	108
+TORREJON DE VELASCO 400	436567.841	4447657.883	Madrid	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+TORRELLANO 220	708085.612	4241723.629	Alicante	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+TORREMENDO 400	684722.501	4203833.845	Alicante	400	TSO	REE	Tender pending	0	-	0	-	0	781	0	844	0	781	0	844	0	781	0	844
+TORRENT 132	884225.934	4319024.377	Islas Baleares	132	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+TORRENT 66	884156.842	4319015.707	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+TORRENTE 220	719027.865	4366797.168	Valencia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+TORRENTE 400	719045.083	4366797.654	Valencia	400	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+TORRES DE SEGRE 220	791609.8	4600184.252	Lleida	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+TORREVIEJA 220	702025.596	4205442.8	Alicante	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	155	0	450
+TORRIJOS 220	391631.225	4428451.912	Toledo	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+TOTANA 400	636930.564	4180952.503	Murcia	400	TSO	REE	Tender pending	0	-	0	-	0	110	0	809	0	110	0	809	0	110	0	659
+TRANSBADALONA 220	937272.983	4599444.556	Barcelona	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+TRES CANTOS 220	440373.395	4496526.919	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+TRES CANTOS GIS 220	440297.566	4496415.358	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+TREVAGO 220	572894.773	4636068.151	Soria	220	TSO	REE	-	0	-	0	-	0	0	0	343	0	0	0	343	0	0	0	343
+TRILLO 220	531602.909	4505937.913	Guadalajara	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+TRILLO 400	531654.037	4505876.085	Guadalajara	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+TRINITAT 220	933519.298	4601545.407	Barcelona	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+TRIVES 220	147274.587	4696996.687	Ourense	220	TSO	REE	Tender pending	0	-	0	-	0	308	0	710	0	308	0	710	0	308	0	710
+TRIVES 400	147315.262	4696962.414	Ourense	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+TRUJILLO 220	251264.987	4371245.043	Cáceres	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+TUDELA 220	614570.452	4656341.628	Navarra	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+UNINSA 220	279631.151	4822211.105	Asturias	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+URGELL 220	930365.05	4594627.074	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+VAGUADAS 220	154609.759	4306319.657	Badajoz	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	78	0	191
+VALDECABALLEROS 400	311838.828	4351336.196	Badajoz	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VALDECARRETAS 400	302366.634	4591387.04	Zamora	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VALDECONEJOS 220	678680.302	4517947.022	Teruel	220	TSO	REE	-	4	-	5	-	4	-	5	-	2	-	2	-	2	0	2	0
+VALDEMORO 220	445113.013	4446035.312	Madrid	220	TSO	REE	-	0	-	14	-	0	0	4	0	0	0	4	0	0	0	14	0
+VALL D'UXO 220	737929.073	4408529.66	Castellón	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VALLADOLID NUEVO 220	354865.249	4612139.488	Valladolid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VALLDIGNA 220	735414.172	4327056.339	Valencia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VALLDURGENT 220	976683.082	4396392.987	Islas Baleares	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VALLDURGENT 66	976665.892	4396391.922	Islas Baleares	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VALLE DE ARIDANE 66	-966421.941	3263712.311	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VALLE DEL ARCIPRESTE 220	424212.746	4482288.949	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VALLE DEL CARCER 220	714470.049	4326569.631	Valencia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VALLECAS 220	447375.907	4471103.969	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VALLEJERA 220	403404.445	4669164.684	Burgos	220	TSO	REE	-	5	-	5	-	5	3	5	617	3	3	3	617	46	3	46	617
+VALLITOS 220	-853770.96	3184353.17	Santa Cruz de Tenerife	220	TSO	REE	-	8	-	8	-	8	53	8	53	8	53	8	53	8	53	8	53
+VALLITOS 66	-853790.924	3184355.463	Santa Cruz de Tenerife	66	TSO	REE	-	0	-	0	-	0	46	0	53	0	46	0	53	0	46	0	53
+VALPARAISO 220	228842.679	4654668.128	Zamora	220	TSO	REE	Tender pending	0	-	0	-	0	267	0	473	0	267	0	473	0	267	0	473
+VANDELLOS 400	826397.714	4543442.983	Tarragona	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VANDELLOS CN 220	825414.248	4540601.041	Tarragona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VELILLA 400	348064.001	4742717.568	Palencia	400	TSO	REE	NTJ	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VELLE 220	100654.293	4700903.069	Ourense	220	TSO	REE	Tender pending	0	-	0	-	0	219	0	422	0	219	0	422	0	219	0	422
+VENTA INES 220	375689.52	4269402.781	Ciudad Real	220	TSO	REE	-	0	-	0	-	0	26	0	33	0	26	0	33	0	26	0	33
+VENTAS DEL BATAN 220	435413.955	4472532.274	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VENTILLA 220	348210.737	4047099.717	Málaga	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VERNEDA 220	934553.799	4599224.505	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VIANA 400	155183.784	4676845.808	Ourense	400	TSO	REE	Tender pending	0	-	0	-	0	482	0	482	0	482	0	482	0	482	0	482
+VIC 220	937806.828	4658424.295	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VIC 400	937821.116	4658567.385	Barcelona	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VILADECANS (VILADECANS B) 220	920734.656	4587123.481	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VILADECANS 220	920873.241	4587087.466	Barcelona	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VILADECANS 400	920889.987	4587088.439	Barcelona	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VILANOVA 220	933340.991	4595295.23	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VILECHA 400	288550.69	4714365.375	León	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VILLABLINO 220	231762.172	4759282.618	León	220	TSO	REE	-	0	-	0	-	0	73	0	73	0	73	0	73	0	73	0	73
+VILLALBILLA 220	435708.222	4687943.573	Burgos	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	72	0	513
+VILLALCAMPO 220	242097.991	4597877.241	Zamora	220	TSO	REE	Tender pending	0	-	0	-	0	183	0	305	0	183	0	305	0	183	0	305
+VILLAMAYOR 220	273754.317	4541050.336	Salamanca	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VILLAMECA 400	250649.934	4724403.958	León	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VILLANUEVA DE GALLEGO 220	679064.563	4623440.036	Zaragoza	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+VILLANUEVA DE LOS ESCUDEROS 400	557775.011	4431317.108	Cuenca	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VILLANUEVA DEL REY 220	308768.535	4155590.26	Sevilla	220	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VILLANUEVA DEL REY 400	308786.21	4155589.853	Sevilla	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VILLARES DEL SAZ 220	536752.412	4412502.284	Cuenca	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VILLARINO 220	207752.258	4572989.321	Salamanca	220	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VILLARINO 400	207769.017	4572988.647	Salamanca	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VILLATORO 220	441767.807	4692199.537	Burgos	220	TSO	REE	Tender pending	0	-	0	-	0	5	0	71	0	5	0	71	0	5	0	71
+VILLAVERDE 220	443147.082	4465968.567	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VILLAVERDE BAJO (VILLAVERDE BAJO B) 220	443154.633	4465939.61	Madrid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VILLAVICIOSA (VILLAVICIOSA B) 220	423176.865	4466774.948	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VILLAVICIOSA 220	423168.373	4466775.035	Madrid	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VILLAVICIOSA 400	423185.358	4466774.861	Madrid	400	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VILLIMAR 220	446347.478	4691274.808	Burgos	220	TSO	REE	-	4	-	4	-	89	2	89	564	88	2	88	501	90	2	90	526
+VIMIANZO 220	7799.997	4789874.834	A Coruña	220	TSO	REE	Tender pending	0	-	0	-	0	123	0	140	0	123	0	140	0	123	0	140
+VIRGEN DE AFRICA 132	290173.575	3974625.814	Ceuta	132	TSO	REE	-	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+VIRTUS 400	431111.859	4761417.885	Burgos	400	TSO	REE	Tender pending	0	-	0	-	0	255	0	297	0	197	0	197	0	222	0	222
+VITORIA 220	532545.233	4748008.245	Álava	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+VITORIA 400	532363.759	4747970.604	Álava	400	TSO	REE	Tender pending	0	-	0	-	0	505	0	505	0	405	0	405	0	430	0	430
+XOVE 400	137036.342	4847680.991	Lugo	400	TSO	REE	Tender pending	0	-	0	-	0	0	0	0	0	0	0	0	0	0	0	0
+ZAL 220	929554.409	4586248.594	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ZAMORA 220	271795.248	4601854.734	Zamora	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	0	0	0
+ZAMUDIO 220	511023.76	4794266.018	Bizkaia	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ZARATAN 220	348988.869	4611223.73	Valladolid	220	TSO	REE	Tender pending	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ZARZON 400	212534.913	4447835.504	Cáceres	220	TSO	REE	-	0	-	0	-	0	3	0	1290	0	3	0	1290	0	3	0	1290
+ZIERBENA 400	492612.972	4800659.25	Bizkaia	400	TSO	REE	-	0	-	0	-	50	-	50	-	100	-	100	-	150	0	150	0
+ZONA FRANCA 220	929663.907	4587365.906	Barcelona	220	TSO	REE	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-	0	-
+ZUMARRAGA 220	555377.689	4770170.119	Gipuzkoa	220	TSO	REE	Tender pending	0	-	0	-	0	15	0	356	0	15	0	356	0	15	0	356
+ZUZONES 400	443028.592	4616312.265	Burgos	400	TSO	REE	Tender pending	0	-	0	-	0	270	0	830	0	270	0	830	0	270	0	830`;
 
 
         const projectsData = [
@@ -7217,7 +7217,9 @@ ZUZONES 400	443028.592	4616312.265	Burgos	400	TSO	REE	Tender pending	0	-	-	0	0	2
 		{ name: "La Venena", x: 374618.221, y: 4659052, type: "PV" },
 		{ name: "Lavanda", x: 318625.942, y: 4617985.317, type: "PV+WIND" },
 		{ name: "Aquitania", x: 491689.767, y: 4716347.333, type: "WIND" },
-		{ name: "Leganés", x: 434281.31, y: 4462463.232, type: "BESS" }
+		{ name: "Leganés", x: 434281.31, y: 4462463.232, type: "BESS" },
+		{ name: "Los Barrios", x: 278625.31, y: 4008604.54, type: "PV" },
+		{ name: "Las Mesas", x: 287396.02, y: 4013831.06, type: "PV" }
         ];
 
         const projectIcons = {
