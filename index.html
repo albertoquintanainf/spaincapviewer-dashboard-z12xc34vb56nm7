@@ -195,7 +195,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
     <button class="btn-whats-new" onclick="openWhatsNew()">💡 WHAT'S NEW?</button>
 	<button class="btn-comp" onclick="openHistory()">📊 HISTORICAL DATA</button>
         <div class="search-wrapper";">
-        <input type="text" id="node-search-input" placeholder="🔍 Search grid node by name..." oninput="searchNodes(this.value); toggleClearBtn('node-search-input', 'clear-main-node')">
+        <input type="text" id="node-search-input" placeholder="🔍 Search node by name..." oninput="searchNodes(this.value); toggleClearBtn('node-search-input', 'clear-main-node')">
         <span class="clear-btn" id="clear-main-node" onclick="clearSearch('node-search-input', 'search-results', 'clear-main-node')">&times;</span>
     </div>
     <div id="search-results" class="search-results"></div>
@@ -292,7 +292,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
         <div class="search-section" style="position: relative; margin-bottom: 20px;">
             <div class="search-wrapper minimal-container">
-                <input type="text" id="hist-search-input" placeholder="🔍 Search grid node..." class="minimal-input" autocomplete="off">
+                <input type="text" id="hist-search-input" placeholder="🔍 Search node by name..." class="minimal-input" autocomplete="off">
                 <span class="clear-btn" id="clear-hist" onclick="clearSearch('hist-search-input', 'hist-suggestions', 'clear-hist')">&times;</span>
             </div>
             <div id="hist-suggestions" class="suggestions-box-minimal"></div>
