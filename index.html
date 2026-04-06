@@ -83,6 +83,41 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .popup-btn-hist:hover { background-color: #ea580c;}
 .popup-node-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 
+/* --- WHAT'S NEW MODAL --- */
+#whats-new-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 100000; align-items: center; justify-content: center; }
+#whats-new-modal.open { display: flex; }
+.wn-content { background: white; width: 820px; max-width: 95vw; max-height: 88vh; border-radius: 14px; padding: 28px; position: relative; display: flex; flex-direction: column; overflow: hidden; }
+.wn-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+.wn-title { font-size: 18px; font-weight: bold; color: #1a202c; }
+.wn-subtitle { font-size: 12px; color: #64748b; margin-top: 3px; }
+.wn-close { background: none; border: none; font-size: 22px; cursor: pointer; color: #94a3b8; line-height: 1; padding: 0; }
+.wn-close:hover { color: #334155; }
+.wn-filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
+.wn-filter-btn { padding: 5px 12px; border-radius: 20px; border: 2px solid #e2e8f0; background: white; font-size: 11px; font-weight: bold; cursor: pointer; color: #64748b; transition: 0.15s; }
+.wn-filter-btn.active { border-color: #7c3aed; background: #7c3aed; color: white; }
+.wn-filter-btn:hover:not(.active) { border-color: #7c3aed; color: #7c3aed; }
+.wn-summary { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.wn-stat { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 14px; text-align: center; min-width: 90px; }
+.wn-stat-val { font-size: 20px; font-weight: bold; }
+.wn-stat-lbl { font-size: 10px; color: #64748b; text-transform: uppercase; }
+.wn-table-wrap { overflow-y: auto; flex: 1; border: 1px solid #e2e8f0; border-radius: 8px; }
+.wn-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.wn-table th { position: sticky; top: 0; background: #f1f5f9; padding: 9px 12px; text-align: left; font-size: 11px; color: #475569; text-transform: uppercase; font-weight: bold; border-bottom: 2px solid #e2e8f0; z-index: 1; }
+.wn-table td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+.wn-table tr:hover td { background: #fafafa; }
+.wn-badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: bold; }
+.wn-badge.up { background: #dcfce7; color: #15803d; }
+.wn-badge.down { background: #fee2e2; color: #b91c1c; }
+.wn-badge.new { background: #dbeafe; color: #1d4ed8; }
+.wn-badge.lost { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+.wn-search { width: 100%; padding: 7px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 12px; outline: none; margin-bottom: 10px; }
+.wn-search:focus { border-color: #7c3aed; }
+.wn-empty { text-align: center; padding: 40px; color: #94a3b8; font-size: 13px; }
+.btn-access-login { width: 100%; padding: 11px; background: #0078A8; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.2s ease; }
+.btn-access-login:hover { background-color: #005a7d; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0, 120, 168, 0.3); }
+.popup-btn-hist { width: 100%; margin-top: 8px; padding: 6px 8px; background-color: #f97316; color: white !important; border: none; border-radius: 4px; font-weight: 600; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.2s ease; }
+.popup-btn-hist:hover { background-color: #ea580c;}
+.popup-node-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 
 
 /* --- BUSCADORES (GENERAL & HISTÓRICO) --- */
@@ -152,12 +187,13 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 
 <div id="search-container" style="display: none;">
-    <div class="search-wrapper">
+    <button class="btn-whats-new" onclick="openWhatsNew()">✨ WHAT'S NEW?</button>
+	<button class="btn-comp" onclick="openHistory()">📊 HISTORICAL DATA</button>
+        <div class="search-wrapper" style="margin-top: 5px;">
         <input type="text" id="node-search-input" placeholder="🔍 Search grid node..." oninput="searchNodes(this.value); toggleClearBtn('node-search-input', 'clear-main-node')">
         <span class="clear-btn" id="clear-main-node" onclick="clearSearch('node-search-input', 'search-results', 'clear-main-node')">&times;</span>
     </div>
     <div id="search-results" class="search-results"></div>
-    <button class="btn-comp" onclick="openHistory()">📊 HISTORICAL DATA</button>
 </div>
 
 
@@ -202,7 +238,48 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 <div id="map"></div>
 
-
+<!-- WHAT'S NEW MODAL -->
+<div id="whats-new-modal">
+    <div class="wn-content">
+        <div class="wn-header">
+            <div>
+                <div class="wn-title">✨ What's New?</div>
+                <div class="wn-subtitle" id="wn-subtitle">Changes vs previous month</div>
+            </div>
+            <button class="wn-close" onclick="closeWhatsNew()">×</button>
+        </div>
+        <div class="wn-summary" id="wn-summary"></div>
+        <div class="wn-filters" id="wn-filter-row">
+            <span style="font-size:11px; font-weight:bold; color:#475569;">Show:</span>
+            <button class="wn-filter-btn active" data-filter="all" onclick="wnSetFilter('all')">All</button>
+            <button class="wn-filter-btn" data-filter="up" onclick="wnSetFilter('up')">▲ Up</button>
+            <button class="wn-filter-btn" data-filter="down" onclick="wnSetFilter('down')">▼ Down</button>
+            <button class="wn-filter-btn" data-filter="new" onclick="wnSetFilter('new')">🆕 New Data</button>
+            <button class="wn-filter-btn" data-filter="lost" onclick="wnSetFilter('lost')">🚫 Data Lost</button>
+        </div>
+        <input class="wn-search" id="wn-search-input" type="text" placeholder="🔍 Filter by node name, province or operator..." oninput="wnRenderTable()">
+        <div class="wn-table-wrap">
+            <table class="wn-table">
+                <thead>
+                    <tr>
+                        <th>Node</th>
+                        <th>Province</th>
+                        <th>Grid</th>
+                        <th>Operator</th>
+                        <th>kV</th>
+                        <th>Previous</th>
+                        <th>Current</th>
+                        <th>Δ Change</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="wn-tbody"></tbody>
+            </table>
+            <div id="wn-empty" class="wn-empty" style="display:none;">No changes found for the current filters.</div>
+        </div>
+    </div>
+</div>
+	
 <div id="history-modal" class="modal-overlay">
     <div class="modal-content">
         <span onclick="closeHistory()" style="position: absolute; top: 15px; right: 20px; cursor: pointer; font-size: 24px;">&times;</span>
@@ -7925,6 +8002,181 @@ function updateHistoryChart(node) {
     });
 }
 
+// ============================
+// WHAT'S NEW FUNCTIONALITY
+// ============================
+let wnAllChanges = [];
+let wnActiveFilter = 'all';
+
+function openWhatsNew() {
+    const year = document.getElementById('view-year').value;
+    const month = document.getElementById('view-month').value;
+    const type = document.getElementById('view-type').value;
+    const redFilter = document.getElementById('view-red').value;
+
+    const months = ["jan","feb","mar","apr","may","jun","jul","ago","sep","oct","nov","dec"];
+    const monthNames = {"jan":"January","feb":"February","mar":"March","apr":"April","may":"May","jun":"June","jul":"July","ago":"August","sep":"September","oct":"October","nov":"November","dec":"December"};
+
+    let prevMonthIdx = months.indexOf(month) - 1;
+    let prevYear = year;
+    if (prevMonthIdx < 0) { prevMonthIdx = 11; prevYear = (parseInt(year) - 1).toString(); }
+    const pMonth = months[prevMonthIdx];
+
+    // Determine type suffix
+    const getKeys = (y, m, grid) => {
+        if (type === 'storage') {
+            if (grid === 'TSO') return { cur: `${y}_${m}_stg-dem`, prev: `${prevYear}_${pMonth}_stg-dem`, cur2: `${y}_${m}_stg-gen`, prev2: `${prevYear}_${pMonth}_stg-gen` };
+            else return { cur: `${y}_${m}_dem`, prev: `${prevYear}_${pMonth}_dem`, cur2: `${y}_${m}_gen`, prev2: `${prevYear}_${pMonth}_gen` };
+        }
+        return { cur: `${y}_${m}_${type}`, prev: `${prevYear}_${pMonth}_${type}` };
+    };
+
+    // Active filters
+    const sel = {
+        tens: Array.from(document.querySelectorAll('#m-tens input:checked')).map(cb => cb.value),
+        prov: Array.from(document.querySelectorAll('#m-prov input:checked')).map(cb => cb.value),
+        oper: Array.from(document.querySelectorAll('#m-oper input:checked')).map(cb => cb.value)
+    };
+
+    wnAllChanges = [];
+
+    allEntries.forEach(e => {
+        const matchesRed = (redFilter === 'ALL' || e.grid === redFilter);
+        if (!matchesRed || !sel.tens.includes(e.tens) || !sel.prov.includes(e.prov) || !sel.oper.includes(e.oper)) return;
+
+        const keys = getKeys(year, month, e.grid);
+        const curVal = cleanNum(e[keys.cur]);
+        const prevVal = cleanNum(e[keys.prev]);
+
+        let status, diff = null, displayCur, displayPrev;
+
+        const curIsNaN = isNaN(curVal);
+        const prevIsNaN = isNaN(prevVal);
+
+        if (!prevIsNaN && curIsNaN) {
+            status = 'lost';
+            displayPrev = prevVal + ' MW';
+            displayCur = 'No Info';
+        } else if (prevIsNaN && !curIsNaN) {
+            status = 'new';
+            displayPrev = 'No Info';
+            displayCur = curVal + ' MW';
+        } else if (!prevIsNaN && !curIsNaN) {
+            diff = Math.round((curVal - prevVal) * 100) / 100;
+            if (diff === 0) return; // No change
+            status = diff > 0 ? 'up' : 'down';
+            displayPrev = prevVal + ' MW';
+            displayCur = curVal + ' MW';
+        } else {
+            return; // both NaN, no change
+        }
+
+        wnAllChanges.push({ name: e.name, prov: e.prov, grid: e.grid, oper: e.oper, tens: e.tens, status, diff, displayPrev, displayCur });
+    });
+
+    // Update subtitle
+    const typeLabel = type === 'gen' ? 'Generation' : type === 'dem' ? 'Demand' : 'Storage';
+    document.getElementById('wn-subtitle').textContent = 
+        `${typeLabel} · ${monthNames[month]} 20${year} vs ${monthNames[pMonth]} 20${prevYear} · ${redFilter === 'ALL' ? 'DSO + TSO' : redFilter}`;
+
+    // Reset filter & search
+    wnActiveFilter = 'all';
+    document.querySelectorAll('.wn-filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
+    const si = document.getElementById('wn-search-input');
+    if (si) si.value = '';
+
+    wnRenderSummary();
+    wnRenderTable();
+
+    document.getElementById('whats-new-modal').classList.add('open');
+}
+
+function closeWhatsNew() {
+    document.getElementById('whats-new-modal').classList.remove('open');
+}
+
+function wnSetFilter(f) {
+    wnActiveFilter = f;
+    document.querySelectorAll('.wn-filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+    wnRenderTable();
+}
+
+function wnRenderSummary() {
+    const counts = { up: 0, down: 0, new: 0, lost: 0 };
+    wnAllChanges.forEach(c => counts[c.status]++);
+    const total = wnAllChanges.length;
+
+    document.getElementById('wn-summary').innerHTML = `
+        <div class="wn-stat"><div class="wn-stat-val" style="color:#7c3aed;">${total}</div><div class="wn-stat-lbl">Total Changes</div></div>
+        <div class="wn-stat"><div class="wn-stat-val" style="color:#15803d;">▲ ${counts.up}</div><div class="wn-stat-lbl">Up</div></div>
+        <div class="wn-stat"><div class="wn-stat-val" style="color:#b91c1c;">▼ ${counts.down}</div><div class="wn-stat-lbl">Down</div></div>
+        <div class="wn-stat"><div class="wn-stat-val" style="color:#1d4ed8;">🆕 ${counts.new}</div><div class="wn-stat-lbl">New Data</div></div>
+        <div class="wn-stat"><div class="wn-stat-val" style="color:#64748b;">🚫 ${counts.lost}</div><div class="wn-stat-lbl">Data Lost</div></div>
+    `;
+}
+
+function wnRenderTable() {
+    const searchTerm = (document.getElementById('wn-search-input')?.value || '').toLowerCase().trim();
+    
+    let rows = wnAllChanges.filter(c => {
+        if (wnActiveFilter !== 'all' && c.status !== wnActiveFilter) return false;
+        if (searchTerm && !c.name.toLowerCase().includes(searchTerm) && !c.prov.toLowerCase().includes(searchTerm) && !c.oper.toLowerCase().includes(searchTerm)) return false;
+        return true;
+    });
+
+    // Sort: new and lost first, then by abs diff
+    rows.sort((a, b) => {
+        const order = { new: 0, lost: 1, up: 2, down: 3 };
+        if (order[a.status] !== order[b.status]) return order[a.status] - order[b.status];
+        return Math.abs(b.diff || 0) - Math.abs(a.diff || 0);
+    });
+
+    const tbody = document.getElementById('wn-tbody');
+    const empty = document.getElementById('wn-empty');
+
+    if (rows.length === 0) {
+        tbody.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+    }
+    empty.style.display = 'none';
+
+    const badgeMap = {
+        up:   '<span class="wn-badge up">▲ Up</span>',
+        down: '<span class="wn-badge down">▼ Down</span>',
+        new:  '<span class="wn-badge new">🆕 New Data</span>',
+        lost: '<span class="wn-badge lost">🚫 Data Lost</span>'
+    };
+
+    tbody.innerHTML = rows.map(c => {
+        let changeCell = '—';
+        if (c.diff !== null) {
+            const sign = c.diff > 0 ? '+' : '';
+            const color = c.diff > 0 ? '#15803d' : '#b91c1c';
+            changeCell = `<span style="color:${color}; font-weight:bold;">${sign}${c.diff} MW</span>`;
+        }
+        const gridColor = c.grid === 'TSO' ? '#1e40af' : '#065f46';
+        return `<tr>
+            <td style="font-weight:600; color:#0078A8;">${c.name}</td>
+            <td style="color:#475569;">${c.prov}</td>
+            <td><span style="background:${gridColor}; color:white; padding:1px 6px; border-radius:3px; font-size:10px; font-weight:bold;">${c.grid}</span></td>
+            <td style="color:#475569; font-size:11px;">${c.oper}</td>
+            <td style="color:#64748b;">${c.tens} kV</td>
+            <td style="color:#64748b;">${c.displayPrev}</td>
+            <td style="color:#334155; font-weight:bold;">${c.displayCur}</td>
+            <td>${changeCell}</td>
+            <td>${badgeMap[c.status]}</td>
+        </tr>`;
+    }).join('');
+}
+
+// Close What's New modal on overlay click
+document.getElementById('whats-new-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeWhatsNew();
+});
+
+
+	
 function clearSearch(inputId, resultsId, btnId) {
     const input = document.getElementById(inputId);
     const results = document.getElementById(resultsId);
