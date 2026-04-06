@@ -91,14 +91,14 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .wn-close:hover { color: #334155; }
 .wn-filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
 .wn-filter-btn { padding: 5px 12px; border-radius: 20px; border: 2px solid #e2e8f0; background: white; font-size: 11px; font-weight: bold; cursor: pointer; color: #64748b; transition: 0.15s; }
-.wn-filter-btn.active { border-color: #7c3aed; background: #7c3aed; color: white; }
-.wn-filter-btn:hover:not(.active) { border-color: #7c3aed; color: #7c3aed; }
+.wn-filter-btn.active { border-color: #0ea5e9; background: #0ea5e9; color: white; }
+.wn-filter-btn:hover:not(.active) { border-color: #0ea5e9; color: #0ea5e9; }
 .wn-summary { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
 .wn-stat { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 14px; text-align: center; min-width: 90px; }
 .wn-stat-val { font-size: 20px; font-weight: bold; }
 .wn-stat-lbl { font-size: 10px; color: #64748b; text-transform: uppercase; }
 .wn-table-wrap { overflow-y: auto; flex: 1; border: 1px solid #e2e8f0; border-radius: 8px; }
-.wn-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.wn-table { width: 100%; border-collapse: collapse; font-size: 12px; table-layout: fixed; }
 .wn-table th { position: sticky; top: 0; background: #f1f5f9; padding: 9px 12px; text-align: left; font-size: 11px; color: #475569; text-transform: uppercase; font-weight: bold; border-bottom: 2px solid #e2e8f0; z-index: 1; }
 .wn-table td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
 .wn-table tr:hover td { background: #fafafa; }
@@ -194,7 +194,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 <div id="search-container" style="display: none;">
     <button class="btn-whats-new" onclick="openWhatsNew()">💡 WHAT'S NEW?</button>
 	<button class="btn-comp" onclick="openHistory()">📊 HISTORICAL DATA</button>
-        <div class="search-wrapper" style="margin-top: 5px;">
+        <div class="search-wrapper";">
         <input type="text" id="node-search-input" placeholder="🔍 Search grid node..." oninput="searchNodes(this.value); toggleClearBtn('node-search-input', 'clear-main-node')">
         <span class="clear-btn" id="clear-main-node" onclick="clearSearch('node-search-input', 'search-results', 'clear-main-node')">&times;</span>
     </div>
