@@ -99,8 +99,8 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .wn-stat-lbl { font-size: 10px; color: #64748b; text-transform: uppercase; }
 .wn-table-wrap { overflow-y: auto; flex: 1; border: 1px solid #e2e8f0; border-radius: 8px; }
 .wn-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-.wn-table th { position: sticky; top: 0; background: #f1f5f9; padding: 9px 20px; text-align: left; font-size: 11px; color: #475569; text-transform: uppercase; font-weight: bold; border-bottom: 2px solid #e2e8f0; z-index: 1; }
-.wn-table td { padding: 8px 20px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+.wn-table th { position: sticky; top: 0; background: #f1f5f9; padding: 9px 12px; text-align: left; font-size: 11px; color: #475569; text-transform: uppercase; font-weight: bold; border-bottom: 2px solid #e2e8f0; z-index: 1; }
+.wn-table td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
 .wn-table tr:hover td { background: #fafafa; }
 .wn-badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: bold; }
 .wn-badge.up { background: #dcfce7; color: #15803d; }
@@ -267,15 +267,15 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
             <table class="wn-table">
                 <thead>
                     <tr>
-                        <th>Node</th>
-                        <th>Province</th>
-                        <th>Grid</th>
-                        <th>Operator</th>
-                        <th>kV</th>
-                        <th>Previous</th>
-                        <th>Current</th>
-                        <th>Δ Change</th>
-                        <th>Status</th>
+                        <th style="min-width:160px">Node</th>
+						<th style="min-width:100px">Province</th>
+						<th style="min-width:60px">Grid</th>
+						<th style="min-width:110px">Operator</th>
+						<th style="min-width:45px">Voltage kV</th>
+						<th style="min-width:90px">Previous</th>
+						<th style="min-width:90px">Current</th>
+						<th style="min-width:90px">Δ Change</th>
+						<th style="min-width:90px">Status</th>
                     </tr>
                 </thead>
                 <tbody id="wn-tbody"></tbody>
