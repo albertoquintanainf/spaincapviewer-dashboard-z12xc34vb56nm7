@@ -121,7 +121,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 /* --- BUSCADORES (GENERAL & HISTÓRICO) --- */
 #search-container { position: fixed; top: 10px; right: 60px; z-index: 9999; width: 220px; display: flex; flex-direction: column; gap: 5px; }
 .search-wrapper { background: white; padding: 4px; border-radius: 10px; display: flex; border: 2px solid #0078A8; position: relative; box-sizing: border-box; width: 100%; }
-#node-search-input { width: 100%; padding: 10px; border: 1px solid #eee; border-radius: 6px; font-size: 14px; outline: none; background: #fff; padding-right: 30px; }
+#node-search-input { width: 100%; padding: 10px; border: 1px solid #eee; border-radius: 6px; font-size: 12px; outline: none; background: #fff; padding-right: 30px; }
 .search-results { position: absolute;top: 100%;left: 0;width: 100%;background: white; border-radius: 8px; margin-top: 5px; max-height: 400px; overflow-y: auto; box-shadow: 0 8px 20px rgba(0,0,0,0.3); display: none; border: 1px solid #ddd; }
 .search-item { padding: 10px; cursor: pointer; font-size: 13px; border-bottom: 1px solid #eee; color: #333; }
 .search-item:hover, .suggestion-item:hover { background-color: #f8fafc; color: #0078A8; }
@@ -195,7 +195,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
     <button class="btn-whats-new" onclick="openWhatsNew()">💡 WHAT'S NEW?</button>
 	<button class="btn-comp" onclick="openHistory()">📊 HISTORICAL DATA</button>
         <div class="search-wrapper";">
-        <input type="text" id="node-search-input" placeholder="🔍 Search grid node..." oninput="searchNodes(this.value); toggleClearBtn('node-search-input', 'clear-main-node')">
+        <input type="text" id="node-search-input" placeholder="🔍 Search grid node by name..." oninput="searchNodes(this.value); toggleClearBtn('node-search-input', 'clear-main-node')">
         <span class="clear-btn" id="clear-main-node" onclick="clearSearch('node-search-input', 'search-results', 'clear-main-node')">&times;</span>
     </div>
     <div id="search-results" class="search-results"></div>
