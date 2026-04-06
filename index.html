@@ -117,9 +117,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .popup-node-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 
 
+
 /* --- BUSCADORES (GENERAL & HISTÓRICO) --- */
-#search-container { position: fixed; top: 50px; right: 60px; z-index: 9999; width: 230px; }
-.search-wrapper { background: white; padding: 4px; border-radius: 5px; display: flex; border: 2px solid #0078A8; position: relative; }
+#search-container { position: fixed; top: 10px; right: 60px; z-index: 9999; width: 220px; display: flex; flex-direction: column; gap: 5px; }
+.search-wrapper { background: white; padding: 4px; border-radius: 10px; display: flex; border: 2px solid #0078A8; position: relative; box-sizing: border-box; width: 100%; }
 #node-search-input { width: 100%; padding: 10px; border: 1px solid #eee; border-radius: 6px; font-size: 14px; outline: none; background: #fff; padding-right: 30px; }
 .search-results { position: absolute;top: 100%;left: 0;width: 100%;background: white; border-radius: 8px; margin-top: 5px; max-height: 400px; overflow-y: auto; box-shadow: 0 8px 20px rgba(0,0,0,0.3); display: none; border: 1px solid #ddd; }
 .search-item { padding: 10px; cursor: pointer; font-size: 13px; border-bottom: 1px solid #eee; color: #333; }
@@ -155,6 +156,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
     display: flex; align-items: center;justify-content: center; transition: background-color 0.2s; margin-bottom: 5px !important; }
 .leaflet-control-kml:hover {background-color: #f4f4f4;}
 .leaflet-control-kml-icon {    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 9px; font-weight: bold; color: #444;  text-align: center; line-height: 1; background-image: none !important; }
+
 
 
 /* --- RESPONSIVE GLOBAL --- */
