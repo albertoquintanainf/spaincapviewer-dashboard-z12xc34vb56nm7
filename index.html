@@ -99,8 +99,8 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .wn-stat-lbl { font-size: 10px; color: #64748b; text-transform: uppercase; }
 .wn-table-wrap { overflow-y: auto; flex: 1; border: 1px solid #e2e8f0; border-radius: 8px; }
 .wn-table { width: 100%; border-collapse: collapse; font-size: 12px; table-layout: fixed; }
-.wn-table th { position: sticky; top: 0; background: #f1f5f9; padding: 9px 12px; text-align: left; font-size: 11px; color: #475569; text-transform: uppercase; font-weight: bold; border-bottom: 2px solid #e2e8f0; z-index: 1; }
-.wn-table td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+.wn-table th { position: sticky; top: 0; background: #f1f5f9; padding: 9px 12px; text-align: center; font-size: 11px; color: #475569; text-transform: uppercase; font-weight: bold; border-bottom: 2px solid #e2e8f0; z-index: 1; }
+.wn-table td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; text-align: center;}
 .wn-table tr:hover td { background: #fafafa; }
 .wn-badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: bold; }
 .wn-badge.up { background: #dcfce7; color: #15803d; }
@@ -8165,7 +8165,7 @@ function wnRenderTable() {
         }
         const gridColor = c.grid === 'TSO' ? '#1e40af' : '#065f46';
         return `<tr>
-            <td style="font-weight:600; color:#0078A8;">${c.name}</td>
+            <td style="font-weight:600; color:#0078A8; text-align:left;">${c.name}</td>
             <td style="color:#475569;">${c.prov}</td>
             <td><span style="background:${gridColor}; color:white; padding:1px 6px; border-radius:3px; font-size:10px; font-weight:bold;">${c.grid}</span></td>
             <td style="color:#475569; font-size:11px;">${c.oper}</td>
