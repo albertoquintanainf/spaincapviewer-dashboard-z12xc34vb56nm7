@@ -7548,6 +7548,28 @@ function applyFilters() {
     // 4. Dibujar círculos y generar Popups
     for (const k in groupedForMap) {
         const g = groupedForMap[k];
+
+        let bestConfig = noInfoConfig;
+        let bestValue = -Infinity;
+        g.items.forEach(item => {
+            let rawValue;
+            if (type === 'storage') {
+                const genCol = item.grid === 'TSO' ? `${year}_${month}_stg-gen` : `${year}_${month}_gen`;
+                const demCol = item.grid === 'TSO' ? `${year}_${month}_stg-dem` : `${year}_${month}_dem`;
+                const vGen = cleanNum(item[genCol]);
+                const vDem = cleanNum(item[demCol]);
+                if (!isNaN(vGen) && !isNaN(vDem)) rawValue = Math.min(vGen, vDem);
+            } else {
+                const val = cleanNum(item[`${year}_${month}_${type}`]);
+                if (!isNaN(val)) rawValue = val;
+            }
+            if (rawValue !== undefined && rawValue > bestValue) {
+                bestValue = rawValue;
+                bestConfig = ranges.find(r => rawValue <= r.limit) || noInfoConfig;
+            }
+        });
+        g.mainConfig = bestConfig;
+
         const c = proj4("EPSG:32630", "EPSG:4326", [g.x, g.y]);
         let popupHtml = `<div style="max-height:250px; overflow-y:auto; min-width:220px; font-family: 'Segoe UI', sans-serif;">`;
         
