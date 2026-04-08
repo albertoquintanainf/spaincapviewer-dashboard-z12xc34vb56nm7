@@ -193,7 +193,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 <div id="search-container" style="display: none;">
     <button class="btn-whats-new" onclick="openWhatsNew()">💡 WHAT'S NEW?</button>
-	<button class="btn-comp" onclick="openHistory()">📈 HISTORICAL DATA</button>
+	<button class="btn-comp" onclick="openHistory()">📊 HISTORICAL DATA</button>
         <div class="search-wrapper";">
         <input type="text" id="node-search-input" placeholder="🔍 Search node by name..." oninput="searchNodes(this.value); toggleClearBtn('node-search-input', 'clear-main-node')">
         <span class="clear-btn" id="clear-main-node" onclick="clearSearch('node-search-input', 'search-results', 'clear-main-node')">&times;</span>
@@ -7633,7 +7633,7 @@ function applyFilters() {
                         <tr><td style="color: #666; padding: 2px 0;">Operator:</td><td style="font-weight: bold; text-align: right;">${item.oper}</td></tr>
                         <tr><td style="color: #666; padding: 2px 0;">Type:</td><td style="font-weight: bold; text-align: right;">${item.type}</td></tr>
                     </table>
-                    <button class="popup-btn-hist" onclick="openHistory('${item.name}')">📈 View Historical Data</button>
+                    <button class="popup-btn-hist" onclick="openHistory('${item.name}')">📊 View Historical Data</button>
                 </div>`;
         });
 
@@ -8182,7 +8182,7 @@ function wnRenderTable() {
             <td style="color:#334155; font-weight:bold;">${c.displayCur}</td>
             <td>${changeCell}</td>
             <td>${badgeMap[c.status]}</td>
-			<td><button onclick="openHistory('${c.name}')" style="background:#fff; color:#0078A8; border:1px solid rgba(0,120,168,0.25); border-radius:5px; padding:3px 7px; font-size:10px; cursor:pointer; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,0.06);" title="View Historical Data">📈</button></td>
+			<td><button onclick="openHistory('${c.name}')" style="background:#fff; color:#0078A8; border:1px solid rgba(0,120,168,0.25); border-radius:5px; padding:3px 7px; font-size:10px; cursor:pointer; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,0.06);" title="View Historical Data">📊</button></td>
         </tr>`;
     }).join('');
 }
