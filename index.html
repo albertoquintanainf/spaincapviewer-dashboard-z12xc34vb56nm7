@@ -269,7 +269,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
                 <thead>
                     <tr>
                         <th style="width:220px">Node</th>
-						<th style="width:10px">MAP</th>
+						<th style="width:15px">MAP</th>
 						<th style="width:100px">Province</th>
 						<th style="width:30px">Grid</th>
 						<th style="width:50px">Operator</th>
@@ -278,7 +278,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 						<th style="width:85px">Current</th>
 						<th style="width:80px">Δ Change</th>
 						<th style="width:100px">Status</th>
-						<th style="width:80px">Hist. Data</th>
+						<th style="width:77px">Hist. Data</th>
                     </tr>
                 </thead>
                 <tbody id="wn-tbody"></tbody>
@@ -8173,7 +8173,7 @@ function wnRenderTable() {
         const gridColor = c.grid === 'TSO' ? '#1e40af' : '#065f46';
         return `<tr>
            	<td style="font-weight:600; color:#0078A8; text-align:left;">${c.name}</td>
-            <td><button onclick="closeWhatsNew(); focusNode('${c.name.toLowerCase()}')" style="background:#fff; color:#0078A8; border:1px solid rgba(0,120,168,0.25); border-radius:5px; padding:3px 7px; font-size:10px; cursor:pointer; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,0.06);">📍</button></td>
+            <td><button onclick="closeWhatsNew(); focusNode('${c.name.toLowerCase()}')" style="background:#fff; color:#0078A8; border:1px solid rgba(0,120,168,0.25); border-radius:5px; padding:3px 7px; font-size:10px; cursor:pointer; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,0.06);" title="Map View">📍</button></td>
 			<td style="color:#475569;">${c.prov}</td>
             <td><span style="background:${gridColor}; color:white; padding:1px 6px; border-radius:3px; font-size:10px; font-weight:bold;">${c.grid}</span></td>
             <td style="color:#475569; font-size:11px;">${c.oper}</td>
@@ -8182,7 +8182,7 @@ function wnRenderTable() {
             <td style="color:#334155; font-weight:bold;">${c.displayCur}</td>
             <td>${changeCell}</td>
             <td>${badgeMap[c.status]}</td>
-			<td><button onclick="openHistory('${c.name}')" tyle="background:#fff; color:#0078A8; border:1px solid rgba(0,120,168,0.25); border-radius:5px; padding:3px 7px; font-size:10px; cursor:pointer; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,0.06);" title="View Historical Data">📈</button></td>
+			<td><button onclick="openHistory('${c.name}')" style="background:#fff; color:#0078A8; border:1px solid rgba(0,120,168,0.25); border-radius:5px; padding:3px 7px; font-size:10px; cursor:pointer; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,0.06);" title="View Historical Data">📈</button></td>
         </tr>`;
     }).join('');
 }
