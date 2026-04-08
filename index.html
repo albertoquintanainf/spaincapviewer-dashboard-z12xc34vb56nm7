@@ -8173,7 +8173,7 @@ function wnRenderTable() {
         const gridColor = c.grid === 'TSO' ? '#1e40af' : '#065f46';
         return `<tr>
            	<td style="font-weight:600; color:#0078A8; text-align:left;">${c.name}</td>
-            <td><button onclick="closeWhatsNew(); focusNode('${c.name.toLowerCase()}')" style="background:#0078A8; color:white; border:none; border-radius:5px; padding:3px 7px; font-size:10px; cursor:pointer; white-space:nowrap;">📍</button></td>
+            <td><button onclick="closeWhatsNew(); focusNode('${c.name.toLowerCase()}')" style="background:#fff; color:#0078A8; border:1px solid rgba(0,120,168,0.25); border-radius:5px; padding:3px 7px; font-size:10px; cursor:pointer; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,0.06);">📍</button></td>
 			<td style="color:#475569;">${c.prov}</td>
             <td><span style="background:${gridColor}; color:white; padding:1px 6px; border-radius:3px; font-size:10px; font-weight:bold;">${c.grid}</span></td>
             <td style="color:#475569; font-size:11px;">${c.oper}</td>
