@@ -8072,14 +8072,17 @@ function openWhatsNew() {
             displayCur = curVal + ' MW';
         } else if (!prevIsNaN && !curIsNaN) {
             diff = Math.round((curVal - prevVal) * 100) / 100;
-            if (diff === 0) { status = 'nochange'; displayPrev = prevVal + ' MW'; displayCur = curVal + ' MW';
-			} else {
-			; // No change
-            status = diff > 0 ? 'up' : 'down';
-            displayPrev = prevVal + ' MW';
-            displayCur = curVal + ' MW';
+            if (diff === 0) {
+                status = 'nochange';
+                displayPrev = prevVal + ' MW';
+                displayCur = curVal + ' MW';
+            } else {
+                status = diff > 0 ? 'up' : 'down';
+                displayPrev = prevVal + ' MW';
+                displayCur = curVal + ' MW';
+            }
         } else {
-            return; // both NaN, no change
+            return; // both NaN
         }
 
         wnAllChanges.push({ name: e.name, prov: e.prov, grid: e.grid, oper: e.oper, tens: e.tens, status, diff, displayPrev, displayCur });
