@@ -256,7 +256,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
         <div class="wn-summary" id="wn-summary"></div>
         <div class="wn-filters" id="wn-filter-row">
             <span style="font-size:11px; font-weight:bold; color:#475569;">Show:</span>
-            <button class="wn-filter-btn active" data-filter="all" onclick="wnSetFilter('all')">All</button>
+            <button class="wn-filter-btn active" data-filter="all" onclick="wnSetFilter('all')">All Changes</button>
             <button class="wn-filter-btn" data-filter="up" onclick="wnSetFilter('up')">▲ Up</button>
             <button class="wn-filter-btn" data-filter="down" onclick="wnSetFilter('down')">▼ Down</button>
             <button class="wn-filter-btn" data-filter="new" onclick="wnSetFilter('new')">🆕 New Data</button>
@@ -8118,7 +8118,7 @@ function wnSetFilter(f) {
 function wnRenderSummary() {
     const counts = { up: 0, down: 0, new: 0, lost: 0 , nochange: 0};
     wnAllChanges.forEach(c => counts[c.status]++);
-    const total = wnAllChanges.length;
+    const total = wnAllChanges.filter(c => c.status !== 'nochange').length;
 
     document.getElementById('wn-summary').innerHTML = `
         <div class="wn-stat"><div class="wn-stat-val" style="color:#7c3aed;">${total}</div><div class="wn-stat-lbl">Total Changes</div></div>
@@ -8134,7 +8134,8 @@ function wnRenderTable() {
     const searchTerm = (document.getElementById('wn-search-input')?.value || '').toLowerCase().trim();
     
     let rows = wnAllChanges.filter(c => {
-        if (wnActiveFilter !== 'all' && c.status !== wnActiveFilter) return false;
+        if (wnActiveFilter === 'all' && c.status === 'nochange') return false;
+		if (wnActiveFilter !== 'all' && c.status !== wnActiveFilter) return false;
         if (searchTerm && !c.name.toLowerCase().includes(searchTerm) && !c.prov.toLowerCase().includes(searchTerm) && !c.oper.toLowerCase().includes(searchTerm)) return false;
         return true;
     });
