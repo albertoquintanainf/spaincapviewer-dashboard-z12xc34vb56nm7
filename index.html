@@ -268,8 +268,8 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
             <table class="wn-table">
                 <thead>
                     <tr>
-                        <th></th>
-						<th style="width:220px">Node</th>
+                        <th style="width:220px">Node</th>
+						<th></th>
 						<th style="width:100px">Province</th>
 						<th style="width:40px">Grid</th>
 						<th style="width:90px">Operator</th>
@@ -8176,9 +8176,9 @@ function wnRenderTable() {
         }
         const gridColor = c.grid === 'TSO' ? '#1e40af' : '#065f46';
         return `<tr>
+           	<td style="font-weight:600; color:#0078A8; text-align:left;">${c.name}</td>
             <td><button onclick="closeWhatsNew(); focusNode('${c.name.toLowerCase()}')" style="background:#0078A8; color:white; border:none; border-radius:5px; padding:3px 7px; font-size:10px; cursor:pointer; white-space:nowrap;">📍</button></td>
-			<td style="font-weight:600; color:#0078A8; text-align:left;">${c.name}</td>
-            <td style="color:#475569;">${c.prov}</td>
+			<td style="color:#475569;">${c.prov}</td>
             <td><span style="background:${gridColor}; color:white; padding:1px 6px; border-radius:3px; font-size:10px; font-weight:bold;">${c.grid}</span></td>
             <td style="color:#475569; font-size:11px;">${c.oper}</td>
             <td style="color:#64748b;">${c.tens} kV</td>
