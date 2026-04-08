@@ -261,6 +261,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
             <button class="wn-filter-btn" data-filter="down" onclick="wnSetFilter('down')">▼ Down</button>
             <button class="wn-filter-btn" data-filter="new" onclick="wnSetFilter('new')">🆕 New Data</button>
             <button class="wn-filter-btn" data-filter="lost" onclick="wnSetFilter('lost')">🚫 Data Lost</button>
+			<button class="wn-filter-btn" data-filter="nochange" onclick="wnSetFilter('nochange')">＝ No Change</button>
         </div>
         <input class="wn-search" id="wn-search-input" type="text" placeholder="🔍 Filter by node name, province or operator..." oninput="wnRenderTable()">
         <div class="wn-table-wrap">
@@ -8071,7 +8072,9 @@ function openWhatsNew() {
             displayCur = curVal + ' MW';
         } else if (!prevIsNaN && !curIsNaN) {
             diff = Math.round((curVal - prevVal) * 100) / 100;
-            if (diff === 0) return; // No change
+            if (diff === 0) { status = 'nochange'; displayPrev = prevVal + ' MW'; displayCur = curVal + ' MW';
+			} else {
+			; // No change
             status = diff > 0 ? 'up' : 'down';
             displayPrev = prevVal + ' MW';
             displayCur = curVal + ' MW';
@@ -8110,7 +8113,7 @@ function wnSetFilter(f) {
 }
 
 function wnRenderSummary() {
-    const counts = { up: 0, down: 0, new: 0, lost: 0 };
+    const counts = { up: 0, down: 0, new: 0, lost: 0 , nochange: 0};
     wnAllChanges.forEach(c => counts[c.status]++);
     const total = wnAllChanges.length;
 
@@ -8120,6 +8123,7 @@ function wnRenderSummary() {
         <div class="wn-stat"><div class="wn-stat-val" style="color:#b91c1c;">▼ ${counts.down}</div><div class="wn-stat-lbl">Down</div></div>
         <div class="wn-stat"><div class="wn-stat-val" style="color:#1d4ed8;">🆕 ${counts.new}</div><div class="wn-stat-lbl">New Data</div></div>
         <div class="wn-stat"><div class="wn-stat-val" style="color:#64748b;">🚫 ${counts.lost}</div><div class="wn-stat-lbl">Data Lost</div></div>
+		<div class="wn-stat"><div class="wn-stat-val" style="color:#94a3b8;">＝ ${counts.nochange}</div><div class="wn-stat-lbl">No Change</div></div>
     `;
 }
 
@@ -8153,7 +8157,8 @@ function wnRenderTable() {
         up:   '<span class="wn-badge up">▲ Up</span>',
         down: '<span class="wn-badge down">▼ Down</span>',
         new:  '<span class="wn-badge new">🆕 New Data</span>',
-        lost: '<span class="wn-badge lost">🚫 Data Lost</span>'
+        lost: '<span class="wn-badge lost">🚫 Data Lost</span>',
+		nochange: '<span class="wn-badge" style="background:#f1f5f9;color:#64748b;">＝ No Change</span>'
     };
 
     tbody.innerHTML = rows.map(c => {
