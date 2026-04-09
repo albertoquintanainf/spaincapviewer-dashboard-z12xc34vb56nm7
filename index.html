@@ -253,6 +253,22 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
             </div>
             <button class="wn-close" onclick="closeWhatsNew()">×</button>
         </div>
+
+		<div style="display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap; align-items:center;">
+    		<select id="wn-year" onchange="openWhatsNew()" style="padding:5px 8px; border-radius:6px; border:1px solid #e2e8f0; font-size:12px; color:#0078A8; font-weight:bold;">
+        	<option value="26">2026</option>
+    		</select>
+    		<select id="wn-month" onchange="openWhatsNew()" style="padding:5px 8px; border-radius:6px; border:1px solid #e2e8f0; font-size:12px; color:#0078A8; font-weight:bold;">
+        	<option value="jan">January</option><option value="feb">February</option><option value="mar">March</option><option value="apr">April</option><option value="may">May</option><option value="jun">June</option><option value="jul">July</option><option value="ago">August</option><option value="sep">September</option><option value="oct">October</option><option value="nov">November</option><option value="dec">December</option>
+    		</select>
+    		<select id="wn-red" onchange="openWhatsNew()" style="padding:5px 8px; border-radius:6px; border:1px solid #e2e8f0; font-size:12px; color:#0078A8; font-weight:bold;">
+       		<option value="ALL">DSO+TSO</option><option value="DSO">DSO</option><option value="TSO">TSO</option>
+    		</select>
+    		<select id="wn-type" onchange="openWhatsNew()" style="padding:5px 8px; border-radius:6px; border:1px solid #e2e8f0; font-size:12px; color:#0078A8; font-weight:bold;">
+        	<option value="gen">Generation</option><option value="dem">Demand</option><option value="storage">Storage</option>
+    		</select>
+		</div>
+		
         <div class="wn-summary" id="wn-summary"></div>
         <div class="wn-filters" id="wn-filter-row">
             <span style="font-size:11px; font-weight:bold; color:#475569;">Show:</span>
@@ -8041,11 +8057,11 @@ function updateHistoryChart(node) {
 let wnAllChanges = [];
 let wnActiveFilter = 'all';
 
-function openWhatsNew() {
-    const year = document.getElementById('view-year').value;
-    const month = document.getElementById('view-month').value;
-    const type = document.getElementById('view-type').value;
-    const redFilter = document.getElementById('view-red').value;
+function openWhatsNew(fromSelector = false) {
+    const year = document.getElementById('wn-year')?.value || document.getElementById('view-year').value;
+	const month = document.getElementById('wn-month')?.value || document.getElementById('view-month').value;
+	const type = document.getElementById('wn-type')?.value || document.getElementById('view-type').value;
+	const redFilter = document.getElementById('wn-red')?.value || document.getElementById('view-red').value;
 
     const months = ["jan","feb","mar","apr","may","jun","jul","ago","sep","oct","nov","dec"];
     const monthNames = {"jan":"January","feb":"February","mar":"March","apr":"April","may":"May","jun":"June","jul":"July","ago":"August","sep":"September","oct":"October","nov":"November","dec":"December"};
@@ -8064,18 +8080,11 @@ function openWhatsNew() {
         return { cur: `${y}_${m}_${type}`, prev: `${prevYear}_${pMonth}_${type}` };
     };
 
-    // Active filters
-    const sel = {
-        tens: Array.from(document.querySelectorAll('#m-tens input:checked')).map(cb => cb.value),
-        prov: Array.from(document.querySelectorAll('#m-prov input:checked')).map(cb => cb.value),
-        oper: Array.from(document.querySelectorAll('#m-oper input:checked')).map(cb => cb.value)
-    };
-
     wnAllChanges = [];
 
     allEntries.forEach(e => {
         const matchesRed = (redFilter === 'ALL' || e.grid === redFilter);
-        if (!matchesRed || !sel.tens.includes(e.tens) || !sel.prov.includes(e.prov) || !sel.oper.includes(e.oper)) return;
+        if (!matchesRed) return;
 
         const keys = getKeys(year, month, e.grid);
         const curVal = cleanNum(e[keys.cur]);
@@ -8118,6 +8127,17 @@ function openWhatsNew() {
     document.getElementById('wn-subtitle').textContent = 
         `${typeLabel} · ${monthNames[month]} 20${year} vs ${monthNames[pMonth]} 20${prevYear} · ${redFilter === 'ALL' ? 'DSO + TSO' : redFilter}`;
 
+	const wnYear = document.getElementById('wn-year');
+	const wnMonth = document.getElementById('wn-month');
+	const wnRed = document.getElementById('wn-red');
+	const wnType = document.getElementById('wn-type');
+		if (!fromSelector) {
+        if (wnYear) wnYear.value = document.getElementById('view-year').value;
+        if (wnMonth) wnMonth.value = document.getElementById('view-month').value;
+        if (wnRed) wnRed.value = document.getElementById('view-red').value;
+        if (wnType) wnType.value = document.getElementById('view-type').value;
+    }
+	
     // Reset filter & search
     wnActiveFilter = 'all';
     document.querySelectorAll('.wn-filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
@@ -8127,6 +8147,7 @@ function openWhatsNew() {
     wnRenderSummary();
     wnRenderTable();
 
+	
     document.getElementById('whats-new-modal').classList.add('open');
 }
 
