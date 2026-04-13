@@ -266,7 +266,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
         <option value="ALL">DSO+TSO</option><option value="DSO">DSO</option><option value="TSO">TSO</option>
     </select>
     <select id="wn-type" onchange="openWhatsNew(true)" style="flex: 1; min-width: 95px; padding: 4px 6px; border-radius: 5px; border: 1px solid #cbd5e1; font-size: 12px; color: #0078A8; font-weight: bold; cursor: pointer;">
-        <option value="gen">Generation</option><option value="dem">Demand</option><option value="storage">Storage</option>
+        <option value="gen">Generation</option><option value="dem">Demand</option><option value="stg-gen">Storage Gen</option><option value="stg-dem">Storage Dem</option><option value="storage">Storage Min Effective</option>
     </select>
 </div>
 		
@@ -8097,7 +8097,7 @@ function openWhatsNew(fromSelector = false) {
     const pMonth = months[prevMonthIdx];
 
     // 5. Actualizar Subtítulo con estilo de listado
-		const typeLabel = type === 'gen' ? 'Generation' : type === 'dem' ? 'Demand' : 'Storage';
+		const typeLabel = { gen:'Generation', dem:'Demand', 'stg-gen':'Storage Gen', 'stg-dem':'Storage Dem', storage:'Storage Min Effective' }[type] || type;
 		const redLabel = redFilter === 'ALL' ? 'DSO + TSO' : redFilter;
 
 	// Determinamos el color exacto igual que en la tabla
@@ -8115,12 +8115,21 @@ function openWhatsNew(fromSelector = false) {
 
     // 6. Filtrado de datos (Mantenemos tu lógica pero limpia)
     const getKeys = (y, m, grid) => {
-        if (type === 'storage') {
-            if (grid === 'TSO') return { cur: `${y}_${m}_stg-dem`, prev: `${prevYear}_${pMonth}_stg-dem` };
-            else return { cur: `${y}_${m}_dem`, prev: `${prevYear}_${pMonth}_dem` };
-        }
-        return { cur: `${y}_${m}_${type}`, prev: `${prevYear}_${pMonth}_${type}` };
-    };
+    if (type === 'stg-gen') {
+        const suffix = grid === 'TSO' ? 'stg-gen' : 'gen';
+        return { cur: `${y}_${m}_${suffix}`, prev: `${prevYear}_${pMonth}_${suffix}` };
+    }
+    if (type === 'stg-dem') {
+        const suffix = grid === 'TSO' ? 'stg-dem' : 'dem';
+        return { cur: `${y}_${m}_${suffix}`, prev: `${prevYear}_${pMonth}_${suffix}` };
+    }
+    if (type === 'storage') {
+        const gSuffix = grid === 'TSO' ? 'stg-gen' : 'gen';
+        const dSuffix = grid === 'TSO' ? 'stg-dem' : 'dem';
+        return { cur: `${y}_${m}_${gSuffix}`, cur2: `${y}_${m}_${dSuffix}`, prev: `${prevYear}_${pMonth}_${gSuffix}`, prev2: `${prevYear}_${pMonth}_${dSuffix}` };
+    }
+    return { cur: `${y}_${m}_${type}`, prev: `${prevYear}_${pMonth}_${type}` };
+};
 
     wnAllChanges = [];
 
@@ -8128,8 +8137,16 @@ function openWhatsNew(fromSelector = false) {
         if (redFilter !== 'ALL' && e.grid !== redFilter) return;
 
         const keys = getKeys(year, month, e.grid);
-        const curVal = cleanNum(e[keys.cur]);
-        const prevVal = cleanNum(e[keys.prev]);
+		let curVal, prevVal;
+		if (type === 'storage') {
+    		const vGen = cleanNum(e[keys.cur]),  pGen = cleanNum(e[keys.prev]);
+    		const vDem = cleanNum(e[keys.cur2]), pDem = cleanNum(e[keys.prev2]);
+    		curVal  = (!isNaN(vGen) && !isNaN(vDem)) ? Math.min(vGen, vDem) : NaN;
+    		prevVal = (!isNaN(pGen) && !isNaN(pDem)) ? Math.min(pGen, pDem) : NaN;
+		} else {
+    		curVal  = cleanNum(e[keys.cur]);
+    		prevVal = cleanNum(e[keys.prev]);
+		}
 
         if (isNaN(curVal) && isNaN(prevVal)) return;
 
