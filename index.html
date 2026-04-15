@@ -7371,16 +7371,26 @@ legendControl.update = function() {
     const monthText = monthEl.options[monthEl.selectedIndex].text;
     const typeText = typeEl.value === 'gen' ? 'Generation' : (typeEl.value === 'dem' ? 'Demand' : 'Storage (Gen/Dem)');
 
+    const total = ranges.reduce((s, r) => s + (r.visible ? r.count : 0), 0) + (noInfoConfig.visible ? noInfoConfig.count : 0);
+
     let html = `<strong>Capacity ${monthText} 20${year} (${typeText})</strong><br>`;
     
     ranges.forEach(r => { 
-        if(r.visible) {
-            html += `<div class="legend-item"><div><i style="background:${r.color}; width:8px; height:8px;"></i> ${r.label}</div><div class="legend-count">${r.count}</div></div>`; 
+        if (r.visible) {
+            const pct = total > 0 ? ((r.count / total) * 100).toFixed(1) : '0.0';
+            html += `<div class="legend-item">
+                <div><i style="background:${r.color}; width:8px; height:8px;"></i> ${r.label}</div>
+                <div class="legend-count">${r.count} <span style="color:#94a3b8; font-weight:normal;">${pct}%</span></div>
+            </div>`; 
         }
     });
     
-    if(noInfoConfig.visible) {
-        html += `<div class="legend-item"><div><i style="background:${noInfoConfig.color}; width:8px; height:8px;"></i> No Info</div><div class="legend-count">${noInfoConfig.count}</div></div>`;
+    if (noInfoConfig.visible) {
+        const pct = total > 0 ? ((noInfoConfig.count / total) * 100).toFixed(1) : '0.0';
+        html += `<div class="legend-item">
+            <div><i style="background:${noInfoConfig.color}; width:8px; height:8px;"></i> No Info</div>
+            <div class="legend-count">${noInfoConfig.count} <span style="color:#94a3b8; font-weight:normal;">${pct}%</span></div>
+        </div>`;
     }
     this._div.innerHTML = html;
 };
