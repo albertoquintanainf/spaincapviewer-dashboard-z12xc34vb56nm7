@@ -7380,7 +7380,7 @@ legendControl.update = function() {
             const pct = total > 0 ? ((r.count / total) * 100).toFixed(1) : '0.0';
             html += `<div class="legend-item">
                 <div><i style="background:${r.color}; width:8px; height:8px;"></i> ${r.label}</div>
-                <div class="legend-count">${r.count} <span style="color:#94a3b8; font-weight:normal;">${pct}%</span></div>
+                <div class="legend-count">${r.count} <span style="color:#94a3b8; font-weight:normal;">(${pct}%)</span></div>
             </div>`; 
         }
     });
@@ -7389,7 +7389,7 @@ legendControl.update = function() {
         const pct = total > 0 ? ((noInfoConfig.count / total) * 100).toFixed(1) : '0.0';
         html += `<div class="legend-item">
             <div><i style="background:${noInfoConfig.color}; width:8px; height:8px;"></i> No Info</div>
-            <div class="legend-count">${noInfoConfig.count} <span style="color:#94a3b8; font-weight:normal;">${pct}%</span></div>
+            <div class="legend-count">${noInfoConfig.count} <span style="color:#94a3b8; font-weight:normal;">(${pct}%)</span></div>
         </div>`;
     }
     this._div.innerHTML = html;
