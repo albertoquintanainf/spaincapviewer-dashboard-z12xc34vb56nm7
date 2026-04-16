@@ -7373,10 +7373,7 @@ legendControl.update = function() {
 
     const total = ranges.reduce((s, r) => s + (r.visible ? r.count : 0), 0) + (noInfoConfig.visible ? noInfoConfig.count : 0);
 
-    let html = `<div style="margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0;">
-                    <strong style="font-size: 1.1em; color: #1e293b;">Capacity ${monthText} 20${year}</strong><br>
-                    <span style="color: #64748b; font-size: 0.85em;">(${typeText})</span>
-                </div>`;
+    let html = `<strong>Capacity ${monthText} 20${year} (${typeText})</strong><br>`;
     
     ranges.forEach(r => { 
         if (r.visible) {
