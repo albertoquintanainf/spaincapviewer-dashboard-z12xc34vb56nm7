@@ -7501,7 +7501,8 @@ function applyFilters() {
     const sel = {
         tens: Array.from(document.querySelectorAll('#m-tens input:checked')).map(cb => cb.value),
         prov: Array.from(document.querySelectorAll('#m-prov input:checked')).map(cb => cb.value),
-        oper: Array.from(document.querySelectorAll('#m-oper input:checked')).map(cb => cb.value)
+        oper: Array.from(document.querySelectorAll('#m-oper input:checked')).map(cb => cb.value),
+		type: Array.from(document.querySelectorAll('#m-type input:checked')).map(cb => cb.value)
     };
 
     const groupedForMap = {};
@@ -7510,7 +7511,7 @@ function applyFilters() {
     allEntries.forEach(e => {
         const matchesRed = (redFilter === 'ALL' || e.grid === redFilter);
         
-        if (matchesRed && sel.tens.includes(e.tens) && sel.prov.includes(e.prov) && sel.oper.includes(e.oper)) {
+        if (matchesRed && sel.tens.includes(e.tens) && sel.prov.includes(e.prov) && sel.oper.includes(e.oper) && sel.type.includes(e.type)) {
             let rawValue;
 			let isMissingData = false;
 			
