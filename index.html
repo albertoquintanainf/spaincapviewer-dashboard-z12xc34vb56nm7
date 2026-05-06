@@ -47,11 +47,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .select-option { display: flex; align-items: center; font-size: 12px; margin-bottom: 4px; cursor: pointer; }
 .select-option input { margin-right: 8px; }
 
-/* --- TOOLTIP 0* (solo filtro lateral) --- */
-.zero-star-tooltip { position: relative; display: inline-block; cursor: help; border-bottom: 1px dashed #0078A8; color: inherit; }
-.zero-star-tooltip::after { content: attr(data-tooltip); position: absolute; bottom: 125%; left: 0; transform: none; background: #1e293b; color: white; font-size: 11px; line-height: 1.5; padding: 8px 10px; border-radius: 6px; width: 220px; white-space: normal; z-index: 99999; pointer-events: none; opacity: 0; transition: opacity 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-.zero-star-tooltip:hover::after { opacity: 1; }
-/* --- ICONO ⓘ para popup e histórico --- */
+/* --- ICONO ⓘ  --- */
 .zero-star-icon { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; background: #0078A8; color: white !important; font-size: 10px; font-weight: bold; cursor: pointer; margin-left: 5px; vertical-align: middle; line-height: 1; flex-shrink: 0; transition: background 0.2s; }
 .zero-star-icon:hover { background: #005a80; }
 /* --- MODAL nota 0* --- */
@@ -7906,14 +7902,8 @@ function closeZeroStarModal() {
     document.getElementById('zero-star-modal').classList.remove('open');
 }
 
-// Para el filtro lateral: tooltip CSS al pasar el ratón
-function wrapZeroStar(value) {
-    if (!value || !value.toString().includes('0*')) return value;
-    const tip = 'Info';
-    return `<span class="zero-star-tooltip" data-tooltip="${tip}">${value}</span>`;
-}
 
-// Para popup e histórico: icono ⓘ clicable que abre modal
+// Icono ⓘ clicable que abre modal
 function wrapZeroStarIcon(value) {
     if (!value || !value.toString().includes('0*')) return value;
     return `${value}<span class="zero-star-icon" onclick="openZeroStarModal()" title="Ver nota aclaratoria">i</span>`;
@@ -7931,7 +7921,7 @@ function createCheckboxes(containerId, values) {
         div.innerHTML = `
             <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; margin-bottom: 4px;">
                 <input type="checkbox" value="${val}" checked onchange="applyFilters()">
-                <span style="font-size: 12px;">${wrapZeroStar(val)}</span>
+                <span style="font-size: 12px;">${wrapZeroStarIcon(val)}</span>
             </label>
         `;
         container.appendChild(div);
