@@ -52,7 +52,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .zero-star-tooltip::after { content: attr(data-tooltip); position: absolute; bottom: 125%; left: 0; transform: none; background: #1e293b; color: white; font-size: 11px; line-height: 1.5; padding: 8px 10px; border-radius: 6px; width: 220px; white-space: normal; z-index: 99999; pointer-events: none; opacity: 0; transition: opacity 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
 .zero-star-tooltip:hover::after { opacity: 1; }
 /* --- ICONO ⓘ para popup e histórico --- */
-.zero-star-icon { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; background: #0078A8; color: white; font-size: 10px; font-weight: bold; cursor: pointer; margin-left: 5px; vertical-align: middle; line-height: 1; flex-shrink: 0; transition: background 0.2s; }
+.zero-star-icon { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; background: #0078A8; color: white !important; font-size: 10px; font-weight: bold; cursor: pointer; margin-left: 5px; vertical-align: middle; line-height: 1; flex-shrink: 0; transition: background 0.2s; }
 .zero-star-icon:hover { background: #005a80; }
 /* --- MODAL nota 0* --- */
 #zero-star-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 200000; align-items: center; justify-content: center; }
@@ -7931,7 +7931,7 @@ function createCheckboxes(containerId, values) {
         div.innerHTML = `
             <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; margin-bottom: 4px;">
                 <input type="checkbox" value="${val}" checked onchange="applyFilters()">
-                <span style="font-size: 12px;">${val}</span>
+                <span style="font-size: 12px;">${wrapZeroStar(val)}</span>
             </label>
         `;
         container.appendChild(div);
