@@ -7909,7 +7909,7 @@ function closeZeroStarModal() {
 // Para el filtro lateral: tooltip CSS al pasar el ratón
 function wrapZeroStar(value) {
     if (!value || !value.toString().includes('0*')) return value;
-    const tip = 'Ver nota aclaratoria sobre nudos 0* MW';
+    const tip = 'Info';
     return `<span class="zero-star-tooltip" data-tooltip="${tip}">${value}</span>`;
 }
 
