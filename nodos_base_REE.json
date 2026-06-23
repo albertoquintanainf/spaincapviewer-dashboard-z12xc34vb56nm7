@@ -1,0 +1,7498 @@
+{
+ "ABADES 220": {
+  "codigo": "52065",
+  "ccaa": "Castilla y León",
+  "x": "394336.542",
+  "y": "4527876.414",
+  "provincia": "Segovia",
+  "voltage": "220"
+ },
+ "ABADES 400": {
+  "codigo": "52065",
+  "ccaa": "Castilla y León",
+  "x": "394353.39",
+  "y": "4527876.173",
+  "provincia": "Segovia",
+  "voltage": "400"
+ },
+ "ABADIANO 220": {
+  "codigo": "50000",
+  "ccaa": "País Vasco",
+  "x": "532825.425",
+  "y": "4776363.353",
+  "provincia": "Bizkaia",
+  "voltage": "220"
+ },
+ "ABANILLA 400": {
+  "codigo": "52072",
+  "ccaa": "Región de Murcia",
+  "x": "667522.381",
+  "y": "4243743.304",
+  "provincia": "Murcia",
+  "voltage": "400"
+ },
+ "ABANTO 400": {
+  "codigo": "50001",
+  "ccaa": "País Vasco",
+  "x": "492467.186",
+  "y": "4797163.526",
+  "provincia": "Bizkaia",
+  "voltage": "400"
+ },
+ "ABEGONDO 220": {
+  "codigo": "50700",
+  "ccaa": "Galicia",
+  "x": "71176.892",
+  "y": "4798732.159",
+  "provincia": "A Coruña",
+  "voltage": "220"
+ },
+ "ABEGONDO 400": {
+  "codigo": "50700",
+  "ccaa": "Galicia",
+  "x": "71193.139",
+  "y": "4798731.131",
+  "provincia": "A Coruña",
+  "voltage": "400"
+ },
+ "ABONA 220": {
+  "codigo": "50701",
+  "ccaa": "Canarias",
+  "x": "-833474.833",
+  "y": "3180842.979",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "220"
+ },
+ "ABONA 66": {
+  "codigo": "50701",
+  "ccaa": "Canarias",
+  "x": "-833494.789",
+  "y": "3180845.235",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "ABRERA 220": {
+  "codigo": "50002",
+  "ccaa": "Cataluña",
+  "x": "908493.322",
+  "y": "4606706.253",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "ACECA 220": {
+  "codigo": "50003",
+  "ccaa": "Castilla-La Mancha",
+  "x": "426698.173",
+  "y": "4421610.575",
+  "provincia": "Toledo",
+  "voltage": "220"
+ },
+ "ADRALL 220": {
+  "codigo": "50004",
+  "ccaa": "Cataluña",
+  "x": "862218.089",
+  "y": "4695099.856",
+  "provincia": "Lleida",
+  "voltage": "220"
+ },
+ "AENA 220": {
+  "codigo": "50005",
+  "ccaa": "Comunidad de Madrid",
+  "x": "449341.499",
+  "y": "4484487.878",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "AENA OESTE 220": {
+  "codigo": "50006",
+  "ccaa": "Cataluña",
+  "x": "923261.214",
+  "y": "4583931.121",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "AEROPUERTO BARCELONA 220": {
+  "codigo": "50007",
+  "ccaa": "Cataluña",
+  "x": "927239.277",
+  "y": "4586298.177",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "AGUACATE 220": {
+  "codigo": "50008",
+  "ccaa": "Comunidad de Madrid",
+  "x": "436468.015",
+  "y": "4468542.793",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "AGUAYO 220": {
+  "codigo": "50009",
+  "ccaa": "Cantabria",
+  "x": "417035.323",
+  "y": "4774576.01",
+  "provincia": "Cantabria",
+  "voltage": "220"
+ },
+ "AGUAYO 400": {
+  "codigo": "50009",
+  "ccaa": "Cantabria",
+  "x": "417051.593",
+  "y": "4774575.812",
+  "provincia": "Cantabria",
+  "voltage": "400"
+ },
+ "AGÜIMES 66": {
+  "codigo": "50702",
+  "ccaa": "Canarias",
+  "x": "-730849.863",
+  "y": "3148061.085",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "ALARCOS 220": {
+  "codigo": "50010",
+  "ccaa": "Castilla-La Mancha",
+  "x": "416626.415",
+  "y": "4311437.519",
+  "provincia": "Ciudad Real",
+  "voltage": "220"
+ },
+ "ALBAL 220": {
+  "codigo": "50011",
+  "ccaa": "Comunidad Valenciana",
+  "x": "719978.352",
+  "y": "4364015.627",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "ALBARELLOS 220": {
+  "codigo": "50012",
+  "ccaa": "Galicia",
+  "x": "75372.854",
+  "y": "4706828.349",
+  "provincia": "Ourense",
+  "voltage": "220"
+ },
+ "ALBATARREC 220": {
+  "codigo": "50013",
+  "ccaa": "Cataluña",
+  "x": "801983.158",
+  "y": "4609205.812",
+  "provincia": "Lleida",
+  "voltage": "220"
+ },
+ "ALCIRA 220": {
+  "codigo": "50014",
+  "ccaa": "Comunidad Valenciana",
+  "x": "719718.093",
+  "y": "4336466.585",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "ALCOBENDAS 220": {
+  "codigo": "50015",
+  "ccaa": "Comunidad de Madrid",
+  "x": "444868.763",
+  "y": "4488860.353",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "ALCOCERO DE MOLA 220": {
+  "codigo": "50016",
+  "ccaa": "Castilla y León",
+  "x": "469941.899",
+  "y": "4703847.944",
+  "provincia": "Burgos",
+  "voltage": "220"
+ },
+ "ALCORES 220": {
+  "codigo": "50017",
+  "ccaa": "Andalucía",
+  "x": "247102.082",
+  "y": "4141480.945",
+  "provincia": "Sevilla",
+  "voltage": "220"
+ },
+ "ALCUDIA BALEARES 66": {
+  "codigo": "50018",
+  "ccaa": "Islas Baleares",
+  "x": "1025905.946",
+  "y": "4427684.376",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "ALDAIA 220": {
+  "codigo": "50019",
+  "ccaa": "Comunidad Valenciana",
+  "x": "715008.766",
+  "y": "4369891.929",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "ALDEA BLANCA 66": {
+  "codigo": "50020",
+  "ccaa": "Canarias",
+  "x": "-734075.796",
+  "y": "3143915.263",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "ALDEADAVILA 220": {
+  "codigo": "50021",
+  "ccaa": "Castilla y León",
+  "x": "190926.177",
+  "y": "4568482.234",
+  "provincia": "Salamanca",
+  "voltage": "220"
+ },
+ "ALDEADAVILA 400": {
+  "codigo": "50021",
+  "ccaa": "Castilla y León",
+  "x": "191549.335",
+  "y": "4568392.408",
+  "provincia": "Salamanca",
+  "voltage": "400"
+ },
+ "ALGECIRAS 132": {
+  "codigo": "50022",
+  "ccaa": "Andalucía",
+  "x": "285338.006",
+  "y": "4006958.221",
+  "provincia": "Cádiz",
+  "voltage": "132"
+ },
+ "ALGECIRAS 220": {
+  "codigo": "50022",
+  "ccaa": "Andalucía",
+  "x": "285239.569",
+  "y": "4006926.903",
+  "provincia": "Cádiz",
+  "voltage": "220"
+ },
+ "ALGETE 220": {
+  "codigo": "50023",
+  "ccaa": "Comunidad de Madrid",
+  "x": "453299.458",
+  "y": "4493721.344",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "ALHAURIN 220": {
+  "codigo": "50024",
+  "ccaa": "Andalucía",
+  "x": "359227.116",
+  "y": "4057853.834",
+  "provincia": "Málaga",
+  "voltage": "220"
+ },
+ "ALI 220": {
+  "codigo": "50025",
+  "ccaa": "País Vasco",
+  "x": "523892.732",
+  "y": "4744911.508",
+  "provincia": "Álava",
+  "voltage": "220"
+ },
+ "ALJARAFE 220": {
+  "codigo": "50026",
+  "ccaa": "Andalucía",
+  "x": "225923.172",
+  "y": "4137556.447",
+  "provincia": "Sevilla",
+  "voltage": "220"
+ },
+ "ALMADEN 400": {
+  "codigo": "51411",
+  "ccaa": "Castilla-La Mancha",
+  "x": "339997.945",
+  "y": "4287651.69",
+  "provincia": "Ciudad Real",
+  "voltage": "400"
+ },
+ "ALMARAZ CN 220": {
+  "codigo": "50027",
+  "ccaa": "Extremadura",
+  "x": "269560.162",
+  "y": "4409837.652",
+  "provincia": "Cáceres",
+  "voltage": "220"
+ },
+ "ALMARAZ CN 400": {
+  "codigo": "50027",
+  "ccaa": "Extremadura",
+  "x": "269451.477",
+  "y": "4409890.524",
+  "provincia": "Cáceres",
+  "voltage": "400"
+ },
+ "ALMARAZ E.T. 220": {
+  "codigo": "50028",
+  "ccaa": "Extremadura",
+  "x": "271789.288",
+  "y": "4411268.19",
+  "provincia": "Cáceres",
+  "voltage": "220"
+ },
+ "ALMAZAN 400": {
+  "codigo": "50029",
+  "ccaa": "Castilla y León",
+  "x": "541489.886",
+  "y": "4587556.071",
+  "provincia": "Soria",
+  "voltage": "400"
+ },
+ "ALMENDRALES 400": {
+  "codigo": "51416",
+  "ccaa": "Aragón",
+  "x": "767694.743",
+  "y": "4580904.778",
+  "provincia": "Zaragoza",
+  "voltage": "400"
+ },
+ "ALMODOVAR DEL RIO 220": {
+  "codigo": "50030",
+  "ccaa": "Andalucía",
+  "x": "321982.026",
+  "y": "4180186.761",
+  "provincia": "Córdoba",
+  "voltage": "220"
+ },
+ "ALVARADO 220": {
+  "codigo": "50032",
+  "ccaa": "Extremadura",
+  "x": "169886.863",
+  "y": "4300002.308",
+  "provincia": "Badajoz",
+  "voltage": "220"
+ },
+ "AMOEIRO 220": {
+  "codigo": "50033",
+  "ccaa": "Galicia",
+  "x": "91081.568",
+  "y": "4704860.523",
+  "provincia": "Ourense",
+  "voltage": "220"
+ },
+ "AMOREBIETA 400": {
+  "codigo": "50034",
+  "ccaa": "País Vasco",
+  "x": "520353.886",
+  "y": "4787044.442",
+  "provincia": "Bizkaia",
+  "voltage": "400"
+ },
+ "ANCHUELO 220": {
+  "codigo": "50035",
+  "ccaa": "Comunidad de Madrid",
+  "x": "474836.682",
+  "y": "4479387.537",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "ANCHUELO 400": {
+  "codigo": "50035",
+  "ccaa": "Comunidad de Madrid",
+  "x": "474853.638",
+  "y": "4479387.48",
+  "provincia": "Madrid",
+  "voltage": "400"
+ },
+ "ANDRATX 66": {
+  "codigo": "50036",
+  "ccaa": "Islas Baleares",
+  "x": "966073.68",
+  "y": "4391274.463",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "ANDUJAR 220": {
+  "codigo": "50037",
+  "ccaa": "Andalucía",
+  "x": "412542.472",
+  "y": "4211040.245",
+  "provincia": "Jaén",
+  "voltage": "220"
+ },
+ "ANOIA 220": {
+  "codigo": "50038",
+  "ccaa": "Cataluña",
+  "x": "889116.631",
+  "y": "4613345.051",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "ANTAS 400": {
+  "codigo": "51369",
+  "ccaa": "Andalucía",
+  "x": "595905.202",
+  "y": "4120559.078",
+  "provincia": "Almería",
+  "voltage": "400"
+ },
+ "ANTONIO LEYVA 220": {
+  "codigo": "50039",
+  "ccaa": "Comunidad de Madrid",
+  "x": "439095.279",
+  "y": "4470897.56",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "APARECIDA 400": {
+  "codigo": "50041",
+  "ccaa": "Castilla y León",
+  "x": "180281.661",
+  "y": "4660736.844",
+  "provincia": "Zamora",
+  "voltage": "400"
+ },
+ "AQUA 220": {
+  "codigo": "50704",
+  "ccaa": "Comunidad Valenciana",
+  "x": "727242.413",
+  "y": "4371584.284",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "ARAGON 400": {
+  "codigo": "50042",
+  "ccaa": "Aragón",
+  "x": "728010.886",
+  "y": "4566437.241",
+  "provincia": "Teruel",
+  "voltage": "400"
+ },
+ "ARAVACA 220": {
+  "codigo": "50044",
+  "ccaa": "Comunidad de Madrid",
+  "x": "431655.187",
+  "y": "4479640.184",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "ARAÑUELO 400": {
+  "codigo": "50043",
+  "ccaa": "Extremadura",
+  "x": "278750.211",
+  "y": "4425446.904",
+  "provincia": "Cáceres",
+  "voltage": "400"
+ },
+ "ARBILLERA 220": {
+  "codigo": "50705",
+  "ccaa": "Castilla y León",
+  "x": "206694.701",
+  "y": "4661168.963",
+  "provincia": "Zamora",
+  "voltage": "220"
+ },
+ "ARBILLERA 400": {
+  "codigo": "50705",
+  "ccaa": "Castilla y León",
+  "x": "206711.255",
+  "y": "4661168.276",
+  "provincia": "Zamora",
+  "voltage": "400"
+ },
+ "ARCHIDONA 400": {
+  "codigo": "50045",
+  "ccaa": "Andalucía",
+  "x": "374262.65",
+  "y": "4109156.892",
+  "provincia": "Málaga",
+  "voltage": "400"
+ },
+ "ARCOS DE LA FRONTERA 400": {
+  "codigo": "50046",
+  "ccaa": "Andalucía",
+  "x": "248000.829",
+  "y": "4062127.107",
+  "provincia": "Cádiz",
+  "voltage": "400"
+ },
+ "ARDOZ 220": {
+  "codigo": "50047",
+  "ccaa": "Comunidad de Madrid",
+  "x": "459082.063",
+  "y": "4476954.312",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "ARENAL 66": {
+  "codigo": "50048",
+  "ccaa": "Islas Baleares",
+  "x": "996310.234",
+  "y": "4391136.124",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "ARENAS DE SAN JUAN 220": {
+  "codigo": "50049",
+  "ccaa": "Castilla-La Mancha",
+  "x": "457564.654",
+  "y": "4344043.469",
+  "provincia": "Ciudad Real",
+  "voltage": "220"
+ },
+ "ARGANDA 220": {
+  "codigo": "50050",
+  "ccaa": "Comunidad de Madrid",
+  "x": "460966.994",
+  "y": "4461391.693",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "ARGANZUELA 220": {
+  "codigo": "50051",
+  "ccaa": "Comunidad de Madrid",
+  "x": "438895.378",
+  "y": "4473256.777",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "ARGUINEGUIN 66": {
+  "codigo": "50052",
+  "ccaa": "Canarias",
+  "x": "-755073.297",
+  "y": "3136845.246",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "ARICO2 66": {
+  "codigo": "50053",
+  "ccaa": "Canarias",
+  "x": "-826784.176",
+  "y": "3189330.179",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "ARINAGA 66": {
+  "codigo": "50706",
+  "ccaa": "Canarias",
+  "x": "-726778.676",
+  "y": "3145312.835",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "ARKALE 220": {
+  "codigo": "50054",
+  "ccaa": "País Vasco",
+  "x": "593881.03",
+  "y": "4795382.682",
+  "provincia": "Gipuzkoa",
+  "voltage": "220"
+ },
+ "ARONA 66": {
+  "codigo": "50055",
+  "ccaa": "Canarias",
+  "x": "-847917.804",
+  "y": "3179137.091",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "ARRIGORRIAGA 400": {
+  "codigo": "51448",
+  "ccaa": "País Vasco",
+  "x": "509027.592",
+  "y": "4784026.757",
+  "provincia": "Bizkaia",
+  "voltage": "400"
+ },
+ "ARROYO DE LA VEGA 220": {
+  "codigo": "50056",
+  "ccaa": "Comunidad de Madrid",
+  "x": "449470.072",
+  "y": "4487430.894",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "ARROYO VALLE 220": {
+  "codigo": "50057",
+  "ccaa": "Andalucía",
+  "x": "367914.777",
+  "y": "4228347.727",
+  "provincia": "Córdoba",
+  "voltage": "220"
+ },
+ "ARTA 66": {
+  "codigo": "50058",
+  "ccaa": "Islas Baleares",
+  "x": "1044167.771",
+  "y": "4411653.71",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "ARUCAS 66": {
+  "codigo": "50059",
+  "ccaa": "Canarias",
+  "x": "-736335.612",
+  "y": "3172469.426",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "ASCÓ 220": {
+  "codigo": "50060",
+  "ccaa": "Cataluña",
+  "x": "799410.656",
+  "y": "4567615.039",
+  "provincia": "Tarragona",
+  "voltage": "220"
+ },
+ "ASCÓ 400": {
+  "codigo": "50060",
+  "ccaa": "Cataluña",
+  "x": "799427.428",
+  "y": "4567615.729",
+  "provincia": "Tarragona",
+  "voltage": "400"
+ },
+ "ASOMADA 400": {
+  "codigo": "50061",
+  "ccaa": "Región de Murcia",
+  "x": "679879.306",
+  "y": "4167083.131",
+  "provincia": "Murcia",
+  "voltage": "400"
+ },
+ "ASTILLERO 220": {
+  "codigo": "50062",
+  "ccaa": "Cantabria",
+  "x": "433109.816",
+  "y": "4805112.641",
+  "provincia": "Cantabria",
+  "voltage": "220"
+ },
+ "ATARFE 220": {
+  "codigo": "50063",
+  "ccaa": "Andalucía",
+  "x": "438152.266",
+  "y": "4120064.82",
+  "provincia": "Granada",
+  "voltage": "220"
+ },
+ "ATIOS 220": {
+  "codigo": "50064",
+  "ccaa": "Galicia",
+  "x": "35396.454",
+  "y": "4680388.539",
+  "provincia": "Pontevedra",
+  "voltage": "220"
+ },
+ "AVE ZARAGOZA 220": {
+  "codigo": "50065",
+  "ccaa": "Aragón",
+  "x": "684341.1",
+  "y": "4604413.38",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "AYALA (ALONSOTEGUI) 220": {
+  "codigo": "50031",
+  "ccaa": "País Vasco",
+  "x": "501469.007",
+  "y": "4788250.046",
+  "provincia": "Bizkaia",
+  "voltage": "220"
+ },
+ "AYALA 220": {
+  "codigo": "50066",
+  "ccaa": "País Vasco",
+  "x": "499118.878",
+  "y": "4770084.327",
+  "provincia": "Álava",
+  "voltage": "220"
+ },
+ "AYORA 400": {
+  "codigo": "50067",
+  "ccaa": "Comunidad Valenciana",
+  "x": "672388.515",
+  "y": "4323279.707",
+  "provincia": "Valencia",
+  "voltage": "400"
+ },
+ "AZCA 220": {
+  "codigo": "UFD-50078",
+  "ccaa": "Comunidad de Madrid",
+  "x": "441101.234",
+  "y": "4478227.485",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "AZPEITIA 400": {
+  "codigo": "50068",
+  "ccaa": "País Vasco",
+  "x": "560733.708",
+  "y": "4784759.347",
+  "provincia": "Gipuzkoa",
+  "voltage": "400"
+ },
+ "AÑOVER 220": {
+  "codigo": "50040",
+  "ccaa": "Castilla-La Mancha",
+  "x": "428480.944",
+  "y": "4425979.001",
+  "provincia": "Toledo",
+  "voltage": "220"
+ },
+ "BADALONA 220": {
+  "codigo": "50070",
+  "ccaa": "Cataluña",
+  "x": "937440.268",
+  "y": "4599443.194",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "BALBOA 220": {
+  "codigo": "50071",
+  "ccaa": "Extremadura",
+  "x": "175432.637",
+  "y": "4248443.064",
+  "provincia": "Badajoz",
+  "voltage": "220"
+ },
+ "BALBOA 400": {
+  "codigo": "50071",
+  "ccaa": "Extremadura",
+  "x": "175443.463",
+  "y": "4248324.631",
+  "provincia": "Badajoz",
+  "voltage": "400"
+ },
+ "BALSICAS 220": {
+  "codigo": "50072",
+  "ccaa": "Región de Murcia",
+  "x": "679744.083",
+  "y": "4185291.462",
+  "provincia": "Murcia",
+  "voltage": "220"
+ },
+ "BARATARIA 400": {
+  "codigo": "52078",
+  "ccaa": "Castilla-La Mancha",
+  "x": "497745.487",
+  "y": "4336367.687",
+  "provincia": "Ciudad Real",
+  "voltage": "400"
+ },
+ "BARCINA 400": {
+  "codigo": "50073",
+  "ccaa": "Castilla y León",
+  "x": "482421.66",
+  "y": "4736149.714",
+  "provincia": "Burgos",
+  "voltage": "400"
+ },
+ "BARO DE VIVER 220": {
+  "codigo": "50074",
+  "ccaa": "Cataluña",
+  "x": "934220.51",
+  "y": "4601666.657",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "BARRANCO CALDERINA 66": {
+  "codigo": "51454",
+  "ccaa": "Canarias",
+  "x": "-726275.31",
+  "y": "3170148.684",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "BARRANCO DE TIRAJANA III 220": {
+  "codigo": "50776",
+  "ccaa": "Canarias",
+  "x": "-730615.923",
+  "y": "3138739.684",
+  "provincia": "Las Palmas",
+  "voltage": "220"
+ },
+ "BARRANCO SECO 66": {
+  "codigo": "50075",
+  "ccaa": "Canarias",
+  "x": "-727711.731",
+  "y": "3168723.01",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "BARRANCO TIRAJANA (BARRANCO TIRAJANA B) 220": {
+  "codigo": "50076",
+  "ccaa": "Canarias",
+  "x": "-730601.557",
+  "y": "3139049.163",
+  "provincia": "Las Palmas",
+  "voltage": "220"
+ },
+ "BARRANCO TIRAJANA (BARRANCO TIRAJANA B) 66": {
+  "codigo": "50076",
+  "ccaa": "Canarias",
+  "x": "-734081.556",
+  "y": "3143923.146",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "BARRANCO TIRAJANA 220": {
+  "codigo": "50076",
+  "ccaa": "Canarias",
+  "x": "-730633.649",
+  "y": "3138742.923",
+  "provincia": "Las Palmas",
+  "voltage": "220"
+ },
+ "BARRANCO TIRAJANA 66": {
+  "codigo": "50076",
+  "ccaa": "Canarias",
+  "x": "-730653.613",
+  "y": "3138744.978",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "BARRUNDIA 220": {
+  "codigo": "51418",
+  "ccaa": "País Vasco",
+  "x": "544893.349",
+  "y": "4749051.63",
+  "provincia": "Álava",
+  "voltage": "220"
+ },
+ "BASAURI 220": {
+  "codigo": "50077",
+  "ccaa": "País Vasco",
+  "x": "508541.85",
+  "y": "4785301.264",
+  "provincia": "Bizkaia",
+  "voltage": "220"
+ },
+ "BAZA 400": {
+  "codigo": "52064",
+  "ccaa": "Andalucía",
+  "x": "522310.635",
+  "y": "4156905.696",
+  "provincia": "Granada",
+  "voltage": "400"
+ },
+ "BEARIZ 400": {
+  "codigo": "50708",
+  "ccaa": "Galicia",
+  "x": "68563.045",
+  "y": "4717478.873",
+  "provincia": "Ourense",
+  "voltage": "400"
+ },
+ "BECHI 220": {
+  "codigo": "50078",
+  "ccaa": "Comunidad Valenciana",
+  "x": "741146.021",
+  "y": "4423576.994",
+  "provincia": "Castellón",
+  "voltage": "220"
+ },
+ "BEGOÑA 220": {
+  "codigo": "52082",
+  "ccaa": "Comunidad de Madrid",
+  "x": "442426.466",
+  "y": "4481471.351",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "BEGUES (BEGUES B) 220": {
+  "codigo": "50079",
+  "ccaa": "Cataluña",
+  "x": "910191.415",
+  "y": "4589860.122",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "BEGUES 220": {
+  "codigo": "50079",
+  "ccaa": "Cataluña",
+  "x": "910111.267",
+  "y": "4589818.65",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "BEGUES 400": {
+  "codigo": "50079",
+  "ccaa": "Cataluña",
+  "x": "910128.005",
+  "y": "4589819.599",
+  "provincia": "Barcelona",
+  "voltage": "400"
+ },
+ "BELESAR 220": {
+  "codigo": "50080",
+  "ccaa": "Galicia",
+  "x": "113453.277",
+  "y": "4730077.651",
+  "provincia": "Lugo",
+  "voltage": "220"
+ },
+ "BELGIDA 220": {
+  "codigo": "52086",
+  "ccaa": "Comunidad Valenciana",
+  "x": "725856.365",
+  "y": "4286766.105",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "BELINCHON 400": {
+  "codigo": "50081",
+  "ccaa": "Castilla-La Mancha",
+  "x": "493273.476",
+  "y": "4431568.891",
+  "provincia": "Cuenca",
+  "voltage": "400"
+ },
+ "BELLICENS 220": {
+  "codigo": "50082",
+  "ccaa": "Cataluña",
+  "x": "849591.42",
+  "y": "4559926.427",
+  "provincia": "Tarragona",
+  "voltage": "220"
+ },
+ "BENADRESA 220": {
+  "codigo": "50083",
+  "ccaa": "Comunidad Valenciana",
+  "x": "748742.184",
+  "y": "4432243.528",
+  "provincia": "Castellón",
+  "voltage": "220"
+ },
+ "BENAHADUX 220": {
+  "codigo": "50084",
+  "ccaa": "Andalucía",
+  "x": "547561.554",
+  "y": "4084899.757",
+  "provincia": "Almería",
+  "voltage": "220"
+ },
+ "BENAHAVIS 220": {
+  "codigo": "50709",
+  "ccaa": "Andalucía",
+  "x": "316579.877",
+  "y": "4043006.571",
+  "provincia": "Málaga",
+  "voltage": "220"
+ },
+ "BENEJAMA 220": {
+  "codigo": "50085",
+  "ccaa": "Comunidad Valenciana",
+  "x": "697953.165",
+  "y": "4288070.528",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "BENEJAMA 400": {
+  "codigo": "50085",
+  "ccaa": "Comunidad Valenciana",
+  "x": "697970.555",
+  "y": "4288070.96",
+  "provincia": "Alicante",
+  "voltage": "400"
+ },
+ "BENICULL 220": {
+  "codigo": "50086",
+  "ccaa": "Comunidad Valenciana",
+  "x": "724349.819",
+  "y": "4340502.974",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "BENIFERRI 220": {
+  "codigo": "50087",
+  "ccaa": "Comunidad Valenciana",
+  "x": "722826",
+  "y": "4374860",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "BERJA 220": {
+  "codigo": "50089",
+  "ccaa": "Andalucía",
+  "x": "507127.584",
+  "y": "4076485.728",
+  "provincia": "Almería",
+  "voltage": "220"
+ },
+ "BERNAT 220": {
+  "codigo": "50090",
+  "ccaa": "Comunidad Valenciana",
+  "x": "719552.045",
+  "y": "4336415.72",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "BESCANO 220": {
+  "codigo": "50091",
+  "ccaa": "Cataluña",
+  "x": "971969.67",
+  "y": "4662454.631",
+  "provincia": "Girona",
+  "voltage": "220"
+ },
+ "BESCANO 400": {
+  "codigo": "50091",
+  "ccaa": "Cataluña",
+  "x": "971986.249",
+  "y": "4662455.736",
+  "provincia": "Girona",
+  "voltage": "400"
+ },
+ "BESOS NUEVO 220": {
+  "codigo": "50092",
+  "ccaa": "Cataluña",
+  "x": "936969.389",
+  "y": "4598613.246",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "BIENVENIDA 400": {
+  "codigo": "50093",
+  "ccaa": "Extremadura",
+  "x": "220416.292",
+  "y": "4245860.373",
+  "provincia": "Badajoz",
+  "voltage": "400"
+ },
+ "BIESCAS 220": {
+  "codigo": "50094",
+  "ccaa": "Aragón",
+  "x": "720116.359",
+  "y": "4723045.117",
+  "provincia": "Huesca",
+  "voltage": "220"
+ },
+ "BIT 66": {
+  "codigo": "50095",
+  "ccaa": "Islas Baleares",
+  "x": "984762.407",
+  "y": "4402297.601",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "BOADILLA 220": {
+  "codigo": "50096",
+  "ccaa": "Comunidad de Madrid",
+  "x": "422874.608",
+  "y": "4473403.711",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "BOIMENTE 400": {
+  "codigo": "50097",
+  "ccaa": "Galicia",
+  "x": "132394.319",
+  "y": "4836335.426",
+  "provincia": "Lugo",
+  "voltage": "400"
+ },
+ "BOLARQUE 220": {
+  "codigo": "50098",
+  "ccaa": "Castilla-La Mancha",
+  "x": "514417.222",
+  "y": "4468252.603",
+  "provincia": "Guadalajara",
+  "voltage": "220"
+ },
+ "BOSSA 132": {
+  "codigo": "50099",
+  "ccaa": "Islas Baleares",
+  "x": "881656.561",
+  "y": "4313694.181",
+  "provincia": "Islas Baleares",
+  "voltage": "132"
+ },
+ "BRAZATORTAS 220": {
+  "codigo": "50100",
+  "ccaa": "Castilla-La Mancha",
+  "x": "390851.298",
+  "y": "4278891.119",
+  "provincia": "Ciudad Real",
+  "voltage": "220"
+ },
+ "BRAZATORTAS 400": {
+  "codigo": "50100",
+  "ccaa": "Castilla-La Mancha",
+  "x": "390917.767",
+  "y": "4279022.16",
+  "provincia": "Ciudad Real",
+  "voltage": "400"
+ },
+ "BROVALES 220": {
+  "codigo": "50101",
+  "ccaa": "Extremadura",
+  "x": "176200.436",
+  "y": "4247961.372",
+  "provincia": "Badajoz",
+  "voltage": "220"
+ },
+ "BROVALES 400": {
+  "codigo": "50101",
+  "ccaa": "Extremadura",
+  "x": "176288.75",
+  "y": "4247844.664",
+  "provincia": "Badajoz",
+  "voltage": "400"
+ },
+ "BUDIA (YELAMOS) 400": {
+  "codigo": "51449",
+  "ccaa": "Castilla-La Mancha",
+  "x": "520494.353",
+  "y": "4497416.828",
+  "provincia": "Guadalajara",
+  "voltage": "400"
+ },
+ "BUENAVISTA 220": {
+  "codigo": "50102",
+  "ccaa": "Comunidad de Madrid",
+  "x": "436212.176",
+  "y": "4462487.496",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "BUENAVISTA GC 66": {
+  "codigo": "50103",
+  "ccaa": "Canarias",
+  "x": "-726826.563",
+  "y": "3174187.168",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "BUENOS AIRES 220": {
+  "codigo": "50104",
+  "ccaa": "Canarias",
+  "x": "-805476.941",
+  "y": "3220457.737",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "220"
+ },
+ "BUENOS AIRES 66": {
+  "codigo": "50104",
+  "ccaa": "Canarias",
+  "x": "-805496.81",
+  "y": "3220459.97",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "BUNIEL 400": {
+  "codigo": "50710",
+  "ccaa": "Castilla y León",
+  "x": "432402.6",
+  "y": "4685892.481",
+  "provincia": "Burgos",
+  "voltage": "400"
+ },
+ "BUNYOLA 66": {
+  "codigo": "50105",
+  "ccaa": "Islas Baleares",
+  "x": "989265.837",
+  "y": "4408317.102",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "CA'S TRESORER 220": {
+  "codigo": "50137",
+  "ccaa": "Islas Baleares",
+  "x": "988687.266",
+  "y": "4395138.73",
+  "provincia": "Islas Baleares",
+  "voltage": "220"
+ },
+ "CA'S TRESORER 66": {
+  "codigo": "50137",
+  "ccaa": "Islas Baleares",
+  "x": "988695.226",
+  "y": "4395139.818",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "CABRA 400": {
+  "codigo": "50106",
+  "ccaa": "Andalucía",
+  "x": "367935.33",
+  "y": "4146837.827",
+  "provincia": "Córdoba",
+  "voltage": "400"
+ },
+ "CACERES 220": {
+  "codigo": "50107",
+  "ccaa": "Extremadura",
+  "x": "211182.388",
+  "y": "4375376.82",
+  "provincia": "Cáceres",
+  "voltage": "220"
+ },
+ "CACICEDO 220": {
+  "codigo": "50108",
+  "ccaa": "Cantabria",
+  "x": "429824.786",
+  "y": "4809611.975",
+  "provincia": "Cantabria",
+  "voltage": "220"
+ },
+ "CALA BLAVA 66": {
+  "codigo": "50711",
+  "ccaa": "Islas Baleares",
+  "x": "1000855.717",
+  "y": "4378413.359",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "CALA MESQUIDA 132": {
+  "codigo": "50110",
+  "ccaa": "Islas Baleares",
+  "x": "1050916.229",
+  "y": "4418575.775",
+  "provincia": "Islas Baleares",
+  "voltage": "132"
+ },
+ "CALA MILLOR 66": {
+  "codigo": "50111",
+  "ccaa": "Islas Baleares",
+  "x": "1046669.006",
+  "y": "4400907.914",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "CALAMOCHA 220": {
+  "codigo": "50112",
+  "ccaa": "Aragón",
+  "x": "644340.165",
+  "y": "4530687.824",
+  "provincia": "Teruel",
+  "voltage": "220"
+ },
+ "CALATORAO 220": {
+  "codigo": "51427",
+  "ccaa": "Aragón",
+  "x": "638656.992",
+  "y": "4597544.648",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "CALDERS 400": {
+  "codigo": "50113",
+  "ccaa": "Cataluña",
+  "x": "910253.652",
+  "y": "4635655.737",
+  "provincia": "Barcelona",
+  "voltage": "400"
+ },
+ "CALERA Y CHOZAS 220": {
+  "codigo": "52089",
+  "ccaa": "Castilla-La Mancha",
+  "x": "344458.306",
+  "y": "4429682.169",
+  "provincia": "Toledo",
+  "voltage": "220"
+ },
+ "CALETILLAS 220": {
+  "codigo": "50712",
+  "ccaa": "Canarias",
+  "x": "-815504.597",
+  "y": "3213468.419",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "220"
+ },
+ "CALLEJONES 66": {
+  "codigo": "50713",
+  "ccaa": "Canarias",
+  "x": "-535675.644",
+  "y": "3253545.619",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "CALVIA 66": {
+  "codigo": "50114",
+  "ccaa": "Islas Baleares",
+  "x": "973478.371",
+  "y": "4389725.888",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "CAMARENA 220": {
+  "codigo": "51439",
+  "ccaa": "Castilla-La Mancha",
+  "x": "407747.089",
+  "y": "4443622.103",
+  "provincia": "Toledo",
+  "voltage": "220"
+ },
+ "CAMARENA 400": {
+  "codigo": "51439",
+  "ccaa": "Castilla-La Mancha",
+  "x": "407764.127",
+  "y": "4443621.895",
+  "provincia": "Toledo",
+  "voltage": "400"
+ },
+ "CAMINO FREGACEDOS 220": {
+  "codigo": "50115",
+  "ccaa": "Comunidad de Madrid",
+  "x": "430562.348",
+  "y": "4460435.521",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "CAMPANARIO 400": {
+  "codigo": "50116",
+  "ccaa": "Castilla-La Mancha",
+  "x": "649334.059",
+  "y": "4305202.59",
+  "provincia": "Albacete",
+  "voltage": "400"
+ },
+ "CAMPO NACIONES 220": {
+  "codigo": "50779",
+  "ccaa": "Comunidad de Madrid",
+  "x": "447305.551",
+  "y": "4479496.882",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "CAMPOAMOR 220": {
+  "codigo": "50117",
+  "ccaa": "Comunidad Valenciana",
+  "x": "694830.185",
+  "y": "4197833.885",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "CAMPOS 400": {
+  "codigo": "51339",
+  "ccaa": "Región de Murcia",
+  "x": "640988.291",
+  "y": "4213910.415",
+  "provincia": "Murcia",
+  "voltage": "400"
+ },
+ "CAN BARBA 400": {
+  "codigo": "50118",
+  "ccaa": "Cataluña",
+  "x": "921769.711",
+  "y": "4612446.2",
+  "provincia": "Barcelona",
+  "voltage": "400"
+ },
+ "CAN JARDI (CAN JARDI B) 220": {
+  "codigo": "50119",
+  "ccaa": "Cataluña",
+  "x": "919579.332",
+  "y": "4603587.525",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "CAN JARDI 220": {
+  "codigo": "50119",
+  "ccaa": "Cataluña",
+  "x": "919483.42",
+  "y": "4603721.105",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "CAN JARDI 400": {
+  "codigo": "50119",
+  "ccaa": "Cataluña",
+  "x": "919474.77",
+  "y": "4603708.207",
+  "provincia": "Barcelona",
+  "voltage": "400"
+ },
+ "CAN PICAFORT 66": {
+  "codigo": "50120",
+  "ccaa": "Islas Baleares",
+  "x": "1027592.555",
+  "y": "4417882.454",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "CANDELARIA (CANDELARIA B) 66": {
+  "codigo": "50122",
+  "ccaa": "Canarias",
+  "x": "-815327.158",
+  "y": "3213286.575",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "CANDELARIA 220": {
+  "codigo": "50122",
+  "ccaa": "Canarias",
+  "x": "-815317.214",
+  "y": "3213285.453",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "220"
+ },
+ "CANDELARIA 66": {
+  "codigo": "50122",
+  "ccaa": "Canarias",
+  "x": "-815337.103",
+  "y": "3213287.698",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "CANILLEJAS 220": {
+  "codigo": "50123",
+  "ccaa": "Comunidad de Madrid",
+  "x": "447863.817",
+  "y": "4476178.809",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "CANYET 220": {
+  "codigo": "50124",
+  "ccaa": "Cataluña",
+  "x": "937194.882",
+  "y": "4603746.024",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "CAPARACENA 220": {
+  "codigo": "50126",
+  "ccaa": "Andalucía",
+  "x": "435597.344",
+  "y": "4124828.838",
+  "provincia": "Granada",
+  "voltage": "220"
+ },
+ "CAPARACENA 400": {
+  "codigo": "50126",
+  "ccaa": "Andalucía",
+  "x": "435683.765",
+  "y": "4124736.807",
+  "provincia": "Granada",
+  "voltage": "400"
+ },
+ "CAPDEPERA 66": {
+  "codigo": "50127",
+  "ccaa": "Islas Baleares",
+  "x": "1050401.775",
+  "y": "4413938.493",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "CARDOSO 220": {
+  "codigo": "50733",
+  "ccaa": "Principado de Asturias",
+  "x": "270118.796",
+  "y": "4827779.074",
+  "provincia": "Asturias",
+  "voltage": "220"
+ },
+ "CARDOSO 400": {
+  "codigo": "50733",
+  "ccaa": "Principado de Asturias",
+  "x": "270134.947",
+  "y": "4827778.52",
+  "provincia": "Asturias",
+  "voltage": "400"
+ },
+ "CARIÑENA 400": {
+  "codigo": "51267",
+  "ccaa": "Aragón",
+  "x": "648288.824",
+  "y": "4576104.217",
+  "provincia": "Zaragoza",
+  "voltage": "400"
+ },
+ "CARMONA 220": {
+  "codigo": "50128",
+  "ccaa": "Andalucía",
+  "x": "256281.454",
+  "y": "4160266.149",
+  "provincia": "Sevilla",
+  "voltage": "220"
+ },
+ "CARMONA 400": {
+  "codigo": "50128",
+  "ccaa": "Andalucía",
+  "x": "256299.123",
+  "y": "4160265.63",
+  "provincia": "Sevilla",
+  "voltage": "400"
+ },
+ "CARMONITA 400": {
+  "codigo": "50716",
+  "ccaa": "Extremadura",
+  "x": "208570.801",
+  "y": "4332727.183",
+  "provincia": "Badajoz",
+  "voltage": "400"
+ },
+ "CARRIL 400": {
+  "codigo": "50129",
+  "ccaa": "Región de Murcia",
+  "x": "613361.735",
+  "y": "4144118.676",
+  "provincia": "Murcia",
+  "voltage": "400"
+ },
+ "CARRIO 220": {
+  "codigo": "50130",
+  "ccaa": "Principado de Asturias",
+  "x": "279604.346",
+  "y": "4826201.283",
+  "provincia": "Asturias",
+  "voltage": "220"
+ },
+ "CARRIZAL 66": {
+  "codigo": "50131",
+  "ccaa": "Canarias",
+  "x": "-727888.197",
+  "y": "3150630.343",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "CARROYUELAS 220": {
+  "codigo": "50132",
+  "ccaa": "Castilla-La Mancha",
+  "x": "450042.979",
+  "y": "4370687.806",
+  "provincia": "Toledo",
+  "voltage": "220"
+ },
+ "CARTAMA 220": {
+  "codigo": "50133",
+  "ccaa": "Andalucía",
+  "x": "356689.728",
+  "y": "4068440.037",
+  "provincia": "Málaga",
+  "voltage": "220"
+ },
+ "CARTAMA 400": {
+  "codigo": "50133",
+  "ccaa": "Andalucía",
+  "x": "356707.583",
+  "y": "4068439.738",
+  "provincia": "Málaga",
+  "voltage": "400"
+ },
+ "CARTELLE 220": {
+  "codigo": "50134",
+  "ccaa": "Galicia",
+  "x": "82803.484",
+  "y": "4690636.479",
+  "provincia": "Ourense",
+  "voltage": "220"
+ },
+ "CARTELLE 400": {
+  "codigo": "50134",
+  "ccaa": "Galicia",
+  "x": "82819.987",
+  "y": "4690635.497",
+  "provincia": "Ourense",
+  "voltage": "400"
+ },
+ "CARTUJA 220": {
+  "codigo": "50135",
+  "ccaa": "Andalucía",
+  "x": "220971.442",
+  "y": "4057083.278",
+  "provincia": "Cádiz",
+  "voltage": "220"
+ },
+ "CARTUJOS 220": {
+  "codigo": "50136",
+  "ccaa": "Aragón",
+  "x": "679821.051",
+  "y": "4606481.574",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "CASA DE CAMPO 220": {
+  "codigo": "50138",
+  "ccaa": "Comunidad de Madrid",
+  "x": "437056.876",
+  "y": "4476207.038",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "CASAQUEMADA 220": {
+  "codigo": "50139",
+  "ccaa": "Andalucía",
+  "x": "211024.854",
+  "y": "4148748.839",
+  "provincia": "Sevilla",
+  "voltage": "220"
+ },
+ "CASATEJADA 220": {
+  "codigo": "50140",
+  "ccaa": "Extremadura",
+  "x": "269132.932",
+  "y": "4428467.144",
+  "provincia": "Cáceres",
+  "voltage": "220"
+ },
+ "CASILLAS 220": {
+  "codigo": "50141",
+  "ccaa": "Andalucía",
+  "x": "340535.399",
+  "y": "4191597.83",
+  "provincia": "Córdoba",
+  "voltage": "220"
+ },
+ "CASTALLA 220": {
+  "codigo": "50717",
+  "ccaa": "Comunidad Valenciana",
+  "x": "702480",
+  "y": "4275376",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "CASTEJON 400": {
+  "codigo": "50142",
+  "ccaa": "Comunidad Foral de Navarra",
+  "x": "609376.747",
+  "y": "4669599.774",
+  "provincia": "Navarra",
+  "voltage": "400"
+ },
+ "CASTELLAR DE LA FRONTERA 400": {
+  "codigo": "51414",
+  "ccaa": "Andalucía",
+  "x": "284629.693",
+  "y": "4020503.891",
+  "provincia": "Cádiz",
+  "voltage": "400"
+ },
+ "CASTELLBISBAL 220": {
+  "codigo": "50143",
+  "ccaa": "Cataluña",
+  "x": "916566.849",
+  "y": "4600232.121",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "CASTELLET 220": {
+  "codigo": "50144",
+  "ccaa": "Cataluña",
+  "x": "883874.729",
+  "y": "4577302.3",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "CASTELLON C.T. 400": {
+  "codigo": "50718",
+  "ccaa": "Comunidad Valenciana",
+  "x": "756027.634",
+  "y": "4427463.491",
+  "provincia": "Castellón",
+  "voltage": "400"
+ },
+ "CASTRELO 220": {
+  "codigo": "50145",
+  "ccaa": "Galicia",
+  "x": "78415.775",
+  "y": "4694787.807",
+  "provincia": "Ourense",
+  "voltage": "220"
+ },
+ "CATADAU 220": {
+  "codigo": "50146",
+  "ccaa": "Comunidad Valenciana",
+  "x": "710415.54",
+  "y": "4347449.842",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "CATADAU 400": {
+  "codigo": "50146",
+  "ccaa": "Comunidad Valenciana",
+  "x": "710432.801",
+  "y": "4347450.307",
+  "provincia": "Valencia",
+  "voltage": "400"
+ },
+ "CAÑADA DE LA BARCA 132": {
+  "codigo": "50714",
+  "ccaa": "Canarias",
+  "x": "-612256.272",
+  "y": "3162811.262",
+  "provincia": "Las Palmas",
+  "voltage": "132"
+ },
+ "CAÑAVERAL 400": {
+  "codigo": "50715",
+  "ccaa": "Extremadura",
+  "x": "212236.979",
+  "y": "4410856.589",
+  "provincia": "Cáceres",
+  "voltage": "400"
+ },
+ "CAÑUELO 220": {
+  "codigo": "50125",
+  "ccaa": "Andalucía",
+  "x": "279527",
+  "y": "4010429",
+  "provincia": "Cádiz",
+  "voltage": "220"
+ },
+ "CEDILLO 400": {
+  "codigo": "50147",
+  "ccaa": "Extremadura",
+  "x": "111078.937",
+  "y": "4400327.849",
+  "provincia": "Cáceres",
+  "voltage": "400"
+ },
+ "CENTELLES 220": {
+  "codigo": "50148",
+  "ccaa": "Cataluña",
+  "x": "933024.617",
+  "y": "4641620.127",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "CENTENARIO 220": {
+  "codigo": "50149",
+  "ccaa": "Andalucía",
+  "x": "233319.286",
+  "y": "4142594.919",
+  "provincia": "Sevilla",
+  "voltage": "220"
+ },
+ "CERCS 220": {
+  "codigo": "50151",
+  "ccaa": "Cataluña",
+  "x": "901023.804",
+  "y": "4680549.731",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "CERDA 220": {
+  "codigo": "50719",
+  "ccaa": "Cataluña",
+  "x": "929964.108",
+  "y": "4589598.006",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "CERRATO 400": {
+  "codigo": "50152",
+  "ccaa": "Castilla y León",
+  "x": "385345.884",
+  "y": "4638367.15",
+  "provincia": "Palencia",
+  "voltage": "400"
+ },
+ "CERRO PLATA 220": {
+  "codigo": "50153",
+  "ccaa": "Comunidad de Madrid",
+  "x": "442213.992",
+  "y": "4472372.815",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "CERVELLO 220": {
+  "codigo": "50154",
+  "ccaa": "Cataluña",
+  "x": "917072.496",
+  "y": "4595854.055",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "CHANTADA 220": {
+  "codigo": "50155",
+  "ccaa": "Galicia",
+  "x": "108925.536",
+  "y": "4730245.743",
+  "provincia": "Lugo",
+  "voltage": "220"
+ },
+ "CHAYOFA 66": {
+  "codigo": "50156",
+  "ccaa": "Canarias",
+  "x": "-853238.436",
+  "y": "3182083.53",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "CHIO 66": {
+  "codigo": "50720",
+  "ccaa": "Canarias",
+  "x": "-861774.002",
+  "y": "3200251.321",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "CHUCENA 220": {
+  "codigo": "50721",
+  "ccaa": "Andalucía",
+  "x": "200108.271",
+  "y": "4138187.175",
+  "provincia": "Huelva",
+  "voltage": "220"
+ },
+ "CICERO 220": {
+  "codigo": "50157",
+  "ccaa": "Cantabria",
+  "x": "457596.623",
+  "y": "4804578.042",
+  "provincia": "Cantabria",
+  "voltage": "220"
+ },
+ "CILLAMAYOR 220": {
+  "codigo": "50158",
+  "ccaa": "Castilla y León",
+  "x": "397096.694",
+  "y": "4747149.715",
+  "provincia": "Palencia",
+  "voltage": "220"
+ },
+ "CINCA 220": {
+  "codigo": "50159",
+  "ccaa": "Aragón",
+  "x": "764857.104",
+  "y": "4646286.804",
+  "provincia": "Huesca",
+  "voltage": "220"
+ },
+ "CINSA 66": {
+  "codigo": "50160",
+  "ccaa": "Canarias",
+  "x": "-723154.448",
+  "y": "3157417.693",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "CISNEROS 220": {
+  "codigo": "50722",
+  "ccaa": "Comunidad de Madrid",
+  "x": "475271.197",
+  "y": "4486196.868",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "CIUDAD DEPORTIVA 220": {
+  "codigo": "50161",
+  "ccaa": "Comunidad de Madrid",
+  "x": "447376.978",
+  "y": "4480676.792",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "CIUDAD RODRIGO 400": {
+  "codigo": "50796",
+  "ccaa": "Castilla y León",
+  "x": "199688.548",
+  "y": "4505114.761",
+  "provincia": "Salamanca",
+  "voltage": "400"
+ },
+ "CIUDADELA 132": {
+  "codigo": "50162",
+  "ccaa": "Islas Baleares",
+  "x": "1085368.085",
+  "y": "4450709.15",
+  "provincia": "Islas Baleares",
+  "voltage": "132"
+ },
+ "CODONYERS 220": {
+  "codigo": "50163",
+  "ccaa": "Cataluña",
+  "x": "925787.685",
+  "y": "4604387.35",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "COFRENTES 400": {
+  "codigo": "50164",
+  "ccaa": "Comunidad Valenciana",
+  "x": "667981.612",
+  "y": "4342351.5",
+  "provincia": "Valencia",
+  "voltage": "400"
+ },
+ "COLISEO 66": {
+  "codigo": "50165",
+  "ccaa": "Islas Baleares",
+  "x": "985744.057",
+  "y": "4396868.697",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "COLLBLANC 220": {
+  "codigo": "50166",
+  "ccaa": "Cataluña",
+  "x": "926952.611",
+  "y": "4593244.494",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "COMPLUTUM 220": {
+  "codigo": "50703",
+  "ccaa": "Comunidad de Madrid",
+  "x": "467150.567",
+  "y": "4480255.701",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "COMPOSTILLA 220": {
+  "codigo": "50168",
+  "ccaa": "Castilla y León",
+  "x": "207485.697",
+  "y": "4724066.364",
+  "provincia": "León",
+  "voltage": "220"
+ },
+ "COMPOSTILLA 400": {
+  "codigo": "50168",
+  "ccaa": "Castilla y León",
+  "x": "207302.768",
+  "y": "4723467.641",
+  "provincia": "León",
+  "voltage": "400"
+ },
+ "CONSO 220": {
+  "codigo": "50170",
+  "ccaa": "Galicia",
+  "x": "155281.009",
+  "y": "4677054.036",
+  "provincia": "Ourense",
+  "voltage": "220"
+ },
+ "CONSTANTI 220": {
+  "codigo": "50171",
+  "ccaa": "Cataluña",
+  "x": "854645.004",
+  "y": "4562434.233",
+  "provincia": "Tarragona",
+  "voltage": "220"
+ },
+ "CORDOVILLA 220": {
+  "codigo": "50172",
+  "ccaa": "Comunidad Foral de Navarra",
+  "x": "611627.039",
+  "y": "4737999.389",
+  "provincia": "Navarra",
+  "voltage": "220"
+ },
+ "CORNATEL 220": {
+  "codigo": "50173",
+  "ccaa": "Galicia",
+  "x": "186394.133",
+  "y": "4709084.087",
+  "provincia": "Ourense",
+  "voltage": "220"
+ },
+ "CORRALEJO 66": {
+  "codigo": "50174",
+  "ccaa": "Canarias",
+  "x": "-565826.133",
+  "y": "3225239.215",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "COSCURITA 220": {
+  "codigo": "51450",
+  "ccaa": "Castilla y León",
+  "x": "540808.685",
+  "y": "4593632.191",
+  "provincia": "Soria",
+  "voltage": "220"
+ },
+ "COSLADA (COSLADA B) 220": {
+  "codigo": "50175",
+  "ccaa": "Comunidad de Madrid",
+  "x": "451166.23",
+  "y": "4474816.559",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "COSLADA 220": {
+  "codigo": "50175",
+  "ccaa": "Comunidad de Madrid",
+  "x": "451166.23",
+  "y": "4474816.559",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "COSTA DE LA LUZ 220": {
+  "codigo": "50176",
+  "ccaa": "Andalucía",
+  "x": "127045.258",
+  "y": "4137252.773",
+  "provincia": "Huelva",
+  "voltage": "220"
+ },
+ "COSTASOL 220": {
+  "codigo": "50177",
+  "ccaa": "Andalucía",
+  "x": "333502.896",
+  "y": "4043571.81",
+  "provincia": "Málaga",
+  "voltage": "220"
+ },
+ "COTORROS 400": {
+  "codigo": "51447",
+  "ccaa": "Castilla y León",
+  "x": "435708.222",
+  "y": "4687943.573",
+  "provincia": "Burgos",
+  "voltage": "400"
+ },
+ "CRISTOBAL COLON 220": {
+  "codigo": "50178",
+  "ccaa": "Andalucía",
+  "x": "150006.459",
+  "y": "4126239.014",
+  "provincia": "Huelva",
+  "voltage": "220"
+ },
+ "CUESTA DE LA VILLA 66": {
+  "codigo": "50179",
+  "ccaa": "Canarias",
+  "x": "-828811.274",
+  "y": "3218969.825",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "DAGANZO 220": {
+  "codigo": "50180",
+  "ccaa": "Comunidad de Madrid",
+  "x": "459477.309",
+  "y": "4489370.604",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "DIQUE DEL ESTE 66": {
+  "codigo": "50181",
+  "ccaa": "Canarias",
+  "x": "-798561.259",
+  "y": "3224696.406",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "DON ALVARO 400": {
+  "codigo": "51301",
+  "ccaa": "Extremadura",
+  "x": "212571.284",
+  "y": "4307718.949",
+  "provincia": "Badajoz",
+  "voltage": "400"
+ },
+ "DON RODRIGO (DON RODRIGO B) 220": {
+  "codigo": "50182",
+  "ccaa": "Andalucía",
+  "x": "247890.995",
+  "y": "4125882.469",
+  "provincia": "Sevilla",
+  "voltage": "220"
+ },
+ "DON RODRIGO 220": {
+  "codigo": "50182",
+  "ccaa": "Andalucía",
+  "x": "247880.624",
+  "y": "4125886.853",
+  "provincia": "Sevilla",
+  "voltage": "220"
+ },
+ "DON RODRIGO 400": {
+  "codigo": "50182",
+  "ccaa": "Andalucía",
+  "x": "247865.72",
+  "y": "4125893.291",
+  "provincia": "Sevilla",
+  "voltage": "400"
+ },
+ "DOS HERMANAS 220": {
+  "codigo": "50183",
+  "ccaa": "Andalucía",
+  "x": "242433.472",
+  "y": "4131959.221",
+  "provincia": "Sevilla",
+  "voltage": "220"
+ },
+ "DRAGO 66": {
+  "codigo": "50774",
+  "ccaa": "Canarias",
+  "x": "-852109.553",
+  "y": "3213502.076",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "DRAGONERA 132": {
+  "codigo": "50184",
+  "ccaa": "Islas Baleares",
+  "x": "1118987.261",
+  "y": "4440800.075",
+  "provincia": "Islas Baleares",
+  "voltage": "132"
+ },
+ "EBORA 220": {
+  "codigo": "50185",
+  "ccaa": "Castilla-La Mancha",
+  "x": "347312.643",
+  "y": "4425337.884",
+  "provincia": "Toledo",
+  "voltage": "220"
+ },
+ "EIRIS 220": {
+  "codigo": "50189",
+  "ccaa": "Galicia",
+  "x": "62449.506",
+  "y": "4813075.517",
+  "provincia": "A Coruña",
+  "voltage": "220"
+ },
+ "EIXAMPLE 220": {
+  "codigo": "50190",
+  "ccaa": "Cataluña",
+  "x": "932124.938",
+  "y": "4597047.449",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "EL CANTALAR 220": {
+  "codigo": "50191",
+  "ccaa": "Comunidad Valenciana",
+  "x": "725171.616",
+  "y": "4256068.23",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "EL CERRO 220": {
+  "codigo": "50192",
+  "ccaa": "Castilla y León",
+  "x": "446822.279",
+  "y": "4731409.267",
+  "provincia": "Burgos",
+  "voltage": "220"
+ },
+ "EL CONDADO 220": {
+  "codigo": "51403",
+  "ccaa": "Andalucía",
+  "x": "155291.439",
+  "y": "4122432.151",
+  "provincia": "Huelva",
+  "voltage": "220"
+ },
+ "EL COTO 220": {
+  "codigo": "UFD-50222",
+  "ccaa": "Comunidad de Madrid",
+  "x": "445438.539",
+  "y": "4477943.707",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "EL EMPERADOR 220": {
+  "codigo": "50193",
+  "ccaa": "Castilla-La Mancha",
+  "x": "424851.348",
+  "y": "4354948.419",
+  "provincia": "Toledo",
+  "voltage": "220"
+ },
+ "EL MORELL 220": {
+  "codigo": "50194",
+  "ccaa": "Cataluña",
+  "x": "854290.656",
+  "y": "4569822.88",
+  "provincia": "Tarragona",
+  "voltage": "220"
+ },
+ "EL PALMAR 220": {
+  "codigo": "50195",
+  "ccaa": "Región de Murcia",
+  "x": "659193.284",
+  "y": "4200791.021",
+  "provincia": "Murcia",
+  "voltage": "220"
+ },
+ "EL PALMAR 400": {
+  "codigo": "50195",
+  "ccaa": "Región de Murcia",
+  "x": "659210.859",
+  "y": "4200791.362",
+  "provincia": "Murcia",
+  "voltage": "400"
+ },
+ "EL PALMAR DE LA GOMERA 66": {
+  "codigo": "50725",
+  "ccaa": "Canarias",
+  "x": "-894597.459",
+  "y": "3188818.441",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "EL PALMERAL 220": {
+  "codigo": "50196",
+  "ccaa": "Comunidad Valenciana",
+  "x": "716831.687",
+  "y": "4245200.645",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "EL PALO 400": {
+  "codigo": "50197",
+  "ccaa": "Principado de Asturias",
+  "x": "201610.371",
+  "y": "4797398.168",
+  "provincia": "Asturias",
+  "voltage": "400"
+ },
+ "EL PETREL 220": {
+  "codigo": "50198",
+  "ccaa": "Comunidad Valenciana",
+  "x": "693559.185",
+  "y": "4256838.496",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "EL PILAR 220": {
+  "codigo": "50443",
+  "ccaa": "Comunidad de Madrid",
+  "x": "440604.624",
+  "y": "4480586.824",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "EL ROSARIO 220": {
+  "codigo": "50726",
+  "ccaa": "Canarias",
+  "x": "-812670.605",
+  "y": "3220782.597",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "220"
+ },
+ "EL ROSARIO 66": {
+  "codigo": "50726",
+  "ccaa": "Canarias",
+  "x": "-812690.479",
+  "y": "3220784.842",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "EL SEQUERO 220": {
+  "codigo": "50199",
+  "ccaa": "La Rioja",
+  "x": "561498.839",
+  "y": "4696397.092",
+  "provincia": "La Rioja",
+  "voltage": "220"
+ },
+ "EL SERRALLO 220": {
+  "codigo": "50727",
+  "ccaa": "Comunidad Valenciana",
+  "x": "755867.965",
+  "y": "4427397.692",
+  "provincia": "Castellón",
+  "voltage": "220"
+ },
+ "EL TABLERO 66": {
+  "codigo": "50200",
+  "ccaa": "Canarias",
+  "x": "-747947.685",
+  "y": "3135773.603",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "EL ZUMAJO 220": {
+  "codigo": "50798",
+  "ccaa": "Andalucía",
+  "x": "231565.877",
+  "y": "4020965.782",
+  "provincia": "Cádiz",
+  "voltage": "220"
+ },
+ "ELCHE 220": {
+  "codigo": "50201",
+  "ccaa": "Comunidad Valenciana",
+  "x": "706807.388",
+  "y": "4237815.582",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "ELCOGAS 220": {
+  "codigo": "50202",
+  "ccaa": "Castilla-La Mancha",
+  "x": "414220.452",
+  "y": "4279400.183",
+  "provincia": "Ciudad Real",
+  "voltage": "220"
+ },
+ "ELDA 220": {
+  "codigo": "50728",
+  "ccaa": "Comunidad Valenciana",
+  "x": "692610.371",
+  "y": "4263554.127",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "ELGEA 220": {
+  "codigo": "50203",
+  "ccaa": "País Vasco",
+  "x": "544901.677",
+  "y": "4749030.447",
+  "provincia": "Álava",
+  "voltage": "220"
+ },
+ "ELIANA (ELIANA B) 220": {
+  "codigo": "50204",
+  "ccaa": "Comunidad Valenciana",
+  "x": "713921.324",
+  "y": "4381308.116",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "ELIANA 220": {
+  "codigo": "50204",
+  "ccaa": "Comunidad Valenciana",
+  "x": "713912.732",
+  "y": "4381307.878",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "ELIANA 400": {
+  "codigo": "50204",
+  "ccaa": "Comunidad Valenciana",
+  "x": "713929.917",
+  "y": "4381308.354",
+  "provincia": "Valencia",
+  "voltage": "400"
+ },
+ "ELS AUBALS 220": {
+  "codigo": "50205",
+  "ccaa": "Cataluña",
+  "x": "805749.463",
+  "y": "4558297.992",
+  "provincia": "Tarragona",
+  "voltage": "220"
+ },
+ "ELS AUBALS 400": {
+  "codigo": "50205",
+  "ccaa": "Cataluña",
+  "x": "805757.114",
+  "y": "4558186.838",
+  "provincia": "Tarragona",
+  "voltage": "400"
+ },
+ "ENTRENUCLEOS 220": {
+  "codigo": "50729",
+  "ccaa": "Andalucía",
+  "x": "239155.35",
+  "y": "4133748.958",
+  "provincia": "Sevilla",
+  "voltage": "220"
+ },
+ "ENTRERRIOS 220": {
+  "codigo": "50206",
+  "ccaa": "Aragón",
+  "x": "650755.223",
+  "y": "4623451.122",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "ERISTE 220": {
+  "codigo": "50207",
+  "ccaa": "Aragón",
+  "x": "786525.9",
+  "y": "4721080.066",
+  "provincia": "Huesca",
+  "voltage": "220"
+ },
+ "ES BESSONS (ES BESSONS B) 66": {
+  "codigo": "50208",
+  "ccaa": "Islas Baleares",
+  "x": "1029091.558",
+  "y": "4399533.852",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "ES BESSONS 132": {
+  "codigo": "50208",
+  "ccaa": "Islas Baleares",
+  "x": "1029060.935",
+  "y": "4399543.234",
+  "provincia": "Islas Baleares",
+  "voltage": "132"
+ },
+ "ES BESSONS 220": {
+  "codigo": "50208",
+  "ccaa": "Islas Baleares",
+  "x": "1029078.129",
+  "y": "4399544.416",
+  "provincia": "Islas Baleares",
+  "voltage": "220"
+ },
+ "ES BESSONS 66": {
+  "codigo": "50208",
+  "ccaa": "Islas Baleares",
+  "x": "1029069.532",
+  "y": "4399543.825",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "ESCALONA 220": {
+  "codigo": "50209",
+  "ccaa": "Aragón",
+  "x": "758538.865",
+  "y": "4706741.008",
+  "provincia": "Huesca",
+  "voltage": "220"
+ },
+ "ESCATRON 220": {
+  "codigo": "50210",
+  "ccaa": "Aragón",
+  "x": "722590.048",
+  "y": "4575088.324",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "ESCATRON 400": {
+  "codigo": "50210",
+  "ccaa": "Aragón",
+  "x": "722606.795",
+  "y": "4575088.837",
+  "provincia": "Zaragoza",
+  "voltage": "400"
+ },
+ "ESCOBAR 66": {
+  "codigo": "50730",
+  "ccaa": "Canarias",
+  "x": "-727891.446",
+  "y": "3150635.342",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "ESCUCHA 220": {
+  "codigo": "50212",
+  "ccaa": "Aragón",
+  "x": "684253.493",
+  "y": "4518439.531",
+  "provincia": "Teruel",
+  "voltage": "220"
+ },
+ "ESPARTAL 220": {
+  "codigo": "50213",
+  "ccaa": "Aragón",
+  "x": "693595.475",
+  "y": "4601636.139",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "ESPINARDO 220": {
+  "codigo": "51402",
+  "ccaa": "Región de Murcia",
+  "x": "661722.245",
+  "y": "4209297.559",
+  "provincia": "Murcia",
+  "voltage": "220"
+ },
+ "ESQUEDAS 220": {
+  "codigo": "50214",
+  "ccaa": "Aragón",
+  "x": "700455.906",
+  "y": "4676551.997",
+  "provincia": "Huesca",
+  "voltage": "220"
+ },
+ "FACINAS 220": {
+  "codigo": "50219",
+  "ccaa": "Andalucía",
+  "x": "255468.715",
+  "y": "4003477.669",
+  "provincia": "Cádiz",
+  "voltage": "220"
+ },
+ "FACULTATS 220": {
+  "codigo": "50220",
+  "ccaa": "Cataluña",
+  "x": "928141.036",
+  "y": "4594014.759",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "FADRELL 400": {
+  "codigo": "51408",
+  "ccaa": "Comunidad Valenciana",
+  "x": "748735.071",
+  "y": "4432216.746",
+  "provincia": "Castellón",
+  "voltage": "400"
+ },
+ "FALCA 66": {
+  "codigo": "50221",
+  "ccaa": "Islas Baleares",
+  "x": "984473.972",
+  "y": "4396536.371",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "FARGUE 220": {
+  "codigo": "50222",
+  "ccaa": "Andalucía",
+  "x": "448960.454",
+  "y": "4116814.51",
+  "provincia": "Granada",
+  "voltage": "220"
+ },
+ "FARNERS 220": {
+  "codigo": "51453",
+  "ccaa": "Cataluña",
+  "x": "970412.262",
+  "y": "4649781.138",
+  "provincia": "Girona",
+  "voltage": "220"
+ },
+ "FARNERS 400": {
+  "codigo": "51453",
+  "ccaa": "Cataluña",
+  "x": "970428.87",
+  "y": "4649782.238",
+  "provincia": "Girona",
+  "voltage": "400"
+ },
+ "FAUSITA 220": {
+  "codigo": "50223",
+  "ccaa": "Región de Murcia",
+  "x": "681085.131",
+  "y": "4159451.239",
+  "provincia": "Murcia",
+  "voltage": "220"
+ },
+ "FAUSITA 400": {
+  "codigo": "50223",
+  "ccaa": "Región de Murcia",
+  "x": "681102.92",
+  "y": "4159445.969",
+  "provincia": "Murcia",
+  "voltage": "400"
+ },
+ "FERIA DE MUESTRAS 220": {
+  "codigo": "50224",
+  "ccaa": "Comunidad Valenciana",
+  "x": "721325.269",
+  "y": "4375923.503",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "FOIX 220": {
+  "codigo": "50225",
+  "ccaa": "Cataluña",
+  "x": "890544.398",
+  "y": "4572547.56",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "FONTEFRIA 220": {
+  "codigo": "50731",
+  "ccaa": "Galicia",
+  "x": "61086.878",
+  "y": "4692242.528",
+  "provincia": "Pontevedra",
+  "voltage": "220"
+ },
+ "FONTEFRIA 400": {
+  "codigo": "50731",
+  "ccaa": "Galicia",
+  "x": "61383.84",
+  "y": "4691500.501",
+  "provincia": "Pontevedra",
+  "voltage": "400"
+ },
+ "FORADADA 220": {
+  "codigo": "52068",
+  "ccaa": "Aragón",
+  "x": "776721.607",
+  "y": "4700036.209",
+  "provincia": "Huesca",
+  "voltage": "220"
+ },
+ "FORMENTERA 132": {
+  "codigo": "50226",
+  "ccaa": "Islas Baleares",
+  "x": "888294.888",
+  "y": "4292100.256",
+  "provincia": "Islas Baleares",
+  "voltage": "132"
+ },
+ "FORMENTERA 30": {
+  "codigo": "50226",
+  "ccaa": "Islas Baleares",
+  "x": "888294.888",
+  "y": "4292100.256",
+  "provincia": "Islas Baleares",
+  "voltage": "30"
+ },
+ "FORTUNA 220": {
+  "codigo": "50227",
+  "ccaa": "Comunidad de Madrid",
+  "x": "433467.714",
+  "y": "4466543.341",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "FRANCOLI 220": {
+  "codigo": "52041",
+  "ccaa": "Cataluña",
+  "x": "854735.731",
+  "y": "4569490.325",
+  "provincia": "Tarragona",
+  "voltage": "220"
+ },
+ "FRANQUESES 220": {
+  "codigo": "50228",
+  "ccaa": "Cataluña",
+  "x": "939969.049",
+  "y": "4623577.718",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "FRIEIRA 220": {
+  "codigo": "50229",
+  "ccaa": "Galicia",
+  "x": "70878.345",
+  "y": "4679930.758",
+  "provincia": "Ourense",
+  "voltage": "220"
+ },
+ "FUENCALIENTE 66": {
+  "codigo": "51451",
+  "ccaa": "Canarias",
+  "x": "-961540.82",
+  "y": "3244298.185",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "FUENCARRAL 220": {
+  "codigo": "50230",
+  "ccaa": "Comunidad de Madrid",
+  "x": "443069.199",
+  "y": "4485626.112",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "FUENCARRAL 400": {
+  "codigo": "50230",
+  "ccaa": "Comunidad de Madrid",
+  "x": "443086.141",
+  "y": "4485625.983",
+  "provincia": "Madrid",
+  "voltage": "400"
+ },
+ "FUENDETODOS 220": {
+  "codigo": "50231",
+  "ccaa": "Aragón",
+  "x": "669232.698",
+  "y": "4578155.894",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "FUENDETODOS 400": {
+  "codigo": "50231",
+  "ccaa": "Aragón",
+  "x": "669249.433",
+  "y": "4578156.284",
+  "provincia": "Zaragoza",
+  "voltage": "400"
+ },
+ "FUENLABRADA 220": {
+  "codigo": "50232",
+  "ccaa": "Comunidad de Madrid",
+  "x": "433537.495",
+  "y": "4458761.903",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "FUENTE DE CANTOS 400": {
+  "codigo": "52076",
+  "ccaa": "Extremadura",
+  "x": "218494.876",
+  "y": "4234514.861",
+  "provincia": "Badajoz",
+  "voltage": "400"
+ },
+ "FUENTE DEL MAESTRE 400": {
+  "codigo": "52075",
+  "ccaa": "Extremadura",
+  "x": "195412.531",
+  "y": "4266638.217",
+  "provincia": "Badajoz",
+  "voltage": "400"
+ },
+ "FUENTE HITO 220": {
+  "codigo": "51255",
+  "ccaa": "Comunidad de Madrid",
+  "x": "447927.946",
+  "y": "4487648.183",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "FUENTE SAN LUIS 220": {
+  "codigo": "50233",
+  "ccaa": "Comunidad Valenciana",
+  "x": "725968.105",
+  "y": "4368814.999",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "FUENTEBUREBA 400": {
+  "codigo": "51372",
+  "ccaa": "Castilla y León",
+  "x": "481772.618",
+  "y": "4719243.064",
+  "provincia": "Burgos",
+  "voltage": "400"
+ },
+ "FUENTES DE LA ALCARRIA 400": {
+  "codigo": "50234",
+  "ccaa": "Castilla-La Mancha",
+  "x": "501368.608",
+  "y": "4510803.377",
+  "provincia": "Guadalajara",
+  "voltage": "400"
+ },
+ "GABIAS 220": {
+  "codigo": "50235",
+  "ccaa": "Andalucía",
+  "x": "440444.524",
+  "y": "4111246.22",
+  "provincia": "Granada",
+  "voltage": "220"
+ },
+ "GALAPAGAR 220": {
+  "codigo": "50236",
+  "ccaa": "Comunidad de Madrid",
+  "x": "414984.18",
+  "y": "4494666.636",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "GALAPAGAR 400": {
+  "codigo": "50236",
+  "ccaa": "Comunidad de Madrid",
+  "x": "415001.103",
+  "y": "4494666.443",
+  "provincia": "Madrid",
+  "voltage": "400"
+ },
+ "GAMARRA 220": {
+  "codigo": "50237",
+  "ccaa": "País Vasco",
+  "x": "527259.004",
+  "y": "4746387.718",
+  "provincia": "Álava",
+  "voltage": "220"
+ },
+ "GANDIA 220": {
+  "codigo": "50238",
+  "ccaa": "Comunidad Valenciana",
+  "x": "743819.478",
+  "y": "4318597.943",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "GAROÑA 220": {
+  "codigo": "50239",
+  "ccaa": "Castilla y León",
+  "x": "483142",
+  "y": "4735762",
+  "provincia": "Burgos",
+  "voltage": "220"
+ },
+ "GARRAF 400": {
+  "codigo": "50240",
+  "ccaa": "Cataluña",
+  "x": "895416.239",
+  "y": "4577827.491",
+  "provincia": "Barcelona",
+  "voltage": "400"
+ },
+ "GATICA 220": {
+  "codigo": "50241",
+  "ccaa": "País Vasco",
+  "x": "509610.346",
+  "y": "4799697.16",
+  "provincia": "Bizkaia",
+  "voltage": "220"
+ },
+ "GATICA 400": {
+  "codigo": "50241",
+  "ccaa": "País Vasco",
+  "x": "509626.555",
+  "y": "4799697.183",
+  "provincia": "Bizkaia",
+  "voltage": "400"
+ },
+ "GAUSSA 400": {
+  "codigo": "50242",
+  "ccaa": "Comunidad Valenciana",
+  "x": "730163.017",
+  "y": "4393441.874",
+  "provincia": "Valencia",
+  "voltage": "400"
+ },
+ "GAVARROT 220": {
+  "codigo": "50243",
+  "ccaa": "Cataluña",
+  "x": "920848.78",
+  "y": "4587058.54",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "GAZULES 220": {
+  "codigo": "50244",
+  "ccaa": "Andalucía",
+  "x": "250581.758",
+  "y": "4042660.297",
+  "provincia": "Cádiz",
+  "voltage": "220"
+ },
+ "GENETO 66": {
+  "codigo": "50245",
+  "ccaa": "Canarias",
+  "x": "-809979.126",
+  "y": "3221310.541",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "GETAFE 220": {
+  "codigo": "50246",
+  "ccaa": "Comunidad de Madrid",
+  "x": "441273.467",
+  "y": "4463313.139",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "GODELLETA 220": {
+  "codigo": "50732",
+  "ccaa": "Comunidad Valenciana",
+  "x": "700346.928",
+  "y": "4368555.15",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "GODELLETA 400": {
+  "codigo": "50732",
+  "ccaa": "Comunidad Valenciana",
+  "x": "700364.14",
+  "y": "4368555.594",
+  "provincia": "Valencia",
+  "voltage": "400"
+ },
+ "GRADO 220": {
+  "codigo": "50247",
+  "ccaa": "Aragón",
+  "x": "767109.214",
+  "y": "4671864.657",
+  "provincia": "Huesca",
+  "voltage": "220"
+ },
+ "GRAMANET (GRAMANET B) 220": {
+  "codigo": "50248",
+  "ccaa": "Cataluña",
+  "x": "933604.234",
+  "y": "4602887.73",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "GRAMANET 220": {
+  "codigo": "50248",
+  "ccaa": "Cataluña",
+  "x": "933604.234",
+  "y": "4602887.73",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "GRAN TARAJAL 132": {
+  "codigo": "50249",
+  "ccaa": "Canarias",
+  "x": "-584836.577",
+  "y": "3172783.582",
+  "provincia": "Las Palmas",
+  "voltage": "132"
+ },
+ "GRAN TARAJAL 66": {
+  "codigo": "50249",
+  "ccaa": "Canarias",
+  "x": "-584856.4",
+  "y": "3172785.408",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "GRANADILLA (GRANADILLA B) 220": {
+  "codigo": "52093",
+  "ccaa": "Canarias",
+  "x": "-833175.668",
+  "y": "3181012.817",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "220"
+ },
+ "GRANADILLA 220": {
+  "codigo": "50250",
+  "ccaa": "Canarias",
+  "x": "-832788.107",
+  "y": "3181493.192",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "220"
+ },
+ "GRANADILLA 66": {
+  "codigo": "50250",
+  "ccaa": "Canarias",
+  "x": "-832808.061",
+  "y": "3181495.448",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "GRIJOTA 400": {
+  "codigo": "50251",
+  "ccaa": "Castilla y León",
+  "x": "371236.47",
+  "y": "4658960.123",
+  "provincia": "Palencia",
+  "voltage": "400"
+ },
+ "GUADAIRA 220": {
+  "codigo": "51246",
+  "ccaa": "Andalucía",
+  "x": "236502.177",
+  "y": "4128194.614",
+  "provincia": "Sevilla",
+  "voltage": "220"
+ },
+ "GUADAME 220": {
+  "codigo": "50252",
+  "ccaa": "Andalucía",
+  "x": "395353.124",
+  "y": "4211966.641",
+  "provincia": "Jaén",
+  "voltage": "220"
+ },
+ "GUADAME 400": {
+  "codigo": "50252",
+  "ccaa": "Andalucía",
+  "x": "395350.137",
+  "y": "4211892.306",
+  "provincia": "Jaén",
+  "voltage": "400"
+ },
+ "GUADIANA 400": {
+  "codigo": "51291",
+  "ccaa": "Extremadura",
+  "x": "177398.711",
+  "y": "4315600.466",
+  "provincia": "Badajoz",
+  "voltage": "400"
+ },
+ "GUAJARA 66": {
+  "codigo": "50253",
+  "ccaa": "Canarias",
+  "x": "-808369.333",
+  "y": "3222072.021",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "GUARDO 220": {
+  "codigo": "50255",
+  "ccaa": "Castilla y León",
+  "x": "348542",
+  "y": "4742280",
+  "provincia": "Palencia",
+  "voltage": "220"
+ },
+ "GUEÑES 220": {
+  "codigo": "50256",
+  "ccaa": "País Vasco",
+  "x": "497486.854",
+  "y": "4785111.171",
+  "provincia": "Bizkaia",
+  "voltage": "220"
+ },
+ "GUEÑES 400": {
+  "codigo": "50256",
+  "ccaa": "País Vasco",
+  "x": "497503.097",
+  "y": "4785111.165",
+  "provincia": "Bizkaia",
+  "voltage": "400"
+ },
+ "GUIA 66": {
+  "codigo": "50257",
+  "ccaa": "Canarias",
+  "x": "-744737.621",
+  "y": "3176684.824",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "GUIA DE ISORA 66": {
+  "codigo": "50258",
+  "ccaa": "Canarias",
+  "x": "-861770.146",
+  "y": "3200459.163",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "GUILLENA (GUILLENA B) 220": {
+  "codigo": "50259",
+  "ccaa": "Andalucía",
+  "x": "226854.678",
+  "y": "4170035.122",
+  "provincia": "Sevilla",
+  "voltage": "220"
+ },
+ "GUILLENA 220": {
+  "codigo": "50259",
+  "ccaa": "Andalucía",
+  "x": "226771.287",
+  "y": "4169929.999",
+  "provincia": "Sevilla",
+  "voltage": "220"
+ },
+ "GUILLENA 400": {
+  "codigo": "50259",
+  "ccaa": "Andalucía",
+  "x": "226674.481",
+  "y": "4170039.907",
+  "provincia": "Sevilla",
+  "voltage": "400"
+ },
+ "GUINCHOS 66": {
+  "codigo": "50260",
+  "ccaa": "Canarias",
+  "x": "-951719.551",
+  "y": "3261857.221",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "GUIXERES 220": {
+  "codigo": "50261",
+  "ccaa": "Cataluña",
+  "x": "939339.595",
+  "y": "4603458.316",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "GURREA 220": {
+  "codigo": "50262",
+  "ccaa": "Aragón",
+  "x": "684255.69",
+  "y": "4656390.437",
+  "provincia": "Huesca",
+  "voltage": "220"
+ },
+ "HARO 220": {
+  "codigo": "50263",
+  "ccaa": "La Rioja",
+  "x": "509427.34",
+  "y": "4712897.344",
+  "provincia": "La Rioja",
+  "voltage": "220"
+ },
+ "HARÍA 66": {
+  "codigo": "52091",
+  "ccaa": "Canarias",
+  "x": "-523556.597",
+  "y": "3267078.616",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "HERNANI 220": {
+  "codigo": "50264",
+  "ccaa": "País Vasco",
+  "x": "583794.958",
+  "y": "4790218.968",
+  "provincia": "Gipuzkoa",
+  "voltage": "220"
+ },
+ "HERNANI 400": {
+  "codigo": "50264",
+  "ccaa": "País Vasco",
+  "x": "583188.012",
+  "y": "4789799.673",
+  "provincia": "Gipuzkoa",
+  "voltage": "400"
+ },
+ "HERRERA 220": {
+  "codigo": "50265",
+  "ccaa": "Castilla y León",
+  "x": "389767.829",
+  "y": "4716640.511",
+  "provincia": "Palencia",
+  "voltage": "220"
+ },
+ "HERRERA 400": {
+  "codigo": "50265",
+  "ccaa": "Castilla y León",
+  "x": "389784.238",
+  "y": "4716640.25",
+  "provincia": "Palencia",
+  "voltage": "400"
+ },
+ "HIJAR 220": {
+  "codigo": "50266",
+  "ccaa": "Aragón",
+  "x": "716561.337",
+  "y": "4561066.205",
+  "provincia": "Teruel",
+  "voltage": "220"
+ },
+ "HINOJOSA 400": {
+  "codigo": "50267",
+  "ccaa": "Castilla y León",
+  "x": "186105.225",
+  "y": "4547416.322",
+  "provincia": "Salamanca",
+  "voltage": "400"
+ },
+ "HORNILLO 220": {
+  "codigo": "50268",
+  "ccaa": "Comunidad de Madrid",
+  "x": "439562.31",
+  "y": "4458613.624",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "HORTALEZA 220": {
+  "codigo": "50269",
+  "ccaa": "Comunidad de Madrid",
+  "x": "443668.532",
+  "y": "4480406.189",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "HOSPITALET 220": {
+  "codigo": "50270",
+  "ccaa": "Cataluña",
+  "x": "926747.737",
+  "y": "4589744.301",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "HOYA MORENA 220": {
+  "codigo": "50271",
+  "ccaa": "Región de Murcia",
+  "x": "687269.03",
+  "y": "4179254.275",
+  "provincia": "Murcia",
+  "voltage": "220"
+ },
+ "HUELVES 220": {
+  "codigo": "50272",
+  "ccaa": "Castilla-La Mancha",
+  "x": "505174.194",
+  "y": "4434306.21",
+  "provincia": "Cuenca",
+  "voltage": "220"
+ },
+ "HUENEJA 400": {
+  "codigo": "50273",
+  "ccaa": "Andalucía",
+  "x": "505088.496",
+  "y": "4118971.539",
+  "provincia": "Granada",
+  "voltage": "400"
+ },
+ "IBIZA 132": {
+  "codigo": "50274",
+  "ccaa": "Islas Baleares",
+  "x": "884148.096",
+  "y": "4317201.376",
+  "provincia": "Islas Baleares",
+  "voltage": "132"
+ },
+ "IBIZA 23 66": {
+  "codigo": "50275",
+  "ccaa": "Islas Baleares",
+  "x": "884195.043",
+  "y": "4316980.205",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "IBIZA 66": {
+  "codigo": "50274",
+  "ccaa": "Islas Baleares",
+  "x": "884180.844",
+  "y": "4317062.256",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "ICOD DE LOS VINOS 66": {
+  "codigo": "50276",
+  "ccaa": "Canarias",
+  "x": "-849525.242",
+  "y": "3215600.538",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "ILLORA 220": {
+  "codigo": "50277",
+  "ccaa": "Andalucía",
+  "x": "421502.078",
+  "y": "4121912.852",
+  "provincia": "Granada",
+  "voltage": "220"
+ },
+ "INCA 66": {
+  "codigo": "50278",
+  "ccaa": "Islas Baleares",
+  "x": "1007412.547",
+  "y": "4412803.179",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "INGENIO 220": {
+  "codigo": "50279",
+  "ccaa": "Comunidad Valenciana",
+  "x": "754864.193",
+  "y": "4429627.973",
+  "provincia": "Castellón",
+  "voltage": "220"
+ },
+ "IRUN 220": {
+  "codigo": "50280",
+  "ccaa": "País Vasco",
+  "x": "596356.561",
+  "y": "4799046.558",
+  "provincia": "Gipuzkoa",
+  "voltage": "220"
+ },
+ "ISONA 220": {
+  "codigo": "50735",
+  "ccaa": "Cataluña",
+  "x": "828605.782",
+  "y": "4670941.891",
+  "provincia": "Lleida",
+  "voltage": "220"
+ },
+ "ISONA 400": {
+  "codigo": "50735",
+  "ccaa": "Cataluña",
+  "x": "828622.318",
+  "y": "4670942.662",
+  "provincia": "Lleida",
+  "voltage": "400"
+ },
+ "ITXASO 220": {
+  "codigo": "50281",
+  "ccaa": "País Vasco",
+  "x": "559173.857",
+  "y": "4767851.93",
+  "provincia": "Gipuzkoa",
+  "voltage": "220"
+ },
+ "ITXASO 400": {
+  "codigo": "50281",
+  "ccaa": "País Vasco",
+  "x": "559133.888",
+  "y": "4767886.161",
+  "provincia": "Gipuzkoa",
+  "voltage": "400"
+ },
+ "IZNALLOZ 400": {
+  "codigo": "52090",
+  "ccaa": "Andalucía",
+  "x": "452876.558",
+  "y": "4137228.852",
+  "provincia": "Granada",
+  "voltage": "400"
+ },
+ "J.M.ORIOL 220": {
+  "codigo": "50282",
+  "ccaa": "Extremadura",
+  "x": "167610.138",
+  "y": "4404359.944",
+  "provincia": "Cáceres",
+  "voltage": "220"
+ },
+ "J.M.ORIOL 400": {
+  "codigo": "50282",
+  "ccaa": "Extremadura",
+  "x": "167898.854",
+  "y": "4404337.567",
+  "provincia": "Cáceres",
+  "voltage": "400"
+ },
+ "JALON 220": {
+  "codigo": "50283",
+  "ccaa": "Aragón",
+  "x": "642415.065",
+  "y": "4617584.411",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "JARES 132": {
+  "codigo": "50736",
+  "ccaa": "Canarias",
+  "x": "-593186.902",
+  "y": "3174093.92",
+  "provincia": "Las Palmas",
+  "voltage": "132"
+ },
+ "JIJONA 220": {
+  "codigo": "50284",
+  "ccaa": "Comunidad Valenciana",
+  "x": "719978.861",
+  "y": "4263431.279",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "JINAMAR 220": {
+  "codigo": "50285",
+  "ccaa": "Canarias",
+  "x": "-725369.044",
+  "y": "3165048.698",
+  "provincia": "Las Palmas",
+  "voltage": "220"
+ },
+ "JINAMAR 66": {
+  "codigo": "50285",
+  "ccaa": "Canarias",
+  "x": "-725345.691",
+  "y": "3164970.471",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "JORDANA 220": {
+  "codigo": "50286",
+  "ccaa": "Andalucía",
+  "x": "301131.678",
+  "y": "4035485.579",
+  "provincia": "Málaga",
+  "voltage": "220"
+ },
+ "JORDANA 400": {
+  "codigo": "50286",
+  "ccaa": "Andalucía",
+  "x": "301149.606",
+  "y": "4035485.166",
+  "provincia": "Málaga",
+  "voltage": "400"
+ },
+ "JOSE CABRERA 220": {
+  "codigo": "50287",
+  "ccaa": "Castilla-La Mancha",
+  "x": "509718.902",
+  "y": "4466574.044",
+  "provincia": "Guadalajara",
+  "voltage": "220"
+ },
+ "JUIA 220": {
+  "codigo": "50288",
+  "ccaa": "Cataluña",
+  "x": "988598.332",
+  "y": "4669164.519",
+  "provincia": "Girona",
+  "voltage": "220"
+ },
+ "JUNDIZ 220": {
+  "codigo": "50289",
+  "ccaa": "País Vasco",
+  "x": "520715.391",
+  "y": "4742658.708",
+  "provincia": "Álava",
+  "voltage": "220"
+ },
+ "JUNEDA 220": {
+  "codigo": "50290",
+  "ccaa": "Cataluña",
+  "x": "819358.256",
+  "y": "4604747.542",
+  "provincia": "Lleida",
+  "voltage": "220"
+ },
+ "LA CANONJA 220": {
+  "codigo": "50763",
+  "ccaa": "Cataluña",
+  "x": "851960.913",
+  "y": "4559301.426",
+  "provincia": "Tarragona",
+  "voltage": "220"
+ },
+ "LA CEREAL 220": {
+  "codigo": "50291",
+  "ccaa": "Comunidad de Madrid",
+  "x": "438813.924",
+  "y": "4494663.305",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "LA CEREAL 400": {
+  "codigo": "50291",
+  "ccaa": "Comunidad de Madrid",
+  "x": "438830.846",
+  "y": "4494663.166",
+  "provincia": "Madrid",
+  "voltage": "400"
+ },
+ "LA ESPLUGA 220": {
+  "codigo": "50292",
+  "ccaa": "Cataluña",
+  "x": "844745.176",
+  "y": "4591937.86",
+  "provincia": "Tarragona",
+  "voltage": "220"
+ },
+ "LA ESPLUGA 400": {
+  "codigo": "50292",
+  "ccaa": "Cataluña",
+  "x": "844964.105",
+  "y": "4591955.2",
+  "provincia": "Tarragona",
+  "voltage": "400"
+ },
+ "LA ESTRELLA 220": {
+  "codigo": "50293",
+  "ccaa": "Comunidad de Madrid",
+  "x": "443519.263",
+  "y": "4474303.084",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "LA FARGA 220": {
+  "codigo": "50737",
+  "ccaa": "Cataluña",
+  "x": "986827.194",
+  "y": "4673515.008",
+  "provincia": "Girona",
+  "voltage": "220"
+ },
+ "LA FARGA 400": {
+  "codigo": "50737",
+  "ccaa": "Cataluña",
+  "x": "986843.75",
+  "y": "4673516.151",
+  "provincia": "Girona",
+  "voltage": "400"
+ },
+ "LA FORTUNADA 220": {
+  "codigo": "50294",
+  "ccaa": "Aragón",
+  "x": "762560.893",
+  "y": "4715006.215",
+  "provincia": "Huesca",
+  "voltage": "220"
+ },
+ "LA GRELA 220": {
+  "codigo": "50295",
+  "ccaa": "Galicia",
+  "x": "59918.116",
+  "y": "4813205.05",
+  "provincia": "A Coruña",
+  "voltage": "220"
+ },
+ "LA JARA 220": {
+  "codigo": "50296",
+  "ccaa": "País Vasco",
+  "x": "491541.45",
+  "y": "4783446.135",
+  "provincia": "Bizkaia",
+  "voltage": "220"
+ },
+ "LA LORA 400": {
+  "codigo": "50297",
+  "ccaa": "Castilla y León",
+  "x": "429455.61",
+  "y": "4715715.807",
+  "provincia": "Burgos",
+  "voltage": "400"
+ },
+ "LA NAVA 220": {
+  "codigo": "50298",
+  "ccaa": "Castilla-La Mancha",
+  "x": "400276.247",
+  "y": "4281675.905",
+  "provincia": "Ciudad Real",
+  "voltage": "220"
+ },
+ "LA OLIVA 132": {
+  "codigo": "50738",
+  "ccaa": "Canarias",
+  "x": "-565672.859",
+  "y": "3229201.643",
+  "provincia": "Las Palmas",
+  "voltage": "132"
+ },
+ "LA OLIVA 66": {
+  "codigo": "50738",
+  "ccaa": "Canarias",
+  "x": "-565692.576",
+  "y": "3229203.466",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "LA PALOMA 220": {
+  "codigo": "50299",
+  "ccaa": "Castilla-La Mancha",
+  "x": "467484.158",
+  "y": "4319163.329",
+  "provincia": "Ciudad Real",
+  "voltage": "220"
+ },
+ "LA PATERNA 66": {
+  "codigo": "50300",
+  "ccaa": "Canarias",
+  "x": "-728866.913",
+  "y": "3170822.341",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "LA PEREDA 220": {
+  "codigo": "50301",
+  "ccaa": "Principado de Asturias",
+  "x": "271976.428",
+  "y": "4795031.636",
+  "provincia": "Asturias",
+  "voltage": "220"
+ },
+ "LA PINILLA 400": {
+  "codigo": "50302",
+  "ccaa": "Castilla-La Mancha",
+  "x": "621441.657",
+  "y": "4291589.573",
+  "provincia": "Albacete",
+  "voltage": "400"
+ },
+ "LA PLANA 220": {
+  "codigo": "50303",
+  "ccaa": "Comunidad Valenciana",
+  "x": "748016.452",
+  "y": "4428117.627",
+  "provincia": "Castellón",
+  "voltage": "220"
+ },
+ "LA PLANA 400": {
+  "codigo": "50303",
+  "ccaa": "Comunidad Valenciana",
+  "x": "747856.396",
+  "y": "4428174.205",
+  "provincia": "Castellón",
+  "voltage": "400"
+ },
+ "LA ROCA 220": {
+  "codigo": "50305",
+  "ccaa": "Cataluña",
+  "x": "943537.041",
+  "y": "4617698.946",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "LA SAGRA 220": {
+  "codigo": "52094",
+  "ccaa": "Castilla-La Mancha",
+  "x": "430111.554",
+  "y": "4442739.984",
+  "provincia": "Toledo",
+  "voltage": "220"
+ },
+ "LA SAGRA 400": {
+  "codigo": "52094",
+  "ccaa": "Castilla-La Mancha",
+  "x": "430128.594",
+  "y": "4442739.827",
+  "provincia": "Toledo",
+  "voltage": "400"
+ },
+ "LA SAGRERA 220": {
+  "codigo": "50516",
+  "ccaa": "Cataluña",
+  "x": "934110.407",
+  "y": "4599213.833",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "LA SECUITA 220": {
+  "codigo": "51336",
+  "ccaa": "Cataluña",
+  "x": "854285.545",
+  "y": "4569822.929",
+  "provincia": "Tarragona",
+  "voltage": "220"
+ },
+ "LA SECUITA 400": {
+  "codigo": "51336",
+  "ccaa": "Cataluña",
+  "x": "854302.32",
+  "y": "4569823.745",
+  "provincia": "Tarragona",
+  "voltage": "400"
+ },
+ "LA SELVA 220": {
+  "codigo": "50306",
+  "ccaa": "Cataluña",
+  "x": "847963.615",
+  "y": "4570289.716",
+  "provincia": "Tarragona",
+  "voltage": "220"
+ },
+ "LA SOLANA 220": {
+  "codigo": "50307",
+  "ccaa": "Castilla-La Mancha",
+  "x": "400445.001",
+  "y": "4281930.014",
+  "provincia": "Ciudad Real",
+  "voltage": "220"
+ },
+ "LA TORRECILLA 220": {
+  "codigo": "50308",
+  "ccaa": "Comunidad de Madrid",
+  "x": "447885.198",
+  "y": "4463335.393",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "LADA 400": {
+  "codigo": "50309",
+  "ccaa": "Principado de Asturias",
+  "x": "281157.954",
+  "y": "4798309.722",
+  "provincia": "Asturias",
+  "voltage": "400"
+ },
+ "LAGUARDIA 220": {
+  "codigo": "50310",
+  "ccaa": "País Vasco",
+  "x": "534114.002",
+  "y": "4706261.084",
+  "provincia": "Álava",
+  "voltage": "220"
+ },
+ "LANCHA 220": {
+  "codigo": "50311",
+  "ccaa": "Andalucía",
+  "x": "349735.413",
+  "y": "4197994.412",
+  "provincia": "Córdoba",
+  "voltage": "220"
+ },
+ "LANZAS AGUDAS 220": {
+  "codigo": "50312",
+  "ccaa": "Aragón",
+  "x": "608506.184",
+  "y": "4635354.849",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "LAS ARROYADAS 220": {
+  "codigo": "50313",
+  "ccaa": "Castilla y León",
+  "x": "356981.426",
+  "y": "4598506.302",
+  "provincia": "Valladolid",
+  "voltage": "220"
+ },
+ "LAS BREÑAS 66": {
+  "codigo": "50739",
+  "ccaa": "Canarias",
+  "x": "-952590.937",
+  "y": "3258700.084",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "LAS MAZORRAS 220": {
+  "codigo": "50314",
+  "ccaa": "Castilla y León",
+  "x": "447906.868",
+  "y": "4744667.686",
+  "provincia": "Burgos",
+  "voltage": "220"
+ },
+ "LAS PALMAS OESTE 66": {
+  "codigo": "52083",
+  "ccaa": "Canarias",
+  "x": "-727474.734",
+  "y": "3175203.744",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "LAS ROSAS 220": {
+  "codigo": "52071",
+  "ccaa": "Canarias",
+  "x": "-809970.968",
+  "y": "3221307.972",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "220"
+ },
+ "LAS ROSAS 66": {
+  "codigo": "52071",
+  "ccaa": "Canarias",
+  "x": "-809990.839",
+  "y": "3221310.214",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "LASTRAS 400": {
+  "codigo": "50315",
+  "ccaa": "Castilla y León",
+  "x": "387135.324",
+  "y": "4526373.266",
+  "provincia": "Segovia",
+  "voltage": "400"
+ },
+ "LEGANES 220": {
+  "codigo": "50316",
+  "ccaa": "Comunidad de Madrid",
+  "x": "434000.806",
+  "y": "4462850.93",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "LES CORTS 220": {
+  "codigo": "50317",
+  "ccaa": "Cataluña",
+  "x": "929638.193",
+  "y": "4594516.394",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "LITORAL 400": {
+  "codigo": "50318",
+  "ccaa": "Andalucía",
+  "x": "597185.562",
+  "y": "4093032.424",
+  "provincia": "Almería",
+  "voltage": "400"
+ },
+ "LLATZER 66": {
+  "codigo": "50319",
+  "ccaa": "Islas Baleares",
+  "x": "988684.939",
+  "y": "4395136.844",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "LLAVORSI 220": {
+  "codigo": "50320",
+  "ccaa": "Cataluña",
+  "x": "846258.653",
+  "y": "4713505.12",
+  "provincia": "Lleida",
+  "voltage": "220"
+ },
+ "LLERENA 400": {
+  "codigo": "52074",
+  "ccaa": "Extremadura",
+  "x": "248626.267",
+  "y": "4248442.061",
+  "provincia": "Badajoz",
+  "voltage": "400"
+ },
+ "LLUBI 220": {
+  "codigo": "50321",
+  "ccaa": "Islas Baleares",
+  "x": "1018171.364",
+  "y": "4408994.914",
+  "provincia": "Islas Baleares",
+  "voltage": "220"
+ },
+ "LLUBI 66": {
+  "codigo": "50321",
+  "ccaa": "Islas Baleares",
+  "x": "1018154.193",
+  "y": "4408993.754",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "LLUCMAJOR 66": {
+  "codigo": "50322",
+  "ccaa": "Islas Baleares",
+  "x": "1007505.371",
+  "y": "4388722.58",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "LOECHES (LOECHES B) 220": {
+  "codigo": "50323",
+  "ccaa": "Comunidad de Madrid",
+  "x": "464423.541",
+  "y": "4470804.592",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "LOECHES 220": {
+  "codigo": "50323",
+  "ccaa": "Comunidad de Madrid",
+  "x": "464146.521",
+  "y": "4470890.071",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "LOECHES 400": {
+  "codigo": "50323",
+  "ccaa": "Comunidad de Madrid",
+  "x": "464163.496",
+  "y": "4470889.99",
+  "provincia": "Madrid",
+  "voltage": "400"
+ },
+ "LOGROÑO 220": {
+  "codigo": "50324",
+  "ccaa": "La Rioja",
+  "x": "541848.805",
+  "y": "4700789.708",
+  "provincia": "La Rioja",
+  "voltage": "220"
+ },
+ "LOMBA 220": {
+  "codigo": "50325",
+  "ccaa": "Castilla y León",
+  "x": "202586.736",
+  "y": "4721218.945",
+  "provincia": "León",
+  "voltage": "220"
+ },
+ "LOMBA 400": {
+  "codigo": "50325",
+  "ccaa": "Castilla y León",
+  "x": "202603.15",
+  "y": "4721218.242",
+  "provincia": "León",
+  "voltage": "400"
+ },
+ "LOMO APOLINARIO 66": {
+  "codigo": "50326",
+  "ccaa": "Canarias",
+  "x": "-727372.443",
+  "y": "3171002.015",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "LOMO MASPALOMAS 66": {
+  "codigo": "50327",
+  "ccaa": "Canarias",
+  "x": "-745255.976",
+  "y": "3136340.481",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "LOS ARENALES 220": {
+  "codigo": "50740",
+  "ccaa": "Extremadura",
+  "x": "205611.73",
+  "y": "4378614.668",
+  "provincia": "Cáceres",
+  "voltage": "220"
+ },
+ "LOS BARRIOS 220": {
+  "codigo": "50328",
+  "ccaa": "Andalucía",
+  "x": "282297.795",
+  "y": "4007133.351",
+  "provincia": "Cádiz",
+  "voltage": "220"
+ },
+ "LOS LEONES 220": {
+  "codigo": "50329",
+  "ccaa": "Aragón",
+  "x": "676991.925",
+  "y": "4617669.525",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "LOS MONTES 220": {
+  "codigo": "50330",
+  "ccaa": "Andalucía",
+  "x": "376033.824",
+  "y": "4067458.755",
+  "provincia": "Málaga",
+  "voltage": "220"
+ },
+ "LOS OLIVOS 66": {
+  "codigo": "50410",
+  "ccaa": "Canarias",
+  "x": "-856997.564",
+  "y": "3188806.407",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "LOS RAMOS 220": {
+  "codigo": "50331",
+  "ccaa": "Andalucía",
+  "x": "368491",
+  "y": "4065740.804",
+  "provincia": "Málaga",
+  "voltage": "220"
+ },
+ "LOS REALEJOS 66": {
+  "codigo": "50332",
+  "ccaa": "Canarias",
+  "x": "-836704.208",
+  "y": "3215815.014",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "LOS VIENTOS 220": {
+  "codigo": "50333",
+  "ccaa": "Aragón",
+  "x": "655410.745",
+  "y": "4595204.81",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "LOURIZAN 220": {
+  "codigo": "50334",
+  "ccaa": "Galicia",
+  "x": "33859.722",
+  "y": "4711723.753",
+  "provincia": "Pontevedra",
+  "voltage": "220"
+ },
+ "LOUSAME 220": {
+  "codigo": "50741",
+  "ccaa": "Galicia",
+  "x": "27374.018",
+  "y": "4756835.744",
+  "provincia": "A Coruña",
+  "voltage": "220"
+ },
+ "LUBIAN 220": {
+  "codigo": "50335",
+  "ccaa": "Castilla y León",
+  "x": "177764.939",
+  "y": "4661444.489",
+  "provincia": "Zamora",
+  "voltage": "220"
+ },
+ "LUCERO 220": {
+  "codigo": "50336",
+  "ccaa": "Comunidad de Madrid",
+  "x": "424956.924",
+  "y": "4465955.552",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "LUDRIO 400": {
+  "codigo": "50337",
+  "ccaa": "Galicia",
+  "x": "140755.17",
+  "y": "4784580.637",
+  "provincia": "Lugo",
+  "voltage": "400"
+ },
+ "LUENGOS 400": {
+  "codigo": "50338",
+  "ccaa": "Castilla y León",
+  "x": "304974.213",
+  "y": "4702442.971",
+  "provincia": "León",
+  "voltage": "400"
+ },
+ "LUMINABASO 220": {
+  "codigo": "50742",
+  "ccaa": "País Vasco",
+  "x": "519596.617",
+  "y": "4784417.376",
+  "provincia": "Bizkaia",
+  "voltage": "220"
+ },
+ "MACHER 66": {
+  "codigo": "50339",
+  "ccaa": "Canarias",
+  "x": "-544416.875",
+  "y": "3250120.961",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "MACIÑEIRA 400": {
+  "codigo": "51434",
+  "ccaa": "Galicia",
+  "x": "102148.303",
+  "y": "4822041.738",
+  "provincia": "A Coruña",
+  "voltage": "400"
+ },
+ "MADRIDEJOS 220": {
+  "codigo": "50340",
+  "ccaa": "Castilla-La Mancha",
+  "x": "454306.364",
+  "y": "4370977.21",
+  "provincia": "Toledo",
+  "voltage": "220"
+ },
+ "MAGALLON 220": {
+  "codigo": "50341",
+  "ccaa": "Aragón",
+  "x": "634426.487",
+  "y": "4634041.157",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "MAGALLON 400": {
+  "codigo": "50341",
+  "ccaa": "Aragón",
+  "x": "634625.992",
+  "y": "4634120.917",
+  "provincia": "Zaragoza",
+  "voltage": "400"
+ },
+ "MAGAÑA 220": {
+  "codigo": "50743",
+  "ccaa": "Castilla y León",
+  "x": "566292.432",
+  "y": "4644940.534",
+  "provincia": "Soria",
+  "voltage": "220"
+ },
+ "MAHON 132": {
+  "codigo": "50342",
+  "ccaa": "Islas Baleares",
+  "x": "1120774.933",
+  "y": "4441628.369",
+  "provincia": "Islas Baleares",
+  "voltage": "132"
+ },
+ "MAIALS 400": {
+  "codigo": "50343",
+  "ccaa": "Cataluña",
+  "x": "793088.256",
+  "y": "4587829.966",
+  "provincia": "Lleida",
+  "voltage": "400"
+ },
+ "MAJADAHONDA 220": {
+  "codigo": "50344",
+  "ccaa": "Comunidad de Madrid",
+  "x": "425030.018",
+  "y": "4477914.854",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "MANACOR 66": {
+  "codigo": "50345",
+  "ccaa": "Islas Baleares",
+  "x": "1031899.834",
+  "y": "4398772.741",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "MANCHEGA 400": {
+  "codigo": "52077",
+  "ccaa": "Castilla-La Mancha",
+  "x": "521133.864",
+  "y": "4342199.806",
+  "provincia": "Albacete",
+  "voltage": "400"
+ },
+ "MANGRANERS 220": {
+  "codigo": "50346",
+  "ccaa": "Cataluña",
+  "x": "805636.712",
+  "y": "4613204.315",
+  "provincia": "Lleida",
+  "voltage": "220"
+ },
+ "MANUEL BECERRA 220": {
+  "codigo": "UFD-50397",
+  "ccaa": "Comunidad de Madrid",
+  "x": "443948.611",
+  "y": "4476142.107",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "MANUEL CRUZ 66": {
+  "codigo": "50347",
+  "ccaa": "Canarias",
+  "x": "-806064.235",
+  "y": "3222162.355",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "MANZANARES 220": {
+  "codigo": "50348",
+  "ccaa": "Castilla-La Mancha",
+  "x": "470191.301",
+  "y": "4321803.486",
+  "provincia": "Ciudad Real",
+  "voltage": "220"
+ },
+ "MANZANARES 400": {
+  "codigo": "50348",
+  "ccaa": "Castilla-La Mancha",
+  "x": "470208.609",
+  "y": "4321803.421",
+  "provincia": "Ciudad Real",
+  "voltage": "400"
+ },
+ "MARAGALL 220": {
+  "codigo": "50349",
+  "ccaa": "Cataluña",
+  "x": "932966.236",
+  "y": "4598020.792",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "MARIA 220": {
+  "codigo": "50350",
+  "ccaa": "Aragón",
+  "x": "665778.988",
+  "y": "4596740.94",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "MARRATXI (MARRATXI B) 66": {
+  "codigo": "50351",
+  "ccaa": "Islas Baleares",
+  "x": "991710.271",
+  "y": "4400355.735",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "MARRATXI 66": {
+  "codigo": "50351",
+  "ccaa": "Islas Baleares",
+  "x": "991710.271",
+  "y": "4400355.735",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "MARZAGAN 66": {
+  "codigo": "50353",
+  "ccaa": "Canarias",
+  "x": "-726188.619",
+  "y": "3163664.481",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "MAS FIGUERES 220": {
+  "codigo": "50354",
+  "ccaa": "Cataluña",
+  "x": "921012.397",
+  "y": "4612696.869",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "MASDENVERGE 400": {
+  "codigo": "51202",
+  "ccaa": "Cataluña",
+  "x": "798942.043",
+  "y": "4513870.733",
+  "provincia": "Tarragona",
+  "voltage": "400"
+ },
+ "MATA 220": {
+  "codigo": "50355",
+  "ccaa": "Cataluña",
+  "x": "932600.363",
+  "y": "4593155.566",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "MATAPORQUERA 220": {
+  "codigo": "50356",
+  "ccaa": "Cantabria",
+  "x": "405225.466",
+  "y": "4748100.172",
+  "provincia": "Cantabria",
+  "voltage": "220"
+ },
+ "MATAS BLANCAS 132": {
+  "codigo": "50357",
+  "ccaa": "Canarias",
+  "x": "-612168.735",
+  "y": "3162774.035",
+  "provincia": "Las Palmas",
+  "voltage": "132"
+ },
+ "MATAS BLANCAS 66": {
+  "codigo": "50357",
+  "ccaa": "Canarias",
+  "x": "-612220.972",
+  "y": "3162800.643",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "MATORRAL 66": {
+  "codigo": "50358",
+  "ccaa": "Canarias",
+  "x": "-730596.471",
+  "y": "3139055.778",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "MAZARICOS 220": {
+  "codigo": "50359",
+  "ccaa": "Galicia",
+  "x": "7594.219",
+  "y": "4766464.536",
+  "provincia": "A Coruña",
+  "voltage": "220"
+ },
+ "MAZARREDO 220": {
+  "codigo": "UFD-50411",
+  "ccaa": "Comunidad de Madrid",
+  "x": "438975.97",
+  "y": "4473781.281",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "MECO 220": {
+  "codigo": "50360",
+  "ccaa": "Comunidad de Madrid",
+  "x": "473479.33",
+  "y": "4487901.601",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "MEDIANO 220": {
+  "codigo": "50361",
+  "ccaa": "Aragón",
+  "x": "764707.336",
+  "y": "4689536.814",
+  "provincia": "Huesca",
+  "voltage": "220"
+ },
+ "MEDINA DEL CAMPO 220": {
+  "codigo": "50362",
+  "ccaa": "Castilla y León",
+  "x": "340092.654",
+  "y": "4576867.969",
+  "provincia": "Valladolid",
+  "voltage": "220"
+ },
+ "MEDINACELI 400": {
+  "codigo": "50363",
+  "ccaa": "Castilla y León",
+  "x": "552528.948",
+  "y": "4550726.7",
+  "provincia": "Soria",
+  "voltage": "400"
+ },
+ "MEDIODIA 220": {
+  "codigo": "UFD-50416",
+  "ccaa": "Comunidad de Madrid",
+  "x": "441367.076",
+  "y": "4473465.55",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "MEIRAMA 220": {
+  "codigo": "50364",
+  "ccaa": "Galicia",
+  "x": "60232.469",
+  "y": "4793799.89",
+  "provincia": "A Coruña",
+  "voltage": "220"
+ },
+ "MELANCOLICOS 220": {
+  "codigo": "50365",
+  "ccaa": "Comunidad de Madrid",
+  "x": "438901.483",
+  "y": "4473305.408",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "MEQUINENZA 220": {
+  "codigo": "50366",
+  "ccaa": "Aragón",
+  "x": "774145.015",
+  "y": "4584767.108",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "MEQUINENZA 400": {
+  "codigo": "50366",
+  "ccaa": "Aragón",
+  "x": "774040.479",
+  "y": "4584859.919",
+  "provincia": "Zaragoza",
+  "voltage": "400"
+ },
+ "MERCADAL 132": {
+  "codigo": "50367",
+  "ccaa": "Islas Baleares",
+  "x": "1106146.914",
+  "y": "4449413.125",
+  "provincia": "Islas Baleares",
+  "voltage": "132"
+ },
+ "MERCEDES BENZ 220": {
+  "codigo": "50368",
+  "ccaa": "País Vasco",
+  "x": "523638.049",
+  "y": "4744352.956",
+  "provincia": "Álava",
+  "voltage": "220"
+ },
+ "MERIDA 220": {
+  "codigo": "50369",
+  "ccaa": "Extremadura",
+  "x": "210185.121",
+  "y": "4310601.934",
+  "provincia": "Badajoz",
+  "voltage": "220"
+ },
+ "MESON D.V. 220": {
+  "codigo": "50370",
+  "ccaa": "Galicia",
+  "x": "64694.507",
+  "y": "4793563.391",
+  "provincia": "A Coruña",
+  "voltage": "220"
+ },
+ "MESON D.V. 400": {
+  "codigo": "50370",
+  "ccaa": "Galicia",
+  "x": "64571.579",
+  "y": "4793292.683",
+  "provincia": "A Coruña",
+  "voltage": "400"
+ },
+ "MEZQUITA 220": {
+  "codigo": "50371",
+  "ccaa": "Aragón",
+  "x": "681599.72",
+  "y": "4510350.31",
+  "provincia": "Teruel",
+  "voltage": "220"
+ },
+ "MEZQUITA 400": {
+  "codigo": "50371",
+  "ccaa": "Aragón",
+  "x": "681616.612",
+  "y": "4510350.724",
+  "provincia": "Teruel",
+  "voltage": "400"
+ },
+ "MINGLANILLA 400": {
+  "codigo": "50372",
+  "ccaa": "Castilla-La Mancha",
+  "x": "623337.374",
+  "y": "4375991.587",
+  "provincia": "Cuenca",
+  "voltage": "400"
+ },
+ "MIRABAL 220": {
+  "codigo": "50799",
+  "ccaa": "Andalucía",
+  "x": "226140.632",
+  "y": "4065714.95",
+  "provincia": "Cádiz",
+  "voltage": "220"
+ },
+ "MIRANDA DE EBRO 220": {
+  "codigo": "50373",
+  "ccaa": "Castilla y León",
+  "x": "506483.249",
+  "y": "4727028.679",
+  "provincia": "Burgos",
+  "voltage": "220"
+ },
+ "MIRASIERRA 220": {
+  "codigo": "50374",
+  "ccaa": "Comunidad de Madrid",
+  "x": "439249.483",
+  "y": "4482498.563",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "MOGAN 66": {
+  "codigo": "52084",
+  "ccaa": "Canarias",
+  "x": "-758231.469",
+  "y": "3150390.2",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "MOLINES 66": {
+  "codigo": "50375",
+  "ccaa": "Islas Baleares",
+  "x": "987573.696",
+  "y": "4395195.961",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "MONCAYO 220": {
+  "codigo": "50376",
+  "ccaa": "Castilla y León",
+  "x": "589468.726",
+  "y": "4622182.403",
+  "provincia": "Soria",
+  "voltage": "220"
+ },
+ "MONTALBANEJO 400": {
+  "codigo": "52079",
+  "ccaa": "Castilla-La Mancha",
+  "x": "537485.612",
+  "y": "4403384.73",
+  "provincia": "Cuenca",
+  "voltage": "400"
+ },
+ "MONTBLANC 220": {
+  "codigo": "50378",
+  "ccaa": "Cataluña",
+  "x": "845660.498",
+  "y": "4590958.449",
+  "provincia": "Tarragona",
+  "voltage": "220"
+ },
+ "MONTEARENAS 220": {
+  "codigo": "50379",
+  "ccaa": "Castilla y León",
+  "x": "208620.654",
+  "y": "4719543.942",
+  "provincia": "León",
+  "voltage": "220"
+ },
+ "MONTEARENAS 400": {
+  "codigo": "50379",
+  "ccaa": "Castilla y León",
+  "x": "208637.071",
+  "y": "4719543.253",
+  "provincia": "León",
+  "voltage": "400"
+ },
+ "MONTEBELLO 220": {
+  "codigo": "50380",
+  "ccaa": "Comunidad Valenciana",
+  "x": "749116.884",
+  "y": "4275833.236",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "MONTECILLO BAJO 220": {
+  "codigo": "50381",
+  "ccaa": "Andalucía",
+  "x": "361312.558",
+  "y": "4197589.573",
+  "provincia": "Córdoba",
+  "voltage": "220"
+ },
+ "MONTESA 400": {
+  "codigo": "51299",
+  "ccaa": "Comunidad Valenciana",
+  "x": "703838.733",
+  "y": "4311499.848",
+  "provincia": "Valencia",
+  "voltage": "400"
+ },
+ "MONTETORRERO 220": {
+  "codigo": "50382",
+  "ccaa": "Aragón",
+  "x": "678797.473",
+  "y": "4607245.127",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "MONTOUTO 220": {
+  "codigo": "50383",
+  "ccaa": "Galicia",
+  "x": "60964.953",
+  "y": "4677464.272",
+  "provincia": "Pontevedra",
+  "voltage": "220"
+ },
+ "MONZON 220": {
+  "codigo": "50384",
+  "ccaa": "Aragón",
+  "x": "763300.022",
+  "y": "4647263.428",
+  "provincia": "Huesca",
+  "voltage": "220"
+ },
+ "MORA 220": {
+  "codigo": "50385",
+  "ccaa": "Castilla-La Mancha",
+  "x": "431192.18",
+  "y": "4392608.185",
+  "provincia": "Toledo",
+  "voltage": "220"
+ },
+ "MORALEJA 220": {
+  "codigo": "50386",
+  "ccaa": "Comunidad de Madrid",
+  "x": "425547.814",
+  "y": "4456953.01",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "MORALEJA 400": {
+  "codigo": "50386",
+  "ccaa": "Comunidad de Madrid",
+  "x": "425564.822",
+  "y": "4456952.842",
+  "provincia": "Madrid",
+  "voltage": "400"
+ },
+ "MORALETS 220": {
+  "codigo": "50387",
+  "ccaa": "Aragón",
+  "x": "808317.129",
+  "y": "4719822.443",
+  "provincia": "Huesca",
+  "voltage": "220"
+ },
+ "MORATA 220": {
+  "codigo": "50388",
+  "ccaa": "Comunidad de Madrid",
+  "x": "462347.872",
+  "y": "4456259.867",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "MORATA 400": {
+  "codigo": "50388",
+  "ccaa": "Comunidad de Madrid",
+  "x": "462364.88",
+  "y": "4456259.782",
+  "provincia": "Madrid",
+  "voltage": "400"
+ },
+ "MORELLA 400": {
+  "codigo": "50389",
+  "ccaa": "Comunidad Valenciana",
+  "x": "737264.301",
+  "y": "4499354.558",
+  "provincia": "Castellón",
+  "voltage": "400"
+ },
+ "MORERUELA 400": {
+  "codigo": "52066",
+  "ccaa": "Castilla y León",
+  "x": "272559.302",
+  "y": "4614648.555",
+  "provincia": "Zamora",
+  "voltage": "400"
+ },
+ "MORVEDRE 400": {
+  "codigo": "50390",
+  "ccaa": "Comunidad Valenciana",
+  "x": "737144.037",
+  "y": "4391692.261",
+  "provincia": "Valencia",
+  "voltage": "400"
+ },
+ "MORVEDRE B 220": {
+  "codigo": "50390",
+  "ccaa": "Comunidad Valenciana",
+  "x": "736179.706",
+  "y": "4392470.596",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "MOTORS 220": {
+  "codigo": "50392",
+  "ccaa": "Cataluña",
+  "x": "929274.007",
+  "y": "4589818.137",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "MUDARRA 220": {
+  "codigo": "50393",
+  "ccaa": "Castilla y León",
+  "x": "339063.926",
+  "y": "4628217.062",
+  "provincia": "Valladolid",
+  "voltage": "220"
+ },
+ "MUDARRA 400": {
+  "codigo": "50393",
+  "ccaa": "Castilla y León",
+  "x": "339080.545",
+  "y": "4628216.687",
+  "provincia": "Valladolid",
+  "voltage": "400"
+ },
+ "MUDARRITA 220": {
+  "codigo": "50394",
+  "ccaa": "Castilla y León",
+  "x": "338631.664",
+  "y": "4628190.246",
+  "provincia": "Valladolid",
+  "voltage": "220"
+ },
+ "MUDEJAR 400": {
+  "codigo": "50395",
+  "ccaa": "Aragón",
+  "x": "720065.334",
+  "y": "4544620.902",
+  "provincia": "Teruel",
+  "voltage": "400"
+ },
+ "MUELA 400": {
+  "codigo": "50396",
+  "ccaa": "Comunidad Valenciana",
+  "x": "678494.979",
+  "y": "4345869.76",
+  "provincia": "Valencia",
+  "voltage": "400"
+ },
+ "MUELLE GRANDE 66": {
+  "codigo": "50397",
+  "ccaa": "Canarias",
+  "x": "-724512.292",
+  "y": "3177406.095",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "MUNIESA 400": {
+  "codigo": "50398",
+  "ccaa": "Aragón",
+  "x": "681601.948",
+  "y": "4544672.346",
+  "provincia": "Teruel",
+  "voltage": "400"
+ },
+ "MURCIA 220": {
+  "codigo": "50399",
+  "ccaa": "Región de Murcia",
+  "x": "663815.545",
+  "y": "4203562.811",
+  "provincia": "Murcia",
+  "voltage": "220"
+ },
+ "MURTERAR 220": {
+  "codigo": "50400",
+  "ccaa": "Islas Baleares",
+  "x": "1021822.475",
+  "y": "4424818.561",
+  "provincia": "Islas Baleares",
+  "voltage": "220"
+ },
+ "MURUARTE 220": {
+  "codigo": "50401",
+  "ccaa": "Comunidad Foral de Navarra",
+  "x": "610086.907",
+  "y": "4724918.129",
+  "provincia": "Navarra",
+  "voltage": "220"
+ },
+ "MURUARTE 400": {
+  "codigo": "50401",
+  "ccaa": "Comunidad Foral de Navarra",
+  "x": "610289.177",
+  "y": "4724994.822",
+  "provincia": "Navarra",
+  "voltage": "400"
+ },
+ "NARAIO 400": {
+  "codigo": "51282",
+  "ccaa": "Galicia",
+  "x": "89895.042",
+  "y": "4830887.134",
+  "provincia": "A Coruña",
+  "voltage": "400"
+ },
+ "NARCEA 400": {
+  "codigo": "50402",
+  "ccaa": "Principado de Asturias",
+  "x": "224569.667",
+  "y": "4798783.099",
+  "provincia": "Asturias",
+  "voltage": "400"
+ },
+ "NORTE 220": {
+  "codigo": "51239",
+  "ccaa": "Comunidad de Madrid",
+  "x": "440660.527",
+  "y": "4475755.207",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "NOVELDA 220": {
+  "codigo": "50403",
+  "ccaa": "Comunidad Valenciana",
+  "x": "695946.737",
+  "y": "4249756.975",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "NUDO VIARIO 220": {
+  "codigo": "50404",
+  "ccaa": "Cataluña",
+  "x": "923215.045",
+  "y": "4588021.139",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "NUEVA CASARES 220": {
+  "codigo": "50405",
+  "ccaa": "Andalucía",
+  "x": "300928.663",
+  "y": "4031215.369",
+  "provincia": "Málaga",
+  "voltage": "220"
+ },
+ "NUEVA ESCOMBRERAS (NUEVA ESCOMBRERAS B) 400": {
+  "codigo": "50406",
+  "ccaa": "Región de Murcia",
+  "x": "680602.287",
+  "y": "4159431.767",
+  "provincia": "Murcia",
+  "voltage": "400"
+ },
+ "NUEVA ESCOMBRERAS 400": {
+  "codigo": "50406",
+  "ccaa": "Región de Murcia",
+  "x": "681770.731",
+  "y": "4160472.484",
+  "provincia": "Murcia",
+  "voltage": "400"
+ },
+ "NUEVA MECO 220": {
+  "codigo": "51426",
+  "ccaa": "Comunidad de Madrid",
+  "x": "472088.475",
+  "y": "4486232.585",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "NUEVO CAUCE 220": {
+  "codigo": "51365",
+  "ccaa": "Comunidad Valenciana",
+  "x": "723306",
+  "y": "4369741",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "NUEVO VIGO (BATEAS) 220": {
+  "codigo": "50777",
+  "ccaa": "Galicia",
+  "x": "29522.604",
+  "y": "4689020.349",
+  "provincia": "Pontevedra",
+  "voltage": "220"
+ },
+ "NUREDDUNA 66": {
+  "codigo": "50407",
+  "ccaa": "Islas Baleares",
+  "x": "986135.869",
+  "y": "4395605.946",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "O INCIO 220": {
+  "codigo": "52088",
+  "ccaa": "Galicia",
+  "x": "134366.737",
+  "y": "4736751.608",
+  "provincia": "Lugo",
+  "voltage": "220"
+ },
+ "OLITE 220": {
+  "codigo": "50408",
+  "ccaa": "Comunidad Foral de Navarra",
+  "x": "608625.616",
+  "y": "4696503.938",
+  "provincia": "Navarra",
+  "voltage": "220"
+ },
+ "OLIVARES 220": {
+  "codigo": "50409",
+  "ccaa": "Andalucía",
+  "x": "429465.277",
+  "y": "4183817.6",
+  "provincia": "Jaén",
+  "voltage": "220"
+ },
+ "OLMEDILLA 220": {
+  "codigo": "50411",
+  "ccaa": "Castilla-La Mancha",
+  "x": "578569.999",
+  "y": "4388051.842",
+  "provincia": "Cuenca",
+  "voltage": "220"
+ },
+ "OLMEDILLA 400": {
+  "codigo": "50411",
+  "ccaa": "Castilla-La Mancha",
+  "x": "578594.062",
+  "y": "4388006.358",
+  "provincia": "Cuenca",
+  "voltage": "400"
+ },
+ "OLMEDO 400": {
+  "codigo": "50412",
+  "ccaa": "Castilla y León",
+  "x": "355454.967",
+  "y": "4575721.367",
+  "provincia": "Valladolid",
+  "voltage": "220"
+ },
+ "ONCALA 220": {
+  "codigo": "50413",
+  "ccaa": "Castilla y León",
+  "x": "562421.394",
+  "y": "4645951.598",
+  "provincia": "Soria",
+  "voltage": "400"
+ },
+ "ONDINAS 220": {
+  "codigo": "50414",
+  "ccaa": "Castilla y León",
+  "x": "216440.759",
+  "y": "4749207.961",
+  "provincia": "León",
+  "voltage": "220"
+ },
+ "ONUBA 220": {
+  "codigo": "50415",
+  "ccaa": "Andalucía",
+  "x": "152046.718",
+  "y": "4135333.849",
+  "provincia": "Huelva",
+  "voltage": "220"
+ },
+ "ORCOYEN 220": {
+  "codigo": "50416",
+  "ccaa": "Comunidad Foral de Navarra",
+  "x": "605493.394",
+  "y": "4741587.082",
+  "provincia": "Navarra",
+  "voltage": "220"
+ },
+ "ORGIVA 220": {
+  "codigo": "50417",
+  "ccaa": "Andalucía",
+  "x": "462495.089",
+  "y": "4083318.203",
+  "provincia": "Granada",
+  "voltage": "220"
+ },
+ "ORMAIZTEGUI 220": {
+  "codigo": "50418",
+  "ccaa": "País Vasco",
+  "x": "561752.26",
+  "y": "4765951.564",
+  "provincia": "Gipuzkoa",
+  "voltage": "220"
+ },
+ "ORTIGUERO 220": {
+  "codigo": "52087",
+  "ccaa": "Principado de Asturias",
+  "x": "346325",
+  "y": "4799687",
+  "provincia": "Asturias",
+  "voltage": "220"
+ },
+ "ORTUELLA 220": {
+  "codigo": "50419",
+  "ccaa": "País Vasco",
+  "x": "496986.784",
+  "y": "4795740.526",
+  "provincia": "Bizkaia",
+  "voltage": "220"
+ },
+ "OTERO 220": {
+  "codigo": "50420",
+  "ccaa": "Castilla y León",
+  "x": "398018.197",
+  "y": "4517566.691",
+  "provincia": "Segovia",
+  "voltage": "220"
+ },
+ "PALAFOX 220": {
+  "codigo": "50421",
+  "ccaa": "Comunidad de Madrid",
+  "x": "440544.079",
+  "y": "4475822.798",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "PALAU 220": {
+  "codigo": "50422",
+  "ccaa": "Cataluña",
+  "x": "932420.108",
+  "y": "4614826.271",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "PALENCIA 220": {
+  "codigo": "50423",
+  "ccaa": "Castilla y León",
+  "x": "375820.676",
+  "y": "4650744.525",
+  "provincia": "Palencia",
+  "voltage": "220"
+ },
+ "PALMA NOVA 66": {
+  "codigo": "50424",
+  "ccaa": "Islas Baleares",
+  "x": "975802.215",
+  "y": "4388551.781",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "PALOS 220": {
+  "codigo": "50425",
+  "ccaa": "Andalucía",
+  "x": "155280.031",
+  "y": "4122430.962",
+  "provincia": "Huelva",
+  "voltage": "220"
+ },
+ "PALOS 400": {
+  "codigo": "50425",
+  "ccaa": "Andalucía",
+  "x": "155297.795",
+  "y": "4122430.233",
+  "provincia": "Huelva",
+  "voltage": "400"
+ },
+ "PARAMO DE POZA 220": {
+  "codigo": "50426",
+  "ccaa": "Castilla y León",
+  "x": "454893.875",
+  "y": "4725622.377",
+  "provincia": "Burgos",
+  "voltage": "220"
+ },
+ "PARLA 220": {
+  "codigo": "50427",
+  "ccaa": "Comunidad de Madrid",
+  "x": "434902.212",
+  "y": "4452733.63",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "PARQUE CENTRAL 220": {
+  "codigo": "50428",
+  "ccaa": "Comunidad Valenciana",
+  "x": "725194",
+  "y": "4370780",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "PARQUE EOLICO DO SIL 220": {
+  "codigo": "50429",
+  "ccaa": "Galicia",
+  "x": "118156.497",
+  "y": "4699935.015",
+  "provincia": "Ourense",
+  "voltage": "220"
+ },
+ "PARQUE INGENIEROS 220": {
+  "codigo": "50430",
+  "ccaa": "Comunidad de Madrid",
+  "x": "440352.981",
+  "y": "4466865.501",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "PATRAIX 220": {
+  "codigo": "50431",
+  "ccaa": "Comunidad Valenciana",
+  "x": "724397.88",
+  "y": "4370598.082",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "PAZOS DE BORBEN 220": {
+  "codigo": "50432",
+  "ccaa": "Galicia",
+  "x": "38896.897",
+  "y": "4694144.828",
+  "provincia": "Pontevedra",
+  "voltage": "220"
+ },
+ "PENAGOS 220": {
+  "codigo": "50433",
+  "ccaa": "Cantabria",
+  "x": "433077.238",
+  "y": "4799614.9",
+  "provincia": "Cantabria",
+  "voltage": "220"
+ },
+ "PENAGOS 400": {
+  "codigo": "50433",
+  "ccaa": "Cantabria",
+  "x": "433094.176",
+  "y": "4799616.539",
+  "provincia": "Cantabria",
+  "voltage": "400"
+ },
+ "PENEDES 220": {
+  "codigo": "50434",
+  "ccaa": "Cataluña",
+  "x": "893834.628",
+  "y": "4589923.459",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "PERAFORT 220": {
+  "codigo": "50439",
+  "ccaa": "Cataluña",
+  "x": "856289.206",
+  "y": "4569057.685",
+  "provincia": "Tarragona",
+  "voltage": "220"
+ },
+ "PESOZ 400": {
+  "codigo": "50440",
+  "ccaa": "Principado de Asturias",
+  "x": "186107.441",
+  "y": "4795101.529",
+  "provincia": "Asturias",
+  "voltage": "400"
+ },
+ "PEÑADRADA 220": {
+  "codigo": "50435",
+  "ccaa": "Castilla y León",
+  "x": "210961.479",
+  "y": "4741021.65",
+  "provincia": "León",
+  "voltage": "220"
+ },
+ "PEÑAFLOR 220": {
+  "codigo": "50436",
+  "ccaa": "Aragón",
+  "x": "687819.357",
+  "y": "4621399.798",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "PEÑAFLOR 400": {
+  "codigo": "50436",
+  "ccaa": "Aragón",
+  "x": "687817.037",
+  "y": "4621291.733",
+  "provincia": "Zaragoza",
+  "voltage": "400"
+ },
+ "PEÑALBA 220": {
+  "codigo": "50437",
+  "ccaa": "Aragón",
+  "x": "741915.12",
+  "y": "4601186.042",
+  "provincia": "Huesca",
+  "voltage": "220"
+ },
+ "PEÑALBA 400": {
+  "codigo": "50437",
+  "ccaa": "Aragón",
+  "x": "741917.567",
+  "y": "4601202.365",
+  "provincia": "Huesca",
+  "voltage": "400"
+ },
+ "PEÑARRUBIA 400": {
+  "codigo": "50438",
+  "ccaa": "Región de Murcia",
+  "x": "645317.383",
+  "y": "4265167.444",
+  "provincia": "Murcia",
+  "voltage": "400"
+ },
+ "PICON 220": {
+  "codigo": "50441",
+  "ccaa": "Castilla-La Mancha",
+  "x": "404086.766",
+  "y": "4319663.27",
+  "provincia": "Ciudad Real",
+  "voltage": "220"
+ },
+ "PIELAGOS 220": {
+  "codigo": "51251",
+  "ccaa": "Cantabria",
+  "x": "422492.416",
+  "y": "4801177.797",
+  "provincia": "Cantabria",
+  "voltage": "220"
+ },
+ "PIEROLA 220": {
+  "codigo": "50442",
+  "ccaa": "Cataluña",
+  "x": "902997.888",
+  "y": "4608141.989",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "PIEROLA 400": {
+  "codigo": "50442",
+  "ccaa": "Cataluña",
+  "x": "903014.582",
+  "y": "4608142.924",
+  "provincia": "Barcelona",
+  "voltage": "400"
+ },
+ "PINAR DE REY (PINAR DE REY B) 220": {
+  "codigo": "50444",
+  "ccaa": "Andalucía",
+  "x": "283257.527",
+  "y": "4014191.873",
+  "provincia": "Cádiz",
+  "voltage": "220"
+ },
+ "PINAR DE REY 220": {
+  "codigo": "50444",
+  "ccaa": "Andalucía",
+  "x": "283287.452",
+  "y": "4014189.704",
+  "provincia": "Cádiz",
+  "voltage": "220"
+ },
+ "PINAR DE REY 400": {
+  "codigo": "50444",
+  "ccaa": "Andalucía",
+  "x": "283278.088",
+  "y": "4014108.289",
+  "provincia": "Cádiz",
+  "voltage": "400"
+ },
+ "PINTO 220": {
+  "codigo": "50445",
+  "ccaa": "Comunidad de Madrid",
+  "x": "437037.031",
+  "y": "4456167.909",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "PINTO AYUDEN 220": {
+  "codigo": "50446",
+  "ccaa": "Comunidad de Madrid",
+  "x": "438539.358",
+  "y": "4457250.442",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "PLASENCIA 220": {
+  "codigo": "50447",
+  "ccaa": "Extremadura",
+  "x": "235927.974",
+  "y": "4434808.396",
+  "provincia": "Cáceres",
+  "voltage": "220"
+ },
+ "PLATEA 400": {
+  "codigo": "51355",
+  "ccaa": "Aragón",
+  "x": "659501.73",
+  "y": "4478421.314",
+  "provincia": "Teruel",
+  "voltage": "400"
+ },
+ "PLAYA BLANCA 132": {
+  "codigo": "50448",
+  "ccaa": "Canarias",
+  "x": "-556612.548",
+  "y": "3241903.738",
+  "provincia": "Las Palmas",
+  "voltage": "132"
+ },
+ "PLAYA BLANCA 66": {
+  "codigo": "50448",
+  "ccaa": "Canarias",
+  "x": "-556576.061",
+  "y": "3241958.928",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "PLAZA 220": {
+  "codigo": "50449",
+  "ccaa": "Aragón",
+  "x": "666801.439",
+  "y": "4610636.73",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "PLAZA II (MONCASI) 220": {
+  "codigo": "51443",
+  "ccaa": "Aragón",
+  "x": "666015.757",
+  "y": "4607904.236",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "POBLA 220": {
+  "codigo": "50450",
+  "ccaa": "Cataluña",
+  "x": "827728.958",
+  "y": "4685174.266",
+  "provincia": "Lleida",
+  "voltage": "220"
+ },
+ "POLA DE GORDON 400": {
+  "codigo": "50451",
+  "ccaa": "Castilla y León",
+  "x": "281926.114",
+  "y": "4747326.115",
+  "provincia": "León",
+  "voltage": "400"
+ },
+ "POLIGONO 220": {
+  "codigo": "50452",
+  "ccaa": "Andalucía",
+  "x": "368993.803",
+  "y": "4061995.952",
+  "provincia": "Málaga",
+  "voltage": "220"
+ },
+ "POLIGONO BALEARES 66": {
+  "codigo": "50453",
+  "ccaa": "Islas Baleares",
+  "x": "985945.569",
+  "y": "4399618.701",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "POLIGONO C 220": {
+  "codigo": "50454",
+  "ccaa": "Comunidad de Madrid",
+  "x": "435261.99",
+  "y": "4470141.589",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "POLIGONO GRANADILLA 66": {
+  "codigo": "50455",
+  "ccaa": "Canarias",
+  "x": "-833175.668",
+  "y": "3181012.817",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "POLIGONO GUIMAR 66": {
+  "codigo": "50456",
+  "ccaa": "Canarias",
+  "x": "-817355.403",
+  "y": "3208511.871",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "POLLENSA 66": {
+  "codigo": "50457",
+  "ccaa": "Islas Baleares",
+  "x": "1018004.058",
+  "y": "4432519.695",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "PONT DE SUERT 220": {
+  "codigo": "50458",
+  "ccaa": "Cataluña",
+  "x": "807664.779",
+  "y": "4701346.223",
+  "provincia": "Lleida",
+  "voltage": "220"
+ },
+ "PORIS 220": {
+  "codigo": "50748",
+  "ccaa": "Canarias",
+  "x": "-826811.338",
+  "y": "3189417.969",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "220"
+ },
+ "PORIS 66": {
+  "codigo": "50748",
+  "ccaa": "Canarias",
+  "x": "-826839.404",
+  "y": "3189411.071",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "PORTO COLOM 66": {
+  "codigo": "50459",
+  "ccaa": "Islas Baleares",
+  "x": "1036977.375",
+  "y": "4382091.804",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "PORTODEMOUROS 220": {
+  "codigo": "50460",
+  "ccaa": "Galicia",
+  "x": "75960.348",
+  "y": "4757632.989",
+  "provincia": "Pontevedra",
+  "voltage": "220"
+ },
+ "POZA DE LA SAL 220": {
+  "codigo": "50471",
+  "ccaa": "Castilla y León",
+  "x": "460001.117",
+  "y": "4723981.79",
+  "provincia": "Burgos",
+  "voltage": "220"
+ },
+ "PRADA 220": {
+  "codigo": "50472",
+  "ccaa": "Galicia",
+  "x": "167275.471",
+  "y": "4694260.768",
+  "provincia": "Ourense",
+  "voltage": "220"
+ },
+ "PRADILLOS 220": {
+  "codigo": "50473",
+  "ccaa": "Castilla-La Mancha",
+  "x": "430109.334",
+  "y": "4442738.931",
+  "provincia": "Toledo",
+  "voltage": "220"
+ },
+ "PRADO SANTO DOMINGO 220": {
+  "codigo": "50474",
+  "ccaa": "Comunidad de Madrid",
+  "x": "428773.473",
+  "y": "4464236.146",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "PROSPERIDAD 220": {
+  "codigo": "UFD-50546",
+  "ccaa": "Comunidad de Madrid",
+  "x": "443476.08",
+  "y": "4477124.935",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "PTE.SAN FERNANDO 220": {
+  "codigo": "50475",
+  "ccaa": "Comunidad de Madrid",
+  "x": "456375.877",
+  "y": "4477806.376",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "PUEBLA DE GUZMAN 220": {
+  "codigo": "50476",
+  "ccaa": "Andalucía",
+  "x": "125270.191",
+  "y": "4164258.323",
+  "provincia": "Huelva",
+  "voltage": "220"
+ },
+ "PUEBLA DE GUZMAN 400": {
+  "codigo": "50476",
+  "ccaa": "Andalucía",
+  "x": "125287.87",
+  "y": "4164257.524",
+  "provincia": "Huelva",
+  "voltage": "400"
+ },
+ "PUEBLA DE SANABRIA 220": {
+  "codigo": "50477",
+  "ccaa": "Castilla y León",
+  "x": "200149.588",
+  "y": "4662975.284",
+  "provincia": "Zamora",
+  "voltage": "220"
+ },
+ "PUENTE BIBEY 220": {
+  "codigo": "50478",
+  "ccaa": "Galicia",
+  "x": "151947.829",
+  "y": "4693341.951",
+  "provincia": "Ourense",
+  "voltage": "220"
+ },
+ "PUENTE PRINCESA 220": {
+  "codigo": "UFD-50551",
+  "ccaa": "Comunidad de Madrid",
+  "x": "441073.399",
+  "y": "4470686.451",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "PUENTE S.MIGUEL 220": {
+  "codigo": "50479",
+  "ccaa": "Cantabria",
+  "x": "412568.766",
+  "y": "4801000.052",
+  "provincia": "Cantabria",
+  "voltage": "220"
+ },
+ "PUENTELARRA 220": {
+  "codigo": "50480",
+  "ccaa": "País Vasco",
+  "x": "496047.808",
+  "y": "4733778.609",
+  "provincia": "Álava",
+  "voltage": "220"
+ },
+ "PUENTES G.R. 400": {
+  "codigo": "50481",
+  "ccaa": "Galicia",
+  "x": "106629.729",
+  "y": "4821083.197",
+  "provincia": "A Coruña",
+  "voltage": "400"
+ },
+ "PUERTO 220": {
+  "codigo": "50482",
+  "ccaa": "Galicia",
+  "x": "62233.523",
+  "y": "4815732.978",
+  "provincia": "A Coruña",
+  "voltage": "220"
+ },
+ "PUERTO DE LA CRUZ 220": {
+  "codigo": "50483",
+  "ccaa": "Andalucía",
+  "x": "264519.222",
+  "y": "3995105.916",
+  "provincia": "Cádiz",
+  "voltage": "220"
+ },
+ "PUERTO DE LA CRUZ 400": {
+  "codigo": "50483",
+  "ccaa": "Andalucía",
+  "x": "264537.237",
+  "y": "3995105.431",
+  "provincia": "Cádiz",
+  "voltage": "400"
+ },
+ "PUERTO DE PALMA 66": {
+  "codigo": "51444",
+  "ccaa": "Islas Baleares",
+  "x": "981432.573",
+  "y": "4393920.612",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "PUERTO DE SANTA MARIA 220": {
+  "codigo": "50484",
+  "ccaa": "Andalucía",
+  "x": "204971.955",
+  "y": "4063407.931",
+  "provincia": "Cádiz",
+  "voltage": "220"
+ },
+ "PUERTO DEL ROSARIO 132": {
+  "codigo": "50749",
+  "ccaa": "Canarias",
+  "x": "-567306.609",
+  "y": "3203620.863",
+  "provincia": "Las Palmas",
+  "voltage": "132"
+ },
+ "PUERTO DEL ROSARIO 66": {
+  "codigo": "50749",
+  "ccaa": "Canarias",
+  "x": "-567326.371",
+  "y": "3203622.675",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "PUERTO REAL 220": {
+  "codigo": "50485",
+  "ccaa": "Andalucía",
+  "x": "217456.551",
+  "y": "4046031.94",
+  "provincia": "Cádiz",
+  "voltage": "220"
+ },
+ "PUERTOLLANO 220": {
+  "codigo": "50486",
+  "ccaa": "Castilla-La Mancha",
+  "x": "402153.239",
+  "y": "4278262.59",
+  "provincia": "Ciudad Real",
+  "voltage": "220"
+ },
+ "PUIGPELAT 220": {
+  "codigo": "50487",
+  "ccaa": "Cataluña",
+  "x": "859403.037",
+  "y": "4579097.856",
+  "provincia": "Tarragona",
+  "voltage": "220"
+ },
+ "PUJALT 220": {
+  "codigo": "50488",
+  "ccaa": "Cataluña",
+  "x": "870089.858",
+  "y": "4623786.243",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "PUNTA GRANDE 66": {
+  "codigo": "50489",
+  "ccaa": "Canarias",
+  "x": "-527688.292",
+  "y": "3251784.692",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "QUART DE POBLET 220": {
+  "codigo": "50490",
+  "ccaa": "Comunidad Valenciana",
+  "x": "712727.595",
+  "y": "4373031.648",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "QUEL 220": {
+  "codigo": "50491",
+  "ccaa": "La Rioja",
+  "x": "580908.308",
+  "y": "4681151.831",
+  "provincia": "La Rioja",
+  "voltage": "220"
+ },
+ "QUEREÑO 220": {
+  "codigo": "50492",
+  "ccaa": "Galicia",
+  "x": "184756.84",
+  "y": "4703164.383",
+  "provincia": "Ourense",
+  "voltage": "220"
+ },
+ "QUINTANA DE LA SERENA 400": {
+  "codigo": "51412",
+  "ccaa": "Extremadura",
+  "x": "265676",
+  "y": "4295046",
+  "provincia": "Badajoz",
+  "voltage": "400"
+ },
+ "QUINTOS 220": {
+  "codigo": "50493",
+  "ccaa": "Andalucía",
+  "x": "238522.766",
+  "y": "4137750.861",
+  "provincia": "Sevilla",
+  "voltage": "220"
+ },
+ "RAFAL 66": {
+  "codigo": "50494",
+  "ccaa": "Islas Baleares",
+  "x": "983804.948",
+  "y": "4397580.116",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "REGOELLE 220": {
+  "codigo": "50752",
+  "ccaa": "Galicia",
+  "x": "6835.158",
+  "y": "4780174.952",
+  "provincia": "A Coruña",
+  "voltage": "220"
+ },
+ "RENEDO 220": {
+  "codigo": "50495",
+  "ccaa": "Castilla y León",
+  "x": "360264.202",
+  "y": "4611546.911",
+  "provincia": "Valladolid",
+  "voltage": "220"
+ },
+ "REQUENA 400": {
+  "codigo": "50496",
+  "ccaa": "Comunidad Valenciana",
+  "x": "673052.041",
+  "y": "4369689.377",
+  "provincia": "Valencia",
+  "voltage": "400"
+ },
+ "RETAMAR 220": {
+  "codigo": "50497",
+  "ccaa": "Comunidad de Madrid",
+  "x": "438599.12",
+  "y": "4465183.121",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "RIBA-ROJA 220": {
+  "codigo": "50499",
+  "ccaa": "Cataluña",
+  "x": "787484.943",
+  "y": "4571340.353",
+  "provincia": "Tarragona",
+  "voltage": "220"
+ },
+ "RICOBAYO 220": {
+  "codigo": "50500",
+  "ccaa": "Castilla y León",
+  "x": "250725.82",
+  "y": "4601656.519",
+  "provincia": "Zamora",
+  "voltage": "220"
+ },
+ "RIERA DE CALDES 220": {
+  "codigo": "50501",
+  "ccaa": "Cataluña",
+  "x": "931455.765",
+  "y": "4612612.696",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "RIOCAYA (CAMPO MAIOR) 400": {
+  "codigo": "51392",
+  "ccaa": "Extremadura",
+  "x": "152891.963",
+  "y": "4315219.742",
+  "provincia": "Badajoz",
+  "voltage": "400"
+ },
+ "RIUDARENES 220": {
+  "codigo": "50753",
+  "ccaa": "Cataluña",
+  "x": "975187.084",
+  "y": "4644675.163",
+  "provincia": "Girona",
+  "voltage": "220"
+ },
+ "ROBLA 400": {
+  "codigo": "50502",
+  "ccaa": "Castilla y León",
+  "x": "284548",
+  "y": "4741395",
+  "provincia": "León",
+  "voltage": "400"
+ },
+ "ROCAMORA 400": {
+  "codigo": "50503",
+  "ccaa": "Comunidad Valenciana",
+  "x": "679908.079",
+  "y": "4224298.454",
+  "provincia": "Alicante",
+  "voltage": "400"
+ },
+ "ROCIO 220": {
+  "codigo": "50504",
+  "ccaa": "Andalucía",
+  "x": "189691.19",
+  "y": "4116607.262",
+  "provincia": "Huelva",
+  "voltage": "220"
+ },
+ "RODA DE ANDALUCIA 400": {
+  "codigo": "50505",
+  "ccaa": "Andalucía",
+  "x": "342395.811",
+  "y": "4124632.253",
+  "provincia": "Sevilla",
+  "voltage": "400"
+ },
+ "ROJALES 220": {
+  "codigo": "50506",
+  "ccaa": "Comunidad Valenciana",
+  "x": "698558.689",
+  "y": "4214460.608",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "ROMICA 400": {
+  "codigo": "50507",
+  "ccaa": "Castilla-La Mancha",
+  "x": "603881.051",
+  "y": "4322326.076",
+  "provincia": "Albacete",
+  "voltage": "400"
+ },
+ "RONDA 400": {
+  "codigo": "51288",
+  "ccaa": "Andalucía",
+  "x": "310051.418",
+  "y": "4070520.224",
+  "provincia": "Málaga",
+  "voltage": "400"
+ },
+ "RUBI 220": {
+  "codigo": "50508",
+  "ccaa": "Cataluña",
+  "x": "918421.604",
+  "y": "4603365.183",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "RUBI 400": {
+  "codigo": "50508",
+  "ccaa": "Cataluña",
+  "x": "918338.39",
+  "y": "4603445.069",
+  "provincia": "Barcelona",
+  "voltage": "400"
+ },
+ "RUBIO 220": {
+  "codigo": "50509",
+  "ccaa": "Cataluña",
+  "x": "882383.561",
+  "y": "4620931.216",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "RUEDA DE JALON 400": {
+  "codigo": "50510",
+  "ccaa": "Aragón",
+  "x": "641857.334",
+  "y": "4612290.58",
+  "provincia": "Zaragoza",
+  "voltage": "400"
+ },
+ "S.AGUSTIN 220": {
+  "codigo": "50511",
+  "ccaa": "Galicia",
+  "x": "164287.603",
+  "y": "4674839.224",
+  "provincia": "Ourense",
+  "voltage": "220"
+ },
+ "SA POBLA 66": {
+  "codigo": "50512",
+  "ccaa": "Islas Baleares",
+  "x": "1016811.466",
+  "y": "4418956.167",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SA VINYETA 66": {
+  "codigo": "50513",
+  "ccaa": "Islas Baleares",
+  "x": "1005716.765",
+  "y": "4412139.856",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SABINAL 220": {
+  "codigo": "50754",
+  "ccaa": "Canarias",
+  "x": "-725927.207",
+  "y": "3165236.388",
+  "provincia": "Las Palmas",
+  "voltage": "220"
+ },
+ "SABINAL 66": {
+  "codigo": "50754",
+  "ccaa": "Canarias",
+  "x": "-725947.122",
+  "y": "3165238.45",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "SABIÑANIGO 220": {
+  "codigo": "50514",
+  "ccaa": "Aragón",
+  "x": "716954.48",
+  "y": "4710558.598",
+  "provincia": "Huesca",
+  "voltage": "220"
+ },
+ "SABON 220": {
+  "codigo": "50515",
+  "ccaa": "Galicia",
+  "x": "53957.89",
+  "y": "4812082.361",
+  "provincia": "A Coruña",
+  "voltage": "220"
+ },
+ "SAGUNTO 220": {
+  "codigo": "50517",
+  "ccaa": "Comunidad Valenciana",
+  "x": "734383.246",
+  "y": "4394953.579",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "SAGUNTO GIS 220": {
+  "codigo": "50518",
+  "ccaa": "Comunidad Valenciana",
+  "x": "734347.513",
+  "y": "4395057.415",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "SAGUNTUM 220": {
+  "codigo": "51432",
+  "ccaa": "Comunidad Valenciana",
+  "x": "734027.552",
+  "y": "4392834.806",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "SAGUNTUM 400": {
+  "codigo": "51432",
+  "ccaa": "Comunidad Valenciana",
+  "x": "734044.713",
+  "y": "4392835.328",
+  "provincia": "Valencia",
+  "voltage": "400"
+ },
+ "SALADAS 220": {
+  "codigo": "50519",
+  "ccaa": "Comunidad Valenciana",
+  "x": "708085.612",
+  "y": "4241723.629",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "SALAS 400": {
+  "codigo": "50520",
+  "ccaa": "Principado de Asturias",
+  "x": "232461.578",
+  "y": "4806813.527",
+  "provincia": "Asturias",
+  "voltage": "400"
+ },
+ "SALERES 220": {
+  "codigo": "50772",
+  "ccaa": "Andalucía",
+  "x": "445157.635",
+  "y": "4090841.499",
+  "provincia": "Granada",
+  "voltage": "220"
+ },
+ "SALINAS 66": {
+  "codigo": "50521",
+  "ccaa": "Canarias",
+  "x": "-564743.539",
+  "y": "3201749.089",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "SALLENTE 400": {
+  "codigo": "50522",
+  "ccaa": "Cataluña",
+  "x": "827941.094",
+  "y": "4713776.54",
+  "provincia": "Lleida",
+  "voltage": "400"
+ },
+ "SALTERAS 220": {
+  "codigo": "50523",
+  "ccaa": "Andalucía",
+  "x": "228551.508",
+  "y": "4152740.115",
+  "provincia": "Sevilla",
+  "voltage": "220"
+ },
+ "SAN AGUSTIN BALEARES 66": {
+  "codigo": "50524",
+  "ccaa": "Islas Baleares",
+  "x": "980686.381",
+  "y": "4393186.71",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SAN AGUSTIN GC 66": {
+  "codigo": "50525",
+  "ccaa": "Canarias",
+  "x": "-742646.117",
+  "y": "3135626.047",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "SAN ANTONIO 66": {
+  "codigo": "50526",
+  "ccaa": "Islas Baleares",
+  "x": "875806.492",
+  "y": "4320997.923",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SAN BARTOLOME 66": {
+  "codigo": "50527",
+  "ccaa": "Canarias",
+  "x": "-535669.42",
+  "y": "3253569.227",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "SAN CAYETANO 220": {
+  "codigo": "50528",
+  "ccaa": "Galicia",
+  "x": "48241.613",
+  "y": "4763613.326",
+  "provincia": "A Coruña",
+  "voltage": "220"
+ },
+ "SAN ESTEBAN 220": {
+  "codigo": "50529",
+  "ccaa": "Galicia",
+  "x": "117099.36",
+  "y": "4706285.355",
+  "provincia": "Ourense",
+  "voltage": "220"
+ },
+ "SAN FERNANDO 220": {
+  "codigo": "50756",
+  "ccaa": "Comunidad de Madrid",
+  "x": "456902.075",
+  "y": "4477130.817",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "SAN FERNANDO 400": {
+  "codigo": "50756",
+  "ccaa": "Comunidad de Madrid",
+  "x": "456918.238",
+  "y": "4477079.497",
+  "provincia": "Madrid",
+  "voltage": "400"
+ },
+ "SAN ISIDRO 66": {
+  "codigo": "51314",
+  "ccaa": "Canarias",
+  "x": "-839073.566",
+  "y": "3181368.693",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "SAN JORGE 132": {
+  "codigo": "50530",
+  "ccaa": "Islas Baleares",
+  "x": "879710.234",
+  "y": "4315308.086",
+  "provincia": "Islas Baleares",
+  "voltage": "132"
+ },
+ "SAN JORGE 30": {
+  "codigo": "50530",
+  "ccaa": "Islas Baleares",
+  "x": "879692.274",
+  "y": "4315319.501",
+  "provincia": "Islas Baleares",
+  "voltage": "30"
+ },
+ "SAN JORGE 66": {
+  "codigo": "50530",
+  "ccaa": "Islas Baleares",
+  "x": "879692.881",
+  "y": "4315307.252",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SAN JUAN BALEARES 66": {
+  "codigo": "50531",
+  "ccaa": "Islas Baleares",
+  "x": "990003.21",
+  "y": "4393052.332",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SAN MARTIN BALEARES 220": {
+  "codigo": "50532",
+  "ccaa": "Islas Baleares",
+  "x": "1021778.155",
+  "y": "4424831.53",
+  "provincia": "Islas Baleares",
+  "voltage": "220"
+ },
+ "SAN MARTIN BALEARES 66": {
+  "codigo": "50532",
+  "ccaa": "Islas Baleares",
+  "x": "1021761.019",
+  "y": "4424830.359",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SAN MATEO 66": {
+  "codigo": "50533",
+  "ccaa": "Canarias",
+  "x": "-738756.518",
+  "y": "3162523.866",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "SAN MIGUEL DE SALINAS (SAN MIGUEL DE SALINAS B) 220": {
+  "codigo": "50534",
+  "ccaa": "Comunidad Valenciana",
+  "x": "696202.527",
+  "y": "4208202.297",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "SAN MIGUEL DE SALINAS 220": {
+  "codigo": "50534",
+  "ccaa": "Comunidad Valenciana",
+  "x": "696202.527",
+  "y": "4208202.297",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "SAN PEDRO 220": {
+  "codigo": "50535",
+  "ccaa": "Galicia",
+  "x": "112416.647",
+  "y": "4710635.954",
+  "provincia": "Ourense",
+  "voltage": "220"
+ },
+ "SAN PEDRO DEL PINATAR 220": {
+  "codigo": "50536",
+  "ccaa": "Región de Murcia",
+  "x": "692197.268",
+  "y": "4192428.967",
+  "provincia": "Murcia",
+  "voltage": "220"
+ },
+ "SAN SERVAN 220": {
+  "codigo": "50537",
+  "ccaa": "Extremadura",
+  "x": "194675.274",
+  "y": "4301208.961",
+  "provincia": "Badajoz",
+  "voltage": "220"
+ },
+ "SAN SERVAN 400": {
+  "codigo": "50537",
+  "ccaa": "Extremadura",
+  "x": "194692.647",
+  "y": "4301208.292",
+  "provincia": "Badajoz",
+  "voltage": "400"
+ },
+ "SAN VICENTE 220": {
+  "codigo": "50538",
+  "ccaa": "Comunidad Valenciana",
+  "x": "714994.607",
+  "y": "4252705.644",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "SANCHINARRO 220": {
+  "codigo": "50539",
+  "ccaa": "Comunidad de Madrid",
+  "x": "444023.077",
+  "y": "4482433.996",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "SANCHO LLOP 220": {
+  "codigo": "50757",
+  "ccaa": "Comunidad Valenciana",
+  "x": "745395.397",
+  "y": "4317328.607",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "SANGÜESA 220": {
+  "codigo": "50540",
+  "ccaa": "Comunidad Foral de Navarra",
+  "x": "641463.61",
+  "y": "4717715.419",
+  "provincia": "Navarra",
+  "voltage": "220"
+ },
+ "SANT ANDREU 220": {
+  "codigo": "50541",
+  "ccaa": "Cataluña",
+  "x": "933481.357",
+  "y": "4601334.278",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "SANT BOI 220": {
+  "codigo": "50542",
+  "ccaa": "Cataluña",
+  "x": "921806.122",
+  "y": "4588296.352",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "SANT CELONI 220": {
+  "codigo": "50543",
+  "ccaa": "Cataluña",
+  "x": "955231.705",
+  "y": "4631692.011",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "SANT CUGAT 220": {
+  "codigo": "50544",
+  "ccaa": "Cataluña",
+  "x": "923844.654",
+  "y": "4605263.265",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "SANT FOST 220": {
+  "codigo": "50545",
+  "ccaa": "Cataluña",
+  "x": "935501.816",
+  "y": "4608773.366",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "SANT JUST 220": {
+  "codigo": "50546",
+  "ccaa": "Cataluña",
+  "x": "924715.502",
+  "y": "4594779.786",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "SANTA AGUEDA 220": {
+  "codigo": "50547",
+  "ccaa": "Canarias",
+  "x": "-753470.637",
+  "y": "3136875.352",
+  "provincia": "Las Palmas",
+  "voltage": "220"
+ },
+ "SANTA AGUEDA 66": {
+  "codigo": "50547",
+  "ccaa": "Canarias",
+  "x": "-753490.617",
+  "y": "3136877.444",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "SANTA CATALINA 66": {
+  "codigo": "50548",
+  "ccaa": "Islas Baleares",
+  "x": "984124.434",
+  "y": "4395600.509",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SANTA ELVIRA 220": {
+  "codigo": "50758",
+  "ccaa": "Andalucía",
+  "x": "240566.674",
+  "y": "4142114.981",
+  "provincia": "Sevilla",
+  "voltage": "220"
+ },
+ "SANTA ENGRACIA 220": {
+  "codigo": "50550",
+  "ccaa": "La Rioja",
+  "x": "560607.969",
+  "y": "4688641.929",
+  "provincia": "La Rioja",
+  "voltage": "220"
+ },
+ "SANTA ENGRACIA 400": {
+  "codigo": "50550",
+  "ccaa": "La Rioja",
+  "x": "560730.715",
+  "y": "4688565.17",
+  "provincia": "La Rioja",
+  "voltage": "400"
+ },
+ "SANTA EULALIA 66": {
+  "codigo": "50551",
+  "ccaa": "Islas Baleares",
+  "x": "888876.374",
+  "y": "4327091.317",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SANTA LLOGAIA 400": {
+  "codigo": "50552",
+  "ccaa": "Cataluña",
+  "x": "990738.956",
+  "y": "4692446.944",
+  "provincia": "Girona",
+  "voltage": "400"
+ },
+ "SANTA MARIA 66": {
+  "codigo": "50553",
+  "ccaa": "Islas Baleares",
+  "x": "998247.581",
+  "y": "4405404.679",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SANTA MARIA DE GRADO 400": {
+  "codigo": "50554",
+  "ccaa": "Principado de Asturias",
+  "x": "257402.298",
+  "y": "4808319.733",
+  "provincia": "Asturias",
+  "voltage": "400"
+ },
+ "SANTA MARINA 220": {
+  "codigo": "50555",
+  "ccaa": "Castilla y León",
+  "x": "212107.945",
+  "y": "4730139.52",
+  "provincia": "León",
+  "voltage": "220"
+ },
+ "SANTA POLA 220": {
+  "codigo": "50556",
+  "ccaa": "Comunidad Valenciana",
+  "x": "714024.997",
+  "y": "4232908.017",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "SANTA PONSA 132": {
+  "codigo": "50557",
+  "ccaa": "Islas Baleares",
+  "x": "973543.49",
+  "y": "4390804.599",
+  "provincia": "Islas Baleares",
+  "voltage": "132"
+ },
+ "SANTA PONSA 220": {
+  "codigo": "50557",
+  "ccaa": "Islas Baleares",
+  "x": "973563.518",
+  "y": "4390779.469",
+  "provincia": "Islas Baleares",
+  "voltage": "220"
+ },
+ "SANTA PONSA 66": {
+  "codigo": "50557",
+  "ccaa": "Islas Baleares",
+  "x": "973546.898",
+  "y": "4390807.108",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SANTANYI 66": {
+  "codigo": "50558",
+  "ccaa": "Islas Baleares",
+  "x": "1027167.267",
+  "y": "4375402.292",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SANTIAGO 220": {
+  "codigo": "50559",
+  "ccaa": "Galicia",
+  "x": "163399.206",
+  "y": "4701472.779",
+  "provincia": "Ourense",
+  "voltage": "220"
+ },
+ "SANTIAGO DE COMPOSTELA 220": {
+  "codigo": "50560",
+  "ccaa": "Galicia",
+  "x": "44188.744",
+  "y": "4759750.21",
+  "provincia": "A Coruña",
+  "voltage": "220"
+ },
+ "SANTIPONCE 220": {
+  "codigo": "50561",
+  "ccaa": "Andalucía",
+  "x": "231017.709",
+  "y": "4146424.312",
+  "provincia": "Sevilla",
+  "voltage": "220"
+ },
+ "SANTIZ 220": {
+  "codigo": "50562",
+  "ccaa": "Castilla y León",
+  "x": "258779.875",
+  "y": "4564610.954",
+  "provincia": "Salamanca",
+  "voltage": "220"
+ },
+ "SANTURCE 220": {
+  "codigo": "50563",
+  "ccaa": "País Vasco",
+  "x": "495670.663",
+  "y": "4798402.176",
+  "provincia": "Bizkaia",
+  "voltage": "220"
+ },
+ "SANTURCE 400": {
+  "codigo": "50563",
+  "ccaa": "País Vasco",
+  "x": "495698.159",
+  "y": "4798397.641",
+  "provincia": "Bizkaia",
+  "voltage": "400"
+ },
+ "SAUCELLE 220": {
+  "codigo": "50564",
+  "ccaa": "Castilla y León",
+  "x": "179995.834",
+  "y": "4550594.224",
+  "provincia": "Salamanca",
+  "voltage": "220"
+ },
+ "SAX 400": {
+  "codigo": "50565",
+  "ccaa": "Comunidad Valenciana",
+  "x": "686276.969",
+  "y": "4270325.315",
+  "provincia": "Alicante",
+  "voltage": "400"
+ },
+ "SEGORBE 220": {
+  "codigo": "50566",
+  "ccaa": "Comunidad Valenciana",
+  "x": "717664.628",
+  "y": "4411681.673",
+  "provincia": "Castellón",
+  "voltage": "220"
+ },
+ "SEGOVIA 400": {
+  "codigo": "50567",
+  "ccaa": "Castilla y León",
+  "x": "401907.613",
+  "y": "4532748.003",
+  "provincia": "Segovia",
+  "voltage": "400"
+ },
+ "SENTMENAT 220": {
+  "codigo": "50568",
+  "ccaa": "Cataluña",
+  "x": "925930.058",
+  "y": "4620129.998",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "SENTMENAT 400": {
+  "codigo": "50568",
+  "ccaa": "Cataluña",
+  "x": "925946.728",
+  "y": "4620130.988",
+  "provincia": "Barcelona",
+  "voltage": "400"
+ },
+ "SERNA 220": {
+  "codigo": "50569",
+  "ccaa": "Comunidad Foral de Navarra",
+  "x": "610182.449",
+  "y": "4661478.864",
+  "provincia": "Navarra",
+  "voltage": "220"
+ },
+ "SERNA 400": {
+  "codigo": "50569",
+  "ccaa": "Comunidad Foral de Navarra",
+  "x": "610198.988",
+  "y": "4661479.122",
+  "provincia": "Navarra",
+  "voltage": "400"
+ },
+ "SES VELES 66": {
+  "codigo": "50570",
+  "ccaa": "Islas Baleares",
+  "x": "988089.391",
+  "y": "4404931.968",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SESUE 220": {
+  "codigo": "50571",
+  "ccaa": "Aragón",
+  "x": "784945.913",
+  "y": "4715911.319",
+  "provincia": "Huesca",
+  "voltage": "220"
+ },
+ "SIDEGASA 220": {
+  "codigo": "50572",
+  "ccaa": "Galicia",
+  "x": "91538.462",
+  "y": "4789933.79",
+  "provincia": "A Coruña",
+  "voltage": "220"
+ },
+ "SIDENOR 220": {
+  "codigo": "50573",
+  "ccaa": "País Vasco",
+  "x": "509690.814",
+  "y": "4785537.444",
+  "provincia": "Bizkaia",
+  "voltage": "220"
+ },
+ "SIERO 220": {
+  "codigo": "50574",
+  "ccaa": "Principado de Asturias",
+  "x": "276627.309",
+  "y": "4806598.607",
+  "provincia": "Asturias",
+  "voltage": "220"
+ },
+ "SILLEDA 400": {
+  "codigo": "50575",
+  "ccaa": "Galicia",
+  "x": "70177.181",
+  "y": "4746093.271",
+  "provincia": "Pontevedra",
+  "voltage": "400"
+ },
+ "SIMANCAS 220": {
+  "codigo": "UFD-50660",
+  "ccaa": "Comunidad de Madrid",
+  "x": "446498.907",
+  "y": "4475961.351",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "SOBRADELO 220": {
+  "codigo": "50576",
+  "ccaa": "Galicia",
+  "x": "177414.755",
+  "y": "4703239.532",
+  "provincia": "Ourense",
+  "voltage": "220"
+ },
+ "SOLLER 66": {
+  "codigo": "VS-7061",
+  "ccaa": "Islas Baleares",
+  "x": "987928.87",
+  "y": "4419544.243",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SOLORZANO 220": {
+  "codigo": "50577",
+  "ccaa": "Cantabria",
+  "x": "452473.017",
+  "y": "4798788.753",
+  "provincia": "Cantabria",
+  "voltage": "220"
+ },
+ "SOLORZANO 400": {
+  "codigo": "50577",
+  "ccaa": "Cantabria",
+  "x": "452527.606",
+  "y": "4798817.771",
+  "provincia": "Cantabria",
+  "voltage": "400"
+ },
+ "SON MOIX 220": {
+  "codigo": "50760",
+  "ccaa": "Islas Baleares",
+  "x": "983807.583",
+  "y": "4397583.113",
+  "provincia": "Islas Baleares",
+  "voltage": "220"
+ },
+ "SON MOIX 66": {
+  "codigo": "50760",
+  "ccaa": "Islas Baleares",
+  "x": "983790.394",
+  "y": "4397582.033",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SON OMS 66": {
+  "codigo": "50578",
+  "ccaa": "Islas Baleares",
+  "x": "992907.882",
+  "y": "4392150.076",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SON ORLANDIS 220": {
+  "codigo": "50579",
+  "ccaa": "Islas Baleares",
+  "x": "993361.09",
+  "y": "4399201.112",
+  "provincia": "Islas Baleares",
+  "voltage": "220"
+ },
+ "SON ORLANDIS 66": {
+  "codigo": "50579",
+  "ccaa": "Islas Baleares",
+  "x": "993343.903",
+  "y": "4399200.01",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SON PARDO 66": {
+  "codigo": "50761",
+  "ccaa": "Islas Baleares",
+  "x": "985847.971",
+  "y": "4398257.362",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SON REUS 220": {
+  "codigo": "50580",
+  "ccaa": "Islas Baleares",
+  "x": "987354.872",
+  "y": "4404439.806",
+  "provincia": "Islas Baleares",
+  "voltage": "220"
+ },
+ "SON REUS 66": {
+  "codigo": "50580",
+  "ccaa": "Islas Baleares",
+  "x": "987508.17",
+  "y": "4404332.575",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "SOTO DE RIBERA 220": {
+  "codigo": "50581",
+  "ccaa": "Principado de Asturias",
+  "x": "265926.89",
+  "y": "4799796.281",
+  "provincia": "Asturias",
+  "voltage": "220"
+ },
+ "SOTO DE RIBERA 400": {
+  "codigo": "50581",
+  "ccaa": "Principado de Asturias",
+  "x": "265852.91",
+  "y": "4799694.677",
+  "provincia": "Asturias",
+  "voltage": "400"
+ },
+ "SS.REYES (SS.REYES B) 220": {
+  "codigo": "50582",
+  "ccaa": "Comunidad de Madrid",
+  "x": "449587",
+  "y": "4490812",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "SS.REYES 220": {
+  "codigo": "50582",
+  "ccaa": "Comunidad de Madrid",
+  "x": "449504.934",
+  "y": "4490667.869",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "SS.REYES 400": {
+  "codigo": "50582",
+  "ccaa": "Comunidad de Madrid",
+  "x": "449521.865",
+  "y": "4490667.754",
+  "provincia": "Madrid",
+  "voltage": "400"
+ },
+ "SUBIRATS 220": {
+  "codigo": "50583",
+  "ccaa": "Cataluña",
+  "x": "902909.293",
+  "y": "4597372.244",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "SUIDO 220": {
+  "codigo": "50584",
+  "ccaa": "Galicia",
+  "x": "65330.205",
+  "y": "4692222.159",
+  "provincia": "Pontevedra",
+  "voltage": "220"
+ },
+ "TABARA 400": {
+  "codigo": "50762",
+  "ccaa": "Castilla y León",
+  "x": "262091.113",
+  "y": "4627043.256",
+  "provincia": "Zamora",
+  "voltage": "400"
+ },
+ "TABERNAS 220": {
+  "codigo": "50585",
+  "ccaa": "Andalucía",
+  "x": "561114.693",
+  "y": "4103000.996",
+  "provincia": "Almería",
+  "voltage": "220"
+ },
+ "TABERNAS 400": {
+  "codigo": "50585",
+  "ccaa": "Andalucía",
+  "x": "561137.038",
+  "y": "4102969.139",
+  "provincia": "Almería",
+  "voltage": "400"
+ },
+ "TABESCAN 220": {
+  "codigo": "50586",
+  "ccaa": "Cataluña",
+  "x": "849173.831",
+  "y": "4730304.397",
+  "provincia": "Lleida",
+  "voltage": "220"
+ },
+ "TABIELLA 220": {
+  "codigo": "50587",
+  "ccaa": "Principado de Asturias",
+  "x": "266020.134",
+  "y": "4828755.782",
+  "provincia": "Asturias",
+  "voltage": "220"
+ },
+ "TACORONTE 66": {
+  "codigo": "50588",
+  "ccaa": "Canarias",
+  "x": "-819724.123",
+  "y": "3224324.668",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "TAFALLA 220": {
+  "codigo": "50589",
+  "ccaa": "Comunidad Foral de Navarra",
+  "x": "608120.184",
+  "y": "4706360.418",
+  "provincia": "Navarra",
+  "voltage": "220"
+ },
+ "TAGORO 66": {
+  "codigo": "50590",
+  "ccaa": "Canarias",
+  "x": "-828524.58",
+  "y": "3187082.068",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "TAJO ENCANTADA 220": {
+  "codigo": "50591",
+  "ccaa": "Andalucía",
+  "x": "344381.13",
+  "y": "4084681.305",
+  "provincia": "Málaga",
+  "voltage": "220"
+ },
+ "TAJO ENCANTADA 400": {
+  "codigo": "50591",
+  "ccaa": "Andalucía",
+  "x": "344492.273",
+  "y": "4084675.308",
+  "provincia": "Málaga",
+  "voltage": "400"
+ },
+ "TALAVERA 220": {
+  "codigo": "50592",
+  "ccaa": "Castilla-La Mancha",
+  "x": "344401.135",
+  "y": "4429698.309",
+  "provincia": "Toledo",
+  "voltage": "220"
+ },
+ "TAMBRE 220": {
+  "codigo": "50593",
+  "ccaa": "Galicia",
+  "x": "22189.651",
+  "y": "4758611.897",
+  "provincia": "A Coruña",
+  "voltage": "220"
+ },
+ "TANGER CATALUÑA 220": {
+  "codigo": "50594",
+  "ccaa": "Cataluña",
+  "x": "934150.646",
+  "y": "4596538.597",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "TARRAGONA 220": {
+  "codigo": "50595",
+  "ccaa": "Cataluña",
+  "x": "852486.547",
+  "y": "4559884.248",
+  "provincia": "Tarragona",
+  "voltage": "220"
+ },
+ "TELDE 66": {
+  "codigo": "50596",
+  "ccaa": "Canarias",
+  "x": "-728367.648",
+  "y": "3159125.787",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "TELLEDO 220": {
+  "codigo": "50597",
+  "ccaa": "Principado de Asturias",
+  "x": "268745.476",
+  "y": "4767692.499",
+  "provincia": "Asturias",
+  "voltage": "220"
+ },
+ "TERRER 400": {
+  "codigo": "50598",
+  "ccaa": "Aragón",
+  "x": "608321.089",
+  "y": "4575194.419",
+  "provincia": "Zaragoza",
+  "voltage": "400"
+ },
+ "TIAS 132": {
+  "codigo": "50764",
+  "ccaa": "Canarias",
+  "x": "-544283.971",
+  "y": "3250147.247",
+  "provincia": "Las Palmas",
+  "voltage": "132"
+ },
+ "TIAS 66": {
+  "codigo": "50764",
+  "ccaa": "Canarias",
+  "x": "-544278.364",
+  "y": "3250167.254",
+  "provincia": "Las Palmas",
+  "voltage": "66"
+ },
+ "TIBO 220": {
+  "codigo": "50600",
+  "ccaa": "Galicia",
+  "x": "36896.611",
+  "y": "4730219.292",
+  "provincia": "Pontevedra",
+  "voltage": "220"
+ },
+ "TIERRA DE CAMPOS 400": {
+  "codigo": "52067",
+  "ccaa": "Castilla y León",
+  "x": "316751.27",
+  "y": "4618271.833",
+  "provincia": "Valladolid",
+  "voltage": "400"
+ },
+ "TIERRA ESTELLA 220": {
+  "codigo": "52080",
+  "ccaa": "Comunidad Foral de Navarra",
+  "x": "586070.157",
+  "y": "4720767.043",
+  "provincia": "Navarra",
+  "voltage": "220"
+ },
+ "TOMEZA 220": {
+  "codigo": "50765",
+  "ccaa": "Galicia",
+  "x": "36277.52",
+  "y": "4708678.824",
+  "provincia": "Pontevedra",
+  "voltage": "220"
+ },
+ "TORDESILLAS 220": {
+  "codigo": "50601",
+  "ccaa": "Castilla y León",
+  "x": "332021.725",
+  "y": "4596992.642",
+  "provincia": "Valladolid",
+  "voltage": "220"
+ },
+ "TORDESILLAS 400": {
+  "codigo": "50601",
+  "ccaa": "Castilla y León",
+  "x": "331992.48",
+  "y": "4596985.315",
+  "provincia": "Valladolid",
+  "voltage": "400"
+ },
+ "TORREARENILLAS 220": {
+  "codigo": "50602",
+  "ccaa": "Andalucía",
+  "x": "153439.558",
+  "y": "4123169.423",
+  "provincia": "Huelva",
+  "voltage": "220"
+ },
+ "TORREJON 220": {
+  "codigo": "50603",
+  "ccaa": "Extremadura",
+  "x": "244170.293",
+  "y": "4413809.359",
+  "provincia": "Cáceres",
+  "voltage": "220"
+ },
+ "TORREJON DE VELASCO 400": {
+  "codigo": "50766",
+  "ccaa": "Comunidad de Madrid",
+  "x": "436567.841",
+  "y": "4447657.883",
+  "provincia": "Madrid",
+  "voltage": "400"
+ },
+ "TORRELLANO 220": {
+  "codigo": "50604",
+  "ccaa": "Comunidad Valenciana",
+  "x": "708085.612",
+  "y": "4241723.629",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "TORREMENDO 400": {
+  "codigo": "50767",
+  "ccaa": "Comunidad Valenciana",
+  "x": "684722.501",
+  "y": "4203833.845",
+  "provincia": "Alicante",
+  "voltage": "400"
+ },
+ "TORRENT 132": {
+  "codigo": "50605",
+  "ccaa": "Islas Baleares",
+  "x": "884225.934",
+  "y": "4319024.377",
+  "provincia": "Islas Baleares",
+  "voltage": "132"
+ },
+ "TORRENT 66": {
+  "codigo": "50605",
+  "ccaa": "Islas Baleares",
+  "x": "884156.842",
+  "y": "4319015.707",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "TORRENTE 220": {
+  "codigo": "50606",
+  "ccaa": "Comunidad Valenciana",
+  "x": "719027.865",
+  "y": "4366797.168",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "TORRENTE 400": {
+  "codigo": "50606",
+  "ccaa": "Comunidad Valenciana",
+  "x": "719045.083",
+  "y": "4366797.654",
+  "provincia": "Valencia",
+  "voltage": "400"
+ },
+ "TORRES DE SEGRE 220": {
+  "codigo": "50607",
+  "ccaa": "Cataluña",
+  "x": "791609.8",
+  "y": "4600184.252",
+  "provincia": "Lleida",
+  "voltage": "220"
+ },
+ "TORREVIEJA 220": {
+  "codigo": "50768",
+  "ccaa": "Comunidad Valenciana",
+  "x": "702025.596",
+  "y": "4205442.8",
+  "provincia": "Alicante",
+  "voltage": "220"
+ },
+ "TORRIJOS 220": {
+  "codigo": "50608",
+  "ccaa": "Castilla-La Mancha",
+  "x": "391631.225",
+  "y": "4428451.912",
+  "provincia": "Toledo",
+  "voltage": "220"
+ },
+ "TOTANA 400": {
+  "codigo": "50609",
+  "ccaa": "Región de Murcia",
+  "x": "636930.564",
+  "y": "4180952.503",
+  "provincia": "Murcia",
+  "voltage": "400"
+ },
+ "TRANSBADALONA 220": {
+  "codigo": "50769",
+  "ccaa": "Cataluña",
+  "x": "937272.983",
+  "y": "4599444.556",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "TRES CANTOS 220": {
+  "codigo": "50610",
+  "ccaa": "Comunidad de Madrid",
+  "x": "440373.395",
+  "y": "4496526.919",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "TRES CANTOS GIS 220": {
+  "codigo": "50611",
+  "ccaa": "Comunidad de Madrid",
+  "x": "440297.566",
+  "y": "4496415.358",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "TREVAGO 220": {
+  "codigo": "50612",
+  "ccaa": "Castilla y León",
+  "x": "572894.773",
+  "y": "4636068.151",
+  "provincia": "Soria",
+  "voltage": "220"
+ },
+ "TRILLO 220": {
+  "codigo": "50613",
+  "ccaa": "Castilla-La Mancha",
+  "x": "531602.909",
+  "y": "4505937.913",
+  "provincia": "Guadalajara",
+  "voltage": "220"
+ },
+ "TRILLO 400": {
+  "codigo": "50613",
+  "ccaa": "Castilla-La Mancha",
+  "x": "531654.037",
+  "y": "4505876.085",
+  "provincia": "Guadalajara",
+  "voltage": "400"
+ },
+ "TRINITAT 220": {
+  "codigo": "50614",
+  "ccaa": "Cataluña",
+  "x": "933519.298",
+  "y": "4601545.407",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "TRIVES 220": {
+  "codigo": "50615",
+  "ccaa": "Galicia",
+  "x": "147274.587",
+  "y": "4696996.687",
+  "provincia": "Ourense",
+  "voltage": "220"
+ },
+ "TRIVES 400": {
+  "codigo": "50615",
+  "ccaa": "Galicia",
+  "x": "147315.262",
+  "y": "4696962.414",
+  "provincia": "Ourense",
+  "voltage": "400"
+ },
+ "TRUJILLO 220": {
+  "codigo": "50616",
+  "ccaa": "Extremadura",
+  "x": "251264.987",
+  "y": "4371245.043",
+  "provincia": "Cáceres",
+  "voltage": "220"
+ },
+ "TUDELA 220": {
+  "codigo": "50617",
+  "ccaa": "Comunidad Foral de Navarra",
+  "x": "614570.452",
+  "y": "4656341.628",
+  "provincia": "Navarra",
+  "voltage": "220"
+ },
+ "UNINSA 220": {
+  "codigo": "50619",
+  "ccaa": "Principado de Asturias",
+  "x": "279631.151",
+  "y": "4822211.105",
+  "provincia": "Asturias",
+  "voltage": "220"
+ },
+ "URGELL 220": {
+  "codigo": "50620",
+  "ccaa": "Cataluña",
+  "x": "930365.05",
+  "y": "4594627.074",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "VAGUADAS 220": {
+  "codigo": "50621",
+  "ccaa": "Extremadura",
+  "x": "154609.759",
+  "y": "4306319.657",
+  "provincia": "Badajoz",
+  "voltage": "220"
+ },
+ "VALDECABALLEROS 400": {
+  "codigo": "50622",
+  "ccaa": "Extremadura",
+  "x": "311838.828",
+  "y": "4351336.196",
+  "provincia": "Badajoz",
+  "voltage": "400"
+ },
+ "VALDECARRETAS 400": {
+  "codigo": "50623",
+  "ccaa": "Castilla y León",
+  "x": "302366.634",
+  "y": "4591387.04",
+  "provincia": "Zamora",
+  "voltage": "400"
+ },
+ "VALDECONEJOS 220": {
+  "codigo": "50770",
+  "ccaa": "Aragón",
+  "x": "678680.302",
+  "y": "4517947.022",
+  "provincia": "Teruel",
+  "voltage": "220"
+ },
+ "VALDEMORO 220": {
+  "codigo": "50624",
+  "ccaa": "Comunidad de Madrid",
+  "x": "445113.013",
+  "y": "4446035.312",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "VALL D'UXO 220": {
+  "codigo": "50625",
+  "ccaa": "Comunidad Valenciana",
+  "x": "737929.073",
+  "y": "4408529.66",
+  "provincia": "Castellón",
+  "voltage": "220"
+ },
+ "VALLADOLID NUEVO 220": {
+  "codigo": "50626",
+  "ccaa": "Castilla y León",
+  "x": "354865.249",
+  "y": "4612139.488",
+  "provincia": "Valladolid",
+  "voltage": "220"
+ },
+ "VALLDIGNA 220": {
+  "codigo": "50627",
+  "ccaa": "Comunidad Valenciana",
+  "x": "735414.172",
+  "y": "4327056.339",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "VALLDURGENT 220": {
+  "codigo": "50628",
+  "ccaa": "Islas Baleares",
+  "x": "976683.082",
+  "y": "4396392.987",
+  "provincia": "Islas Baleares",
+  "voltage": "220"
+ },
+ "VALLDURGENT 66": {
+  "codigo": "50628",
+  "ccaa": "Islas Baleares",
+  "x": "976665.892",
+  "y": "4396391.922",
+  "provincia": "Islas Baleares",
+  "voltage": "66"
+ },
+ "VALLE DE ARIDANE 66": {
+  "codigo": "50629",
+  "ccaa": "Canarias",
+  "x": "-966421.941",
+  "y": "3263712.311",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "VALLE DEL ARCIPRESTE 220": {
+  "codigo": "50630",
+  "ccaa": "Comunidad de Madrid",
+  "x": "424212.746",
+  "y": "4482288.949",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "VALLE DEL CARCER 220": {
+  "codigo": "50631",
+  "ccaa": "Comunidad Valenciana",
+  "x": "714470.049",
+  "y": "4326569.631",
+  "provincia": "Valencia",
+  "voltage": "220"
+ },
+ "VALLECAS 220": {
+  "codigo": "50632",
+  "ccaa": "Comunidad de Madrid",
+  "x": "447375.907",
+  "y": "4471103.969",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "VALLEJERA 220": {
+  "codigo": "50633",
+  "ccaa": "Castilla y León",
+  "x": "403404.445",
+  "y": "4669164.684",
+  "provincia": "Burgos",
+  "voltage": "220"
+ },
+ "VALLITOS 220": {
+  "codigo": "50634",
+  "ccaa": "Canarias",
+  "x": "-853770.96",
+  "y": "3184353.17",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "220"
+ },
+ "VALLITOS 66": {
+  "codigo": "50634",
+  "ccaa": "Canarias",
+  "x": "-853790.924",
+  "y": "3184355.463",
+  "provincia": "Santa Cruz de Tenerife",
+  "voltage": "66"
+ },
+ "VALPARAISO 220": {
+  "codigo": "50635",
+  "ccaa": "Castilla y León",
+  "x": "228842.679",
+  "y": "4654668.128",
+  "provincia": "Zamora",
+  "voltage": "220"
+ },
+ "VANDELLOS 400": {
+  "codigo": "50636",
+  "ccaa": "Cataluña",
+  "x": "826397.714",
+  "y": "4543442.983",
+  "provincia": "Tarragona",
+  "voltage": "400"
+ },
+ "VANDELLOS CN 220": {
+  "codigo": "50637",
+  "ccaa": "Cataluña",
+  "x": "825414.248",
+  "y": "4540601.041",
+  "provincia": "Tarragona",
+  "voltage": "220"
+ },
+ "VELILLA 400": {
+  "codigo": "50638",
+  "ccaa": "Castilla y León",
+  "x": "348064.001",
+  "y": "4742717.568",
+  "provincia": "Palencia",
+  "voltage": "400"
+ },
+ "VELLE 220": {
+  "codigo": "50639",
+  "ccaa": "Galicia",
+  "x": "100654.293",
+  "y": "4700903.069",
+  "provincia": "Ourense",
+  "voltage": "220"
+ },
+ "VENTA INES 220": {
+  "codigo": "50640",
+  "ccaa": "Castilla-La Mancha",
+  "x": "375689.52",
+  "y": "4269402.781",
+  "provincia": "Ciudad Real",
+  "voltage": "220"
+ },
+ "VENTAS DEL BATAN 220": {
+  "codigo": "50642",
+  "ccaa": "Comunidad de Madrid",
+  "x": "435413.955",
+  "y": "4472532.274",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "VENTILLA 220": {
+  "codigo": "51332",
+  "ccaa": "Andalucía",
+  "x": "348210.737",
+  "y": "4047099.717",
+  "provincia": "Málaga",
+  "voltage": "220"
+ },
+ "VERNEDA 220": {
+  "codigo": "51346",
+  "ccaa": "Cataluña",
+  "x": "934553.799",
+  "y": "4599224.505",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "VIANA 400": {
+  "codigo": "51446",
+  "ccaa": "Galicia",
+  "x": "155183.784",
+  "y": "4676845.808",
+  "provincia": "Ourense",
+  "voltage": "400"
+ },
+ "VIC 220": {
+  "codigo": "50643",
+  "ccaa": "Cataluña",
+  "x": "937806.828",
+  "y": "4658424.295",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "VIC 400": {
+  "codigo": "50643",
+  "ccaa": "Cataluña",
+  "x": "937821.116",
+  "y": "4658567.385",
+  "provincia": "Barcelona",
+  "voltage": "400"
+ },
+ "VILADECANS (VILADECANS B) 220": {
+  "codigo": "50644",
+  "ccaa": "Cataluña",
+  "x": "920734.656",
+  "y": "4587123.481",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "VILADECANS 220": {
+  "codigo": "50644",
+  "ccaa": "Cataluña",
+  "x": "920873.241",
+  "y": "4587087.466",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "VILADECANS 400": {
+  "codigo": "50644",
+  "ccaa": "Cataluña",
+  "x": "920889.987",
+  "y": "4587088.439",
+  "provincia": "Barcelona",
+  "voltage": "400"
+ },
+ "VILANOVA 220": {
+  "codigo": "50645",
+  "ccaa": "Cataluña",
+  "x": "933340.991",
+  "y": "4595295.23",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "VILECHA 400": {
+  "codigo": "50646",
+  "ccaa": "Castilla y León",
+  "x": "288550.69",
+  "y": "4714365.375",
+  "provincia": "León",
+  "voltage": "400"
+ },
+ "VILLABLINO 220": {
+  "codigo": "50647",
+  "ccaa": "Castilla y León",
+  "x": "231762.172",
+  "y": "4759282.618",
+  "provincia": "León",
+  "voltage": "220"
+ },
+ "VILLALBILLA 220": {
+  "codigo": "50648",
+  "ccaa": "Castilla y León",
+  "x": "435708.222",
+  "y": "4687943.573",
+  "provincia": "Burgos",
+  "voltage": "220"
+ },
+ "VILLALCAMPO 220": {
+  "codigo": "50649",
+  "ccaa": "Castilla y León",
+  "x": "242097.991",
+  "y": "4597877.241",
+  "provincia": "Zamora",
+  "voltage": "220"
+ },
+ "VILLAMAYOR 220": {
+  "codigo": "50650",
+  "ccaa": "Castilla y León",
+  "x": "273754.317",
+  "y": "4541050.336",
+  "provincia": "Salamanca",
+  "voltage": "220"
+ },
+ "VILLAMECA 400": {
+  "codigo": "50651",
+  "ccaa": "Castilla y León",
+  "x": "250649.934",
+  "y": "4724403.958",
+  "provincia": "León",
+  "voltage": "400"
+ },
+ "VILLANUEVA DE GALLEGO 220": {
+  "codigo": "50652",
+  "ccaa": "Aragón",
+  "x": "679064.563",
+  "y": "4623440.036",
+  "provincia": "Zaragoza",
+  "voltage": "220"
+ },
+ "VILLANUEVA DE LOS ESCUDEROS 400": {
+  "codigo": "50653",
+  "ccaa": "Castilla-La Mancha",
+  "x": "557775.011",
+  "y": "4431317.108",
+  "provincia": "Cuenca",
+  "voltage": "400"
+ },
+ "VILLANUEVA DEL REY 220": {
+  "codigo": "50654",
+  "ccaa": "Andalucía",
+  "x": "308768.535",
+  "y": "4155590.26",
+  "provincia": "Sevilla",
+  "voltage": "220"
+ },
+ "VILLANUEVA DEL REY 400": {
+  "codigo": "50654",
+  "ccaa": "Andalucía",
+  "x": "308786.21",
+  "y": "4155589.853",
+  "provincia": "Sevilla",
+  "voltage": "400"
+ },
+ "VILLARES DEL SAZ 220": {
+  "codigo": "50655",
+  "ccaa": "Castilla-La Mancha",
+  "x": "536752.412",
+  "y": "4412502.284",
+  "provincia": "Cuenca",
+  "voltage": "220"
+ },
+ "VILLARINO 220": {
+  "codigo": "50656",
+  "ccaa": "Castilla y León",
+  "x": "207752.258",
+  "y": "4572989.321",
+  "provincia": "Salamanca",
+  "voltage": "220"
+ },
+ "VILLARINO 400": {
+  "codigo": "50656",
+  "ccaa": "Castilla y León",
+  "x": "207769.017",
+  "y": "4572988.647",
+  "provincia": "Salamanca",
+  "voltage": "400"
+ },
+ "VILLATORO 220": {
+  "codigo": "51306",
+  "ccaa": "Castilla y León",
+  "x": "441767.807",
+  "y": "4692199.537",
+  "provincia": "Burgos",
+  "voltage": "220"
+ },
+ "VILLAVERDE 220": {
+  "codigo": "50658",
+  "ccaa": "Comunidad de Madrid",
+  "x": "443147.082",
+  "y": "4465968.567",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "VILLAVERDE BAJO (VILLAVERDE BAJO B) 220": {
+  "codigo": "50659",
+  "ccaa": "Comunidad de Madrid",
+  "x": "443154.633",
+  "y": "4465939.61",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "VILLAVICIOSA (VILLAVICIOSA B) 220": {
+  "codigo": "50660",
+  "ccaa": "Comunidad de Madrid",
+  "x": "423176.865",
+  "y": "4466774.948",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "VILLAVICIOSA 220": {
+  "codigo": "50660",
+  "ccaa": "Comunidad de Madrid",
+  "x": "423168.373",
+  "y": "4466775.035",
+  "provincia": "Madrid",
+  "voltage": "220"
+ },
+ "VILLAVICIOSA 400": {
+  "codigo": "50660",
+  "ccaa": "Comunidad de Madrid",
+  "x": "423185.358",
+  "y": "4466774.861",
+  "provincia": "Madrid",
+  "voltage": "400"
+ },
+ "VILLIMAR 220": {
+  "codigo": "50661",
+  "ccaa": "Castilla y León",
+  "x": "446347.478",
+  "y": "4691274.808",
+  "provincia": "Burgos",
+  "voltage": "220"
+ },
+ "VIMIANZO 220": {
+  "codigo": "50662",
+  "ccaa": "Galicia",
+  "x": "7799.997",
+  "y": "4789874.834",
+  "provincia": "A Coruña",
+  "voltage": "220"
+ },
+ "VIRGEN DE AFRICA 132": {
+  "codigo": "51417",
+  "ccaa": "Ceuta",
+  "x": "290173.575",
+  "y": "3974625.814",
+  "provincia": "Ceuta",
+  "voltage": "132"
+ },
+ "VIRTUS 400": {
+  "codigo": "50461",
+  "ccaa": "Castilla y León",
+  "x": "431111.859",
+  "y": "4761417.885",
+  "provincia": "Burgos",
+  "voltage": "400"
+ },
+ "VITORIA 220": {
+  "codigo": "50462",
+  "ccaa": "País Vasco",
+  "x": "532545.233",
+  "y": "4748008.245",
+  "provincia": "Álava",
+  "voltage": "220"
+ },
+ "VITORIA 400": {
+  "codigo": "50462",
+  "ccaa": "País Vasco",
+  "x": "532363.759",
+  "y": "4747970.604",
+  "provincia": "Álava",
+  "voltage": "400"
+ },
+ "XOVE 400": {
+  "codigo": "50463",
+  "ccaa": "Galicia",
+  "x": "137036.342",
+  "y": "4847680.991",
+  "provincia": "Lugo",
+  "voltage": "400"
+ },
+ "ZAL 220": {
+  "codigo": "50464",
+  "ccaa": "Cataluña",
+  "x": "929554.409",
+  "y": "4586248.594",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "ZAMORA 220": {
+  "codigo": "50465",
+  "ccaa": "Castilla y León",
+  "x": "271795.248",
+  "y": "4601854.734",
+  "provincia": "Zamora",
+  "voltage": "220"
+ },
+ "ZAMUDIO 220": {
+  "codigo": "50466",
+  "ccaa": "País Vasco",
+  "x": "511023.76",
+  "y": "4794266.018",
+  "provincia": "Bizkaia",
+  "voltage": "220"
+ },
+ "ZARATAN 220": {
+  "codigo": "50467",
+  "ccaa": "Castilla y León",
+  "x": "348988.869",
+  "y": "4611223.73",
+  "provincia": "Valladolid",
+  "voltage": "220"
+ },
+ "ZARZON 400": {
+  "codigo": "51278",
+  "ccaa": "Extremadura",
+  "x": "212534.913",
+  "y": "4447835.504",
+  "provincia": "Cáceres",
+  "voltage": "220"
+ },
+ "ZIERBENA 400": {
+  "codigo": "50468",
+  "ccaa": "País Vasco",
+  "x": "492612.972",
+  "y": "4800659.25",
+  "provincia": "Bizkaia",
+  "voltage": "400"
+ },
+ "ZONA FRANCA 220": {
+  "codigo": "50469",
+  "ccaa": "Cataluña",
+  "x": "929663.907",
+  "y": "4587365.906",
+  "provincia": "Barcelona",
+  "voltage": "220"
+ },
+ "ZUMARRAGA 220": {
+  "codigo": "50470",
+  "ccaa": "País Vasco",
+  "x": "555377.689",
+  "y": "4770170.119",
+  "provincia": "Gipuzkoa",
+  "voltage": "220"
+ },
+ "ZUZONES 400": {
+  "codigo": "52085",
+  "ccaa": "Castilla y León",
+  "x": "443028.592",
+  "y": "4616312.265",
+  "provincia": "Burgos",
+  "voltage": "400"
+ }
+}
