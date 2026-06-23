@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>SPAIN CAPACITY VIEWER</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+	<link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" />
+	<script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.js"></script>
+
+	<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+	
+<style>
+
+/* --- BASE & MAP --- */
+body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #f0f2f5; }
+#map { height: 100vh; width: 100%; }
+.leaflet-top.leaflet-right { z-index: 10000 !important; margin-top: 10px !important; display: flex; flex-direction: column; gap: 8px !important; align-items: flex-end; padding-top: 0; }
+.leaflet-control-layers { position: relative !important; top: auto !important; right: auto !important; margin: 0 !important; border-radius: 8px !important; border: none !important; box-shadow: 0 2px 10px rgba(0,0,0,0.2) !important; font-family: 'Segoe UI', sans-serif; font-size: 13px; background-color: white !important; }
+.leaflet-control-layers-toggle {width: 34px !important;height: 34px !important; background-size: 18px 18px !important;}
+.leaflet-control-layers-expanded { min-width: 100px !important; z-index: 10005 !important; }
+.leaflet-right .leaflet-control { margin-right: 10px !important; margin-top: 0 !important; margin-bottom: 0 !important; float: none !important; clear: both;}
+.leaflet-bottom.leaflet-left .leaflet-control-scale {margin-left: 300px !important; margin-bottom: 4px !important; }
+	
+	/* --- PANEL LATERAL & COMPONENTES --- */
+#info-panel { position: absolute; top: 10px; left: 10px; z-index: 1000; text-align: center; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); width: 250px; max-height: 92vh; overflow-y: auto; }
+.main-header { border-bottom: 2px solid #0078A8; padding-bottom: 10px; margin-bottom: 15px; }
+.main-title { font-size: 14px; font-weight: bold; color: #1a202c; display: block; margin-bottom: 8px; }
+.month-selector-box { margin-bottom: 15px; background: #eef2f7; padding: 10px; border-radius: 8px; border: 1px solid #d1d9e6; }
+.month-selector-box label { font-size: 11px; font-weight: bold; color: #475569; display: block; margin-bottom: 5px; }
+.month-select, select { width: 100%; padding: 6px; border-radius: 4px; border: 1px solid #cbd5e1; font-size: 13px; font-weight: bold; color: #0078A8; cursor: pointer; }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0; }
+.stat-box { text-align: center; }
+.stat-label { font-size: 9px; text-transform: uppercase; color: #64748b; display: block; }
+.stat-val { font-size: 15px; font-weight: bold; color: #334155; }
+.stat-val.total { color: #0078A8; }
+
+/* --- FILTROS & SELECCIÓN --- */
+.section-header { display: flex; justify-content: space-between; align-items: center; margin: 15px 0 6px 0; border-bottom: 1px solid #eee; padding-bottom: 4px; }
+.section-title { font-size: 11px; font-weight: bold; color: #888; text-transform: uppercase; }
+.select-all-btn { font-size: 10px; color: #0078A8; cursor: pointer; text-decoration: underline; background: none; border: none; padding: 0; }
+.multiselect-container { border: 1px solid #ddd; border-radius: 6px; padding: 8px; max-height: 100px; overflow-y: auto; margin-bottom: 10px; background: #fafafa; }
+.select-option { display: flex; align-items: center; font-size: 12px; margin-bottom: 4px; cursor: pointer; }
+.select-option input { margin-right: 8px; }
+
+/* --- ICONO ⓘ  --- */
+.zero-star-icon { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; background: #0078A8; color: white !important; font-size: 10px; font-weight: bold; cursor: pointer; margin-left: 5px; vertical-align: middle; line-height: 1; flex-shrink: 0; transition: background 0.2s; }
+.zero-star-icon:hover { background: #005a80; }
+/* --- MODAL nota 0* --- */
+#zero-star-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 200000; align-items: center; justify-content: center; }
+#zero-star-modal.open { display: flex; }
+#zero-star-modal-box { background: white; border-radius: 12px; padding: 24px 28px; max-width: 560px; width: 90%; box-shadow: 0 8px 32px rgba(0,0,0,0.3); position: relative; }
+#zero-star-modal-box h3 { margin: 0 0 14px 0; font-size: 14px; color: #0078A8; display: flex; align-items: center; gap: 8px; }
+#zero-star-modal-box .zs-lang { font-size: 10px; font-weight: bold; text-transform: uppercase; color: #64748b; margin-bottom: 4px; margin-top: 12px; }
+#zero-star-modal-box p { margin: 0; font-size: 12px; line-height: 1.7; color: #334155; }
+#zero-star-modal-close { position: absolute; top: 12px; right: 16px; font-size: 18px; cursor: pointer; color: #64748b; line-height: 1; background: none; border: none; padding: 0; }
+#zero-star-modal-close:hover { color: #0078A8; }
+	
+/* --- ELEMENTOS DEL MAPA (LEYENDA & PROYECTOS) --- */
+.legend { padding: 12px; background: white !important; line-height: 22px; color: #333; box-shadow: 0 0 15px rgba(0,0,0,0.1); border-radius: 8px; font-size: 10px; min-width: 150px; }
+.legend-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 2px; }
+.legend-count { font-weight: bold; color: #0078A8; background: #eef2f7; padding: 0px 5px; border-radius: 3px; font-size: 10px; }
+.legend i { display: inline-block; width: 10px; height: 10px; margin-right: 8px; border-radius: 50%; border: 1px solid #fff; vertical-align: middle; }
+.project-label-container { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.project-icon-wrapper { font-size: 22px; line-height: 1; text-shadow: 0 0 4px white; }
+.project-name-tag { background: rgba(255, 255, 255, 0.9); border: 1px solid #999; border-radius: 3px; padding: 1px 4px; font-size: 9px; font-weight: bold; color: #000; white-space: nowrap; margin-top: 2px; }
+.project-row { display: flex; align-items: center; justify-content: space-between; padding: 6px; background: #fff; border: 1px solid #eee; border-radius: 6px; margin-bottom: 4px; font-size: 12px; }
+.range-row { background: #fdfdfd; padding: 8px; border-radius: 8px; border: 1px solid #eaeaea; margin-bottom: 6px; font-size: 11px; }
+.range-row.disabled { opacity: 0.5; background: #f1f1f1; }
+.range-header { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.range-inputs { display: flex; gap: 4px; align-items: center; flex-grow: 1; }
+.range-inputs input[type="color"] { width: 30px; height: 20px; border: none; padding: 0; cursor: pointer; }
+.vis-toggle { cursor: pointer; font-size: 14px; }
+
+/* --- MODAL & GRÁFICAS --- */
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 100000; align-items: center; justify-content: center; }
+.modal-content { background: white; width: 720px; padding: 25px; border-radius: 15px; position: relative;overflow: visible !important; }
+.bar-chart { display: flex; align-items: flex-end; gap: 10px; height: 180px; border-bottom: 2px solid #cbd5e1; margin-top: 35px; padding-bottom: 5px; }
+.bar-container { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; }
+.bar { width: 80%; background: #0078A8; border-radius: 3px 3px 0 0; transition: height 0.3s; }
+.bar-label { font-size: 8px; transform: rotate(-45deg); margin-top: 15px; white-space: nowrap; color: #64748b; }
+.bar-val { position: absolute; top: -18px; font-size: 9px; font-weight: bold; color: #334155; }
+#chart-container canvas { width: 100% !important; height: 100% !important; }
+.leaflet-popup-content { margin: 12px 15px; line-height: 1.2; min-width: 180px; }
+
+/* --- BOTONES --- */
+.btn-comp { width: 100%; padding: 8px; background: #f97316; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4); transition: 0.2s; box-sizing: border-box; font-size: 13px; }
+.btn-comp:hover { background-color: #ea580c; }
+.btn-whats-new { width: 100%; padding: 8px; background: #0ea5e9; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4); transition: 0.2s; font-size: 13px; box-sizing: border-box; }
+.btn-whats-new:hover { background-color: #0ea5e9; }
+
+/* --- WHAT'S NEW MODAL --- */
+#whats-new-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 100000; align-items: center; justify-content: center; }
+#whats-new-modal.open { display: flex; }
+.wn-content { background: white; width: 1200px; max-width: 95vw; height: 88vh; border-radius: 14px; padding: 28px; position: relative; display: flex; flex-direction: column; overflow: hidden; }
+.wn-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+.wn-title { font-size: 22px; font-weight: bold; color: #1a202c; }
+.wn-subtitle { font-size: 15px; color: #64748b; margin-top: 3px; text-transform: uppercase;}
+.wn-close { background: none; border: none; font-size: 22px; cursor: pointer; color: #94a3b8; line-height: 1; padding: 0; }
+.wn-close:hover { color: #334155; }
+.wn-filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
+.wn-filter-btn { padding: 5px 12px; border-radius: 20px; border: 2px solid #e2e8f0; background: white; font-size: 11px; font-weight: bold; cursor: pointer; color: #64748b; transition: 0.15s; }
+.wn-filter-btn.active { border-color: #0ea5e9; background: #0ea5e9; color: white; }
+.wn-filter-btn:hover:not(.active) { border-color: #0ea5e9; color: #0ea5e9; }
+.wn-summary { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.wn-stat { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 14px; text-align: center; min-width: 90px; }
+.wn-stat-val { font-size: 20px; font-weight: bold; }
+.wn-stat-lbl { font-size: 10px; color: #64748b; text-transform: uppercase; }
+.wn-table-wrap { overflow-y: auto; flex: 1; border: 1px solid #e2e8f0; border-radius: 8px; }
+.wn-table { width: 100%; border-collapse: collapse; font-size: 12px; table-layout: fixed; }
+.wn-table th { position: sticky; top: 0; background: #f1f5f9; padding: 9px 12px; text-align: center; font-size: 11px; color: #475569; text-transform: uppercase; font-weight: bold; border-bottom: 2px solid #e2e8f0; z-index: 1; }
+.wn-table td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; text-align: center;}
+.wn-table tr:hover td { background: #fafafa; }
+.wn-badge { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: bold; }
+.wn-badge.up { background: #dcfce7; color: #15803d; }
+.wn-badge.down { background: #fee2e2; color: #b91c1c; }
+.wn-badge.new { background: #dbeafe; color: #1d4ed8; }
+.wn-badge.lost { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+.wn-search { width: 100%; padding: 7px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 12px; outline: none; margin-bottom: 10px; }
+.wn-search:focus { border-color: #7c3aed; }
+.wn-empty { text-align: center; padding: 40px; color: #94a3b8; font-size: 13px; }
+.btn-access-login { width: 100%; padding: 11px; background: #0078A8; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.2s ease; }
+.btn-access-login:hover { background-color: #005a7d; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0, 120, 168, 0.3); }
+.popup-btn-hist { width: 100%; margin-top: 8px; padding: 6px 8px; background-color: #f97316; color: white !important; border: none; border-radius: 4px; font-weight: 600; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.2s ease; }
+.popup-btn-hist:hover { background-color: #ea5e9;}
+.popup-node-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+
+
+/* --- BUSCADORES (GENERAL & HISTÓRICO) --- */
+#search-container { position: fixed; top: 10px; right: 60px; z-index: 9999; width: 220px; display: flex; flex-direction: column; gap: 5px; }
+.search-wrapper { background: white; padding: 4px; border-radius: 10px; display: flex; border: 2px solid #0078A8; position: relative; box-sizing: border-box; width: 100%; }
+#node-search-input { width: 100%; padding: 10px; border: 1px solid #eee; border-radius: 6px; font-size: 12px; outline: none; background: #fff; padding-right: 30px; }
+.search-results { position: absolute;top: 100%;left: 0;width: 100%;background: white; border-radius: 8px; margin-top: 5px; max-height: 400px; overflow-y: auto; box-shadow: 0 8px 20px rgba(0,0,0,0.3); display: none; border: 1px solid #ddd; }
+.search-item { padding: 10px; cursor: pointer; font-size: 13px; border-bottom: 1px solid #eee; color: #333; }
+.search-item:hover, .suggestion-item:hover { background-color: #f8fafc; color: #0078A8; }
+.search-section {position: relative; display: flex; flex-direction: column; align-items: center; margin-bottom: 25px; width: 100%; z-index: 1001;}
+.minimal-container { max-width: 600px; position: relative; width: 100%; }
+.minimal-input { width: 100%; padding: 10px 15px; padding-right: 35px; border: none; border-bottom: 2px solid #eee; background: transparent; font-size: 15px; transition: border-color 0.3s; outline: none; text-align: center; box-shadow: none !important; }
+.minimal-input:focus { border-bottom-color: #0078A8; }
+#hist-search-input { max-width: 600px !important; padding: 12px 15px !important; font-size: 16px !important; }
+.suggestions-box-minimal { position: absolute; top: 100%; width: 100%; max-width: 600px; background: white; border-radius: 0 0 8px 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 9999; display: none; max-height: 320px; overflow-y: auto; border: 1px solid #eee; border-top: none; }
+#hist-suggestions { max-width: 600px !important; }
+.suggestions-box { position: absolute; width: 100%; max-height: 250px; overflow-y: auto; background: white; border: 1px solid #ddd; border-radius: 0 0 8px 8px; z-index: 10001; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: none; box-sizing: border-box; }
+.suggestion-item { padding: 10px 15px; cursor: pointer; border-bottom: 1px solid #f0f0f0; transition: background 0.2s; display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box; }
+.suggestion-item span[style*="background-color"] { display: inline-flex !important; align-items: center !important; justify-content: center !important; height: 1.4em; padding: 0 6px !important; line-height: 1 !important; vertical-align: middle; }
+.node-info-container {background: #f8f9fa;border-radius: 8px;padding: 15px;margin: 15px 0;border-left: 4px solid #007bff;}
+.info-grid {display: grid;grid-template-columns: 1fr 1fr;gap: 10px;font-size: 14px;}
+.info-item strong {color: #555;}
+.info-item span {color: #000;font-weight: 500;}
+
+
+/* --- BOTONES DE LIMPIEZA (X) --- */
+.clear-btn {display: none; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #999; font-size: 22px; line-height: 1; display: none; user-select: none; transition: color 0.2s; z-index: 100; }
+.clear-btn:hover { color: #e74c3c; }
+
+/* --- BADGES & INFO --- */
+.type-badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; color: white; font-weight: bold; margin-right: 5px; }
+.voltage-info { font-size: 11px; color: #666; font-weight: bold; }
+
+.custom-measure-label {background: #0078A8 !important;color: white !important; border: 2px solid white !important; border-radius: 5px !important;padding: 4px 8px !important;font-weight: bold !important; font-size: 13px !important; box-shadow: 0 2px 10px rgba(0,0,0,0.4) !important;  white-space: nowrap !important;}
+
+/* KML/KMZ */
+.leaflet-control-kml {background: white;width: 30px; height: 30px;border-radius: 4px;  border: 2px solid rgba(0,0,0,0.2); background-clip: padding-box; cursor: pointer;
+    display: flex; align-items: center;justify-content: center; transition: background-color 0.2s; margin-bottom: 5px !important; }
+.leaflet-control-kml:hover {background-color: #f4f4f4;}
+.leaflet-control-kml-icon {    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 9px; font-weight: bold; color: #444;  text-align: center; line-height: 1; background-image: none !important; }
+
+
+
+/* --- RESPONSIVE GLOBAL --- */
+@media (max-width: 1366px) {  #info-panel { width: 220px; padding: 14px; font-size: 12px; max-height: 94vh; } .stat-val { font-size: 13px; }  #search-container { width: 200px; }  .multiselect-container { max-height: 80px; }  .modal-content { width: 550px; }  #chart-container { height: 260px; }}
+@media (max-width: 1280px) {  #info-panel { width: 200px; padding: 12px; font-size: 11px; max-height: 92vh; }  .main-header span { font-size: 14px !important; }  .stat-val { font-size: 12px; }  .stat-label { font-size: 8px; }  .stats-grid { padding: 8px; gap: 6px; }  .btn-comp { font-size: 11px; }  .btn-whats-new { font-size: 11px; }
+  #search-container { width: 185px; }  .section-title { font-size: 10px; }  .select-option { font-size: 11px; }  .multiselect-container { max-height: 75px; }  .range-row { font-size: 10px; padding: 6px; }  select, .month-select { font-size: 12px; padding: 5px; }  .modal-content { width: 500px; padding: 20px; }  #chart-container { height: 240px; }
+  .leaflet-control-layers-expanded { font-size: 10px !important; }  .search-results { font-size: 11px; }  .search-item { padding: 8px; font-size: 11px; }  .suggestion-item { padding: 8px 12px; font-size: 11px; }  #node-search-input { font-size: 12px; padding: 8px; }}
+@media (max-width: 1024px) {  #info-panel { width: 180px; padding: 10px; font-size: 10px; max-height: 90vh; top: 8px; left: 8px; }  .main-header span { font-size: 13px !important; }  .stat-val { font-size: 11px; }  .stat-label { font-size: 7px; }  .stats-grid { padding: 6px; gap: 4px; }  .btn-comp { font-size: 10px; padding: 6px; }
+  .btn-whats-new { font-size: 10px; padding: 6px; }  #search-container { width: 165px; }  .section-title { font-size: 9px; }  .select-all-btn { font-size: 9px; }  .select-option { font-size: 10px; }  .multiselect-container { max-height: 65px; padding: 6px; }  .range-row { font-size: 9px; padding: 5px; }  select, .month-select { font-size: 11px; padding: 4px; }
+  .section-header { margin: 10px 0 4px 0; }  .modal-content { width: 90vw; padding: 16px; }  #chart-container { height: 220px; }  .node-info-container { padding: 10px; }  .info-grid { font-size: 12px; }  .leaflet-bottom.leaflet-left .leaflet-control-scale { margin-left: 200px !important; }  .search-results { font-size: 10px; }
+  .search-item { padding: 7px; font-size: 10px; }  .suggestions-box, .suggestions-box-minimal { font-size: 10px; }  .suggestion-item { padding: 7px 10px; font-size: 10px; }  #node-search-input { font-size: 11px; padding: 7px; }}
+@media (max-width: 900px) {  #info-panel { width: 160px; padding: 8px; font-size: 10px; max-height: 88vh; }  .btn-comp { font-size: 10px; padding: 5px; }  .btn-whats-new { font-size: 10px; padding: 5px; }  #search-container { width: 150px; }  .leaflet-bottom.leaflet-left .leaflet-control-scale { margin-left: 175px !important; }
+  .search-results { font-size: 9px; }  .search-item { padding: 6px; font-size: 9px; }  .suggestions-box, .suggestions-box-minimal { font-size: 9px; }  .suggestion-item { padding: 6px 8px; font-size: 9px; }  #node-search-input { font-size: 10px; padding: 6px; }}
+		
+</style>
+</head>
+<body>
+
+
+
+<div id="login-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999; background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); display: flex; align-items: center; justify-content: center; flex-direction: column;">
+    <div style="background: white; border-radius: 16px; padding: 40px 48px; box-shadow: 0 25px 60px rgba(0,0,0,0.5); width: 340px; text-align: center;">
+        <div style="font-size: 40px; margin-bottom: 25px;">⚡</div>
+        <h2 style="margin: 0 0 4px 0; color: #1a202c; font-size: 23px; font-family: 'Segoe UI', sans-serif;">Spain Capacity Viewer</h2>
+        <p style="margin: 0 0 30px 0; color: #64748b; font-size: 12px; font-family: 'Segoe UI', sans-serif;">Hanwha Energy Corporation Europe</p>
+        <input id="pwd-input" type="password" placeholder="Introduce password" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; margin-bottom: 12px;" onkeydown="if(event.key==='Enter') permit()" onfocus="this.style.borderColor='#0078A8'" onblur="this.style.borderColor='#cbd5e1'"/>
+        <div id="pwd-error" style="color: #dc2626; font-size: 12px; margin-bottom: 10px; min-height: 16px;"></div>
+        <button class="btn-access-login" onclick="permit()">ACCESS</button>
+    </div>
+    <p style="color: rgba(255,255,255,0.3); font-size: 11px; margin-top: 20px;">Limited Access · ©️HECE</p>
+</div>
+
+
+
+<div id="search-container" style="display: none;">
+    <button class="btn-whats-new" onclick="openWhatsNew()">💡 WHAT'S NEW?</button>
+	<button class="btn-comp" onclick="openHistory()">📊 HISTORICAL DATA</button>
+        <div class="search-wrapper";">
+        <input type="text" id="node-search-input" placeholder="🔍 Search node by name..." oninput="searchNodes(this.value); toggleClearBtn('node-search-input', 'clear-main-node')">
+        <span class="clear-btn" id="clear-main-node" onclick="clearSearch('node-search-input', 'search-results', 'clear-main-node')">&times;</span>
+    </div>
+    <div id="search-results" class="search-results"></div>
+</div>
+
+
+<div id="info-panel">
+    <div class="main-header"><span style="font-size: 17px; font-weight:bold;">SPAIN CAPACITY VIEWER</span></div>
+    
+    <div class="stats-grid">
+        <div class="stat-box"><span class="stat-label">DSO</span><span id="count-dso" class="stat-val">0</span></div>
+        <div class="stat-box"><span class="stat-label">TSO</span><span id="count-tso" class="stat-val">0</span></div>
+        <div class="stat-box"><span class="stat-label">TOTAL</span><span id="count-total" class="stat-val total">0</span></div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px; background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <label style="font-size: 10px; font-weight:bold; color:#64748b;">MAIN SELECTION</label>
+        <select id="view-year" onchange="applyFilters()"><option value="26" selected>2026</option></select>
+        <select id="view-month" onchange="applyFilters()"><option value="jan">January</option><option value="feb">February</option><option value="mar">March</option><option value="apr">April</option><option value="may">May</option><option value="jun" selected>June</option><option value="jul">July</option><option value="ago">August</option><option value="sep">September</option><option value="oct">October</option><option value="nov">November</option><option value="dec">December</option></select>
+        <select id="view-red" onchange="applyFilters()"><option value="ALL">DSO+TSO</option><option value="DSO">DSO</option><option value="TSO" selected>TSO</option></select>
+		<select id="view-type" onchange="refreshTypeFilter(); applyFilters()"><option value="gen">Generation (MW)</option><option value="dem" selected>Demand (MW)</option><option value="storage">Storage Gen/Dem (MW)</option></select>
+        </select>
+    </div>
+	
+    <div class="section-header">
+    <span class="section-title">HECE Portfolio</span><button class="select-all-btn" onclick="toggleAll('projects-controls')">Select All</button></div>
+    <div id="projects-controls"></div>
+
+    <div class="section-header">
+    <span class="section-title">Capacity ranges (MW)</span>
+    <button class="select-all-btn" onclick="toggleAll('ranges-container')">Select All</button>
+    </div>
+    <div id="ranges-container"></div>
+	
+    <div class="section-header"><span class="section-title">Province</span><button class="select-all-btn" onclick="toggleAll('m-prov')">Select All</button></div>
+    <div id="m-prov" class="multiselect-container"></div>
+
+    <div class="section-header"><span class="section-title">Operator</span><button class="select-all-btn" onclick="toggleAll('m-oper')">Select All</button></div>
+    <div id="m-oper" class="multiselect-container"></div>
+
+    <div class="section-header"><span class="section-title">Voltage (kV)</span><button class="select-all-btn" onclick="toggleAll('m-tens')">Select All</button></div>
+    <div id="m-tens" class="multiselect-container"></div>
+
+    <div class="section-header"><span class="section-title" id="type-filter-label">Type-DEM</span><button class="select-all-btn" onclick="toggleAll('m-type')">Select All</button></div>
+    <div id="m-type" class="multiselect-container"></div>
+</div>
+
+
+<div id="map"></div>
+
+<!-- WHAT'S NEW MODAL -->
+<div id="whats-new-modal">
+    <div class="wn-content">
+        <div class="wn-header">
+            <div>
+                <div class="wn-title">💡 What's New This Month?</div>
+                <div class="wn-subtitle" id="wn-subtitle">Changes vs previous month</div>
+            </div>
+            <button class="wn-close" onclick="closeWhatsNew()">×</button>
+        </div>
+
+		<div style="display: flex; gap: 6px; margin-bottom: 16px; align-items: center; background: #f8fafc; padding: 8px; border-radius: 6px; border: 1px solid #e2e8f0; overflow-x: auto; white-space: nowrap;">
+    <span style="font-size: 11px; font-weight: bold; color: #64748b; margin-right: 0px;"></span>
+    <select id="wn-year" onchange="openWhatsNew(true)" style="flex: 1; min-width: 70px; padding: 4px 6px; border-radius: 5px; border: 1px solid #cbd5e1; font-size: 12px; color: #0078A8; font-weight: bold; cursor: pointer;">
+        <option value="26">2026</option>
+    </select>
+    <select id="wn-month" onchange="openWhatsNew(true)" style="flex: 1; min-width: 90px; padding: 4px 6px; border-radius: 5px; border: 1px solid #cbd5e1; font-size: 12px; color: #0078A8; font-weight: bold; cursor: pointer;">
+        <option value="jan">January</option><option value="feb">February</option><option value="mar">March</option><option value="apr">April</option><option value="may">May</option><option value="jun">June</option><option value="jul">July</option><option value="ago">August</option><option value="sep">September</option><option value="oct">October</option><option value="nov">November</option><option value="dec">December</option>
+    </select>
+    <select id="wn-red" onchange="openWhatsNew(true)" style="flex: 1; min-width: 85px; padding: 4px 6px; border-radius: 5px; border: 1px solid #cbd5e1; font-size: 12px; color: #0078A8; font-weight: bold; cursor: pointer;">
+        <option value="ALL">DSO+TSO</option><option value="DSO">DSO</option><option value="TSO">TSO</option>
+    </select>
+    <select id="wn-type" onchange="openWhatsNew(true)" style="flex: 1; min-width: 95px; padding: 4px 6px; border-radius: 5px; border: 1px solid #cbd5e1; font-size: 12px; color: #0078A8; font-weight: bold; cursor: pointer;">
+        <option value="gen">Generation</option><option value="dem">Demand</option><option value="stg-gen">Storage Gen</option><option value="stg-dem">Storage Dem</option><option value="storage">Storage Min Effective</option>
+    </select>
+</div>
+		
+        <div class="wn-summary" id="wn-summary"></div>
+        <div class="wn-filters" id="wn-filter-row">
+            <span style="font-size:11px; font-weight:bold; color:#475569;">Show:</span>
+            <button class="wn-filter-btn active" data-filter="all" onclick="wnSetFilter('all')">All Changes</button>
+            <button class="wn-filter-btn" data-filter="up" onclick="wnSetFilter('up')">▲ Up</button>
+            <button class="wn-filter-btn" data-filter="down" onclick="wnSetFilter('down')">▼ Down</button>
+            <button class="wn-filter-btn" data-filter="new" onclick="wnSetFilter('new')">🆕 New Data</button>
+            <button class="wn-filter-btn" data-filter="lost" onclick="wnSetFilter('lost')">🚫 Data Lost</button>
+			<button class="wn-filter-btn" data-filter="nochange" onclick="wnSetFilter('nochange')">＝ No Change</button>
+        </div>
+        <input class="wn-search" id="wn-search-input" type="text" placeholder="🔍 Filter by node name, province or operator..." oninput="wnRenderTable()">
+        <div class="wn-table-wrap">
+            <table class="wn-table">
+                <thead>
+                    <tr>
+                        <th style="width:200px">Node</th>
+						<th style="width:15px">MAP</th>
+						<th style="width:100px">Province</th>
+						<th style="width:35px">Grid</th>
+						<th style="width:60px">Operator</th>
+						<th style="width:60px">Voltage</th>
+						<th style="width:75px">Previous</th>
+						<th style="width:75px">Current</th>
+						<th style="width:75px">Δ Change</th>
+						<th style="width:90px">Status</th>
+						<th style="width:65px">Hist. Data</th>
+                    </tr>
+                </thead>
+                <tbody id="wn-tbody"></tbody>
+            </table>
+            <div id="wn-empty" class="wn-empty" style="display:none;">No changes found for the current filters.</div>
+        </div>
+    </div>
+</div>
+	
+<div id="history-modal" class="modal-overlay">
+    <div class="modal-content">
+        <span onclick="closeHistory()" style="position: absolute; top: 15px; right: 20px; cursor: pointer; font-size: 24px;">&times;</span>
+        <h3 style="color: #0078A8; margin: 0 0 20px 0;">HISTORICAL DATA</h3>
+
+        <div class="search-section" style="position: relative; margin-bottom: 20px;">
+            <div class="search-wrapper minimal-container">
+                <input type="text" id="hist-search-input" placeholder="🔍 Search node by name..." class="minimal-input" autocomplete="off">
+                <span class="clear-btn" id="clear-hist" onclick="clearSearch('hist-search-input', 'hist-suggestions', 'clear-hist')">&times;</span>
+            </div>
+            <div id="hist-suggestions" class="suggestions-box-minimal"></div>
+        </div>
+
+        <div id="node-info-display" class="node-info-container" style="display: none; margin-bottom: 20px;">
+            <div class="info-grid">
+                <div class="info-item"><strong>Name:</strong> <span id="info-name">-</span></div>
+                <div class="info-item"><strong>Grid:</strong> <span id="info-grid">-</span></div>
+                <div class="info-item"><strong>Operator:</strong> <span id="info-operator">-</span></div>
+                <div class="info-item"><strong>Voltage:</strong> <span id="info-voltage">-</span></div>
+                <div class="info-item"><strong>Province:</strong> <span id="info-province">-</span></div>
+				<div class="info-item"><strong>Type-GEN:</strong> <span id="info-type-gen">-</span></div>
+				<div class="info-item"><strong>Type-DEM:</strong> <span id="info-type-dem">-</span></div>
+            </div>
+        </div>
+
+        <div id="chart-container" style="position: relative; height:300px; width:100%;">
+            <canvas id="historyChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<input type="file" id="kml-upload" style="display: none;" onchange="handleKML(this)" accept=".kml,.kmz">
+
+
+<script>
+    let isAppInitialized = false;
+    function permit() {
+    const input = document.getElementById('pwd-input');
+    const error = document.getElementById('pwd-error');
+    if (btoa(input.value) === 'aGVjZTIwMjY=') {
+        document.getElementById('login-overlay').style.display = 'none';
+        document.getElementById('search-container').style.display = 'flex';
+        const kmlBtn = document.querySelector('.leaflet-control-kml');
+        if (kmlBtn) { kmlBtn.style.display = 'flex'; }
+        if (!isAppInitialized) { init(); isAppInitialized = true; }
+    } else {
+        error.textContent = '❌ Wrong password. Try again.';
+        input.value = ''; input.focus();
+        setTimeout(() => error.textContent = '', 3000);
+    }
+}
+</script>
+
+<script>
+
+
+// MAPAS
+var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+    attribution: '© OpenStreetMap contributors' });
+var satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri'});
+var map = L.map('map', { zoomControl: false, layers: [osmLayer] }).setView([40.41, -3.70], 6);
+var baseMaps = {"Street Map": osmLayer, "Satelite": satelliteLayer};
+
+// ZOOM & LAYER
+L.control.zoom({ position: 'topright' }).addTo(map);
+
+L.control.layers(baseMaps, null, {position: 'topright', collapsed: true }).addTo(map);
+
+// ESCALA
+L.control.scale({imperial: false, metric: true, position: 'bottomleft' }).addTo(map);
+
+// CARGA KML/KMZ (Google Earth)
+const KmlControl = L.Control.extend({
+    options: { position: 'topright'},
+    onAdd: function (map) {
+        const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-kml');
+        container.title = 'Subir archivo KML o KMZ';
+        const textLabel = L.DomUtil.create('div', 'leaflet-control-kml-icon', container);
+        textLabel.innerHTML = "KML<br>KMZ"; 
+        L.DomEvent.on(container, 'click', function (e) {
+            L.DomEvent.stopPropagation(e);
+            L.DomEvent.preventDefault(e);
+            document.getElementById('kml-upload').click();
+        });
+
+        return container;
+    }
+});
+
+// Añadimos el control al mapa
+map.addControl(new KmlControl());
+
+	
+// MEDIDAS
+
+map.pm.addControls({ position: 'topright',drawMarker: false, drawCircleMarker: false, drawPolyline: true, drawRectangle: false, drawPolygon: true, drawCircle: false, drawText: false, editControls: true, editMode: false, dragMode: false, cutLayer: false, rotateMode: false, removalMode: true, oneBlock: true});
+map.pm.setGlobalOptions({ measurements: { measurement: true, displayFullDistance: true, showArea: true, totalLengthUnit: 'kilometers', areaUnit: 'hectares', showCurrentMeasurement: true},
+    finishOn: 'dblclick', 
+    allowSelfIntersection: false,
+    templineStyle: { color: '#f97316', weight: 3 },
+    pathOptions: { color: '#0078A8', fillColor: '#0078A8', fillOpacity: 0.3, weight: 3 }
+});
+map.on('pm:create', function(e) {const layer = e.layer;
+		layer.setStyle({ interactive: false });
+		let content = "";
+        if (layer instanceof L.Polyline && !(layer instanceof L.Polygon)) { let coords = layer.getLatLngs(); let dist = 0; for (let i = 0; i < coords.length - 1; i++) { dist += coords[i].distanceTo(coords[i+1]); }
+        content = `${(dist / 1000).toFixed(2)} km`;  } 
+	    else if (layer instanceof L.Polygon) { let coords = layer.getLatLngs()[0]; let area = 0; let j = coords.length - 1;  for (let i = 0; i < coords.length; i++) {
+            let p1 = coords[i];
+            let p2 = coords[j];
+            area += (p2.lng + p1.lng) * (p2.lat - p1.lat); j = i;}
+        
+        let finalArea = Math.abs(area) * 111319.9 * 111319.9 * Math.cos(coords[0].lat * Math.PI / 180) / 2;
+        content = `${(finalArea / 10000).toFixed(2)} ha`;}
+
+    if (content) { layer.bindTooltip(content, { permanent: true, direction: 'center', className: 'custom-measure-label', interactive: false}).openTooltip(); }
+
+    map.pm.disableDraw();});
+
+	
+proj4.defs("EPSG:32630", "+proj=utm +zone=30 +ellps=WGS84 +datum=WGS84 +units=m +no_defs");
+
+
+   	const DATA_BASE_URL = 'data/'; // rawData eliminado: los datos se leen de /data (JSON)
+
+
+        const projectsData = [
+           	{ name: "Cervera II", x: 551613.044, y: 4400559.528, type: "PV+WIND" },
+		{ name: "Piedrahita", x: 271225.199, y: 4619046.403, type: "PV+WIND" },
+		{ name: "Tomelloso", x: 510085.155, y: 4328958.97, type: "PV+WIND" },
+		{ name: "Baza", x: 520412.019, y: 4144496.024, type: "PV" },
+		{ name: "Jerez I", x: 234189.509, y: 4067879.634, type: "PV" },
+		{ name: "Jerez II", x: 231387.973, y: 4062128.324, type: "PV" },
+		{ name: "Olmedilla", x: 576031.924, y: 4383746.291, type: "PV" },
+		{ name: "La Venena", x: 374618.221, y: 4659052, type: "PV" },
+		{ name: "Lavanda", x: 318625.942, y: 4617985.317, type: "PV+WIND" },
+		{ name: "Aquitania", x: 491689.767, y: 4716347.333, type: "WIND" },
+		{ name: "Leganés", x: 434281.31, y: 4462463.232, type: "BESS" },
+		{ name: "Los Barrios", x: 278625.31, y: 4008604.54, type: "PV" },
+		{ name: "Las Mesas", x: 287396.02, y: 4013831.06, type: "PV" }
+        ];
+
+        const projectIcons = {
+            "PV": { emoji: "☀️", visible: true },
+            "WIND": { emoji: "🌀", visible: true },
+            "PV+WIND": { emoji: "☀️🌀", visible: true },
+            "BESS": { emoji: "🔋", visible: true }
+        };
+
+        let ranges = [
+            { id: 'r0', limit: 0, radius: 5, color: "#991b1b", visible: true, count: 0, label: "= 0 MW" },
+            { id: 'r1', limit: 0.99, radius: 6, color: "#ef4444", visible: true, count: 0, label: "(0 - 1) MW" },
+            { id: 'r2', limit: 9.99, radius: 7, color: "#f97316", visible: true, count: 0, label: "[1 - 10) MW" },
+            { id: 'r3', limit: 49.99, radius: 9, color: "#facc15", visible: true, count: 0, label: "[10 - 50) MW" },
+            { id: 'r4', limit: 99.99, radius: 11, color: "#84cc16", visible: true, count: 0, label: "[50 - 100) MW" },
+            { id: 'r5', limit: 249.99, radius: 13, color: "#22c55e", visible: true, count: 0, label: "[100 - 250) MW" },
+            { id: 'r6', limit: 499.99, radius: 15, color: "#065f46", visible: true, count: 0, label: "[250 - 500) MW" },
+            { id: 'r7', limit: Infinity, radius: 17, color: "#1e40af", visible: true, count: 0, label: ">= 500 MW" }
+        ];
+        let noInfoConfig = { radius: 4, color: "#334155", visible: true, count: 0 };
+
+
+        var markersLayer = L.featureGroup().addTo(map);
+        var projectsLayer = L.featureGroup().addTo(map);
+        var legendControl = L.control({position: 'bottomright'});
+        let allEntries = [];
+		let markersInMap = {};
+            
+        legendControl.onAdd = function() { 
+    		this._div = L.DomUtil.create('div', 'legend'); 
+    		this.update(); 
+    		return this._div; 
+		};
+
+legendControl.update = function() {
+    const yearEl = document.getElementById('view-year');
+    const monthEl = document.getElementById('view-month');
+    const typeEl = document.getElementById('view-type');
+
+    if (!yearEl || !monthEl || !typeEl) return;
+
+    const year = yearEl.value;
+    const monthText = monthEl.options[monthEl.selectedIndex].text;
+    const typeText = typeEl.value === 'gen' ? 'Generation' : (typeEl.value === 'dem' ? 'Demand' : 'Storage (Gen/Dem)');
+
+    const total = ranges.reduce((s, r) => s + (r.visible ? r.count : 0), 0) + (noInfoConfig.visible ? noInfoConfig.count : 0);
+
+    let html = `<strong>Capacity ${monthText} 20${year} (${typeText})</strong><br>`;
+    
+    ranges.forEach(r => { 
+        if (r.visible) {
+            const pct = total > 0 ? ((r.count / total) * 100).toFixed(1) : '0.0';
+            html += `<div class="legend-item">
+                <div><i style="background:${r.color}; width:8px; height:8px;"></i> ${r.label}</div>
+                <div class="legend-count">${r.count} <span style="color:#94a3b8; font-weight:normal;">(${pct}%)</span></div>
+            </div>`; 
+        }
+    });
+  
+    if (noInfoConfig.visible) {
+        const pct = total > 0 ? ((noInfoConfig.count / total) * 100).toFixed(1) : '0.0';
+        html += `<div class="legend-item">
+            <div><i style="background:${noInfoConfig.color}; width:8px; height:8px;"></i> No Info</div>
+            <div class="legend-count">${noInfoConfig.count} <span style="color:#94a3b8; font-weight:normal;">(${pct}%)</span></div>
+        </div>`;
+    }
+    this._div.innerHTML = html;
+};
+
+    function cleanNum(val) {
+    if (val === undefined || val === null || val === "") return NaN;
+    
+    // Si es SOLO un guion, es "No Info"
+    if (val.toString().trim() === "-") return NaN;
+
+    // Limpieza de espacios y comas
+    let clean = val.toString().replace(/\s/g, '').replace(',', '.');
+    let num = parseFloat(clean);
+    
+    if (isNaN(num)) return NaN;
+
+    // REDONDEO A 2 DECIMALES
+    return Math.round(num * 100) / 100;
+}
+        function init() {
+    cargarDatosJSON();
+}
+
+// ====== LECTURA DE DATOS DESDE /data (TSO) ======
+const MONTHS_DATA = {};            // { "26_jun": { "ABADES 400": {gen,dem}, ... }, ... }
+let   NODOS_BASE  = {};            // atributos estáticos por nombre de nudo
+const MES_NUM2NAME = {"01":"jan","02":"feb","03":"mar","04":"apr","05":"may","06":"jun","07":"jul","08":"ago","09":"sep","10":"oct","11":"nov","12":"dec"};
+
+function periodoToKey(p) { const [yyyy, mm] = p.split('_'); return `${yyyy.slice(2)}_${MES_NUM2NAME[mm]}`; }
+async function fetchJSON(url) { const r = await fetch(url); if (!r.ok) throw new Error(url + ' -> ' + r.status); return r.json(); }
+
+async function cargarDatosJSON() {
+    let manifest;
+    try { manifest = await fetchJSON(DATA_BASE_URL + 'manifest.json'); }
+    catch (err) { console.error('No se pudo leer manifest.json', err); alert('No se pudieron cargar los datos (manifest.json).'); return; }
+    try { NODOS_BASE = await fetchJSON(DATA_BASE_URL + 'nodos_base_REE.json'); }
+    catch (err) { console.error('No se pudo leer nodos_base_REE.json', err); alert('No se pudo cargar nodos_base_REE.json.'); return; }
+
+    const cargas = await Promise.all(manifest.meses.map(p =>
+        fetchJSON(`${DATA_BASE_URL}${p}.json`).then(j => ({ p, j })).catch(() => null)
+    ));
+    cargas.filter(Boolean).forEach(({ p, j }) => { MONTHS_DATA[periodoToKey(p)] = j.nudos; });
+
+    construirEntries();
+}
+
+// Capacidades compatibles (4 cifras) derivadas del objeto rico de un mes
+function capFromRich(rich) {
+    const g = (rich && rich.gen) || {}, d = (rich && rich.dem) || {};
+    const dg = g.disp || {}, dd = d.disp || {};
+    const v = x => (x === null || x === undefined) ? NaN : x;
+    return { gen: v(dg.gen_mpe_rdt), dem: v(dd.dem_ch), 'stg-gen': v(dg.alm_mpe_rdt), 'stg-dem': v(dd.alm_cep) };
+}
+
+// Estado de concurso (derivado de REE), independiente para generación y demanda
+const _CT_GEN_MAP = { 'Concurso': 'Tender pending', 'NTJ': 'NTJ', 'Posible concurso': 'Possible Tender' };
+function ctGenFromRich(rich) {
+    const res = (rich && rich.gen && rich.gen.reserva) || {};
+    if (res.estado) return res.estado;                 // viene calculado en el JSON mensual
+    const m = res.motivo;                               // fallback
+    if (m === null || m === undefined || m === '') return 'No tender';
+    return _CT_GEN_MAP[m] || m;
+}
+function ctDemFromRich(rich) {
+    const con = (rich && rich.dem && rich.dem.concurso) || {};
+    if (con.estado) return con.estado;                  // viene calculado en el JSON mensual
+    const cc = con.nudo_concurso;                        // fallback
+    return (cc && String(cc).toUpperCase() === 'SI') ? 'Tender pending' : 'No tender';
+}
+
+function construirEntries() {
+    const sets = { tens: new Set(), prov: new Set(), oper: new Set(), typeGen: new Set(), typeDem: new Set() };
+    allEntries = [];
+    for (const name in NODOS_BASE) {
+        const b = NODOS_BASE[name];
+        const x = cleanNum(b.x), y = cleanNum(b.y);
+        if (isNaN(x) || isNaN(y)) continue;
+        const entry = { name, x, y, prov: b.provincia || '', tens: b.voltage || '', grid: 'TSO', oper: 'REE' };
+        // claves planas compatibles para cada mes cargado (mantienen mapa, gráfica y What's New)
+        for (const key in MONTHS_DATA) {
+            const rich = MONTHS_DATA[key][name];
+            if (!rich) continue;
+            const cap = capFromRich(rich);
+            entry[`${key}_gen`]     = cap.gen;
+            entry[`${key}_dem`]     = cap.dem;
+            entry[`${key}_stg-gen`] = cap['stg-gen'];
+            entry[`${key}_stg-dem`] = cap['stg-dem'];
+            // estado de concurso por mes (gen/dem independientes), derivado de REE
+            const ctG = ctGenFromRich(rich), ctD = ctDemFromRich(rich);
+            entry[`${key}_ctGen`] = ctG;
+            entry[`${key}_ctDem`] = ctD;
+            sets.typeGen.add(ctG);
+            sets.typeDem.add(ctD);
+        }
+        allEntries.push(entry);
+        if (entry.tens) sets.tens.add(entry.tens);
+        if (entry.prov) sets.prov.add(entry.prov);
+        if (entry.oper) sets.oper.add(entry.oper);
+    }
+    createCheckboxes('m-tens', Array.from(sets.tens).sort((a, b) => parseFloat(a) - parseFloat(b)));
+    createCheckboxes('m-prov', Array.from(sets.prov).sort());
+    createCheckboxes('m-oper', Array.from(sets.oper).sort());
+    window._typeSets = { gen: sets.typeGen, dem: sets.typeDem };
+    refreshTypeFilter();
+    if (typeof renderProjectControls === "function") renderProjectControls();
+    renderRangeInputs();
+    legendControl.addTo(map);
+    applyFilters();
+    setupHistorySearch();
+}
+
+// ====== RENDER DE TODAS LAS VARIABLES EN EL POPUP ======
+const RICH_BLOQUES = { posiciones:'Posiciones', nodal:'Criterios nodales', otorgada:'Otorgada',
+    en_curso:'En curso', margen:'Margen total', crit_lim:'Criterios limitantes',
+    lim_posicion:'Limitación por posición', no_disp:'No disponible', no_otorgable:'No otorgable (RdT)',
+    disp:'Disponible', liberada:'Liberada (autoconsumo)', reserva:'Reserva', concurso:'Concurso' };
+
+function _richFilas(obj) {
+    let h = '';
+    for (const blk in obj) {
+        const sub = obj[blk]; if (!sub) continue;
+        const filas = Object.entries(sub).filter(([k, v]) => v !== null && v !== undefined && v !== '');
+        if (!filas.length) continue;
+        h += `<tr><td colspan="2" style="padding:5px 0 2px;font-weight:bold;color:#0078A8;font-size:9px;text-transform:uppercase;">${RICH_BLOQUES[blk] || blk}</td></tr>`;
+        filas.forEach(([k, v]) => {
+            h += `<tr><td style="color:#666;padding:1px 0;">${k.replace(/_/g, ' ')}</td><td style="text-align:right;font-weight:600;">${v}</td></tr>`;
+        });
+    }
+    return h;
+}
+
+function renderRich(rich) {
+    if (!rich || (!rich.gen && !rich.dem)) return '';
+    let h = '<details style="margin-top:6px;"><summary style="cursor:pointer;font-size:11px;font-weight:bold;color:#0078A8;">Ver todas las variables ▾</summary>';
+    h += '<table style="width:100%;font-size:10px;border-collapse:collapse;margin-top:4px;">';
+    if (rich.gen) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">GENERACIÓN</td></tr>' + _richFilas(rich.gen);
+    if (rich.dem) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">DEMANDA</td></tr>' + _richFilas(rich.dem);
+    h += '</table></details>';
+    return h;
+}
+
+
+function refreshTypeFilter() {
+    if (!window._typeSets) return;
+    const viewType = document.getElementById('view-type') ? document.getElementById('view-type').value : 'gen';
+    const typeSet = (viewType === 'dem') ? window._typeSets.dem : window._typeSets.gen;
+    const label = (viewType === 'dem') ? 'Type-DEM' : 'Type-GEN';
+    const sectionEl = document.getElementById('type-filter-label');
+    if (sectionEl) sectionEl.textContent = label;
+    createCheckboxes('m-type', Array.from(typeSet).sort());
+}
+
+
+	
+function applyFilters() {
+    markersLayer.clearLayers(); 
+    projectsLayer.clearLayers();
+    markersInMap = {};
+    ranges.forEach(r => r.count = 0);
+    noInfoConfig.count = 0;
+    let dsoT = 0, tsoT = 0;
+
+    const year = document.getElementById('view-year').value;
+    const month = document.getElementById('view-month').value;
+    const type = document.getElementById('view-type').value;
+    const redFilter = document.getElementById('view-red').value;
+
+    // 1. Definimos meses y claves una sola vez
+    const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dec"];
+    let prevMonthIdx = months.indexOf(month) - 1;
+    let prevYear = year;
+    if (prevMonthIdx < 0) {
+        prevMonthIdx = 11;
+        prevYear = (parseInt(year) - 1).toString();
+    }
+    const pMonth = months[prevMonthIdx];
+
+    // Claves auxiliares para Storage
+    const stgGenKey = `${year}_${month}_stg-gen`;
+    const stgDemKey = `${year}_${month}_stg-dem`;
+    const prevStgGenKey = `${prevYear}_${pMonth}_stg-gen`;
+    const prevStgDemKey = `${prevYear}_${pMonth}_stg-dem`;
+
+    const sel = {
+        tens: Array.from(document.querySelectorAll('#m-tens input:checked')).map(cb => cb.value),
+        prov: Array.from(document.querySelectorAll('#m-prov input:checked')).map(cb => cb.value),
+        oper: Array.from(document.querySelectorAll('#m-oper input:checked')).map(cb => cb.value),
+		type: Array.from(document.querySelectorAll('#m-type input:checked')).map(cb => cb.value)
+    };
+	
+	const ctKey = (type === 'dem') ? `${year}_${month}_ctDem` : `${year}_${month}_ctGen`;
+    const groupedForMap = {};
+
+    // 2. Filtrado y agrupación
+    allEntries.forEach(e => {
+        const matchesRed = (redFilter === 'ALL' || e.grid === redFilter);
+        
+        if (matchesRed && sel.tens.includes(e.tens) && sel.prov.includes(e.prov) && sel.oper.includes(e.oper) && (e[ctKey] === undefined || sel.type.includes(e[ctKey]))) {
+            let rawValue;
+			let isMissingData = false;
+			
+		if (type === 'storage') {
+            const genCol = (e.grid === 'TSO') ? `${year}_${month}_stg-gen` : `${year}_${month}_gen`;
+            const demCol = (e.grid === 'TSO') ? `${year}_${month}_stg-dem` : `${year}_${month}_dem`;
+
+            // Usamos cleanNum para normalizar (guiones -> NaN, comas -> puntos, redondeo)
+            const vGen = cleanNum(e[genCol]);
+            const vDem = cleanNum(e[demCol]);
+
+            // Si CUALQUIERA de los dos no tiene dato, marcamos como Missing
+            if (isNaN(vGen) || isNaN(vDem)) {
+                isMissingData = true;
+            } else {
+                rawValue = Math.min(vGen, vDem);
+            }
+        } else {
+            // Caso normal (Gen o Dem puro)
+            const val = cleanNum(e[`${year}_${month}_${type}`]);
+            if (isNaN(val)) {
+                isMissingData = true;
+            } else {
+                rawValue = val;
+            }
+        }
+
+            let rFound;
+        if (isMissingData) {
+            rFound = noInfoConfig;
+        } else {
+            // Buscamos el rango correspondiente (0 MW caerá en el primer rango, ej: 0-1)
+            rFound = ranges.find(r => rawValue <= r.limit) || noInfoConfig;
+        }
+        
+        // Registro en el mapa y contadores
+        if (rFound.visible) {
+            rFound.count++; 
+            if(e.grid === 'DSO') dsoT++; else tsoT++;
+            
+            const key = `${e.x}_${e.y}`;
+            if (!groupedForMap[key]) {
+                groupedForMap[key] = { 
+                    x: e.x, 
+                    y: e.y, 
+                    items: [], 
+                    mainConfig: rFound // El primer item determina el color del círculo agrupado
+                };
+            }
+            groupedForMap[key].items.push(e);
+        }
+    }
+});
+
+    // 3. Proyectos HECE
+    projectsData.forEach(p => {
+        const conf = projectIcons[p.type];
+        if (conf && conf.visible) {
+            const c = proj4("EPSG:32630", "EPSG:4326", [parseFloat(p.x), parseFloat(p.y)]);
+            L.marker([c[1], c[0]], {
+                icon: L.divIcon({ className: 'project-label-container', html: `<div class="project-icon-wrapper">${conf.emoji}</div><div class="project-name-tag">${p.name}</div>`, iconSize: [80, 45] })
+            }).addTo(projectsLayer);
+        }
+    });
+
+    // 4. Dibujar círculos y generar Popups
+    for (const k in groupedForMap) {
+        const g = groupedForMap[k];
+
+        let bestConfig = noInfoConfig;
+        let bestValue = -Infinity;
+        g.items.forEach(item => {
+            let rawValue;
+            if (type === 'storage') {
+                const genCol = item.grid === 'TSO' ? `${year}_${month}_stg-gen` : `${year}_${month}_gen`;
+                const demCol = item.grid === 'TSO' ? `${year}_${month}_stg-dem` : `${year}_${month}_dem`;
+                const vGen = cleanNum(item[genCol]);
+                const vDem = cleanNum(item[demCol]);
+                if (!isNaN(vGen) && !isNaN(vDem)) rawValue = Math.min(vGen, vDem);
+            } else {
+                const val = cleanNum(item[`${year}_${month}_${type}`]);
+                if (!isNaN(val)) rawValue = val;
+            }
+            if (rawValue !== undefined && rawValue > bestValue) {
+                bestValue = rawValue;
+                bestConfig = ranges.find(r => rawValue <= r.limit) || noInfoConfig;
+            }
+        });
+        g.mainConfig = bestConfig;
+
+        const c = proj4("EPSG:32630", "EPSG:4326", [g.x, g.y]);
+        let popupHtml = `<div style="max-height:250px; overflow-y:auto; min-width:220px; font-family: 'Segoe UI', sans-serif;">`;
+        
+        g.items.forEach(item => {
+            // Función interna para calcular tendencia (se mantiene igual)
+            const getTrend = (val, pVal) => {
+    const current = val;  // Ya vienen limpios por cleanNum
+    const previous = pVal; // Ya vienen limpios por cleanNum
+
+    // 1. CASO DATA LOST: Antes había número (incluido 0) y ahora es NaN
+    if (!isNaN(previous) && isNaN(current)) {
+        return `<span style="color: #94a3b8; font-size: 10px; font-weight: bold; margin-left: 5px; border: 1px solid #94a3b8; padding: 1px 2px; border-radius: 2px;">🚫 DATA LOST</span>`;
+    }
+
+    // 2. CASO NEW DATA: Antes era NaN y ahora hay un número (incluido 0)
+    if (isNaN(previous) && !isNaN(current)) {
+        return `<span style="color: #3b82f6; font-size: 10px; font-weight: bold; margin-left: 5px; border: 1px solid #3b82f6; padding: 1px 2px; border-radius: 2px;">🆕 NEW DATA</span>`;
+    }
+
+    // 3. Si el actual sigue siendo NaN, no mostramos nada
+    if (isNaN(current)) return "";
+
+    // 4. Cálculo de tendencia normal (entre dos números válidos)
+    const diff = Math.round((current - previous) * 100) / 100;
+    
+    if (diff > 0) return `<span style="color: #22c55e; font-weight: bold; margin-left: 5px;">▲ +${diff}</span>`;
+    if (diff < 0) return `<span style="color: #ef4444; font-weight: bold; margin-left: 5px;">▼ ${diff}</span>`;
+    
+    return `<span style="color: #666; font-weight: bold; margin-left: 5px;">=</span>`;
+};
+
+            let capacityRows = "";
+			if (type === 'storage') {
+    		const isTSO = item.grid === 'TSO';
+   			const suffixGen = isTSO ? 'stg-gen' : 'gen';
+    		const suffixDem = isTSO ? 'stg-dem' : 'dem';
+ 
+    		const vG = cleanNum(item[`${year}_${month}_${suffixGen}`]);
+    		const vD = cleanNum(item[`${year}_${month}_${suffixDem}`]);
+    		const pG = cleanNum(item[`${prevYear}_${pMonth}_${suffixGen}`]);
+    		const pD = cleanNum(item[`${prevYear}_${pMonth}_${suffixDem}`]);
+
+    		const calcG = isNaN(vG) ? 0 : vG;
+    		const calcD = isNaN(vD) ? 0 : vD;
+    		const textG = isNaN(vG) ? 'No Info' : vG + ' MW';
+    		const textD = isNaN(vD) ? 'No Info' : vD + ' MW';
+
+   			capacityRows = `
+        <tr>
+            <td style="color: #666; padding: 2px 0;">Stg. Gen (Discharge):</td>
+            <td style="font-weight: bold; text-align: right; color:#f97316;">${textG}${getTrend(vG, pG)}</td>
+        </tr>
+        <tr>
+            <td style="color: #666; padding: 2px 0;">Stg. Dem (Charge):</td>
+            <td style="font-weight: bold; text-align: right; color:#0ea5e9;">${textD}${getTrend(vD, pD)}</td>
+        </tr>
+        <tr style="border-top: 1px dashed #ccc; background: #f8fafc;"> 
+            <td style="color: #000; padding: 4px 0; font-size:10px; font-weight:bold;">Effective (Min):</td>
+            <td style="font-weight: bold; text-align: right; font-size:10px;">${Math.min(calcG, calcD)} MW</td>
+        </tr>`;
+} else {
+    // Caso Gen o Dem puro
+    const v = cleanNum(item[`${year}_${month}_${type}`]);
+    const pV = cleanNum(item[`${prevYear}_${pMonth}_${type}`]);
+    const label = type === 'gen' ? 'Gen' : 'Dem';
+    
+    // Si v es NaN, mostramos 'No Info', si no, el valor + MW
+    const textV = isNaN(v) ? 'No Info' : v + ' MW';
+
+    capacityRows = `<tr>
+        <td style="color: #666; padding: 2px 0;">Capacity (${label}):</td>
+        <td style="font-weight: bold; text-align: right; color:#f97316;">${textV}${getTrend(v, pV)}</td>
+    </tr>`;
+}
+
+            popupHtml += `
+                <div style="border-bottom: 1px solid #eee; padding: 8px 0; margin-bottom: 4px;">
+                    <div style="color: #0078A8; font-weight: bold; font-size: 13px; margin-bottom: 4px;">${item.name}</div>
+                    <table style="width: 100%; font-size: 11px; border-collapse: collapse;">
+                        ${capacityRows}
+                        <tr><td style="color: #666; padding: 4px 0 2px 0;">Voltage:</td><td style="font-weight: bold; text-align: right;">${item.tens} kV</td></tr>
+                        <tr><td style="color: #666; padding: 2px 0;">Grid:</td><td style="font-weight: bold; text-align: right;">${item.grid}</td></tr>
+                        <tr><td style="color: #666; padding: 2px 0;">Operator:</td><td style="font-weight: bold; text-align: right;">${item.oper}</td></tr>
+                        <tr><td style="color: #666; padding: 2px 0;">${type === 'dem' ? 'Type-DEM' : 'Type-GEN'}:</td><td style="font-weight: bold; text-align: right;">${wrapZeroStarIcon((type === 'dem' ? item[`${year}_${month}_ctDem`] : item[`${year}_${month}_ctGen`]) || '–')}</td></tr>
+                    </table>
+                    ${renderRich((MONTHS_DATA[year + '_' + month] || {})[item.name])}
+                    <button class="popup-btn-hist" onclick="openHistory('${item.name}')">📊 View Historical Data</button>
+                </div>`;
+        });
+
+        popupHtml += `</div>`;
+        const m = L.circleMarker([c[1], c[0]], { 
+            radius: g.mainConfig.radius, 
+            fillColor: g.mainConfig.color, 
+            color: "white", weight: 1.5, fillOpacity: 0.8 
+        }).bindPopup(popupHtml).addTo(markersLayer);
+        
+        g.items.forEach(item => { markersInMap[item.name.toLowerCase()] = m; });
+    }
+
+    // 5. Actualizar contadores y leyenda
+    document.getElementById('count-dso').innerText = dsoT;
+    document.getElementById('count-tso').innerText = tsoT;
+    document.getElementById('count-total').innerText = dsoT + tsoT;
+    
+    renderRangeInputs();
+    if (legendControl && legendControl._map) legendControl.update();
+}
+
+function openHistory(nodoABuscar = '') {
+    document.getElementById('history-modal').style.display = 'flex'; 
+    
+    const input = document.getElementById('hist-search-input');
+    const clearBtn = document.getElementById('clear-hist');
+
+    if (nodoABuscar) {
+        input.value = nodoABuscar;
+
+        if (clearBtn) clearBtn.style.display = 'block';
+
+        const match = allEntries.find(e => e.name === nodoABuscar);
+
+        if (match) {
+
+            updateHistoryChart(match); 
+            updateNodeInfo(match);
+
+            const suggestions = document.getElementById('hist-suggestions');
+            if (suggestions) suggestions.style.display = 'none';
+
+            const infoDisplay = document.getElementById('node-info-display');
+            if (infoDisplay) infoDisplay.style.display = 'block';
+        }
+    } else {
+        clearSearch('hist-search-input', 'hist-suggestions', 'clear-hist');
+    }
+}
+
+function closeHistory() {
+    const modal = document.getElementById('history-modal');
+    if (modal) modal.style.display = 'none';
+    clearSearch('hist-search-input', 'hist-suggestions', 'clear-hist');
+    const infoFields = ['info-name', 'info-grid', 'info-operator', 'info-voltage', 'info-type-gen', 'info-type-dem'];
+    infoFields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = '-';
+    });
+}
+
+function searchNodes(query) {
+    const resDiv = document.getElementById('search-results');
+    const term = query.toLowerCase().trim();
+
+    if (!term || term.length < 1) { 
+        resDiv.style.display = 'none'; 
+        return; 
+    }
+
+    // Filtramos los nodos que están visibles actualmente en el mapa
+    const matches = Object.keys(markersInMap)
+        .filter(name => name.includes(term))
+        .sort((a, b) => {
+            const startsA = a.startsWith(term);
+            const startsB = b.startsWith(term);
+            // Prioridad 1: Los que empiezan por el término
+            if (startsA && !startsB) return -1;
+            if (!startsA && startsB) return 1;
+            // Prioridad 2: Orden alfabético
+            return a.localeCompare(b);
+        })
+        .slice(0, 15); // Límite para no colapsar la pantalla
+
+    if (matches.length > 0) {
+    resDiv.style.display = 'block';
+    resDiv.innerHTML = matches.map(n => {
+    const entry = allEntries.find(e => e.name.toLowerCase() === n);
+    const typeColor = entry.grid === 'TSO' ? '#1e40af' : '#065f46';
+    
+    return `
+        <div class="search-item" onclick="focusNode('${n}')">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong>${n.toUpperCase()}</strong>
+                <span>
+                    <small style="background:${typeColor}; color:white; padding:1px 4px; border-radius:3px; font-weight:bold; margin-right:5px;">
+                        ${entry.grid}
+                    </small>
+                    <small style="color:#666; font-weight:bold;">${entry.tens}kV</small>
+                </span>
+            </div>
+        </div>`;
+}).join('');
+    } else { 
+        resDiv.style.display = 'none'; 
+    }
+}
+
+function focusNode(name) {
+    const marker = markersInMap[name.toLowerCase()]; // Aseguramos minúsculas
+    if (marker) {
+        map.setView(marker.getLatLng(), 14);
+        marker.openPopup();
+        document.getElementById('node-search-input').value = name.toUpperCase();
+        document.getElementById('search-results').style.display = 'none';
+    }
+}
+
+        document.getElementById('node-search-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') { const first = document.querySelector('.search-item'); if (first) first.click(); }
+        });
+
+function renderProjectControls() {
+            const container = document.getElementById('projects-controls'); container.innerHTML = '';
+            Object.keys(projectIcons).forEach(type => {
+                const div = document.createElement('div'); div.className = 'project-row';
+                div.innerHTML = `<span>${projectIcons[type].emoji} ${type}</span><input type="checkbox" checked onchange="projectIcons['${type}'].visible=!projectIcons['${type}'].visible; applyFilters()">`;
+                container.appendChild(div);
+            });
+        }
+       
+function toggleAll(id) {
+    const boxes = document.querySelectorAll(`#${id} input`);
+    const target = !Array.from(boxes).every(b => b.checked);
+    
+    boxes.forEach(b => {
+        b.checked = target;
+
+        if (id === 'projects-controls') {
+            const type = b.parentElement.innerText.trim().split(' ').slice(1).join(' '); 
+            if (projectIcons[type]) projectIcons[type].visible = target;
+        }
+
+        if (id === 'ranges-container') {
+            const rangeId = b.getAttribute('data-range-id')
+            const r = ranges.find(x => x.id === rangeId);
+            if (r) r.visible = target;
+            if (b.getAttribute('data-is-noinfo')) noInfoConfig.visible = target;
+        }
+    });
+
+    applyFilters();
+}
+
+function toggleClearBtn(inputId, btnId) {
+    const input = document.getElementById(inputId);
+    const btn = document.getElementById(btnId);
+    if (input && btn) {
+        // Si el input tiene texto (length > 0), muestra el botón, si no, ocúltalo
+        btn.style.display = input.value.length > 0 ? 'block' : 'none';
+    }
+}
+
+const ZERO_STAR_TEXT_ES = 'Los nudos señalados con «0* MW» son aquellos que no tienen capacidad en el escenario utilizado para la publicación del mapa pero que podrían obtenerla condicionada a la ejecución de refuerzos en la red de distribución en el mismo nivel de tensión y siempre que la viabilidad de su ejecución sea compatible con la vigencia de los permisos de acceso y conexión. Las solicitudes realizadas con afectación sobre estos nudos serán informadas con los refuerzos que resulten procedentes, o denegadas en función del análisis de capacidad que realice el DSO conforme a la normativa vigente.';
+const ZERO_STAR_TEXT_EN = 'Nodes marked with «0* MW» have no capacity in the scenario used for the map publication, but could obtain it subject to the execution of reinforcements in the distribution network at the same voltage level, provided the feasibility of their execution is compatible with the validity of the access and connection permits. Requests affecting these nodes will be informed of the applicable reinforcements, or rejected based on the capacity analysis carried out by the DSO in accordance with current regulations.';
+const ZERO_STAR_TOOLTIP = `${ZERO_STAR_TEXT_ES}\n\n${ZERO_STAR_TEXT_EN}`;
+
+function openZeroStarModal() {
+    document.getElementById('zs-text-es').textContent = ZERO_STAR_TEXT_ES;
+    document.getElementById('zs-text-en').textContent = ZERO_STAR_TEXT_EN;
+    document.getElementById('zero-star-modal').classList.add('open');
+}
+function closeZeroStarModal() {
+    document.getElementById('zero-star-modal').classList.remove('open');
+}
+
+
+// Icono ⓘ clicable que abre modal
+function wrapZeroStarIcon(value) {
+    if (!value || !value.toString().includes('0*')) return value;
+    return `${value}<span class="zero-star-icon" onclick="openZeroStarModal()" title="Ver nota aclaratoria">i</span>`;
+}
+	
+function createCheckboxes(containerId, values) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    container.innerHTML = ''; 
+    values.forEach(val => {
+        if (!val) return;
+        const div = document.createElement('div');
+        div.className = 'checkbox-item';
+        div.innerHTML = `
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; margin-bottom: 4px;">
+                <input type="checkbox" value="${val}" checked onchange="applyFilters()">
+                <span style="font-size: 12px;">${wrapZeroStarIcon(val)}</span>
+            </label>
+        `;
+        container.appendChild(div);
+    });
+}
+        
+
+function renderRangeInputs() {
+    const container = document.getElementById('ranges-container'); 
+    container.innerHTML = '';
+
+    ranges.forEach(r => {
+        const div = document.createElement('div'); 
+        div.className = 'range-row';
+        // Añadimos data-range-id="${r.id}" al input para que toggleAll lo identifique
+        div.innerHTML = `
+            <div class="range-header">
+                <i style="background:${r.color}; width:12px; height:12px; border-radius:50%; display:inline-block;"></i> 
+                <span>${r.label}</span>
+                <input type="checkbox" 
+                       data-range-id="${r.id}" 
+                       ${r.visible ? 'checked' : ''} 
+                       onchange="ranges.find(x=>x.id==='${r.id}').visible=this.checked; applyFilters()" 
+                       style="margin-left:auto;">
+            </div>`;
+        container.appendChild(div);
+    });
+
+    const niDiv = document.createElement('div');
+    niDiv.className = 'range-row';
+    // Añadimos data-is-noinfo="true" al input
+    niDiv.innerHTML = `
+        <div class="range-header">
+            <i style="background:${noInfoConfig.color}; width:12px; height:12px; border-radius:50%; display:inline-block;"></i> 
+            <span>No Info</span>
+            <input type="checkbox" 
+                   data-is-noinfo="true" 
+                   ${noInfoConfig.visible ? 'checked' : ''} 
+                   onchange="noInfoConfig.visible=this.checked; applyFilters()" 
+                   style="margin-left:auto;">
+        </div>`;
+    container.appendChild(niDiv);
+}
+
+let historyChartInstance = null; // Variable global para el gráfico
+
+function setupHistorySearch() {
+    const histInput = document.getElementById('hist-search-input');
+    const histSuggestions = document.getElementById('hist-suggestions');
+    const clearBtn = document.getElementById('clear-hist');
+    
+	if (!histInput) return;
+	
+	if (histInput.parentElement) {
+        histInput.parentElement.style.maxWidth = "600px";
+        histInput.parentElement.style.width = "100%";
+    }
+
+
+    histInput.style.maxWidth = "600px";
+    histInput.style.width = "100%";
+    histInput.style.padding = "12px";
+    
+    if (histSuggestions) {
+        histSuggestions.style.maxWidth = "600px";
+    }
+
+
+    histInput.addEventListener('input', function() {
+        const term = this.value.toLowerCase().trim();
+        if (term.length === 0) {
+            clearSearch('hist-search-input', 'hist-suggestions');
+            return;
+        }
+        clearBtn.style.display = term.length > 0 ? 'block' : 'none';
+
+        histSuggestions.innerHTML = '';
+        if (term.length < 1) {
+            histSuggestions.style.display = 'none';
+            return;
+        }
+
+        // 2. Filtramos y ORDENAMOS por prioridad
+        const matches = allEntries
+            .filter(e => e.name.toLowerCase().includes(term))
+            .sort((a, b) => {
+                const nameA = a.name.toLowerCase();
+                const nameB = b.name.toLowerCase();
+                const startsA = nameA.startsWith(term);
+                const startsB = nameB.startsWith(term);
+
+                // Si uno empieza por la letra y el otro no, el que empieza va primero
+                if (startsA && !startsB) return -1;
+                if (!startsA && startsB) return 1;
+                
+                // Si ambos empiezan igual (o ninguno), ordenamos alfabéticamente
+                return nameA.localeCompare(nameB);
+            })
+            .slice(0, 15); // Mostramos los 15 mejores resultados
+
+        if (matches.length > 0) {
+            matches.forEach(match => {
+    const div = document.createElement('div');
+    div.className = 'suggestion-item';
+    
+    // Color según si es TSO (Red Eléctrica) o DSO (Distribuidora)
+    const typeColor = match.grid === 'TSO' ? '#1e40af' : '#065f46';
+    
+    div.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <strong>${match.name}</strong>
+            <div style="display: flex; gap: 5px; align-items: center;">
+                <span style="font-size: 10px; padding: 2px 6px; border-radius: 4px; background: ${typeColor}; color: white; font-weight: bold;">
+                    ${match.grid}
+                </span>
+                <span style="font-size: 11px; color: #666; font-weight: bold;">
+                    ${match.tens} kV
+                </span>
+            </div>
+        </div>
+    `;
+    
+    div.onclick = () => {
+        histInput.value = match.name;
+        histSuggestions.style.display = 'none';
+        updateNodeInfo(match);
+        updateHistoryChart(match);
+    };
+    histSuggestions.appendChild(div);
+});
+            histSuggestions.style.display = 'block';
+        } else {
+            histSuggestions.style.display = 'none';
+        }
+    });
+}
+
+function updateHistoryChart(node) {
+    const canvas = document.getElementById('historyChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    // 1. Definimos el orden real de los meses para que el buscador sepa qué buscar primero
+    const monthMap = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dec'];
+    const years = ['26', '27', '28'];
+    
+    const labels = [];
+    const datasets = {
+        gen: [], dem: [], stgGen: [], stgDem: []
+    };
+
+	years.forEach(year => {
+        monthMap.forEach(month => {
+            const prefix = `${year}_${month}`;
+            const genKey = `${prefix}_gen`;
+
+            if (node.hasOwnProperty(genKey)) {
+                labels.push(`${month.toUpperCase()} '${year}`);
+                datasets.gen.push(node[`${prefix}_gen`]);
+                datasets.dem.push(node[`${prefix}_dem`]);
+                datasets.stgGen.push(node[`${prefix}_stg-gen`]);
+                datasets.stgDem.push(node[`${prefix}_stg-dem`]);
+            }
+        });
+    });
+
+    if (historyChartInstance) {
+        historyChartInstance.destroy();
+    }
+
+	const chartDatasets = [
+        { label: 'Gen (MW)', data: datasets.gen, borderColor: '#0078A8', tension: 0.3, fill: false },
+        { label: 'Dem (MW)', data: datasets.dem, borderColor: '#e74c3c', tension: 0.3, fill: false },
+        { label: 'Storage-Gen (MW)', data: datasets.stgGen, borderColor: '#38bdf8', tension: 0.3, fill: false },
+        { label: 'Storage-Dem (MW)', data: datasets.stgDem, borderColor: '#10b981', tension: 0.3, fill: false }
+    ].filter(ds => {
+        if (node.grid === 'DSO' && ds.label.includes('Storage')) return false;
+        return true;
+    });
+	
+    historyChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: chartDatasets // Usamos el array filtrado
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: { beginAtZero: true, title: { display: true, text: 'MW', font: { size: 10 } } },
+                x: { ticks: { font: { size: 9 } } }
+            },
+            plugins: {
+                legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } }
+            }
+        }
+    });
+}
+
+// ============================
+// WHAT'S NEW FUNCTIONALITY
+// ============================
+let wnAllChanges = [];
+let wnActiveFilter = 'all';
+
+function openWhatsNew(fromSelector = false) {
+    // 1. Referencias a los selectores (Principales y Modal)
+    const mainYear = document.getElementById('view-year').value;
+    const mainMonth = document.getElementById('view-month').value;
+    const mainType = document.getElementById('view-type').value;
+    const mainRed = document.getElementById('view-red').value;
+
+    const wnYear = document.getElementById('wn-year');
+    const wnMonth = document.getElementById('wn-month');
+    const wnType = document.getElementById('wn-type');
+    const wnRed = document.getElementById('wn-red');
+
+    // 2. Sincronización: Si NO viene de un cambio interno del modal, igualamos modal a principal
+    if (!fromSelector) {
+        wnYear.value = mainYear;
+        wnMonth.value = mainMonth;
+        wnType.value = mainType;
+        wnRed.value = mainRed;
+    }
+
+    // 3. Ahora leemos SIEMPRE del modal (que ya está sincronizado)
+    const year = wnYear.value;
+    const month = wnMonth.value;
+    const type = wnType.value;
+    const redFilter = wnRed.value;
+
+    // 4. Lógica de mes anterior (Correcta)
+    const months = ["jan","feb","mar","apr","may","jun","jul","ago","sep","oct","nov","dec"];
+    const monthNames = {"jan":"January","feb":"February","mar":"March","apr":"April","may":"May","jun":"June","jul":"July","ago":"August","sep":"September","oct":"October","nov":"November","dec":"December"};
+
+    let prevMonthIdx = months.indexOf(month) - 1;
+    let prevYear = year;
+    if (prevMonthIdx < 0) { 
+        prevMonthIdx = 11; 
+        prevYear = (parseInt(year) - 1).toString(); 
+    }
+    const pMonth = months[prevMonthIdx];
+
+    // 5. Actualizar Subtítulo con estilo de listado
+		const typeLabel = { gen:'Generation', dem:'Demand', 'stg-gen':'Storage Gen', 'stg-dem':'Storage Dem', storage:'Storage Min Effective' }[type] || type;
+		const redLabel = redFilter === 'ALL' ? 'DSO + TSO' : redFilter;
+
+	// Determinamos el color exacto igual que en la tabla
+		let badgeColor = "#64748b"; // Gris para "ALL"
+		if (redFilter === 'TSO') badgeColor = "#1e40af";
+		if (redFilter === 'DSO') badgeColor = "#065f46";
+
+	document.getElementById('wn-subtitle').innerHTML = `
+    	<span style="color:#334155; font-weight:600;">${typeLabel}</span> 
+    	<span style="color:#94a3b8; margin: 0 4px;">•</span>
+    	<span style="color:#475569;">${monthNames[month]} 20${year} <small>vs</small> ${monthNames[pMonth]} 20${prevYear}</span>
+    	<span style="color:#94a3b8; margin: 0 4px;">•</span>
+    	<span style="background:${badgeColor}; color:white; padding:1px 6px; border-radius:3px; font-size:10px; font-weight:bold; text-transform:uppercase;">${redLabel}</span>
+	`;
+
+    // 6. Filtrado de datos (Mantenemos tu lógica pero limpia)
+    const getKeys = (y, m, grid) => {
+    if (type === 'stg-gen') {
+        const suffix = grid === 'TSO' ? 'stg-gen' : 'gen';
+        return { cur: `${y}_${m}_${suffix}`, prev: `${prevYear}_${pMonth}_${suffix}` };
+    }
+    if (type === 'stg-dem') {
+        const suffix = grid === 'TSO' ? 'stg-dem' : 'dem';
+        return { cur: `${y}_${m}_${suffix}`, prev: `${prevYear}_${pMonth}_${suffix}` };
+    }
+    if (type === 'storage') {
+        const gSuffix = grid === 'TSO' ? 'stg-gen' : 'gen';
+        const dSuffix = grid === 'TSO' ? 'stg-dem' : 'dem';
+        return { cur: `${y}_${m}_${gSuffix}`, cur2: `${y}_${m}_${dSuffix}`, prev: `${prevYear}_${pMonth}_${gSuffix}`, prev2: `${prevYear}_${pMonth}_${dSuffix}` };
+    }
+    return { cur: `${y}_${m}_${type}`, prev: `${prevYear}_${pMonth}_${type}` };
+};
+
+    wnAllChanges = [];
+
+    allEntries.forEach(e => {
+        if (redFilter !== 'ALL' && e.grid !== redFilter) return;
+
+        const keys = getKeys(year, month, e.grid);
+		let curVal, prevVal;
+		if (type === 'storage') {
+    		const vGen = cleanNum(e[keys.cur]),  pGen = cleanNum(e[keys.prev]);
+    		const vDem = cleanNum(e[keys.cur2]), pDem = cleanNum(e[keys.prev2]);
+    		curVal  = (!isNaN(vGen) && !isNaN(vDem)) ? Math.min(vGen, vDem) : NaN;
+    		prevVal = (!isNaN(pGen) && !isNaN(pDem)) ? Math.min(pGen, pDem) : NaN;
+		} else {
+    		curVal  = cleanNum(e[keys.cur]);
+    		prevVal = cleanNum(e[keys.prev]);
+		}
+
+        if (isNaN(curVal) && isNaN(prevVal)) return;
+
+        let status, diff = null, displayCur, displayPrev;
+
+        if (!isNaN(prevVal) && isNaN(curVal)) {
+            status = 'lost';
+            displayPrev = prevVal + ' MW';
+            displayCur = 'No Info';
+        } else if (isNaN(prevVal) && !isNaN(curVal)) {
+            status = 'new';
+            displayPrev = 'No Info';
+            displayCur = curVal + ' MW';
+            diff = curVal;
+        } else {
+            diff = Math.round((curVal - prevVal) * 100) / 100;
+            status = diff === 0 ? 'nochange' : (diff > 0 ? 'up' : 'down');
+            displayPrev = prevVal + ' MW';
+            displayCur = curVal + ' MW';
+        }
+
+        wnAllChanges.push({ 
+            name: e.name, prov: e.prov, grid: e.grid, oper: e.oper, 
+            tens: e.tens, status, diff, displayPrev, displayCur 
+        });
+    });
+
+    // 7. Renderizar
+    wnRenderSummary();
+    wnRenderTable();
+
+    // 8. Mostrar Modal
+    document.getElementById('whats-new-modal').classList.add('open');
+}
+function closeWhatsNew() {
+    document.getElementById('whats-new-modal').classList.remove('open');
+}
+
+function wnSetFilter(f) {
+    wnActiveFilter = f;
+    document.querySelectorAll('.wn-filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+    wnRenderTable();
+}
+
+function wnRenderSummary() {
+    const counts = { up: 0, down: 0, new: 0, lost: 0 , nochange: 0};
+    wnAllChanges.forEach(c => counts[c.status]++);
+    const total = wnAllChanges.filter(c => c.status !== 'nochange').length;
+
+    document.getElementById('wn-summary').innerHTML = `
+        <div class="wn-stat"><div class="wn-stat-val" style="color:#7c3aed;">${total}</div><div class="wn-stat-lbl">Total Changes</div></div>
+        <div class="wn-stat"><div class="wn-stat-val" style="color:#15803d;">▲ ${counts.up}</div><div class="wn-stat-lbl">Up</div></div>
+        <div class="wn-stat"><div class="wn-stat-val" style="color:#b91c1c;">▼ ${counts.down}</div><div class="wn-stat-lbl">Down</div></div>
+        <div class="wn-stat"><div class="wn-stat-val" style="color:#1d4ed8;">🆕 ${counts.new}</div><div class="wn-stat-lbl">New Data</div></div>
+        <div class="wn-stat"><div class="wn-stat-val" style="color:#64748b;">🚫 ${counts.lost}</div><div class="wn-stat-lbl">Data Lost</div></div>
+		<div class="wn-stat"><div class="wn-stat-val" style="color:#94a3b8;">＝ ${counts.nochange}</div><div class="wn-stat-lbl">No Change</div></div>
+    `;
+}
+
+function wnRenderTable() {
+    const searchTerm = (document.getElementById('wn-search-input')?.value || '').toLowerCase().trim();
+    
+    let rows = wnAllChanges.filter(c => {
+        if (wnActiveFilter === 'all' && c.status === 'nochange') return false;
+		if (wnActiveFilter !== 'all' && c.status !== wnActiveFilter) return false;
+        if (searchTerm && !c.name.toLowerCase().includes(searchTerm) && !c.prov.toLowerCase().includes(searchTerm) && !c.oper.toLowerCase().includes(searchTerm)) return false;
+        return true;
+    });
+
+    // Sort: by name
+    rows.sort((a, b) => a.name.localeCompare(b.name));
+
+    const tbody = document.getElementById('wn-tbody');
+    const empty = document.getElementById('wn-empty');
+
+    if (rows.length === 0) {
+        tbody.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+    }
+    empty.style.display = 'none';
+
+    const badgeMap = {
+        up:   '<span class="wn-badge up">▲ Up</span>',
+        down: '<span class="wn-badge down">▼ Down</span>',
+        new:  '<span class="wn-badge new">🆕 New Data</span>',
+        lost: '<span class="wn-badge lost">🚫 Data Lost</span>',
+		nochange: '<span class="wn-badge" style="background:#f1f5f9;color:#64748b;">＝ No Change</span>'
+    };
+
+    tbody.innerHTML = rows.map(c => {
+        let changeCell = '—';
+       if (c.status !== 'nochange' && c.diff !== null) {
+            const sign = c.diff > 0 ? '+' : '';
+            const color = c.diff > 0 ? '#15803d' : '#b91c1c';
+            changeCell = `<span style="color:${color}; font-weight:bold;">${sign}${c.diff} MW</span>`;
+        }
+        const gridColor = c.grid === 'TSO' ? '#1e40af' : '#065f46';
+        return `<tr>
+           	<td style="font-weight:600; color:#0078A8; text-align:left;">${c.name}</td>
+            <td><button onclick="closeWhatsNew(); focusNode('${c.name.toLowerCase()}')" style="background:#fff; color:#0078A8; border:1px solid rgba(0,120,168,0.25); border-radius:5px; padding:3px 7px; font-size:10px; cursor:pointer; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,0.06);" title="Map View">📍</button></td>
+			<td style="color:#475569;">${c.prov}</td>
+            <td><span style="background:${gridColor}; color:white; padding:1px 6px; border-radius:3px; font-size:10px; font-weight:bold;">${c.grid}</span></td>
+            <td style="color:#475569; font-size:11px;">${c.oper}</td>
+            <td style="color:#64748b;">${c.tens} kV</td>
+            <td style="color:#64748b;">${c.displayPrev}</td>
+            <td style="color:#334155; font-weight:bold;">${c.displayCur}</td>
+            <td>${changeCell}</td>
+            <td>${badgeMap[c.status]}</td>
+			<td><button onclick="openHistory('${c.name}')" style="background:#fff; color:#0078A8; border:1px solid rgba(0,120,168,0.25); border-radius:5px; padding:3px 7px; font-size:10px; cursor:pointer; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,0.06);" title="View Historical Data">📊</button></td>
+        </tr>`;
+    }).join('');
+}
+
+// Close What's New modal on overlay click
+document.getElementById('whats-new-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeWhatsNew();
+});
+
+
+	
+function clearSearch(inputId, resultsId, btnId) {
+    const input = document.getElementById(inputId);
+    const results = document.getElementById(resultsId);
+    const btn = document.getElementById(btnId); // Ahora usamos el ID que le pasemos
+
+    if (input) input.value = '';
+    if (results) {
+        results.style.display = 'none';
+        results.innerHTML = '';
+    }
+
+    if (btn) btn.style.display = 'none';
+
+    if (inputId === 'hist-search-input') {
+        // Si es el historial, borramos la gráfica
+        if (typeof historyChartInstance !== 'undefined' && historyChartInstance) {
+            historyChartInstance.destroy();
+            historyChartInstance = null;
+        }
+    } else if (inputId === 'node-search-input') {
+        // Si es el principal, cerramos popups del mapa (opcional)
+        if (typeof markersLayer !== 'undefined') markersLayer.closePopup();
+    }
+
+    if (input) input.focus();
+    
+    if (inputId === 'hist-search-input') {
+    const infoDisplay = document.getElementById('node-info-display');
+    if (infoDisplay) infoDisplay.style.display = 'none';
+}
+}
+
+
+function updateNodeInfo(match) {
+    const display = document.getElementById('node-info-display');
+    if (!match) {
+        if (display) display.style.display = 'none';
+        return;
+    }
+
+    document.getElementById('info-name').textContent = match.name || 'N/A';
+    document.getElementById('info-grid').textContent = match.grid || 'N/A'; //
+    document.getElementById('info-operator').textContent = match.oper || 'N/A';
+    document.getElementById('info-voltage').textContent = match.tens ? match.tens + ' kV' : 'N/A';
+    document.getElementById('info-province').textContent = match.prov || 'N/A';
+    const typeGenEl = document.getElementById('info-type-gen');
+    const typeDemEl = document.getElementById('info-type-dem');
+    const _y = document.getElementById('view-year').value, _m = document.getElementById('view-month').value;
+    if (typeGenEl) typeGenEl.innerHTML = wrapZeroStarIcon(match[`${_y}_${_m}_ctGen`] || 'N/A');
+    if (typeDemEl) typeDemEl.innerHTML = wrapZeroStarIcon(match[`${_y}_${_m}_ctDem`] || 'N/A');
+    display.style.display = 'block';
+}
+
+
+function handleKML(input) {
+    const file = input.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    const isKMZ = file.name.toLowerCase().endsWith('.kmz');
+
+    reader.onload = function(e) {
+        // Limpiar parcela anterior
+        if (window.currentParcel) { 
+            map.removeLayer(window.currentParcel); 
+        }
+
+        if (isKMZ) {
+            JSZip.loadAsync(e.target.result).then(function(zip) {
+                const kmlFile = Object.keys(zip.files).find(f => f.endsWith('.kml'));
+                return zip.file(kmlFile).async("string");
+            }).then(function(kmlText) {
+                renderKML(kmlText);
+            });
+        } else {
+            renderKML(e.target.result);
+        }
+    };
+
+    if (isKMZ) { reader.readAsArrayBuffer(file); } 
+    else { reader.readAsText(file); }
+}
+function renderKML(xmlData) {
+    // 1. Parseamos el XML
+    const layer = omnivore.kml.parse(xmlData);
+    
+    // 2. Aplicamos el estilo directamente (sin esperar al evento ready si es posible)
+    layer.setStyle({
+        color: "#f97316",
+        weight: 3,
+        fillOpacity: 0.1,
+        interactive: false
+    });
+
+    // 3. Añadimos a la capa global y al mapa
+    if (window.currentParcel) { map.removeLayer(window.currentParcel); }
+    window.currentParcel = layer;
+    layer.addTo(map);
+
+    // 4. EL FIX DEL ZOOM: Usamos un intervalo corto para esperar a que los datos existan
+    let checks = 0;
+    const interval = setInterval(() => {
+        const bounds = layer.getBounds();
+        if (bounds.isValid()) {
+            map.fitBounds(bounds, { padding: [50, 50], maxZoom: 18 });
+            clearInterval(interval);
+            console.log("Zoom realizado con éxito.");
+        }
+        if (checks > 10) clearInterval(interval); // Evitar bucle infinito si el KML está vacío
+        checks++;
+    }, 50); 
+}
+	
+</script>
+
+<!-- Modal nota aclaratoria 0* -->
+<div id="zero-star-modal" onclick="if(event.target===this)closeZeroStarModal()">
+  <div id="zero-star-modal-box">
+    <button id="zero-star-modal-close" onclick="closeZeroStarModal()">✕</button>
+    <h3>ⓘ Info — «0* MW»</h3>
+    <div class="zs-lang">🇪🇸 Español</div>
+    <p id="zs-text-es"></p>
+    <div class="zs-lang">🇬🇧 English</div>
+    <p id="zs-text-en"></p>
+  </div>
+</div>	
+
+	
+</body>
+</html>
+
+
+
+
+
