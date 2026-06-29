@@ -181,7 +181,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .search-results { font-size: 9px; }  .search-item { padding: 6px; font-size: 9px; }  .suggestions-box, .suggestions-box-minimal { font-size: 9px; }  .suggestion-item { padding: 6px 8px; font-size: 9px; }  #node-search-input { font-size: 10px; padding: 6px; }}
 		
 /* --- BARRA HORIZONTAL DE FILTROS --- */
-#filter-bar { position: fixed; top: 0; left: 0; right: 248px; box-sizing: border-box; z-index: 1200; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 12px; background: transparent; overflow: visible; pointer-events: none; }
+#filter-bar { position: fixed; top: 0; left: 0; right: 248px; box-sizing: border-box; z-index: 1200; display: flex; flex-wrap: wrap; align-items: center; gap: 5px; padding: 8px 12px; background: transparent; overflow: visible; pointer-events: none; }
 #filter-bar > * { pointer-events: auto; }
 .fb-title-card { display: flex; align-items: center; background: #ffffff; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.18); padding: 10px 16px; flex-shrink: 0; border-left: 4px solid #0078A8; font-size: 16px; font-weight: 800; color: #0078A8; line-height: 1.1; letter-spacing: .3px; }
 .fb-counts-card { display: flex; align-items: center; gap: 14px; background: #ffffff; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.18); padding: 8px 14px; flex-shrink: 0; }
@@ -193,7 +193,8 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .fb-main-label { font-size: 10px; font-weight: bold; color: #0078A8; letter-spacing: .5px; }
 .fb-main-select { padding: 6px 8px; border-radius: 6px; border: 1.5px solid #0078A8; font-size: 13px; font-weight: bold; color: #0078A8; background: #fff; cursor: pointer; }
 #view-year, #view-month, #view-red { padding: 6px 5px; }
-#view-type, #view-var { min-width: 185px; }
+#view-type { min-width: 150px; }
+#view-var { min-width: 185px; }
 .fb-break { flex-basis: 100%; height: 0; margin: 0; padding: 0; }
 .fb-sep { display: none; }
 .fb-dropdown { position: relative; display: inline-block; flex-shrink: 0; }
@@ -236,7 +237,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .rich-side { border: 1px solid #cfe6f4; border-radius: 8px; background: #f7fbfe; padding: 4px 9px 7px; margin-top: 9px; }
 .rich-side-title { font-size: 12.5px; font-weight: 800; color: #0078A8; letter-spacing: .4px; padding: 3px 0 4px; border-bottom: 1px solid #e2eef6; margin-bottom: 3px; }
 .rich-tbl { width: 100%; border-collapse: collapse; table-layout: fixed; }
-.rich-tbl td:first-child { width: 63%; }
+.rich-tbl td:first-child { width: 68%; }
 .rich-tbl td { border-bottom: 1px solid #eef4f8; }
 .rich-tbl tr:last-child td { border-bottom: none; }
 
@@ -412,6 +413,15 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 				<div class="info-item"><strong>Type-GEN:</strong> <span id="info-type-gen">-</span></div>
 				<div class="info-item"><strong>Type-DEM:</strong> <span id="info-type-dem">-</span></div>
             </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+            <span style="font-size:11px; font-weight:bold; color:#0078A8; letter-spacing:.5px;">TYPE</span>
+            <select id="hist-type" class="fb-main-select" onchange="if(window._histNode) updateHistoryChart(window._histNode)">
+                <option value="gen">Generation (MW)</option>
+                <option value="dem">Demand (MW)</option>
+                <option value="storage">Storage Gen/Dem (MW)</option>
+            </select>
         </div>
 
         <div id="chart-container" style="position: relative; height:300px; width:100%;">
@@ -1364,7 +1374,11 @@ function updateFilterBadges() {
 
 function openHistory(nodoABuscar = '') {
     document.getElementById('history-modal').style.display = 'flex'; 
-    
+
+    // El selector del modal arranca con el tipo de la vista actual del mapa
+    const htSel = document.getElementById('hist-type');
+    if (htSel) htSel.value = (document.getElementById('view-type') || {}).value || 'dem';
+
     const input = document.getElementById('hist-search-input');
     const clearBtn = document.getElementById('clear-hist');
 
@@ -1664,11 +1678,12 @@ function setupHistorySearch() {
 function updateHistoryChart(node) {
     const canvas = document.getElementById('historyChart');
     if (!canvas) return;
+    window._histNode = node;                                  // nodo activo del modal (para el selector gen/dem/storage)
     const ctx = canvas.getContext('2d');
 
     const monthMap = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dec'];
     const years = ['26', '27', '28'];
-    const typeSel = (document.getElementById('view-type') || {}).value || 'dem';
+    const typeSel = (document.getElementById('hist-type') || {}).value || (document.getElementById('view-type') || {}).value || 'dem';
 
     // Meses con dato para este nodo
     const months = [];
@@ -1714,7 +1729,14 @@ function updateHistoryChart(node) {
             },
             plugins: {
                 legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } },
-                tooltip: { callbacks: { label: (it) => { const f = it.dataset.fullName ? ' — ' + it.dataset.fullName : ''; return `${it.dataset.label}: ${it.parsed.y} MW${f}`; } } }
+                tooltip: {
+                    backgroundColor: 'rgba(255,255,255,0.97)',
+                    titleColor: '#334155',
+                    bodyColor: '#334155',
+                    borderColor: '#cbd5e1',
+                    borderWidth: 1,
+                    callbacks: { label: (it) => `${it.dataset.label}: ${it.parsed.y} MW` }
+                }
             }
         }
     });
