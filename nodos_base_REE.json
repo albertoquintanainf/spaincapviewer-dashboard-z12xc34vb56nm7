@@ -29,7 +29,10 @@
   "x": "667522.381",
   "y": "4243743.304",
   "provincia": "Murcia",
-  "voltage": "400"
+  "voltage": "400",
+  "alias": [
+   "ABANILLAS 400"
+  ]
  },
  "ABANTO 400": {
   "codigo": "50001",
@@ -693,7 +696,10 @@
   "x": "501469.007",
   "y": "4788250.046",
   "provincia": "Bizkaia",
-  "voltage": "220"
+  "voltage": "220",
+  "alias": [
+   "ALONSOTEGUI 220"
+  ]
  },
  "AYALA 220": {
   "codigo": "50066",
@@ -1141,7 +1147,10 @@
   "x": "520494.353",
   "y": "4497416.828",
   "provincia": "Guadalajara",
-  "voltage": "400"
+  "voltage": "400",
+  "alias": [
+   "BUDIA 400"
+  ]
  },
  "BUENAVISTA 220": {
   "codigo": "50102",
@@ -1677,7 +1686,10 @@
   "x": "756027.634",
   "y": "4427463.491",
   "provincia": "Castellón",
-  "voltage": "400"
+  "voltage": "400",
+  "alias": [
+   "CASTELLON, C.T. 400"
+  ]
  },
  "CASTRELO 220": {
   "codigo": "50145",
@@ -2245,7 +2257,10 @@
   "x": "440604.624",
   "y": "4480586.824",
   "provincia": "Madrid",
-  "voltage": "220"
+  "voltage": "220",
+  "alias": [
+   "PILAR, EL 220"
+  ]
  },
  "EL ROSARIO 220": {
   "codigo": "50726",
@@ -3589,7 +3604,10 @@
   "x": "934110.407",
   "y": "4599213.833",
   "provincia": "Barcelona",
-  "voltage": "220"
+  "voltage": "220",
+  "alias": [
+   "SAGRERA, LA 220"
+  ]
  },
  "LA SECUITA 220": {
   "codigo": "51336",
@@ -3693,7 +3711,10 @@
   "x": "-727474.734",
   "y": "3175203.744",
   "provincia": "Las Palmas",
-  "voltage": "66"
+  "voltage": "66",
+  "alias": [
+   "LAS PALMAS OESTE (LAS CANTERAS) 66"
+  ]
  },
  "LAS ROSAS 220": {
   "codigo": "52071",
@@ -3765,7 +3786,10 @@
   "x": "248626.267",
   "y": "4248442.061",
   "provincia": "Badajoz",
-  "voltage": "400"
+  "voltage": "400",
+  "alias": [
+   "MAGUILLA 400"
+  ]
  },
  "LLUBI 220": {
   "codigo": "50321",
@@ -3893,7 +3917,10 @@
   "x": "-856997.564",
   "y": "3188806.407",
   "provincia": "Santa Cruz de Tenerife",
-  "voltage": "66"
+  "voltage": "66",
+  "alias": [
+   "OLIVOS, LOS 66"
+  ]
  },
  "LOS RAMOS 220": {
   "codigo": "50331",
@@ -4741,7 +4768,10 @@
   "x": "29522.604",
   "y": "4689020.349",
   "provincia": "Pontevedra",
-  "voltage": "220"
+  "voltage": "220",
+  "alias": [
+   "NUEVO VIGO 220"
+  ]
  },
  "NUREDDUNA 66": {
   "codigo": "50407",
@@ -4789,7 +4819,10 @@
   "x": "578594.062",
   "y": "4388006.358",
   "provincia": "Cuenca",
-  "voltage": "400"
+  "voltage": "400",
+  "alias": [
+   "OLMEDILLA (COFRENTES) 400"
+  ]
  },
  "OLMEDO 400": {
   "codigo": "50412",
@@ -5605,7 +5638,10 @@
   "x": "152891.963",
   "y": "4315219.742",
   "provincia": "Badajoz",
-  "voltage": "400"
+  "voltage": "400",
+  "alias": [
+   "RIOCAYA 400"
+  ]
  },
  "RIUDARENES 220": {
   "codigo": "50753",
@@ -6645,7 +6681,10 @@
   "x": "934150.646",
   "y": "4596538.597",
   "provincia": "Barcelona",
-  "voltage": "220"
+  "voltage": "220",
+  "alias": [
+   "TANGER (CATALUÑA) 220"
+  ]
  },
  "TARRAGONA 220": {
   "codigo": "50595",

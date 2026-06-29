@@ -553,8 +553,6 @@ legendControl.update = function() {
 // ====== LECTURA DE DATOS DESDE /data (TSO) ======
 const MONTHS_DATA = {};            // { "26_jun": { "ABADES 400": {gen,dem}, ... }, ... }
 let   NODOS_BASE  = {};            // atributos estáticos por nombre de nudo
-const MONTHS_DATA_DSO = {};        // { "26_jun": { "IDE|...": {gen,dem}, ... }, ... }  (DSO: clave por identidad)
-let   NODOS_BASE_DSO  = {};        // atributos estáticos DSO por clave de identidad (cada entrada trae .name legible)
 const MES_NUM2NAME = {"01":"jan","02":"feb","03":"mar","04":"apr","05":"may","06":"jun","07":"jul","08":"ago","09":"sep","10":"oct","11":"nov","12":"dec"};
 
 function periodoToKey(p) { const [yyyy, mm] = p.split('_'); return `${yyyy.slice(2)}_${MES_NUM2NAME[mm]}`; }
@@ -567,20 +565,10 @@ async function cargarDatosJSON() {
     try { NODOS_BASE = await fetchJSON(DATA_BASE_URL + 'nodos_base_REE.json'); }
     catch (err) { console.error('No se pudo leer nodos_base_REE.json', err); alert('No se pudo cargar nodos_base_REE.json.'); return; }
 
-    // Base DSO (opcional): si aún no se ha subido, el visor sigue funcionando solo con TSO
-    try { NODOS_BASE_DSO = await fetchJSON(DATA_BASE_URL + 'nodos_base_DSO.json'); }
-    catch (err) { console.warn('Sin base DSO (nodos_base_DSO.json):', err.message); NODOS_BASE_DSO = {}; }
-
     const cargas = await Promise.all(manifest.meses.map(p =>
         fetchJSON(`${DATA_BASE_URL}${p}.json`).then(j => ({ p, j })).catch(() => null)
     ));
     cargas.filter(Boolean).forEach(({ p, j }) => { MONTHS_DATA[periodoToKey(p)] = j.nudos; });
-
-    // Mensuales DSO: se intentan para los mismos periodos del manifest (dso_AAAA_MM.json); los ausentes se ignoran
-    const cargasDSO = await Promise.all(manifest.meses.map(p =>
-        fetchJSON(`${DATA_BASE_URL}dso_${p}.json`).then(j => ({ p, j })).catch(() => null)
-    ));
-    cargasDSO.filter(Boolean).forEach(({ p, j }) => { MONTHS_DATA_DSO[periodoToKey(p)] = j.nudos; });
 
     construirEntries();
 }
@@ -591,14 +579,6 @@ function capFromRich(rich) {
     const dg = g.disp || {}, dd = d.disp || {};
     const v = x => (x === null || x === undefined) ? NaN : x;
     return { gen: v(dg.gen_mpe_rdt), dem: v(dd.dem_ch), 'stg-gen': v(dg.alm_mpe_rdt), 'stg-dem': v(dd.alm_cep) };
-}
-
-// DSO: única variable publicada = capacidad firme disponible (datos.disp).
-// Misma variable para generación y demanda; almacenamiento sin distinción propia (se reutiliza gen/dem).
-function capFromDSO(rich) {
-    const g = (rich && rich.gen) || {}, d = (rich && rich.dem) || {};
-    const v = x => (x === null || x === undefined || x === '') ? NaN : x;
-    return { gen: v(g.disp), dem: v(d.disp) };
 }
 
 // Estado de concurso (derivado de REE), independiente para generación y demanda
@@ -617,6 +597,15 @@ function ctDemFromRich(rich) {
     return (cc && String(cc).toUpperCase() === 'SI') ? 'Tender pending' : 'No tender';
 }
 
+// Datos mensuales de un nudo probando su nombre actual y, si no, sus alias (nombres antiguos tras renombrado)
+function richForMonth(key, entry) {
+    const md = MONTHS_DATA[key];
+    if (!md) return undefined;
+    let r = md[entry.name];
+    if (!r && entry.alias) { for (const a of entry.alias) { if (md[a]) { r = md[a]; break; } } }
+    return r;
+}
+
 function construirEntries() {
     const sets = { tens: new Set(), prov: new Set(), oper: new Set(), typeGen: new Set(), typeDem: new Set() };
     allEntries = [];
@@ -624,10 +613,10 @@ function construirEntries() {
         const b = NODOS_BASE[name];
         const x = cleanNum(b.x), y = cleanNum(b.y);
         if (isNaN(x) || isNaN(y)) continue;
-        const entry = { name, x, y, prov: b.provincia || '', tens: b.voltage || '', grid: 'TSO', oper: 'REE' };
+        const entry = { name, x, y, prov: b.provincia || '', tens: b.voltage || '', grid: 'TSO', oper: 'REE', alias: b.alias || null };
         // claves planas compatibles para cada mes cargado (mantienen mapa, gráfica y What's New)
         for (const key in MONTHS_DATA) {
-            const rich = MONTHS_DATA[key][name];
+            const rich = richForMonth(key, entry);
             if (!rich) continue;
             const cap = capFromRich(rich);
             entry[`${key}_gen`]     = cap.gen;
@@ -640,25 +629,6 @@ function construirEntries() {
             entry[`${key}_ctDem`] = ctD;
             sets.typeGen.add(ctG);
             sets.typeDem.add(ctD);
-        }
-        allEntries.push(entry);
-        if (entry.tens) sets.tens.add(entry.tens);
-        if (entry.prov) sets.prov.add(entry.prov);
-        if (entry.oper) sets.oper.add(entry.oper);
-    }
-    // --- Nodos DSO (indexados por clave de identidad; nombre legible en b.name) ---
-    for (const k in NODOS_BASE_DSO) {
-        const b = NODOS_BASE_DSO[k];
-        const x = cleanNum(b.x), y = cleanNum(b.y);
-        if (isNaN(x) || isNaN(y)) continue;
-        const entry = { name: b.name || k, x, y, prov: b.provincia || '', tens: b.voltage || '', grid: 'DSO', oper: b.operador || 'DSO', dsoKey: k };
-        for (const key in MONTHS_DATA_DSO) {
-            const rich = MONTHS_DATA_DSO[key][k];
-            if (!rich) continue;
-            const cap = capFromDSO(rich);
-            entry[`${key}_gen`] = cap.gen;   // capacidad firme disponible (gen)
-            entry[`${key}_dem`] = cap.dem;   // capacidad firme disponible (dem)
-            // almacenamiento DSO: misma variable; applyFilters ya usa gen/dem cuando grid==='DSO'
         }
         allEntries.push(entry);
         if (entry.tens) sets.tens.add(entry.tens);
@@ -705,40 +675,6 @@ function renderRich(rich) {
     if (rich.dem) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">DEMANDA</td></tr>' + _richFilas(rich.dem);
     h += '</table></details>';
     return h;
-}
-
-// ====== POPUP ESPECÍFICO DSO (esquema plano: campos publicados por las distribuidoras) ======
-const DSO_LABELS = {
-    disp: 'Capacidad disponible (MW)', comprom: 'Capacidad comprometida (MW)',
-    ocupada: 'Capacidad ocupada (MW)', admitida: 'Capacidad admitida (MW)',
-    pos_ocup: 'Posiciones ocupadas', pos_libr: 'Posiciones libres',
-    afeccion: 'Afección RdT', scc: 'Limitado por SCC',
-    eolica: 'Admitida eólica (MW)', solar: 'Admitida solar (MW)',
-    almacen: 'Admitida almacenamiento (MW)', otras: 'Admitida otras (MW)',
-    nudo0: 'Nudo 0', coment: 'Comentario'
-};
-const DSO_ORDER = ['disp','comprom','ocupada','admitida','pos_ocup','pos_libr','afeccion','scc','eolica','solar','almacen','otras','nudo0','coment'];
-
-function _dsoFilas(datos) {
-    if (!datos) return '';
-    let h = '';
-    DSO_ORDER.forEach(k => {
-        const v = datos[k];
-        if (v === null || v === undefined || v === '') return;
-        h += `<tr><td style="color:#666;padding:1px 0;">${DSO_LABELS[k] || k.replace(/_/g, ' ')}</td><td style="text-align:right;font-weight:600;">${v}</td></tr>`;
-    });
-    return h;
-}
-
-function renderRichDSO(rich) {
-    if (!rich || (!rich.gen && !rich.dem)) return '';
-    let h = '<details style="margin-top:6px;"><summary style="cursor:pointer;font-size:11px;font-weight:bold;color:#0078A8;">Ver todas las variables ▾</summary>';
-    h += '<table style="width:100%;font-size:10px;border-collapse:collapse;margin-top:4px;">';
-    const fg = _dsoFilas(rich.gen), fd = _dsoFilas(rich.dem);
-    if (fg) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">GENERACIÓN</td></tr>' + fg;
-    if (fd) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">DEMANDA</td></tr>' + fd;
-    h += '</table></details>';
-    return (fg || fd) ? h : '';
 }
 
 
@@ -973,9 +909,7 @@ function applyFilters() {
                         <tr><td style="color: #666; padding: 2px 0;">Operator:</td><td style="font-weight: bold; text-align: right;">${item.oper}</td></tr>
                         <tr><td style="color: #666; padding: 2px 0;">${type === 'dem' ? 'Type-DEM' : 'Type-GEN'}:</td><td style="font-weight: bold; text-align: right;">${wrapZeroStarIcon((type === 'dem' ? item[`${year}_${month}_ctDem`] : item[`${year}_${month}_ctGen`]) || '–')}</td></tr>
                     </table>
-                    ${item.grid === 'DSO'
-                        ? renderRichDSO((MONTHS_DATA_DSO[year + '_' + month] || {})[item.dsoKey])
-                        : renderRich((MONTHS_DATA[year + '_' + month] || {})[item.name])}
+                    ${renderRich(richForMonth(year + '_' + month, item))}
                     <button class="popup-btn-hist" onclick="openHistory('${item.name}')">📊 View Historical Data</button>
                 </div>`;
         });
