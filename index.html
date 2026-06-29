@@ -24,10 +24,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .leaflet-control-layers-toggle {width: 34px !important;height: 34px !important; background-size: 18px 18px !important;}
 .leaflet-control-layers-expanded { min-width: 100px !important; z-index: 10005 !important; }
 .leaflet-right .leaflet-control { margin-right: 10px !important; margin-top: 0 !important; margin-bottom: 0 !important; float: none !important; clear: both;}
-.leaflet-bottom.leaflet-left .leaflet-control-scale {margin-left: 300px !important; margin-bottom: 4px !important; }
+.leaflet-control-scale {margin-bottom: 4px !important; }
 	
 	/* --- PANEL LATERAL & COMPONENTES --- */
-#info-panel { display: none; position: absolute; top: var(--bar-off, 88px); left: 10px; z-index: 1000; text-align: center; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); width: 400px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); overflow-y: auto; }
+#info-panel { display: none; position: absolute; top: var(--bar-off, 88px); left: 10px; z-index: 1200; text-align: center; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); width: 400px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); overflow-y: auto; }
 .main-header { border-bottom: 2px solid #0078A8; padding-bottom: 10px; margin-bottom: 15px; }
 .main-title { font-size: 14px; font-weight: bold; color: #1a202c; display: block; margin-bottom: 8px; }
 .month-selector-box { margin-bottom: 15px; background: #eef2f7; padding: 10px; border-radius: 8px; border: 1px solid #d1d9e6; }
@@ -175,9 +175,9 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .leaflet-control-layers-expanded { font-size: 10px !important; }  .search-results { font-size: 11px; }  .search-item { padding: 8px; font-size: 11px; }  .suggestion-item { padding: 8px 12px; font-size: 11px; }  #node-search-input { font-size: 12px; padding: 8px; }}
 @media (max-width: 1024px) {  #info-panel { width: 280px; padding: 10px; font-size: 10px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); top: var(--bar-off, 88px); left: 8px; }  .main-header span { font-size: 13px !important; }  .stat-val { font-size: 11px; }  .stat-label { font-size: 7px; }  .stats-grid { padding: 6px; gap: 4px; }  .btn-comp { font-size: 10px; padding: 6px; }
   .btn-whats-new { font-size: 10px; padding: 6px; }  #search-container { width: 165px; }  .section-title { font-size: 9px; }  .select-all-btn { font-size: 9px; }  .select-option { font-size: 10px; }  .multiselect-container { max-height: 65px; padding: 6px; }  .range-row { font-size: 9px; padding: 5px; }  select, .month-select { font-size: 11px; padding: 4px; }
-  .section-header { margin: 10px 0 4px 0; }  .modal-content { width: 90vw; padding: 16px; }  #chart-container { height: 220px; }  .node-info-container { padding: 10px; }  .info-grid { font-size: 12px; }  .leaflet-bottom.leaflet-left .leaflet-control-scale { margin-left: 200px !important; }  .search-results { font-size: 10px; }
+  .section-header { margin: 10px 0 4px 0; }  .modal-content { width: 90vw; padding: 16px; }  #chart-container { height: 220px; }  .node-info-container { padding: 10px; }  .info-grid { font-size: 12px; }  .search-results { font-size: 10px; }
   .search-item { padding: 7px; font-size: 10px; }  .suggestions-box, .suggestions-box-minimal { font-size: 10px; }  .suggestion-item { padding: 7px 10px; font-size: 10px; }  #node-search-input { font-size: 11px; padding: 7px; }}
-@media (max-width: 900px) {  #info-panel { width: 240px; padding: 8px; font-size: 10px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); }  .btn-comp { font-size: 10px; padding: 5px; }  .btn-whats-new { font-size: 10px; padding: 5px; }  #search-container { width: 150px; }  .leaflet-bottom.leaflet-left .leaflet-control-scale { margin-left: 175px !important; }
+@media (max-width: 900px) {  #info-panel { width: 240px; padding: 8px; font-size: 10px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); }  .btn-comp { font-size: 10px; padding: 5px; }  .btn-whats-new { font-size: 10px; padding: 5px; }  #search-container { width: 150px; }
   .search-results { font-size: 9px; }  .search-item { padding: 6px; font-size: 9px; }  .suggestions-box, .suggestions-box-minimal { font-size: 9px; }  .suggestion-item { padding: 6px 8px; font-size: 9px; }  #node-search-input { font-size: 10px; padding: 6px; }}
 		
 /* --- BARRA HORIZONTAL DE FILTROS --- */
@@ -191,11 +191,11 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .fb-cnt i { font-size: 9px; font-style: normal; text-transform: uppercase; color: #64748b; letter-spacing: .5px; }
 .fb-main { display: inline-flex; align-items: center; gap: 6px; background: #eaf4fb; border: 1px solid #b9def0; border-radius: 10px; padding: 6px 8px; flex-shrink: 0; box-shadow: 0 3px 12px rgba(0,0,0,0.15); }
 .fb-main-label { font-size: 10px; font-weight: bold; color: #0078A8; letter-spacing: .5px; }
-.fb-main-select { padding: 6px 10px; border-radius: 6px; border: 1.5px solid #0078A8; font-size: 13px; font-weight: bold; color: #0078A8; background: #fff; cursor: pointer; min-width: 105px; }
+.fb-main-select { padding: 6px 10px; border-radius: 6px; border: 1.5px solid #0078A8; font-size: 13px; font-weight: bold; color: #0078A8; background: #fff; cursor: pointer; min-width: 110px; flex-shrink: 0; }
 #view-year { min-width: 78px; }
 #view-month, #view-red { min-width: 110px; }
-#view-type { min-width: 150px; }
-#view-var { min-width: 168px; }
+#view-type { min-width: 195px; }
+#view-var { min-width: 180px; }
 .fb-break { flex-basis: 100%; height: 0; margin: 0; padding: 0; }
 .fb-sep { display: none; }
 .fb-dropdown { position: relative; display: inline-block; flex-shrink: 0; }
@@ -232,8 +232,14 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .nd-vartable td { padding: 3px 5px; text-align: right; font-weight: 700; color: #334155; white-space: nowrap; border-bottom: 1px solid #f1f5f9; }
 .nd-vartable td.vname { text-align: left; color: #0078A8; font-weight: bold; max-width: 150px; overflow: hidden; text-overflow: ellipsis; position: sticky; left: 0; background: #fff; }
 .nd-vartable td.nd { color: #cbd5e1; text-align: center; font-weight: 400; }
-.nd-vartable tfoot td { border-top: 2px solid #cbd5e1; background: #f1f5f9; font-weight: 800; color: #0078A8; }
-.nd-vartable tfoot td.vname { color: #0078A8; }
+.nd-vartable tr.maxrow td { border-top: 2px solid #cbd5e1; background: #f1f5f9; font-weight: 800; color: #0078A8; }
+.nd-vartable tr.maxrow td.vname { color: #0078A8; }
+.nd-vartable td.blkhdr { text-align: left; font-weight: 800; color: #0078A8; background: #eaf4fb; border-top: 2px solid #cfe6f4; padding: 4px 6px; letter-spacing: .5px; }
+.rich-side { border: 1px solid #cfe6f4; border-radius: 8px; background: #f7fbfe; padding: 4px 9px 7px; margin-top: 9px; }
+.rich-side-title { font-size: 12.5px; font-weight: 800; color: #0078A8; letter-spacing: .4px; padding: 3px 0 4px; border-bottom: 1px solid #e2eef6; margin-bottom: 3px; }
+.rich-tbl { width: 100%; border-collapse: collapse; }
+.rich-tbl td { border-bottom: 1px solid #eef4f8; }
+.rich-tbl tr:last-child td { border-bottom: none; }
 
 </style>
 </head>
@@ -257,7 +263,6 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 <div id="search-container" style="display: none;">
     <button class="btn-whats-new" onclick="openWhatsNew()">💡 WHAT'S NEW?</button>
-	<button class="btn-comp" onclick="openHistory()">📊 HISTORICAL DATA</button>
         <div class="search-wrapper";">
         <input type="text" id="node-search-input" placeholder="🔍 Search node by name..." oninput="searchNodes(this.value); toggleClearBtn('node-search-input', 'clear-main-node')">
         <span class="clear-btn" id="clear-main-node" onclick="clearSearch('node-search-input', 'search-results', 'clear-main-node')">&times;</span>
@@ -456,7 +461,7 @@ L.control.zoom({ position: 'topright' }).addTo(map);
 L.control.layers(baseMaps, null, {position: 'topright', collapsed: true }).addTo(map);
 
 // ESCALA
-L.control.scale({imperial: false, metric: true, position: 'bottomleft' }).addTo(map);
+L.control.scale({imperial: false, metric: true, position: 'bottomright' }).addTo(map);
 
 // CARGA KML/KMZ (Google Earth)
 const KmlControl = L.Control.extend({
@@ -527,7 +532,7 @@ proj4.defs("EPSG:32630", "+proj=utm +zone=30 +ellps=WGS84 +datum=WGS84 +units=m 
 
 
         var markersLayer = L.featureGroup().addTo(map);
-        var legendControl = L.control({position: 'bottomright'});
+        var legendControl = L.control({position: 'bottomleft'});
         let allEntries = [];
 		let markersInMap = {};
             
@@ -548,7 +553,9 @@ legendControl.update = function() {
     const monthText = monthEl.options[monthEl.selectedIndex].text;
     const type = typeEl.value;
     const varSel = document.getElementById('view-var');
-    const varLabel = (type === 'storage') ? 'Storage (min Gen/Dem)' : ((varSel && VAR_LABEL[varSel.value]) || varSel?.value || 'Capacity');
+    const varLabel = (type === 'storage')
+        ? ('Storage · ' + ((STORAGE_BRANCHES[varSel && varSel.value] || STORAGE_BRANCHES.mpe).label) + ' (mín. efectivo)')
+        : ((varSel && VAR_LABEL[varSel.value]) || varSel?.value || 'Capacity');
 
     const total = ranges.reduce((s, r) => s + (r.visible ? r.count : 0), 0) + (noInfoConfig.visible ? noInfoConfig.count : 0);
     const cc = window._nodeCounts || { dso: 0, tso: 0, total: 0 };
@@ -738,6 +745,9 @@ function construirEntries() {
     syncBarOffset();
 }
 
+// ====== NOMBRES REALES DE VARIABLES SEGÚN CABECERAS REE (generado de los xlsx GRT) ======
+const REE_LABELS = {"gen": {"posiciones": {"transporte_E": "A RED DE TRANSPORTE · E", "transporte_P": "A RED DE TRANSPORTE · P", "distribucion_E": "A RED DE DISTRIBUCIÓN · E", "distribucion_P": "A RED DE DISTRIBUCIÓN · P"}, "nodal": {"wscr_cap": "CAPACIDAD DE ACCESO NODAL", "binudos": "BINUDOS", "afeccion_cs_seguridad": "AFECCIÓN DE CS A SEGURIDAD DEL SISTEMA", "wscr_margen": "MARGEN NO OCUPADO", "estatico_gen_cap": "CAPACIDAD DE ACCESO NODAL", "estatico_gen_zona": "ZONA CON CAPACIDAD COMPARTIDA A LA QUE PERTENECE EL NUDO", "estatico_gen_margen": "MARGEN NO OCUPADO", "estatico_alm_cap": "CAPACIDAD DE ACCESO NODAL", "estatico_alm_zona": "ZONA CON CAPACIDAD COMPARTIDA A LA QUE PERTENECE EL NUDO", "estatico_alm_margen": "MARGEN NO OCUPADO", "dinamico_cap": "CAPACIDAD DE ACCESO NODAL", "dinamico_zona": "ZONA CON CAPACIDAD COMPARTIDA A LA QUE PERTENECE EL NUDO", "dinamico_lim_interna": "LIMITACIÓN INTERNA POR CONFIGURACIÓN DEL NUDO", "dinamico_margen": "MARGEN NO OCUPADO"}, "otorgada": {"mge": "CAPACIDAD DE ACCESO OTORGADA MGE", "mges": "CAPACIDAD DE ACCESO OTORGADA MGES", "mpe_con_wscr": "CAPACIDAD DE ACCESO OTORGADA MPE CON AFECCIÓN WSCR", "mpe_sin_wscr": "CAPACIDAD DE ACCESO OTORGADA MPE SIN AFECCIÓN WSCR", "mpe": "CAPACIDAD DE ACCESO OTORGADA MPE", "gen": "CAPACIDAD DE ACCESO OTORGADA GEN", "alm": "CAPACIDAD DE ACCESO OTORGADA ALM"}, "en_curso": {"total": "CAPACIDAD DE ACCESO SOLICITADA EN CURSO Y PENDIENTE RESOLVER MGE", "mges": "CAPACIDAD DE ACCESO SOLICITADA EN CURSO Y PENDIENTE RESOLVER MGES", "mpe_con_wscr": "CAPACIDAD DE ACCESO SOLICITADA EN CURSO Y PENDIENTE RESOLVER MPE CON AFECCIÓN WSCR", "mpe_sin_wscr": "CAPACIDAD DE ACCESO SOLICITADA EN CURSO Y PENDIENTE RESOLVER MPE SIN AFECCIÓN WSCR", "mpe": "CAPACIDAD DE ACCESO SOLICITADA EN CURSO Y PENDIENTE RESOLVER MPE", "gen": "CAPACIDAD DE ACCESO SOLICITADA EN CURSO Y PENDIENTE RESOLVER GEN", "alm": "CAPACIDAD DE ACCESO SOLICITADA EN CURSO Y PENDIENTE RESOLVER ALM"}, "margen": {"gen_mges": "GENERACIÓN · MGES [MW]", "gen_mpe": "GENERACIÓN · MPE [MW]", "alm_mges": "ALMACENAMIENTO · MGES [MW]", "alm_mpe": "ALMACENAMIENTO · MPE [MW]"}, "crit_lim": {"gen_mges": "GENERACIÓN · MGES", "gen_mpe": "GENERACIÓN · MPE", "alm_mges": "ALMACENAMIENTO · MGES", "alm_mpe": "ALMACENAMIENTO · MPE"}, "lim_posicion": {"cap_max_otorgable": "LIMITACIÓN POR POSICIÓN · CAPACIDAD MÁXIMA OTORGABLE EN EL NUDO", "existe": "LIMITACIÓN POR POSICIÓN · ¿EXISTE LIMITACIÓN POR POSICIÓN?", "margen_mges": "LIMITACIÓN POR POSICIÓN · MARGEN MGES", "margen_mpe": "LIMITACIÓN POR POSICIÓN · MARGEN MPE"}, "no_disp": {"gen_mges": "GENERACIÓN · MGES [MW]", "gen_mpe": "GENERACIÓN · MPE [MW]", "alm_mges": "ALMACENAMIENTO · MGES [MW]", "alm_mpe": "ALMACENAMIENTO · MPE [MW]", "motivo": "MOTIVO CAPACIDAD NO DISPONIBLE"}, "disp": {"gen_mges_rdt": "GENERACIÓN · MGES RDTO MPE CON COMPENSADOR SÍNCRONO RDT [MW]", "gen_mpe_rdt": "GENERACIÓN · MPE RDT [MW]", "gen_mges_rdd": "GENERACIÓN · MGES RDD, MPE NO CONECTADO AL PRIMER NIVEL DE TRANSFORMACIÓN RDD O MPE CON COMPENSADOR SÍNCRONO RDD [MW]", "gen_mpe_rdd": "GENERACIÓN · MPE RDD [MW]", "alm_mges_rdt": "ALMACENAMIENTO · MGES RDTO MPE CON COMPENSADOR SÍNCRONO RDT [MW]", "alm_mpe_rdt": "ALMACENAMIENTO · MPE RDT [MW]", "alm_mges_rdd": "ALMACENAMIENTO · MGES RDD, MPE NO CONECTADO AL PRIMER NIVEL DE TRANSFORMACIÓN RDD O MPE CON COMPENSADOR SÍNCRONO RDD [MW]", "alm_mpe_rdd": "ALMACENAMIENTO · MPE RDD [MW]"}, "liberada": {"lib_mges": "CAPACIDAD DE ACCESO LIBERADA PARA MGES [MW]", "lib_mpe": "CAPACIDAD DE ACCESO LIBERADA PARA MPE [MW]", "otorg_mges": "CAPACIDAD DE ACCESO OTORGADA PARA MGES [MW]", "otorg_mpe": "CAPACIDAD DE ACCESO OTORGADA PARA MPE [MW]", "disp_mges": "CAPACIDAD DE ACCESO DISPONIBLE PARA MGES [MW]", "disp_mpe": "CAPACIDAD DE ACCESO DISPONIBLE PARA MPE [MW]"}, "reserva": {"motivo": "MOTIVO DE RESERVA DE CAPACIDAD", "normativa": "NORMATIVA ESPECÍFICA REGULADORA"}}, "dem": {"posiciones": {"genalm_transporte_E": "GEN/ALM A LA RED DE TRANSPORTE · E", "genalm_transporte_P": "GEN/ALM A LA RED DE TRANSPORTE · P", "consumo_transporte_E": "CONSUMO A LA RED DE TRANSPORTE · E", "consumo_transporte_P": "CONSUMO A LA RED DE TRANSPORTE · P", "distribucion_E": "A RED DE DISTRIBUCIÓN · E", "distribucion_P": "A RED DE DISTRIBUCIÓN · P"}, "nodal": {"wscr_cap": "CAPACIDAD DE ACCESO NODAL", "binudos": "BINUDOS", "afeccion_cs_seguridad": "AFECCIÓN DE CS A SEGURIDAD DEL SISTEMA", "wscr_margen": "MARGEN NO OCUPADO", "estatico_dem_cap": "CAPACIDAD DE ACCESO NODAL", "estatico_dem_zona": "ZONA CON CAPACIDAD COMPARTIDA A LA QUE PERTENECE EL NUDO", "estatico_dem_margen": "MARGEN NO OCUPADO", "lim_temporales_config": "LIMITACIONES TEMPORALES DE ACCESO POR CONFIGURACIÓN DE LA SUBESTACIÓN", "estatico_alm_cap": "CAPACIDAD DE ACCESO NODAL", "estatico_alm_zona": "ZONA CON CAPACIDAD COMPARTIDA A LA QUE PERTENECE EL NUDO", "estatico_alm_margen": "MARGEN NO OCUPADO", "dinamico1_margen": "MARGEN NO OCUPADO", "dinamico2_margen": "MARGEN NO OCUPADO"}, "otorgada": {"consumo_rdd_ref": "CAPACIDAD DE ACCESO PARA CONSUMO EN LA RDD (VALOR DE REFERENCIA)", "estado_acuerdo_rdd": "ESTADO ACUERDO SOBRE CAPACIDAD DE ACCESO PARA CONSUMO EN LA RDD (VALOR DE REFERENCIA)", "dem_adicional": "CAPACIDAD DE ACCESO OTORGADA A DEMANDA ADICIONAL AL VALOR DE REFERENCIA", "dem_cep_wscr": "CAPACIDAD DE ACCESO OTORGADA DEMANDA CEP CON AFECCIÓN A WSCR", "dem_rdt": "CAPACIDAD DE ACCESO OTORGADA DEMANDA RDT", "dem_acept_rdd": "CAPACIDAD DE ACCESO DEMANDA CON ACEPTABILIDAD RDD", "dem_acept_rdd_no_ref": "CAPACIDAD DE ACCESO DEMANDA CON ACEPTABILIDAD RDD NO INCLUIDA EN EL VALOR DE REFERENCIA", "alm_adicional": "CAPACIDAD DE ACCESO OTORGADA ALMACENAMIENTO ADICIONAL AL VALOR DE REFERENCIA", "alm_rdt": "CAPACIDAD DE ACCESO OTORGADA ALMACENAMIENTO RDT", "alm_acept_rdd": "CAPACIDAD DE ACCESO ALMACENAMIENTO CON ACEPTABILIDAD RDD", "alm_acept_rdd_no_ref": "CAPACIDAD DE ACCESO ALMACENAMIENTO CON ACEPTABILIDAD RDD NO INCLUIDA EN EL VALOR DE REFERENCIA", "dem_ch_rdt": "CAPACIDAD DE ACCESO OTORGADA DEMANDA CH RDT", "dem_sh_rdt": "CAPACIDAD DE ACCESO OTORGADA DEMANDA SH RDT", "ch_acept_rdd": "CAPACIDAD DE ACCESO CH CON ACEPTABILIDAD EN RDD", "sh_acept_rdd": "CAPACIDAD DE ACCESO SH CON ACEPTABILIDAD EN RDD"}, "en_curso": {"dem": "CAPACIDAD DE ACCESO SOLICITADA EN CURSO Y PENDIENTE RESOLVER DEMANDA RDT", "alm_rdt": "CAPACIDAD DE ACCESO SOLICITADA EN CURSO Y PENDIENTE RESOLVER ALMACENAMIENTO RDT"}, "margen": {"dem_ch": "DEMANDA · CEP · CH", "dem_sh": "DEMANDA · CEP · SH", "dem_no_cep": "DEMANDA · NO CEP", "alm_cep_mpe": "ALMACENAMIENTO · CEP (MPE)", "alm_no_cep_mges": "ALMACENAMIENTO · NO CEP (MGES)"}, "crit_lim": {"dem_ch": "DEMANDA · CEP · CH", "dem_sh": "DEMANDA · CEP · SH", "dem_no_cep": "DEMANDA · NO CEP", "alm_cep": "ALMACENAMIENTO · CEP (MPE)", "alm_no_cep": "ALMACENAMIENTO · NO CEP (MGES)"}, "no_otorgable": {"dem_ch": "DEMANDA · CEP · CH", "dem_sh": "DEMANDA · CEP · SH", "dem_no_cep": "DEMANDA · NO CEP", "alm_cep": "ALMACENAMIENTO · CEP (MPE)", "alm_no_cep": "ALMACENAMIENTO · NO CEP (MGES)", "motivo": "MOTIVO CAPACIDAD NO OTORGABLE EN RDT"}, "disp": {"dem_ch": "DEMANDA · CEP · CH", "dem_sh": "DEMANDA · CEP · SH", "dem_no_cep": "DEMANDA · NO CEP", "alm_cep": "ALMACENAMIENTO · CEP (MPE)", "alm_no_cep": "ALMACENAMIENTO · NO CEP (MGES)"}, "concurso": {"nudo_concurso": "NUDO DE CONCURSO", "normativa": "NORMATIVA ESPECÍFICA REGULADORA"}}};
+
 // ====== RENDER DE TODAS LAS VARIABLES EN EL POPUP ======
 const RICH_BLOQUES = { posiciones:'Posiciones', nodal:'Criterios nodales', otorgada:'Otorgada',
     en_curso:'En curso', margen:'Margen total', crit_lim:'Criterios limitantes',
@@ -759,16 +769,19 @@ function changeIcon(cur, prev) {
     return '';
 }
 
-function _richFilas(obj, prevObj) {
+function _richFilas(obj, prevObj, side) {
     let h = '';
+    const lblMap = (REE_LABELS && REE_LABELS[side]) || {};
     for (const blk in obj) {
         const sub = obj[blk]; if (!sub) continue;
         const prevSub = (prevObj && prevObj[blk]) || {};
+        const blkLbl = lblMap[blk] || {};
         const filas = Object.entries(sub).filter(([k, v]) => v !== null && v !== undefined && v !== '');
         if (!filas.length) continue;
-        h += `<tr><td colspan="2" style="padding:5px 0 2px;font-weight:bold;color:#0078A8;font-size:10px;text-transform:uppercase;">${RICH_BLOQUES[blk] || blk}</td></tr>`;
+        h += `<tr><td colspan="2" style="padding:6px 0 3px;font-weight:bold;color:#0078A8;font-size:10.5px;text-transform:uppercase;">${RICH_BLOQUES[blk] || blk}</td></tr>`;
         filas.forEach(([k, v]) => {
-            h += `<tr><td style="color:#666;padding:2px 0;font-size:11.5px;">${k.replace(/_/g, ' ')}</td><td style="text-align:right;font-weight:600;font-size:11.5px;">${v}${changeIcon(v, (prevSub || {})[k])}</td></tr>`;
+            const nombre = blkLbl[k] || k.replace(/_/g, ' ').toUpperCase();
+            h += `<tr><td style="color:#555;padding:2px 6px 2px 0;font-size:11.5px;line-height:1.25;">${nombre}</td><td style="text-align:right;font-weight:700;font-size:11.5px;white-space:nowrap;vertical-align:top;">${v}${changeIcon(v, (prevSub || {})[k])}</td></tr>`;
         });
     }
     return h;
@@ -779,11 +792,14 @@ function renderRich(rich, which, prevRich) {
     which = which || 'both';
     const showGen = which !== 'dem', showDem = which !== 'gen';
     const pg = (prevRich && prevRich.gen) || null, pd = (prevRich && prevRich.dem) || null;
-    let h = '<details open style="margin-top:6px;"><summary style="cursor:pointer;font-size:12px;font-weight:bold;color:#0078A8;">Ver todas las variables ▾</summary>';
-    h += '<table style="width:100%;font-size:12px;border-collapse:collapse;margin-top:4px;">';
-    if (showGen && rich.gen) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">GENERACIÓN</td></tr>' + _richFilas(rich.gen, pg);
-    if (showDem && rich.dem) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">DEMANDA</td></tr>' + _richFilas(rich.dem, pd);
-    h += '</table></details>';
+    let h = '<details open style="margin-top:8px;"><summary style="cursor:pointer;font-size:12.5px;font-weight:bold;color:#0078A8;">View all variables ▾</summary>';
+    if (showGen && rich.gen) {
+        h += '<div class="rich-side"><div class="rich-side-title">GENERACIÓN</div><table class="rich-tbl">' + _richFilas(rich.gen, pg, 'gen') + '</table></div>';
+    }
+    if (showDem && rich.dem) {
+        h += '<div class="rich-side"><div class="rich-side-title">DEMANDA</div><table class="rich-tbl">' + _richFilas(rich.dem, pd, 'dem') + '</table></div>';
+    }
+    h += '</details>';
     return h;
 }
 
@@ -818,11 +834,10 @@ function renderRichDSO(rich, which, prevRich) {
     const fg = (which !== 'dem') ? _dsoFilas(rich.gen, pg) : '';
     const fd = (which !== 'gen') ? _dsoFilas(rich.dem, pd) : '';
     if (!fg && !fd) return '';
-    let h = '<details open style="margin-top:6px;"><summary style="cursor:pointer;font-size:12px;font-weight:bold;color:#0078A8;">Ver todas las variables ▾</summary>';
-    h += '<table style="width:100%;font-size:12px;border-collapse:collapse;margin-top:4px;">';
-    if (fg) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">GENERACIÓN</td></tr>' + fg;
-    if (fd) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">DEMANDA</td></tr>' + fd;
-    h += '</table></details>';
+    let h = '<details open style="margin-top:8px;"><summary style="cursor:pointer;font-size:12.5px;font-weight:bold;color:#0078A8;">View all variables ▾</summary>';
+    if (fg) h += '<div class="rich-side"><div class="rich-side-title">GENERACIÓN</div><table class="rich-tbl">' + fg + '</table></div>';
+    if (fd) h += '<div class="rich-side"><div class="rich-side-title">DEMANDA</div><table class="rich-tbl">' + fd + '</table></div>';
+    h += '</details>';
     return h;
 }
 
@@ -837,13 +852,20 @@ function refreshTypeFilter() {
     createCheckboxes('m-type', Array.from(typeSet).sort());
 }
 
-// Rellena el selector de variable de capacidad del mapa según el tipo activo (8 gen / 5 dem). En storage se oculta.
+// Rellena el selector de variable de capacidad del mapa según el tipo activo (4 gen / 3 dem / 2 ramas storage).
 function refreshVarSelector() {
     const typeEl = document.getElementById('view-type');
     const varSel = document.getElementById('view-var');
     if (!typeEl || !varSel) return;
     const type = typeEl.value;
-    if (type === 'storage') { varSel.style.display = 'none'; varSel.innerHTML = ''; return; }
+    if (type === 'storage') {
+        varSel.style.display = '';
+        const prevS = varSel.value;
+        varSel.innerHTML = Object.entries(STORAGE_BRANCHES)
+            .map(([k, b]) => `<option value="${k}" title="Mínimo efectivo rama ${b.label}">${b.label}</option>`).join('');
+        varSel.value = (prevS === 'mpe' || prevS === 'mges') ? prevS : 'mpe';
+        return;
+    }
     varSel.style.display = '';
     const list = DISP_VARS[type] || [];
     const prev = varSel.value;
@@ -878,12 +900,6 @@ function applyFilters() {
     }
     const pMonth = months[prevMonthIdx];
 
-    // Claves auxiliares para Storage
-    const stgGenKey = `${year}_${month}_stg-gen`;
-    const stgDemKey = `${year}_${month}_stg-dem`;
-    const prevStgGenKey = `${prevYear}_${pMonth}_stg-gen`;
-    const prevStgDemKey = `${prevYear}_${pMonth}_stg-dem`;
-
     const sel = {
         tens: Array.from(document.querySelectorAll('#m-tens input:checked')).map(cb => cb.value),
         prov: Array.from(document.querySelectorAll('#m-prov input:checked')).map(cb => cb.value),
@@ -901,30 +917,14 @@ function applyFilters() {
         if (matchesRed && sel.tens.includes(e.tens) && sel.prov.includes(e.prov) && sel.oper.includes(e.oper) && (e[ctKey] === undefined || sel.type.includes(e[ctKey]))) {
             let rawValue;
 			let isMissingData = false;
-			
-		if (type === 'storage') {
-            const genCol = (e.grid === 'TSO') ? `${year}_${month}_stg-gen` : `${year}_${month}_gen`;
-            const demCol = (e.grid === 'TSO') ? `${year}_${month}_stg-dem` : `${year}_${month}_dem`;
 
-            // Usamos cleanNum para normalizar (guiones -> NaN, comas -> puntos, redondeo)
-            const vGen = cleanNum(e[genCol]);
-            const vDem = cleanNum(e[demCol]);
-
-            // Si CUALQUIERA de los dos no tiene dato, marcamos como Missing
-            if (isNaN(vGen) || isNaN(vDem)) {
-                isMissingData = true;
-            } else {
-                rawValue = Math.min(vGen, vDem);
-            }
-        } else {
-            // Gen o Dem: usamos la variable de capacidad seleccionada para el mapa
+            // Valor que colorea: gen/dem por variable seleccionada; storage por mínimo efectivo de la rama (MPE/MGES)
             const val = mapCapValue(e, year, month, type, varCode);
             if (isNaN(val)) {
                 isMissingData = true;
             } else {
                 rawValue = val;
             }
-        }
 
             let rFound;
         if (isMissingData) {
@@ -961,16 +961,8 @@ function applyFilters() {
         let bestValue = -Infinity;
         g.items.forEach(item => {
             let rawValue;
-            if (type === 'storage') {
-                const genCol = item.grid === 'TSO' ? `${year}_${month}_stg-gen` : `${year}_${month}_gen`;
-                const demCol = item.grid === 'TSO' ? `${year}_${month}_stg-dem` : `${year}_${month}_dem`;
-                const vGen = cleanNum(item[genCol]);
-                const vDem = cleanNum(item[demCol]);
-                if (!isNaN(vGen) && !isNaN(vDem)) rawValue = Math.min(vGen, vDem);
-            } else {
-                const val = mapCapValue(item, year, month, type, varCode);
-                if (!isNaN(val)) rawValue = val;
-            }
+            const val = mapCapValue(item, year, month, type, varCode);
+            if (!isNaN(val)) rawValue = val;
             if (rawValue !== undefined && rawValue > bestValue) {
                 bestValue = rawValue;
                 bestConfig = ranges.find(r => rawValue <= r.limit) || noInfoConfig;
@@ -1042,17 +1034,26 @@ function buildNodeFichaHTML(items) {
         let capacityRows = "";
         if (type === 'storage') {
             const isTSO = item.grid === 'TSO';
-            const sg = isTSO ? 'stg-gen' : 'gen', sd = isTSO ? 'stg-dem' : 'dem';
-            const vG = cleanNum(item[`${year}_${month}_${sg}`]);
-            const vD = cleanNum(item[`${year}_${month}_${sd}`]);
-            const pG = cleanNum(item[`${prevYear}_${pMonth}_${sg}`]);
-            const pD = cleanNum(item[`${prevYear}_${pMonth}_${sd}`]);
-            const calcG = isNaN(vG) ? 0 : vG, calcD = isNaN(vD) ? 0 : vD;
-            const textG = isNaN(vG) ? 'No Info' : vG + ' MW', textD = isNaN(vD) ? 'No Info' : vD + ' MW';
-            capacityRows = `
-                <tr><td style="color:#666;padding:2px 0;">Stg. Gen (Discharge):</td><td style="font-weight:bold;text-align:right;color:#f97316;">${textG}${nodeTrendBadge(vG,pG)}</td></tr>
-                <tr><td style="color:#666;padding:2px 0;">Stg. Dem (Charge):</td><td style="font-weight:bold;text-align:right;color:#0ea5e9;">${textD}${nodeTrendBadge(vD,pD)}</td></tr>
-                <tr style="border-top:1px dashed #ccc;background:#f8fafc;"><td style="color:#000;padding:4px 0;font-size:10px;font-weight:bold;">Effective (Min):</td><td style="font-weight:bold;text-align:right;font-size:10px;">${Math.min(calcG,calcD)} MW</td></tr>`;
+            const branch = ((document.getElementById('view-var') || {}).value === 'mges') ? 'mges' : 'mpe';
+            const mkey = `${year}_${month}`, pkey = `${prevYear}_${pMonth}`;
+            const eff = storageBranchMin(item, mkey, branch);
+            const txt = (x) => isNaN(x) ? 'No Info' : x + ' MW';
+            if (!isTSO) {
+                const vG = cleanNum(item[`${mkey}_gen`]), vD = cleanNum(item[`${mkey}_dem`]);
+                const pG = cleanNum(item[`${pkey}_gen`]), pD = cleanNum(item[`${pkey}_dem`]);
+                capacityRows = `
+                <tr><td style="color:#666;padding:2px 0;">Available (gen):</td><td style="font-weight:bold;text-align:right;color:#f97316;">${txt(vG)}${nodeTrendBadge(vG,pG)}</td></tr>
+                <tr><td style="color:#666;padding:2px 0;">Available (dem):</td><td style="font-weight:bold;text-align:right;color:#0ea5e9;">${txt(vD)}${nodeTrendBadge(vD,pD)}</td></tr>
+                <tr style="border-top:1px dashed #ccc;background:#f8fafc;"><td style="color:#000;padding:4px 0;font-size:10px;font-weight:bold;">Effective (Min):</td><td style="font-weight:bold;text-align:right;font-size:10px;">${txt(eff)}</td></tr>`;
+            } else {
+                const lblMap = { alm_mpe_rdt: 'Gen · MPE RdT', alm_mpe_rdd: 'Gen · MPE RdD', alm_cep: 'Dem · CEP (MPE)', alm_mges_rdt: 'Gen · MGES RdT', alm_mges_rdd: 'Gen · MGES RdD', alm_no_cep: 'Dem · NO CEP (MGES)' };
+                let rws = '';
+                STORAGE_BRANCHES[branch].fields.forEach(([s, f]) => {
+                    const v = dispValue(item, mkey, s, f), pv = dispValue(item, pkey, s, f);
+                    rws += `<tr><td style="color:#666;padding:2px 0;">${lblMap[f] || f}:</td><td style="font-weight:bold;text-align:right;color:#475569;">${txt(v)}${nodeTrendBadge(v,pv)}</td></tr>`;
+                });
+                capacityRows = rws + `<tr style="border-top:1px dashed #ccc;background:#f8fafc;"><td style="color:#000;padding:4px 0;font-size:10px;font-weight:bold;">Effective Min · ${STORAGE_BRANCHES[branch].label}:</td><td style="font-weight:bold;text-align:right;font-size:10px;">${txt(eff)}</td></tr>`;
+            }
         } else {
             const varCode = (document.getElementById('view-var') || {}).value || (type === 'dem' ? 'dem_ch' : 'gen_mpe_rdt');
             const v = mapCapValue(item, year, month, type, varCode);
@@ -1143,18 +1144,12 @@ const DISP_VARS = {
         ['gen_mges_rdt', 'Gen · MGES RdT', 'Generación · MGES RdT o MPE con compensador síncrono RdT'],
         ['gen_mpe_rdt', 'Gen · MPE RdT', 'Generación · MPE RdT'],
         ['gen_mges_rdd', 'Gen · MGES RdD', 'Generación · MGES RdD, MPE no conectado al primer nivel de transformación RdD o MPE con compensador síncrono RdD'],
-        ['gen_mpe_rdd', 'Gen · MPE RdD', 'Generación · MPE RdD'],
-        ['alm_mges_rdt', 'Alm · MGES RdT', 'Almacenamiento · MGES RdT o MPE con compensador síncrono RdT'],
-        ['alm_mpe_rdt', 'Alm · MPE RdT', 'Almacenamiento · MPE RdT'],
-        ['alm_mges_rdd', 'Alm · MGES RdD', 'Almacenamiento · MGES RdD, MPE no conectado al primer nivel de transformación RdD o MPE con compensador síncrono RdD'],
-        ['alm_mpe_rdd', 'Alm · MPE RdD', 'Almacenamiento · MPE RdD']
+        ['gen_mpe_rdd', 'Gen · MPE RdD', 'Generación · MPE RdD']
     ],
     dem: [
         ['dem_ch', 'Dem · CEP CH', 'Demanda · CEP · CH'],
         ['dem_sh', 'Dem · CEP SH', 'Demanda · CEP · SH'],
-        ['dem_no_cep', 'Dem · NO CEP', 'Demanda · NO CEP'],
-        ['alm_cep', 'Alm · CEP (MPE)', 'Almacenamiento · CEP (MPE)'],
-        ['alm_no_cep', 'Alm · NO CEP (MGES)', 'Almacenamiento · NO CEP (MGES)']
+        ['dem_no_cep', 'Dem · NO CEP', 'Demanda · NO CEP']
     ],
     storage: [
         ['gen|alm_mges_rdt', 'Alm · MGES RdT', 'Almacenamiento (gen) · MGES RdT'],
@@ -1175,10 +1170,34 @@ function parseVarCode(code, type) {
     return { side: (type === 'dem') ? 'dem' : 'gen', field: code };
 }
 // Valor que colorea el mapa para un nodo según la variable seleccionada (TSO: rich.disp; DSO: su única disp)
+// Definición de las dos ramas de almacenamiento (mínimo efectivo).
+// Generación aporta 4 variables independientes (2 por rama); demanda 1 por rama (CEP=MPE, NO CEP=MGES).
+const STORAGE_BRANCHES = {
+    mpe:  { label: 'MPE RdT',  fields: [['gen', 'alm_mpe_rdt'], ['gen', 'alm_mpe_rdd'], ['dem', 'alm_cep']] },
+    mges: { label: 'MGES RdD', fields: [['gen', 'alm_mges_rdt'], ['gen', 'alm_mges_rdd'], ['dem', 'alm_no_cep']] }
+};
+
+// Mínimo efectivo de una rama de almacenamiento para un nodo TSO en un mes (DSO: min de su gen/dem)
+function storageBranchMin(item, monthKey, branch) {
+    if (item.grid === 'DSO') {
+        const vG = cleanNum(item[`${monthKey}_gen`]), vD = cleanNum(item[`${monthKey}_dem`]);
+        if (isNaN(vG) && isNaN(vD)) return NaN;
+        if (isNaN(vG)) return vD;
+        if (isNaN(vD)) return vG;
+        return Math.min(vG, vD);
+    }
+    const fields = (STORAGE_BRANCHES[branch] || STORAGE_BRANCHES.mpe).fields;
+    let mn = Infinity, any = false;
+    fields.forEach(([s, f]) => { const v = dispValue(item, monthKey, s, f); if (!isNaN(v)) { any = true; if (v < mn) mn = v; } });
+    return any ? mn : NaN;
+}
+
 function mapCapValue(item, year, month, type, varCode) {
-    if (item.grid === 'DSO') return cleanNum(item[`${year}_${month}_${type}`]);
+    const monthKey = `${year}_${month}`;
+    if (type === 'storage') return storageBranchMin(item, monthKey, varCode === 'mges' ? 'mges' : 'mpe');
+    if (item.grid === 'DSO') return cleanNum(item[`${monthKey}_${type}`]);
     const pv = parseVarCode(varCode, type);
-    return dispValue(item, `${year}_${month}`, pv.side, pv.field);
+    return dispValue(item, monthKey, pv.side, pv.field);
 }
 
 // Últimos 6 meses (cronológicos) con datos para el nodo: [{key:"26_jun", label:"JUN '26"}, ...]
@@ -1209,39 +1228,64 @@ function buildDispTrendHTML(item, type) {
     }
     const months = lastSixMonths(item);
     if (!months.length) return '<div style="font-size:11px;color:#94a3b8;padding:6px 0;">No history available.</div>';
-    const vars = DISP_VARS[type] || DISP_VARS.gen;
 
     const head = '<th class="vh">Variable</th>' + months.map(m => {
         const mo = m.label.split("'")[0].trim(), yr = m.label.split("'")[1] || '';
         return `<th>${mo}<br><span style="color:#94a3b8;font-weight:normal;">'${yr}</span></th>`;
     }).join('');
 
-    let rows = '';
-    const colMax = months.map(() => NaN);   // máximo por columna (mes)
-    vars.forEach(([code, short, full]) => {
-        const pv = parseVarCode(code, type);
-        let cells = '';
-        months.forEach((m, ci) => {
-            const v = dispValue(item, m.key, pv.side, pv.field);
-            if (isNaN(v)) {
-                cells += `<td class="nd" title="${m.label}: sin dato">–</td>`;
-            } else {
-                if (isNaN(colMax[ci]) || v > colMax[ci]) colMax[ci] = v;
-                const col = (ranges.find(r => v <= r.limit) || noInfoConfig).color;
-                cells += `<td style="background:${col}33;" title="${m.label}: ${v} MW">${v}</td>`;
-            }
+    // Renderiza un grupo de variables + una fila agregada (Max o Min) por mes
+    function renderGroup(specs, aggLabel, aggFn) {
+        let rows = '';
+        const agg = months.map(() => NaN);
+        specs.forEach(sp => {
+            let cells = '';
+            months.forEach((m, ci) => {
+                const v = dispValue(item, m.key, sp.side, sp.field);
+                if (isNaN(v)) {
+                    cells += `<td class="nd" title="${m.label}: sin dato">–</td>`;
+                } else {
+                    agg[ci] = isNaN(agg[ci]) ? v : aggFn(agg[ci], v);
+                    const col = (ranges.find(r => v <= r.limit) || noInfoConfig).color;
+                    cells += `<td style="background:${col}33;" title="${m.label}: ${v} MW">${v}</td>`;
+                }
+            });
+            rows += `<tr><td class="vname" title="${sp.full}">${sp.short}</td>${cells}</tr>`;
         });
-        rows += `<tr><td class="vname" title="${full}">${short}</td>${cells}</tr>`;
-    });
-    // Fila de máximo por mes entre las variables
-    let maxCells = '';
-    months.forEach((m, ci) => {
-        maxCells += isNaN(colMax[ci])
-            ? `<td class="nd">–</td>`
-            : `<td title="Máximo ${m.label}: ${colMax[ci]} MW">${colMax[ci]}</td>`;
-    });
-    const maxRow = `<tr class="maxrow"><td class="vname">Max</td>${maxCells}</tr>`;
-    return `<div class="nd-vartable-wrap"><table class="nd-vartable"><thead><tr>${head}</tr></thead><tbody>${rows}</tbody><tfoot>${maxRow}</tfoot></table></div>`;
+        let aggCells = '';
+        months.forEach((m, ci) => {
+            aggCells += isNaN(agg[ci]) ? `<td class="nd">–</td>` : `<td title="${aggLabel} ${m.label}: ${agg[ci]} MW">${agg[ci]}</td>`;
+        });
+        rows += `<tr class="maxrow"><td class="vname">${aggLabel}</td>${aggCells}</tr>`;
+        return rows;
+    }
+
+    let body;
+    if (type === 'storage') {
+        // Dos bloques: MPE y MGES; se especifica el MÍNIMO efectivo por bloque
+        const mpe = [
+            { side: 'gen', field: 'alm_mpe_rdt', short: 'Gen · MPE RdT', full: 'Almacenamiento (gen) · MPE RdT' },
+            { side: 'gen', field: 'alm_mpe_rdd', short: 'Gen · MPE RdD', full: 'Almacenamiento (gen) · MPE RdD' },
+            { side: 'dem', field: 'alm_cep',     short: 'Dem · CEP (MPE)', full: 'Almacenamiento (dem) · CEP (MPE)' }
+        ];
+        const mges = [
+            { side: 'gen', field: 'alm_mges_rdt', short: 'Gen · MGES RdT', full: 'Almacenamiento (gen) · MGES RdT' },
+            { side: 'gen', field: 'alm_mges_rdd', short: 'Gen · MGES RdD', full: 'Almacenamiento (gen) · MGES RdD' },
+            { side: 'dem', field: 'alm_no_cep',   short: 'Dem · NO CEP (MGES)', full: 'Almacenamiento (dem) · NO CEP (MGES)' }
+        ];
+        const min = (a, b) => Math.min(a, b);
+        const blockHdr = (t) => `<tr><td colspan="${months.length + 1}" class="blkhdr">${t}</td></tr>`;
+        body = '<tbody>' + blockHdr('MPE') + renderGroup(mpe, 'Min', min)
+             + blockHdr('MGES') + renderGroup(mges, 'Min', min) + '</tbody>';
+    } else {
+        // Gen / Dem: una tabla con fila Max por mes
+        const specs = (DISP_VARS[type] || DISP_VARS.gen).map(([code, short, full]) => {
+            const pv = parseVarCode(code, type); return { side: pv.side, field: pv.field, short, full };
+        });
+        const max = (a, b) => Math.max(a, b);
+        body = '<tbody>' + renderGroup(specs, 'Max', max) + '</tbody>';
+    }
+    return `<div class="nd-vartable-wrap"><table class="nd-vartable"><thead><tr>${head}</tr></thead>${body}</table></div>`;
 }
 
 function showNodePanel(items) {
@@ -1614,60 +1658,56 @@ function updateHistoryChart(node) {
     const canvas = document.getElementById('historyChart');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    
-    // 1. Definimos el orden real de los meses para que el buscador sepa qué buscar primero
+
     const monthMap = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dec'];
     const years = ['26', '27', '28'];
-    
-    const labels = [];
-    const datasets = {
-        gen: [], dem: [], stgGen: [], stgDem: []
-    };
+    const typeSel = (document.getElementById('view-type') || {}).value || 'dem';
 
-	years.forEach(year => {
-        monthMap.forEach(month => {
-            const prefix = `${year}_${month}`;
-            const genKey = `${prefix}_gen`;
+    // Meses con dato para este nodo
+    const months = [];
+    years.forEach(year => monthMap.forEach(month => {
+        const prefix = `${year}_${month}`;
+        if (node.hasOwnProperty(`${prefix}_gen`) || node.hasOwnProperty(`${prefix}_dem`)) {
+            months.push({ key: prefix, label: `${month.toUpperCase()} '${year}` });
+        }
+    }));
+    const labels = months.map(m => m.label);
 
-            if (node.hasOwnProperty(genKey)) {
-                labels.push(`${month.toUpperCase()} '${year}`);
-                datasets.gen.push(node[`${prefix}_gen`]);
-                datasets.dem.push(node[`${prefix}_dem`]);
-                datasets.stgGen.push(node[`${prefix}_stg-gen`]);
-                datasets.stgDem.push(node[`${prefix}_stg-dem`]);
-            }
+    if (historyChartInstance) historyChartInstance.destroy();
+
+    // Paleta para hasta 8 variables
+    const palette = ['#0078A8', '#e74c3c', '#10b981', '#f59e0b', '#8b5cf6', '#06b6d4', '#ec4899', '#84cc16'];
+    let chartDatasets;
+
+    if (node.grid === 'DSO') {
+        // DSO: una única variable 'disponible' publicada (gen o dem según la vista)
+        const side = typeSel === 'gen' ? 'gen' : 'dem';
+        const data = months.map(m => { const v = node[`${m.key}_${side}`]; return (v === undefined || v === null || v === '') ? null : cleanNum(v); });
+        chartDatasets = [{ label: side === 'gen' ? 'Generation (MW)' : 'Demand (MW)', data, borderColor: palette[0], backgroundColor: palette[0], tension: 0.3, fill: false, spanGaps: true, pointRadius: 2 }];
+    } else {
+        // TSO: las mismas 8 (gen) / 5 (dem) / 6 (storage) variables 'disponible' del panel lateral
+        const vars = DISP_VARS[typeSel] || DISP_VARS.gen;
+        chartDatasets = vars.map(([code, short, full], i) => {
+            const pv = parseVarCode(code, typeSel);
+            const data = months.map(m => { const v = dispValue(node, m.key, pv.side, pv.field); return isNaN(v) ? null : v; });
+            return { label: short, fullName: full, data, borderColor: palette[i % palette.length], backgroundColor: palette[i % palette.length], tension: 0.25, fill: false, spanGaps: true, pointRadius: 2 };
         });
-    });
-
-    if (historyChartInstance) {
-        historyChartInstance.destroy();
     }
 
-	const chartDatasets = [
-        { label: 'Gen (MW)', data: datasets.gen, borderColor: '#0078A8', tension: 0.3, fill: false },
-        { label: 'Dem (MW)', data: datasets.dem, borderColor: '#e74c3c', tension: 0.3, fill: false },
-        { label: 'Storage-Gen (MW)', data: datasets.stgGen, borderColor: '#38bdf8', tension: 0.3, fill: false },
-        { label: 'Storage-Dem (MW)', data: datasets.stgDem, borderColor: '#10b981', tension: 0.3, fill: false }
-    ].filter(ds => {
-        if (node.grid === 'DSO' && ds.label.includes('Storage')) return false;
-        return true;
-    });
-	
     historyChartInstance = new Chart(ctx, {
         type: 'line',
-        data: {
-            labels: labels,
-            datasets: chartDatasets // Usamos el array filtrado
-        },
+        data: { labels: labels, datasets: chartDatasets },
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
             scales: {
                 y: { beginAtZero: true, title: { display: true, text: 'MW', font: { size: 10 } } },
                 x: { ticks: { font: { size: 9 } } }
             },
             plugins: {
-                legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } }
+                legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } },
+                tooltip: { callbacks: { label: (it) => { const f = it.dataset.fullName ? ' — ' + it.dataset.fullName : ''; return `${it.dataset.label}: ${it.parsed.y} MW${f}`; } } }
             }
         }
     });
