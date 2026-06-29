@@ -19,7 +19,7 @@
 /* --- BASE & MAP --- */
 body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #f0f2f5; }
 #map { height: 100vh; width: 100%; }
-.leaflet-top.leaflet-right { z-index: 10000 !important; margin-top: 66px !important; display: flex; flex-direction: column; gap: 8px !important; align-items: flex-end; padding-top: 0; }
+.leaflet-top.leaflet-right { z-index: 10000 !important; margin-top: 88px !important; display: flex; flex-direction: column; gap: 8px !important; align-items: flex-end; padding-top: 0; }
 .leaflet-control-layers { position: relative !important; top: auto !important; right: auto !important; margin: 0 !important; border-radius: 8px !important; border: none !important; box-shadow: 0 2px 10px rgba(0,0,0,0.2) !important; font-family: 'Segoe UI', sans-serif; font-size: 13px; background-color: white !important; }
 .leaflet-control-layers-toggle {width: 34px !important;height: 34px !important; background-size: 18px 18px !important;}
 .leaflet-control-layers-expanded { min-width: 100px !important; z-index: 10005 !important; }
@@ -27,7 +27,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .leaflet-bottom.leaflet-left .leaflet-control-scale {margin-left: 300px !important; margin-bottom: 4px !important; }
 	
 	/* --- PANEL LATERAL & COMPONENTES --- */
-#info-panel { position: absolute; top: 66px; left: 10px; z-index: 1000; text-align: center; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); width: 250px; max-height: 92vh; overflow-y: auto; }
+#info-panel { position: absolute; top: 88px; left: 10px; z-index: 1000; text-align: center; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); width: 250px; max-height: calc(100vh - 104px); overflow-y: auto; }
 .main-header { border-bottom: 2px solid #0078A8; padding-bottom: 10px; margin-bottom: 15px; }
 .main-title { font-size: 14px; font-weight: bold; color: #1a202c; display: block; margin-bottom: 8px; }
 .month-selector-box { margin-bottom: 15px; background: #eef2f7; padding: 10px; border-radius: 8px; border: 1px solid #d1d9e6; }
@@ -128,7 +128,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 
 /* --- BUSCADORES (GENERAL & HISTÓRICO) --- */
-#search-container { position: fixed; top: 66px; right: 60px; z-index: 9999; width: 220px; display: flex; flex-direction: column; gap: 5px; }
+#search-container { position: fixed; top: 88px; right: 60px; z-index: 9999; width: 220px; display: flex; flex-direction: column; gap: 5px; }
 .search-wrapper { background: white; padding: 4px; border-radius: 10px; display: flex; border: 2px solid #0078A8; position: relative; box-sizing: border-box; width: 100%; }
 #node-search-input { width: 100%; padding: 10px; border: 1px solid #eee; border-radius: 6px; font-size: 12px; outline: none; background: #fff; padding-right: 30px; }
 .search-results { position: absolute;top: 100%;left: 0;width: 100%;background: white; border-radius: 8px; margin-top: 5px; max-height: 400px; overflow-y: auto; box-shadow: 0 8px 20px rgba(0,0,0,0.3); display: none; border: 1px solid #ddd; }
@@ -169,25 +169,33 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 
 /* --- RESPONSIVE GLOBAL --- */
-@media (max-width: 1366px) {  #info-panel { width: 220px; padding: 14px; font-size: 12px; max-height: 94vh; } .stat-val { font-size: 13px; }  #search-container { width: 200px; }  .multiselect-container { max-height: 80px; }  .modal-content { width: 550px; }  #chart-container { height: 260px; }}
-@media (max-width: 1280px) {  #info-panel { width: 200px; padding: 12px; font-size: 11px; max-height: 92vh; }  .main-header span { font-size: 14px !important; }  .stat-val { font-size: 12px; }  .stat-label { font-size: 8px; }  .stats-grid { padding: 8px; gap: 6px; }  .btn-comp { font-size: 11px; }  .btn-whats-new { font-size: 11px; }
+@media (max-width: 1366px) {  #info-panel { width: 220px; padding: 14px; font-size: 12px; max-height: calc(100vh - 104px); } .stat-val { font-size: 13px; }  #search-container { width: 200px; }  .multiselect-container { max-height: 80px; }  .modal-content { width: 550px; }  #chart-container { height: 260px; }}
+@media (max-width: 1280px) {  #info-panel { width: 200px; padding: 12px; font-size: 11px; max-height: calc(100vh - 104px); }  .main-header span { font-size: 14px !important; }  .stat-val { font-size: 12px; }  .stat-label { font-size: 8px; }  .stats-grid { padding: 8px; gap: 6px; }  .btn-comp { font-size: 11px; }  .btn-whats-new { font-size: 11px; }
   #search-container { width: 185px; }  .section-title { font-size: 10px; }  .select-option { font-size: 11px; }  .multiselect-container { max-height: 75px; }  .range-row { font-size: 10px; padding: 6px; }  select, .month-select { font-size: 12px; padding: 5px; }  .modal-content { width: 500px; padding: 20px; }  #chart-container { height: 240px; }
   .leaflet-control-layers-expanded { font-size: 10px !important; }  .search-results { font-size: 11px; }  .search-item { padding: 8px; font-size: 11px; }  .suggestion-item { padding: 8px 12px; font-size: 11px; }  #node-search-input { font-size: 12px; padding: 8px; }}
-@media (max-width: 1024px) {  #info-panel { width: 180px; padding: 10px; font-size: 10px; max-height: 90vh; top: 64px; left: 8px; }  .main-header span { font-size: 13px !important; }  .stat-val { font-size: 11px; }  .stat-label { font-size: 7px; }  .stats-grid { padding: 6px; gap: 4px; }  .btn-comp { font-size: 10px; padding: 6px; }
+@media (max-width: 1024px) {  #info-panel { width: 180px; padding: 10px; font-size: 10px; max-height: calc(100vh - 104px); top: 88px; left: 8px; }  .main-header span { font-size: 13px !important; }  .stat-val { font-size: 11px; }  .stat-label { font-size: 7px; }  .stats-grid { padding: 6px; gap: 4px; }  .btn-comp { font-size: 10px; padding: 6px; }
   .btn-whats-new { font-size: 10px; padding: 6px; }  #search-container { width: 165px; }  .section-title { font-size: 9px; }  .select-all-btn { font-size: 9px; }  .select-option { font-size: 10px; }  .multiselect-container { max-height: 65px; padding: 6px; }  .range-row { font-size: 9px; padding: 5px; }  select, .month-select { font-size: 11px; padding: 4px; }
   .section-header { margin: 10px 0 4px 0; }  .modal-content { width: 90vw; padding: 16px; }  #chart-container { height: 220px; }  .node-info-container { padding: 10px; }  .info-grid { font-size: 12px; }  .leaflet-bottom.leaflet-left .leaflet-control-scale { margin-left: 200px !important; }  .search-results { font-size: 10px; }
   .search-item { padding: 7px; font-size: 10px; }  .suggestions-box, .suggestions-box-minimal { font-size: 10px; }  .suggestion-item { padding: 7px 10px; font-size: 10px; }  #node-search-input { font-size: 11px; padding: 7px; }}
-@media (max-width: 900px) {  #info-panel { width: 160px; padding: 8px; font-size: 10px; max-height: 88vh; }  .btn-comp { font-size: 10px; padding: 5px; }  .btn-whats-new { font-size: 10px; padding: 5px; }  #search-container { width: 150px; }  .leaflet-bottom.leaflet-left .leaflet-control-scale { margin-left: 175px !important; }
+@media (max-width: 900px) {  #info-panel { width: 160px; padding: 8px; font-size: 10px; max-height: calc(100vh - 104px); }  .btn-comp { font-size: 10px; padding: 5px; }  .btn-whats-new { font-size: 10px; padding: 5px; }  #search-container { width: 150px; }  .leaflet-bottom.leaflet-left .leaflet-control-scale { margin-left: 175px !important; }
   .search-results { font-size: 9px; }  .search-item { padding: 6px; font-size: 9px; }  .suggestions-box, .suggestions-box-minimal { font-size: 9px; }  .suggestion-item { padding: 6px 8px; font-size: 9px; }  #node-search-input { font-size: 10px; padding: 6px; }}
 		
 /* --- BARRA HORIZONTAL DE FILTROS --- */
-#filter-bar { position: fixed; top: 0; left: 0; width: 100%; box-sizing: border-box; z-index: 1200; display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.12); overflow-x: auto; white-space: nowrap; }
-.fb-main { display: inline-flex; align-items: center; gap: 6px; background: #eaf4fb; border: 1px solid #b9def0; border-radius: 8px; padding: 5px 8px; flex-shrink: 0; }
+#filter-bar { position: fixed; top: 0; left: 0; width: 100%; box-sizing: border-box; z-index: 1200; display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: transparent; overflow: visible; white-space: nowrap; pointer-events: none; }
+#filter-bar > * { pointer-events: auto; }
+.fb-brand { display: flex; flex-direction: column; justify-content: center; background: #ffffff; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.18); padding: 6px 14px; flex-shrink: 0; border-left: 4px solid #0078A8; }
+.fb-brand-title { font-size: 16px; font-weight: 800; color: #0078A8; line-height: 1.1; letter-spacing: .3px; }
+.fb-brand-counts { display: flex; gap: 14px; margin-top: 5px; }
+.fb-cnt { display: flex; align-items: baseline; gap: 4px; }
+.fb-cnt b { font-size: 18px; font-weight: 800; color: #334155; line-height: 1; }
+.fb-cnt.total b { color: #0078A8; }
+.fb-cnt i { font-size: 9px; font-style: normal; text-transform: uppercase; color: #64748b; letter-spacing: .5px; }
+.fb-main { display: inline-flex; align-items: center; gap: 6px; background: #eaf4fb; border: 1px solid #b9def0; border-radius: 10px; padding: 6px 8px; flex-shrink: 0; box-shadow: 0 3px 12px rgba(0,0,0,0.15); }
 .fb-main-label { font-size: 10px; font-weight: bold; color: #0078A8; letter-spacing: .5px; }
 .fb-main-select { padding: 6px 8px; border-radius: 6px; border: 1.5px solid #0078A8; font-size: 13px; font-weight: bold; color: #0078A8; background: #fff; cursor: pointer; }
-.fb-sep { width: 1px; height: 28px; background: #e2e8f0; flex-shrink: 0; }
+.fb-sep { display: none; }
 .fb-dropdown { position: relative; display: inline-block; flex-shrink: 0; }
-.fb-dd-btn { padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1; background: #f8fafc; font-size: 12px; font-weight: bold; color: #475569; cursor: pointer; }
+.fb-dd-btn { padding: 9px 12px; border-radius: 10px; border: 1px solid #cbd5e1; background: #ffffff; font-size: 12px; font-weight: bold; color: #475569; cursor: pointer; box-shadow: 0 3px 12px rgba(0,0,0,0.15); }
 .fb-dd-btn:hover { background: #eef2f7; border-color: #94a3b8; }
 .fb-dd-btn.has-filter { border-color: #0078A8; color: #0078A8; background: #eaf4fb; }
 .fb-dd-panel { display: none; position: fixed; min-width: 210px; max-width: 300px; background: #fff; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.18); padding: 10px; z-index: 1300; white-space: normal; }
@@ -198,7 +206,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 #filter-bar #ranges-container { max-height: 320px; overflow-y: auto; }
 
 /* --- PANEL LATERAL DE NODO (reaprovecha #info-panel) --- */
-#node-detail { margin-top: 12px; }
+#node-detail { margin-top: 0; text-align: left; }
 .nd-empty { font-size: 12px; color: #94a3b8; text-align: center; padding: 22px 8px; line-height: 1.5; }
 .nd-toolbar { text-align: right; min-height: 16px; }
 .nd-close { cursor: pointer; color: #94a3b8; font-size: 16px; font-weight: bold; line-height: 1; }
@@ -206,6 +214,8 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .nd-block { border-bottom: 1px solid #eee; padding: 6px 0 10px; margin-bottom: 4px; }
 .nd-block:last-child { border-bottom: none; }
 .nd-name { color: #0078A8; font-weight: bold; font-size: 14px; margin-bottom: 6px; }
+.nd-mini { margin-top: 8px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 8px; }
+.nd-mini-title { font-size: 10px; font-weight: bold; color: #888; text-transform: uppercase; margin-bottom: 3px; }
 
 </style>
 </head>
@@ -239,6 +249,14 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 
 <div id="filter-bar">
+    <div class="fb-brand">
+        <div class="fb-brand-title">SPAIN CAPACITY VIEWER</div>
+        <div class="fb-brand-counts">
+            <span class="fb-cnt"><b id="count-dso">0</b><i>DSO</i></span>
+            <span class="fb-cnt"><b id="count-tso">0</b><i>TSO</i></span>
+            <span class="fb-cnt total"><b id="count-total">0</b><i>Total</i></span>
+        </div>
+    </div>
     <div class="fb-main">
         <span class="fb-main-label">SELECTION</span>
         <select id="view-year" class="fb-main-select" onchange="applyFilters()"><option value="26" selected>2026</option></select>
@@ -246,7 +264,6 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
         <select id="view-red" class="fb-main-select" onchange="applyFilters()"><option value="ALL">DSO+TSO</option><option value="DSO">DSO</option><option value="TSO" selected>TSO</option></select>
         <select id="view-type" class="fb-main-select" onchange="refreshTypeFilter(); applyFilters()"><option value="gen">Generation (MW)</option><option value="dem" selected>Demand (MW)</option><option value="storage">Storage Gen/Dem (MW)</option></select>
     </div>
-    <div class="fb-sep"></div>
     <div class="fb-dropdown">
         <button class="fb-dd-btn" id="btn-dd-ranges" onclick="toggleDropdown('dd-ranges', event)">Ranges (MW) ▾</button>
         <div class="fb-dd-panel" id="dd-ranges">
@@ -285,14 +302,6 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 </div>
 
 <div id="info-panel">
-    <div class="main-header"><span style="font-size: 16px; font-weight:bold;">SPAIN CAPACITY VIEWER</span></div>
-
-    <div class="stats-grid">
-        <div class="stat-box"><span class="stat-label">DSO</span><span id="count-dso" class="stat-val">0</span></div>
-        <div class="stat-box"><span class="stat-label">TSO</span><span id="count-tso" class="stat-val">0</span></div>
-        <div class="stat-box"><span class="stat-label">TOTAL</span><span id="count-total" class="stat-val total">0</span></div>
-    </div>
-
     <div id="node-detail">
         <div id="node-detail-empty" class="nd-empty">Haz clic en un nodo del mapa para ver su ficha completa.</div>
         <div id="node-detail-body"></div>
@@ -652,7 +661,7 @@ function construirEntries() {
         const b = NODOS_BASE[name];
         const x = cleanNum(b.x), y = cleanNum(b.y);
         if (isNaN(x) || isNaN(y)) continue;
-        const entry = { name, x, y, prov: b.provincia || '', tens: b.voltage || '', grid: 'TSO', oper: 'REE', alias: b.alias || null };
+        const entry = { name, x, y, prov: b.provincia || '', ccaa: b.ccaa || '', tens: b.voltage || '', grid: 'TSO', oper: 'REE', alias: b.alias || null };
         // claves planas compatibles para cada mes cargado (mantienen mapa, gráfica y What's New)
         for (const key in MONTHS_DATA) {
             const rich = richForMonth(key, entry);
@@ -679,7 +688,7 @@ function construirEntries() {
         const b = NODOS_BASE_DSO[k];
         const x = cleanNum(b.x), y = cleanNum(b.y);
         if (isNaN(x) || isNaN(y)) continue;
-        const entry = { name: b.name || k, x, y, prov: b.provincia || '', tens: b.voltage || '', grid: 'DSO', oper: b.operador || 'DSO', dsoKey: k };
+        const entry = { name: b.name || k, x, y, prov: b.provincia || '', ccaa: b.ccaa || '', tens: b.voltage || '', grid: 'DSO', oper: b.operador || 'DSO', dsoKey: k };
         for (const key in MONTHS_DATA_DSO) {
             const rich = MONTHS_DATA_DSO[key][k];
             if (!rich) continue;
@@ -910,7 +919,24 @@ function applyFilters() {
             color: "white", weight: 1.5, fillOpacity: 0.8
         }).addTo(markersLayer);
         m._fichaItems = g.items;                       // grupo de nodos de esta coordenada
-        m.on('click', () => showNodePanel(g.items));   // abre la ficha lateral (sustituye al popup)
+        m.on('click', () => showNodePanel(g.items));   // abre la ficha lateral (detalle completo)
+
+        // Pequeño popup en el mapa: solo nombre + capacidad de la variable activa
+        const miniPopup = g.items.map(it => {
+            let val;
+            if (type === 'storage') {
+                const isT = it.grid === 'TSO';
+                const a = cleanNum(it[`${year}_${month}_${isT ? 'stg-gen' : 'gen'}`]);
+                const b = cleanNum(it[`${year}_${month}_${isT ? 'stg-dem' : 'dem'}`]);
+                val = (isNaN(a) || isNaN(b)) ? NaN : Math.min(a, b);
+            } else {
+                val = cleanNum(it[`${year}_${month}_${type}`]);
+            }
+            const vt = isNaN(val) ? 'No Info' : val + ' MW';
+            return `<div style="font-weight:bold;color:#0078A8;font-size:12px;line-height:1.2;">${it.name}</div><div style="font-size:11px;color:#475569;">${vt}</div>`;
+        }).join('<div style="border-top:1px solid #eee;margin:4px 0;"></div>');
+        m.bindPopup(`<div style="min-width:110px;max-height:160px;overflow:auto;">${miniPopup}</div>`, { closeButton: true, autoPan: false });
+
         g.items.forEach(item => { markersInMap[item.name.toLowerCase()] = m; });
     }
 
@@ -979,21 +1005,78 @@ function buildNodeFichaHTML(items) {
             ? renderRichDSO((MONTHS_DATA_DSO[year + '_' + month] || {})[item.dsoKey])
             : renderRich(richForMonth(year + '_' + month, item));
         const safeName = String(item.name).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+        const miniTitle = type === 'storage' ? 'Storage (min)' : (type === 'gen' ? 'Generation' : 'Demand');
+        const miniSeries = nodeMonthlySeries(item, type);
         html += `
             <div class="nd-block">
                 <div class="nd-name">${item.name}</div>
                 <table style="width:100%;font-size:11px;border-collapse:collapse;">
                     ${capacityRows}
-                    <tr><td style="color:#666;padding:4px 0 2px 0;">Voltage:</td><td style="font-weight:bold;text-align:right;">${item.tens} kV</td></tr>
+                    <tr><td style="color:#666;padding:4px 0 2px 0;">Province:</td><td style="font-weight:bold;text-align:right;">${item.prov || '–'}</td></tr>
+                    <tr><td style="color:#666;padding:2px 0;">Community:</td><td style="font-weight:bold;text-align:right;">${item.ccaa || '–'}</td></tr>
+                    <tr><td style="color:#666;padding:2px 0;">Voltage:</td><td style="font-weight:bold;text-align:right;">${item.tens} kV</td></tr>
                     <tr><td style="color:#666;padding:2px 0;">Grid:</td><td style="font-weight:bold;text-align:right;">${item.grid}</td></tr>
                     <tr><td style="color:#666;padding:2px 0;">Operator:</td><td style="font-weight:bold;text-align:right;">${item.oper}</td></tr>
                     <tr><td style="color:#666;padding:2px 0;">${type === 'dem' ? 'Type-DEM' : 'Type-GEN'}:</td><td style="font-weight:bold;text-align:right;">${wrapZeroStarIcon(ctVal)}</td></tr>
                 </table>
+                <div class="nd-mini">
+                    <div class="nd-mini-title">Trend · ${miniTitle} (MW)</div>
+                    ${miniSparklineSVG(miniSeries.labels, miniSeries.vals)}
+                </div>
                 ${richHtml}
                 <button class="popup-btn-hist" onclick="openHistory('${safeName}')">📊 View Historical Data</button>
             </div>`;
     });
     return html;
+}
+
+// Serie mensual del nodo para la variable activa (orden cronológico real de los meses con datos)
+function nodeMonthlySeries(item, type) {
+    const monthMap = ['jan','feb','mar','apr','may','jun','jul','ago','sep','oct','nov','dec'];
+    const years = ['26','27','28'];
+    const labels = [], vals = [];
+    years.forEach(year => monthMap.forEach(month => {
+        const prefix = `${year}_${month}`;
+        if (!item.hasOwnProperty(`${prefix}_gen`)) return;   // mismo criterio de presencia que la gráfica grande
+        let v;
+        if (type === 'storage') {
+            const isTSO = item.grid === 'TSO';
+            const g = cleanNum(item[`${prefix}_${isTSO ? 'stg-gen' : 'gen'}`]);
+            const d = cleanNum(item[`${prefix}_${isTSO ? 'stg-dem' : 'dem'}`]);
+            v = (isNaN(g) || isNaN(d)) ? NaN : Math.min(g, d);
+        } else {
+            v = cleanNum(item[`${prefix}_${type}`]);
+        }
+        labels.push(`${month.toUpperCase()} '${year}`);
+        vals.push(v);
+    }));
+    return { labels, vals };
+}
+
+// Mini sparkline SVG autocontenido (sin Chart.js): puntos válidos unidos, huecos en los NaN
+function miniSparklineSVG(labels, vals) {
+    const W = 232, H = 46, pad = 5;
+    const nums = vals.map(v => (v === null || v === undefined || isNaN(v)) ? null : v);
+    const valid = nums.filter(v => v !== null);
+    if (valid.length < 2) return '<div style="font-size:10px;color:#94a3b8;padding:6px 0;">Sin histórico suficiente para esta variable.</div>';
+    const min = Math.min(...valid), max = Math.max(...valid), span = (max - min) || 1, n = nums.length;
+    const X = i => pad + (n === 1 ? 0 : (i * (W - 2 * pad) / (n - 1)));
+    const Y = v => H - pad - ((v - min) / span) * (H - 2 * pad);
+    let d = '', dots = '', started = false, lastI = -1;
+    nums.forEach((v, i) => {
+        if (v === null) { started = false; return; }
+        const cx = X(i).toFixed(1), cy = Y(v).toFixed(1);
+        d += (started ? ` L${cx},${cy}` : ` M${cx},${cy}`);
+        dots += `<circle cx="${cx}" cy="${cy}" r="1.5" fill="#0078A8"/>`;
+        started = true; lastI = i;
+    });
+    const lastDot = lastI >= 0 ? `<circle cx="${X(lastI).toFixed(1)}" cy="${Y(nums[lastI]).toFixed(1)}" r="3" fill="#f97316"/>` : '';
+    return `<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" preserveAspectRatio="none" style="display:block;">
+        <path d="${d.trim()}" fill="none" stroke="#0078A8" stroke-width="1.6"/>${dots}${lastDot}
+    </svg>
+    <div style="display:flex;justify-content:space-between;font-size:9px;color:#94a3b8;margin-top:2px;">
+        <span>${labels[0]}</span><span>mín ${min} · máx ${max}</span><span>${labels[labels.length - 1]}</span>
+    </div>`;
 }
 
 function showNodePanel(items) {
@@ -1140,7 +1223,8 @@ function focusNode(name) {
     const marker = markersInMap[name.toLowerCase()]; // Aseguramos minúsculas
     if (marker) {
         map.setView(marker.getLatLng(), 14);
-        if (marker._fichaItems) showNodePanel(marker._fichaItems); // abre la ficha lateral
+        if (marker._fichaItems) showNodePanel(marker._fichaItems); // ficha lateral completa
+        marker.openPopup();                                        // popup mínimo en el mapa
         document.getElementById('node-search-input').value = name.toUpperCase();
         document.getElementById('search-results').style.display = 'none';
     }
