@@ -27,7 +27,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .leaflet-bottom.leaflet-left .leaflet-control-scale {margin-left: 300px !important; margin-bottom: 4px !important; }
 	
 	/* --- PANEL LATERAL & COMPONENTES --- */
-#info-panel { display: none; position: absolute; top: var(--bar-off, 88px); left: 10px; z-index: 1000; text-align: center; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); width: 320px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); overflow-y: auto; }
+#info-panel { display: none; position: absolute; top: var(--bar-off, 88px); left: 10px; z-index: 1000; text-align: center; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); width: 400px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); overflow-y: auto; }
 .main-header { border-bottom: 2px solid #0078A8; padding-bottom: 10px; margin-bottom: 15px; }
 .main-title { font-size: 14px; font-weight: bold; color: #1a202c; display: block; margin-bottom: 8px; }
 .month-selector-box { margin-bottom: 15px; background: #eef2f7; padding: 10px; border-radius: 8px; border: 1px solid #d1d9e6; }
@@ -169,15 +169,15 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 
 /* --- RESPONSIVE GLOBAL --- */
-@media (max-width: 1366px) {  #info-panel { width: 290px; padding: 14px; font-size: 12px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); } .stat-val { font-size: 13px; }  #search-container { width: 200px; }  .multiselect-container { max-height: 80px; }  .modal-content { width: 550px; }  #chart-container { height: 260px; }}
-@media (max-width: 1280px) {  #info-panel { width: 260px; padding: 12px; font-size: 11px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); }  .main-header span { font-size: 14px !important; }  .stat-val { font-size: 12px; }  .stat-label { font-size: 8px; }  .stats-grid { padding: 8px; gap: 6px; }  .btn-comp { font-size: 11px; }  .btn-whats-new { font-size: 11px; }
+@media (max-width: 1366px) {  #info-panel { width: 360px; padding: 14px; font-size: 12px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); } .stat-val { font-size: 13px; }  #search-container { width: 200px; }  .multiselect-container { max-height: 80px; }  .modal-content { width: 550px; }  #chart-container { height: 260px; }}
+@media (max-width: 1280px) {  #info-panel { width: 320px; padding: 12px; font-size: 11px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); }  .main-header span { font-size: 14px !important; }  .stat-val { font-size: 12px; }  .stat-label { font-size: 8px; }  .stats-grid { padding: 8px; gap: 6px; }  .btn-comp { font-size: 11px; }  .btn-whats-new { font-size: 11px; }
   #search-container { width: 185px; }  .section-title { font-size: 10px; }  .select-option { font-size: 11px; }  .multiselect-container { max-height: 75px; }  .range-row { font-size: 10px; padding: 6px; }  select, .month-select { font-size: 12px; padding: 5px; }  .modal-content { width: 500px; padding: 20px; }  #chart-container { height: 240px; }
   .leaflet-control-layers-expanded { font-size: 10px !important; }  .search-results { font-size: 11px; }  .search-item { padding: 8px; font-size: 11px; }  .suggestion-item { padding: 8px 12px; font-size: 11px; }  #node-search-input { font-size: 12px; padding: 8px; }}
-@media (max-width: 1024px) {  #info-panel { width: 230px; padding: 10px; font-size: 10px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); top: var(--bar-off, 88px); left: 8px; }  .main-header span { font-size: 13px !important; }  .stat-val { font-size: 11px; }  .stat-label { font-size: 7px; }  .stats-grid { padding: 6px; gap: 4px; }  .btn-comp { font-size: 10px; padding: 6px; }
+@media (max-width: 1024px) {  #info-panel { width: 280px; padding: 10px; font-size: 10px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); top: var(--bar-off, 88px); left: 8px; }  .main-header span { font-size: 13px !important; }  .stat-val { font-size: 11px; }  .stat-label { font-size: 7px; }  .stats-grid { padding: 6px; gap: 4px; }  .btn-comp { font-size: 10px; padding: 6px; }
   .btn-whats-new { font-size: 10px; padding: 6px; }  #search-container { width: 165px; }  .section-title { font-size: 9px; }  .select-all-btn { font-size: 9px; }  .select-option { font-size: 10px; }  .multiselect-container { max-height: 65px; padding: 6px; }  .range-row { font-size: 9px; padding: 5px; }  select, .month-select { font-size: 11px; padding: 4px; }
   .section-header { margin: 10px 0 4px 0; }  .modal-content { width: 90vw; padding: 16px; }  #chart-container { height: 220px; }  .node-info-container { padding: 10px; }  .info-grid { font-size: 12px; }  .leaflet-bottom.leaflet-left .leaflet-control-scale { margin-left: 200px !important; }  .search-results { font-size: 10px; }
   .search-item { padding: 7px; font-size: 10px; }  .suggestions-box, .suggestions-box-minimal { font-size: 10px; }  .suggestion-item { padding: 7px 10px; font-size: 10px; }  #node-search-input { font-size: 11px; padding: 7px; }}
-@media (max-width: 900px) {  #info-panel { width: 205px; padding: 8px; font-size: 10px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); }  .btn-comp { font-size: 10px; padding: 5px; }  .btn-whats-new { font-size: 10px; padding: 5px; }  #search-container { width: 150px; }  .leaflet-bottom.leaflet-left .leaflet-control-scale { margin-left: 175px !important; }
+@media (max-width: 900px) {  #info-panel { width: 240px; padding: 8px; font-size: 10px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); }  .btn-comp { font-size: 10px; padding: 5px; }  .btn-whats-new { font-size: 10px; padding: 5px; }  #search-container { width: 150px; }  .leaflet-bottom.leaflet-left .leaflet-control-scale { margin-left: 175px !important; }
   .search-results { font-size: 9px; }  .search-item { padding: 6px; font-size: 9px; }  .suggestions-box, .suggestions-box-minimal { font-size: 9px; }  .suggestion-item { padding: 6px 8px; font-size: 9px; }  #node-search-input { font-size: 10px; padding: 6px; }}
 		
 /* --- BARRA HORIZONTAL DE FILTROS --- */
@@ -191,7 +191,12 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .fb-cnt i { font-size: 9px; font-style: normal; text-transform: uppercase; color: #64748b; letter-spacing: .5px; }
 .fb-main { display: inline-flex; align-items: center; gap: 6px; background: #eaf4fb; border: 1px solid #b9def0; border-radius: 10px; padding: 6px 8px; flex-shrink: 0; box-shadow: 0 3px 12px rgba(0,0,0,0.15); }
 .fb-main-label { font-size: 10px; font-weight: bold; color: #0078A8; letter-spacing: .5px; }
-.fb-main-select { padding: 6px 8px; border-radius: 6px; border: 1.5px solid #0078A8; font-size: 13px; font-weight: bold; color: #0078A8; background: #fff; cursor: pointer; }
+.fb-main-select { padding: 6px 10px; border-radius: 6px; border: 1.5px solid #0078A8; font-size: 13px; font-weight: bold; color: #0078A8; background: #fff; cursor: pointer; min-width: 105px; }
+#view-year { min-width: 78px; }
+#view-month, #view-red { min-width: 110px; }
+#view-type { min-width: 150px; }
+#view-var { min-width: 168px; }
+.fb-break { flex-basis: 100%; height: 0; margin: 0; padding: 0; }
 .fb-sep { display: none; }
 .fb-dropdown { position: relative; display: inline-block; flex-shrink: 0; }
 .fb-dd-btn { padding: 9px 12px; border-radius: 10px; border: 1px solid #cbd5e1; background: #ffffff; font-size: 12px; font-weight: bold; color: #475569; cursor: pointer; box-shadow: 0 3px 12px rgba(0,0,0,0.15); }
@@ -221,12 +226,14 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .ndbar { width: 72%; min-width: 6px; border-radius: 2px 2px 0 0; box-shadow: inset 0 -1px 0 rgba(0,0,0,.06); }
 .ndbar-lbl { font-size: 7px; color: #94a3b8; margin-top: 2px; white-space: nowrap; }
 .nd-vartable-wrap { overflow-x: auto; margin-top: 4px; }
-.nd-vartable { border-collapse: collapse; font-size: 10.5px; width: 100%; }
+.nd-vartable { border-collapse: collapse; font-size: 12px; width: 100%; }
 .nd-vartable th { padding: 3px 5px; text-align: center; color: #475569; font-weight: bold; white-space: nowrap; border-bottom: 1px solid #e2e8f0; line-height: 1.1; }
 .nd-vartable th.vh { text-align: left; }
 .nd-vartable td { padding: 3px 5px; text-align: right; font-weight: 700; color: #334155; white-space: nowrap; border-bottom: 1px solid #f1f5f9; }
-.nd-vartable td.vname { text-align: left; color: #0078A8; font-weight: bold; max-width: 120px; overflow: hidden; text-overflow: ellipsis; position: sticky; left: 0; background: #fff; }
+.nd-vartable td.vname { text-align: left; color: #0078A8; font-weight: bold; max-width: 150px; overflow: hidden; text-overflow: ellipsis; position: sticky; left: 0; background: #fff; }
 .nd-vartable td.nd { color: #cbd5e1; text-align: center; font-weight: 400; }
+.nd-vartable tfoot td { border-top: 2px solid #cbd5e1; background: #f1f5f9; font-weight: 800; color: #0078A8; }
+.nd-vartable tfoot td.vname { color: #0078A8; }
 
 </style>
 </head>
@@ -269,6 +276,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
         <select id="view-type" class="fb-main-select" onchange="refreshTypeFilter(); refreshVarSelector(); applyFilters()"><option value="gen">Generation (MW)</option><option value="dem" selected>Demand (MW)</option><option value="storage">Storage Gen/Dem (MW)</option></select>
         <select id="view-var" class="fb-main-select" onchange="applyFilters()" title="Variable de capacidad representada en el mapa"></select>
     </div>
+    <div class="fb-break"></div>
     <div class="fb-dropdown">
         <button class="fb-dd-btn" id="btn-dd-ranges" onclick="toggleDropdown('dd-ranges', event)">Ranges (MW) ▾</button>
         <div class="fb-dd-panel" id="dd-ranges">
@@ -547,9 +555,9 @@ legendControl.update = function() {
 
     // Recuento de nodos enmarcado, justo encima de la leyenda (mismo estilo)
     let html = `<div style="display:flex;gap:8px;justify-content:space-between;padding:2px 0 7px;margin-bottom:7px;border-bottom:1px solid #e2e8f0;">
-        <div style="text-align:center;flex:1;"><div style="font-size:8px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;">DSO</div><div style="font-size:14px;font-weight:bold;color:#334155;line-height:1;">${cc.dso}</div></div>
-        <div style="text-align:center;flex:1;border-left:1px solid #e2e8f0;"><div style="font-size:8px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;">TSO</div><div style="font-size:14px;font-weight:bold;color:#334155;line-height:1;">${cc.tso}</div></div>
-        <div style="text-align:center;flex:1;border-left:1px solid #e2e8f0;"><div style="font-size:8px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;">Total</div><div style="font-size:14px;font-weight:bold;color:#0078A8;line-height:1;">${cc.total}</div></div>
+        <div style="text-align:center;flex:1;"><div style="font-size:11px;font-weight:bold;color:#475569;text-transform:uppercase;letter-spacing:.5px;">DSO</div><div style="font-size:15px;font-weight:bold;color:#334155;line-height:1.1;">${cc.dso}</div></div>
+        <div style="text-align:center;flex:1;border-left:1px solid #e2e8f0;"><div style="font-size:11px;font-weight:bold;color:#475569;text-transform:uppercase;letter-spacing:.5px;">TSO</div><div style="font-size:15px;font-weight:bold;color:#334155;line-height:1.1;">${cc.tso}</div></div>
+        <div style="text-align:center;flex:1;border-left:1px solid #e2e8f0;"><div style="font-size:11px;font-weight:bold;color:#0078A8;text-transform:uppercase;letter-spacing:.5px;">Total</div><div style="font-size:15px;font-weight:bold;color:#0078A8;line-height:1.1;">${cc.total}</div></div>
     </div>`;
 
     html += `<strong>${monthText} 20${year} · ${varLabel}</strong><br>`;
@@ -736,28 +744,45 @@ const RICH_BLOQUES = { posiciones:'Posiciones', nodal:'Criterios nodales', otorg
     lim_posicion:'Limitación por posición', no_disp:'No disponible', no_otorgable:'No otorgable (RdT)',
     disp:'Disponible', liberada:'Liberada (autoconsumo)', reserva:'Reserva', concurso:'Concurso' };
 
-function _richFilas(obj) {
+// Icono de cambio respecto al mes anterior: ▲ sube, ▼ baja, = igual (numéricas); ⚠️ si un texto cambia
+function changeIcon(cur, prev) {
+    const cn = cleanNum(cur), pn = cleanNum(prev);
+    if (!isNaN(cn) && !isNaN(pn)) {
+        const d = Math.round((cn - pn) * 100) / 100;
+        if (d > 0) return ' <span style="color:#22c55e;font-weight:bold;" title="+' + d + ' vs mes anterior">▲</span>';
+        if (d < 0) return ' <span style="color:#ef4444;font-weight:bold;" title="' + d + ' vs mes anterior">▼</span>';
+        return ' <span style="color:#94a3b8;" title="Sin cambio">=</span>';
+    }
+    const cs = (cur === null || cur === undefined) ? '' : String(cur).trim();
+    const ps = (prev === null || prev === undefined) ? '' : String(prev).trim();
+    if (ps !== '' && cs !== ps) return ' <span title="Texto cambiado vs mes anterior">⚠️</span>';
+    return '';
+}
+
+function _richFilas(obj, prevObj) {
     let h = '';
     for (const blk in obj) {
         const sub = obj[blk]; if (!sub) continue;
+        const prevSub = (prevObj && prevObj[blk]) || {};
         const filas = Object.entries(sub).filter(([k, v]) => v !== null && v !== undefined && v !== '');
         if (!filas.length) continue;
-        h += `<tr><td colspan="2" style="padding:5px 0 2px;font-weight:bold;color:#0078A8;font-size:9px;text-transform:uppercase;">${RICH_BLOQUES[blk] || blk}</td></tr>`;
+        h += `<tr><td colspan="2" style="padding:5px 0 2px;font-weight:bold;color:#0078A8;font-size:10px;text-transform:uppercase;">${RICH_BLOQUES[blk] || blk}</td></tr>`;
         filas.forEach(([k, v]) => {
-            h += `<tr><td style="color:#666;padding:1px 0;">${k.replace(/_/g, ' ')}</td><td style="text-align:right;font-weight:600;">${v}</td></tr>`;
+            h += `<tr><td style="color:#666;padding:2px 0;font-size:11.5px;">${k.replace(/_/g, ' ')}</td><td style="text-align:right;font-weight:600;font-size:11.5px;">${v}${changeIcon(v, (prevSub || {})[k])}</td></tr>`;
         });
     }
     return h;
 }
 
-function renderRich(rich, which) {
+function renderRich(rich, which, prevRich) {
     if (!rich || (!rich.gen && !rich.dem)) return '';
     which = which || 'both';
     const showGen = which !== 'dem', showDem = which !== 'gen';
-    let h = '<details open style="margin-top:6px;"><summary style="cursor:pointer;font-size:11px;font-weight:bold;color:#0078A8;">Ver todas las variables ▾</summary>';
-    h += '<table style="width:100%;font-size:10px;border-collapse:collapse;margin-top:4px;">';
-    if (showGen && rich.gen) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">GENERACIÓN</td></tr>' + _richFilas(rich.gen);
-    if (showDem && rich.dem) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">DEMANDA</td></tr>' + _richFilas(rich.dem);
+    const pg = (prevRich && prevRich.gen) || null, pd = (prevRich && prevRich.dem) || null;
+    let h = '<details open style="margin-top:6px;"><summary style="cursor:pointer;font-size:12px;font-weight:bold;color:#0078A8;">Ver todas las variables ▾</summary>';
+    h += '<table style="width:100%;font-size:12px;border-collapse:collapse;margin-top:4px;">';
+    if (showGen && rich.gen) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">GENERACIÓN</td></tr>' + _richFilas(rich.gen, pg);
+    if (showDem && rich.dem) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">DEMANDA</td></tr>' + _richFilas(rich.dem, pd);
     h += '</table></details>';
     return h;
 }
@@ -774,25 +799,27 @@ const DSO_LABELS = {
 };
 const DSO_ORDER = ['disp','comprom','ocupada','admitida','pos_ocup','pos_libr','afeccion','scc','eolica','solar','almacen','otras','nudo0','coment'];
 
-function _dsoFilas(datos) {
+function _dsoFilas(datos, prevDatos) {
     if (!datos) return '';
+    const pd = prevDatos || {};
     let h = '';
     DSO_ORDER.forEach(k => {
         const v = datos[k];
         if (v === null || v === undefined || v === '') return;
-        h += `<tr><td style="color:#666;padding:1px 0;">${DSO_LABELS[k] || k.replace(/_/g, ' ')}</td><td style="text-align:right;font-weight:600;">${v}</td></tr>`;
+        h += `<tr><td style="color:#666;padding:2px 0;font-size:11.5px;">${DSO_LABELS[k] || k.replace(/_/g, ' ')}</td><td style="text-align:right;font-weight:600;font-size:11.5px;">${v}${changeIcon(v, pd[k])}</td></tr>`;
     });
     return h;
 }
 
-function renderRichDSO(rich, which) {
+function renderRichDSO(rich, which, prevRich) {
     if (!rich || (!rich.gen && !rich.dem)) return '';
     which = which || 'both';
-    const fg = (which !== 'dem') ? _dsoFilas(rich.gen) : '';
-    const fd = (which !== 'gen') ? _dsoFilas(rich.dem) : '';
+    const pg = (prevRich && prevRich.gen) || null, pd = (prevRich && prevRich.dem) || null;
+    const fg = (which !== 'dem') ? _dsoFilas(rich.gen, pg) : '';
+    const fd = (which !== 'gen') ? _dsoFilas(rich.dem, pd) : '';
     if (!fg && !fd) return '';
-    let h = '<details open style="margin-top:6px;"><summary style="cursor:pointer;font-size:11px;font-weight:bold;color:#0078A8;">Ver todas las variables ▾</summary>';
-    h += '<table style="width:100%;font-size:10px;border-collapse:collapse;margin-top:4px;">';
+    let h = '<details open style="margin-top:6px;"><summary style="cursor:pointer;font-size:12px;font-weight:bold;color:#0078A8;">Ver todas las variables ▾</summary>';
+    h += '<table style="width:100%;font-size:12px;border-collapse:collapse;margin-top:4px;">';
     if (fg) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">GENERACIÓN</td></tr>' + fg;
     if (fd) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">DEMANDA</td></tr>' + fd;
     h += '</table></details>';
@@ -1037,10 +1064,10 @@ function buildNodeFichaHTML(items) {
         const ctVal = (type === 'dem' ? item[`${year}_${month}_ctDem`] : item[`${year}_${month}_ctGen`]) || '–';
         const which = type === 'gen' ? 'gen' : (type === 'dem' ? 'dem' : 'both');   // qué bloque de variables mostrar
         const richHtml = item.grid === 'DSO'
-            ? renderRichDSO((MONTHS_DATA_DSO[year + '_' + month] || {})[item.dsoKey], which)
-            : renderRich(richForMonth(year + '_' + month, item), which);
+            ? renderRichDSO((MONTHS_DATA_DSO[year + '_' + month] || {})[item.dsoKey], which, (MONTHS_DATA_DSO[prevYear + '_' + pMonth] || {})[item.dsoKey])
+            : renderRich(richForMonth(year + '_' + month, item), which, richForMonth(prevYear + '_' + pMonth, item));
         const safeName = String(item.name).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
-        const dispTitle = type === 'dem' ? 'Demanda' : (type === 'storage' ? 'Almacenamiento' : 'Generación');
+        const dispTitle = type === 'dem' ? 'Demand' : (type === 'storage' ? 'Storage' : 'Generation');
         html += `
             <div class="nd-block">
                 <div class="nd-name">${item.name}</div>
@@ -1055,7 +1082,7 @@ function buildNodeFichaHTML(items) {
                 </table>
                 <button class="popup-btn-hist" style="margin:8px 0 4px;" onclick="openHistory('${safeName}')">📊 View ALL Historical Data</button>
                 <div class="nd-mini">
-                    <div class="nd-mini-title">Disponible · ${dispTitle} — últimos 6 meses (MW)</div>
+                    <div class="nd-mini-title">Available · ${dispTitle} — last 6 months (MW)</div>
                     ${buildDispTrendHTML(item, type)}
                 </div>
                 ${richHtml}
@@ -1091,7 +1118,7 @@ function nodeMonthlySeries(item, type) {
 function miniBarsHTML(labels, vals) {
     const nums = vals.map(v => (v === null || v === undefined || isNaN(v)) ? NaN : v);
     const valid = nums.filter(v => !isNaN(v));
-    if (!valid.length) return '<div style="font-size:10px;color:#94a3b8;padding:6px 0;">Sin histórico para esta variable.</div>';
+    if (!valid.length) return '<div style="font-size:10px;color:#94a3b8;padding:6px 0;">No history for this variable.</div>';
     const max = Math.max(...valid, 0) || 1;          // referencia para la altura de las barras
     const barArea = 48;                              // px de altura máxima de barra
     const colorFor = v => isNaN(v) ? '#e2e8f0' : ((ranges.find(r => v <= r.limit) || noInfoConfig).color);
@@ -1181,7 +1208,7 @@ function buildDispTrendHTML(item, type) {
         return miniBarsHTML(s.labels.slice(-6), s.vals.slice(-6));
     }
     const months = lastSixMonths(item);
-    if (!months.length) return '<div style="font-size:11px;color:#94a3b8;padding:6px 0;">Sin histórico.</div>';
+    if (!months.length) return '<div style="font-size:11px;color:#94a3b8;padding:6px 0;">No history available.</div>';
     const vars = DISP_VARS[type] || DISP_VARS.gen;
 
     const head = '<th class="vh">Variable</th>' + months.map(m => {
@@ -1190,21 +1217,31 @@ function buildDispTrendHTML(item, type) {
     }).join('');
 
     let rows = '';
+    const colMax = months.map(() => NaN);   // máximo por columna (mes)
     vars.forEach(([code, short, full]) => {
         const pv = parseVarCode(code, type);
         let cells = '';
-        months.forEach(m => {
+        months.forEach((m, ci) => {
             const v = dispValue(item, m.key, pv.side, pv.field);
             if (isNaN(v)) {
                 cells += `<td class="nd" title="${m.label}: sin dato">–</td>`;
             } else {
+                if (isNaN(colMax[ci]) || v > colMax[ci]) colMax[ci] = v;
                 const col = (ranges.find(r => v <= r.limit) || noInfoConfig).color;
                 cells += `<td style="background:${col}33;" title="${m.label}: ${v} MW">${v}</td>`;
             }
         });
         rows += `<tr><td class="vname" title="${full}">${short}</td>${cells}</tr>`;
     });
-    return `<div class="nd-vartable-wrap"><table class="nd-vartable"><thead><tr>${head}</tr></thead><tbody>${rows}</tbody></table></div>`;
+    // Fila de máximo por mes entre las variables
+    let maxCells = '';
+    months.forEach((m, ci) => {
+        maxCells += isNaN(colMax[ci])
+            ? `<td class="nd">–</td>`
+            : `<td title="Máximo ${m.label}: ${colMax[ci]} MW">${colMax[ci]}</td>`;
+    });
+    const maxRow = `<tr class="maxrow"><td class="vname">Max</td>${maxCells}</tr>`;
+    return `<div class="nd-vartable-wrap"><table class="nd-vartable"><thead><tr>${head}</tr></thead><tbody>${rows}</tbody><tfoot>${maxRow}</tfoot></table></div>`;
 }
 
 function showNodePanel(items) {
