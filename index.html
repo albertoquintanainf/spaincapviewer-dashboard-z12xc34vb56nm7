@@ -19,7 +19,7 @@
 /* --- BASE & MAP --- */
 body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #f0f2f5; }
 #map { height: 100vh; width: 100%; }
-.leaflet-top.leaflet-right { z-index: 10000 !important; margin-top: var(--right-off, 132px) !important; display: flex; flex-direction: column; gap: 8px !important; align-items: flex-end; padding-top: 0; }
+.leaflet-top.leaflet-right { z-index: 10000 !important; margin-top: var(--right-off, 150px) !important; display: flex; flex-direction: column; gap: 8px !important; align-items: flex-end; padding-top: 0; }
 .leaflet-control-layers { position: relative !important; top: auto !important; right: auto !important; margin: 0 !important; border-radius: 8px !important; border: none !important; box-shadow: 0 2px 10px rgba(0,0,0,0.2) !important; font-family: 'Segoe UI', sans-serif; font-size: 13px; background-color: white !important; }
 .leaflet-control-layers-toggle {width: 34px !important;height: 34px !important; background-size: 18px 18px !important;}
 .leaflet-control-layers-expanded { min-width: 100px !important; z-index: 10005 !important; }
@@ -220,6 +220,13 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .ndbar-val { font-size: 8px; font-weight: bold; color: #334155; margin-bottom: 2px; white-space: nowrap; }
 .ndbar { width: 72%; min-width: 6px; border-radius: 2px 2px 0 0; box-shadow: inset 0 -1px 0 rgba(0,0,0,.06); }
 .ndbar-lbl { font-size: 7px; color: #94a3b8; margin-top: 2px; white-space: nowrap; }
+.nd-vartable-wrap { overflow-x: auto; margin-top: 4px; }
+.nd-vartable { border-collapse: collapse; font-size: 9px; width: 100%; }
+.nd-vartable th { padding: 2px 4px; text-align: center; color: #475569; font-weight: bold; white-space: nowrap; border-bottom: 1px solid #e2e8f0; line-height: 1.1; }
+.nd-vartable th.vh { text-align: left; }
+.nd-vartable td { padding: 2px 4px; text-align: right; font-weight: 700; color: #334155; white-space: nowrap; border-bottom: 1px solid #f1f5f9; }
+.nd-vartable td.vname { text-align: left; color: #0078A8; font-weight: bold; max-width: 92px; overflow: hidden; text-overflow: ellipsis; position: sticky; left: 0; background: #fff; }
+.nd-vartable td.nd { color: #cbd5e1; text-align: center; font-weight: 400; }
 
 </style>
 </head>
@@ -736,12 +743,14 @@ function _richFilas(obj) {
     return h;
 }
 
-function renderRich(rich) {
+function renderRich(rich, which) {
     if (!rich || (!rich.gen && !rich.dem)) return '';
+    which = which || 'both';
+    const showGen = which !== 'dem', showDem = which !== 'gen';
     let h = '<details open style="margin-top:6px;"><summary style="cursor:pointer;font-size:11px;font-weight:bold;color:#0078A8;">Ver todas las variables ▾</summary>';
     h += '<table style="width:100%;font-size:10px;border-collapse:collapse;margin-top:4px;">';
-    if (rich.gen) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">GENERACIÓN</td></tr>' + _richFilas(rich.gen);
-    if (rich.dem) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">DEMANDA</td></tr>' + _richFilas(rich.dem);
+    if (showGen && rich.gen) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">GENERACIÓN</td></tr>' + _richFilas(rich.gen);
+    if (showDem && rich.dem) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">DEMANDA</td></tr>' + _richFilas(rich.dem);
     h += '</table></details>';
     return h;
 }
@@ -769,15 +778,18 @@ function _dsoFilas(datos) {
     return h;
 }
 
-function renderRichDSO(rich) {
+function renderRichDSO(rich, which) {
     if (!rich || (!rich.gen && !rich.dem)) return '';
+    which = which || 'both';
+    const fg = (which !== 'dem') ? _dsoFilas(rich.gen) : '';
+    const fd = (which !== 'gen') ? _dsoFilas(rich.dem) : '';
+    if (!fg && !fd) return '';
     let h = '<details open style="margin-top:6px;"><summary style="cursor:pointer;font-size:11px;font-weight:bold;color:#0078A8;">Ver todas las variables ▾</summary>';
     h += '<table style="width:100%;font-size:10px;border-collapse:collapse;margin-top:4px;">';
-    const fg = _dsoFilas(rich.gen), fd = _dsoFilas(rich.dem);
     if (fg) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">GENERACIÓN</td></tr>' + fg;
     if (fd) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">DEMANDA</td></tr>' + fd;
     h += '</table></details>';
-    return (fg || fd) ? h : '';
+    return h;
 }
 
 
@@ -1000,12 +1012,12 @@ function buildNodeFichaHTML(items) {
             capacityRows = `<tr><td style="color:#666;padding:2px 0;">Capacity (${label}):</td><td style="font-weight:bold;text-align:right;color:#f97316;">${textV}${nodeTrendBadge(v,pV)}</td></tr>`;
         }
         const ctVal = (type === 'dem' ? item[`${year}_${month}_ctDem`] : item[`${year}_${month}_ctGen`]) || '–';
+        const which = type === 'gen' ? 'gen' : (type === 'dem' ? 'dem' : 'both');   // qué bloque de variables mostrar
         const richHtml = item.grid === 'DSO'
-            ? renderRichDSO((MONTHS_DATA_DSO[year + '_' + month] || {})[item.dsoKey])
-            : renderRich(richForMonth(year + '_' + month, item));
+            ? renderRichDSO((MONTHS_DATA_DSO[year + '_' + month] || {})[item.dsoKey], which)
+            : renderRich(richForMonth(year + '_' + month, item), which);
         const safeName = String(item.name).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
-        const miniTitle = type === 'storage' ? 'Storage (min)' : (type === 'gen' ? 'Generation' : 'Demand');
-        const miniSeries = nodeMonthlySeries(item, type);
+        const dispTitle = type === 'dem' ? 'Demanda' : (type === 'storage' ? 'Almacenamiento' : 'Generación');
         html += `
             <div class="nd-block">
                 <div class="nd-name">${item.name}</div>
@@ -1019,8 +1031,8 @@ function buildNodeFichaHTML(items) {
                     <tr><td style="color:#666;padding:2px 0;">${type === 'dem' ? 'Type-DEM' : 'Type-GEN'}:</td><td style="font-weight:bold;text-align:right;">${wrapZeroStarIcon(ctVal)}</td></tr>
                 </table>
                 <div class="nd-mini">
-                    <div class="nd-mini-title">Trend · ${miniTitle} (MW)</div>
-                    ${miniBarsHTML(miniSeries.labels, miniSeries.vals)}
+                    <div class="nd-mini-title">Disponible · ${dispTitle} — últimos 6 meses (MW)</div>
+                    ${buildDispTrendHTML(item, type)}
                 </div>
                 ${richHtml}
                 <button class="popup-btn-hist" onclick="openHistory('${safeName}')">📊 View Historical Data</button>
@@ -1074,6 +1086,81 @@ function miniBarsHTML(labels, vals) {
     return `<div class="ndbar-chart">${cols}</div>`;
 }
 
+// ====== TENDENCIA DE LAS VARIABLES 'DISPONIBLE' (TSO) — 8 gen / 5 dem, últimos 6 meses ======
+// Cada par es [campo, etiqueta legible]. En storage los campos llevan prefijo de bloque "gen|" o "dem|".
+const DISP_VARS = {
+    gen: [
+        ['gen_mges_rdt', 'Gen MGES · RdT'], ['gen_mpe_rdt', 'Gen MPE · RdT'],
+        ['gen_mges_rdd', 'Gen MGES · RdD'], ['gen_mpe_rdd', 'Gen MPE · RdD'],
+        ['alm_mges_rdt', 'Alm MGES · RdT'], ['alm_mpe_rdt', 'Alm MPE · RdT'],
+        ['alm_mges_rdd', 'Alm MGES · RdD'], ['alm_mpe_rdd', 'Alm MPE · RdD']
+    ],
+    dem: [
+        ['dem_ch', 'Dem CH'], ['dem_sh', 'Dem SH'], ['dem_no_cep', 'Dem no-CEP'],
+        ['alm_cep', 'Alm CEP'], ['alm_no_cep', 'Alm no-CEP']
+    ],
+    storage: [
+        ['gen|alm_mges_rdt', 'Alm MGES · RdT'], ['gen|alm_mpe_rdt', 'Alm MPE · RdT'],
+        ['gen|alm_mges_rdd', 'Alm MGES · RdD'], ['gen|alm_mpe_rdd', 'Alm MPE · RdD'],
+        ['dem|alm_cep', 'Alm CEP'], ['dem|alm_no_cep', 'Alm no-CEP']
+    ]
+};
+
+// Últimos 6 meses (cronológicos) con datos para el nodo: [{key:"26_jun", label:"JUN '26"}, ...]
+function lastSixMonths(item) {
+    const monthMap = ['jan','feb','mar','apr','may','jun','jul','ago','sep','oct','nov','dec'];
+    const years = ['26','27','28'];
+    const all = [];
+    years.forEach(y => monthMap.forEach(mo => {
+        const prefix = `${y}_${mo}`;
+        if (item.hasOwnProperty(`${prefix}_gen`)) all.push({ key: prefix, label: `${mo.toUpperCase()} '${y}` });
+    }));
+    return all.slice(-6);
+}
+
+// Valor de una variable 'disponible' de un nodo TSO en un mes (rich.gen.disp[field] / rich.dem.disp[field])
+function dispValue(item, monthKey, side, field) {
+    const rich = richForMonth(monthKey, item);
+    if (!rich) return NaN;
+    const blk = (rich[side] && rich[side].disp) || {};
+    return cleanNum(blk[field]);
+}
+
+function buildDispTrendHTML(item, type) {
+    // DSO no tiene desglose de 'disponible': mantenemos la mini-gráfica de barras de su única variable (6 meses)
+    if (item.grid === 'DSO') {
+        const s = nodeMonthlySeries(item, type);
+        return miniBarsHTML(s.labels.slice(-6), s.vals.slice(-6));
+    }
+    const months = lastSixMonths(item);
+    if (!months.length) return '<div style="font-size:10px;color:#94a3b8;padding:6px 0;">Sin histórico.</div>';
+    const vars = DISP_VARS[type] || DISP_VARS.gen;
+
+    const head = '<th class="vh">Variable</th>' + months.map(m => {
+        const mo = m.label.split("'")[0].trim(), yr = m.label.split("'")[1] || '';
+        return `<th>${mo}<br><span style="color:#94a3b8;font-weight:normal;">'${yr}</span></th>`;
+    }).join('');
+
+    let rows = '';
+    vars.forEach(([code, label]) => {
+        let side, field;
+        if (code.includes('|')) { const p = code.split('|'); side = p[0]; field = p[1]; }
+        else { side = (type === 'dem') ? 'dem' : 'gen'; field = code; }
+        let cells = '';
+        months.forEach(m => {
+            const v = dispValue(item, m.key, side, field);
+            if (isNaN(v)) {
+                cells += `<td class="nd" title="${m.label}: sin dato">–</td>`;
+            } else {
+                const col = (ranges.find(r => v <= r.limit) || noInfoConfig).color;
+                cells += `<td style="background:${col}33;" title="${m.label}: ${v} MW">${v}</td>`;
+            }
+        });
+        rows += `<tr><td class="vname" title="${label}">${label}</td>${cells}</tr>`;
+    });
+    return `<div class="nd-vartable-wrap"><table class="nd-vartable"><thead><tr>${head}</tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
 function showNodePanel(items) {
     if (!items || !items.length) return;
     window._activeNodeKey = `${items[0].x}_${items[0].y}`;
@@ -1123,7 +1210,7 @@ function syncBarOffset() {
     if (bar) document.documentElement.style.setProperty('--bar-off', (bar.offsetHeight + 12) + 'px');
     // Controles del mapa (zoom, capas, KML, medida) bajo los botones de acción de la esquina derecha
     const sc = document.getElementById('search-container');
-    const scH = (sc && sc.offsetParent !== null) ? sc.offsetHeight : 0;
+    const scH = sc ? sc.offsetHeight : 0;   // offsetHeight=0 si está oculto; válido en position:fixed
     document.documentElement.style.setProperty('--right-off', (scH > 0 ? scH + 18 : 12) + 'px');
 }
 window.addEventListener('resize', syncBarOffset);
