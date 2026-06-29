@@ -27,7 +27,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .leaflet-bottom.leaflet-left .leaflet-control-scale {margin-left: 300px !important; margin-bottom: 4px !important; }
 	
 	/* --- PANEL LATERAL & COMPONENTES --- */
-#info-panel { display: none; position: absolute; top: var(--bar-off, 88px); left: 10px; z-index: 1000; text-align: center; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); width: 250px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); overflow-y: auto; }
+#info-panel { display: none; position: absolute; top: var(--bar-off, 88px); left: 10px; z-index: 1000; text-align: center; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); width: 320px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); overflow-y: auto; }
 .main-header { border-bottom: 2px solid #0078A8; padding-bottom: 10px; margin-bottom: 15px; }
 .main-title { font-size: 14px; font-weight: bold; color: #1a202c; display: block; margin-bottom: 8px; }
 .month-selector-box { margin-bottom: 15px; background: #eef2f7; padding: 10px; border-radius: 8px; border: 1px solid #d1d9e6; }
@@ -121,7 +121,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .wn-empty { text-align: center; padding: 40px; color: #94a3b8; font-size: 13px; }
 .btn-access-login { width: 100%; padding: 11px; background: #0078A8; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.2s ease; }
 .btn-access-login:hover { background-color: #005a7d; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0, 120, 168, 0.3); }
-.popup-btn-hist { width: 100%; margin-top: 8px; padding: 6px 8px; background-color: #f97316; color: white !important; border: none; border-radius: 4px; font-weight: 600; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.2s ease; }
+.popup-btn-hist { width: 100%; margin-top: 8px; padding: 8px 8px; background-color: #f97316; color: white !important; border: none; border-radius: 6px; font-weight: 700; font-size: 12.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.2s ease; }
 .popup-btn-hist:hover { background-color: #ea5e9;}
 .popup-node-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 
@@ -169,15 +169,15 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 
 /* --- RESPONSIVE GLOBAL --- */
-@media (max-width: 1366px) {  #info-panel { width: 220px; padding: 14px; font-size: 12px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); } .stat-val { font-size: 13px; }  #search-container { width: 200px; }  .multiselect-container { max-height: 80px; }  .modal-content { width: 550px; }  #chart-container { height: 260px; }}
-@media (max-width: 1280px) {  #info-panel { width: 200px; padding: 12px; font-size: 11px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); }  .main-header span { font-size: 14px !important; }  .stat-val { font-size: 12px; }  .stat-label { font-size: 8px; }  .stats-grid { padding: 8px; gap: 6px; }  .btn-comp { font-size: 11px; }  .btn-whats-new { font-size: 11px; }
+@media (max-width: 1366px) {  #info-panel { width: 290px; padding: 14px; font-size: 12px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); } .stat-val { font-size: 13px; }  #search-container { width: 200px; }  .multiselect-container { max-height: 80px; }  .modal-content { width: 550px; }  #chart-container { height: 260px; }}
+@media (max-width: 1280px) {  #info-panel { width: 260px; padding: 12px; font-size: 11px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); }  .main-header span { font-size: 14px !important; }  .stat-val { font-size: 12px; }  .stat-label { font-size: 8px; }  .stats-grid { padding: 8px; gap: 6px; }  .btn-comp { font-size: 11px; }  .btn-whats-new { font-size: 11px; }
   #search-container { width: 185px; }  .section-title { font-size: 10px; }  .select-option { font-size: 11px; }  .multiselect-container { max-height: 75px; }  .range-row { font-size: 10px; padding: 6px; }  select, .month-select { font-size: 12px; padding: 5px; }  .modal-content { width: 500px; padding: 20px; }  #chart-container { height: 240px; }
   .leaflet-control-layers-expanded { font-size: 10px !important; }  .search-results { font-size: 11px; }  .search-item { padding: 8px; font-size: 11px; }  .suggestion-item { padding: 8px 12px; font-size: 11px; }  #node-search-input { font-size: 12px; padding: 8px; }}
-@media (max-width: 1024px) {  #info-panel { width: 180px; padding: 10px; font-size: 10px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); top: var(--bar-off, 88px); left: 8px; }  .main-header span { font-size: 13px !important; }  .stat-val { font-size: 11px; }  .stat-label { font-size: 7px; }  .stats-grid { padding: 6px; gap: 4px; }  .btn-comp { font-size: 10px; padding: 6px; }
+@media (max-width: 1024px) {  #info-panel { width: 230px; padding: 10px; font-size: 10px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); top: var(--bar-off, 88px); left: 8px; }  .main-header span { font-size: 13px !important; }  .stat-val { font-size: 11px; }  .stat-label { font-size: 7px; }  .stats-grid { padding: 6px; gap: 4px; }  .btn-comp { font-size: 10px; padding: 6px; }
   .btn-whats-new { font-size: 10px; padding: 6px; }  #search-container { width: 165px; }  .section-title { font-size: 9px; }  .select-all-btn { font-size: 9px; }  .select-option { font-size: 10px; }  .multiselect-container { max-height: 65px; padding: 6px; }  .range-row { font-size: 9px; padding: 5px; }  select, .month-select { font-size: 11px; padding: 4px; }
   .section-header { margin: 10px 0 4px 0; }  .modal-content { width: 90vw; padding: 16px; }  #chart-container { height: 220px; }  .node-info-container { padding: 10px; }  .info-grid { font-size: 12px; }  .leaflet-bottom.leaflet-left .leaflet-control-scale { margin-left: 200px !important; }  .search-results { font-size: 10px; }
   .search-item { padding: 7px; font-size: 10px; }  .suggestions-box, .suggestions-box-minimal { font-size: 10px; }  .suggestion-item { padding: 7px 10px; font-size: 10px; }  #node-search-input { font-size: 11px; padding: 7px; }}
-@media (max-width: 900px) {  #info-panel { width: 160px; padding: 8px; font-size: 10px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); }  .btn-comp { font-size: 10px; padding: 5px; }  .btn-whats-new { font-size: 10px; padding: 5px; }  #search-container { width: 150px; }  .leaflet-bottom.leaflet-left .leaflet-control-scale { margin-left: 175px !important; }
+@media (max-width: 900px) {  #info-panel { width: 205px; padding: 8px; font-size: 10px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); }  .btn-comp { font-size: 10px; padding: 5px; }  .btn-whats-new { font-size: 10px; padding: 5px; }  #search-container { width: 150px; }  .leaflet-bottom.leaflet-left .leaflet-control-scale { margin-left: 175px !important; }
   .search-results { font-size: 9px; }  .search-item { padding: 6px; font-size: 9px; }  .suggestions-box, .suggestions-box-minimal { font-size: 9px; }  .suggestion-item { padding: 6px 8px; font-size: 9px; }  #node-search-input { font-size: 10px; padding: 6px; }}
 		
 /* --- BARRA HORIZONTAL DE FILTROS --- */
@@ -212,20 +212,20 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .nd-close:hover { color: #ef4444; }
 .nd-block { border-bottom: 1px solid #eee; padding: 6px 0 10px; margin-bottom: 4px; }
 .nd-block:last-child { border-bottom: none; }
-.nd-name { color: #0078A8; font-weight: bold; font-size: 14px; margin-bottom: 6px; }
+.nd-name { color: #0078A8; font-weight: bold; font-size: 16px; margin-bottom: 6px; }
 .nd-mini { margin-top: 8px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 8px; }
-.nd-mini-title { font-size: 10px; font-weight: bold; color: #888; text-transform: uppercase; margin-bottom: 3px; }
+.nd-mini-title { font-size: 11px; font-weight: bold; color: #888; text-transform: uppercase; margin-bottom: 3px; }
 .ndbar-chart { display: flex; align-items: flex-end; gap: 3px; margin-top: 4px; }
 .ndbar-col { flex: 1 1 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-width: 0; }
 .ndbar-val { font-size: 8px; font-weight: bold; color: #334155; margin-bottom: 2px; white-space: nowrap; }
 .ndbar { width: 72%; min-width: 6px; border-radius: 2px 2px 0 0; box-shadow: inset 0 -1px 0 rgba(0,0,0,.06); }
 .ndbar-lbl { font-size: 7px; color: #94a3b8; margin-top: 2px; white-space: nowrap; }
 .nd-vartable-wrap { overflow-x: auto; margin-top: 4px; }
-.nd-vartable { border-collapse: collapse; font-size: 9px; width: 100%; }
-.nd-vartable th { padding: 2px 4px; text-align: center; color: #475569; font-weight: bold; white-space: nowrap; border-bottom: 1px solid #e2e8f0; line-height: 1.1; }
+.nd-vartable { border-collapse: collapse; font-size: 10.5px; width: 100%; }
+.nd-vartable th { padding: 3px 5px; text-align: center; color: #475569; font-weight: bold; white-space: nowrap; border-bottom: 1px solid #e2e8f0; line-height: 1.1; }
 .nd-vartable th.vh { text-align: left; }
-.nd-vartable td { padding: 2px 4px; text-align: right; font-weight: 700; color: #334155; white-space: nowrap; border-bottom: 1px solid #f1f5f9; }
-.nd-vartable td.vname { text-align: left; color: #0078A8; font-weight: bold; max-width: 92px; overflow: hidden; text-overflow: ellipsis; position: sticky; left: 0; background: #fff; }
+.nd-vartable td { padding: 3px 5px; text-align: right; font-weight: 700; color: #334155; white-space: nowrap; border-bottom: 1px solid #f1f5f9; }
+.nd-vartable td.vname { text-align: left; color: #0078A8; font-weight: bold; max-width: 120px; overflow: hidden; text-overflow: ellipsis; position: sticky; left: 0; background: #fff; }
 .nd-vartable td.nd { color: #cbd5e1; text-align: center; font-weight: 400; }
 
 </style>
@@ -261,17 +261,13 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 <div id="filter-bar">
     <div class="fb-title-card">SPAIN CAPACITY VIEWER</div>
-    <div class="fb-counts-card">
-        <span class="fb-cnt"><b id="count-dso">0</b><i>DSO</i></span>
-        <span class="fb-cnt"><b id="count-tso">0</b><i>TSO</i></span>
-        <span class="fb-cnt total"><b id="count-total">0</b><i>Total</i></span>
-    </div>
     <div class="fb-main">
         <span class="fb-main-label">SELECTION</span>
         <select id="view-year" class="fb-main-select" onchange="applyFilters()"><option value="26" selected>2026</option></select>
         <select id="view-month" class="fb-main-select" onchange="applyFilters()"><option value="jan">January</option><option value="feb">February</option><option value="mar">March</option><option value="apr">April</option><option value="may">May</option><option value="jun" selected>June</option><option value="jul">July</option><option value="ago">August</option><option value="sep">September</option><option value="oct">October</option><option value="nov">November</option><option value="dec">December</option></select>
         <select id="view-red" class="fb-main-select" onchange="applyFilters()"><option value="ALL">DSO+TSO</option><option value="DSO">DSO</option><option value="TSO" selected>TSO</option></select>
-        <select id="view-type" class="fb-main-select" onchange="refreshTypeFilter(); applyFilters()"><option value="gen">Generation (MW)</option><option value="dem" selected>Demand (MW)</option><option value="storage">Storage Gen/Dem (MW)</option></select>
+        <select id="view-type" class="fb-main-select" onchange="refreshTypeFilter(); refreshVarSelector(); applyFilters()"><option value="gen">Generation (MW)</option><option value="dem" selected>Demand (MW)</option><option value="storage">Storage Gen/Dem (MW)</option></select>
+        <select id="view-var" class="fb-main-select" onchange="applyFilters()" title="Variable de capacidad representada en el mapa"></select>
     </div>
     <div class="fb-dropdown">
         <button class="fb-dd-btn" id="btn-dd-ranges" onclick="toggleDropdown('dd-ranges', event)">Ranges (MW) ▾</button>
@@ -542,11 +538,21 @@ legendControl.update = function() {
 
     const year = yearEl.value;
     const monthText = monthEl.options[monthEl.selectedIndex].text;
-    const typeText = typeEl.value === 'gen' ? 'Generation' : (typeEl.value === 'dem' ? 'Demand' : 'Storage (Gen/Dem)');
+    const type = typeEl.value;
+    const varSel = document.getElementById('view-var');
+    const varLabel = (type === 'storage') ? 'Storage (min Gen/Dem)' : ((varSel && VAR_LABEL[varSel.value]) || varSel?.value || 'Capacity');
 
     const total = ranges.reduce((s, r) => s + (r.visible ? r.count : 0), 0) + (noInfoConfig.visible ? noInfoConfig.count : 0);
+    const cc = window._nodeCounts || { dso: 0, tso: 0, total: 0 };
 
-    let html = `<strong>Capacity ${monthText} 20${year} (${typeText})</strong><br>`;
+    // Recuento de nodos enmarcado, justo encima de la leyenda (mismo estilo)
+    let html = `<div style="display:flex;gap:8px;justify-content:space-between;padding:2px 0 7px;margin-bottom:7px;border-bottom:1px solid #e2e8f0;">
+        <div style="text-align:center;flex:1;"><div style="font-size:8px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;">DSO</div><div style="font-size:14px;font-weight:bold;color:#334155;line-height:1;">${cc.dso}</div></div>
+        <div style="text-align:center;flex:1;border-left:1px solid #e2e8f0;"><div style="font-size:8px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;">TSO</div><div style="font-size:14px;font-weight:bold;color:#334155;line-height:1;">${cc.tso}</div></div>
+        <div style="text-align:center;flex:1;border-left:1px solid #e2e8f0;"><div style="font-size:8px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;">Total</div><div style="font-size:14px;font-weight:bold;color:#0078A8;line-height:1;">${cc.total}</div></div>
+    </div>`;
+
+    html += `<strong>${monthText} 20${year} · ${varLabel}</strong><br>`;
     
     ranges.forEach(r => { 
         if (r.visible) {
@@ -716,6 +722,7 @@ function construirEntries() {
     createCheckboxes('m-oper', Array.from(sets.oper).sort());
     window._typeSets = { gen: sets.typeGen, dem: sets.typeDem };
     refreshTypeFilter();
+    refreshVarSelector();
     renderRangeInputs();
     legendControl.addTo(map);
     applyFilters();
@@ -803,6 +810,21 @@ function refreshTypeFilter() {
     createCheckboxes('m-type', Array.from(typeSet).sort());
 }
 
+// Rellena el selector de variable de capacidad del mapa según el tipo activo (8 gen / 5 dem). En storage se oculta.
+function refreshVarSelector() {
+    const typeEl = document.getElementById('view-type');
+    const varSel = document.getElementById('view-var');
+    if (!typeEl || !varSel) return;
+    const type = typeEl.value;
+    if (type === 'storage') { varSel.style.display = 'none'; varSel.innerHTML = ''; return; }
+    varSel.style.display = '';
+    const list = DISP_VARS[type] || [];
+    const prev = varSel.value;
+    varSel.innerHTML = list.map(([code, short, full]) => `<option value="${code}" title="${full}">${short}</option>`).join('');
+    const codes = list.map(x => x[0]);
+    varSel.value = codes.includes(prev) ? prev : (type === 'dem' ? 'dem_ch' : 'gen_mpe_rdt');
+}
+
 
 	
 function applyFilters() {
@@ -816,6 +838,8 @@ function applyFilters() {
     const month = document.getElementById('view-month').value;
     const type = document.getElementById('view-type').value;
     const redFilter = document.getElementById('view-red').value;
+    const varSelEl = document.getElementById('view-var');
+    const varCode = (varSelEl && varSelEl.value) ? varSelEl.value : (type === 'dem' ? 'dem_ch' : 'gen_mpe_rdt');
 
     // 1. Definimos meses y claves una sola vez
     const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dec"];
@@ -866,8 +890,8 @@ function applyFilters() {
                 rawValue = Math.min(vGen, vDem);
             }
         } else {
-            // Caso normal (Gen o Dem puro)
-            const val = cleanNum(e[`${year}_${month}_${type}`]);
+            // Gen o Dem: usamos la variable de capacidad seleccionada para el mapa
+            const val = mapCapValue(e, year, month, type, varCode);
             if (isNaN(val)) {
                 isMissingData = true;
             } else {
@@ -917,7 +941,7 @@ function applyFilters() {
                 const vDem = cleanNum(item[demCol]);
                 if (!isNaN(vGen) && !isNaN(vDem)) rawValue = Math.min(vGen, vDem);
             } else {
-                const val = cleanNum(item[`${year}_${month}_${type}`]);
+                const val = mapCapValue(item, year, month, type, varCode);
                 if (!isNaN(val)) rawValue = val;
             }
             if (rawValue !== undefined && rawValue > bestValue) {
@@ -951,10 +975,8 @@ function applyFilters() {
         g.items.forEach(item => { markersInMap[item.name.toLowerCase()] = m; });
     }
 
-    // 5. Actualizar contadores y leyenda
-    document.getElementById('count-dso').innerText = dsoT;
-    document.getElementById('count-tso').innerText = tsoT;
-    document.getElementById('count-total').innerText = dsoT + tsoT;
+    // 5. Contadores (se pintan dentro de la leyenda) y leyenda
+    window._nodeCounts = { dso: dsoT, tso: tsoT, total: dsoT + tsoT };
 
     // Si hay una ficha abierta, la re-renderizamos con la selección actual (o la cerramos si el nodo ya no se muestra)
     if (window._activeNodeKey) {
@@ -1005,11 +1027,12 @@ function buildNodeFichaHTML(items) {
                 <tr><td style="color:#666;padding:2px 0;">Stg. Dem (Charge):</td><td style="font-weight:bold;text-align:right;color:#0ea5e9;">${textD}${nodeTrendBadge(vD,pD)}</td></tr>
                 <tr style="border-top:1px dashed #ccc;background:#f8fafc;"><td style="color:#000;padding:4px 0;font-size:10px;font-weight:bold;">Effective (Min):</td><td style="font-weight:bold;text-align:right;font-size:10px;">${Math.min(calcG,calcD)} MW</td></tr>`;
         } else {
-            const v = cleanNum(item[`${year}_${month}_${type}`]);
-            const pV = cleanNum(item[`${prevYear}_${pMonth}_${type}`]);
-            const label = type === 'gen' ? 'Gen' : 'Dem';
+            const varCode = (document.getElementById('view-var') || {}).value || (type === 'dem' ? 'dem_ch' : 'gen_mpe_rdt');
+            const v = mapCapValue(item, year, month, type, varCode);
+            const pV = mapCapValue(item, prevYear, pMonth, type, varCode);
+            const label = VAR_LABEL[varCode] || (type === 'gen' ? 'Gen' : 'Dem');
             const textV = isNaN(v) ? 'No Info' : v + ' MW';
-            capacityRows = `<tr><td style="color:#666;padding:2px 0;">Capacity (${label}):</td><td style="font-weight:bold;text-align:right;color:#f97316;">${textV}${nodeTrendBadge(v,pV)}</td></tr>`;
+            capacityRows = `<tr><td style="color:#666;padding:2px 0;">${label}:</td><td style="font-weight:bold;text-align:right;color:#f97316;">${textV}${nodeTrendBadge(v,pV)}</td></tr>`;
         }
         const ctVal = (type === 'dem' ? item[`${year}_${month}_ctDem`] : item[`${year}_${month}_ctGen`]) || '–';
         const which = type === 'gen' ? 'gen' : (type === 'dem' ? 'dem' : 'both');   // qué bloque de variables mostrar
@@ -1021,7 +1044,7 @@ function buildNodeFichaHTML(items) {
         html += `
             <div class="nd-block">
                 <div class="nd-name">${item.name}</div>
-                <table style="width:100%;font-size:11px;border-collapse:collapse;">
+                <table style="width:100%;font-size:12.5px;border-collapse:collapse;">
                     ${capacityRows}
                     <tr><td style="color:#666;padding:4px 0 2px 0;">Province:</td><td style="font-weight:bold;text-align:right;">${item.prov || '–'}</td></tr>
                     <tr><td style="color:#666;padding:2px 0;">Community:</td><td style="font-weight:bold;text-align:right;">${item.ccaa || '–'}</td></tr>
@@ -1030,12 +1053,12 @@ function buildNodeFichaHTML(items) {
                     <tr><td style="color:#666;padding:2px 0;">Operator:</td><td style="font-weight:bold;text-align:right;">${item.oper}</td></tr>
                     <tr><td style="color:#666;padding:2px 0;">${type === 'dem' ? 'Type-DEM' : 'Type-GEN'}:</td><td style="font-weight:bold;text-align:right;">${wrapZeroStarIcon(ctVal)}</td></tr>
                 </table>
+                <button class="popup-btn-hist" style="margin:8px 0 4px;" onclick="openHistory('${safeName}')">📊 View ALL Historical Data</button>
                 <div class="nd-mini">
                     <div class="nd-mini-title">Disponible · ${dispTitle} — últimos 6 meses (MW)</div>
                     ${buildDispTrendHTML(item, type)}
                 </div>
                 ${richHtml}
-                <button class="popup-btn-hist" onclick="openHistory('${safeName}')">📊 View Historical Data</button>
             </div>`;
     });
     return html;
@@ -1090,21 +1113,46 @@ function miniBarsHTML(labels, vals) {
 // Cada par es [campo, etiqueta legible]. En storage los campos llevan prefijo de bloque "gen|" o "dem|".
 const DISP_VARS = {
     gen: [
-        ['gen_mges_rdt', 'Gen MGES · RdT'], ['gen_mpe_rdt', 'Gen MPE · RdT'],
-        ['gen_mges_rdd', 'Gen MGES · RdD'], ['gen_mpe_rdd', 'Gen MPE · RdD'],
-        ['alm_mges_rdt', 'Alm MGES · RdT'], ['alm_mpe_rdt', 'Alm MPE · RdT'],
-        ['alm_mges_rdd', 'Alm MGES · RdD'], ['alm_mpe_rdd', 'Alm MPE · RdD']
+        ['gen_mges_rdt', 'Gen · MGES RdT', 'Generación · MGES RdT o MPE con compensador síncrono RdT'],
+        ['gen_mpe_rdt', 'Gen · MPE RdT', 'Generación · MPE RdT'],
+        ['gen_mges_rdd', 'Gen · MGES RdD', 'Generación · MGES RdD, MPE no conectado al primer nivel de transformación RdD o MPE con compensador síncrono RdD'],
+        ['gen_mpe_rdd', 'Gen · MPE RdD', 'Generación · MPE RdD'],
+        ['alm_mges_rdt', 'Alm · MGES RdT', 'Almacenamiento · MGES RdT o MPE con compensador síncrono RdT'],
+        ['alm_mpe_rdt', 'Alm · MPE RdT', 'Almacenamiento · MPE RdT'],
+        ['alm_mges_rdd', 'Alm · MGES RdD', 'Almacenamiento · MGES RdD, MPE no conectado al primer nivel de transformación RdD o MPE con compensador síncrono RdD'],
+        ['alm_mpe_rdd', 'Alm · MPE RdD', 'Almacenamiento · MPE RdD']
     ],
     dem: [
-        ['dem_ch', 'Dem CH'], ['dem_sh', 'Dem SH'], ['dem_no_cep', 'Dem no-CEP'],
-        ['alm_cep', 'Alm CEP'], ['alm_no_cep', 'Alm no-CEP']
+        ['dem_ch', 'Dem · CEP CH', 'Demanda · CEP · CH'],
+        ['dem_sh', 'Dem · CEP SH', 'Demanda · CEP · SH'],
+        ['dem_no_cep', 'Dem · NO CEP', 'Demanda · NO CEP'],
+        ['alm_cep', 'Alm · CEP (MPE)', 'Almacenamiento · CEP (MPE)'],
+        ['alm_no_cep', 'Alm · NO CEP (MGES)', 'Almacenamiento · NO CEP (MGES)']
     ],
     storage: [
-        ['gen|alm_mges_rdt', 'Alm MGES · RdT'], ['gen|alm_mpe_rdt', 'Alm MPE · RdT'],
-        ['gen|alm_mges_rdd', 'Alm MGES · RdD'], ['gen|alm_mpe_rdd', 'Alm MPE · RdD'],
-        ['dem|alm_cep', 'Alm CEP'], ['dem|alm_no_cep', 'Alm no-CEP']
+        ['gen|alm_mges_rdt', 'Alm · MGES RdT', 'Almacenamiento (gen) · MGES RdT'],
+        ['gen|alm_mpe_rdt', 'Alm · MPE RdT', 'Almacenamiento (gen) · MPE RdT'],
+        ['gen|alm_mges_rdd', 'Alm · MGES RdD', 'Almacenamiento (gen) · MGES RdD'],
+        ['gen|alm_mpe_rdd', 'Alm · MPE RdD', 'Almacenamiento (gen) · MPE RdD'],
+        ['dem|alm_cep', 'Alm · CEP (MPE)', 'Almacenamiento (dem) · CEP (MPE)'],
+        ['dem|alm_no_cep', 'Alm · NO CEP (MGES)', 'Almacenamiento (dem) · NO CEP (MGES)']
     ]
 };
+// Etiqueta corta por código (para leyenda y ficha)
+const VAR_LABEL = {};
+['gen', 'dem', 'storage'].forEach(t => DISP_VARS[t].forEach(([code, short]) => { if (!(code in VAR_LABEL)) VAR_LABEL[code] = short; }));
+
+// Descompone un código de variable en {side, field}
+function parseVarCode(code, type) {
+    if (code && code.includes('|')) { const p = code.split('|'); return { side: p[0], field: p[1] }; }
+    return { side: (type === 'dem') ? 'dem' : 'gen', field: code };
+}
+// Valor que colorea el mapa para un nodo según la variable seleccionada (TSO: rich.disp; DSO: su única disp)
+function mapCapValue(item, year, month, type, varCode) {
+    if (item.grid === 'DSO') return cleanNum(item[`${year}_${month}_${type}`]);
+    const pv = parseVarCode(varCode, type);
+    return dispValue(item, `${year}_${month}`, pv.side, pv.field);
+}
 
 // Últimos 6 meses (cronológicos) con datos para el nodo: [{key:"26_jun", label:"JUN '26"}, ...]
 function lastSixMonths(item) {
@@ -1133,7 +1181,7 @@ function buildDispTrendHTML(item, type) {
         return miniBarsHTML(s.labels.slice(-6), s.vals.slice(-6));
     }
     const months = lastSixMonths(item);
-    if (!months.length) return '<div style="font-size:10px;color:#94a3b8;padding:6px 0;">Sin histórico.</div>';
+    if (!months.length) return '<div style="font-size:11px;color:#94a3b8;padding:6px 0;">Sin histórico.</div>';
     const vars = DISP_VARS[type] || DISP_VARS.gen;
 
     const head = '<th class="vh">Variable</th>' + months.map(m => {
@@ -1142,13 +1190,11 @@ function buildDispTrendHTML(item, type) {
     }).join('');
 
     let rows = '';
-    vars.forEach(([code, label]) => {
-        let side, field;
-        if (code.includes('|')) { const p = code.split('|'); side = p[0]; field = p[1]; }
-        else { side = (type === 'dem') ? 'dem' : 'gen'; field = code; }
+    vars.forEach(([code, short, full]) => {
+        const pv = parseVarCode(code, type);
         let cells = '';
         months.forEach(m => {
-            const v = dispValue(item, m.key, side, field);
+            const v = dispValue(item, m.key, pv.side, pv.field);
             if (isNaN(v)) {
                 cells += `<td class="nd" title="${m.label}: sin dato">–</td>`;
             } else {
@@ -1156,7 +1202,7 @@ function buildDispTrendHTML(item, type) {
                 cells += `<td style="background:${col}33;" title="${m.label}: ${v} MW">${v}</td>`;
             }
         });
-        rows += `<tr><td class="vname" title="${label}">${label}</td>${cells}</tr>`;
+        rows += `<tr><td class="vname" title="${full}">${short}</td>${cells}</tr>`;
     });
     return `<div class="nd-vartable-wrap"><table class="nd-vartable"><thead><tr>${head}</tr></thead><tbody>${rows}</tbody></table></div>`;
 }
