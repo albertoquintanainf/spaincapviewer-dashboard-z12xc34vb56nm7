@@ -27,7 +27,9 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .leaflet-control-scale {margin-bottom: 4px !important; }
 	
 	/* --- PANEL LATERAL & COMPONENTES --- */
-#info-panel { display: none; position: absolute; top: var(--bar-off, 88px); left: 10px; z-index: 1000; text-align: center; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); width: 470px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); overflow-y: auto; overflow-x: hidden; }
+#left-search { position: fixed; top: var(--bar-off, 88px); left: 10px; width: 470px; z-index: 1300; display: none; }
+#left-search .search-wrapper { width: 100%; }
+#info-panel { display: none; position: absolute; top: calc(var(--bar-off, 88px) + 54px); left: 10px; z-index: 1000; text-align: center; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); width: 470px; max-height: calc(100vh - var(--bar-off, 88px) - 70px); overflow-y: auto; overflow-x: hidden; }
 .main-header { border-bottom: 2px solid #0078A8; padding-bottom: 10px; margin-bottom: 15px; }
 .main-title { font-size: 14px; font-weight: bold; color: #1a202c; display: block; margin-bottom: 8px; }
 .month-selector-box { margin-bottom: 15px; background: #eef2f7; padding: 10px; border-radius: 8px; border: 1px solid #d1d9e6; }
@@ -169,15 +171,15 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 
 /* --- RESPONSIVE GLOBAL --- */
-@media (max-width: 1366px) {  #info-panel { width: 430px; padding: 14px; font-size: 12px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); } .stat-val { font-size: 13px; }  #search-container { width: 200px; }  .multiselect-container { max-height: 80px; }  .modal-content { width: 550px; }  #chart-container { height: 260px; }}
-@media (max-width: 1280px) {  #info-panel { width: 390px; padding: 12px; font-size: 11px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); }  .main-header span { font-size: 14px !important; }  .stat-val { font-size: 12px; }  .stat-label { font-size: 8px; }  .stats-grid { padding: 8px; gap: 6px; }  .btn-comp { font-size: 11px; }  .btn-whats-new { font-size: 11px; }
+@media (max-width: 1366px) {  #info-panel { width: 430px; padding: 14px; font-size: 12px; max-height: calc(100vh - var(--bar-off, 88px) - 70px); } #left-search { width: 430px; } .stat-val { font-size: 13px; }  #search-container { width: 200px; }  .multiselect-container { max-height: 80px; }  .modal-content { width: 550px; }  #chart-container { height: 260px; }}
+@media (max-width: 1280px) {  #info-panel { width: 390px; padding: 12px; font-size: 11px; max-height: calc(100vh - var(--bar-off, 88px) - 70px); } #left-search { width: 390px; }  .main-header span { font-size: 14px !important; }  .stat-val { font-size: 12px; }  .stat-label { font-size: 8px; }  .stats-grid { padding: 8px; gap: 6px; }  .btn-comp { font-size: 11px; }  .btn-whats-new { font-size: 11px; }
   #search-container { width: 185px; }  .section-title { font-size: 10px; }  .select-option { font-size: 11px; }  .multiselect-container { max-height: 75px; }  .range-row { font-size: 10px; padding: 6px; }  select, .month-select { font-size: 12px; padding: 5px; }  .modal-content { width: 500px; padding: 20px; }  #chart-container { height: 240px; }
   .leaflet-control-layers-expanded { font-size: 10px !important; }  .search-results { font-size: 11px; }  .search-item { padding: 8px; font-size: 11px; }  .suggestion-item { padding: 8px 12px; font-size: 11px; }  #node-search-input { font-size: 12px; padding: 8px; }}
-@media (max-width: 1024px) {  #info-panel { width: 340px; padding: 10px; font-size: 10px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); top: var(--bar-off, 88px); left: 8px; }  .main-header span { font-size: 13px !important; }  .stat-val { font-size: 11px; }  .stat-label { font-size: 7px; }  .stats-grid { padding: 6px; gap: 4px; }  .btn-comp { font-size: 10px; padding: 6px; }
+@media (max-width: 1024px) {  #info-panel { width: 340px; padding: 10px; font-size: 10px; max-height: calc(100vh - var(--bar-off, 88px) - 70px); top: calc(var(--bar-off, 88px) + 54px); left: 8px; } #left-search { width: 340px; left: 8px; }  .main-header span { font-size: 13px !important; }  .stat-val { font-size: 11px; }  .stat-label { font-size: 7px; }  .stats-grid { padding: 6px; gap: 4px; }  .btn-comp { font-size: 10px; padding: 6px; }
   .btn-whats-new { font-size: 10px; padding: 6px; }  #search-container { width: 165px; }  .section-title { font-size: 9px; }  .select-all-btn { font-size: 9px; }  .select-option { font-size: 10px; }  .multiselect-container { max-height: 65px; padding: 6px; }  .range-row { font-size: 9px; padding: 5px; }  select, .month-select { font-size: 11px; padding: 4px; }
   .section-header { margin: 10px 0 4px 0; }  .modal-content { width: 90vw; padding: 16px; }  #chart-container { height: 220px; }  .node-info-container { padding: 10px; }  .info-grid { font-size: 12px; }  .search-results { font-size: 10px; }
   .search-item { padding: 7px; font-size: 10px; }  .suggestions-box, .suggestions-box-minimal { font-size: 10px; }  .suggestion-item { padding: 7px 10px; font-size: 10px; }  #node-search-input { font-size: 11px; padding: 7px; }}
-@media (max-width: 900px) {  #info-panel { width: 300px; padding: 8px; font-size: 10px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); }  .btn-comp { font-size: 10px; padding: 5px; }  .btn-whats-new { font-size: 10px; padding: 5px; }  #search-container { width: 150px; }
+@media (max-width: 900px) {  #info-panel { width: 300px; padding: 8px; font-size: 10px; max-height: calc(100vh - var(--bar-off, 88px) - 70px); } #left-search { width: 300px; }  .btn-comp { font-size: 10px; padding: 5px; }  .btn-whats-new { font-size: 10px; padding: 5px; }  #search-container { width: 150px; }
   .search-results { font-size: 9px; }  .search-item { padding: 6px; font-size: 9px; }  .suggestions-box, .suggestions-box-minimal { font-size: 9px; }  .suggestion-item { padding: 6px 8px; font-size: 9px; }  #node-search-input { font-size: 10px; padding: 6px; }}
 		
 /* --- BARRA HORIZONTAL DE FILTROS --- */
@@ -192,9 +194,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .fb-main { display: inline-flex; align-items: center; gap: 6px; background: #eaf4fb; border: 1px solid #b9def0; border-radius: 10px; padding: 6px 8px; flex-shrink: 0; box-shadow: 0 3px 12px rgba(0,0,0,0.15); }
 .fb-main-label { font-size: 10px; font-weight: bold; color: #0078A8; letter-spacing: .5px; }
 .fb-main-select { padding: 6px 8px; border-radius: 6px; border: 1.5px solid #0078A8; font-size: 13px; font-weight: bold; color: #0078A8; background: #fff; cursor: pointer; }
-#view-year, #view-month, #view-red { padding: 6px 5px; }
+#view-month, #view-red { padding: 6px 5px; }
+#view-year { padding: 6px 3px; }
 #view-type { min-width: 150px; }
-#view-var { min-width: 185px; }
+#view-var { min-width: 120px; }
 .fb-break { flex-basis: 100%; height: 0; margin: 0; padding: 0; }
 .fb-sep { display: none; }
 .fb-dropdown { position: relative; display: inline-block; flex-shrink: 0; }
@@ -263,7 +266,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 <div id="search-container" style="display: none;">
     <button class="btn-whats-new" onclick="openWhatsNew()">💡 WHAT'S NEW?</button>
-        <div class="search-wrapper";">
+</div>
+
+<div id="left-search">
+    <div class="search-wrapper">
         <input type="text" id="node-search-input" placeholder="🔍 Search node by name..." oninput="searchNodes(this.value); toggleClearBtn('node-search-input', 'clear-main-node')">
         <span class="clear-btn" id="clear-main-node" onclick="clearSearch('node-search-input', 'search-results', 'clear-main-node')">&times;</span>
     </div>
@@ -441,6 +447,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
     if (btoa(input.value) === 'aGVjZTIwMjY=') {
         document.getElementById('login-overlay').style.display = 'none';
         document.getElementById('search-container').style.display = 'flex';
+        const _ls = document.getElementById('left-search'); if (_ls) _ls.style.display = 'block';
         const kmlBtn = document.querySelector('.leaflet-control-kml');
         if (kmlBtn) { kmlBtn.style.display = 'flex'; }
         if (!isAppInitialized) { init(); isAppInitialized = true; }
