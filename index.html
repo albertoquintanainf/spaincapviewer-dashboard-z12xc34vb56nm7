@@ -19,7 +19,7 @@
 /* --- BASE & MAP --- */
 body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #f0f2f5; }
 #map { height: 100vh; width: 100%; }
-.leaflet-top.leaflet-right { z-index: 10000 !important; margin-top: 88px !important; display: flex; flex-direction: column; gap: 8px !important; align-items: flex-end; padding-top: 0; }
+.leaflet-top.leaflet-right { z-index: 10000 !important; margin-top: var(--right-off, 132px) !important; display: flex; flex-direction: column; gap: 8px !important; align-items: flex-end; padding-top: 0; }
 .leaflet-control-layers { position: relative !important; top: auto !important; right: auto !important; margin: 0 !important; border-radius: 8px !important; border: none !important; box-shadow: 0 2px 10px rgba(0,0,0,0.2) !important; font-family: 'Segoe UI', sans-serif; font-size: 13px; background-color: white !important; }
 .leaflet-control-layers-toggle {width: 34px !important;height: 34px !important; background-size: 18px 18px !important;}
 .leaflet-control-layers-expanded { min-width: 100px !important; z-index: 10005 !important; }
@@ -27,7 +27,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .leaflet-bottom.leaflet-left .leaflet-control-scale {margin-left: 300px !important; margin-bottom: 4px !important; }
 	
 	/* --- PANEL LATERAL & COMPONENTES --- */
-#info-panel { position: absolute; top: 88px; left: 10px; z-index: 1000; text-align: center; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); width: 250px; max-height: calc(100vh - 104px); overflow-y: auto; }
+#info-panel { display: none; position: absolute; top: var(--bar-off, 88px); left: 10px; z-index: 1000; text-align: center; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); width: 250px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); overflow-y: auto; }
 .main-header { border-bottom: 2px solid #0078A8; padding-bottom: 10px; margin-bottom: 15px; }
 .main-title { font-size: 14px; font-weight: bold; color: #1a202c; display: block; margin-bottom: 8px; }
 .month-selector-box { margin-bottom: 15px; background: #eef2f7; padding: 10px; border-radius: 8px; border: 1px solid #d1d9e6; }
@@ -128,7 +128,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 
 /* --- BUSCADORES (GENERAL & HISTÓRICO) --- */
-#search-container { position: fixed; top: 88px; right: 60px; z-index: 9999; width: 220px; display: flex; flex-direction: column; gap: 5px; }
+#search-container { position: fixed; top: 10px; right: 10px; z-index: 10001; width: 220px; display: flex; flex-direction: column; gap: 5px; }
 .search-wrapper { background: white; padding: 4px; border-radius: 10px; display: flex; border: 2px solid #0078A8; position: relative; box-sizing: border-box; width: 100%; }
 #node-search-input { width: 100%; padding: 10px; border: 1px solid #eee; border-radius: 6px; font-size: 12px; outline: none; background: #fff; padding-right: 30px; }
 .search-results { position: absolute;top: 100%;left: 0;width: 100%;background: white; border-radius: 8px; margin-top: 5px; max-height: 400px; overflow-y: auto; box-shadow: 0 8px 20px rgba(0,0,0,0.3); display: none; border: 1px solid #ddd; }
@@ -169,23 +169,22 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 
 /* --- RESPONSIVE GLOBAL --- */
-@media (max-width: 1366px) {  #info-panel { width: 220px; padding: 14px; font-size: 12px; max-height: calc(100vh - 104px); } .stat-val { font-size: 13px; }  #search-container { width: 200px; }  .multiselect-container { max-height: 80px; }  .modal-content { width: 550px; }  #chart-container { height: 260px; }}
-@media (max-width: 1280px) {  #info-panel { width: 200px; padding: 12px; font-size: 11px; max-height: calc(100vh - 104px); }  .main-header span { font-size: 14px !important; }  .stat-val { font-size: 12px; }  .stat-label { font-size: 8px; }  .stats-grid { padding: 8px; gap: 6px; }  .btn-comp { font-size: 11px; }  .btn-whats-new { font-size: 11px; }
+@media (max-width: 1366px) {  #info-panel { width: 220px; padding: 14px; font-size: 12px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); } .stat-val { font-size: 13px; }  #search-container { width: 200px; }  .multiselect-container { max-height: 80px; }  .modal-content { width: 550px; }  #chart-container { height: 260px; }}
+@media (max-width: 1280px) {  #info-panel { width: 200px; padding: 12px; font-size: 11px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); }  .main-header span { font-size: 14px !important; }  .stat-val { font-size: 12px; }  .stat-label { font-size: 8px; }  .stats-grid { padding: 8px; gap: 6px; }  .btn-comp { font-size: 11px; }  .btn-whats-new { font-size: 11px; }
   #search-container { width: 185px; }  .section-title { font-size: 10px; }  .select-option { font-size: 11px; }  .multiselect-container { max-height: 75px; }  .range-row { font-size: 10px; padding: 6px; }  select, .month-select { font-size: 12px; padding: 5px; }  .modal-content { width: 500px; padding: 20px; }  #chart-container { height: 240px; }
   .leaflet-control-layers-expanded { font-size: 10px !important; }  .search-results { font-size: 11px; }  .search-item { padding: 8px; font-size: 11px; }  .suggestion-item { padding: 8px 12px; font-size: 11px; }  #node-search-input { font-size: 12px; padding: 8px; }}
-@media (max-width: 1024px) {  #info-panel { width: 180px; padding: 10px; font-size: 10px; max-height: calc(100vh - 104px); top: 88px; left: 8px; }  .main-header span { font-size: 13px !important; }  .stat-val { font-size: 11px; }  .stat-label { font-size: 7px; }  .stats-grid { padding: 6px; gap: 4px; }  .btn-comp { font-size: 10px; padding: 6px; }
+@media (max-width: 1024px) {  #info-panel { width: 180px; padding: 10px; font-size: 10px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); top: var(--bar-off, 88px); left: 8px; }  .main-header span { font-size: 13px !important; }  .stat-val { font-size: 11px; }  .stat-label { font-size: 7px; }  .stats-grid { padding: 6px; gap: 4px; }  .btn-comp { font-size: 10px; padding: 6px; }
   .btn-whats-new { font-size: 10px; padding: 6px; }  #search-container { width: 165px; }  .section-title { font-size: 9px; }  .select-all-btn { font-size: 9px; }  .select-option { font-size: 10px; }  .multiselect-container { max-height: 65px; padding: 6px; }  .range-row { font-size: 9px; padding: 5px; }  select, .month-select { font-size: 11px; padding: 4px; }
   .section-header { margin: 10px 0 4px 0; }  .modal-content { width: 90vw; padding: 16px; }  #chart-container { height: 220px; }  .node-info-container { padding: 10px; }  .info-grid { font-size: 12px; }  .leaflet-bottom.leaflet-left .leaflet-control-scale { margin-left: 200px !important; }  .search-results { font-size: 10px; }
   .search-item { padding: 7px; font-size: 10px; }  .suggestions-box, .suggestions-box-minimal { font-size: 10px; }  .suggestion-item { padding: 7px 10px; font-size: 10px; }  #node-search-input { font-size: 11px; padding: 7px; }}
-@media (max-width: 900px) {  #info-panel { width: 160px; padding: 8px; font-size: 10px; max-height: calc(100vh - 104px); }  .btn-comp { font-size: 10px; padding: 5px; }  .btn-whats-new { font-size: 10px; padding: 5px; }  #search-container { width: 150px; }  .leaflet-bottom.leaflet-left .leaflet-control-scale { margin-left: 175px !important; }
+@media (max-width: 900px) {  #info-panel { width: 160px; padding: 8px; font-size: 10px; max-height: calc(100vh - var(--bar-off, 88px) - 16px); }  .btn-comp { font-size: 10px; padding: 5px; }  .btn-whats-new { font-size: 10px; padding: 5px; }  #search-container { width: 150px; }  .leaflet-bottom.leaflet-left .leaflet-control-scale { margin-left: 175px !important; }
   .search-results { font-size: 9px; }  .search-item { padding: 6px; font-size: 9px; }  .suggestions-box, .suggestions-box-minimal { font-size: 9px; }  .suggestion-item { padding: 6px 8px; font-size: 9px; }  #node-search-input { font-size: 10px; padding: 6px; }}
 		
 /* --- BARRA HORIZONTAL DE FILTROS --- */
-#filter-bar { position: fixed; top: 0; left: 0; width: 100%; box-sizing: border-box; z-index: 1200; display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: transparent; overflow: visible; white-space: nowrap; pointer-events: none; }
+#filter-bar { position: fixed; top: 0; left: 0; right: 248px; box-sizing: border-box; z-index: 1200; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 12px; background: transparent; overflow: visible; pointer-events: none; }
 #filter-bar > * { pointer-events: auto; }
-.fb-brand { display: flex; flex-direction: column; justify-content: center; background: #ffffff; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.18); padding: 6px 14px; flex-shrink: 0; border-left: 4px solid #0078A8; }
-.fb-brand-title { font-size: 16px; font-weight: 800; color: #0078A8; line-height: 1.1; letter-spacing: .3px; }
-.fb-brand-counts { display: flex; gap: 14px; margin-top: 5px; }
+.fb-title-card { display: flex; align-items: center; background: #ffffff; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.18); padding: 10px 16px; flex-shrink: 0; border-left: 4px solid #0078A8; font-size: 16px; font-weight: 800; color: #0078A8; line-height: 1.1; letter-spacing: .3px; }
+.fb-counts-card { display: flex; align-items: center; gap: 14px; background: #ffffff; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.18); padding: 8px 14px; flex-shrink: 0; }
 .fb-cnt { display: flex; align-items: baseline; gap: 4px; }
 .fb-cnt b { font-size: 18px; font-weight: 800; color: #334155; line-height: 1; }
 .fb-cnt.total b { color: #0078A8; }
@@ -216,6 +215,11 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .nd-name { color: #0078A8; font-weight: bold; font-size: 14px; margin-bottom: 6px; }
 .nd-mini { margin-top: 8px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 8px; }
 .nd-mini-title { font-size: 10px; font-weight: bold; color: #888; text-transform: uppercase; margin-bottom: 3px; }
+.ndbar-chart { display: flex; align-items: flex-end; gap: 3px; margin-top: 4px; }
+.ndbar-col { flex: 1 1 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-width: 0; }
+.ndbar-val { font-size: 8px; font-weight: bold; color: #334155; margin-bottom: 2px; white-space: nowrap; }
+.ndbar { width: 72%; min-width: 6px; border-radius: 2px 2px 0 0; box-shadow: inset 0 -1px 0 rgba(0,0,0,.06); }
+.ndbar-lbl { font-size: 7px; color: #94a3b8; margin-top: 2px; white-space: nowrap; }
 
 </style>
 </head>
@@ -249,13 +253,11 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 
 <div id="filter-bar">
-    <div class="fb-brand">
-        <div class="fb-brand-title">SPAIN CAPACITY VIEWER</div>
-        <div class="fb-brand-counts">
-            <span class="fb-cnt"><b id="count-dso">0</b><i>DSO</i></span>
-            <span class="fb-cnt"><b id="count-tso">0</b><i>TSO</i></span>
-            <span class="fb-cnt total"><b id="count-total">0</b><i>Total</i></span>
-        </div>
+    <div class="fb-title-card">SPAIN CAPACITY VIEWER</div>
+    <div class="fb-counts-card">
+        <span class="fb-cnt"><b id="count-dso">0</b><i>DSO</i></span>
+        <span class="fb-cnt"><b id="count-tso">0</b><i>TSO</i></span>
+        <span class="fb-cnt total"><b id="count-total">0</b><i>Total</i></span>
     </div>
     <div class="fb-main">
         <span class="fb-main-label">SELECTION</span>
@@ -303,7 +305,6 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 <div id="info-panel">
     <div id="node-detail">
-        <div id="node-detail-empty" class="nd-empty">Haz clic en un nodo del mapa para ver su ficha completa.</div>
         <div id="node-detail-body"></div>
     </div>
 </div>
@@ -418,6 +419,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
         const kmlBtn = document.querySelector('.leaflet-control-kml');
         if (kmlBtn) { kmlBtn.style.display = 'flex'; }
         if (!isAppInitialized) { init(); isAppInitialized = true; }
+        if (typeof syncBarOffset === 'function') setTimeout(syncBarOffset, 50);
     } else {
         error.textContent = '❌ Wrong password. Try again.';
         input.value = ''; input.focus();
@@ -711,6 +713,7 @@ function construirEntries() {
     legendControl.addTo(map);
     applyFilters();
     setupHistorySearch();
+    syncBarOffset();
 }
 
 // ====== RENDER DE TODAS LAS VARIABLES EN EL POPUP ======
@@ -921,21 +924,17 @@ function applyFilters() {
         m._fichaItems = g.items;                       // grupo de nodos de esta coordenada
         m.on('click', () => showNodePanel(g.items));   // abre la ficha lateral (detalle completo)
 
-        // Pequeño popup en el mapa: solo nombre + capacidad de la variable activa
+        // Popup del mapa: nombre (naranja, con icono) + operador, tensión y provincia
         const miniPopup = g.items.map(it => {
-            let val;
-            if (type === 'storage') {
-                const isT = it.grid === 'TSO';
-                const a = cleanNum(it[`${year}_${month}_${isT ? 'stg-gen' : 'gen'}`]);
-                const b = cleanNum(it[`${year}_${month}_${isT ? 'stg-dem' : 'dem'}`]);
-                val = (isNaN(a) || isNaN(b)) ? NaN : Math.min(a, b);
-            } else {
-                val = cleanNum(it[`${year}_${month}_${type}`]);
-            }
-            const vt = isNaN(val) ? 'No Info' : val + ' MW';
-            return `<div style="font-weight:bold;color:#0078A8;font-size:12px;line-height:1.2;">${it.name}</div><div style="font-size:11px;color:#475569;">${vt}</div>`;
-        }).join('<div style="border-top:1px solid #eee;margin:4px 0;"></div>');
-        m.bindPopup(`<div style="min-width:110px;max-height:160px;overflow:auto;">${miniPopup}</div>`, { closeButton: true, autoPan: false });
+            return `
+                <div style="font-weight:bold;color:#f97316;font-size:13px;line-height:1.25;margin-bottom:3px;">📍 ${it.name}</div>
+                <table style="font-size:11px;color:#475569;border-collapse:collapse;">
+                    <tr><td style="padding:1px 8px 1px 0;color:#94a3b8;">Operator</td><td style="font-weight:bold;">${it.oper || '–'}</td></tr>
+                    <tr><td style="padding:1px 8px 1px 0;color:#94a3b8;">Voltage</td><td style="font-weight:bold;">${it.tens || '–'} kV</td></tr>
+                    <tr><td style="padding:1px 8px 1px 0;color:#94a3b8;">Province</td><td style="font-weight:bold;">${it.prov || '–'}</td></tr>
+                </table>`;
+        }).join('<div style="border-top:1px solid #eee;margin:5px 0;"></div>');
+        m.bindPopup(`<div style="min-width:140px;max-height:180px;overflow:auto;">${miniPopup}</div>`, { closeButton: true, autoPan: false });
 
         g.items.forEach(item => { markersInMap[item.name.toLowerCase()] = m; });
     }
@@ -1021,7 +1020,7 @@ function buildNodeFichaHTML(items) {
                 </table>
                 <div class="nd-mini">
                     <div class="nd-mini-title">Trend · ${miniTitle} (MW)</div>
-                    ${miniSparklineSVG(miniSeries.labels, miniSeries.vals)}
+                    ${miniBarsHTML(miniSeries.labels, miniSeries.vals)}
                 </div>
                 ${richHtml}
                 <button class="popup-btn-hist" onclick="openHistory('${safeName}')">📊 View Historical Data</button>
@@ -1054,47 +1053,43 @@ function nodeMonthlySeries(item, type) {
 }
 
 // Mini sparkline SVG autocontenido (sin Chart.js): puntos válidos unidos, huecos en los NaN
-function miniSparklineSVG(labels, vals) {
-    const W = 232, H = 46, pad = 5;
-    const nums = vals.map(v => (v === null || v === undefined || isNaN(v)) ? null : v);
-    const valid = nums.filter(v => v !== null);
-    if (valid.length < 2) return '<div style="font-size:10px;color:#94a3b8;padding:6px 0;">Sin histórico suficiente para esta variable.</div>';
-    const min = Math.min(...valid), max = Math.max(...valid), span = (max - min) || 1, n = nums.length;
-    const X = i => pad + (n === 1 ? 0 : (i * (W - 2 * pad) / (n - 1)));
-    const Y = v => H - pad - ((v - min) / span) * (H - 2 * pad);
-    let d = '', dots = '', started = false, lastI = -1;
+function miniBarsHTML(labels, vals) {
+    const nums = vals.map(v => (v === null || v === undefined || isNaN(v)) ? NaN : v);
+    const valid = nums.filter(v => !isNaN(v));
+    if (!valid.length) return '<div style="font-size:10px;color:#94a3b8;padding:6px 0;">Sin histórico para esta variable.</div>';
+    const max = Math.max(...valid, 0) || 1;          // referencia para la altura de las barras
+    const barArea = 48;                              // px de altura máxima de barra
+    const colorFor = v => isNaN(v) ? '#e2e8f0' : ((ranges.find(r => v <= r.limit) || noInfoConfig).color);
+    let cols = '';
     nums.forEach((v, i) => {
-        if (v === null) { started = false; return; }
-        const cx = X(i).toFixed(1), cy = Y(v).toFixed(1);
-        d += (started ? ` L${cx},${cy}` : ` M${cx},${cy}`);
-        dots += `<circle cx="${cx}" cy="${cy}" r="1.5" fill="#0078A8"/>`;
-        started = true; lastI = i;
+        const lab = labels[i] || '';
+        const short = lab.slice(0, 3) + (lab.split("'")[1] ? ` '${lab.split("'")[1]}` : '');
+        if (isNaN(v)) {
+            cols += `<div class="ndbar-col" title="${lab}: sin dato"><div class="ndbar-val">–</div><div class="ndbar" style="height:3px;background:#e2e8f0;"></div><div class="ndbar-lbl">${short}</div></div>`;
+        } else {
+            const hpx = Math.max(3, Math.round((v / max) * barArea));
+            cols += `<div class="ndbar-col" title="${lab}: ${v} MW"><div class="ndbar-val">${v}</div><div class="ndbar" style="height:${hpx}px;background:${colorFor(v)};"></div><div class="ndbar-lbl">${short}</div></div>`;
+        }
     });
-    const lastDot = lastI >= 0 ? `<circle cx="${X(lastI).toFixed(1)}" cy="${Y(nums[lastI]).toFixed(1)}" r="3" fill="#f97316"/>` : '';
-    return `<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" preserveAspectRatio="none" style="display:block;">
-        <path d="${d.trim()}" fill="none" stroke="#0078A8" stroke-width="1.6"/>${dots}${lastDot}
-    </svg>
-    <div style="display:flex;justify-content:space-between;font-size:9px;color:#94a3b8;margin-top:2px;">
-        <span>${labels[0]}</span><span>mín ${min} · máx ${max}</span><span>${labels[labels.length - 1]}</span>
-    </div>`;
+    return `<div class="ndbar-chart">${cols}</div>`;
 }
 
 function showNodePanel(items) {
     if (!items || !items.length) return;
     window._activeNodeKey = `${items[0].x}_${items[0].y}`;
-    const empty = document.getElementById('node-detail-empty');
+    const panel = document.getElementById('info-panel');
     const body = document.getElementById('node-detail-body');
     if (!body) return;
-    if (empty) empty.style.display = 'none';
+    if (panel) panel.style.display = 'block';
     body.innerHTML = `<div class="nd-toolbar"><span class="nd-close" onclick="clearNodePanel()" title="Cerrar ficha">✕</span></div>` + buildNodeFichaHTML(items);
 }
 
 function clearNodePanel() {
     window._activeNodeKey = null;
-    const empty = document.getElementById('node-detail-empty');
+    const panel = document.getElementById('info-panel');
     const body = document.getElementById('node-detail-body');
     if (body) body.innerHTML = '';
-    if (empty) empty.style.display = 'block';
+    if (panel) panel.style.display = 'none';
 }
 
 // ====== DESPLEGABLES DE LA BARRA DE FILTROS ======
@@ -1121,6 +1116,20 @@ document.addEventListener('click', function (e) { if (!e.target.closest('.fb-dro
 window.addEventListener('resize', _closeDropdowns);
 const _fbEl = document.getElementById('filter-bar');
 if (_fbEl) _fbEl.addEventListener('scroll', _closeDropdowns);
+
+// Mide la altura real de la barra (1 o varias filas al envolver) y empuja panel/buscador/controles justo debajo
+function syncBarOffset() {
+    const bar = document.getElementById('filter-bar');
+    if (bar) document.documentElement.style.setProperty('--bar-off', (bar.offsetHeight + 12) + 'px');
+    // Controles del mapa (zoom, capas, KML, medida) bajo los botones de acción de la esquina derecha
+    const sc = document.getElementById('search-container');
+    const scH = (sc && sc.offsetParent !== null) ? sc.offsetHeight : 0;
+    document.documentElement.style.setProperty('--right-off', (scH > 0 ? scH + 18 : 12) + 'px');
+}
+window.addEventListener('resize', syncBarOffset);
+window.addEventListener('load', syncBarOffset);
+// recálculo tras el primer pintado (por si las fuentes cambian la altura)
+setTimeout(syncBarOffset, 300);
 // Marca el botón cuyo filtro no está al 100% (alguna casilla desmarcada)
 function updateFilterBadges() {
     const pairs = { 'm-prov':'btn-dd-prov', 'm-oper':'btn-dd-oper', 'm-tens':'btn-dd-tens', 'm-type':'btn-dd-type', 'ranges-container':'btn-dd-ranges' };
