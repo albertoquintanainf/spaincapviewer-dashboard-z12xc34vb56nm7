@@ -19,7 +19,7 @@
 /* --- BASE & MAP --- */
 body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #f0f2f5; }
 #map { height: 100vh; width: 100%; }
-.leaflet-top.leaflet-right { z-index: 10000 !important; margin-top: 10px !important; display: flex; flex-direction: column; gap: 8px !important; align-items: flex-end; padding-top: 0; }
+.leaflet-top.leaflet-right { z-index: 10000 !important; margin-top: 66px !important; display: flex; flex-direction: column; gap: 8px !important; align-items: flex-end; padding-top: 0; }
 .leaflet-control-layers { position: relative !important; top: auto !important; right: auto !important; margin: 0 !important; border-radius: 8px !important; border: none !important; box-shadow: 0 2px 10px rgba(0,0,0,0.2) !important; font-family: 'Segoe UI', sans-serif; font-size: 13px; background-color: white !important; }
 .leaflet-control-layers-toggle {width: 34px !important;height: 34px !important; background-size: 18px 18px !important;}
 .leaflet-control-layers-expanded { min-width: 100px !important; z-index: 10005 !important; }
@@ -27,7 +27,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .leaflet-bottom.leaflet-left .leaflet-control-scale {margin-left: 300px !important; margin-bottom: 4px !important; }
 	
 	/* --- PANEL LATERAL & COMPONENTES --- */
-#info-panel { position: absolute; top: 10px; left: 10px; z-index: 1000; text-align: center; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); width: 250px; max-height: 92vh; overflow-y: auto; }
+#info-panel { position: absolute; top: 66px; left: 10px; z-index: 1000; text-align: center; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); width: 250px; max-height: 92vh; overflow-y: auto; }
 .main-header { border-bottom: 2px solid #0078A8; padding-bottom: 10px; margin-bottom: 15px; }
 .main-title { font-size: 14px; font-weight: bold; color: #1a202c; display: block; margin-bottom: 8px; }
 .month-selector-box { margin-bottom: 15px; background: #eef2f7; padding: 10px; border-radius: 8px; border: 1px solid #d1d9e6; }
@@ -60,15 +60,11 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 #zero-star-modal-close { position: absolute; top: 12px; right: 16px; font-size: 18px; cursor: pointer; color: #64748b; line-height: 1; background: none; border: none; padding: 0; }
 #zero-star-modal-close:hover { color: #0078A8; }
 	
-/* --- ELEMENTOS DEL MAPA (LEYENDA & PROYECTOS) --- */
+/* --- ELEMENTOS DEL MAPA (LEYENDA) --- */
 .legend { padding: 12px; background: white !important; line-height: 22px; color: #333; box-shadow: 0 0 15px rgba(0,0,0,0.1); border-radius: 8px; font-size: 10px; min-width: 150px; }
 .legend-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 2px; }
 .legend-count { font-weight: bold; color: #0078A8; background: #eef2f7; padding: 0px 5px; border-radius: 3px; font-size: 10px; }
 .legend i { display: inline-block; width: 10px; height: 10px; margin-right: 8px; border-radius: 50%; border: 1px solid #fff; vertical-align: middle; }
-.project-label-container { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.project-icon-wrapper { font-size: 22px; line-height: 1; text-shadow: 0 0 4px white; }
-.project-name-tag { background: rgba(255, 255, 255, 0.9); border: 1px solid #999; border-radius: 3px; padding: 1px 4px; font-size: 9px; font-weight: bold; color: #000; white-space: nowrap; margin-top: 2px; }
-.project-row { display: flex; align-items: center; justify-content: space-between; padding: 6px; background: #fff; border: 1px solid #eee; border-radius: 6px; margin-bottom: 4px; font-size: 12px; }
 .range-row { background: #fdfdfd; padding: 8px; border-radius: 8px; border: 1px solid #eaeaea; margin-bottom: 6px; font-size: 11px; }
 .range-row.disabled { opacity: 0.5; background: #f1f1f1; }
 .range-header { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
@@ -132,7 +128,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 
 /* --- BUSCADORES (GENERAL & HISTÓRICO) --- */
-#search-container { position: fixed; top: 10px; right: 60px; z-index: 9999; width: 220px; display: flex; flex-direction: column; gap: 5px; }
+#search-container { position: fixed; top: 66px; right: 60px; z-index: 9999; width: 220px; display: flex; flex-direction: column; gap: 5px; }
 .search-wrapper { background: white; padding: 4px; border-radius: 10px; display: flex; border: 2px solid #0078A8; position: relative; box-sizing: border-box; width: 100%; }
 #node-search-input { width: 100%; padding: 10px; border: 1px solid #eee; border-radius: 6px; font-size: 12px; outline: none; background: #fff; padding-right: 30px; }
 .search-results { position: absolute;top: 100%;left: 0;width: 100%;background: white; border-radius: 8px; margin-top: 5px; max-height: 400px; overflow-y: auto; box-shadow: 0 8px 20px rgba(0,0,0,0.3); display: none; border: 1px solid #ddd; }
@@ -177,13 +173,40 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 @media (max-width: 1280px) {  #info-panel { width: 200px; padding: 12px; font-size: 11px; max-height: 92vh; }  .main-header span { font-size: 14px !important; }  .stat-val { font-size: 12px; }  .stat-label { font-size: 8px; }  .stats-grid { padding: 8px; gap: 6px; }  .btn-comp { font-size: 11px; }  .btn-whats-new { font-size: 11px; }
   #search-container { width: 185px; }  .section-title { font-size: 10px; }  .select-option { font-size: 11px; }  .multiselect-container { max-height: 75px; }  .range-row { font-size: 10px; padding: 6px; }  select, .month-select { font-size: 12px; padding: 5px; }  .modal-content { width: 500px; padding: 20px; }  #chart-container { height: 240px; }
   .leaflet-control-layers-expanded { font-size: 10px !important; }  .search-results { font-size: 11px; }  .search-item { padding: 8px; font-size: 11px; }  .suggestion-item { padding: 8px 12px; font-size: 11px; }  #node-search-input { font-size: 12px; padding: 8px; }}
-@media (max-width: 1024px) {  #info-panel { width: 180px; padding: 10px; font-size: 10px; max-height: 90vh; top: 8px; left: 8px; }  .main-header span { font-size: 13px !important; }  .stat-val { font-size: 11px; }  .stat-label { font-size: 7px; }  .stats-grid { padding: 6px; gap: 4px; }  .btn-comp { font-size: 10px; padding: 6px; }
+@media (max-width: 1024px) {  #info-panel { width: 180px; padding: 10px; font-size: 10px; max-height: 90vh; top: 64px; left: 8px; }  .main-header span { font-size: 13px !important; }  .stat-val { font-size: 11px; }  .stat-label { font-size: 7px; }  .stats-grid { padding: 6px; gap: 4px; }  .btn-comp { font-size: 10px; padding: 6px; }
   .btn-whats-new { font-size: 10px; padding: 6px; }  #search-container { width: 165px; }  .section-title { font-size: 9px; }  .select-all-btn { font-size: 9px; }  .select-option { font-size: 10px; }  .multiselect-container { max-height: 65px; padding: 6px; }  .range-row { font-size: 9px; padding: 5px; }  select, .month-select { font-size: 11px; padding: 4px; }
   .section-header { margin: 10px 0 4px 0; }  .modal-content { width: 90vw; padding: 16px; }  #chart-container { height: 220px; }  .node-info-container { padding: 10px; }  .info-grid { font-size: 12px; }  .leaflet-bottom.leaflet-left .leaflet-control-scale { margin-left: 200px !important; }  .search-results { font-size: 10px; }
   .search-item { padding: 7px; font-size: 10px; }  .suggestions-box, .suggestions-box-minimal { font-size: 10px; }  .suggestion-item { padding: 7px 10px; font-size: 10px; }  #node-search-input { font-size: 11px; padding: 7px; }}
 @media (max-width: 900px) {  #info-panel { width: 160px; padding: 8px; font-size: 10px; max-height: 88vh; }  .btn-comp { font-size: 10px; padding: 5px; }  .btn-whats-new { font-size: 10px; padding: 5px; }  #search-container { width: 150px; }  .leaflet-bottom.leaflet-left .leaflet-control-scale { margin-left: 175px !important; }
   .search-results { font-size: 9px; }  .search-item { padding: 6px; font-size: 9px; }  .suggestions-box, .suggestions-box-minimal { font-size: 9px; }  .suggestion-item { padding: 6px 8px; font-size: 9px; }  #node-search-input { font-size: 10px; padding: 6px; }}
 		
+/* --- BARRA HORIZONTAL DE FILTROS --- */
+#filter-bar { position: fixed; top: 0; left: 0; width: 100%; box-sizing: border-box; z-index: 1200; display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.12); overflow-x: auto; white-space: nowrap; }
+.fb-main { display: inline-flex; align-items: center; gap: 6px; background: #eaf4fb; border: 1px solid #b9def0; border-radius: 8px; padding: 5px 8px; flex-shrink: 0; }
+.fb-main-label { font-size: 10px; font-weight: bold; color: #0078A8; letter-spacing: .5px; }
+.fb-main-select { padding: 6px 8px; border-radius: 6px; border: 1.5px solid #0078A8; font-size: 13px; font-weight: bold; color: #0078A8; background: #fff; cursor: pointer; }
+.fb-sep { width: 1px; height: 28px; background: #e2e8f0; flex-shrink: 0; }
+.fb-dropdown { position: relative; display: inline-block; flex-shrink: 0; }
+.fb-dd-btn { padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1; background: #f8fafc; font-size: 12px; font-weight: bold; color: #475569; cursor: pointer; }
+.fb-dd-btn:hover { background: #eef2f7; border-color: #94a3b8; }
+.fb-dd-btn.has-filter { border-color: #0078A8; color: #0078A8; background: #eaf4fb; }
+.fb-dd-panel { display: none; position: fixed; min-width: 210px; max-width: 300px; background: #fff; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.18); padding: 10px; z-index: 1300; white-space: normal; }
+.fb-dd-panel.open { display: block; }
+.fb-dd-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid #eee; }
+.fb-dd-head span { font-size: 11px; font-weight: bold; color: #888; text-transform: uppercase; }
+#filter-bar .multiselect-container { border: none; background: transparent; padding: 0; max-height: 260px; margin-bottom: 0; }
+#filter-bar #ranges-container { max-height: 320px; overflow-y: auto; }
+
+/* --- PANEL LATERAL DE NODO (reaprovecha #info-panel) --- */
+#node-detail { margin-top: 12px; }
+.nd-empty { font-size: 12px; color: #94a3b8; text-align: center; padding: 22px 8px; line-height: 1.5; }
+.nd-toolbar { text-align: right; min-height: 16px; }
+.nd-close { cursor: pointer; color: #94a3b8; font-size: 16px; font-weight: bold; line-height: 1; }
+.nd-close:hover { color: #ef4444; }
+.nd-block { border-bottom: 1px solid #eee; padding: 6px 0 10px; margin-bottom: 4px; }
+.nd-block:last-child { border-bottom: none; }
+.nd-name { color: #0078A8; font-weight: bold; font-size: 14px; margin-bottom: 6px; }
+
 </style>
 </head>
 <body>
@@ -215,45 +238,65 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 </div>
 
 
+<div id="filter-bar">
+    <div class="fb-main">
+        <span class="fb-main-label">SELECTION</span>
+        <select id="view-year" class="fb-main-select" onchange="applyFilters()"><option value="26" selected>2026</option></select>
+        <select id="view-month" class="fb-main-select" onchange="applyFilters()"><option value="jan">January</option><option value="feb">February</option><option value="mar">March</option><option value="apr">April</option><option value="may">May</option><option value="jun" selected>June</option><option value="jul">July</option><option value="ago">August</option><option value="sep">September</option><option value="oct">October</option><option value="nov">November</option><option value="dec">December</option></select>
+        <select id="view-red" class="fb-main-select" onchange="applyFilters()"><option value="ALL">DSO+TSO</option><option value="DSO">DSO</option><option value="TSO" selected>TSO</option></select>
+        <select id="view-type" class="fb-main-select" onchange="refreshTypeFilter(); applyFilters()"><option value="gen">Generation (MW)</option><option value="dem" selected>Demand (MW)</option><option value="storage">Storage Gen/Dem (MW)</option></select>
+    </div>
+    <div class="fb-sep"></div>
+    <div class="fb-dropdown">
+        <button class="fb-dd-btn" id="btn-dd-ranges" onclick="toggleDropdown('dd-ranges', event)">Ranges (MW) ▾</button>
+        <div class="fb-dd-panel" id="dd-ranges">
+            <div class="fb-dd-head"><span>Capacity ranges (MW)</span><button class="select-all-btn" onclick="toggleAll('ranges-container')">Select all</button></div>
+            <div id="ranges-container"></div>
+        </div>
+    </div>
+    <div class="fb-dropdown">
+        <button class="fb-dd-btn" id="btn-dd-prov" onclick="toggleDropdown('dd-prov', event)">Province ▾</button>
+        <div class="fb-dd-panel" id="dd-prov">
+            <div class="fb-dd-head"><span>Province</span><button class="select-all-btn" onclick="toggleAll('m-prov')">Select all</button></div>
+            <div id="m-prov" class="multiselect-container"></div>
+        </div>
+    </div>
+    <div class="fb-dropdown">
+        <button class="fb-dd-btn" id="btn-dd-oper" onclick="toggleDropdown('dd-oper', event)">Operator ▾</button>
+        <div class="fb-dd-panel" id="dd-oper">
+            <div class="fb-dd-head"><span>Operator</span><button class="select-all-btn" onclick="toggleAll('m-oper')">Select all</button></div>
+            <div id="m-oper" class="multiselect-container"></div>
+        </div>
+    </div>
+    <div class="fb-dropdown">
+        <button class="fb-dd-btn" id="btn-dd-tens" onclick="toggleDropdown('dd-tens', event)">Voltage (kV) ▾</button>
+        <div class="fb-dd-panel" id="dd-tens">
+            <div class="fb-dd-head"><span>Voltage (kV)</span><button class="select-all-btn" onclick="toggleAll('m-tens')">Select all</button></div>
+            <div id="m-tens" class="multiselect-container"></div>
+        </div>
+    </div>
+    <div class="fb-dropdown">
+        <button class="fb-dd-btn" id="btn-dd-type" onclick="toggleDropdown('dd-type', event)">Type ▾</button>
+        <div class="fb-dd-panel" id="dd-type">
+            <div class="fb-dd-head"><span id="type-filter-label">Type-DEM</span><button class="select-all-btn" onclick="toggleAll('m-type')">Select all</button></div>
+            <div id="m-type" class="multiselect-container"></div>
+        </div>
+    </div>
+</div>
+
 <div id="info-panel">
-    <div class="main-header"><span style="font-size: 17px; font-weight:bold;">SPAIN CAPACITY VIEWER</span></div>
-    
+    <div class="main-header"><span style="font-size: 16px; font-weight:bold;">SPAIN CAPACITY VIEWER</span></div>
+
     <div class="stats-grid">
         <div class="stat-box"><span class="stat-label">DSO</span><span id="count-dso" class="stat-val">0</span></div>
         <div class="stat-box"><span class="stat-label">TSO</span><span id="count-tso" class="stat-val">0</span></div>
         <div class="stat-box"><span class="stat-label">TOTAL</span><span id="count-total" class="stat-val total">0</span></div>
     </div>
 
-    <div style="display: flex; flex-direction: column; gap: 8px; background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
-        <label style="font-size: 10px; font-weight:bold; color:#64748b;">MAIN SELECTION</label>
-        <select id="view-year" onchange="applyFilters()"><option value="26" selected>2026</option></select>
-        <select id="view-month" onchange="applyFilters()"><option value="jan">January</option><option value="feb">February</option><option value="mar">March</option><option value="apr">April</option><option value="may">May</option><option value="jun" selected>June</option><option value="jul">July</option><option value="ago">August</option><option value="sep">September</option><option value="oct">October</option><option value="nov">November</option><option value="dec">December</option></select>
-        <select id="view-red" onchange="applyFilters()"><option value="ALL">DSO+TSO</option><option value="DSO">DSO</option><option value="TSO" selected>TSO</option></select>
-		<select id="view-type" onchange="refreshTypeFilter(); applyFilters()"><option value="gen">Generation (MW)</option><option value="dem" selected>Demand (MW)</option><option value="storage">Storage Gen/Dem (MW)</option></select>
-        </select>
+    <div id="node-detail">
+        <div id="node-detail-empty" class="nd-empty">Haz clic en un nodo del mapa para ver su ficha completa.</div>
+        <div id="node-detail-body"></div>
     </div>
-	
-    <div class="section-header">
-    <span class="section-title">HECE Portfolio</span><button class="select-all-btn" onclick="toggleAll('projects-controls')">Select All</button></div>
-    <div id="projects-controls"></div>
-
-    <div class="section-header">
-    <span class="section-title">Capacity ranges (MW)</span>
-    <button class="select-all-btn" onclick="toggleAll('ranges-container')">Select All</button>
-    </div>
-    <div id="ranges-container"></div>
-	
-    <div class="section-header"><span class="section-title">Province</span><button class="select-all-btn" onclick="toggleAll('m-prov')">Select All</button></div>
-    <div id="m-prov" class="multiselect-container"></div>
-
-    <div class="section-header"><span class="section-title">Operator</span><button class="select-all-btn" onclick="toggleAll('m-oper')">Select All</button></div>
-    <div id="m-oper" class="multiselect-container"></div>
-
-    <div class="section-header"><span class="section-title">Voltage (kV)</span><button class="select-all-btn" onclick="toggleAll('m-tens')">Select All</button></div>
-    <div id="m-tens" class="multiselect-container"></div>
-
-    <div class="section-header"><span class="section-title" id="type-filter-label">Type-DEM</span><button class="select-all-btn" onclick="toggleAll('m-type')">Select All</button></div>
-    <div id="m-type" class="multiselect-container"></div>
 </div>
 
 
@@ -448,29 +491,6 @@ proj4.defs("EPSG:32630", "+proj=utm +zone=30 +ellps=WGS84 +datum=WGS84 +units=m 
    	const DATA_BASE_URL = ''; // rawData eliminado: los datos se leen de la raíz del repo (JSON)
 
 
-        const projectsData = [
-           	{ name: "Cervera II", x: 551613.044, y: 4400559.528, type: "PV+WIND" },
-		{ name: "Piedrahita", x: 271225.199, y: 4619046.403, type: "PV+WIND" },
-		{ name: "Tomelloso", x: 510085.155, y: 4328958.97, type: "PV+WIND" },
-		{ name: "Baza", x: 520412.019, y: 4144496.024, type: "PV" },
-		{ name: "Jerez I", x: 234189.509, y: 4067879.634, type: "PV" },
-		{ name: "Jerez II", x: 231387.973, y: 4062128.324, type: "PV" },
-		{ name: "Olmedilla", x: 576031.924, y: 4383746.291, type: "PV" },
-		{ name: "La Venena", x: 374618.221, y: 4659052, type: "PV" },
-		{ name: "Lavanda", x: 318625.942, y: 4617985.317, type: "PV+WIND" },
-		{ name: "Aquitania", x: 491689.767, y: 4716347.333, type: "WIND" },
-		{ name: "Leganés", x: 434281.31, y: 4462463.232, type: "BESS" },
-		{ name: "Los Barrios", x: 278625.31, y: 4008604.54, type: "PV" },
-		{ name: "Las Mesas", x: 287396.02, y: 4013831.06, type: "PV" }
-        ];
-
-        const projectIcons = {
-            "PV": { emoji: "☀️", visible: true },
-            "WIND": { emoji: "🌀", visible: true },
-            "PV+WIND": { emoji: "☀️🌀", visible: true },
-            "BESS": { emoji: "🔋", visible: true }
-        };
-
         let ranges = [
             { id: 'r0', limit: 0, radius: 5, color: "#991b1b", visible: true, count: 0, label: "= 0 MW" },
             { id: 'r1', limit: 0.99, radius: 6, color: "#ef4444", visible: true, count: 0, label: "(0 - 1) MW" },
@@ -485,7 +505,6 @@ proj4.defs("EPSG:32630", "+proj=utm +zone=30 +ellps=WGS84 +datum=WGS84 +units=m 
 
 
         var markersLayer = L.featureGroup().addTo(map);
-        var projectsLayer = L.featureGroup().addTo(map);
         var legendControl = L.control({position: 'bottomright'});
         let allEntries = [];
 		let markersInMap = {};
@@ -679,7 +698,6 @@ function construirEntries() {
     createCheckboxes('m-oper', Array.from(sets.oper).sort());
     window._typeSets = { gen: sets.typeGen, dem: sets.typeDem };
     refreshTypeFilter();
-    if (typeof renderProjectControls === "function") renderProjectControls();
     renderRangeInputs();
     legendControl.addTo(map);
     applyFilters();
@@ -708,7 +726,7 @@ function _richFilas(obj) {
 
 function renderRich(rich) {
     if (!rich || (!rich.gen && !rich.dem)) return '';
-    let h = '<details style="margin-top:6px;"><summary style="cursor:pointer;font-size:11px;font-weight:bold;color:#0078A8;">Ver todas las variables ▾</summary>';
+    let h = '<details open style="margin-top:6px;"><summary style="cursor:pointer;font-size:11px;font-weight:bold;color:#0078A8;">Ver todas las variables ▾</summary>';
     h += '<table style="width:100%;font-size:10px;border-collapse:collapse;margin-top:4px;">';
     if (rich.gen) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">GENERACIÓN</td></tr>' + _richFilas(rich.gen);
     if (rich.dem) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">DEMANDA</td></tr>' + _richFilas(rich.dem);
@@ -741,7 +759,7 @@ function _dsoFilas(datos) {
 
 function renderRichDSO(rich) {
     if (!rich || (!rich.gen && !rich.dem)) return '';
-    let h = '<details style="margin-top:6px;"><summary style="cursor:pointer;font-size:11px;font-weight:bold;color:#0078A8;">Ver todas las variables ▾</summary>';
+    let h = '<details open style="margin-top:6px;"><summary style="cursor:pointer;font-size:11px;font-weight:bold;color:#0078A8;">Ver todas las variables ▾</summary>';
     h += '<table style="width:100%;font-size:10px;border-collapse:collapse;margin-top:4px;">';
     const fg = _dsoFilas(rich.gen), fd = _dsoFilas(rich.dem);
     if (fg) h += '<tr><td colspan="2" style="background:#eef2f7;padding:3px 4px;font-weight:bold;">GENERACIÓN</td></tr>' + fg;
@@ -765,7 +783,6 @@ function refreshTypeFilter() {
 	
 function applyFilters() {
     markersLayer.clearLayers(); 
-    projectsLayer.clearLayers();
     markersInMap = {};
     ranges.forEach(r => r.count = 0);
     noInfoConfig.count = 0;
@@ -861,18 +878,7 @@ function applyFilters() {
     }
 });
 
-    // 3. Proyectos HECE
-    projectsData.forEach(p => {
-        const conf = projectIcons[p.type];
-        if (conf && conf.visible) {
-            const c = proj4("EPSG:32630", "EPSG:4326", [parseFloat(p.x), parseFloat(p.y)]);
-            L.marker([c[1], c[0]], {
-                icon: L.divIcon({ className: 'project-label-container', html: `<div class="project-icon-wrapper">${conf.emoji}</div><div class="project-name-tag">${p.name}</div>`, iconSize: [80, 45] })
-            }).addTo(projectsLayer);
-        }
-    });
-
-    // 4. Dibujar círculos y generar Popups
+    // 3. Dibujar círculos y generar Popups
     for (const k in groupedForMap) {
         const g = groupedForMap[k];
 
@@ -898,104 +904,13 @@ function applyFilters() {
         g.mainConfig = bestConfig;
 
         const c = proj4("EPSG:32630", "EPSG:4326", [g.x, g.y]);
-        let popupHtml = `<div style="max-height:250px; overflow-y:auto; min-width:220px; font-family: 'Segoe UI', sans-serif;">`;
-        
-        g.items.forEach(item => {
-            // Función interna para calcular tendencia (se mantiene igual)
-            const getTrend = (val, pVal) => {
-    const current = val;  // Ya vienen limpios por cleanNum
-    const previous = pVal; // Ya vienen limpios por cleanNum
-
-    // 1. CASO DATA LOST: Antes había número (incluido 0) y ahora es NaN
-    if (!isNaN(previous) && isNaN(current)) {
-        return `<span style="color: #94a3b8; font-size: 10px; font-weight: bold; margin-left: 5px; border: 1px solid #94a3b8; padding: 1px 2px; border-radius: 2px;">🚫 DATA LOST</span>`;
-    }
-
-    // 2. CASO NEW DATA: Antes era NaN y ahora hay un número (incluido 0)
-    if (isNaN(previous) && !isNaN(current)) {
-        return `<span style="color: #3b82f6; font-size: 10px; font-weight: bold; margin-left: 5px; border: 1px solid #3b82f6; padding: 1px 2px; border-radius: 2px;">🆕 NEW DATA</span>`;
-    }
-
-    // 3. Si el actual sigue siendo NaN, no mostramos nada
-    if (isNaN(current)) return "";
-
-    // 4. Cálculo de tendencia normal (entre dos números válidos)
-    const diff = Math.round((current - previous) * 100) / 100;
-    
-    if (diff > 0) return `<span style="color: #22c55e; font-weight: bold; margin-left: 5px;">▲ +${diff}</span>`;
-    if (diff < 0) return `<span style="color: #ef4444; font-weight: bold; margin-left: 5px;">▼ ${diff}</span>`;
-    
-    return `<span style="color: #666; font-weight: bold; margin-left: 5px;">=</span>`;
-};
-
-            let capacityRows = "";
-			if (type === 'storage') {
-    		const isTSO = item.grid === 'TSO';
-   			const suffixGen = isTSO ? 'stg-gen' : 'gen';
-    		const suffixDem = isTSO ? 'stg-dem' : 'dem';
- 
-    		const vG = cleanNum(item[`${year}_${month}_${suffixGen}`]);
-    		const vD = cleanNum(item[`${year}_${month}_${suffixDem}`]);
-    		const pG = cleanNum(item[`${prevYear}_${pMonth}_${suffixGen}`]);
-    		const pD = cleanNum(item[`${prevYear}_${pMonth}_${suffixDem}`]);
-
-    		const calcG = isNaN(vG) ? 0 : vG;
-    		const calcD = isNaN(vD) ? 0 : vD;
-    		const textG = isNaN(vG) ? 'No Info' : vG + ' MW';
-    		const textD = isNaN(vD) ? 'No Info' : vD + ' MW';
-
-   			capacityRows = `
-        <tr>
-            <td style="color: #666; padding: 2px 0;">Stg. Gen (Discharge):</td>
-            <td style="font-weight: bold; text-align: right; color:#f97316;">${textG}${getTrend(vG, pG)}</td>
-        </tr>
-        <tr>
-            <td style="color: #666; padding: 2px 0;">Stg. Dem (Charge):</td>
-            <td style="font-weight: bold; text-align: right; color:#0ea5e9;">${textD}${getTrend(vD, pD)}</td>
-        </tr>
-        <tr style="border-top: 1px dashed #ccc; background: #f8fafc;"> 
-            <td style="color: #000; padding: 4px 0; font-size:10px; font-weight:bold;">Effective (Min):</td>
-            <td style="font-weight: bold; text-align: right; font-size:10px;">${Math.min(calcG, calcD)} MW</td>
-        </tr>`;
-} else {
-    // Caso Gen o Dem puro
-    const v = cleanNum(item[`${year}_${month}_${type}`]);
-    const pV = cleanNum(item[`${prevYear}_${pMonth}_${type}`]);
-    const label = type === 'gen' ? 'Gen' : 'Dem';
-    
-    // Si v es NaN, mostramos 'No Info', si no, el valor + MW
-    const textV = isNaN(v) ? 'No Info' : v + ' MW';
-
-    capacityRows = `<tr>
-        <td style="color: #666; padding: 2px 0;">Capacity (${label}):</td>
-        <td style="font-weight: bold; text-align: right; color:#f97316;">${textV}${getTrend(v, pV)}</td>
-    </tr>`;
-}
-
-            popupHtml += `
-                <div style="border-bottom: 1px solid #eee; padding: 8px 0; margin-bottom: 4px;">
-                    <div style="color: #0078A8; font-weight: bold; font-size: 13px; margin-bottom: 4px;">${item.name}</div>
-                    <table style="width: 100%; font-size: 11px; border-collapse: collapse;">
-                        ${capacityRows}
-                        <tr><td style="color: #666; padding: 4px 0 2px 0;">Voltage:</td><td style="font-weight: bold; text-align: right;">${item.tens} kV</td></tr>
-                        <tr><td style="color: #666; padding: 2px 0;">Grid:</td><td style="font-weight: bold; text-align: right;">${item.grid}</td></tr>
-                        <tr><td style="color: #666; padding: 2px 0;">Operator:</td><td style="font-weight: bold; text-align: right;">${item.oper}</td></tr>
-                        <tr><td style="color: #666; padding: 2px 0;">${type === 'dem' ? 'Type-DEM' : 'Type-GEN'}:</td><td style="font-weight: bold; text-align: right;">${wrapZeroStarIcon((type === 'dem' ? item[`${year}_${month}_ctDem`] : item[`${year}_${month}_ctGen`]) || '–')}</td></tr>
-                    </table>
-                    ${item.grid === 'DSO'
-                        ? renderRichDSO((MONTHS_DATA_DSO[year + '_' + month] || {})[item.dsoKey])
-                        : renderRich(richForMonth(year + '_' + month, item))}
-                    <button class="popup-btn-hist" onclick="openHistory('${item.name}')">📊 View Historical Data</button>
-                </div>`;
-        });
-
-        popupHtml += `</div>`;
-        const m = L.circleMarker([c[1], c[0]], { 
-            radius: g.mainConfig.radius, 
-            fillColor: g.mainConfig.color, 
-            color: "white", weight: 1.5, fillOpacity: 0.8 
-        }).bindPopup(popupHtml).addTo(markersLayer);
-        
+        const m = L.circleMarker([c[1], c[0]], {
+            radius: g.mainConfig.radius,
+            fillColor: g.mainConfig.color,
+            color: "white", weight: 1.5, fillOpacity: 0.8
+        }).addTo(markersLayer);
+        m._fichaItems = g.items;                       // grupo de nodos de esta coordenada
+        m.on('click', () => showNodePanel(g.items));   // abre la ficha lateral (sustituye al popup)
         g.items.forEach(item => { markersInMap[item.name.toLowerCase()] = m; });
     }
 
@@ -1003,9 +918,135 @@ function applyFilters() {
     document.getElementById('count-dso').innerText = dsoT;
     document.getElementById('count-tso').innerText = tsoT;
     document.getElementById('count-total').innerText = dsoT + tsoT;
-    
+
+    // Si hay una ficha abierta, la re-renderizamos con la selección actual (o la cerramos si el nodo ya no se muestra)
+    if (window._activeNodeKey) {
+        if (groupedForMap[window._activeNodeKey]) showNodePanel(groupedForMap[window._activeNodeKey].items);
+        else clearNodePanel();
+    }
+
+    updateFilterBadges();
     renderRangeInputs();
     if (legendControl && legendControl._map) legendControl.update();
+}
+
+// ====== FICHA LATERAL DE NODO (sustituye al popup) ======
+function nodeTrendBadge(val, pVal) {
+    const current = val, previous = pVal;
+    if (!isNaN(previous) && isNaN(current)) return `<span style="color:#94a3b8;font-size:10px;font-weight:bold;margin-left:5px;border:1px solid #94a3b8;padding:1px 2px;border-radius:2px;">🚫 DATA LOST</span>`;
+    if (isNaN(previous) && !isNaN(current)) return `<span style="color:#3b82f6;font-size:10px;font-weight:bold;margin-left:5px;border:1px solid #3b82f6;padding:1px 2px;border-radius:2px;">🆕 NEW DATA</span>`;
+    if (isNaN(current)) return "";
+    const diff = Math.round((current - previous) * 100) / 100;
+    if (diff > 0) return `<span style="color:#22c55e;font-weight:bold;margin-left:5px;">▲ +${diff}</span>`;
+    if (diff < 0) return `<span style="color:#ef4444;font-weight:bold;margin-left:5px;">▼ ${diff}</span>`;
+    return `<span style="color:#666;font-weight:bold;margin-left:5px;">=</span>`;
+}
+
+function buildNodeFichaHTML(items) {
+    const year = document.getElementById('view-year').value;
+    const month = document.getElementById('view-month').value;
+    const type = document.getElementById('view-type').value;
+    const months = ["jan","feb","mar","apr","may","jun","jul","ago","sep","oct","nov","dec"];
+    let pIdx = months.indexOf(month) - 1, prevYear = year;
+    if (pIdx < 0) { pIdx = 11; prevYear = (parseInt(year) - 1).toString(); }
+    const pMonth = months[pIdx];
+
+    let html = '';
+    items.forEach(item => {
+        let capacityRows = "";
+        if (type === 'storage') {
+            const isTSO = item.grid === 'TSO';
+            const sg = isTSO ? 'stg-gen' : 'gen', sd = isTSO ? 'stg-dem' : 'dem';
+            const vG = cleanNum(item[`${year}_${month}_${sg}`]);
+            const vD = cleanNum(item[`${year}_${month}_${sd}`]);
+            const pG = cleanNum(item[`${prevYear}_${pMonth}_${sg}`]);
+            const pD = cleanNum(item[`${prevYear}_${pMonth}_${sd}`]);
+            const calcG = isNaN(vG) ? 0 : vG, calcD = isNaN(vD) ? 0 : vD;
+            const textG = isNaN(vG) ? 'No Info' : vG + ' MW', textD = isNaN(vD) ? 'No Info' : vD + ' MW';
+            capacityRows = `
+                <tr><td style="color:#666;padding:2px 0;">Stg. Gen (Discharge):</td><td style="font-weight:bold;text-align:right;color:#f97316;">${textG}${nodeTrendBadge(vG,pG)}</td></tr>
+                <tr><td style="color:#666;padding:2px 0;">Stg. Dem (Charge):</td><td style="font-weight:bold;text-align:right;color:#0ea5e9;">${textD}${nodeTrendBadge(vD,pD)}</td></tr>
+                <tr style="border-top:1px dashed #ccc;background:#f8fafc;"><td style="color:#000;padding:4px 0;font-size:10px;font-weight:bold;">Effective (Min):</td><td style="font-weight:bold;text-align:right;font-size:10px;">${Math.min(calcG,calcD)} MW</td></tr>`;
+        } else {
+            const v = cleanNum(item[`${year}_${month}_${type}`]);
+            const pV = cleanNum(item[`${prevYear}_${pMonth}_${type}`]);
+            const label = type === 'gen' ? 'Gen' : 'Dem';
+            const textV = isNaN(v) ? 'No Info' : v + ' MW';
+            capacityRows = `<tr><td style="color:#666;padding:2px 0;">Capacity (${label}):</td><td style="font-weight:bold;text-align:right;color:#f97316;">${textV}${nodeTrendBadge(v,pV)}</td></tr>`;
+        }
+        const ctVal = (type === 'dem' ? item[`${year}_${month}_ctDem`] : item[`${year}_${month}_ctGen`]) || '–';
+        const richHtml = item.grid === 'DSO'
+            ? renderRichDSO((MONTHS_DATA_DSO[year + '_' + month] || {})[item.dsoKey])
+            : renderRich(richForMonth(year + '_' + month, item));
+        const safeName = String(item.name).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+        html += `
+            <div class="nd-block">
+                <div class="nd-name">${item.name}</div>
+                <table style="width:100%;font-size:11px;border-collapse:collapse;">
+                    ${capacityRows}
+                    <tr><td style="color:#666;padding:4px 0 2px 0;">Voltage:</td><td style="font-weight:bold;text-align:right;">${item.tens} kV</td></tr>
+                    <tr><td style="color:#666;padding:2px 0;">Grid:</td><td style="font-weight:bold;text-align:right;">${item.grid}</td></tr>
+                    <tr><td style="color:#666;padding:2px 0;">Operator:</td><td style="font-weight:bold;text-align:right;">${item.oper}</td></tr>
+                    <tr><td style="color:#666;padding:2px 0;">${type === 'dem' ? 'Type-DEM' : 'Type-GEN'}:</td><td style="font-weight:bold;text-align:right;">${wrapZeroStarIcon(ctVal)}</td></tr>
+                </table>
+                ${richHtml}
+                <button class="popup-btn-hist" onclick="openHistory('${safeName}')">📊 View Historical Data</button>
+            </div>`;
+    });
+    return html;
+}
+
+function showNodePanel(items) {
+    if (!items || !items.length) return;
+    window._activeNodeKey = `${items[0].x}_${items[0].y}`;
+    const empty = document.getElementById('node-detail-empty');
+    const body = document.getElementById('node-detail-body');
+    if (!body) return;
+    if (empty) empty.style.display = 'none';
+    body.innerHTML = `<div class="nd-toolbar"><span class="nd-close" onclick="clearNodePanel()" title="Cerrar ficha">✕</span></div>` + buildNodeFichaHTML(items);
+}
+
+function clearNodePanel() {
+    window._activeNodeKey = null;
+    const empty = document.getElementById('node-detail-empty');
+    const body = document.getElementById('node-detail-body');
+    if (body) body.innerHTML = '';
+    if (empty) empty.style.display = 'block';
+}
+
+// ====== DESPLEGABLES DE LA BARRA DE FILTROS ======
+function toggleDropdown(id, ev) {
+    if (ev) ev.stopPropagation();
+    const panel = document.getElementById(id);
+    if (!panel) return;
+    const wasOpen = panel.classList.contains('open');
+    document.querySelectorAll('.fb-dd-panel.open').forEach(p => p.classList.remove('open'));
+    if (!wasOpen) {
+        const btn = panel.parentElement.querySelector('.fb-dd-btn');
+        if (btn) {
+            const r = btn.getBoundingClientRect();
+            panel.style.top = (r.bottom + 6) + 'px';
+            const maxLeft = window.innerWidth - 308;            // ancho máx panel (300) + margen
+            panel.style.left = Math.max(8, Math.min(r.left, maxLeft)) + 'px';
+        }
+        panel.classList.add('open');
+    }
+}
+function _closeDropdowns() { document.querySelectorAll('.fb-dd-panel.open').forEach(p => p.classList.remove('open')); }
+// Cerrar desplegables al hacer clic fuera, al redimensionar o al desplazar la barra
+document.addEventListener('click', function (e) { if (!e.target.closest('.fb-dropdown')) _closeDropdowns(); });
+window.addEventListener('resize', _closeDropdowns);
+const _fbEl = document.getElementById('filter-bar');
+if (_fbEl) _fbEl.addEventListener('scroll', _closeDropdowns);
+// Marca el botón cuyo filtro no está al 100% (alguna casilla desmarcada)
+function updateFilterBadges() {
+    const pairs = { 'm-prov':'btn-dd-prov', 'm-oper':'btn-dd-oper', 'm-tens':'btn-dd-tens', 'm-type':'btn-dd-type', 'ranges-container':'btn-dd-ranges' };
+    Object.entries(pairs).forEach(([cont, btnId]) => {
+        const boxes = document.querySelectorAll(`#${cont} input[type=checkbox]`);
+        const checked = document.querySelectorAll(`#${cont} input[type=checkbox]:checked`).length;
+        const btn = document.getElementById(btnId);
+        if (btn) btn.classList.toggle('has-filter', boxes.length > 0 && checked < boxes.length);
+    });
 }
 
 function openHistory(nodoABuscar = '') {
@@ -1099,7 +1140,7 @@ function focusNode(name) {
     const marker = markersInMap[name.toLowerCase()]; // Aseguramos minúsculas
     if (marker) {
         map.setView(marker.getLatLng(), 14);
-        marker.openPopup();
+        if (marker._fichaItems) showNodePanel(marker._fichaItems); // abre la ficha lateral
         document.getElementById('node-search-input').value = name.toUpperCase();
         document.getElementById('search-results').style.display = 'none';
     }
@@ -1109,26 +1150,12 @@ function focusNode(name) {
             if (e.key === 'Enter') { const first = document.querySelector('.search-item'); if (first) first.click(); }
         });
 
-function renderProjectControls() {
-            const container = document.getElementById('projects-controls'); container.innerHTML = '';
-            Object.keys(projectIcons).forEach(type => {
-                const div = document.createElement('div'); div.className = 'project-row';
-                div.innerHTML = `<span>${projectIcons[type].emoji} ${type}</span><input type="checkbox" checked onchange="projectIcons['${type}'].visible=!projectIcons['${type}'].visible; applyFilters()">`;
-                container.appendChild(div);
-            });
-        }
-       
 function toggleAll(id) {
     const boxes = document.querySelectorAll(`#${id} input`);
     const target = !Array.from(boxes).every(b => b.checked);
     
     boxes.forEach(b => {
         b.checked = target;
-
-        if (id === 'projects-controls') {
-            const type = b.parentElement.innerText.trim().split(' ').slice(1).join(' '); 
-            if (projectIcons[type]) projectIcons[type].visible = target;
-        }
 
         if (id === 'ranges-container') {
             const rangeId = b.getAttribute('data-range-id')
