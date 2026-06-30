@@ -253,7 +253,12 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 #gs-controls { display:flex; gap:14px; align-items:center; flex-wrap:wrap; padding:12px 18px 4px; }
 #gs-controls label { font-size:12px; font-weight:bold; color:#334155; }
 #gs-controls select { padding:5px 8px; border-radius:6px; border:1px solid #cbd5e1; font-size:13px; color:#0f172a; margin-left:4px; }
-.gs-body { padding:8px 18px 28px; display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap; }
+.gs-body { padding:8px 18px 28px; }
+.gs-view-table { display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap; width:100%; }
+#gs-map-wrap { width:100%; }
+#gs-map { width:100%; height:calc(100vh - 175px); min-height:420px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+#gs-map-legend { margin-top:8px; font-size:11px; color:#475569; display:flex; gap:18px; align-items:center; flex-wrap:wrap; }
+.gs-leg-dot { display:inline-block; width:12px; height:12px; border-radius:50%; margin:0 4px; vertical-align:middle; border:1px solid #fff; box-shadow:0 0 0 1px #cbd5e1; }
 #gs-table-wrap { flex:1 1 680px; overflow:auto; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); max-height:calc(100vh - 150px); }
 .gs-table { border-collapse:collapse; width:100%; font-size:12px; }
 .gs-table th, .gs-table td { padding:7px 9px; border-bottom:1px solid #e2e8f0; text-align:right; white-space:nowrap; }
@@ -2229,17 +2234,39 @@ function renderKML(xmlData) {
 /* ===================== GRID STATUS — módulo de análisis de red (Fase 1) ===================== */
 const GS_MONTHS = ["jan","feb","mar","apr","may","jun","jul","ago","sep","oct","nov","dec"];
 const GS_MLBL = {jan:'Enero',feb:'Febrero',mar:'Marzo',apr:'Abril',may:'Mayo',jun:'Junio',jul:'Julio',ago:'Agosto',sep:'Septiembre',oct:'Octubre',nov:'Noviembre',dec:'Diciembre'};
-let gsSort = { col: 'dispGen', dir: -1 };   // dir: -1 desc, 1 asc
+const GS_SIDELBL = {gen:'Generación', dem:'Demanda', alm:'Almacenamiento'};
+const GS_SIDESHORT = {gen:'Gen', dem:'Dem', alm:'Alm'};
+let gsSort = { col: 'disp', dir: -1 };   // dir: -1 desc, 1 asc
 
 function gsMaxOf(){ const n=[].slice.call(arguments).map(cleanNum).filter(function(v){return !isNaN(v);}); return n.length?Math.max.apply(null,n):NaN; }
 function gsMinDef(a,b){ if(isNaN(a)&&isNaN(b))return NaN; if(isNaN(a))return b; if(isNaN(b))return a; return Math.min(a,b); }
+function gsSat(occOrGranted, disp){ if(!isNaN(occOrGranted)&&!isNaN(disp)&&(occOrGranted+disp)>0) return occOrGranted/(occOrGranted+disp); return NaN; }
+function gsIsTender(s){ return !!s && /tender|concurso/i.test(String(s)) && !/no tender/i.test(String(s)); }
 
-// --- Métricas por nudo TSO en un mes (key = "AA_mmm") ---
+// Clasifica el texto de motivo en causas de 'no solicitable' (multietiqueta: un nudo puede tener varias)
+function gsCausas(text){
+    if(!text) return [];
+    const t=String(text).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+    const out=[];
+    if(/concurso/.test(t)) out.push('Concurso');
+    if(/transicion justa|ntj/.test(t)) out.push('Transición Justa (NTJ)');
+    if(/sin posibilidad de conexion/.test(t)) out.push('Sin posibilidad de conexión');
+    if(/limitacion/.test(t)) out.push('Limitación por posición');
+    if(/valor de referencia no acordado/.test(t)) out.push('Valor referencia no acordado');
+    if(/rdl[\s-]?7\/2026|rd[\s-]?ley 7\/2026|real decreto.?ley 7\/2026|articulo 13\.?6|capacidad liberada reservada/.test(t)) out.push('RDL 7/2026 (art. 13.6)');
+    if(/orden ted/.test(t)) out.push('Normativa (Orden TED)');
+    if(/0\*|nudo 0|sin capacidad/.test(t)) out.push('Sin capacidad / 0*');
+    if(out.length===0) out.push('Otros');
+    return out;
+}
+
+// --- Métricas por nudo TSO en un mes -> {gen,dem,alm} ---
 function gsTSO(entry, key){
     const rich = richForMonth(key, entry); if(!rich) return null;
     const g=rich.gen||{}, d=rich.dem||{};
     const dg=g.disp||{}, dd=d.disp||{}, mg=g.margen||{}, md=d.margen||{};
-    const nd=g.no_disp||{}, no=d.no_otorgable||{}, lib=g.liberada||{}, ot=g.otorgada||{};
+    const nd=g.no_disp||{}, no=d.no_otorgable||{}, otg=g.otorgada||{}, otd=d.otorgada||{};
+    const resv=g.reserva||{}, conc=d.concurso||{};
     const dispGen = gsMaxOf(dg.gen_mges_rdt, dg.gen_mpe_rdt, dg.gen_mges_rdd, dg.gen_mpe_rdd);
     const dispDem = gsMaxOf(dd.dem_ch, dd.dem_sh, dd.dem_no_cep);
     const almG = gsMaxOf(dg.alm_mges_rdt, dg.alm_mpe_rdt, dg.alm_mges_rdd, dg.alm_mpe_rdd);
@@ -2247,50 +2274,64 @@ function gsTSO(entry, key){
     const dispAlm = gsMinDef(almG, almD);
     const margenGen = gsMaxOf(mg.gen_mges, mg.gen_mpe);
     const margenDem = gsMaxOf(md.dem_ch, md.dem_sh, md.dem_no_cep);
-    const liberada = gsMaxOf(lib.lib_mges, lib.lib_mpe);
-    const motivoGen = (nd.motivo!=null && String(nd.motivo).trim()!=='') ? String(nd.motivo).trim() : null;
-    const motivoDem = (no.motivo!=null && String(no.motivo).trim()!=='') ? String(no.motivo).trim() : null;
-    const og = cleanNum(ot.gen);
-    let sat = NaN; if(!isNaN(og) && !isNaN(dispGen) && (og+dispGen)>0) sat = og/(og+dispGen);
-    return { grid:'TSO', dispGen:dispGen, dispDem:dispDem, dispAlm:dispAlm, margenGen:margenGen, margenDem:margenDem, liberada:liberada,
-             noOtorgGen: motivoGen!==null, noOtorgDem: motivoDem!==null, motivoGen:motivoGen, motivoDem:motivoDem, sat:sat };
+    const margenAlm = gsMaxOf(mg.alm_mges, mg.alm_mpe);
+    const otGen = cleanNum(otg.gen), otAlm = cleanNum(otg.alm), otDem = cleanNum(otd.dem_rdt);
+    const motG = (nd.motivo!=null && String(nd.motivo).trim()!=='') ? String(nd.motivo).trim() : '';
+    const motD = (no.motivo!=null && String(no.motivo).trim()!=='') ? String(no.motivo).trim() : '';
+    const ctG = ctGenFromRich(rich), ctD = ctDemFromRich(rich);
+    const enConcG = gsIsTender(ctG), enConcD = gsIsTender(ctD);
+    // texto de causa combinado (motivo + reserva/concurso + normativa + estado de concurso)
+    const reasonGen=[motG, (resv.motivo!=null?String(resv.motivo).trim():''), (resv.normativa!=null?String(resv.normativa).trim():''), (enConcG?'Concurso':'')].filter(Boolean).join(' · ');
+    const concNudo=(String(conc.nudo_concurso||'').toUpperCase()==='SI')?'Nudo de concurso':'';
+    const reasonDem=[motD, concNudo, (conc.normativa!=null?String(conc.normativa).trim():''), (enConcD?'Concurso':'')].filter(Boolean).join(' · ');
+    const reasonAlm=(!isNaN(dispAlm)&&dispAlm<=0)?'Sin capacidad':'';
+    return { grid:'TSO',
+      gen:{disp:dispGen, margen:margenGen, otorgada:otGen, noSolic:reasonGen!=='', causas:gsCausas(reasonGen), sat:gsSat(otGen,dispGen), enConcurso:enConcG},
+      dem:{disp:dispDem, margen:margenDem, otorgada:otDem, noSolic:reasonDem!=='', causas:gsCausas(reasonDem), sat:gsSat(otDem,dispDem), enConcurso:enConcD},
+      alm:{disp:dispAlm, margen:margenAlm, otorgada:otAlm, noSolic:reasonAlm!=='', causas:gsCausas(reasonAlm), sat:gsSat(otAlm,dispAlm), enConcurso:false}
+    };
 }
-// --- Métricas por nudo DSO en un mes ---
+// --- Métricas por nudo DSO en un mes -> {gen,dem,alm} ---
 function gsDSO(entry, key){
     const rich = (MONTHS_DATA_DSO[key]||{})[entry.dsoKey]; if(!rich) return null;
     const g=rich.gen||{}, d=rich.dem||{};
     const dispGen=cleanNum(g.disp), dispDem=cleanNum(d.disp);
     const dispAlm=gsMinDef(dispGen,dispDem);
-    const ocup=cleanNum(g.ocupada);
-    let sat=NaN; if(!isNaN(ocup)&&!isNaN(dispGen)&&(ocup+dispGen)>0) sat=ocup/(ocup+dispGen);
-    const noG=!isNaN(dispGen)&&dispGen<=0, noD=!isNaN(dispDem)&&dispDem<=0;
+    const ocG=cleanNum(g.ocupada), ocD=cleanNum(d.ocupada);
     const is0=dsoIs0Star(g.nudo0)||dsoIs0Star(d.nudo0);
-    const com=(g.coment&&String(g.coment).trim())||(d.coment&&String(d.coment).trim())||null;
-    const motivo= is0 ? 'Nudo 0*' : com;
-    return { grid:'DSO', dispGen:dispGen, dispDem:dispDem, dispAlm:dispAlm, margenGen:NaN, margenDem:NaN, liberada:NaN,
-             noOtorgGen:noG, noOtorgDem:noD, motivoGen: noG?motivo:null, motivoDem: noD?motivo:null, sat:sat };
+    const com=(g.coment&&String(g.coment).trim())||(d.coment&&String(d.coment).trim())||'';
+    const noG=!isNaN(dispGen)&&dispGen<=0, noD=!isNaN(dispDem)&&dispDem<=0, noA=!isNaN(dispAlm)&&dispAlm<=0;
+    const base=(is0?'Nudo 0* ':'')+com;
+    const rG=noG?(base||'Sin capacidad'):'', rD=noD?(base||'Sin capacidad'):'', rA=noA?(base||'Sin capacidad'):'';
+    return { grid:'DSO',
+      gen:{disp:dispGen, margen:NaN, otorgada:ocG, noSolic:noG, causas:gsCausas(rG), sat:gsSat(ocG,dispGen), enConcurso:false},
+      dem:{disp:dispDem, margen:NaN, otorgada:ocD, noSolic:noD, causas:gsCausas(rD), sat:gsSat(ocD,dispDem), enConcurso:false},
+      alm:{disp:dispAlm, margen:NaN, otorgada:NaN, noSolic:noA, causas:gsCausas(rA), sat:NaN, enConcurso:false}
+    };
 }
 function gsNodeMetrics(entry, key){ return entry.grid==='DSO' ? gsDSO(entry,key) : gsTSO(entry,key); }
 
-// --- Agrega por nivel y alcance en un mes ---
-function gsAggregate(level, scope, key){
+// --- Agrega un lado (gen/dem/alm) por nivel y alcance en un mes ---
+function gsAggregate(level, scope, key, side){
     const G={};
     for(const e of allEntries){
         if(scope!=='ALL' && e.grid!==scope) continue;
         const m=gsNodeMetrics(e,key); if(!m) continue;
+        const sm=m[side]; if(!sm) continue;
         let gk;
         if(level==='nac') gk='España';
         else if(level==='ccaa') gk=e.ccaa||'(sin CCAA)';
         else if(level==='prov') gk=e.prov||'(sin provincia)';
         else gk=e.name;
-        const o=G[gk]||(G[gk]={name:gk,n:0,nTSO:0,nDSO:0,dispGen:0,dispDem:0,dispAlm:0,margenGen:0,margenDem:0,liberada:0,noG:0,noD:0,satSum:0,satN:0,motivos:{}});
+        const o=G[gk]||(G[gk]={name:gk,n:0,nTSO:0,nDSO:0,disp:0,margen:0,otorgada:0,noSolic:0,concurso:0,satSum:0,satN:0,causas:{},sumX:0,sumY:0,coordN:0});
         o.n++; if(e.grid==='DSO')o.nDSO++; else o.nTSO++;
+        if(!isNaN(e.x)&&!isNaN(e.y)){ o.sumX+=e.x; o.sumY+=e.y; o.coordN++; }
         const add=function(f,v){ if(!isNaN(v)) o[f]+=v; };
-        add('dispGen',m.dispGen); add('dispDem',m.dispDem); add('dispAlm',m.dispAlm);
-        add('margenGen',m.margenGen); add('margenDem',m.margenDem); add('liberada',m.liberada);
-        if(m.noOtorgGen)o.noG++; if(m.noOtorgDem)o.noD++;
-        if(!isNaN(m.sat)){o.satSum+=m.sat;o.satN++;}
-        [m.motivoGen,m.motivoDem].forEach(function(mo){ if(mo) o.motivos[mo]=(o.motivos[mo]||0)+1; });
+        add('disp',sm.disp); add('margen',sm.margen); add('otorgada',sm.otorgada);
+        if(sm.noSolic)o.noSolic++;
+        if(sm.enConcurso)o.concurso++;
+        if(!isNaN(sm.sat)){o.satSum+=sm.sat;o.satN++;}
+        if(sm.noSolic){ sm.causas.forEach(function(c){ o.causas[c]=(o.causas[c]||0)+1; }); }
     }
     return Object.keys(G).map(function(k){return G[k];});
 }
@@ -2303,16 +2344,25 @@ function gsDelta(cur,prev){
     const up=d>0, col=up?'#16a34a':'#dc2626', ar=up?'▲':'▼';
     return '<span style="color:'+col+';font-size:10px;"> '+ar+' '+gsFmt(Math.abs(d))+'</span>';
 }
+function gsSigned(v){
+    if(isNaN(v)) return '–';
+    if(Math.abs(v)<0.5) return '<span style="color:#94a3b8;">0</span>';
+    const up=v>0;
+    return '<span style="color:'+(up?'#16a34a':'#dc2626')+';font-weight:bold;">'+(up?'+':'−')+gsFmt(Math.abs(v))+'</span>';
+}
 
 function renderGridStatus(){
-    const year=document.getElementById('view-year').value, month=document.getElementById('view-month').value;
+    const year=document.getElementById('gs-year').value, month=document.getElementById('gs-month').value;
     let pi=GS_MONTHS.indexOf(month)-1, py=year; if(pi<0){pi=11;py=(parseInt(year)-1).toString();}
     const key=year+'_'+month, pkey=py+'_'+GS_MONTHS[pi];
+    const side=document.getElementById('gs-side').value;
     const level=document.getElementById('gs-level').value;
     const scope=document.getElementById('gs-scope').value;
-    const cur=gsAggregate(level,scope,key);
-    const prev=gsAggregate(level,scope,pkey);
+    const SL=GS_SIDESHORT[side]||'';
+    const cur=gsAggregate(level,scope,key,side);
+    const prev=gsAggregate(level,scope,pkey,side);
     const pmap={}; prev.forEach(function(g){pmap[g.name]=g;});
+    cur.forEach(function(g){ const pm=(pmap[g.name]&&!isNaN(pmap[g.name].margen))?pmap[g.name].margen:0; g.aflorada=(isNaN(g.margen)?0:g.margen)-pm; });
     const col=gsSort.col, dir=gsSort.dir;
     const val=function(g){ if(col==='name')return g.name; if(col==='sat')return g.satN?g.satSum/g.satN:-1; return g[col]||0; };
     cur.sort(function(a,b){ const va=val(a),vb=val(b); if(col==='name')return dir*String(va).localeCompare(String(vb)); return dir*((va||0)-(vb||0)); });
@@ -2325,45 +2375,118 @@ function renderGridStatus(){
         rows+='<tr>'
           +'<td style="text-align:left;">'+showName+'<div style="font-size:10px;color:#94a3b8;">'+g.nTSO+'T · '+g.nDSO+'D</div></td>'
           +'<td>'+g.n+'</td>'
-          +'<td>'+gsFmt(g.dispGen)+gsDelta(g.dispGen,(p.dispGen===undefined?NaN:p.dispGen))+'</td>'
-          +'<td>'+gsFmt(g.dispDem)+gsDelta(g.dispDem,(p.dispDem===undefined?NaN:p.dispDem))+'</td>'
-          +'<td>'+gsFmt(g.dispAlm)+gsDelta(g.dispAlm,(p.dispAlm===undefined?NaN:p.dispAlm))+'</td>'
-          +'<td>'+gsFmt(g.margenGen)+'</td>'
-          +'<td>'+gsFmt(g.margenDem)+'</td>'
-          +'<td>'+gsFmt(g.liberada)+'</td>'
-          +'<td>'+g.noG+'</td>'
-          +'<td>'+g.noD+'</td>'
+          +'<td>'+gsFmt(g.disp)+gsDelta(g.disp,(p.disp===undefined?NaN:p.disp))+'</td>'
+          +'<td>'+gsFmt(g.margen)+'</td>'
+          +'<td>'+gsSigned(g.aflorada)+'</td>'
+          +'<td>'+gsFmt(g.otorgada)+'</td>'
+          +'<td>'+(g.concurso||0)+'</td>'
+          +'<td>'+g.noSolic+'</td>'
           +'<td>'+(isNaN(sat)?'–':sat.toFixed(0)+'%')+'</td>'
           +'</tr>';
     }
     const table='<table class="gs-table"><thead><tr>'
         +hdr('Nivel','name','text-align:left;')
         +hdr('Nudos','n')
-        +hdr('Disp. Gen (MW)','dispGen')
-        +hdr('Disp. Dem (MW)','dispDem')
-        +hdr('Disp. Alm (MW)','dispAlm')
-        +hdr('Margen Gen','margenGen')
-        +hdr('Margen Dem','margenDem')
-        +hdr('Liberada','liberada')
-        +hdr('No-otorg Gen','noG')
-        +hdr('No-otorg Dem','noD')
-        +hdr('Satur. Gen','sat')
-        +'</tr></thead><tbody>'+(rows||'<tr><td colspan="11">Sin datos para este mes/alcance.</td></tr>')+'</tbody></table>';
+        +hdr('Disp. '+SL+' (MW)','disp')
+        +hdr('Margen '+SL,'margen')
+        +hdr('Aflorada Δmargen','aflorada')
+        +hdr('Otorgada '+SL,'otorgada')
+        +hdr('Concurso','concurso')
+        +hdr('No solicit.','noSolic')
+        +hdr('Satur. '+SL,'sat')
+        +'</tr></thead><tbody>'+(rows||'<tr><td colspan="9">Sin datos para este mes/alcance.</td></tr>')+'</tbody></table>';
 
-    const allMot={};
-    cur.forEach(function(g){ for(const mo in g.motivos) allMot[mo]=(allMot[mo]||0)+g.motivos[mo]; });
-    const motList=Object.keys(allMot).map(function(k){return [k,allMot[k]];}).sort(function(a,b){return b[1]-a[1];});
-    const totalMot=motList.reduce(function(s,x){return s+x[1];},0);
-    const motHtml = motList.length
-      ? motList.map(function(x){return '<div class="gs-mot-row"><span>'+x[0]+'</span><span><b>'+x[1]+'</b> ('+(totalMot?Math.round(100*x[1]/totalMot):0)+'%)</span></div>';}).join('')
-      : '<div style="color:#94a3b8;">Sin motivos de no-otorgable en este alcance.</div>';
+    // Causas de 'no solicitable' clasificadas (multietiqueta)
+    const allC={}; let nNoSolic=0;
+    cur.forEach(function(g){ nNoSolic+=g.noSolic; for(const c in g.causas) allC[c]=(allC[c]||0)+g.causas[c]; });
+    const cList=Object.keys(allC).map(function(k){return [k,allC[k]];}).sort(function(a,b){return b[1]-a[1];});
+    const cHtml = cList.length
+      ? cList.map(function(x){return '<div class="gs-mot-row"><span>'+x[0]+'</span><span><b>'+x[1]+'</b> ('+(nNoSolic?Math.round(100*x[1]/nNoSolic):0)+'%)</span></div>';}).join('')
+        + '<div style="font-size:10px;color:#94a3b8;margin-top:8px;">'+nNoSolic+' nudos no solicitables · un nudo puede tener varias causas</div>'
+      : '<div style="color:#94a3b8;">Sin nudos no solicitables en este alcance.</div>';
 
     document.getElementById('gs-table-wrap').innerHTML=table;
-    document.getElementById('gs-mot-wrap').innerHTML=motHtml;
-    document.getElementById('gs-period').textContent = '20'+year+' · '+(GS_MLBL[month]||month)+'  (Δ vs mes previo)';
+    document.getElementById('gs-mot-wrap').innerHTML=cHtml;
+    document.getElementById('gs-mot-title').textContent='Causas de «no solicitable» ('+(GS_SIDELBL[side]||side)+')';
+    document.getElementById('gs-period').textContent = '20'+year+' · '+(GS_MLBL[month]||month)+' · '+(GS_SIDELBL[side]||side)+'  (Δ vs mes previo)';
+    if(gsView==='map' && gsMap) gsRenderMap();
 }
 function gsSetSort(c){ if(gsSort.col===c) gsSort.dir*=-1; else { gsSort.col=c; gsSort.dir=(c==='name')?1:-1; } renderGridStatus(); }
-function openGridStatus(){ document.getElementById('grid-status').classList.add('open'); renderGridStatus(); }
+// ---- Mapa de burbujas (nacional / comunidad / provincia) ----
+let gsMap=null, gsBubbles=null, gsView='table';
+function gsInitMap(){
+    if(gsMap) return;
+    gsMap=L.map('gs-map',{zoomControl:true}).setView([40.2,-3.6],5.4);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(gsMap);
+    gsBubbles=L.layerGroup().addTo(gsMap);
+}
+function gsSatColor(satPct){ if(isNaN(satPct)) return '#94a3b8'; const s=Math.max(0,Math.min(100,satPct))/100; return 'hsl('+(120*(1-s))+',70%,45%)'; }
+function gsBubbleVal(g,metric){
+    if(metric==='sat') return g.satN?(100*g.satSum/g.satN):NaN;
+    if(metric==='noSolic') return g.noSolic;
+    if(metric==='aflorada') return g.aflorada;
+    return g[metric];
+}
+function gsRenderMap(){
+    if(!gsMap) return;
+    gsBubbles.clearLayers();
+    const year=document.getElementById('gs-year').value, month=document.getElementById('gs-month').value;
+    let pi=GS_MONTHS.indexOf(month)-1, py=year; if(pi<0){pi=11;py=(parseInt(year)-1).toString();}
+    const key=year+'_'+month, pkey=py+'_'+GS_MONTHS[pi];
+    const side=document.getElementById('gs-side').value;
+    const level=document.getElementById('gs-level').value;
+    const scope=document.getElementById('gs-scope').value;
+    const metric=document.getElementById('gs-mapmetric').value;
+    const SL=GS_SIDESHORT[side]||'';
+    const cur=gsAggregate(level,scope,key,side);
+    const prev=gsAggregate(level,scope,pkey,side); const pmap={}; prev.forEach(function(g){pmap[g.name]=g;});
+    cur.forEach(function(g){ const pm=(pmap[g.name]&&!isNaN(pmap[g.name].margen))?pmap[g.name].margen:0; g.aflorada=(isNaN(g.margen)?0:g.margen)-pm; });
+    let maxV=0; cur.forEach(function(g){ const v=Math.abs(gsBubbleVal(g,metric)); if(!isNaN(v)&&v>maxV)maxV=v; });
+    const minR=6,maxR=34;
+    cur.forEach(function(g){
+        if(!g.coordN) return;
+        const cx=g.sumX/g.coordN, cy=g.sumY/g.coordN;
+        let ll; try{ const c=proj4("EPSG:32630","EPSG:4326",[cx,cy]); ll=[c[1],c[0]]; }catch(e){ return; }
+        if(!isFinite(ll[0])||!isFinite(ll[1])) return;
+        const v=gsBubbleVal(g,metric), av=Math.abs(v);
+        const r=(isNaN(av)||maxV<=0)?minR:(minR+(maxR-minR)*Math.sqrt(av/maxV));
+        const sat=g.satN?(100*g.satSum/g.satN):NaN;
+        const mk=L.circleMarker(ll,{radius:r,fillColor:gsSatColor(sat),color:'#fff',weight:1.2,fillOpacity:0.78});
+        const sName=String(g.name);
+        const afl=isNaN(g.aflorada)?'–':((g.aflorada>=0?'+':'−')+gsFmt(Math.abs(g.aflorada)));
+        mk.bindPopup('<div style="font-size:13px;line-height:1.5;"><b>'+sName+'</b> <span style="color:#94a3b8;">('+g.nTSO+'T·'+g.nDSO+'D)</span><br>'
+            +'Disp. '+SL+': <b>'+gsFmt(g.disp)+'</b> MW<br>'
+            +'Margen: '+gsFmt(g.margen)+' MW<br>'
+            +'Aflorada Δmargen: '+afl+' MW<br>'
+            +'Otorgada: '+gsFmt(g.otorgada)+' MW<br>'
+            +'No solicit.: '+g.noSolic+' nudos<br>'
+            +'Saturación: '+(isNaN(sat)?'–':sat.toFixed(0)+'%')+'</div>');
+        mk.bindTooltip(sName+': '+gsFmt(gsBubbleVal(g,metric))+(metric==='sat'?'%':(metric==='noSolic'?' nudos':' MW')),{direction:'top'});
+        gsBubbles.addLayer(mk);
+    });
+    const ML={disp:'Disp. '+SL,margen:'Margen '+SL,otorgada:'Otorgada '+SL,noSolic:'Nudos no solicitables',aflorada:'Aflorada Δmargen'};
+    document.getElementById('gs-map-legend').innerHTML=
+        '<span><b>Tamaño</b>: '+(ML[metric]||metric)+'</span>'
+        +'<span><b>Color</b>: saturación '
+        +'<span class="gs-leg-dot" style="background:'+gsSatColor(10)+'"></span>baja '
+        +'<span class="gs-leg-dot" style="background:'+gsSatColor(50)+'"></span>media '
+        +'<span class="gs-leg-dot" style="background:'+gsSatColor(90)+'"></span>alta</span>';
+}
+function gsSetView(v){
+    gsView=v;
+    const t=document.getElementById('gs-view-table'), m=document.getElementById('gs-map-wrap');
+    if(v==='map'){ t.style.display='none'; m.style.display='block'; gsInitMap(); setTimeout(function(){ gsMap.invalidateSize(); gsRenderMap(); },60); }
+    else { m.style.display='none'; t.style.display='flex'; }
+}
+
+function openGridStatus(){
+    const yEl=document.getElementById('view-year'), mEl=document.getElementById('view-month');
+    const gy=document.getElementById('gs-year'), gm=document.getElementById('gs-month');
+    gy.innerHTML=yEl.innerHTML; gm.innerHTML=mEl.innerHTML;
+    gy.value=yEl.value; gm.value=mEl.value;
+    document.getElementById('grid-status').classList.add('open');
+    renderGridStatus();
+}
 function closeGridStatus(){ document.getElementById('grid-status').classList.remove('open'); }
 
 </script>
@@ -2390,6 +2513,15 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
     <button id="gs-close" onclick="closeGridStatus()">✕ Cerrar</button>
   </div>
   <div id="gs-controls">
+    <label>Año:<select id="gs-year" onchange="renderGridStatus()"></select></label>
+    <label>Mes:<select id="gs-month" onchange="renderGridStatus()"></select></label>
+    <label>Perspectiva:
+      <select id="gs-side" onchange="renderGridStatus()">
+        <option value="gen" selected>Generación</option>
+        <option value="dem">Demanda</option>
+        <option value="alm">Almacenamiento</option>
+      </select>
+    </label>
     <label>Nivel:
       <select id="gs-level" onchange="renderGridStatus()">
         <option value="nac">Nacional</option>
@@ -2405,11 +2537,32 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
         <option value="DSO">Solo DSO</option>
       </select>
     </label>
-    <span style="font-size:11px;color:#64748b;">Usa el año/mes seleccionados en la barra superior. Pulsa una cabecera para ordenar.</span>
+    <label>Vista:
+      <select id="gs-view" onchange="gsSetView(this.value)">
+        <option value="table" selected>Tabla</option>
+        <option value="map">Mapa</option>
+      </select>
+    </label>
+    <label>Burbuja:
+      <select id="gs-mapmetric" onchange="gsRenderMap()">
+        <option value="disp" selected>Disp.</option>
+        <option value="margen">Margen</option>
+        <option value="otorgada">Otorgada</option>
+        <option value="noSolic">No solicit.</option>
+        <option value="aflorada">Aflorada</option>
+      </select>
+    </label>
+    <span style="font-size:11px;color:#64748b;">Pulsa una cabecera para ordenar.</span>
   </div>
   <div class="gs-body">
-    <div id="gs-table-wrap"></div>
-    <div id="gs-mot"><h3>Motivos de no-otorgable / no disponible</h3><div id="gs-mot-wrap"></div></div>
+    <div id="gs-view-table" class="gs-view-table">
+      <div id="gs-table-wrap"></div>
+      <div id="gs-mot"><h3 id="gs-mot-title">Motivos no disponible (Gen)</h3><div id="gs-mot-wrap"></div></div>
+    </div>
+    <div id="gs-map-wrap" style="display:none;">
+      <div id="gs-map"></div>
+      <div id="gs-map-legend"></div>
+    </div>
   </div>
 </div>
 
