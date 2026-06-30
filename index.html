@@ -264,7 +264,6 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 <div id="search-container" style="display: none;">
     <button class="btn-whats-new" onclick="openWhatsNew()">💡 WHAT'S NEW?</button>
-    <button class="btn-whats-new" onclick="openZeroStarModal()" title="Nota aclaratoria sobre nudos «0* MW»">ⓘ INFO «0* MW»</button>
 </div>
 
 <div id="left-search">
@@ -833,9 +832,23 @@ const DSO_LABELS = {
     afeccion: 'Afección RdT', scc: 'Limitado por SCC',
     eolica: 'Admitida eólica (MW)', solar: 'Admitida solar (MW)',
     almacen: 'Admitida almacenamiento (MW)', otras: 'Admitida otras (MW)',
-    nudo0: 'Nudo 0', coment: 'Comentario'
+    nudo0: 'Nudo 0*', coment: 'Comentario'
 };
 const DSO_ORDER = ['disp','comprom','ocupada','admitida','pos_ocup','pos_libr','afeccion','scc','eolica','solar','almacen','otras','nudo0','coment'];
+
+// ¿Un valor de 'nudo 0' indica nudo 0* ? (lógica 1=Sí / 0=No, tolerante a SI/S/X/true)
+function dsoIs0Star(v) {
+    if (v === null || v === undefined) return false;
+    const s = String(v).trim().toLowerCase();
+    if (['1', 'si', 'sí', 's', 'x', 'true', 'yes'].includes(s)) return true;
+    const n = cleanNum(v); return !isNaN(n) && n >= 1;
+}
+// ¿El nudo DSO es 0* en ese mes? (mira gen y dem)
+function isDsoZeroStarMonth(entry, year, month) {
+    const rich = (MONTHS_DATA_DSO[`${year}_${month}`] || {})[entry.dsoKey];
+    if (!rich) return false;
+    return dsoIs0Star(rich.gen && rich.gen.nudo0) || dsoIs0Star(rich.dem && rich.dem.nudo0);
+}
 
 function _dsoFilas(datos, prevDatos) {
     if (!datos) return '';
@@ -844,6 +857,14 @@ function _dsoFilas(datos, prevDatos) {
     DSO_ORDER.forEach(k => {
         const v = datos[k];
         if (v === null || v === undefined || v === '') return;
+        if (k === 'nudo0') {
+            // Nudo 0*: 1=Sí / 0=No, con botón de info (nota aclaratoria) cuando es 0*
+            const is0 = dsoIs0Star(v);
+            const disp = is0 ? 'Sí (0*)' : 'No';
+            const info = is0 ? ' <span class="zero-star-icon" onclick="openZeroStarModal()" title="Ver nota aclaratoria «0* MW»">i</span>' : '';
+            h += `<tr><td style="color:#666;padding:2px 0;font-size:11.5px;">${DSO_LABELS[k]}</td><td style="text-align:right;font-weight:600;font-size:11.5px;">${disp}${info}${changeIcon(v, pd[k])}</td></tr>`;
+            return;
+        }
         h += `<tr><td style="color:#666;padding:2px 0;font-size:11.5px;">${DSO_LABELS[k] || k.replace(/_/g, ' ')}</td><td style="text-align:right;font-weight:600;font-size:11.5px;">${v}${changeIcon(v, pd[k])}</td></tr>`;
     });
     return h;
@@ -968,8 +989,7 @@ function applyFilters() {
         let typeOk;
         if (e.grid === 'DSO') {
             if (sel.type.includes('0*') || sel.type.includes('normal')) {
-                const dv = String(e[`${year}_${month}_gen`] ?? '') + ' ' + String(e[`${year}_${month}_dem`] ?? '');
-                typeOk = sel.type.includes(dv.includes('0*') ? '0*' : 'normal');
+                typeOk = sel.type.includes(isDsoZeroStarMonth(e, year, month) ? '0*' : 'normal');
             } else {
                 typeOk = true;   // en ALL/TSO no se filtra DSO por tipo
             }
@@ -1801,10 +1821,23 @@ function updateHistoryChart(node) {
     let chartDatasets;
 
     if (node.grid === 'DSO') {
-        // DSO: una única variable 'disponible' publicada (gen o dem según la vista)
-        const side = typeSel === 'gen' ? 'gen' : 'dem';
-        const data = months.map(m => { const v = node[`${m.key}_${side}`]; return (v === undefined || v === null || v === '') ? null : cleanNum(v); });
-        chartDatasets = [{ label: side === 'gen' ? 'Generation (MW)' : 'Demand (MW)', data, borderColor: palette[0], backgroundColor: palette[0], tension: 0.3, fill: false, spanGaps: true, pointRadius: 2 }];
+        // DSO: gen/dem según la vista; en storage, el mínimo efectivo entre gen y dem
+        let label, data;
+        if (typeSel === 'storage') {
+            label = 'Storage (min Gen/Dem) (MW)';
+            data = months.map(m => {
+                const g = cleanNum(node[`${m.key}_gen`]), d = cleanNum(node[`${m.key}_dem`]);
+                if (isNaN(g) && isNaN(d)) return null;
+                if (isNaN(g)) return d;
+                if (isNaN(d)) return g;
+                return Math.min(g, d);
+            });
+        } else {
+            const side = typeSel === 'gen' ? 'gen' : 'dem';
+            label = side === 'gen' ? 'Generation (MW)' : 'Demand (MW)';
+            data = months.map(m => { const v = node[`${m.key}_${side}`]; return (v === undefined || v === null || v === '') ? null : cleanNum(v); });
+        }
+        chartDatasets = [{ label, data, borderColor: palette[0], backgroundColor: palette[0], tension: 0.3, fill: false, spanGaps: true, pointRadius: 2 }];
     } else {
         // TSO: las mismas 8 (gen) / 5 (dem) / 6 (storage) variables 'disponible' del panel lateral
         const vars = DISP_VARS[typeSel] || DISP_VARS.gen;
