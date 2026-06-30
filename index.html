@@ -256,6 +256,18 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .gs-body { padding:8px 18px 28px; display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap; }
 .gs-view-table { flex:1 1 52%; min-width:420px; display:flex; flex-direction:column; gap:14px; }
 #gs-map-wrap { flex:1 1 44%; min-width:360px; }
+.gs-tabs { display:flex; gap:6px; margin:0 18px; }
+.gs-tab { background:#e2e8f0; border:none; border-radius:8px 8px 0 0; padding:7px 16px; font-size:13px; font-weight:bold; cursor:pointer; color:#475569; }
+.gs-tab.active { background:#0078A8; color:#fff; }
+#gs-mode-var { display:none; padding:8px 18px 18px; overflow:auto; max-height:calc(100vh - 200px); }
+.gs-var-sec { background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:14px; margin-bottom:14px; }
+.gs-var-sec h3 { margin:0 0 8px; font-size:14px; color:#0078A8; }
+.gs-matrix { border-collapse:collapse; font-size:11px; }
+.gs-matrix th,.gs-matrix td { border:1px solid #e2e8f0; padding:3px 6px; text-align:center; }
+.gs-matrix th { background:#f1f5f9; }
+.gs-matrix td.diag { background:#f8fafc; color:#cbd5e1; }
+.gs-matrix td.hot { background:#fef3c7; font-weight:bold; }
+.gs-flujo-dot { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:5px; vertical-align:middle; }
 #gs-map { width:100%; height:calc(100vh - 185px); min-height:440px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
 #gs-map-legend { margin-top:8px; font-size:11px; color:#475569; display:flex; gap:18px; align-items:center; flex-wrap:wrap; }
 .gs-bubble-label { background:transparent !important; border:none !important; box-shadow:none !important; padding:0 !important; color:#fff; font-weight:700; font-size:11px; text-shadow:0 0 3px rgba(0,0,0,.85),0 0 2px rgba(0,0,0,.85); white-space:nowrap; }
@@ -2451,6 +2463,75 @@ function renderGridStatus(){
     document.getElementById('gs-period').textContent = '20'+year+' · '+(GS_MLBL[month]||month)+' · '+(GS_SIDELBL[side]||side)+'  (Δ vs mes previo)';
     if(gsMap) gsRenderMap();
 }
+// ===================== GRID STATUS — Variaciones / flujos =====================
+let gsMode='estado';
+const GS_FLUJOS=['Nueva solicitud','Otorgado','Devuelto/denegado','Liberado','Reservado/ocupado','Sin cambio'];
+const GS_FLUJO_COL={'Nueva solicitud':'#2563eb','Otorgado':'#16a34a','Devuelto/denegado':'#dc2626','Liberado':'#0d9488','Reservado/ocupado':'#d97706','Sin cambio':'#94a3b8'};
+const GS_CAUSE_ORDER=['Concurso','Transición Justa (NTJ)','Sin posibilidad de conexión','Limitación por posición','Valor referencia no acordado','RDL 7/2026 (art. 13.6)','Normativa (Orden TED)','Sin capacidad / 0*','Otros','Solicitable'];
+const GS_CAUSE_SHORT={'Concurso':'Conc','Transición Justa (NTJ)':'NTJ','Sin posibilidad de conexión':'SinCon','Limitación por posición':'LimPos','Valor referencia no acordado':'ValRef','RDL 7/2026 (art. 13.6)':'RDL','Normativa (Orden TED)':'Norm','Sin capacidad / 0*':'SinCap','Otros':'Otros','Solicitable':'Solic'};
+function gsFlujo(dD,dO,dP,dM){ const T=1; const up=function(x){return !isNaN(x)&&x>T;}, dn=function(x){return !isNaN(x)&&x<-T;};
+  if(up(dO)) return 'Otorgado';
+  if(up(dD)&&(dn(dP)||dn(dO))) return 'Devuelto/denegado';
+  if(up(dP)) return 'Nueva solicitud';
+  if(up(dD)||up(dM)) return 'Liberado';
+  if(dn(dD)&&!up(dP)&&!up(dO)) return 'Reservado/ocupado';
+  return 'Sin cambio'; }
+function gsNodeVar(entry,key,pkey,side){
+  const mc=gsNodeMetrics(entry,key); if(!mc) return null; const c=mc[side]; if(!c) return null;
+  const mp=gsNodeMetrics(entry,pkey); const p=mp?mp[side]:null;
+  const cv=function(o,fld){ return (o&&!isNaN(o[fld]))?o[fld]:NaN; };
+  const d=function(fld){ const a=cv(c,fld), b=p?cv(p,fld):NaN; if(isNaN(a)&&isNaN(b)) return NaN; return (isNaN(a)?0:a)-(isNaN(b)?0:b); };
+  const dDisp=d('disp'), dMargen=d('margen'), dOtorg=d('otorgada');
+  const dPend=(entry.grid==='DSO')?d('admitida'):d('enCurso');
+  const cc=c.causas||[], cp=p?(p.causas||[]):[];
+  return { name:entry.name, ccaa:entry.ccaa, prov:entry.prov, grid:entry.grid,
+    dDisp:dDisp, dMargen:dMargen, dOtorg:dOtorg, dPend:dPend,
+    topCur:cc.length?cc[0]:'Solicitable', topPrev:cp.length?cp[0]:'Solicitable', causasCur:cc,
+    flujo:gsFlujo(dDisp,dOtorg,dPend,dMargen) };
+}
+function gsVarRecords(key,pkey,side,scope){ const out=[]; for(const e of allEntries){ if(scope!=='ALL'&&e.grid!==scope) continue; const r=gsNodeVar(e,key,pkey,side); if(r) out.push(r); } return out; }
+function gsVarAgg(recs,by){ const G={}; recs.forEach(function(r){ const keys=(by==='flujo')?[r.flujo]:(r.causasCur.length?r.causasCur:['Solicitable']); keys.forEach(function(k){ const o=G[k]||(G[k]={key:k,n:0,dDisp:0,dMargen:0,dOtorg:0,dPend:0}); o.n++; ['dDisp','dMargen','dOtorg','dPend'].forEach(function(fld){ if(!isNaN(r[fld])) o[fld]+=r[fld]; }); }); }); return Object.keys(G).map(function(k){return G[k];}); }
+function gsVarOrderKey(by,k){ const arr=(by==='flujo')?GS_FLUJOS:GS_CAUSE_ORDER; const i=arr.indexOf(k); return i<0?999:i; }
+function renderVariaciones(){
+  const year=document.getElementById('gs-year').value, month=document.getElementById('gs-month').value;
+  let pi=GS_MONTHS.indexOf(month)-1, py=year; if(pi<0){pi=11;py=(parseInt(year)-1).toString();}
+  const key=year+'_'+month, pkey=py+'_'+GS_MONTHS[pi];
+  const side=document.getElementById('gs-side').value, scope=document.getElementById('gs-scope').value;
+  const by=document.getElementById('gs-var-by').value;
+  const prevExists=((typeof MONTHS_DATA!=='undefined'&&MONTHS_DATA[pkey])||(typeof MONTHS_DATA_DSO!=='undefined'&&MONTHS_DATA_DSO[pkey]))?true:false;
+  const warn=prevExists?'':'<div style="font-size:11px;color:#b45309;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:6px 10px;margin-bottom:8px;">No hay datos del mes anterior ('+pkey+'); las variaciones se calculan contra cero y no son fiables.</div>';
+  const recs=gsVarRecords(key,pkey,side,scope);
+  // A: delta por grupo (causa o flujo)
+  const agg=gsVarAgg(recs,by).sort(function(a,b){ return gsVarOrderKey(by,a.key)-gsVarOrderKey(by,b.key); });
+  const aRows=agg.map(function(o){ const dot=(by==='flujo')?('<span class="gs-flujo-dot" style="background:'+(GS_FLUJO_COL[o.key]||'#94a3b8')+'"></span>'):''; return '<tr><td style="text-align:left;">'+dot+o.key+'</td><td>'+o.n+'</td><td>'+gsSigned(o.dDisp)+'</td><td>'+gsSigned(o.dMargen)+'</td><td>'+gsSigned(o.dOtorg)+'</td><td>'+gsSigned(o.dPend)+'</td></tr>'; }).join('');
+  document.getElementById('gs-var-A').innerHTML=warn+'<table class="gs-table"><thead><tr><th style="text-align:left;">'+(by==='flujo'?'Flujo':'Causa')+'</th><th>Nº nudos</th><th>&#916; disponible</th><th>&#916; margen</th><th>&#916; otorgada</th><th>&#916; en curso/pend.</th></tr></thead><tbody>'+(aRows||'<tr><td colspan="6">Sin datos.</td></tr>')+'</tbody></table>'+(by==='causa'?'<div style="font-size:10px;color:#94a3b8;margin-top:6px;">Un nudo puede tener varias causas &#8594; los &#916; por causa pueden solaparse entre filas.</div>':'');
+  document.getElementById('gs-var-A-title').textContent='\u0394 de todas las variables \u00b7 por '+(by==='flujo'?'flujo (inferido)':'causa');
+  // B: top movers
+  const tv=document.getElementById('gs-var-topvar').value;
+  const TVL={dDisp:'\u0394 disponible',dMargen:'\u0394 margen',dOtorg:'\u0394 otorgada',dPend:'\u0394 en curso/pend.'};
+  const movers=recs.filter(function(r){ return !isNaN(r[tv])&&Math.abs(r[tv])>=1; }).sort(function(a,b){ return Math.abs(b[tv])-Math.abs(a[tv]); }).slice(0,15);
+  const bRows=movers.map(function(r){ const reg=(r.prov||r.ccaa||''); return '<tr><td style="text-align:left;"><b>'+r.name+'</b> <span style="color:#94a3b8;font-size:10px;">'+r.grid+'\u00b7'+reg+'</span></td><td>'+gsSigned(r.dDisp)+'</td><td>'+gsSigned(r.dMargen)+'</td><td>'+gsSigned(r.dOtorg)+'</td><td>'+gsSigned(r.dPend)+'</td><td style="text-align:left;font-size:11px;">'+(r.causasCur.length?r.causasCur.join(', '):'\u2014')+'</td></tr>'; }).join('');
+  document.getElementById('gs-var-B').innerHTML='<div style="font-size:11px;color:#64748b;margin-bottom:6px;">Ordenado por |'+TVL[tv]+'| \u00b7 15 mayores</div><table class="gs-table"><thead><tr><th style="text-align:left;">Nudo</th><th>&#916; disp</th><th>&#916; margen</th><th>&#916; otorg</th><th>&#916; pend</th><th style="text-align:left;">Causa actual</th></tr></thead><tbody>'+(bRows||'<tr><td colspan="6">Sin variaciones.</td></tr>')+'</tbody></table>';
+  // C: matriz de transicion de causas
+  const cnt={}, present={};
+  recs.forEach(function(r){ cnt[r.topPrev]=cnt[r.topPrev]||{}; cnt[r.topPrev][r.topCur]=(cnt[r.topPrev][r.topCur]||0)+1; present[r.topPrev]=1; present[r.topCur]=1; });
+  const causes=GS_CAUSE_ORDER.filter(function(c){ return present[c]; });
+  const head='<th></th>'+causes.map(function(c){ return '<th title="'+c+'">'+(GS_CAUSE_SHORT[c]||c)+'</th>'; }).join('');
+  const mRows=causes.map(function(rp){ const cells=causes.map(function(rc){ const v=(cnt[rp]&&cnt[rp][rc])||0; const cls=(rp===rc)?' class="diag"':(v>0?' class="hot"':''); return '<td'+cls+'>'+(v||'')+'</td>'; }).join(''); return '<tr><th title="'+rp+'" style="text-align:right;">'+(GS_CAUSE_SHORT[rp]||rp)+'</th>'+cells+'</tr>'; }).join('');
+  const legend=causes.map(function(c){ return '<span style="margin-right:10px;white-space:nowrap;"><b>'+(GS_CAUSE_SHORT[c]||c)+'</b>='+c+'</span>'; }).join('');
+  document.getElementById('gs-var-C').innerHTML=(causes.length?('<div style="overflow:auto;"><table class="gs-matrix"><thead><tr>'+head+'</tr></thead><tbody>'+mRows+'</tbody></table></div><div style="font-size:10px;color:#94a3b8;margin-top:6px;">Filas = causa el mes anterior \u00b7 columnas = causa este mes \u00b7 diagonal (gris) = sin cambio de causa \u00b7 celdas \u00e1mbar = transiciones.</div><div style="font-size:10px;color:#64748b;margin-top:4px;line-height:1.8;">'+legend+'</div>'):'<div style="color:#94a3b8;">Sin datos.</div>');
+}
+const GS_VAR_NOTE_HTML='<b>C\u00f3mo se infieren los flujos</b> (sobre fotos mensuales de <i>stocks</i>, no transacciones).<br>Para cada nudo se compara este mes con el anterior y se clasifica su <b>movimiento neto</b> por prioridad: <b>Otorgado</b> (otorgada \u2191) \u00b7 <b>Devuelto/denegado</b> (disponible \u2191 con en curso u otorgada \u2193) \u00b7 <b>Nueva solicitud</b> (en curso/pendiente \u2191) \u00b7 <b>Liberado</b> (disponible o margen \u2191 sin otorgar ni cola \u2192 p. ej. RDL/nueva capacidad) \u00b7 <b>Reservado/ocupado</b> (disponible \u2193 sin cola ni otorgar) \u00b7 <b>Sin cambio</b> (umbral 1 MW).<br><i>Limitaciones:</i> es una <b>inferencia</b> del cambio neto; una bajada de \u00aben curso\u00bb puede ser otorgamiento o denegaci\u00f3n (se desambigua por si sube otorgada o disponible). En DSO no hay \u00aben curso/otorgada/margen\u00bb: se usan \u00abadmitida y no resuelta\u00bb como pendiente y \u00abocupada\u00bb como otorgada. Colores de \u0394 = signo (verde sube, rojo baja), sin juicio de valor.';
+function gsToggleVarNote(){ const n=document.getElementById('gs-var-note'); if(n.innerHTML.trim()===''){ n.innerHTML=GS_VAR_NOTE_HTML; } n.style.display=(n.style.display==='none'?'block':'none'); }
+function gsSetMode(m){ gsMode=m;
+  document.getElementById('gs-tab-estado').classList.toggle('active',m==='estado');
+  document.getElementById('gs-tab-var').classList.toggle('active',m==='var');
+  document.querySelector('#grid-status .gs-body').style.display=(m==='estado')?'flex':'none';
+  document.getElementById('gs-mode-var').style.display=(m==='var')?'block':'none';
+  if(m==='estado'){ renderGridStatus(); if(gsMap) setTimeout(function(){ gsMap.invalidateSize(); gsRenderMap(); },60); }
+  else { renderVariaciones(); }
+}
+function gsRefresh(){ if(gsMode==='var') renderVariaciones(); else renderGridStatus(); }
 function gsSetSort(c){ if(gsSort.col===c) gsSort.dir*=-1; else { gsSort.col=c; gsSort.dir=(c==='name')?1:-1; } renderGridStatus(); }
 // ---- Mapa de burbujas (nacional / comunidad / provincia) ----
 let gsMap=null, gsBubbles=null, gsView='table';
@@ -2570,6 +2651,9 @@ function openGridStatus(){
     gy.innerHTML=yEl.innerHTML; gm.innerHTML=mEl.innerHTML;
     gy.value=yEl.value; gm.value=mEl.value;
     document.getElementById('grid-status').classList.add('open');
+    gsMode='estado';
+    document.getElementById('gs-tab-estado').classList.add('active'); document.getElementById('gs-tab-var').classList.remove('active');
+    document.querySelector('#grid-status .gs-body').style.display='flex'; document.getElementById('gs-mode-var').style.display='none';
     gsInitMap();
     renderGridStatus();
     setTimeout(function(){ if(gsMap){ gsMap.invalidateSize(); gsRenderMap(); } },80);
@@ -2599,25 +2683,29 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
     <span class="gs-period" id="gs-period"></span>
     <button id="gs-close" onclick="closeGridStatus()">✕ Cerrar</button>
   </div>
+  <div class="gs-tabs">
+    <button id="gs-tab-estado" class="gs-tab active" onclick="gsSetMode('estado')">📊 Estado</button>
+    <button id="gs-tab-var" class="gs-tab" onclick="gsSetMode('var')">🔬 Variaciones</button>
+  </div>
   <div id="gs-controls">
-    <label>Año:<select id="gs-year" onchange="renderGridStatus()"></select></label>
-    <label>Mes:<select id="gs-month" onchange="renderGridStatus()"></select></label>
+    <label>Año:<select id="gs-year" onchange="gsRefresh()"></select></label>
+    <label>Mes:<select id="gs-month" onchange="gsRefresh()"></select></label>
     <label>Perspectiva:
-      <select id="gs-side" onchange="renderGridStatus()">
+      <select id="gs-side" onchange="gsRefresh()">
         <option value="gen" selected>Generación</option>
         <option value="dem">Demanda</option>
         <option value="alm">Almacenamiento</option>
       </select>
     </label>
     <label>Nivel:
-      <select id="gs-level" onchange="renderGridStatus()">
+      <select id="gs-level" onchange="gsRefresh()">
         <option value="nac">Nacional</option>
         <option value="ccaa" selected>Comunidad (CCAA)</option>
         <option value="prov">Provincia</option>
       </select>
     </label>
     <label>Red:
-      <select id="gs-scope" onchange="renderGridStatus()">
+      <select id="gs-scope" onchange="gsRefresh()">
         <option value="ALL" selected>TSO+DSO</option>
         <option value="TSO">TSO</option>
         <option value="DSO">DSO</option>
@@ -2668,6 +2756,30 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
       <div id="gs-table-wrap"></div>
       <div id="gs-mot"><h3 id="gs-mot-title">Motivos no disponible (Gen)</h3><div id="gs-mot-wrap"></div></div>
     </div>
+  </div>
+  <div id="gs-mode-var">
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:10px;">
+      <label style="font-size:13px;">Agrupar por:
+        <select id="gs-var-by" onchange="renderVariaciones()">
+          <option value="causa" selected>Causa</option>
+          <option value="flujo">Flujo (inferido)</option>
+        </select>
+      </label>
+      <label style="font-size:13px;">Top nudos por:
+        <select id="gs-var-topvar" onchange="renderVariaciones()">
+          <option value="dDisp" selected>&#916; disponible</option>
+          <option value="dMargen">&#916; margen</option>
+          <option value="dOtorg">&#916; otorgada</option>
+          <option value="dPend">&#916; en curso / pendiente</option>
+        </select>
+      </label>
+      <button type="button" onclick="gsToggleVarNote()" style="background:#e2e8f0;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:#0078A8;font-weight:bold;">&#9432; Cómo se clasifica</button>
+      <span style="font-size:11px;color:#64748b;">Variaciones vs mes anterior · usa el filtro «Red» · «Nivel / Métrica mapa / Capa» no aplican aquí.</span>
+    </div>
+    <div id="gs-var-note" style="display:none;margin-bottom:12px;padding:12px 16px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;font-size:12px;color:#334155;line-height:1.6;"></div>
+    <div class="gs-var-sec"><h3 id="gs-var-A-title">&#916; de todas las variables</h3><div id="gs-var-A"></div></div>
+    <div class="gs-var-sec"><h3>Top nudos por variación</h3><div id="gs-var-B"></div></div>
+    <div class="gs-var-sec"><h3>Transiciones de causa (mes anterior &#8594; mes actual)</h3><div id="gs-var-C"></div></div>
   </div>
 </div>
 
