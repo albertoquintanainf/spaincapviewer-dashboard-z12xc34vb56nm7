@@ -242,6 +242,27 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .rich-tbl td { border-bottom: 1px solid #eef4f8; }
 .rich-tbl tr:last-child td { border-bottom: none; }
 
+
+/* ===== GRID STATUS ===== */
+#grid-status { display:none; position:fixed; inset:0; background:#f1f5f9; z-index:300000; overflow:auto; }
+#grid-status.open { display:block; }
+#gs-head { position:sticky; top:0; background:#0078A8; color:#fff; padding:12px 18px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; box-shadow:0 2px 8px rgba(0,0,0,.2); z-index:2; }
+#gs-head h2 { margin:0; font-size:18px; letter-spacing:.5px; }
+#gs-head .gs-period { font-size:12px; opacity:.92; }
+#gs-close { margin-left:auto; background:#fff; color:#0078A8; border:none; border-radius:8px; padding:6px 14px; font-weight:bold; cursor:pointer; }
+#gs-controls { display:flex; gap:14px; align-items:center; flex-wrap:wrap; padding:12px 18px 4px; }
+#gs-controls label { font-size:12px; font-weight:bold; color:#334155; }
+#gs-controls select { padding:5px 8px; border-radius:6px; border:1px solid #cbd5e1; font-size:13px; color:#0f172a; margin-left:4px; }
+.gs-body { padding:8px 18px 28px; display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap; }
+#gs-table-wrap { flex:1 1 680px; overflow:auto; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); max-height:calc(100vh - 150px); }
+.gs-table { border-collapse:collapse; width:100%; font-size:12px; }
+.gs-table th, .gs-table td { padding:7px 9px; border-bottom:1px solid #e2e8f0; text-align:right; white-space:nowrap; }
+.gs-table th { background:#e2e8f0; color:#0f172a; position:sticky; top:0; font-size:11px; }
+.gs-table tbody tr:hover { background:#f8fafc; }
+#gs-mot { flex:0 0 300px; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:14px; max-height:calc(100vh - 150px); overflow:auto; }
+#gs-mot h3 { margin:0 0 10px; font-size:13px; color:#0078A8; }
+.gs-mot-row { display:flex; justify-content:space-between; gap:10px; font-size:12px; padding:5px 0; border-bottom:1px dashed #e2e8f0; }
+
 </style>
 </head>
 <body>
@@ -264,6 +285,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 <div id="search-container" style="display: none;">
     <button class="btn-whats-new" onclick="openWhatsNew()">💡 WHAT'S NEW?</button>
+    <button class="btn-whats-new" onclick="openGridStatus()" style="background:#0078A8;">📊 GRID STATUS</button>
 </div>
 
 <div id="left-search">
@@ -2203,6 +2225,147 @@ function renderKML(xmlData) {
     }, 50); 
 }
 	
+
+/* ===================== GRID STATUS — módulo de análisis de red (Fase 1) ===================== */
+const GS_MONTHS = ["jan","feb","mar","apr","may","jun","jul","ago","sep","oct","nov","dec"];
+const GS_MLBL = {jan:'Enero',feb:'Febrero',mar:'Marzo',apr:'Abril',may:'Mayo',jun:'Junio',jul:'Julio',ago:'Agosto',sep:'Septiembre',oct:'Octubre',nov:'Noviembre',dec:'Diciembre'};
+let gsSort = { col: 'dispGen', dir: -1 };   // dir: -1 desc, 1 asc
+
+function gsMaxOf(){ const n=[].slice.call(arguments).map(cleanNum).filter(function(v){return !isNaN(v);}); return n.length?Math.max.apply(null,n):NaN; }
+function gsMinDef(a,b){ if(isNaN(a)&&isNaN(b))return NaN; if(isNaN(a))return b; if(isNaN(b))return a; return Math.min(a,b); }
+
+// --- Métricas por nudo TSO en un mes (key = "AA_mmm") ---
+function gsTSO(entry, key){
+    const rich = richForMonth(key, entry); if(!rich) return null;
+    const g=rich.gen||{}, d=rich.dem||{};
+    const dg=g.disp||{}, dd=d.disp||{}, mg=g.margen||{}, md=d.margen||{};
+    const nd=g.no_disp||{}, no=d.no_otorgable||{}, lib=g.liberada||{}, ot=g.otorgada||{};
+    const dispGen = gsMaxOf(dg.gen_mges_rdt, dg.gen_mpe_rdt, dg.gen_mges_rdd, dg.gen_mpe_rdd);
+    const dispDem = gsMaxOf(dd.dem_ch, dd.dem_sh, dd.dem_no_cep);
+    const almG = gsMaxOf(dg.alm_mges_rdt, dg.alm_mpe_rdt, dg.alm_mges_rdd, dg.alm_mpe_rdd);
+    const almD = gsMaxOf(dd.alm_cep, dd.alm_no_cep);
+    const dispAlm = gsMinDef(almG, almD);
+    const margenGen = gsMaxOf(mg.gen_mges, mg.gen_mpe);
+    const margenDem = gsMaxOf(md.dem_ch, md.dem_sh, md.dem_no_cep);
+    const liberada = gsMaxOf(lib.lib_mges, lib.lib_mpe);
+    const motivoGen = (nd.motivo!=null && String(nd.motivo).trim()!=='') ? String(nd.motivo).trim() : null;
+    const motivoDem = (no.motivo!=null && String(no.motivo).trim()!=='') ? String(no.motivo).trim() : null;
+    const og = cleanNum(ot.gen);
+    let sat = NaN; if(!isNaN(og) && !isNaN(dispGen) && (og+dispGen)>0) sat = og/(og+dispGen);
+    return { grid:'TSO', dispGen:dispGen, dispDem:dispDem, dispAlm:dispAlm, margenGen:margenGen, margenDem:margenDem, liberada:liberada,
+             noOtorgGen: motivoGen!==null, noOtorgDem: motivoDem!==null, motivoGen:motivoGen, motivoDem:motivoDem, sat:sat };
+}
+// --- Métricas por nudo DSO en un mes ---
+function gsDSO(entry, key){
+    const rich = (MONTHS_DATA_DSO[key]||{})[entry.dsoKey]; if(!rich) return null;
+    const g=rich.gen||{}, d=rich.dem||{};
+    const dispGen=cleanNum(g.disp), dispDem=cleanNum(d.disp);
+    const dispAlm=gsMinDef(dispGen,dispDem);
+    const ocup=cleanNum(g.ocupada);
+    let sat=NaN; if(!isNaN(ocup)&&!isNaN(dispGen)&&(ocup+dispGen)>0) sat=ocup/(ocup+dispGen);
+    const noG=!isNaN(dispGen)&&dispGen<=0, noD=!isNaN(dispDem)&&dispDem<=0;
+    const is0=dsoIs0Star(g.nudo0)||dsoIs0Star(d.nudo0);
+    const com=(g.coment&&String(g.coment).trim())||(d.coment&&String(d.coment).trim())||null;
+    const motivo= is0 ? 'Nudo 0*' : com;
+    return { grid:'DSO', dispGen:dispGen, dispDem:dispDem, dispAlm:dispAlm, margenGen:NaN, margenDem:NaN, liberada:NaN,
+             noOtorgGen:noG, noOtorgDem:noD, motivoGen: noG?motivo:null, motivoDem: noD?motivo:null, sat:sat };
+}
+function gsNodeMetrics(entry, key){ return entry.grid==='DSO' ? gsDSO(entry,key) : gsTSO(entry,key); }
+
+// --- Agrega por nivel y alcance en un mes ---
+function gsAggregate(level, scope, key){
+    const G={};
+    for(const e of allEntries){
+        if(scope!=='ALL' && e.grid!==scope) continue;
+        const m=gsNodeMetrics(e,key); if(!m) continue;
+        let gk;
+        if(level==='nac') gk='España';
+        else if(level==='ccaa') gk=e.ccaa||'(sin CCAA)';
+        else if(level==='prov') gk=e.prov||'(sin provincia)';
+        else gk=e.name;
+        const o=G[gk]||(G[gk]={name:gk,n:0,nTSO:0,nDSO:0,dispGen:0,dispDem:0,dispAlm:0,margenGen:0,margenDem:0,liberada:0,noG:0,noD:0,satSum:0,satN:0,motivos:{}});
+        o.n++; if(e.grid==='DSO')o.nDSO++; else o.nTSO++;
+        const add=function(f,v){ if(!isNaN(v)) o[f]+=v; };
+        add('dispGen',m.dispGen); add('dispDem',m.dispDem); add('dispAlm',m.dispAlm);
+        add('margenGen',m.margenGen); add('margenDem',m.margenDem); add('liberada',m.liberada);
+        if(m.noOtorgGen)o.noG++; if(m.noOtorgDem)o.noD++;
+        if(!isNaN(m.sat)){o.satSum+=m.sat;o.satN++;}
+        [m.motivoGen,m.motivoDem].forEach(function(mo){ if(mo) o.motivos[mo]=(o.motivos[mo]||0)+1; });
+    }
+    return Object.keys(G).map(function(k){return G[k];});
+}
+
+function gsFmt(v){ return isNaN(v)?'–':Math.round(v).toLocaleString('es-ES'); }
+function gsDelta(cur,prev){
+    if(isNaN(cur)&&isNaN(prev)) return '';
+    const a=isNaN(cur)?0:cur, b=isNaN(prev)?0:prev, d=a-b;
+    if(Math.abs(d)<0.5) return '<span style="color:#94a3b8;font-size:10px;"> =</span>';
+    const up=d>0, col=up?'#16a34a':'#dc2626', ar=up?'▲':'▼';
+    return '<span style="color:'+col+';font-size:10px;"> '+ar+' '+gsFmt(Math.abs(d))+'</span>';
+}
+
+function renderGridStatus(){
+    const year=document.getElementById('view-year').value, month=document.getElementById('view-month').value;
+    let pi=GS_MONTHS.indexOf(month)-1, py=year; if(pi<0){pi=11;py=(parseInt(year)-1).toString();}
+    const key=year+'_'+month, pkey=py+'_'+GS_MONTHS[pi];
+    const level=document.getElementById('gs-level').value;
+    const scope=document.getElementById('gs-scope').value;
+    const cur=gsAggregate(level,scope,key);
+    const prev=gsAggregate(level,scope,pkey);
+    const pmap={}; prev.forEach(function(g){pmap[g.name]=g;});
+    const col=gsSort.col, dir=gsSort.dir;
+    const val=function(g){ if(col==='name')return g.name; if(col==='sat')return g.satN?g.satSum/g.satN:-1; return g[col]||0; };
+    cur.sort(function(a,b){ const va=val(a),vb=val(b); if(col==='name')return dir*String(va).localeCompare(String(vb)); return dir*((va||0)-(vb||0)); });
+    const hdr=function(lbl,c,extra){ const act=gsSort.col===c, ar=act?(gsSort.dir<0?' ▼':' ▲'):''; return '<th onclick="gsSetSort(\''+c+'\')" style="cursor:pointer;'+(extra||'')+'">'+lbl+ar+'</th>'; };
+    let rows='';
+    for(const g of cur){
+        const p=pmap[g.name]||{};
+        const sat=g.satN?(100*g.satSum/g.satN):NaN;
+        const showName = (level==='nodo') ? g.name : ('<b>'+g.name+'</b>');
+        rows+='<tr>'
+          +'<td style="text-align:left;">'+showName+'<div style="font-size:10px;color:#94a3b8;">'+g.nTSO+'T · '+g.nDSO+'D</div></td>'
+          +'<td>'+g.n+'</td>'
+          +'<td>'+gsFmt(g.dispGen)+gsDelta(g.dispGen,(p.dispGen===undefined?NaN:p.dispGen))+'</td>'
+          +'<td>'+gsFmt(g.dispDem)+gsDelta(g.dispDem,(p.dispDem===undefined?NaN:p.dispDem))+'</td>'
+          +'<td>'+gsFmt(g.dispAlm)+gsDelta(g.dispAlm,(p.dispAlm===undefined?NaN:p.dispAlm))+'</td>'
+          +'<td>'+gsFmt(g.margenGen)+'</td>'
+          +'<td>'+gsFmt(g.margenDem)+'</td>'
+          +'<td>'+gsFmt(g.liberada)+'</td>'
+          +'<td>'+g.noG+'</td>'
+          +'<td>'+g.noD+'</td>'
+          +'<td>'+(isNaN(sat)?'–':sat.toFixed(0)+'%')+'</td>'
+          +'</tr>';
+    }
+    const table='<table class="gs-table"><thead><tr>'
+        +hdr('Nivel','name','text-align:left;')
+        +hdr('Nudos','n')
+        +hdr('Disp. Gen (MW)','dispGen')
+        +hdr('Disp. Dem (MW)','dispDem')
+        +hdr('Disp. Alm (MW)','dispAlm')
+        +hdr('Margen Gen','margenGen')
+        +hdr('Margen Dem','margenDem')
+        +hdr('Liberada','liberada')
+        +hdr('No-otorg Gen','noG')
+        +hdr('No-otorg Dem','noD')
+        +hdr('Satur. Gen','sat')
+        +'</tr></thead><tbody>'+(rows||'<tr><td colspan="11">Sin datos para este mes/alcance.</td></tr>')+'</tbody></table>';
+
+    const allMot={};
+    cur.forEach(function(g){ for(const mo in g.motivos) allMot[mo]=(allMot[mo]||0)+g.motivos[mo]; });
+    const motList=Object.keys(allMot).map(function(k){return [k,allMot[k]];}).sort(function(a,b){return b[1]-a[1];});
+    const totalMot=motList.reduce(function(s,x){return s+x[1];},0);
+    const motHtml = motList.length
+      ? motList.map(function(x){return '<div class="gs-mot-row"><span>'+x[0]+'</span><span><b>'+x[1]+'</b> ('+(totalMot?Math.round(100*x[1]/totalMot):0)+'%)</span></div>';}).join('')
+      : '<div style="color:#94a3b8;">Sin motivos de no-otorgable en este alcance.</div>';
+
+    document.getElementById('gs-table-wrap').innerHTML=table;
+    document.getElementById('gs-mot-wrap').innerHTML=motHtml;
+    document.getElementById('gs-period').textContent = '20'+year+' · '+(GS_MLBL[month]||month)+'  (Δ vs mes previo)';
+}
+function gsSetSort(c){ if(gsSort.col===c) gsSort.dir*=-1; else { gsSort.col=c; gsSort.dir=(c==='name')?1:-1; } renderGridStatus(); }
+function openGridStatus(){ document.getElementById('grid-status').classList.add('open'); renderGridStatus(); }
+function closeGridStatus(){ document.getElementById('grid-status').classList.remove('open'); }
+
 </script>
 
 <!-- Modal nota aclaratoria 0* -->
@@ -2218,6 +2381,38 @@ function renderKML(xmlData) {
 </div>	
 
 	
+
+<!-- ===== GRID STATUS (módulo de análisis de red) ===== -->
+<div id="grid-status">
+  <div id="gs-head">
+    <h2>📊 GRID STATUS</h2>
+    <span class="gs-period" id="gs-period"></span>
+    <button id="gs-close" onclick="closeGridStatus()">✕ Cerrar</button>
+  </div>
+  <div id="gs-controls">
+    <label>Nivel:
+      <select id="gs-level" onchange="renderGridStatus()">
+        <option value="nac">Nacional</option>
+        <option value="ccaa" selected>Comunidad (CCAA)</option>
+        <option value="prov">Provincia</option>
+        <option value="nodo">Nodo</option>
+      </select>
+    </label>
+    <label>Red:
+      <select id="gs-scope" onchange="renderGridStatus()">
+        <option value="ALL" selected>Todas (TSO+DSO)</option>
+        <option value="TSO">Solo TSO</option>
+        <option value="DSO">Solo DSO</option>
+      </select>
+    </label>
+    <span style="font-size:11px;color:#64748b;">Usa el año/mes seleccionados en la barra superior. Pulsa una cabecera para ordenar.</span>
+  </div>
+  <div class="gs-body">
+    <div id="gs-table-wrap"></div>
+    <div id="gs-mot"><h3>Motivos de no-otorgable / no disponible</h3><div id="gs-mot-wrap"></div></div>
+  </div>
+</div>
+
 </body>
 </html>
 
