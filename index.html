@@ -2536,8 +2536,8 @@ function gsCritFamily(code){
 function gsCritZoneDem(entry,key){
   if(entry.grid!=='TSO') return null;
   const rich=richForMonth(key,entry); if(!rich||!rich.dem) return null;
-  const d=rich.dem, mg=d.margen||{}, cl=d.crit_lim||{}, nd=d.nodal||{};
-  const comps=[['dem',cleanNum(mg.dem_ch),cl.dem_ch],['dem',cleanNum(mg.dem_sh),cl.dem_sh],['dem',cleanNum(mg.dem_no_cep),cl.dem_no_cep],['alm',cleanNum(mg.alm_cep_mpe),cl.alm_cep],['alm',cleanNum(mg.alm_no_cep_mges),cl.alm_no_cep]];
+  const d=rich.dem, mg=d.margen||{}, cl=d.crit_lim||{}, nd=d.nodal||{}, no=d.no_otorgable||{}, di=d.disp||{};
+  const comps=[['dem',cleanNum(mg.dem_ch),cl.dem_ch,cleanNum(no.dem_ch),cleanNum(di.dem_ch)],['dem',cleanNum(mg.dem_sh),cl.dem_sh,cleanNum(no.dem_sh),cleanNum(di.dem_sh)],['dem',cleanNum(mg.dem_no_cep),cl.dem_no_cep,cleanNum(no.dem_no_cep),cleanNum(di.dem_no_cep)],['alm',cleanNum(mg.alm_cep_mpe),cl.alm_cep,cleanNum(no.alm_cep),cleanNum(di.alm_cep)],['alm',cleanNum(mg.alm_no_cep_mges),cl.alm_no_cep,cleanNum(no.alm_no_cep),cleanNum(di.alm_no_cep)]];
   let best=null;
   for(const c of comps){ if(!isNaN(c[1]) && (best===null || c[1]>best[1])) best=c; }
   if(best===null) return null;
@@ -2548,13 +2548,13 @@ function gsCritZoneDem(entry,key){
   let zona=null;
   if(fam==='Estático zonal'){ zona=(zEst&&String(zEst).trim())?String(zEst):('val:'+Math.round(margen)+'|'+(entry.ccaa||'')); }
   else if(fam==='Dinámico (zonal)'){ const dv=cleanNum(nd.dinamico1_margen); zona=(zEst&&String(zEst).trim())?String(zEst):('din:'+Math.round(isNaN(dv)?margen:dv)+'|'+(entry.ccaa||'')); }
-  return {name:entry.name, ccaa:entry.ccaa, margen:margen, fam:fam, isZonal:isZonal, zona:zona, code:String(code||'')};
+  return {name:entry.name, ccaa:entry.ccaa, margen:margen, reserv:best[3], disp:best[4], fam:fam, isZonal:isZonal, zona:zona, code:String(code||'')};
 }
 function gsCritAgg(recs){
   const fam={}, zoneMax={};
   recs.forEach(function(r){
-    const ff=fam[r.fam]||(fam[r.fam]={fam:r.fam,n:0,naive:0,dedup:0});
-    ff.n++; ff.naive+=r.margen;
+    const ff=fam[r.fam]||(fam[r.fam]={fam:r.fam,n:0,naive:0,dedup:0,reserv:0,disp:0});
+    ff.n++; ff.naive+=r.margen; if(!isNaN(r.reserv)) ff.reserv+=r.reserv; if(!isNaN(r.disp)) ff.disp+=r.disp;
     if(r.isZonal && r.zona!=null){ const zk=r.fam+'|'+r.zona; if(zoneMax[zk]===undefined||r.margen>zoneMax[zk].v){ zoneMax[zk]={v:r.margen,fam:r.fam}; } }
     else { ff.dedup+=r.margen; }
   });
@@ -2570,16 +2570,19 @@ function gsRenderCritZona(key,pkey,scope,side){
   const aggC=gsCritAgg(recC), aggP=gsCritAgg(recP); const pmap={}; aggP.forEach(function(ff){pmap[ff.fam]=ff;});
   aggC.sort(function(a,b){ return GS_CRITFAM_ORDER.indexOf(a.fam)-GS_CRITFAM_ORDER.indexOf(b.fam); });
   const gw=function(x){ return (x/1000).toFixed(2); };
-  let rows=aggC.map(function(ff){ const p=pmap[ff.fam]||{dedup:0}; const fac=ff.dedup>0?(ff.naive/ff.dedup):1;
-    return '<tr><td style="text-align:left;">'+ff.fam+'</td><td>'+ff.n+'</td><td>'+gw(ff.naive)+'</td><td><b>'+gw(ff.dedup)+'</b></td><td>'+(fac>1.005?('x'+fac.toFixed(2)):'—')+'</td><td>'+gsSigned(ff.dedup-(p.dedup||0))+'</td></tr>'; }).join('');
   const tN=aggC.reduce(function(a,ff){return a+ff.naive;},0), tD=aggC.reduce(function(a,ff){return a+ff.dedup;},0), tDp=aggP.reduce(function(a,ff){return a+ff.dedup;},0);
-  rows+='<tr style="border-top:2px solid #cbd5e1;font-weight:bold;"><td style="text-align:left;">TOTAL</td><td></td><td>'+gw(tN)+'</td><td>'+gw(tD)+'</td><td>'+(tD>0?('x'+(tN/tD).toFixed(2)):'—')+'</td><td>'+gsSigned(tD-tDp)+'</td></tr>';
+  const tR=aggC.reduce(function(a,ff){return a+ff.reserv;},0), pR=aggP.reduce(function(a,ff){return a+ff.reserv;},0);
+  const tS=aggC.reduce(function(a,ff){return a+ff.disp;},0), pS=aggP.reduce(function(a,ff){return a+ff.disp;},0);
+  let rows=aggC.map(function(ff){ const fac=ff.dedup>0?(ff.naive/ff.dedup):1;
+    return '<tr><td style="text-align:left;">'+ff.fam+'</td><td>'+ff.n+'</td><td><b>'+gw(ff.dedup)+'</b></td><td style="color:#b45309;">'+gw(ff.reserv)+'</td><td style="color:#16a34a;">'+gw(ff.disp)+'</td><td>'+(fac>1.005?('x'+fac.toFixed(2)):'—')+'</td></tr>'; }).join('');
+  rows+='<tr style="border-top:2px solid #cbd5e1;font-weight:bold;"><td style="text-align:left;">TOTAL</td><td></td><td>'+gw(tD)+'</td><td style="color:#b45309;">'+gw(tR)+'</td><td style="color:#16a34a;">'+gw(tS)+'</td><td>'+(tD>0?('x'+(tN/tD).toFixed(2)):'—')+'</td></tr>';
   const zmap={};
   recC.forEach(function(r){ if(r.isZonal&&r.zona!=null){ const zk=r.fam+'|'+r.zona; const z=zmap[zk]||(zmap[zk]={fam:r.fam,zona:r.zona,nodes:[],max:0}); z.nodes.push(r.name); if(r.margen>z.max)z.max=r.margen; } });
   const zlist=Object.keys(zmap).map(function(k){return zmap[k];}).filter(function(z){return z.nodes.length>=2;}).sort(function(a,b){return b.nodes.length-a.nodes.length;}).slice(0,12);
   const zHtml=zlist.length?('<table class="gs-table" style="margin-top:6px;"><thead><tr><th style="text-align:left;">Zona</th><th>Criterio</th><th>Nudos</th><th>Margen zonal (MW)</th><th style="text-align:left;">Nudos de la zona</th></tr></thead><tbody>'+zlist.map(function(z){ return '<tr><td style="text-align:left;font-size:11px;">'+String(z.zona).slice(0,26)+'</td><td>'+z.fam+'</td><td>'+z.nodes.length+'</td><td>'+gsFmt(z.max)+'</td><td style="text-align:left;font-size:11px;">'+z.nodes.slice(0,6).join(', ')+(z.nodes.length>6?(' … +'+(z.nodes.length-6)):'')+'</td></tr>'; }).join('')+'</tbody></table>'):'<div style="color:#94a3b8;font-size:11px;">No se detectan zonas con varios nudos.</div>';
-  host.innerHTML='<table class="gs-table"><thead><tr><th style="text-align:left;">Criterio limitante</th><th>Nº nudos</th><th>Suma naive (GW)</th><th>Deduplicado (GW)</th><th>Factor</th><th>Δ dedup vs mes ant.</th></tr></thead><tbody>'+rows+'</tbody></table>'
-    +'<div style="font-size:10px;color:#94a3b8;margin-top:6px;">«Deduplicado» cuenta la capacidad de cada zona una sola vez (zona = ID estático real donde existe; si no, valor dinámico + CCAA). Factor = naive/dedup = doble conteo por compartir zona. Solo TSO · Demanda · sobre el margen total (componente que limita en cada nudo).</div>'
+  host.innerHTML='<div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:12px;"><b>Margen (dedup): '+gw(tD)+' GW</b> · <span style="color:#b45309;">Reservado (no otorgable): '+gw(tR)+' GW</span> · <span style="color:#16a34a;">Disponible (solicitable): '+gw(tS)+' GW</span><br><span style="color:#64748b;">Δ vs mes anterior — margen '+gsSigned(tD-tDp)+' · reservado '+gsSigned(tR-pR)+' · disponible '+gsSigned(tS-pS)+'  (MW)</span></div>'
+    +'<table class="gs-table"><thead><tr><th style="text-align:left;">Criterio limitante</th><th>Nº nudos</th><th>Margen dedup (GW)</th><th>Reservado (GW)</th><th>Disponible (GW)</th><th>Factor</th></tr></thead><tbody>'+rows+'</tbody></table>'
+    +'<div style="font-size:10px;color:#94a3b8;margin-top:6px;">«Margen» incluye capacidad <b>reservada</b> (no otorgable, p. ej. RDL art. 13.6); «Disponible» es lo realmente solicitable. «Dedup» cuenta cada zona una vez (ID estático donde existe; si no, valor dinámico+CCAA → <b>cota inferior</b> del doble conteo: falta la zona dinámica oficial). Solo TSO · Demanda.</div>'
     +'<h4 style="margin:12px 0 4px;font-size:12px;color:#0078A8;">Zonas con varios nudos (rastreo del afloramiento)</h4>'+zHtml;
 }
 const GS_VAR_NOTE_HTML='<b>C\u00f3mo se infieren los flujos</b> (sobre fotos mensuales de <i>stocks</i>, no transacciones).<br>Para cada nudo se compara este mes con el anterior y se clasifica su <b>movimiento neto</b> por prioridad: <b>Otorgado</b> (otorgada \u2191) \u00b7 <b>Devuelto/denegado</b> (disponible \u2191 con en curso u otorgada \u2193) \u00b7 <b>Nueva solicitud</b> (en curso/pendiente \u2191) \u00b7 <b>Liberado</b> (disponible o margen \u2191 sin otorgar ni cola \u2192 p. ej. RDL/nueva capacidad) \u00b7 <b>Reservado/ocupado</b> (disponible \u2193 sin cola ni otorgar) \u00b7 <b>Sin cambio</b> (umbral 1 MW).<br><i>Limitaciones:</i> es una <b>inferencia</b> del cambio neto; una bajada de \u00aben curso\u00bb puede ser otorgamiento o denegaci\u00f3n (se desambigua por si sube otorgada o disponible). En DSO no hay \u00aben curso/otorgada/margen\u00bb: se usan \u00abadmitida y no resuelta\u00bb como pendiente y \u00abocupada\u00bb como otorgada. Colores de \u0394 = signo (verde sube, rojo baja), sin juicio de valor.';
