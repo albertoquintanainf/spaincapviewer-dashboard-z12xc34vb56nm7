@@ -253,18 +253,20 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 #gs-controls { display:flex; gap:14px; align-items:center; flex-wrap:wrap; padding:12px 18px 4px; }
 #gs-controls label { font-size:12px; font-weight:bold; color:#334155; }
 #gs-controls select { padding:5px 8px; border-radius:6px; border:1px solid #cbd5e1; font-size:13px; color:#0f172a; margin-left:4px; }
-.gs-body { padding:8px 18px 28px; }
-.gs-view-table { display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap; width:100%; }
-#gs-map-wrap { width:100%; margin-bottom:14px; }
-#gs-map { width:100%; height:40vh; min-height:320px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+.gs-body { padding:8px 18px 28px; display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap; }
+.gs-view-table { flex:1 1 52%; min-width:420px; display:flex; flex-direction:column; gap:14px; }
+#gs-map-wrap { flex:1 1 44%; min-width:360px; }
+#gs-map { width:100%; height:calc(100vh - 185px); min-height:440px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
 #gs-map-legend { margin-top:8px; font-size:11px; color:#475569; display:flex; gap:18px; align-items:center; flex-wrap:wrap; }
+.gs-bubble-label { background:transparent !important; border:none !important; box-shadow:none !important; padding:0 !important; color:#fff; font-weight:700; font-size:11px; text-shadow:0 0 3px rgba(0,0,0,.85),0 0 2px rgba(0,0,0,.85); white-space:nowrap; }
+.gs-bubble-label::before { display:none !important; }
 .gs-leg-dot { display:inline-block; width:12px; height:12px; border-radius:50%; margin:0 4px; vertical-align:middle; border:1px solid #fff; box-shadow:0 0 0 1px #cbd5e1; }
-#gs-table-wrap { flex:1 1 680px; overflow:auto; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); max-height:44vh; }
+#gs-table-wrap { width:100%; overflow:auto; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); max-height:58vh; }
 .gs-table { border-collapse:collapse; width:100%; font-size:12px; }
 .gs-table th, .gs-table td { padding:7px 9px; border-bottom:1px solid #e2e8f0; text-align:right; white-space:nowrap; }
 .gs-table th { background:#e2e8f0; color:#0f172a; position:sticky; top:0; font-size:11px; }
 .gs-table tbody tr:hover { background:#f8fafc; }
-#gs-mot { flex:0 0 300px; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:14px; max-height:44vh; overflow:auto; }
+#gs-mot { width:100%; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:14px; max-height:32vh; overflow:auto; }
 #gs-mot h3 { margin:0 0 10px; font-size:13px; color:#0078A8; }
 .gs-mot-row { display:flex; justify-content:space-between; gap:10px; font-size:12px; padding:5px 0; border-bottom:1px dashed #e2e8f0; }
 
@@ -2469,7 +2471,11 @@ function gsRenderMap(){
             +'Otorgada: '+gsFmt(g.otorgada)+' MW<br>'
             +'No solicit.: '+g.noSolic+' nudos<br>'
             +'Saturación: '+(isNaN(sat)?'–':sat.toFixed(0)+'%')+'</div>');
-        mk.bindTooltip(sName+': '+gsFmt(gsBubbleVal(g,metric))+(metric==='sat'?'%':(metric==='noSolic'?' nudos':' MW')),{direction:'top'});
+        let lblTxt;
+        if(metric==='sat') lblTxt=isNaN(v)?'':(v.toFixed(0)+'%');
+        else if(metric==='noSolic') lblTxt=isNaN(v)?'':String(Math.round(v));
+        else { const gw=v/1000; lblTxt=isNaN(gw)?'':(gw.toFixed(Math.abs(gw)>=100?0:1)+' GW'); }
+        if(lblTxt) mk.bindTooltip(lblTxt,{permanent:true,direction:'center',className:'gs-bubble-label'});
         gsBubbles.addLayer(mk);
     });
     const ML={disp:'Disp. '+SL,margen:'Margen '+SL,otorgada:'Otorgada '+SL,noSolic:'Nudos no solicitables',aflorada:'Aflorada Δmargen'};
