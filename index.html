@@ -2537,7 +2537,7 @@ function gsSetSort(c){ if(gsSort.col===c) gsSort.dir*=-1; else { gsSort.col=c; g
 let gsMap=null, gsBubbles=null, gsView='table';
 function gsInitMap(){
     if(gsMap) return;
-    gsMap=L.map('gs-map',{zoomControl:true}).setView([40.2,-3.6],5.4);
+    gsMap=L.map('gs-map',{zoomControl:false, dragging:false, scrollWheelZoom:false, doubleClickZoom:false, boxZoom:false, keyboard:false, touchZoom:false, tap:false}).setView([40.2,-3.6],5.4);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(gsMap);
     gsBubbles=L.layerGroup().addTo(gsMap);
 }
@@ -2550,9 +2550,9 @@ function gsGeoKeyForGroup(name,level){ let n=gsNorm(name); const al=(level==='cc
 function gsFeatKeys(props){ const raw=String((props&&props.name)||''); const out=[gsNorm(raw)]; if(raw.indexOf('/')>=0) raw.split('/').forEach(function(p){ out.push(gsNorm(p)); }); return out; }
 function gsLoadGeo(level,cb){ const which=(level==='ccaa')?'ccaa':'prov'; if(GS_GEO[which]){cb(GS_GEO[which]);return;} if(gsGeoTried[which]){cb(null);return;} gsGeoTried[which]=true;
   fetch(which==='ccaa'?'es_ccaa.geojson':'es_prov.geojson').then(function(r){return r.ok?r.json():null;}).then(function(j){ if(j){GS_GEO[which]=j;} else {gsGeoMissing[which]=true;} cb(j); if(j&&gsMap) gsRenderMap(); }).catch(function(e){ gsGeoMissing[which]=true; console.warn('GeoJSON no disponible',e); cb(null); }); }
-function gsSeqColor(t){ if(isNaN(t)) return '#eef2f7'; t=Math.max(0,Math.min(1,t)); const m=function(a,b){return Math.round(a+(b-a)*t);}; return 'rgb('+m(224,8)+','+m(242,81)+','+m(254,156)+')'; }
-function gsDivColor(v,maxAbs){ if(isNaN(v)||!maxAbs) return '#eef2f7'; const t=Math.max(-1,Math.min(1,v/maxAbs)); const m=function(a,b,k){return Math.round(a+(b-a)*k);}; if(t>=0){ return 'rgb('+m(240,22,t)+','+m(240,163,t)+','+m(240,74,t)+')'; } const k=-t; return 'rgb('+m(240,220,k)+','+m(240,38,k)+','+m(240,38,k)+')'; }
-function gsChoroFill(metric,g,stats){ const v=gsBubbleVal(g,metric); if(metric==='sat') return gsSatColor(v); if(metric==='aflorada') return gsDivColor(v,stats.maxAbs); return gsSeqColor(stats.max>0?Math.abs(v)/stats.max:NaN); }
+function gsSeqColor(t){ if(isNaN(t)) t=0; t=Math.max(0,Math.min(1,t)); const m=function(a,b){return Math.round(a+(b-a)*t);}; return 'rgb('+m(255,154)+','+m(237,52)+','+m(213,18)+')'; }
+function gsDivColor(v,maxAbs){ if(isNaN(v)||!maxAbs) return '#eef2f7'; const t=Math.max(-1,Math.min(1,v/maxAbs)); const m=function(a,b,k){return Math.round(a+(b-a)*k);}; if(t>=0){ return 'rgb('+m(240,234,t)+','+m(240,88,t)+','+m(240,12,t)+')'; } const k=-t; return 'rgb('+m(240,71,k)+','+m(240,85,k)+','+m(240,105,k)+')'; }
+function gsChoroFill(metric,g,stats){ const v=gsBubbleVal(g,metric); if(metric==='sat') return gsSeqColor(isNaN(v)?NaN:v/100); if(metric==='aflorada') return gsDivColor(v,stats.maxAbs); return gsSeqColor(stats.max>0?Math.abs(v)/stats.max:NaN); }
 function gsSatColor(satPct){ if(isNaN(satPct)) return '#94a3b8'; const s=Math.max(0,Math.min(100,satPct))/100; return 'hsl('+(120*(1-s))+',70%,45%)'; }
 function gsBubbleVal(g,metric){
     if(metric==='sat') return g.satN?(100*g.satSum/g.satN):NaN;
@@ -2570,35 +2570,34 @@ function gsRenderMap(){
     const level=document.getElementById('gs-level').value;
     const scope=document.getElementById('gs-scope').value;
     const metric=document.getElementById('gs-mapmetric').value;
-    const layer=((document.getElementById('gs-maplayer')||{}).value)||'choro';
+    const maplevel=(level==='nac')?'ccaa':level;
     const SL=GS_SIDESHORT[side]||'';
     const ML={disp:'Disp. '+SL,margen:'Margen '+SL,otorgada:'Otorgada '+SL,noSolic:'Nudos no solicitables',aflorada:'Aflorada \u0394margen',enCurso:'En curso',sat:'Saturacion'};
-    const cur=gsAggregate(level,scope,key,side);
-    const prev=gsAggregate(level,scope,pkey,side); const pmap={}; prev.forEach(function(g){pmap[g.name]=g;});
+    const cur=gsAggregate(maplevel,scope,key,side);
+    const prev=gsAggregate(maplevel,scope,pkey,side); const pmap={}; prev.forEach(function(g){pmap[g.name]=g;});
     cur.forEach(function(g){ const pm=(pmap[g.name]&&!isNaN(pmap[g.name].margen))?pmap[g.name].margen:0; g.aflorada=(isNaN(g.margen)?0:g.margen)-pm; });
     let maxV=0; cur.forEach(function(g){ const v=Math.abs(gsBubbleVal(g,metric)); if(!isNaN(v)&&v>maxV)maxV=v; });
     const stats={max:maxV,maxAbs:maxV};
-    const gbk={}; cur.forEach(function(g){ gbk[gsGeoKeyForGroup(g.name,level)]=g; });
+    const gbk={}; cur.forEach(function(g){ gbk[gsGeoKeyForGroup(g.name,maplevel)]=g; });
     if(gsGeoLayer){ gsMap.removeLayer(gsGeoLayer); gsGeoLayer=null; }
-    if((layer==='choro'||layer==='both') && level!=='nac'){
-        gsLoadGeo(level,function(geo){
+    {
+        gsLoadGeo(maplevel,function(geo){
             if(!geo||!gsMap) return;
-            const cl=((document.getElementById('gs-maplayer')||{}).value)||'choro', clv=document.getElementById('gs-level').value;
-            if((cl!=='choro'&&cl!=='both')||clv!==level) return;
+            if(document.getElementById('gs-level').value!==level) return;
             if(gsGeoLayer){ gsMap.removeLayer(gsGeoLayer); gsGeoLayer=null; }
             const pick=function(props){ const ks=gsFeatKeys(props); for(let i=0;i<ks.length;i++){ if(gbk[ks[i]]) return gbk[ks[i]]; } return null; };
             gsGeoLayer=L.geoJSON(geo,{
-                style:function(feat){ const g=pick(feat.properties); return { fillColor: g?gsChoroFill(metric,g,stats):'#f1f5f9', fillOpacity: g?0.78:0.2, color:'#ffffff', weight:1 }; },
+                style:function(feat){ const g=pick(feat.properties); return g ? { fillColor:gsChoroFill(metric,g,stats), fillOpacity:0.82, color:'#ffffff', weight:1 } : { fillColor:'#cbd5e1', fillOpacity:0.45, color:'#ffffff', weight:1, dashArray:'2,3' }; },
                 onEachFeature:function(feat,lyr){ const g=pick(feat.properties); const nm=String((feat.properties&&feat.properties.name)||'');
                     if(g){ const sat=g.satN?(100*g.satSum/g.satN):NaN; const mv=gsBubbleVal(g,metric); const vTxt=(metric==='sat')?(isNaN(sat)?'\u2013':sat.toFixed(0)+'%'):(gsFmt(mv)+(metric==='noSolic'?' nudos':' MW'));
                         lyr.bindTooltip('<b>'+g.name+'</b> <span style="color:#94a3b8;">('+g.nTSO+'T\u00b7'+g.nDSO+'D)</span><br>'+(ML[metric]||metric)+': <b>'+vTxt+'</b><br>Saturacion: '+(isNaN(sat)?'\u2013':sat.toFixed(0)+'%'),{sticky:true}); }
-                    else { lyr.bindTooltip(nm+'<br><span style="color:#94a3b8;">sin datos</span>',{sticky:true}); }
+                    else { lyr.bindTooltip(nm+'<br><span style="color:#94a3b8;">sin nudos</span>',{sticky:true}); }
                 }
             }).addTo(gsMap);
             gsGeoLayer.bringToBack();
         });
     }
-    const showBub=(layer==='bubbles'||layer==='both'||level==='nac');
+    const showBub=false;
     const minR=6,maxR=34;
     if(showBub) cur.forEach(function(g){
         if(!g.coordN) return;
@@ -2625,16 +2624,17 @@ function gsRenderMap(){
         if(lblTxt) mk.bindTooltip(lblTxt,{permanent:true,direction:'center',className:'gs-bubble-label'});
         gsBubbles.addLayer(mk);
     });
-    const dot=function(c){ return '<span class="gs-leg-dot" style="background:'+c+'"></span>'; };
-    let legHtml='';
-    if((layer==='choro'||layer==='both') && level!=='nac'){
-        if(metric==='sat') legHtml+='<span><b>Color regiones</b>: saturaci\u00f3n '+dot(gsSatColor(10))+'baja '+dot(gsSatColor(50))+'media '+dot(gsSatColor(90))+'alta</span>';
-        else if(metric==='aflorada') legHtml+='<span><b>Color regiones</b>: '+(ML[metric]||metric)+' '+dot(gsDivColor(-1,1))+'baja '+dot(gsDivColor(0,1))+'0 '+dot(gsDivColor(1,1))+'alta</span>';
-        else legHtml+='<span><b>Color regiones</b>: '+(ML[metric]||metric)+' '+dot(gsSeqColor(0.12))+'bajo '+dot(gsSeqColor(0.55))+'medio '+dot(gsSeqColor(1))+'alto</span>';
-        const which=(level==='ccaa')?'ccaa':'prov';
-        if(gsGeoMissing[which]) legHtml+='<span style="color:#b45309;">Falta es_'+which+'.geojson en el repo.</span>';
-    }
-    if(showBub) legHtml+='<span><b>Burbuja</b> \u2014 tama\u00f1o: '+(ML[metric]||metric)+' \u00b7 color: saturaci\u00f3n</span>';
+    const fmtV=function(x){ if(isNaN(x)) return '0'; if(metric==='sat') return Math.round(x)+'%'; if(metric==='noSolic') return Math.round(x); const ax=Math.abs(x); return ax>=1000?((x/1000).toFixed(1)+' GW'):(Math.round(x)+' MW'); };
+    let barStops, lb0,lb1,lb2,lb3,lb4, divg=false;
+    if(metric==='aflorada'){ divg=true; barStops=[-1,-0.5,0,0.5,1].map(function(t){return gsDivColor(t*maxV,maxV);}); lb0=fmtV(-maxV); lb1=fmtV(-maxV/2); lb2=fmtV(0); lb3=fmtV(maxV/2); lb4=fmtV(maxV); }
+    else if(metric==='sat'){ barStops=[0,0.25,0.5,0.75,1].map(function(t){return gsSeqColor(t);}); lb0='0%'; lb1='25%'; lb2='50%'; lb3='75%'; lb4='100%'; }
+    else { barStops=[0,0.25,0.5,0.75,1].map(function(t){return gsSeqColor(t);}); lb0=fmtV(0); lb1=fmtV(maxV*0.25); lb2=fmtV(maxV*0.5); lb3=fmtV(maxV*0.75); lb4=fmtV(maxV); }
+    const which=(maplevel==='ccaa')?'ccaa':'prov';
+    let legHtml='<div style="font-size:11px;margin-bottom:3px;"><b>'+(ML[metric]||metric)+'</b>'+(level==='nac'?' <span style="color:#94a3b8;">(por CCAA)</span>':'')+'</div>'
+      +'<div style="height:12px;border-radius:3px;background:linear-gradient(to right,'+barStops.join(',')+');border:1px solid rgba(0,0,0,.08);"></div>'
+      +'<div style="display:flex;justify-content:space-between;font-size:9px;color:#64748b;margin-top:2px;"><span>'+lb0+'</span><span>'+lb1+'</span><span>'+lb2+'</span><span>'+lb3+'</span><span>'+lb4+'</span></div>'
+      +'<div style="margin-top:5px;font-size:10px;"><span class="gs-leg-dot" style="background:#cbd5e1;"></span>sin nudos'+(divg?' · azul = decae / naranja = aflora':'')+'</div>';
+    if(gsGeoMissing[which]) legHtml+='<div style="color:#b45309;font-size:10px;margin-top:3px;">Falta es_'+which+'.geojson en el repo.</div>';
     document.getElementById('gs-map-legend').innerHTML=legHtml;
 }
 function gsSetView(v){
@@ -2721,13 +2721,6 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
         <option value="enCurso">En curso</option>
       </select>
     </label>
-    <label>Capa:
-      <select id="gs-maplayer" onchange="gsRenderMap()">
-        <option value="choro" selected>Coropleta (regiones)</option>
-        <option value="bubbles">Burbujas</option>
-        <option value="both">Ambas</option>
-      </select>
-    </label>
     <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-weight:normal;"><input type="checkbox" id="gs-desglose" onchange="renderGridStatus()" style="cursor:pointer;"> Desglose por tipo</label>
     <span style="font-size:11px;color:#64748b;">Pulsa una cabecera para ordenar.</span>
     <button type="button" onclick="gsToggleNote()" style="margin-left:auto;background:#e2e8f0;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:#0078A8;font-weight:bold;">&#9432; Cómo se calcula</button>
@@ -2738,7 +2731,7 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
     <b>Disponible / solicitable:</b> capacidad de acceso disponible para nuevas solicitudes. En TSO es el máximo de las variables de la perspectiva (Gen, Dem o Almacenamiento).<br>
     <b>Margen:</b> máximo de las variables del bloque «margen de capacidad de acceso total» de la perspectiva. En Demanda incluye el almacenamiento (CEP-MPE / no-CEP-MGES). Se usa el máximo (no la suma) para no duplicar criterios equivalentes.<br>
     <b>Desglose por tipo:</b> al activarlo, la tabla muestra el margen de cada subtipo por separado (Gen/Alm: MGES, MPE · Demanda: CH, SH, No CEP, Alm CEP, Alm No CEP) junto al Margen (máximo) y al disponible (solicitable). Solo aplica a la red TSO.<br>
-    <b>Mapa (coropleta):</b> colorea cada provincia/CCAA según la métrica del selector «Métrica mapa» (saturación: verde→rojo · magnitudes: azul claro→oscuro · aflorada: rojo↔verde). Con «Capa» eliges coropleta, burbujas o ambas. Requiere es_prov.geojson y es_ccaa.geojson en la raíz del repo; pasa el cursor por una región para ver su valor.<br>
+    <b>Mapa (coropleta, fijo):</b> colorea cada provincia/CCAA en tonos naranja según la métrica del selector «Métrica mapa» (magnitudes y saturación: naranja claro→oscuro; aflorada: azul = decae / naranja = aflora). Gris = sin nudos. La leyenda muestra la escala con valores. A nivel Nacional el mapa colorea por CCAA. Requiere es_prov.geojson y es_ccaa.geojson en la raíz del repo; pasa el cursor por una región para ver su valor.<br>
     <b>Aflorada (Δmargen):</b> variación del margen respecto al mes anterior (verde = aflora, rojo = decae).<br>
     <b>En curso:</b> capacidad en curso de tramitación/resolución.<br>
     <b>Otorgada:</b> capacidad de acceso ya otorgada.<br>
