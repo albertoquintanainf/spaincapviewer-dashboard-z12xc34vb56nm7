@@ -858,10 +858,10 @@ function _dsoFilas(datos, prevDatos) {
         const v = datos[k];
         if (v === null || v === undefined || v === '') return;
         if (k === 'nudo0') {
-            // Nudo 0*: 1=Sí / 0=No, con botón de info (nota aclaratoria) cuando es 0*
+            // Nudo 0*: 1=Sí / 0=No, con botón de info (nota aclaratoria) en ambos casos
             const is0 = dsoIs0Star(v);
             const disp = is0 ? 'Sí (0*)' : 'No';
-            const info = is0 ? ' <span class="zero-star-icon" onclick="openZeroStarModal()" title="Ver nota aclaratoria «0* MW»">i</span>' : '';
+            const info = ' <span class="zero-star-icon" onclick="openZeroStarModal()" title="Ver nota aclaratoria «0* MW»">i</span>';
             h += `<tr><td style="color:#666;padding:2px 0;font-size:11.5px;">${DSO_LABELS[k]}</td><td style="text-align:right;font-weight:600;font-size:11.5px;">${disp}${info}${changeIcon(v, pd[k])}</td></tr>`;
             return;
         }
@@ -908,7 +908,7 @@ function refreshTypeFilter() {
     // En DSO el "tipo" relevante es si el nudo es 0* (capacidad condicionada) o no
     if (redEl && redEl.value === 'DSO') {
         if (sectionEl) sectionEl.textContent = 'Type (0*)';
-        createCheckboxes('m-type', ['0*', 'normal']);
+        createCheckboxes('m-type', ['0* SÍ', '0* No']);
         return;
     }
     if (!window._typeSets) return;
@@ -988,8 +988,8 @@ function applyFilters() {
         // Filtro por tipo: TSO por criterio (ctGen/ctDem); DSO por 0* solo cuando el filtro está en modo DSO
         let typeOk;
         if (e.grid === 'DSO') {
-            if (sel.type.includes('0*') || sel.type.includes('normal')) {
-                typeOk = sel.type.includes(isDsoZeroStarMonth(e, year, month) ? '0*' : 'normal');
+            if (sel.type.includes('0* SÍ') || sel.type.includes('0* No')) {
+                typeOk = sel.type.includes(isDsoZeroStarMonth(e, year, month) ? '0* SÍ' : '0* No');
             } else {
                 typeOk = true;   // en ALL/TSO no se filtra DSO por tipo
             }
@@ -1125,9 +1125,9 @@ function buildNodeFichaHTML(items) {
                 const vG = cleanNum(item[`${mkey}_gen`]), vD = cleanNum(item[`${mkey}_dem`]);
                 const pG = cleanNum(item[`${pkey}_gen`]), pD = cleanNum(item[`${pkey}_dem`]);
                 capacityRows = `
-                <tr><td style="color:#666;padding:2px 0;">Available (gen):</td><td style="font-weight:bold;text-align:right;color:#f97316;">${txt(vG)}${nodeTrendBadge(vG,pG)}</td></tr>
-                <tr><td style="color:#666;padding:2px 0;">Available (dem):</td><td style="font-weight:bold;text-align:right;color:#0ea5e9;">${txt(vD)}${nodeTrendBadge(vD,pD)}</td></tr>
-                <tr style="border-top:1px dashed #ccc;background:#f8fafc;"><td style="color:#000;padding:4px 0;font-weight:bold;">Effective (Min):</td><td style="font-weight:bold;text-align:right;color:#0078A8;">${txt(eff)}</td></tr>`;
+                <tr><td style="color:#666;padding:2px 0;">Capacidad Firme (gen):</td><td style="font-weight:bold;text-align:right;color:#f97316;">${txt(vG)}${nodeTrendBadge(vG,pG)}</td></tr>
+                <tr><td style="color:#666;padding:2px 0;">Capacidad Firme (dem):</td><td style="font-weight:bold;text-align:right;color:#0ea5e9;">${txt(vD)}${nodeTrendBadge(vD,pD)}</td></tr>
+                <tr style="border-top:1px dashed #ccc;background:#f8fafc;"><td style="color:#000;padding:4px 0;font-weight:bold;">Capacidad Firme (mín. efectivo):</td><td style="font-weight:bold;text-align:right;color:#0078A8;">${txt(eff)}</td></tr>`;
             } else {
                 const lblMap = { alm_mpe_rdt: 'Gen · MPE RdT', alm_mpe_rdd: 'Gen · MPE RdD', alm_cep: 'Dem · CEP (MPE)', alm_mges_rdt: 'Gen · MGES RdT', alm_mges_rdd: 'Gen · MGES RdD', alm_no_cep: 'Dem · NO CEP (MGES)' };
                 let rws = '';
@@ -1141,7 +1141,7 @@ function buildNodeFichaHTML(items) {
             const varCode = (document.getElementById('view-var') || {}).value || (type === 'dem' ? 'dem_ch' : 'gen_mpe_rdt');
             const v = mapCapValue(item, year, month, type, varCode);
             const pV = mapCapValue(item, prevYear, pMonth, type, varCode);
-            const label = VAR_LABEL[varCode] || (type === 'gen' ? 'Gen' : 'Dem');
+            const label = (item.grid === 'DSO') ? 'Capacidad Firme' : (VAR_LABEL[varCode] || (type === 'gen' ? 'Gen' : 'Dem'));
             const textV = isNaN(v) ? 'No Info' : v + ' MW';
             capacityRows = `<tr><td style="color:#666;padding:2px 0;">${label}:</td><td style="font-weight:bold;text-align:right;color:#f97316;">${textV}${nodeTrendBadge(v,pV)}</td></tr>`;
         }
@@ -1327,7 +1327,7 @@ function buildDispTrendHTML(item, type) {
         };
         let body;
         if (type === 'storage') {
-            const g = rowFor('gen', 'Available (gen)'), d = rowFor('dem', 'Available (dem)');
+            const g = rowFor('gen', 'Capacidad Firme (gen)'), d = rowFor('dem', 'Capacidad Firme (dem)');
             let minCells = '';
             months.forEach((m, ci) => {
                 const vals = [g.agg[ci], d.agg[ci]].filter(x => !isNaN(x));
@@ -1336,7 +1336,7 @@ function buildDispTrendHTML(item, type) {
             });
             body = '<tbody>' + g.html + d.html + `<tr class="maxrow"><td class="vname">Min</td>${minCells}</tr>` + '</tbody>';
         } else {
-            const r = rowFor(type, type === 'gen' ? 'Available (gen)' : 'Available (dem)');
+            const r = rowFor(type, 'Capacidad Firme');
             body = '<tbody>' + r.html + '</tbody>';
         }
         return `<div class="nd-vartable-wrap"><table class="nd-vartable"><thead><tr>${head}</tr></thead>${body}</table></div>`;
