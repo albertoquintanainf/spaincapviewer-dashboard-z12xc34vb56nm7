@@ -2268,7 +2268,7 @@ function gsTSO(entry, key){
     const g=rich.gen||{}, d=rich.dem||{};
     const dg=g.disp||{}, dd=d.disp||{}, mg=g.margen||{}, md=d.margen||{};
     const nd=g.no_disp||{}, no=d.no_otorgable||{}, otg=g.otorgada||{}, otd=d.otorgada||{};
-    const resv=g.reserva||{}, conc=d.concurso||{};
+    const resv=g.reserva||{}, conc=d.concurso||{}, ec=g.en_curso||{}, ecd=d.en_curso||{};
     const dispGen = gsMaxOf(dg.gen_mges_rdt, dg.gen_mpe_rdt, dg.gen_mges_rdd, dg.gen_mpe_rdd);
     const dispDem = gsMaxOf(dd.dem_ch, dd.dem_sh, dd.dem_no_cep);
     const almG = gsMaxOf(dg.alm_mges_rdt, dg.alm_mpe_rdt, dg.alm_mges_rdd, dg.alm_mpe_rdd);
@@ -2288,9 +2288,9 @@ function gsTSO(entry, key){
     const reasonDem=[motD, concNudo, (conc.normativa!=null?String(conc.normativa).trim():''), (enConcD?'Concurso':'')].filter(Boolean).join(' · ');
     const reasonAlm=(!isNaN(dispAlm)&&dispAlm<=0)?'Sin capacidad':'';
     return { grid:'TSO',
-      gen:{disp:dispGen, margen:margenGen, otorgada:otGen, noSolic:reasonGen!=='', causas:gsCausas(reasonGen), sat:gsSat(otGen,dispGen), enConcurso:enConcG},
-      dem:{disp:dispDem, margen:margenDem, otorgada:otDem, noSolic:reasonDem!=='', causas:gsCausas(reasonDem), sat:gsSat(otDem,dispDem), enConcurso:enConcD},
-      alm:{disp:dispAlm, margen:margenAlm, otorgada:otAlm, noSolic:reasonAlm!=='', causas:gsCausas(reasonAlm), sat:gsSat(otAlm,dispAlm), enConcurso:false}
+      gen:{disp:dispGen, margen:margenGen, otorgada:otGen, enCurso:cleanNum(ec.gen), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonGen!=='', causas:gsCausas(reasonGen), sat:gsSat(otGen,dispGen), enConcurso:enConcG},
+      dem:{disp:dispDem, margen:margenDem, otorgada:otDem, enCurso:cleanNum(ecd.dem), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonDem!=='', causas:gsCausas(reasonDem), sat:gsSat(otDem,dispDem), enConcurso:enConcD},
+      alm:{disp:dispAlm, margen:margenAlm, otorgada:otAlm, enCurso:cleanNum(ec.alm), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonAlm!=='', causas:gsCausas(reasonAlm), sat:gsSat(otAlm,dispAlm), enConcurso:false}
     };
 }
 // --- Métricas por nudo DSO en un mes -> {gen,dem,alm} ---
@@ -2306,9 +2306,9 @@ function gsDSO(entry, key){
     const base=(is0?'Nudo 0* ':'')+com;
     const rG=noG?(base||'Sin capacidad'):'', rD=noD?(base||'Sin capacidad'):'', rA=noA?(base||'Sin capacidad'):'';
     return { grid:'DSO',
-      gen:{disp:dispGen, margen:NaN, otorgada:ocG, noSolic:noG, causas:gsCausas(rG), sat:gsSat(ocG,dispGen), enConcurso:false},
-      dem:{disp:dispDem, margen:NaN, otorgada:ocD, noSolic:noD, causas:gsCausas(rD), sat:gsSat(ocD,dispDem), enConcurso:false},
-      alm:{disp:dispAlm, margen:NaN, otorgada:NaN, noSolic:noA, causas:gsCausas(rA), sat:NaN, enConcurso:false}
+      gen:{disp:dispGen, margen:NaN, otorgada:ocG, enCurso:NaN, comprom:cleanNum(g.comprom), ocupada:ocG, admitida:cleanNum(g.admitida), noSolic:noG, causas:gsCausas(rG), sat:gsSat(ocG,dispGen), enConcurso:false},
+      dem:{disp:dispDem, margen:NaN, otorgada:ocD, enCurso:NaN, comprom:cleanNum(d.comprom), ocupada:ocD, admitida:cleanNum(d.admitida), noSolic:noD, causas:gsCausas(rD), sat:gsSat(ocD,dispDem), enConcurso:false},
+      alm:{disp:dispAlm, margen:NaN, otorgada:NaN, enCurso:NaN, comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:noA, causas:gsCausas(rA), sat:NaN, enConcurso:false}
     };
 }
 function gsNodeMetrics(entry, key){ return entry.grid==='DSO' ? gsDSO(entry,key) : gsTSO(entry,key); }
@@ -2325,11 +2325,11 @@ function gsAggregate(level, scope, key, side){
         else if(level==='ccaa') gk=e.ccaa||'(sin CCAA)';
         else if(level==='prov') gk=e.prov||'(sin provincia)';
         else gk=e.name;
-        const o=G[gk]||(G[gk]={name:gk,n:0,nTSO:0,nDSO:0,disp:0,margen:0,otorgada:0,noSolic:0,concurso:0,satSum:0,satN:0,causas:{},sumX:0,sumY:0,coordN:0});
+        const o=G[gk]||(G[gk]={name:gk,n:0,nTSO:0,nDSO:0,disp:0,margen:0,otorgada:0,enCurso:0,comprom:0,ocupada:0,admitida:0,noSolic:0,concurso:0,satSum:0,satN:0,causas:{},sumX:0,sumY:0,coordN:0});
         o.n++; if(e.grid==='DSO')o.nDSO++; else o.nTSO++;
         if(!isNaN(e.x)&&!isNaN(e.y)){ o.sumX+=e.x; o.sumY+=e.y; o.coordN++; }
         const add=function(f,v){ if(!isNaN(v)) o[f]+=v; };
-        add('disp',sm.disp); add('margen',sm.margen); add('otorgada',sm.otorgada);
+        add('disp',sm.disp); add('margen',sm.margen); add('otorgada',sm.otorgada); add('enCurso',sm.enCurso); add('comprom',sm.comprom); add('ocupada',sm.ocupada); add('admitida',sm.admitida);
         if(sm.noSolic)o.noSolic++;
         if(sm.enConcurso)o.concurso++;
         if(!isNaN(sm.sat)){o.satSum+=sm.sat;o.satN++;}
@@ -2369,34 +2369,42 @@ function renderGridStatus(){
     const val=function(g){ if(col==='name')return g.name; if(col==='sat')return g.satN?g.satSum/g.satN:-1; return g[col]||0; };
     cur.sort(function(a,b){ const va=val(a),vb=val(b); if(col==='name')return dir*String(va).localeCompare(String(vb)); return dir*((va||0)-(vb||0)); });
     const hdr=function(lbl,c,extra){ const act=gsSort.col===c, ar=act?(gsSort.dir<0?' ▼':' ▲'):''; return '<th onclick="gsSetSort(\''+c+'\')" style="cursor:pointer;'+(extra||'')+'">'+lbl+ar+'</th>'; };
+    const isDSO=(scope==='DSO');
     let rows='';
     for(const g of cur){
         const p=pmap[g.name]||{};
         const sat=g.satN?(100*g.satSum/g.satN):NaN;
-        const showName = (level==='nodo') ? g.name : ('<b>'+g.name+'</b>');
-        rows+='<tr>'
-          +'<td style="text-align:left;">'+showName+'<div style="font-size:10px;color:#94a3b8;">'+g.nTSO+'T · '+g.nDSO+'D</div></td>'
-          +'<td>'+g.n+'</td>'
-          +'<td>'+gsFmt(g.disp)+gsDelta(g.disp,(p.disp===undefined?NaN:p.disp))+'</td>'
-          +'<td>'+gsFmt(g.margen)+'</td>'
-          +'<td>'+gsSigned(g.aflorada)+'</td>'
-          +'<td>'+gsFmt(g.otorgada)+'</td>'
-          +'<td>'+(g.concurso||0)+'</td>'
-          +'<td>'+g.noSolic+'</td>'
-          +'<td>'+(isNaN(sat)?'–':sat.toFixed(0)+'%')+'</td>'
-          +'</tr>';
+        const showName='<b>'+g.name+'</b>';
+        const nlab=isDSO?(g.nDSO+'D'):(g.nTSO+'T · '+g.nDSO+'D');
+        if(isDSO){
+            rows+='<tr>'
+              +'<td style="text-align:left;">'+showName+'<div style="font-size:10px;color:#94a3b8;">'+nlab+'</div></td>'
+              +'<td>'+g.n+'</td>'
+              +'<td>'+gsFmt(g.disp)+gsDelta(g.disp,(p.disp===undefined?NaN:p.disp))+'</td>'
+              +'<td>'+gsFmt(g.comprom)+'</td>'
+              +'<td>'+gsFmt(g.ocupada)+'</td>'
+              +'<td>'+gsFmt(g.admitida)+'</td>'
+              +'<td>'+(isNaN(sat)?'–':sat.toFixed(0)+'%')+'</td>'
+              +'</tr>';
+        } else {
+            rows+='<tr>'
+              +'<td style="text-align:left;">'+showName+'<div style="font-size:10px;color:#94a3b8;">'+nlab+'</div></td>'
+              +'<td>'+g.n+'</td>'
+              +'<td>'+gsFmt(g.disp)+gsDelta(g.disp,(p.disp===undefined?NaN:p.disp))+'</td>'
+              +'<td>'+gsFmt(g.margen)+'</td>'
+              +'<td>'+gsSigned(g.aflorada)+'</td>'
+              +'<td>'+gsFmt(g.enCurso)+'</td>'
+              +'<td>'+gsFmt(g.otorgada)+'</td>'
+              +'<td>'+(g.concurso||0)+'</td>'
+              +'<td>'+g.noSolic+'</td>'
+              +'<td>'+(isNaN(sat)?'–':sat.toFixed(0)+'%')+'</td>'
+              +'</tr>';
+        }
     }
-    const table='<table class="gs-table"><thead><tr>'
-        +hdr('Nivel','name','text-align:left;')
-        +hdr('Nudos','n')
-        +hdr('Disp. '+SL+' (MW)','disp')
-        +hdr('Margen '+SL,'margen')
-        +hdr('Aflorada Δmargen','aflorada')
-        +hdr('Otorgada '+SL,'otorgada')
-        +hdr('Concurso','concurso')
-        +hdr('No solicit.','noSolic')
-        +hdr('Satur. '+SL,'sat')
-        +'</tr></thead><tbody>'+(rows||'<tr><td colspan="11">Sin datos para este mes/alcance.</td></tr>')+'</tbody></table>';
+    const head = isDSO
+      ? (hdr('Nivel','name','text-align:left;')+hdr('Nudos','n')+hdr('Disponible (MW)','disp')+hdr('Comprom. regul.','comprom')+hdr('Ocupada (MW)','ocupada')+hdr('Admitida y no resuelta (MW)','admitida')+hdr('Satur.','sat'))
+      : (hdr('Nivel','name','text-align:left;')+hdr('Nudos','n')+hdr('Disp. '+SL+' (solicit., MW)','disp')+hdr('Margen '+SL,'margen')+hdr('Aflorada Δmargen','aflorada')+hdr('En curso','enCurso')+hdr('Otorgada '+SL,'otorgada')+hdr('Concurso','concurso')+hdr('No solicit.','noSolic')+hdr('Satur. '+SL,'sat'));
+    const table='<table class="gs-table"><thead><tr>'+head+'</tr></thead><tbody>'+(rows||'<tr><td colspan="12">Sin datos para este mes/alcance.</td></tr>')+'</tbody></table>';
 
     // Causas de 'no solicitable': conteo + Δmargen de sus nudos (mes vs mes previo)
     const causaCount={}, causaDM={}; let nNoSolic=0;
@@ -2478,7 +2486,7 @@ function gsRenderMap(){
         if(lblTxt) mk.bindTooltip(lblTxt,{permanent:true,direction:'center',className:'gs-bubble-label'});
         gsBubbles.addLayer(mk);
     });
-    const ML={disp:'Disp. '+SL,margen:'Margen '+SL,otorgada:'Otorgada '+SL,noSolic:'Nudos no solicitables',aflorada:'Aflorada Δmargen'};
+    const ML={disp:'Disp. '+SL,margen:'Margen '+SL,otorgada:'Otorgada '+SL,noSolic:'Nudos no solicitables',aflorada:'Aflorada Δmargen',enCurso:'En curso'};
     document.getElementById('gs-map-legend').innerHTML=
         '<span><b>Tamaño</b>: '+(ML[metric]||metric)+'</span>'
         +'<span><b>Color</b>: saturación '
@@ -2493,6 +2501,7 @@ function gsSetView(v){
     else { m.style.display='none'; t.style.display='flex'; }
 }
 
+function gsToggleNote(){ const n=document.getElementById('gs-note'); n.style.display=(n.style.display==='none'?'block':'none'); if(gsMap) setTimeout(function(){gsMap.invalidateSize();},60); }
 function openGridStatus(){
     const yEl=document.getElementById('view-year'), mEl=document.getElementById('view-month');
     const gy=document.getElementById('gs-year'), gm=document.getElementById('gs-month');
@@ -2543,14 +2552,13 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
         <option value="nac">Nacional</option>
         <option value="ccaa" selected>Comunidad (CCAA)</option>
         <option value="prov">Provincia</option>
-        <option value="nodo">Nodo</option>
       </select>
     </label>
     <label>Red:
       <select id="gs-scope" onchange="renderGridStatus()">
-        <option value="ALL" selected>Todas (TSO+DSO)</option>
-        <option value="TSO">Solo TSO</option>
-        <option value="DSO">Solo DSO</option>
+        <option value="ALL" selected>TSO+DSO</option>
+        <option value="TSO">TSO</option>
+        <option value="DSO">DSO</option>
       </select>
     </label>
     <label>Burbuja:
@@ -2560,9 +2568,24 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
         <option value="otorgada">Otorgada</option>
         <option value="noSolic">No solicit.</option>
         <option value="aflorada">Aflorada</option>
+        <option value="enCurso">En curso</option>
       </select>
     </label>
     <span style="font-size:11px;color:#64748b;">Pulsa una cabecera para ordenar.</span>
+    <button type="button" onclick="gsToggleNote()" style="margin-left:auto;background:#e2e8f0;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:#0078A8;font-weight:bold;">&#9432; Cómo se calcula</button>
+  </div>
+  <div id="gs-note" style="display:none;margin:0 18px 8px;padding:12px 16px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;font-size:12px;color:#334155;line-height:1.65;">
+    <b>Cómo se calculan los valores</b><br>
+    <b>Agregación:</b> por nivel se suman los MW de los nudos; los estados (Concurso, No solicit.) se cuentan en nº de nudos.<br>
+    <b>Disponible / solicitable:</b> capacidad de acceso disponible para nuevas solicitudes. En TSO es el máximo de las variables de la perspectiva (Gen, Dem o Almacenamiento).<br>
+    <b>Margen:</b> máximo de las variables del bloque «margen de capacidad de acceso total» de la perspectiva. En Demanda incluye el almacenamiento (CEP-MPE / no-CEP-MGES). Se usa el máximo (no la suma) para no duplicar criterios equivalentes.<br>
+    <b>Aflorada (Δmargen):</b> variación del margen respecto al mes anterior (verde = aflora, rojo = decae).<br>
+    <b>En curso:</b> capacidad en curso de tramitación/resolución.<br>
+    <b>Otorgada:</b> capacidad de acceso ya otorgada.<br>
+    <b>Concurso:</b> nº de nudos bloqueados a concurso (estado de concurso de REE).<br>
+    <b>No solicit.:</b> nº de nudos cuya capacidad NO es solicitable por cualquier causa (concurso, RDL 7/2026, sin posibilidad de conexión, valor de referencia no acordado, limitación por posición…). El desglose por causa está en el panel de la derecha.<br>
+    <b>Saturación:</b> otorgada / (otorgada + disponible). Gen usa la otorgada de generación; Demanda usa «otorgada demanda RdT» (aproximación); DSO usa ocupada / (ocupada + disponible).<br>
+    <b>DSO:</b> se muestran sus propios parámetros — Disponible, Comprometida por cuestiones regulatorias, Ocupada y Admitida y no resuelta.
   </div>
   <div class="gs-body">
     <div id="gs-map-wrap">
