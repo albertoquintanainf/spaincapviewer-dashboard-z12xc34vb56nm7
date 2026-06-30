@@ -266,7 +266,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .gs-table th, .gs-table td { padding:7px 9px; border-bottom:1px solid #e2e8f0; text-align:right; white-space:nowrap; }
 .gs-table th { background:#e2e8f0; color:#0f172a; position:sticky; top:0; font-size:11px; }
 .gs-table tbody tr:hover { background:#f8fafc; }
-#gs-mot { width:100%; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:14px; max-height:32vh; overflow:auto; }
+#gs-mot { width:100%; box-sizing:border-box; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:14px; max-height:32vh; overflow:auto; }
 #gs-mot h3 { margin:0 0 10px; font-size:13px; color:#0078A8; }
 .gs-mot-row { display:flex; justify-content:space-between; gap:10px; font-size:12px; padding:5px 0; border-bottom:1px dashed #e2e8f0; }
 
@@ -2243,6 +2243,7 @@ let gsSort = { col: 'disp', dir: -1 };   // dir: -1 desc, 1 asc
 function gsMaxOf(){ const n=[].slice.call(arguments).map(cleanNum).filter(function(v){return !isNaN(v);}); return n.length?Math.max.apply(null,n):NaN; }
 function gsMinDef(a,b){ if(isNaN(a)&&isNaN(b))return NaN; if(isNaN(a))return b; if(isNaN(b))return a; return Math.min(a,b); }
 function gsSat(occOrGranted, disp){ if(!isNaN(occOrGranted)&&!isNaN(disp)&&(occOrGranted+disp)>0) return occOrGranted/(occOrGranted+disp); return NaN; }
+function gsAdd(a,b){ return (isNaN(a)?0:a)+(isNaN(b)?0:b); }
 function gsIsTender(s){ return !!s && /tender|concurso/i.test(String(s)) && !/no tender/i.test(String(s)); }
 
 // Clasifica el texto de motivo en causas de 'no solicitable' (multietiqueta: un nudo puede tener varias)
@@ -2288,9 +2289,9 @@ function gsTSO(entry, key){
     const reasonDem=[motD, concNudo, (conc.normativa!=null?String(conc.normativa).trim():''), (enConcD?'Concurso':'')].filter(Boolean).join(' · ');
     const reasonAlm=(!isNaN(dispAlm)&&dispAlm<=0)?'Sin capacidad':'';
     return { grid:'TSO',
-      gen:{disp:dispGen, margen:margenGen, otorgada:otGen, enCurso:cleanNum(ec.gen), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonGen!=='', causas:gsCausas(reasonGen), sat:gsSat(otGen,dispGen), enConcurso:enConcG},
-      dem:{disp:dispDem, margen:margenDem, otorgada:otDem, enCurso:cleanNum(ecd.dem), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonDem!=='', causas:gsCausas(reasonDem), sat:gsSat(otDem,dispDem), enConcurso:enConcD},
-      alm:{disp:dispAlm, margen:margenAlm, otorgada:otAlm, enCurso:cleanNum(ec.alm), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonAlm!=='', causas:gsCausas(reasonAlm), sat:gsSat(otAlm,dispAlm), enConcurso:false}
+      gen:{disp:dispGen, margen:margenGen, otorgada:otGen, enCurso:cleanNum(ec.gen), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonGen!=='', causas:gsCausas(reasonGen), sat:gsSat(gsAdd(otGen,cleanNum(ec.gen)),dispGen), enConcurso:enConcG},
+      dem:{disp:dispDem, margen:margenDem, otorgada:otDem, enCurso:cleanNum(ecd.dem), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonDem!=='', causas:gsCausas(reasonDem), sat:gsSat(gsAdd(otDem,cleanNum(ecd.dem)),dispDem), enConcurso:enConcD},
+      alm:{disp:dispAlm, margen:margenAlm, otorgada:otAlm, enCurso:cleanNum(ec.alm), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonAlm!=='', causas:gsCausas(reasonAlm), sat:gsSat(gsAdd(otAlm,cleanNum(ec.alm)),dispAlm), enConcurso:false}
     };
 }
 // --- Métricas por nudo DSO en un mes -> {gen,dem,alm} ---
@@ -2306,8 +2307,8 @@ function gsDSO(entry, key){
     const base=(is0?'Nudo 0* ':'')+com;
     const rG=noG?(base||'Sin capacidad'):'', rD=noD?(base||'Sin capacidad'):'', rA=noA?(base||'Sin capacidad'):'';
     return { grid:'DSO',
-      gen:{disp:dispGen, margen:NaN, otorgada:ocG, enCurso:NaN, comprom:cleanNum(g.comprom), ocupada:ocG, admitida:cleanNum(g.admitida), noSolic:noG, causas:gsCausas(rG), sat:gsSat(ocG,dispGen), enConcurso:false},
-      dem:{disp:dispDem, margen:NaN, otorgada:ocD, enCurso:NaN, comprom:cleanNum(d.comprom), ocupada:ocD, admitida:cleanNum(d.admitida), noSolic:noD, causas:gsCausas(rD), sat:gsSat(ocD,dispDem), enConcurso:false},
+      gen:{disp:dispGen, margen:NaN, otorgada:ocG, enCurso:NaN, comprom:cleanNum(g.comprom), ocupada:ocG, admitida:cleanNum(g.admitida), noSolic:noG, causas:gsCausas(rG), sat:gsSat(gsAdd(ocG,cleanNum(g.admitida)),dispGen), enConcurso:false},
+      dem:{disp:dispDem, margen:NaN, otorgada:ocD, enCurso:NaN, comprom:cleanNum(d.comprom), ocupada:ocD, admitida:cleanNum(d.admitida), noSolic:noD, causas:gsCausas(rD), sat:gsSat(gsAdd(ocD,cleanNum(d.admitida)),dispDem), enConcurso:false},
       alm:{disp:dispAlm, margen:NaN, otorgada:NaN, enCurso:NaN, comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:noA, causas:gsCausas(rA), sat:NaN, enConcurso:false}
     };
 }
@@ -2407,21 +2408,27 @@ function renderGridStatus(){
     const table='<table class="gs-table"><thead><tr>'+head+'</tr></thead><tbody>'+(rows||'<tr><td colspan="12">Sin datos para este mes/alcance.</td></tr>')+'</tbody></table>';
 
     // Causas de 'no solicitable': conteo + Δmargen de sus nudos (mes vs mes previo)
-    const causaCount={}, causaDM={}; let nNoSolic=0;
+    const causaCount={}, causaDM={}; let nNoSolic=0, nTotal=0;
     for(const e of allEntries){
         if(scope!=='ALL' && e.grid!==scope) continue;
         const mc=gsNodeMetrics(e,key); if(!mc) continue;
-        const sm=mc[side]; if(!sm || !sm.noSolic) continue;
+        const sm=mc[side]; if(!sm) continue;
+        nTotal++;
+        if(!sm.noSolic) continue;
         nNoSolic++;
         const mp=gsNodeMetrics(e,pkey); const smp=mp?mp[side]:null;
         const dM=(isNaN(sm.margen)?0:sm.margen)-((smp&&!isNaN(smp.margen))?smp.margen:0);
         sm.causas.forEach(function(c){ causaCount[c]=(causaCount[c]||0)+1; causaDM[c]=(causaDM[c]||0)+dM; });
     }
+    const nSolic=nTotal-nNoSolic;
+    const gpct=function(c){ return nTotal?Math.round(100*c/nTotal):0; };
     const cList=Object.keys(causaCount).map(function(k){return [k,causaCount[k],causaDM[k]||0];}).sort(function(a,b){return b[1]-a[1];});
-    const cHtml = cList.length
-      ? cList.map(function(x){ const dm=x[2]; const dmTxt=(Math.abs(dm)<0.5)?'':(' · <span style="color:'+(dm>0?'#16a34a':'#dc2626')+';">Δmargen '+(dm>0?'+':'−')+gsFmt(Math.abs(dm))+' MW</span>'); return '<div class="gs-mot-row"><span>'+x[0]+'</span><span style="text-align:right;"><b>'+x[1]+'</b> nudos'+dmTxt+'</span></div>';}).join('')
-        + '<div style="font-size:10px;color:#94a3b8;margin-top:8px;">'+nNoSolic+' nudos no solicitables · Δmargen = cambio vs mes previo · un nudo puede tener varias causas</div>'
-      : '<div style="color:#94a3b8;">Sin nudos no solicitables en este alcance.</div>';
+    let cHtml;
+    if(nTotal>0){
+        cHtml='<div class="gs-mot-row" style="border-bottom:2px solid #cbd5e1;"><span style="color:#16a34a;font-weight:600;">Solicitable (sin bloqueo)</span><span style="text-align:right;"><b>'+nSolic+'</b> nudos · '+gpct(nSolic)+'%</span></div>'
+          + cList.map(function(x){ const dm=x[2]; const dmTxt=(Math.abs(dm)<0.5)?'':(' · <span style="color:'+(dm>0?'#16a34a':'#dc2626')+';">Δmargen '+(dm>0?'+':'−')+gsFmt(Math.abs(dm))+' MW</span>'); return '<div class="gs-mot-row"><span>'+x[0]+'</span><span style="text-align:right;"><b>'+x[1]+'</b> nudos · '+gpct(x[1])+'%'+dmTxt+'</span></div>';}).join('')
+          + '<div style="font-size:10px;color:#94a3b8;margin-top:8px;">'+nTotal+' nudos en total · % sobre el total · un nudo puede tener varias causas de bloqueo</div>';
+    } else { cHtml='<div style="color:#94a3b8;">Sin nudos en este alcance.</div>'; }
 
     document.getElementById('gs-table-wrap').innerHTML=table;
     document.getElementById('gs-mot-wrap').innerHTML=cHtml;
@@ -2584,7 +2591,7 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
     <b>Otorgada:</b> capacidad de acceso ya otorgada.<br>
     <b>Concurso:</b> nº de nudos bloqueados a concurso (estado de concurso de REE).<br>
     <b>No solicit.:</b> nº de nudos cuya capacidad NO es solicitable por cualquier causa (concurso, RDL 7/2026, sin posibilidad de conexión, valor de referencia no acordado, limitación por posición…). El desglose por causa está en el panel de la derecha.<br>
-    <b>Saturación:</b> otorgada / (otorgada + disponible). Gen usa la otorgada de generación; Demanda usa «otorgada demanda RdT» (aproximación); DSO usa ocupada / (ocupada + disponible).<br>
+    <b>Saturación (efectiva):</b> (otorgada + en curso) / (otorgada + en curso + disponible). Incluye la capacidad en curso/pendiente porque compite por el disponible (perspectiva de viabilidad de una nueva solicitud). Gen/Dem usan su otorgada + en curso (Dem RdT como aproximación de otorgada); DSO usa (ocupada + admitida y no resuelta) / (… + disponible).<br>
     <b>DSO:</b> se muestran sus propios parámetros — Disponible, Comprometida por cuestiones regulatorias, Ocupada y Admitida y no resuelta.
   </div>
   <div class="gs-body">
