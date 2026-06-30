@@ -255,16 +255,16 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 #gs-controls select { padding:5px 8px; border-radius:6px; border:1px solid #cbd5e1; font-size:13px; color:#0f172a; margin-left:4px; }
 .gs-body { padding:8px 18px 28px; }
 .gs-view-table { display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap; width:100%; }
-#gs-map-wrap { width:100%; }
-#gs-map { width:100%; height:calc(100vh - 175px); min-height:420px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+#gs-map-wrap { width:100%; margin-bottom:14px; }
+#gs-map { width:100%; height:40vh; min-height:320px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
 #gs-map-legend { margin-top:8px; font-size:11px; color:#475569; display:flex; gap:18px; align-items:center; flex-wrap:wrap; }
 .gs-leg-dot { display:inline-block; width:12px; height:12px; border-radius:50%; margin:0 4px; vertical-align:middle; border:1px solid #fff; box-shadow:0 0 0 1px #cbd5e1; }
-#gs-table-wrap { flex:1 1 680px; overflow:auto; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); max-height:calc(100vh - 150px); }
+#gs-table-wrap { flex:1 1 680px; overflow:auto; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); max-height:44vh; }
 .gs-table { border-collapse:collapse; width:100%; font-size:12px; }
 .gs-table th, .gs-table td { padding:7px 9px; border-bottom:1px solid #e2e8f0; text-align:right; white-space:nowrap; }
 .gs-table th { background:#e2e8f0; color:#0f172a; position:sticky; top:0; font-size:11px; }
 .gs-table tbody tr:hover { background:#f8fafc; }
-#gs-mot { flex:0 0 300px; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:14px; max-height:calc(100vh - 150px); overflow:auto; }
+#gs-mot { flex:0 0 300px; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:14px; max-height:44vh; overflow:auto; }
 #gs-mot h3 { margin:0 0 10px; font-size:13px; color:#0078A8; }
 .gs-mot-row { display:flex; justify-content:space-between; gap:10px; font-size:12px; padding:5px 0; border-bottom:1px dashed #e2e8f0; }
 
@@ -2273,7 +2273,7 @@ function gsTSO(entry, key){
     const almD = gsMaxOf(dd.alm_cep, dd.alm_no_cep);
     const dispAlm = gsMinDef(almG, almD);
     const margenGen = gsMaxOf(mg.gen_mges, mg.gen_mpe);
-    const margenDem = gsMaxOf(md.dem_ch, md.dem_sh, md.dem_no_cep);
+    const margenDem = gsMaxOf(md.dem_ch, md.dem_sh, md.dem_no_cep, md.alm_cep_mpe, md.alm_no_cep_mges);
     const margenAlm = gsMaxOf(mg.alm_mges, mg.alm_mpe);
     const otGen = cleanNum(otg.gen), otAlm = cleanNum(otg.alm), otDem = cleanNum(otd.dem_rdt);
     const motG = (nd.motivo!=null && String(nd.motivo).trim()!=='') ? String(nd.motivo).trim() : '';
@@ -2394,22 +2394,30 @@ function renderGridStatus(){
         +hdr('Concurso','concurso')
         +hdr('No solicit.','noSolic')
         +hdr('Satur. '+SL,'sat')
-        +'</tr></thead><tbody>'+(rows||'<tr><td colspan="9">Sin datos para este mes/alcance.</td></tr>')+'</tbody></table>';
+        +'</tr></thead><tbody>'+(rows||'<tr><td colspan="11">Sin datos para este mes/alcance.</td></tr>')+'</tbody></table>';
 
-    // Causas de 'no solicitable' clasificadas (multietiqueta)
-    const allC={}; let nNoSolic=0;
-    cur.forEach(function(g){ nNoSolic+=g.noSolic; for(const c in g.causas) allC[c]=(allC[c]||0)+g.causas[c]; });
-    const cList=Object.keys(allC).map(function(k){return [k,allC[k]];}).sort(function(a,b){return b[1]-a[1];});
+    // Causas de 'no solicitable': conteo + Δmargen de sus nudos (mes vs mes previo)
+    const causaCount={}, causaDM={}; let nNoSolic=0;
+    for(const e of allEntries){
+        if(scope!=='ALL' && e.grid!==scope) continue;
+        const mc=gsNodeMetrics(e,key); if(!mc) continue;
+        const sm=mc[side]; if(!sm || !sm.noSolic) continue;
+        nNoSolic++;
+        const mp=gsNodeMetrics(e,pkey); const smp=mp?mp[side]:null;
+        const dM=(isNaN(sm.margen)?0:sm.margen)-((smp&&!isNaN(smp.margen))?smp.margen:0);
+        sm.causas.forEach(function(c){ causaCount[c]=(causaCount[c]||0)+1; causaDM[c]=(causaDM[c]||0)+dM; });
+    }
+    const cList=Object.keys(causaCount).map(function(k){return [k,causaCount[k],causaDM[k]||0];}).sort(function(a,b){return b[1]-a[1];});
     const cHtml = cList.length
-      ? cList.map(function(x){return '<div class="gs-mot-row"><span>'+x[0]+'</span><span><b>'+x[1]+'</b> ('+(nNoSolic?Math.round(100*x[1]/nNoSolic):0)+'%)</span></div>';}).join('')
-        + '<div style="font-size:10px;color:#94a3b8;margin-top:8px;">'+nNoSolic+' nudos no solicitables · un nudo puede tener varias causas</div>'
+      ? cList.map(function(x){ const dm=x[2]; const dmTxt=(Math.abs(dm)<0.5)?'':(' · <span style="color:'+(dm>0?'#16a34a':'#dc2626')+';">Δmargen '+(dm>0?'+':'−')+gsFmt(Math.abs(dm))+' MW</span>'); return '<div class="gs-mot-row"><span>'+x[0]+'</span><span style="text-align:right;"><b>'+x[1]+'</b> nudos'+dmTxt+'</span></div>';}).join('')
+        + '<div style="font-size:10px;color:#94a3b8;margin-top:8px;">'+nNoSolic+' nudos no solicitables · Δmargen = cambio vs mes previo · un nudo puede tener varias causas</div>'
       : '<div style="color:#94a3b8;">Sin nudos no solicitables en este alcance.</div>';
 
     document.getElementById('gs-table-wrap').innerHTML=table;
     document.getElementById('gs-mot-wrap').innerHTML=cHtml;
     document.getElementById('gs-mot-title').textContent='Causas de «no solicitable» ('+(GS_SIDELBL[side]||side)+')';
     document.getElementById('gs-period').textContent = '20'+year+' · '+(GS_MLBL[month]||month)+' · '+(GS_SIDELBL[side]||side)+'  (Δ vs mes previo)';
-    if(gsView==='map' && gsMap) gsRenderMap();
+    if(gsMap) gsRenderMap();
 }
 function gsSetSort(c){ if(gsSort.col===c) gsSort.dir*=-1; else { gsSort.col=c; gsSort.dir=(c==='name')?1:-1; } renderGridStatus(); }
 // ---- Mapa de burbujas (nacional / comunidad / provincia) ----
@@ -2485,7 +2493,9 @@ function openGridStatus(){
     gy.innerHTML=yEl.innerHTML; gm.innerHTML=mEl.innerHTML;
     gy.value=yEl.value; gm.value=mEl.value;
     document.getElementById('grid-status').classList.add('open');
+    gsInitMap();
     renderGridStatus();
+    setTimeout(function(){ if(gsMap){ gsMap.invalidateSize(); gsRenderMap(); } },80);
 }
 function closeGridStatus(){ document.getElementById('grid-status').classList.remove('open'); }
 
@@ -2537,12 +2547,6 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
         <option value="DSO">Solo DSO</option>
       </select>
     </label>
-    <label>Vista:
-      <select id="gs-view" onchange="gsSetView(this.value)">
-        <option value="table" selected>Tabla</option>
-        <option value="map">Mapa</option>
-      </select>
-    </label>
     <label>Burbuja:
       <select id="gs-mapmetric" onchange="gsRenderMap()">
         <option value="disp" selected>Disp.</option>
@@ -2555,13 +2559,13 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
     <span style="font-size:11px;color:#64748b;">Pulsa una cabecera para ordenar.</span>
   </div>
   <div class="gs-body">
+    <div id="gs-map-wrap">
+      <div id="gs-map"></div>
+      <div id="gs-map-legend"></div>
+    </div>
     <div id="gs-view-table" class="gs-view-table">
       <div id="gs-table-wrap"></div>
       <div id="gs-mot"><h3 id="gs-mot-title">Motivos no disponible (Gen)</h3><div id="gs-mot-wrap"></div></div>
-    </div>
-    <div id="gs-map-wrap" style="display:none;">
-      <div id="gs-map"></div>
-      <div id="gs-map-legend"></div>
     </div>
   </div>
 </div>
