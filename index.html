@@ -2674,9 +2674,32 @@ function gsWhatsNewRecs(key,pkey,side,scope){
     const enF=(e.grid==='DSO')?'admitida':'enCurso';
     out.push({name:e.name, ccaa:e.ccaa||'', prov:e.prov||'', tens:e.tens||'', grid:e.grid,
       vals:vals, dlt:dlt, sat:cv(c,'sat'), crit:(c.crit||''), reason:(c.reason||''), causas:(c.causas||[]),
+      cSub:(c.sub||{}), pSub:(p&&p.sub)||{}, cSubD:(c.subD||{}), pSubD:(p&&p.subD)||{}, cSubN:(c.subN||{}), pSubN:(p&&p.subN)||{},
       flujo:gsFlujo(dd('disp'),dd('otorgada'),dd(enF),dd('margen')), hasChange:chg});
   }
   return out;
+}
+function gsWnToggle(id){ const d=document.getElementById(id); if(!d) return; const op=(d.style.display==='none'||d.style.display===''); d.style.display=op?'table-row':'none'; const ind=document.getElementById(id+'-i'); if(ind) ind.textContent=op?'\u25be':'\u25b8'; }
+function gsWnDetailHTML(r,side){
+  const marL=GS_SUBLABELS[side]||[]; const dispL=(side==='gen')?GS_SUBLABELS_GENDISP:(GS_SUBLABELS[side]||[]);
+  const solic=(!isNaN(r.vals.disp)&&r.vals.disp>0);
+  const verdict=solic
+    ? '<span style="color:#166534;background:#dcfce7;padding:3px 10px;border-radius:6px;font-weight:700;">\u2713 Capacidad SOLICITABLE \u2014 '+gsFmt(r.vals.disp)+' MW disponibles</span>'+(r.reason?(' <span style="font-size:11px;color:#b45309;">\u00b7 con restricci\u00f3n parcial: '+r.reason+'</span>'):'')
+    : '<span style="color:#991b1b;background:#fee2e2;padding:3px 10px;border-radius:6px;font-weight:700;">\u2717 NO solicitable</span>'+(r.reason?(' <span style="font-size:11px;color:#64748b;">\u00b7 '+r.reason+'</span>'):'');
+  const blocks=[['Margen',r.cSub,r.pSub,marL],['Disponible',r.cSubD,r.pSubD,dispL],['No otorgable',r.cSubN,r.pSubN,marL]];
+  const blkHtml=blocks.map(function(b){
+    const cur=b[1]||{}, prv=b[2]||{}, lbls=b[3];
+    const rws=lbls.map(function(L){
+      const a=(!isNaN(prv[L]))?prv[L]:NaN, n=(!isNaN(cur[L]))?cur[L]:NaN;
+      const dv=(isNaN(a)&&isNaN(n))?NaN:((isNaN(n)?0:n)-(isNaN(a)?0:a));
+      const dc=(isNaN(dv)||Math.abs(dv)<0.5)?'<span style="color:#cbd5e1;">=</span>':('<span style="color:'+(dv>0?'#16a34a':'#dc2626')+';font-weight:600;">'+(dv>0?'+':'\u2212')+gsFmt(Math.abs(dv))+'</span>');
+      return '<tr><td style="text-align:left;">'+L+'</td><td style="color:#94a3b8;">'+gsFmt(a)+'</td><td>'+gsFmt(n)+'</td><td>'+dc+'</td></tr>';
+    }).join('');
+    return '<div style="min-width:190px;"><div style="font-weight:700;font-size:11px;color:#0078A8;margin-bottom:2px;">'+b[0]+'</div><table class="gs-table" style="font-size:11px;"><thead><tr><th style="text-align:left;">Comp.</th><th>antes</th><th>ahora</th><th>\u0394</th></tr></thead><tbody>'+(rws||'<tr><td colspan="4">\u2013</td></tr>')+'</tbody></table></div>';
+  }).join('');
+  return '<div style="padding:6px 4px 10px;"><div style="margin-bottom:8px;">'+verdict+'</div>'
+    +'<div style="display:flex;gap:18px;flex-wrap:wrap;">'+blkHtml+'</div>'
+    +'<div style="font-size:10px;color:#94a3b8;margin-top:6px;">Otorgada: '+gsFmt(r.vals.otorgada)+' ('+gsSigned(r.dlt.otorgada)+') \u00b7 Solicitado/en curso: '+gsFmt(r.vals.enCurso)+' ('+gsSigned(r.dlt.enCurso)+') \u00b7 Criterio limitante: <b>'+(r.crit||'\u2014')+'</b> \u00b7 Saturaci\u00f3n: '+(isNaN(r.sat)?'\u2013':(Math.round(r.sat*100)+'%'))+'</div></div>';
 }
 function renderWhatsNew(){
   const host=document.getElementById('gs-wn-table'); if(!host) return;
@@ -2698,12 +2721,13 @@ function renderWhatsNew(){
   recs.sort(function(a,b){ return Math.abs(b.dlt[sortAgg]||0)-Math.abs(a.dlt[sortAgg]||0); });
   const total=recs.length, CAP=400, shown=recs.slice(0,CAP);
   const flCol=function(fl){ return (typeof GS_FLUJO_COL!=='undefined'&&GS_FLUJO_COL[fl])||'#64748b'; };
-  const cvd=function(v,d){ const dt=(isNaN(d)||Math.abs(d)<0.5)?'':' <span style="font-size:9px;color:'+(d>0?'#16a34a':'#dc2626')+';white-space:nowrap;">'+(d>0?'+':'−')+gsFmt(Math.abs(d))+'</span>'; return gsFmt(v)+dt; };
-  const rows=shown.map(function(r){
-    const mot=r.reason?r.reason:(r.causas.length?r.causas.join(' · '):'<span style="color:#16a34a;">— solicitable —</span>');
-    const satTxt=isNaN(r.sat)?'–':(Math.round(r.sat*100)+'%');
-    return '<tr>'
-      +'<td style="text-align:left;"><b>'+r.name+'</b></td>'
+  const cvd=function(v,d){ const dt=(isNaN(d)||Math.abs(d)<0.5)?'':' <span style="font-size:9px;color:'+(d>0?'#16a34a':'#dc2626')+';white-space:nowrap;">'+(d>0?'+':'\u2212')+gsFmt(Math.abs(d))+'</span>'; return gsFmt(v)+dt; };
+  const rows=shown.map(function(r,idx){
+    const rid='wn'+idx;
+    const mot=r.reason?r.reason:(r.causas.length?r.causas.join(' \u00b7 '):'<span style="color:#16a34a;">\u2014 solicitable \u2014</span>');
+    const satTxt=isNaN(r.sat)?'\u2013':(Math.round(r.sat*100)+'%');
+    const summary='<tr onclick="gsWnToggle(\''+rid+'\')" style="cursor:pointer;">'
+      +'<td style="text-align:left;"><span id="'+rid+'-i" style="color:#0078A8;font-size:10px;">\u25b8</span> <b>'+r.name+'</b></td>'
       +'<td>'+(r.tens||'')+'</td>'
       +'<td style="text-align:left;font-size:11px;">'+(r.ccaa||'')+'</td>'
       +'<td>'+cvd(r.vals.margen,r.dlt.margen)+'</td>'
@@ -2712,12 +2736,14 @@ function renderWhatsNew(){
       +'<td>'+cvd(r.vals.otorgada,r.dlt.otorgada)+'</td>'
       +'<td>'+cvd(r.vals.enCurso,r.dlt.enCurso)+'</td>'
       +'<td>'+satTxt+'</td>'
-      +'<td style="text-align:left;font-size:10px;">'+(r.crit||'—')+'</td>'
+      +'<td style="text-align:left;font-size:10px;">'+(r.crit||'\u2014')+'</td>'
       +'<td style="text-align:left;font-size:10px;">'+mot+'</td>'
       +'<td style="color:'+flCol(r.flujo)+';font-weight:600;white-space:nowrap;">'+r.flujo+'</td>'
       +'</tr>';
+    const detail='<tr id="'+rid+'" style="display:none;background:#f8fafc;"><td colspan="12">'+gsWnDetailHTML(r,side)+'</td></tr>';
+    return summary+detail;
   }).join('');
-  host.innerHTML='<div style="font-size:11px;color:#64748b;margin-bottom:6px;">Perspectiva <b>'+(GS_SIDELBL[side]||side)+'</b> · <b>todas las variables</b> (valor + Δ vs mes anterior) · '+total+' nudos'+(total>CAP?(' (mostrando '+CAP+')'):'')+' · orden por |Δ '+sortLbl+'| (selector Vista)</div>'
+  host.innerHTML='<div style="font-size:11px;color:#64748b;margin-bottom:6px;">Perspectiva <b>'+(GS_SIDELBL[side]||side)+'</b> \u00b7 <b>pulsa un nudo</b> para desplegar el desglose de todas las variables y el veredicto \u00b7 '+total+' nudos'+(total>CAP?(' (mostrando '+CAP+')'):'')+' \u00b7 orden por |\u0394 '+sortLbl+'| (selector Vista)</div>'
     +'<div style="overflow:auto;"><table class="gs-table"><thead><tr><th style="text-align:left;">Nudo</th><th>Tens</th><th style="text-align:left;">CCAA</th><th>Margen</th><th>Disponible</th><th>No otorg.</th><th>Otorgada</th><th>Solicitado</th><th>Sat.</th><th style="text-align:left;">Criterio lim.</th><th style="text-align:left;">Motivo (REE)</th><th>Flujo</th></tr></thead><tbody>'+(rows||'<tr><td colspan="12">Sin nudos que mostrar con estos filtros.</td></tr>')+'</tbody></table></div>';
 }
 function gsSetMode(m){ gsMode=m;
