@@ -2711,9 +2711,9 @@ function gsWnDetailHTML(r,side,rid){
         return '<tr'+(changed?' style="background:#fef9c3;"':'')+'><td style="text-align:left;" title="'+k+'">'+lbl(bo[0],k)+'</td><td colspan="3" style="text-align:left;">'+disp+(changed?' <span style="color:#b45309;font-size:9px;">Change detected</span>':'')+'</td></tr>';
       }
     }).join('');
-    const changed=nChg>0; const bid=rid+'b'+bi;
+    const changed=nChg>0; const bid=rid+'b'+bi; const bnet=(r._blk&&r._blk[bo[0]])?r._blk[bo[0]].net:netD;
     const badge=changed
-      ? '<span style="color:#b45309;font-weight:700;font-size:11px;">\u25cf Change detected</span> <span style="color:#94a3b8;font-size:9px;">('+nChg+' campo'+(nChg>1?'s':'')+(hasNet&&Math.abs(netD)>=0.5?(' \u00b7 neto '+(netD>0?'+':'\u2212')+gsFmt(Math.abs(netD))):'')+')</span>'
+      ? '<span style="color:#b45309;font-weight:700;font-size:11px;">\u25cf Change detected</span> <span style="color:#94a3b8;font-size:9px;">('+nChg+' campo'+(nChg>1?'s':'')+(Math.abs(bnet)>=0.5?(' \u00b7 neto '+(bnet>0?'+':'\u2212')+gsFmt(Math.abs(bnet))):'')+')</span>'
       : '<span style="color:#cbd5e1;font-size:11px;">sin cambios</span>';
     const row='<div onclick="gsWnToggle(\''+bid+'\')" style="cursor:pointer;padding:3px 6px;border-radius:5px;margin-top:2px;display:flex;align-items:center;gap:8px;'+(changed?'background:#fff7ed;border:1px solid #fed7aa;':'opacity:.65;')+'"><span id="'+bid+'-i" style="color:#0078A8;font-size:10px;width:10px;">\u25b8</span><b style="font-size:11px;min-width:230px;">'+bo[1]+'</b>'+badge+'</div>';
     const fields='<div id="'+bid+'" style="display:none;padding:3px 6px 8px 26px;"><table class="gs-table" style="font-size:10px;max-width:520px;"><thead><tr><th style="text-align:left;">Variable (REE)</th><th>antes</th><th>ahora</th><th>\u0394</th></tr></thead><tbody>'+rws+'</tbody></table></div>';
@@ -2724,6 +2724,7 @@ function gsWnDetailHTML(r,side,rid){
 const GS_WN_SHORT=['Pos','Nodal','Otorg','EnCur','Marg','Crit','NoOt','NoDsp','LimP','Disp','Lib','Res','Conc'];
 let gsWnBlkFilter={}, gsWnFilterMode='AND';
 function gsWnBlkChange(cur,prv){ cur=cur||{}; prv=prv||{}; const keys=Object.keys(cur).length?Object.keys(cur):Object.keys(prv); let n=0,net=0; keys.forEach(function(k){ const cn=gsWnNum(cur[k]), pn=gsWnNum(prv[k]); if(!isNaN(cn)||!isNaN(pn)){ const dv=(isNaN(cn)?0:cn)-(isNaN(pn)?0:pn); if(Math.abs(dv)>=0.5){n++; net+=dv;} } else { const cs=(cur[k]==null?'':String(cur[k])), ps=(prv[k]==null?'':String(prv[k])); if(cs!==ps) n++; } }); return {n:n,net:net,changed:n>0}; }
+function gsWnMaxDelta(cur,prv){ cur=cur||{}; prv=prv||{}; const keys=Object.keys(cur).length?Object.keys(cur):Object.keys(prv); let best=0; keys.forEach(function(k){ const cn=gsWnNum(cur[k]), pn=gsWnNum(prv[k]); if(isNaN(cn)&&isNaN(pn)) return; const dv=(isNaN(cn)?0:cn)-(isNaN(pn)?0:pn); if(Math.abs(dv)>Math.abs(best)) best=dv; }); return best; }
 function gsWnToggleFilterBlk(bk){ const nx={'':'any','any':'up','up':'down','down':''}[gsWnBlkFilter[bk]||'']; if(nx) gsWnBlkFilter[bk]=nx; else delete gsWnBlkFilter[bk]; renderWhatsNew(); }
 function gsWnSetFilterMode(){ gsWnFilterMode=(gsWnFilterMode==='AND')?'OR':'AND'; renderWhatsNew(); }
 let gsWnShown=[], gsWnSide='';
@@ -2731,6 +2732,8 @@ function gsWnToggleNode(idx){ const rid='wn'+idx; const tr=document.getElementBy
 function gsWnMotTgl(e,rid){ if(e&&e.stopPropagation) e.stopPropagation(); const fu=document.getElementById(rid+'-mf'); if(!fu) return; const op=(fu.style.display==='none'); fu.style.display=op?'':'none'; if(e&&e.target) e.target.textContent=op?'ocultar':'ver motivo'; }
 function renderWhatsNew(){
   const host=document.getElementById('gs-wn-table'); if(!host) return;
+  const GS_WN_AGG={margen:'margen',disp:'disp',no_otorgable:'noOtorg',no_disp:'noOtorg'};
+  const GS_WN_MAXD={otorgada:1,en_curso:1,nodal:1,liberada:1,reserva:1};
   const GS_WN_COL={posiciones:'Posiciones',nodal:'Nodal',otorgada:'Otorgada',en_curso:'En curso',margen:'Margen',crit_lim:'Criterio limitante',no_otorgable:'No otorgable',no_disp:'No disponible',lim_posicion:'Limitación posición',disp:'Disponible',liberada:'Liberada',reserva:'Reserva',concurso:'Concurso'};
   const year=document.getElementById('gs-year').value, month=document.getElementById('gs-month').value;
   let pi=GS_MONTHS.indexOf(month)-1, py=year; if(pi<0){pi=11;py=(parseInt(year)-1).toString();}
@@ -2743,7 +2746,7 @@ function renderWhatsNew(){
   const concl=((document.getElementById('gs-wn-concl')||{}).value)||'';
   const mb=document.getElementById('gs-wn-mode'); if(mb) mb.textContent=(gsWnFilterMode==='AND')?'Y':'O';
   let recs=gsWhatsNewRecs(key,pkey,side,scope);
-  recs.forEach(function(r){ r._blk={}; GS_WN_BLOCKS.forEach(function(bo){ r._blk[bo[0]]=gsWnBlkChange((r.cRich||{})[bo[0]], (r.pRich||{})[bo[0]]); }); });
+  recs.forEach(function(r){ r._blk={}; GS_WN_BLOCKS.forEach(function(bo){ const bk=bo[0]; const ch=gsWnBlkChange((r.cRich||{})[bk], (r.pRich||{})[bk]); if(GS_WN_AGG[bk]){ const dv=r.dlt[GS_WN_AGG[bk]]; ch.net=isNaN(dv)?0:dv; } else if(GS_WN_MAXD[bk]){ ch.net=gsWnMaxDelta((r.cRich||{})[bk], (r.pRich||{})[bk]); } r._blk[bk]=ch; }); });
   const blkCols=GS_WN_BLOCKS.filter(function(bo){ return recs.some(function(r){ return Object.keys((r.cRich||{})[bo[0]]||{}).length>0 || Object.keys((r.pRich||{})[bo[0]]||{}).length>0; }); });
   if(q) recs=recs.filter(function(r){ return r.name.toLowerCase().indexOf(q)>=0 || String(r.ccaa).toLowerCase().indexOf(q)>=0; });
   if(concl){ recs=recs.filter(function(r){ const so=(!isNaN(r.vals.disp)&&r.vals.disp>0); return concl==='si'?so:!so; }); }
