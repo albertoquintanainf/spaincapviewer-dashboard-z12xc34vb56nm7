@@ -303,7 +303,6 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 
 <div id="search-container" style="display: none;">
-    <button class="btn-whats-new" onclick="openWhatsNew()">💡 WHAT'S NEW?</button>
     <button class="btn-whats-new" onclick="openGridStatus()" style="background:#0078A8;">📊 GRID STATUS</button>
 </div>
 
@@ -2270,12 +2269,13 @@ function gsCausas(text){
     if(/sin posibilidad de conexion/.test(t)) out.push('Sin posibilidad de conexión');
     if(/limitacion/.test(t)) out.push('Limitación por posición');
     if(/valor de referencia no acordado/.test(t)) out.push('Valor referencia no acordado');
-    if(/rdl[\s-]?7\/2026|rd[\s-]?ley 7\/2026|real decreto.?ley 7\/2026|articulo 13\.?6|capacidad liberada reservada/.test(t)) out.push('RDL 7/2026 (art. 13.6)');
+    if(/rdl[\s-]?7\/2026|rd[\s-]?ley 7\/2026|real decreto.?ley 7\/2026|articulo 13\.?6|capacidad liberada reservada/.test(t)) out.push('Reserva RDL 7/2026');
     if(/orden ted/.test(t)) out.push('Normativa (Orden TED)');
     if(/0\*|nudo 0|sin capacidad/.test(t)) out.push('Sin capacidad / 0*');
     if(out.length===0) out.push('Otros');
     return out;
 }
+function gsBindCode(pairs){ let b=null; for(let i=0;i<pairs.length;i++){ const v=pairs[i][0]; if(!isNaN(v)&&(b===null||v>b[0])) b=pairs[i]; } return (b&&b[1]!=null)?String(b[1]):''; }
 
 // --- Métricas por nudo TSO en un mes -> {gen,dem,alm} ---
 function gsTSO(entry, key){
@@ -2304,9 +2304,12 @@ function gsTSO(entry, key){
     const concNudo=(String(conc.nudo_concurso||'').toUpperCase()==='SI')?'Nudo de concurso':'';
     const reasonDem=[motD, concNudo, (conc.normativa!=null?String(conc.normativa).trim():''), (enConcD?'Concurso':'')].filter(Boolean).join(' · ');
     const reasonAlm=(!isNaN(dispAlm)&&dispAlm<=0)?'Sin capacidad':'';
+    const clg=g.crit_lim||{}, cld=d.crit_lim||{};
+    const critG=gsBindCode([[cleanNum(mg.gen_mges),clg.gen_mges],[cleanNum(mg.gen_mpe),clg.gen_mpe],[cleanNum(mg.alm_mges),clg.alm_mges],[cleanNum(mg.alm_mpe),clg.alm_mpe]]);
+    const critD=gsBindCode([[cleanNum(md.dem_ch),cld.dem_ch],[cleanNum(md.dem_sh),cld.dem_sh],[cleanNum(md.dem_no_cep),cld.dem_no_cep],[cleanNum(md.alm_cep_mpe),cld.alm_cep],[cleanNum(md.alm_no_cep_mges),cld.alm_no_cep]]);
     return { grid:'TSO',
-      gen:{disp:dispGen, margen:margenGen, noOtorg:noOtorgGen, otorgada:otGen, enCurso:cleanNum(ec.gen), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonGen!=='', causas:gsCausas(reasonGen), sat:gsSat(gsAdd(otGen,cleanNum(ec.gen)),dispGen), enConcurso:enConcG, sub:{MGES:cleanNum(mg.gen_mges), MPE:cleanNum(mg.gen_mpe), 'Alm MGES':cleanNum(mg.alm_mges), 'Alm MPE':cleanNum(mg.alm_mpe)}, subN:{MGES:cleanNum(nd.gen_mges), MPE:cleanNum(nd.gen_mpe), 'Alm MGES':cleanNum(nd.alm_mges), 'Alm MPE':cleanNum(nd.alm_mpe)}, subD:{'MGES RdT':cleanNum(dg.gen_mges_rdt), 'MPE RdT':cleanNum(dg.gen_mpe_rdt), 'Alm MGES RdT':cleanNum(dg.alm_mges_rdt), 'Alm MPE RdT':cleanNum(dg.alm_mpe_rdt), 'MGES RdD':cleanNum(dg.gen_mges_rdd), 'MPE RdD':cleanNum(dg.gen_mpe_rdd), 'Alm MGES RdD':cleanNum(dg.alm_mges_rdd), 'Alm MPE RdD':cleanNum(dg.alm_mpe_rdd)}},
-      dem:{disp:dispDem, margen:margenDem, noOtorg:noOtorgDem, otorgada:otDem, enCurso:cleanNum(ecd.dem), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonDem!=='', causas:gsCausas(reasonDem), sat:gsSat(gsAdd(otDem,cleanNum(ecd.dem)),dispDem), enConcurso:enConcD, sub:{CH:cleanNum(md.dem_ch), SH:cleanNum(md.dem_sh), 'No CEP':cleanNum(md.dem_no_cep), 'Alm CEP':cleanNum(md.alm_cep_mpe), 'Alm No CEP':cleanNum(md.alm_no_cep_mges)}, subN:{CH:cleanNum(no.dem_ch), SH:cleanNum(no.dem_sh), 'No CEP':cleanNum(no.dem_no_cep), 'Alm CEP':cleanNum(no.alm_cep), 'Alm No CEP':cleanNum(no.alm_no_cep)}, subD:{CH:cleanNum(dd.dem_ch), SH:cleanNum(dd.dem_sh), 'No CEP':cleanNum(dd.dem_no_cep), 'Alm CEP':cleanNum(dd.alm_cep), 'Alm No CEP':cleanNum(dd.alm_no_cep)}},
+      gen:{disp:dispGen, margen:margenGen, noOtorg:noOtorgGen, otorgada:otGen, enCurso:cleanNum(ec.gen), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonGen!=='', causas:gsCausas(reasonGen), reason:reasonGen, crit:critG, sat:gsSat(gsAdd(otGen,cleanNum(ec.gen)),dispGen), enConcurso:enConcG, sub:{MGES:cleanNum(mg.gen_mges), MPE:cleanNum(mg.gen_mpe), 'Alm MGES':cleanNum(mg.alm_mges), 'Alm MPE':cleanNum(mg.alm_mpe)}, subN:{MGES:cleanNum(nd.gen_mges), MPE:cleanNum(nd.gen_mpe), 'Alm MGES':cleanNum(nd.alm_mges), 'Alm MPE':cleanNum(nd.alm_mpe)}, subD:{'MGES RdT':cleanNum(dg.gen_mges_rdt), 'MPE RdT':cleanNum(dg.gen_mpe_rdt), 'Alm MGES RdT':cleanNum(dg.alm_mges_rdt), 'Alm MPE RdT':cleanNum(dg.alm_mpe_rdt), 'MGES RdD':cleanNum(dg.gen_mges_rdd), 'MPE RdD':cleanNum(dg.gen_mpe_rdd), 'Alm MGES RdD':cleanNum(dg.alm_mges_rdd), 'Alm MPE RdD':cleanNum(dg.alm_mpe_rdd)}},
+      dem:{disp:dispDem, margen:margenDem, noOtorg:noOtorgDem, otorgada:otDem, enCurso:cleanNum(ecd.dem), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonDem!=='', causas:gsCausas(reasonDem), reason:reasonDem, crit:critD, sat:gsSat(gsAdd(otDem,cleanNum(ecd.dem)),dispDem), enConcurso:enConcD, sub:{CH:cleanNum(md.dem_ch), SH:cleanNum(md.dem_sh), 'No CEP':cleanNum(md.dem_no_cep), 'Alm CEP':cleanNum(md.alm_cep_mpe), 'Alm No CEP':cleanNum(md.alm_no_cep_mges)}, subN:{CH:cleanNum(no.dem_ch), SH:cleanNum(no.dem_sh), 'No CEP':cleanNum(no.dem_no_cep), 'Alm CEP':cleanNum(no.alm_cep), 'Alm No CEP':cleanNum(no.alm_no_cep)}, subD:{CH:cleanNum(dd.dem_ch), SH:cleanNum(dd.dem_sh), 'No CEP':cleanNum(dd.dem_no_cep), 'Alm CEP':cleanNum(dd.alm_cep), 'Alm No CEP':cleanNum(dd.alm_no_cep)}},
       alm:{disp:dispAlm, margen:margenAlm, otorgada:otAlm, enCurso:cleanNum(ec.alm), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonAlm!=='', causas:gsCausas(reasonAlm), sat:gsSat(gsAdd(otAlm,cleanNum(ec.alm)),dispAlm), enConcurso:false, sub:{MGES:cleanNum(mg.alm_mges), MPE:cleanNum(mg.alm_mpe)}}
     };
 }
@@ -2499,8 +2502,8 @@ function renderGridStatus(){
 let gsMode='estado', gsGlobalMode='abs';
 const GS_FLUJOS=['Nueva solicitud','Otorgado','Devuelto/denegado','Liberado','Reservado/ocupado','Sin cambio'];
 const GS_FLUJO_COL={'Nueva solicitud':'#2563eb','Otorgado':'#16a34a','Devuelto/denegado':'#dc2626','Liberado':'#0d9488','Reservado/ocupado':'#d97706','Sin cambio':'#94a3b8'};
-const GS_CAUSE_ORDER=['Concurso','Transición Justa (NTJ)','Sin posibilidad de conexión','Limitación por posición','Valor referencia no acordado','RDL 7/2026 (art. 13.6)','Normativa (Orden TED)','Sin capacidad / 0*','Otros','Solicitable'];
-const GS_CAUSE_SHORT={'Concurso':'Conc','Transición Justa (NTJ)':'NTJ','Sin posibilidad de conexión':'SinCon','Limitación por posición':'LimPos','Valor referencia no acordado':'ValRef','RDL 7/2026 (art. 13.6)':'RDL','Normativa (Orden TED)':'Norm','Sin capacidad / 0*':'SinCap','Otros':'Otros','Solicitable':'Solic'};
+const GS_CAUSE_ORDER=['Concurso','Transición Justa (NTJ)','Sin posibilidad de conexión','Limitación por posición','Valor referencia no acordado','Reserva RDL 7/2026','Normativa (Orden TED)','Sin capacidad / 0*','Otros','Solicitable'];
+const GS_CAUSE_SHORT={'Concurso':'Conc','Transición Justa (NTJ)':'NTJ','Sin posibilidad de conexión':'SinCon','Limitación por posición':'LimPos','Valor referencia no acordado':'ValRef','Reserva RDL 7/2026':'RDL','Normativa (Orden TED)':'Norm','Sin capacidad / 0*':'SinCap','Otros':'Otros','Solicitable':'Solic'};
 function gsFlujo(dD,dO,dP,dM){ const T=1; const up=function(x){return !isNaN(x)&&x>T;}, dn=function(x){return !isNaN(x)&&x<-T;};
   if(up(dO)) return 'Otorgado';
   if(up(dD)&&(dn(dP)||dn(dO))) return 'Devuelto/denegado';
@@ -2648,18 +2651,20 @@ function gsRenderCritZona(key,pkey,scope,side){
 
 const GS_VAR_NOTE_HTML='<b>C\u00f3mo se infieren los flujos</b> (sobre fotos mensuales de <i>stocks</i>, no transacciones).<br>Para cada nudo se compara este mes con el anterior y se clasifica su <b>movimiento neto</b> por prioridad: <b>Otorgado</b> (otorgada \u2191) \u00b7 <b>Devuelto/denegado</b> (disponible \u2191 con en curso u otorgada \u2193) \u00b7 <b>Nueva solicitud</b> (en curso/pendiente \u2191) \u00b7 <b>Liberado</b> (disponible o margen \u2191 sin otorgar ni cola \u2192 p. ej. RDL/nueva capacidad) \u00b7 <b>Reservado/ocupado</b> (disponible \u2193 sin cola ni otorgar) \u00b7 <b>Sin cambio</b> (umbral 1 MW).<br><i>Limitaciones:</i> es una <b>inferencia</b> del cambio neto; una bajada de \u00aben curso\u00bb puede ser otorgamiento o denegaci\u00f3n (se desambigua por si sube otorgada o disponible). En DSO no hay \u00aben curso/otorgada/margen\u00bb: se usan \u00abadmitida y no resuelta\u00bb como pendiente y \u00abocupada\u00bb como otorgada. Colores de \u0394 = signo (verde sube, rojo baja), sin juicio de valor.';
 function gsToggleVarNote(){ const n=document.getElementById('gs-var-note'); if(n.innerHTML.trim()===''){ n.innerHTML=GS_VAR_NOTE_HTML; } n.style.display=(n.style.display==='none'?'block':'none'); }
-function gsWhatsNewRecs(key,pkey,side,scope,vistaAgg){
-  const out=[];
+function gsWhatsNewRecs(key,pkey,side,scope){
+  const out=[]; const flds=['margen','disp','noOtorg','otorgada','enCurso'];
   for(const e of allEntries){
     if(scope!=='ALL'&&e.grid!==scope) continue;
     const mc=gsNodeMetrics(e,key); if(!mc) continue; const c=mc[side]; if(!c) continue;
     const mp=gsNodeMetrics(e,pkey); const p=mp?mp[side]:null;
     const cv=function(o,fq){ return (o&&!isNaN(o[fq]))?o[fq]:NaN; };
     const dd=function(fq){ const a=cv(c,fq),b=p?cv(p,fq):NaN; if(isNaN(a)&&isNaN(b))return NaN; return (isNaN(a)?0:a)-(isNaN(b)?0:b); };
-    const now=cv(c,vistaAgg), prev=p?cv(p,vistaAgg):NaN;
-    const dv=(isNaN(now)&&isNaN(prev))?NaN:((isNaN(now)?0:now)-(isNaN(prev)?0:prev));
-    out.push({name:e.name, ccaa:e.ccaa||'', prov:e.prov||'', tens:e.tens||'', grid:e.grid, now:now, prev:prev, dv:dv,
-      causas:(c.causas||[]), flujo:gsFlujo(dd('disp'),dd('otorgada'),(e.grid==='DSO'?dd('admitida'):dd('enCurso')),dd('margen'))});
+    const vals={}, dlt={}; let chg=false;
+    flds.forEach(function(fq){ vals[fq]=cv(c,fq); dlt[fq]=dd(fq); if(!isNaN(dlt[fq])&&Math.abs(dlt[fq])>=1) chg=true; });
+    const enF=(e.grid==='DSO')?'admitida':'enCurso';
+    out.push({name:e.name, ccaa:e.ccaa||'', prov:e.prov||'', tens:e.tens||'', grid:e.grid,
+      vals:vals, dlt:dlt, sat:cv(c,'sat'), crit:(c.crit||''), reason:(c.reason||''), causas:(c.causas||[]),
+      flujo:gsFlujo(dd('disp'),dd('otorgada'),dd(enF),dd('margen')), hasChange:chg});
   }
   return out;
 }
@@ -2671,33 +2676,39 @@ function renderWhatsNew(){
   const side=document.getElementById('gs-side').value;
   const scope=document.getElementById('gs-scope').value;
   const desgBlock=((document.getElementById('gs-desg-block')||{}).value)||'margen';
-  const vistaAgg=(desgBlock==='no_otorgable')?'noOtorg':(desgBlock==='disp')?'disp':'margen';
-  const blockLbl=(desgBlock==='no_otorgable')?'No otorgable':(desgBlock==='disp')?'Disponible':'Margen';
+  const sortAgg=(desgBlock==='no_otorgable')?'noOtorg':(desgBlock==='disp')?'disp':'margen';
+  const sortLbl=(desgBlock==='no_otorgable')?'No otorgable':(desgBlock==='disp')?'Disponible':'Margen';
   const q=(((document.getElementById('gs-wn-search')||{}).value)||'').trim().toLowerCase();
   const onlyChg=((document.getElementById('gs-wn-changed')||{}).checked)||false;
   const onlyBlk=((document.getElementById('gs-wn-blocked')||{}).checked)||false;
-  let recs=gsWhatsNewRecs(key,pkey,side,scope,vistaAgg);
+  let recs=gsWhatsNewRecs(key,pkey,side,scope);
   if(q) recs=recs.filter(function(r){ return r.name.toLowerCase().indexOf(q)>=0 || String(r.ccaa).toLowerCase().indexOf(q)>=0; });
-  if(onlyChg) recs=recs.filter(function(r){ return !isNaN(r.dv)&&Math.abs(r.dv)>=1; });
+  if(onlyChg) recs=recs.filter(function(r){ return r.hasChange; });
   if(onlyBlk) recs=recs.filter(function(r){ return r.causas.length>0; });
-  recs.sort(function(a,b){ return Math.abs(b.dv||0)-Math.abs(a.dv||0); });
+  recs.sort(function(a,b){ return Math.abs(b.dlt[sortAgg]||0)-Math.abs(a.dlt[sortAgg]||0); });
   const total=recs.length, CAP=400, shown=recs.slice(0,CAP);
   const flCol=function(fl){ return (typeof GS_FLUJO_COL!=='undefined'&&GS_FLUJO_COL[fl])||'#64748b'; };
+  const cvd=function(v,d){ const dt=(isNaN(d)||Math.abs(d)<0.5)?'':' <span style="font-size:9px;color:'+(d>0?'#16a34a':'#dc2626')+';white-space:nowrap;">'+(d>0?'+':'−')+gsFmt(Math.abs(d))+'</span>'; return gsFmt(v)+dt; };
   const rows=shown.map(function(r){
-    const mot=r.causas.length?r.causas.join(' · '):'<span style="color:#16a34a;">— solicitable —</span>';
+    const mot=r.reason?r.reason:(r.causas.length?r.causas.join(' · '):'<span style="color:#16a34a;">— solicitable —</span>');
+    const satTxt=isNaN(r.sat)?'–':(Math.round(r.sat*100)+'%');
     return '<tr>'
       +'<td style="text-align:left;"><b>'+r.name+'</b></td>'
       +'<td>'+(r.tens||'')+'</td>'
       +'<td style="text-align:left;font-size:11px;">'+(r.ccaa||'')+'</td>'
-      +'<td>'+gsFmt(r.now)+'</td>'
-      +'<td style="color:#94a3b8;">'+gsFmt(r.prev)+'</td>'
-      +'<td>'+gsSigned(r.dv)+'</td>'
-      +'<td style="color:'+flCol(r.flujo)+';font-weight:600;">'+r.flujo+'</td>'
-      +'<td style="text-align:left;font-size:11px;">'+mot+'</td>'
+      +'<td>'+cvd(r.vals.margen,r.dlt.margen)+'</td>'
+      +'<td>'+cvd(r.vals.disp,r.dlt.disp)+'</td>'
+      +'<td>'+cvd(r.vals.noOtorg,r.dlt.noOtorg)+'</td>'
+      +'<td>'+cvd(r.vals.otorgada,r.dlt.otorgada)+'</td>'
+      +'<td>'+cvd(r.vals.enCurso,r.dlt.enCurso)+'</td>'
+      +'<td>'+satTxt+'</td>'
+      +'<td style="text-align:left;font-size:10px;">'+(r.crit||'—')+'</td>'
+      +'<td style="text-align:left;font-size:10px;">'+mot+'</td>'
+      +'<td style="color:'+flCol(r.flujo)+';font-weight:600;white-space:nowrap;">'+r.flujo+'</td>'
       +'</tr>';
   }).join('');
-  host.innerHTML='<div style="font-size:11px;color:#64748b;margin-bottom:6px;">Perspectiva <b>'+(GS_SIDELBL[side]||side)+'</b> · Vista <b>'+blockLbl+'</b> · '+total+' nudos'+(total>CAP?(' (mostrando '+CAP+' por |Δ|)'):'')+'</div>'
-    +'<table class="gs-table"><thead><tr><th style="text-align:left;">Nudo</th><th>Tens</th><th style="text-align:left;">CCAA</th><th>'+blockLbl+' ahora</th><th>antes</th><th>Δ</th><th>Flujo</th><th style="text-align:left;">Motivo / bloqueo</th></tr></thead><tbody>'+(rows||'<tr><td colspan="8">Sin nudos que mostrar con estos filtros.</td></tr>')+'</tbody></table>';
+  host.innerHTML='<div style="font-size:11px;color:#64748b;margin-bottom:6px;">Perspectiva <b>'+(GS_SIDELBL[side]||side)+'</b> · <b>todas las variables</b> (valor + Δ vs mes anterior) · '+total+' nudos'+(total>CAP?(' (mostrando '+CAP+')'):'')+' · orden por |Δ '+sortLbl+'| (selector Vista)</div>'
+    +'<div style="overflow:auto;"><table class="gs-table"><thead><tr><th style="text-align:left;">Nudo</th><th>Tens</th><th style="text-align:left;">CCAA</th><th>Margen</th><th>Disponible</th><th>No otorg.</th><th>Otorgada</th><th>Solicitado</th><th>Sat.</th><th style="text-align:left;">Criterio lim.</th><th style="text-align:left;">Motivo (REE)</th><th>Flujo</th></tr></thead><tbody>'+(rows||'<tr><td colspan="12">Sin nudos que mostrar con estos filtros.</td></tr>')+'</tbody></table></div>';
 }
 function gsSetMode(m){ gsMode=m;
   document.getElementById('gs-tab-estado').classList.toggle('active',m==='estado');
@@ -2889,7 +2900,7 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
     <button id="gs-tab-estado" class="gs-tab active" onclick="gsSetMode('estado')">📊 Global</button>
     <button id="gs-tab-varmap" class="gs-tab" onclick="gsSetMode('varmap')">📈 Variaciones</button>
     <button id="gs-tab-var" class="gs-tab" onclick="gsSetMode('var')">🔬 Estadísticas</button>
-    <button id="gs-tab-whatsnew" class="gs-tab" onclick="gsSetMode('whatsnew')">🆕 What's New</button>
+    <button id="gs-tab-whatsnew" class="gs-tab" onclick="gsSetMode('whatsnew')">🔎 Análisis nodal</button>
   </div>
   <div id="gs-controls">
     <label>Año:<select id="gs-year" onchange="gsRefresh()"></select></label>
