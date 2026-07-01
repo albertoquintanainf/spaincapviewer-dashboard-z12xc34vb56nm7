@@ -2680,35 +2680,44 @@ function gsWhatsNewRecs(key,pkey,side,scope){
   }
   return out;
 }
-function gsWnToggle(id){ const d=document.getElementById(id); if(!d) return; const op=(d.style.display==='none'||d.style.display===''); d.style.display=op?'table-row':'none'; const ind=document.getElementById(id+'-i'); if(ind) ind.textContent=op?'\u25be':'\u25b8'; }
-const GS_WN_BLOCKS=[['margen','Margen (capacidad de acceso total)'],['disp','Disponible para solicitud'],['no_otorgable','No otorgable'],['no_disp','No disponible'],['otorgada','Otorgada \u00b7 situaci\u00f3n del nudo'],['en_curso','En curso \u00b7 pendiente de resoluci\u00f3n'],['posiciones','Posiciones'],['liberada','Liberada'],['reserva','Reserva'],['concurso','Concurso'],['lim_posicion','Limitaci\u00f3n por posici\u00f3n'],['crit_lim','Criterios limitantes'],['nodal','Criterios nodales / zona']];
+function gsWnToggle(id){ const d=document.getElementById(id); if(!d) return; const op=(d.style.display==='none'||d.style.display===''); d.style.display=op?'':'none'; const ind=document.getElementById(id+'-i'); if(ind) ind.textContent=op?'\u25be':'\u25b8'; }
+const GS_WN_BLOCKS=[['posiciones','Posiciones'],['nodal','Criterios nodales / zona'],['otorgada','Otorgada \u00b7 situaci\u00f3n del nudo'],['en_curso','En curso \u00b7 pendiente de resoluci\u00f3n'],['margen','Margen (capacidad de acceso total)'],['crit_lim','Criterios limitantes'],['no_otorgable','No otorgable'],['no_disp','No disponible'],['lim_posicion','Limitaci\u00f3n por posici\u00f3n'],['disp','Disponible para solicitud'],['liberada','Liberada'],['reserva','Reserva'],['concurso','Concurso']];
 function gsWnNum(x){ if(x===null||x===undefined||x==='') return NaN; const v=Number(x); return isNaN(v)?NaN:v; }
-function gsWnDetailHTML(r,side){
+function gsWnDetailHTML(r,side,rid){
   const cR=r.cRich||{}, pR=r.pRich||{};
   const solic=(!isNaN(r.vals.disp)&&r.vals.disp>0);
   const verdict=solic
     ? '<span style="color:#166534;background:#dcfce7;padding:3px 10px;border-radius:6px;font-weight:700;">\u2713 Capacidad SOLICITABLE \u2014 '+gsFmt(r.vals.disp)+' MW disponibles</span>'+(r.reason?(' <span style="font-size:11px;color:#b45309;">\u00b7 con restricci\u00f3n: '+r.reason+'</span>'):'')
     : '<span style="color:#991b1b;background:#fee2e2;padding:3px 10px;border-radius:6px;font-weight:700;">\u2717 NO solicitable</span>'+(r.reason?(' <span style="font-size:11px;color:#64748b;">\u00b7 '+r.reason+'</span>'):'');
-  const blkHtml=GS_WN_BLOCKS.map(function(bo){
+  const blkHtml=GS_WN_BLOCKS.map(function(bo,bi){
     const cur=cR[bo[0]]||{}, prv=pR[bo[0]]||{};
     const keys=Object.keys(cur).length?Object.keys(cur):Object.keys(prv);
     if(!keys.length) return '';
+    let nChg=0, netD=0, hasNet=false;
     const rws=keys.map(function(k){
       const cn=gsWnNum(cur[k]), pn=gsWnNum(prv[k]);
       if(!isNaN(cn)||!isNaN(pn)){
         const dv=(isNaN(cn)&&isNaN(pn))?NaN:((isNaN(cn)?0:cn)-(isNaN(pn)?0:pn));
+        if(!isNaN(dv)&&Math.abs(dv)>=0.5) nChg++;
+        if(!isNaN(dv)){ netD+=dv; hasNet=true; }
         const dc=(isNaN(dv)||Math.abs(dv)<0.5)?'<span style="color:#cbd5e1;">=</span>':('<span style="color:'+(dv>0?'#16a34a':'#dc2626')+';font-weight:600;">'+(dv>0?'+':'\u2212')+gsFmt(Math.abs(dv))+'</span>');
         return '<tr><td style="text-align:left;">'+k+'</td><td style="color:#94a3b8;">'+(isNaN(pn)?'\u2013':gsFmt(pn))+'</td><td>'+(isNaN(cn)?'\u2013':gsFmt(cn))+'</td><td>'+dc+'</td></tr>';
       } else {
         const cs=(cur[k]==null||cur[k]==='')?'':String(cur[k]), ps=(prv[k]==null||prv[k]==='')?'':String(prv[k]);
-        const changed=(cs!==ps);
+        const changed=(cs!==ps); if(changed) nChg++;
         const disp=(ps&&changed)?('<span style="color:#94a3b8;">'+ps+'</span> \u2192 '+(cs||'\u2013')):(cs||'<span style="color:#cbd5e1;">\u2013</span>');
         return '<tr'+(changed?' style="background:#fef9c3;"':'')+'><td style="text-align:left;">'+k+'</td><td colspan="3" style="text-align:left;">'+disp+(changed?' <span style="color:#b45309;font-size:9px;">cambi\u00f3</span>':'')+'</td></tr>';
       }
     }).join('');
-    return '<div style="min-width:235px;"><div style="font-weight:700;font-size:11px;color:#0078A8;margin-bottom:2px;">'+bo[1]+'</div><table class="gs-table" style="font-size:10px;"><thead><tr><th style="text-align:left;">Variable (REE)</th><th>antes</th><th>ahora</th><th>\u0394</th></tr></thead><tbody>'+rws+'</tbody></table></div>';
+    const changed=nChg>0; const bid=rid+'b'+bi;
+    const badge=changed
+      ? '<span style="color:#b45309;font-weight:700;font-size:11px;">\u25cf cambi\u00f3</span> <span style="color:#94a3b8;font-size:9px;">('+nChg+' campo'+(nChg>1?'s':'')+(hasNet&&Math.abs(netD)>=0.5?(' \u00b7 neto '+(netD>0?'+':'\u2212')+gsFmt(Math.abs(netD))):'')+')</span>'
+      : '<span style="color:#cbd5e1;font-size:11px;">sin cambios</span>';
+    const row='<div onclick="gsWnToggle(\''+bid+'\')" style="cursor:pointer;padding:3px 6px;border-radius:5px;margin-top:2px;display:flex;align-items:center;gap:8px;'+(changed?'background:#fff7ed;border:1px solid #fed7aa;':'opacity:.65;')+'"><span id="'+bid+'-i" style="color:#0078A8;font-size:10px;width:10px;">\u25b8</span><b style="font-size:11px;min-width:230px;">'+bo[1]+'</b>'+badge+'</div>';
+    const fields='<div id="'+bid+'" style="display:none;padding:3px 6px 8px 26px;"><table class="gs-table" style="font-size:10px;max-width:520px;"><thead><tr><th style="text-align:left;">Variable (REE)</th><th>antes</th><th>ahora</th><th>\u0394</th></tr></thead><tbody>'+rws+'</tbody></table></div>';
+    return row+fields;
   }).join('');
-  return '<div style="padding:6px 4px 10px;"><div style="margin-bottom:8px;">'+verdict+'</div><div style="display:flex;gap:16px;flex-wrap:wrap;">'+blkHtml+'</div><div style="font-size:9px;color:#94a3b8;margin-top:6px;">Variables con su nombre original de REE. Fondo amarillo = cambi\u00f3 respecto al mes anterior.</div></div>';
+  return '<div style="padding:6px 4px 10px;max-width:760px;"><div style="margin-bottom:8px;">'+verdict+'</div>'+blkHtml+'<div style="font-size:9px;color:#94a3b8;margin-top:8px;">Bloques en orden REE. Los que tienen <b style="color:#b45309;">\u25cf cambi\u00f3</b> se pueden desplegar para ver de d\u00f3nde viene. Nombres originales de REE.</div></div>';
 }
 function renderWhatsNew(){
   const host=document.getElementById('gs-wn-table'); if(!host) return;
@@ -2749,7 +2758,7 @@ function renderWhatsNew(){
       +'<td style="text-align:left;font-size:10px;">'+mot+'</td>'
       +'<td style="color:'+flCol(r.flujo)+';font-weight:600;white-space:nowrap;">'+r.flujo+'</td>'
       +'</tr>';
-    const detail='<tr id="'+rid+'" style="display:none;background:#f8fafc;"><td colspan="12">'+gsWnDetailHTML(r,side)+'</td></tr>';
+    const detail='<tr id="'+rid+'" style="display:none;background:#f8fafc;"><td colspan="12">'+gsWnDetailHTML(r,side,rid)+'</td></tr>';
     return summary+detail;
   }).join('');
   host.innerHTML='<div style="font-size:11px;color:#64748b;margin-bottom:6px;">Perspectiva <b>'+(GS_SIDELBL[side]||side)+'</b> \u00b7 <b>pulsa un nudo</b> para desplegar el desglose de todas las variables y el veredicto \u00b7 '+total+' nudos'+(total>CAP?(' (mostrando '+CAP+')'):'')+' \u00b7 orden por |\u0394 '+sortLbl+'| (selector Vista)</div>'
