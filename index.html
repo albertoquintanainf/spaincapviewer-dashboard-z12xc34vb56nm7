@@ -2724,10 +2724,14 @@ function gsWnDetailHTML(r,side,rid){
 const GS_WN_SHORT=['Pos','Nodal','Otorg','EnCur','Marg','Crit','NoOt','NoDsp','LimP','Disp','Lib','Res','Conc'];
 let gsWnBlkFilter={}, gsWnFilterMode='AND';
 function gsWnBlkChange(cur,prv){ cur=cur||{}; prv=prv||{}; const keys=Object.keys(cur).length?Object.keys(cur):Object.keys(prv); let n=0,net=0; keys.forEach(function(k){ const cn=gsWnNum(cur[k]), pn=gsWnNum(prv[k]); if(!isNaN(cn)||!isNaN(pn)){ const dv=(isNaN(cn)?0:cn)-(isNaN(pn)?0:pn); if(Math.abs(dv)>=0.5){n++; net+=dv;} } else { const cs=(cur[k]==null?'':String(cur[k])), ps=(prv[k]==null?'':String(prv[k])); if(cs!==ps) n++; } }); return {n:n,net:net,changed:n>0}; }
-function gsWnToggleFilterBlk(bk){ gsWnBlkFilter[bk]=!gsWnBlkFilter[bk]; renderWhatsNew(); }
+function gsWnToggleFilterBlk(bk){ const nx={'':'any','any':'up','up':'down','down':''}[gsWnBlkFilter[bk]||'']; if(nx) gsWnBlkFilter[bk]=nx; else delete gsWnBlkFilter[bk]; renderWhatsNew(); }
 function gsWnSetFilterMode(){ gsWnFilterMode=(gsWnFilterMode==='AND')?'OR':'AND'; renderWhatsNew(); }
+let gsWnShown=[], gsWnSide='';
+function gsWnToggleNode(idx){ const rid='wn'+idx; const tr=document.getElementById(rid); if(!tr) return; const td=tr.cells&&tr.cells[0]; if(td&&!td.getAttribute('data-b')){ const r=gsWnShown[idx]; if(r){ td.innerHTML=gsWnDetailHTML(r,gsWnSide,rid); td.setAttribute('data-b','1'); } } const op=(tr.style.display==='none'); tr.style.display=op?'':'none'; const ind=document.getElementById(rid+'-i'); if(ind) ind.textContent=op?'\u25be':'\u25b8'; }
+function gsWnMotTgl(e,rid){ if(e&&e.stopPropagation) e.stopPropagation(); const fu=document.getElementById(rid+'-mf'); if(!fu) return; const op=(fu.style.display==='none'); fu.style.display=op?'':'none'; if(e&&e.target) e.target.textContent=op?'ocultar':'ver motivo'; }
 function renderWhatsNew(){
   const host=document.getElementById('gs-wn-table'); if(!host) return;
+  const GS_WN_COL={posiciones:'Posiciones',nodal:'Nodal',otorgada:'Otorgada',en_curso:'En curso',margen:'Margen',crit_lim:'Criterio limitante',no_otorgable:'No otorgable',no_disp:'No disponible',lim_posicion:'Limitación posición',disp:'Disponible',liberada:'Liberada',reserva:'Reserva',concurso:'Concurso'};
   const year=document.getElementById('gs-year').value, month=document.getElementById('gs-month').value;
   let pi=GS_MONTHS.indexOf(month)-1, py=year; if(pi<0){pi=11;py=(parseInt(year)-1).toString();}
   const key=year+'_'+month, pkey=py+'_'+GS_MONTHS[pi];
@@ -2735,41 +2739,36 @@ function renderWhatsNew(){
   const scope=document.getElementById('gs-scope').value;
   const desgBlock=((document.getElementById('gs-desg-block')||{}).value)||'margen';
   const sortAgg=(desgBlock==='no_otorgable')?'noOtorg':(desgBlock==='disp')?'disp':'margen';
-  const sortLbl=(desgBlock==='no_otorgable')?'No otorgable':(desgBlock==='disp')?'Disponible':'Margen';
   const q=(((document.getElementById('gs-wn-search')||{}).value)||'').trim().toLowerCase();
   const concl=((document.getElementById('gs-wn-concl')||{}).value)||'';
   const mb=document.getElementById('gs-wn-mode'); if(mb) mb.textContent=(gsWnFilterMode==='AND')?'Y':'O';
   let recs=gsWhatsNewRecs(key,pkey,side,scope);
   recs.forEach(function(r){ r._blk={}; GS_WN_BLOCKS.forEach(function(bo){ r._blk[bo[0]]=gsWnBlkChange((r.cRich||{})[bo[0]], (r.pRich||{})[bo[0]]); }); });
+  const blkCols=GS_WN_BLOCKS.filter(function(bo){ return recs.some(function(r){ return Object.keys((r.cRich||{})[bo[0]]||{}).length>0 || Object.keys((r.pRich||{})[bo[0]]||{}).length>0; }); });
   if(q) recs=recs.filter(function(r){ return r.name.toLowerCase().indexOf(q)>=0 || String(r.ccaa).toLowerCase().indexOf(q)>=0; });
   if(concl){ recs=recs.filter(function(r){ const so=(!isNaN(r.vals.disp)&&r.vals.disp>0); return concl==='si'?so:!so; }); }
-  const selBlk=GS_WN_BLOCKS.map(function(b){return b[0];}).filter(function(bk){ return gsWnBlkFilter[bk]; });
-  if(selBlk.length){ recs=recs.filter(function(r){ const hits=selBlk.filter(function(bk){ return r._blk[bk]&&r._blk[bk].changed; }); return (gsWnFilterMode==='AND')?(hits.length===selBlk.length):(hits.length>0); }); }
+  const selBlk=blkCols.map(function(b){return b[0];}).filter(function(bk){ return gsWnBlkFilter[bk]; });
+  if(selBlk.length){ recs=recs.filter(function(r){ const hits=selBlk.filter(function(bk){ const st=gsWnBlkFilter[bk]; const c=r._blk[bk]||{}; if(st==='up') return c.net>0.5; if(st==='down') return c.net<-0.5; return c.changed; }); return (gsWnFilterMode==='AND')?(hits.length===selBlk.length):(hits.length>0); }); }
   recs.sort(function(a,b){ return Math.abs(b.dlt[sortAgg]||0)-Math.abs(a.dlt[sortAgg]||0); });
-  const total=recs.length, CAP=400, shown=recs.slice(0,CAP);
-  const flCol=function(fl){ return (typeof GS_FLUJO_COL!=='undefined'&&GS_FLUJO_COL[fl])||'#64748b'; };
-  const chipCell=function(r){ return '<div style="display:flex;gap:2px;flex-wrap:wrap;max-width:240px;">'+GS_WN_BLOCKS.map(function(bo,i){ const c=r._blk[bo[0]]||{changed:false,n:0,net:0}; const on=c.changed; const t=on?(bo[1]+': '+c.n+' campo(s)'+(Math.abs(c.net)>=0.5?(' \u00b7 neto '+(c.net>0?'+':'\u2212')+gsFmt(Math.abs(c.net))):'')):(bo[1]+': sin cambios'); return '<span title="'+t+'" style="font-size:9px;padding:1px 4px;border-radius:4px;'+(on?'background:#fed7aa;color:#9a3412;font-weight:700;':'background:#f1f5f9;color:#cbd5e1;')+'">'+GS_WN_SHORT[i]+'</span>'; }).join('')+'</div>'; };
+  const total=recs.length, shown=recs; gsWnShown=shown; gsWnSide=side;
+  const blkCell=function(r,bo){ const c=r._blk[bo[0]]||{changed:false,n:0,net:0}; if(!c.changed) return '<span style="color:#cbd5e1;">\u00b7</span>'; const tt=bo[1]+': '+c.n+' campo(s)'+(Math.abs(c.net)>=0.5?(' \u00b7 neto '+(c.net>0?'+':'\u2212')+gsFmt(Math.abs(c.net))):' (texto)'); const txt=(Math.abs(c.net)>=0.5)?((c.net>0?'+':'\u2212')+gsFmt(Math.abs(c.net))):'\u25cf'; return '<span title="'+tt+'" style="color:#9a3412;font-weight:700;background:#fed7aa;padding:1px 5px;border-radius:4px;white-space:nowrap;font-size:10px;">'+txt+'</span>'; };
   const rows=shown.map(function(r,idx){
     const rid='wn'+idx;
-    const so=(!isNaN(r.vals.disp)&&r.vals.disp>0); const cc=so?('<span style="color:#166534;font-weight:600;">\u2713 Solicitable</span> <span style="color:#94a3b8;">'+gsFmt(r.vals.disp)+' MW</span>'):('<span style="color:#991b1b;font-weight:600;">\u2717 No solicitable</span>'+(r.reason?(' <span style="color:#64748b;">\u00b7 '+r.reason+'</span>'):''));
+    const so=(!isNaN(r.vals.disp)&&r.vals.disp>0); const cc=so?('<span style="color:#166534;font-weight:600;">\u2713 Solicitable</span> <span style="color:#94a3b8;">'+gsFmt(r.vals.disp)+' MW</span>'):('<span style="color:#991b1b;font-weight:600;">\u2717 No solicitable</span>'+(r.reason?(' <a onclick="gsWnMotTgl(event,\''+rid+'\')" style="color:#0078A8;cursor:pointer;font-size:10px;">ver motivo</a><span id="'+rid+'-mf" style="display:none;color:#64748b;"> \u00b7 '+r.reason+'</span>'):''));
     const satTxt=isNaN(r.sat)?'\u2013':(Math.round(r.sat*100)+'%');
-    const summary='<tr onclick="gsWnToggle(\''+rid+'\')" style="cursor:pointer;">'
+    const summary='<tr onclick="gsWnToggleNode('+idx+')" style="cursor:pointer;">'
       +'<td style="text-align:left;"><span id="'+rid+'-i" style="color:#0078A8;font-size:10px;">\u25b8</span> <b>'+r.name+'</b></td>'
-      +'<td>'+(r.tens||'')+'</td>'
       +'<td style="text-align:left;font-size:11px;">'+(r.ccaa||'')+'</td>'
-      +'<td style="text-align:left;font-size:11px;">'+cc+'</td>'
+      +'<td style="text-align:left;font-size:11px;"><div style="max-width:200px;overflow-wrap:anywhere;">'+cc+'</div></td>'
       +'<td>'+satTxt+'</td>'
-      +'<td style="text-align:left;font-size:10px;">'+(r.crit||'\u2014')+'</td>'
-      +'<td>'+chipCell(r)+'</td>'
-      +'<td style="color:'+flCol(r.flujo)+';font-weight:600;white-space:nowrap;">'+r.flujo+'</td>'
+      +blkCols.map(function(bo){ return '<td style="text-align:center;">'+blkCell(r,bo)+'</td>'; }).join('')
       +'</tr>';
-    const detail='<tr id="'+rid+'" style="display:none;background:#f8fafc;"><td colspan="8">'+gsWnDetailHTML(r,side,rid)+'</td></tr>';
+    const detail='<tr id="'+rid+'" style="display:none;background:#f8fafc;"><td colspan="'+(4+blkCols.length)+'"></td></tr>';
     return summary+detail;
   }).join('');
-  const fc=document.getElementById('gs-wn-chips');
-  if(fc){ fc.innerHTML=GS_WN_BLOCKS.map(function(bo,i){ const on=!!gsWnBlkFilter[bo[0]]; return '<span onclick="gsWnToggleFilterBlk(\''+bo[0]+'\')" title="'+bo[1]+'" style="cursor:pointer;font-size:10px;padding:2px 6px;border-radius:5px;border:1px solid '+(on?'#0078A8':'#cbd5e1')+';'+(on?'background:#0078A8;color:#fff;font-weight:700;':'background:#fff;color:#475569;')+'">'+GS_WN_SHORT[i]+'</span>'; }).join(''); }
-  host.innerHTML='<div style="font-size:11px;color:#64748b;margin-bottom:6px;">Perspectiva <b>'+(GS_SIDELBL[side]||side)+'</b> \u00b7 <b>pulsa un nudo</b> para el desglose \u00b7 chips = bloques (<span style="background:#fed7aa;color:#9a3412;padding:0 3px;border-radius:3px;">naranja</span> = cambi\u00f3) \u00b7 '+total+' nudos'+(total>CAP?(' (mostrando '+CAP+')'):'')+' \u00b7 orden por |\u0394 '+sortLbl+'|</div>'
-    +'<div style="overflow:auto;"><table class="gs-table"><thead><tr><th style="text-align:left;">Nudo</th><th>Tens</th><th style="text-align:left;">CCAA</th><th style="text-align:left;">Conclusi\u00f3n</th><th>Sat.</th><th style="text-align:left;">Criterio lim.</th><th style="text-align:left;">Bloques (cambios)</th><th>Flujo</th></tr></thead><tbody>'+(rows||'<tr><td colspan="8">Sin nudos que mostrar con estos filtros.</td></tr>')+'</tbody></table></div>';
+  const blkHead=blkCols.map(function(bo){ const st=gsWnBlkFilter[bo[0]]||''; const stBg=st==='any'?'background:#0078A8;color:#fff;':st==='up'?'background:#16a34a;color:#fff;':st==='down'?'background:#dc2626;color:#fff;':'color:#334155;'; const stLbl=st==='any'?'\u25cf cambios':st==='up'?'\u25b2 subida':st==='down'?'\u25bc bajada':'filtrar'; return '<th onclick="gsWnToggleFilterBlk(\''+bo[0]+'\')" title="Clic para filtrar '+bo[1]+': cambios \u2192 subida \u2192 bajada" style="cursor:pointer;width:56px;font-size:10px;line-height:1.15;vertical-align:bottom;'+stBg+'">'+GS_WN_COL[bo[0]]+'<div style="font-size:8px;font-weight:normal;opacity:.85;">'+stLbl+'</div></th>'; }).join('');
+  host.innerHTML='<div style="font-size:11px;color:#64748b;margin-bottom:6px;">Perspectiva <b>'+(GS_SIDELBL[side]||side)+'</b> \u00b7 <b>pulsa un nudo</b> para el desglose \u00b7 <b>pulsa la cabecera de un bloque</b> para filtrar (cambios \u2192 subida \u2192 bajada; Y/O combina) \u00b7 celda naranja = cambi\u00f3 \u00b7 '+total+' nudos</div>'
+    +'<div style="overflow:auto;"><table class="gs-table"><thead><tr><th style="text-align:left;">Nudo</th><th style="text-align:left;">CCAA</th><th style="text-align:left;">Conclusi\u00f3n</th><th>Sat.</th>'+blkHead+'</tr></thead><tbody>'+(rows||'<tr><td colspan="'+(4+blkCols.length)+'">Sin nudos que mostrar con estos filtros.</td></tr>')+'</tbody></table></div>';
 }
 function gsSetMode(m){ gsMode=m;
   document.getElementById('gs-tab-estado').classList.toggle('active',m==='estado');
@@ -3046,9 +3045,8 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
     <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:10px;font-size:13px;">
       <input id="gs-wn-search" type="text" placeholder="Buscar nudo o CCAA…" oninput="renderWhatsNew()" style="padding:4px 8px;border:1px solid #cbd5e1;border-radius:6px;font-size:13px;min-width:180px;">
       <select id="gs-wn-concl" onchange="renderWhatsNew()" style="padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:12px;"><option value="">Conclusión: todas</option><option value="si">Solo solicitables</option><option value="no">Solo NO solicitables</option></select>
-      <span style="font-size:12px;color:#334155;">Cambios en:</span>
+      <span style="font-size:12px;color:#334155;">Filtro en la cabecera de cada columna · combinar:</span>
       <button id="gs-wn-mode" onclick="gsWnSetFilterMode()" title="Alternar Y (todos los marcados) / O (alguno de los marcados)" style="padding:3px 9px;border:1px solid #0078A8;background:#e0f2fe;color:#0078A8;border-radius:6px;font-weight:700;font-size:12px;cursor:pointer;">Y</button>
-      <div id="gs-wn-chips" style="display:flex;gap:4px;flex-wrap:wrap;"></div>
     </div>
     <div id="gs-wn-table"></div>
   </div>
