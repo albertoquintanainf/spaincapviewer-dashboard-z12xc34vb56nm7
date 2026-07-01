@@ -2377,9 +2377,9 @@ function gsNationalBanner(scope,key,pkey,side){
     const cur=gsAggregate('nac',scope,key,side), prev=gsAggregate('nac',scope,pkey,side);
     if(!cur.length) return '';
     const g=cur[0], p=(prev.length?prev[0]:{});
-    const SL=GS_SIDESHORT[side]||'', isDSO=(scope==='DSO');
+    const SL=GS_SIDESHORT[side]||'', isDSO=(scope==='DSO'), DM=(gsGlobalMode==='delta');
     const sat=g.satN?(100*g.satSum/g.satN):NaN;
-    const cell=function(lbl,v,pv){ return '<span style="margin-right:18px;white-space:nowrap;"><span style="color:#64748b;">'+lbl+':</span> <b>'+gsFmt(v)+'</b>'+gsDelta(v,(pv===undefined?NaN:pv))+'</span>'; };
+    const cell=function(lbl,v,pv){ return '<span style="margin-right:18px;white-space:nowrap;"><span style="color:#64748b;">'+lbl+':</span> <b>'+(DM?gsSigned((isNaN(v)?0:v)-(isNaN(pv)?0:pv)):gsFmt(v))+'</b>'+(DM?'':gsDelta(v,(pv===undefined?NaN:pv)))+'</span>'; };
     let mid, vistaLbl='';
     if(isDSO){ mid=cell('Disponible',g.disp,p.disp)+cell('Ocupada',g.ocupada,p.ocupada)+cell('Admitida',g.admitida,p.admitida); }
     else {
@@ -2390,7 +2390,7 @@ function gsNationalBanner(scope,key,pkey,side){
         mid=labels.map(function(L){ return cell(L,(L in src)?src[L]:NaN,(L in psrc)?psrc[L]:NaN); }).join('');
     }
     return '<div style="background:#f0f9ff;border:1px solid #0078A8;border-radius:8px;padding:9px 14px;margin-bottom:10px;font-size:13px;display:flex;flex-wrap:wrap;align-items:center;gap:2px;color:#0f172a;">'
-      +'<span style="font-weight:700;color:#0078A8;margin-right:18px;">ESPAÑA · '+(isDSO?'total nacional':(vistaLbl+' '+SL+' (MW)'))+'</span>'
+      +'<span style="font-weight:700;color:#0078A8;margin-right:18px;">ESPAÑA · '+(isDSO?(DM?'variación nacional':'total nacional'):(DM?('Δ '+vistaLbl+' '+SL):(vistaLbl+' '+SL+' (MW)')))+'</span>'
       +'<span style="margin-right:18px;white-space:nowrap;"><span style="color:#64748b;">Nudos:</span> <b>'+g.n+'</b></span>'
       +mid
       +'<span style="white-space:nowrap;"><span style="color:#64748b;">Saturación:</span> <b>'+(isNaN(sat)?'–':sat.toFixed(0)+'%')+'</b></span>'
@@ -2404,6 +2404,7 @@ function renderGridStatus(){
     const level=document.getElementById('gs-level').value;
     const scope=document.getElementById('gs-scope').value;
     const desg=scope!=='DSO';
+    const DM=(gsGlobalMode==='delta');
     const desgBlock=((document.getElementById('gs-desg-block')||{}).value)||'margen';
     const subField=(desgBlock==='no_otorgable')?'subN':(desgBlock==='disp')?'subD':'sub';
     const blockLbl=(desgBlock==='no_otorgable')?'No otorgable':(desgBlock==='disp')?'Disponible':'Margen';
@@ -2428,8 +2429,8 @@ function renderGridStatus(){
         if(desg){
             let cells='<td style="text-align:left;">'+showName+'<div style="font-size:10px;color:#94a3b8;">'+nlab+'</div></td>'
               +'<td>'+g.n+'</td>';
-            for(const L of subLabels){ const src=g[subField]||{}, psrc=p[subField]||{}; const cv=(L in src)?src[L]:NaN; const pv=(L in psrc)?psrc[L]:NaN; cells+='<td>'+gsFmt(cv)+gsDelta(cv,pv)+'</td>'; }
-            cells+='<td>'+gsFmt(g[vistaAgg])+gsDelta(g[vistaAgg],(p[vistaAgg]===undefined?NaN:p[vistaAgg]))+'</td>';
+            for(const L of subLabels){ const src=g[subField]||{}, psrc=p[subField]||{}; const cv=(L in src)?src[L]:NaN; const pv=(L in psrc)?psrc[L]:NaN; cells+='<td>'+(DM?gsSigned((isNaN(cv)?0:cv)-(isNaN(pv)?0:pv)):(gsFmt(cv)+gsDelta(cv,pv)))+'</td>'; }
+            cells+='<td>'+(DM?gsSigned((isNaN(g[vistaAgg])?0:g[vistaAgg])-(isNaN(p[vistaAgg])?0:p[vistaAgg])):(gsFmt(g[vistaAgg])+gsDelta(g[vistaAgg],(p[vistaAgg]===undefined?NaN:p[vistaAgg]))))+'</td>';
             rows+='<tr>'+cells+'</tr>';
         } else if(isDSO){
             rows+='<tr>'
@@ -2485,7 +2486,7 @@ function renderGridStatus(){
     } else { cHtml='<div style="color:#94a3b8;">Sin nudos en este alcance.</div>'; }
 
     let tableOut=table;
-    if(desg) tableOut='<div style="font-size:11px;color:#64748b;margin-bottom:4px;">Desglose mostrando: <b>'+blockLbl+'</b>'+(desgBlock==='no_otorgable'?' · los <b>motivos</b> están en el panel de causas (derecha) →':'')+'</div>'+tableOut;
+    if(desg) tableOut='<div style="font-size:11px;color:#64748b;margin-bottom:4px;">'+(DM?'<b style="color:#0078A8;">Variación (Δ vs mes anterior)</b> · ':'')+'Desglose: <b>'+blockLbl+'</b>'+(desgBlock==='no_otorgable'?' · los <b>motivos</b> están en el panel de causas (derecha) →':'')+'</div>'+tableOut;
     tableOut=gsNationalBanner(scope,key,pkey,side)+tableOut;
     document.getElementById('gs-table-wrap').innerHTML=tableOut;
     document.getElementById('gs-mot-wrap').innerHTML=cHtml;
@@ -2494,7 +2495,7 @@ function renderGridStatus(){
     if(gsMap) gsRenderMap();
 }
 // ===================== GRID STATUS — Variaciones / flujos =====================
-let gsMode='estado';
+let gsMode='estado', gsGlobalMode='abs';
 const GS_FLUJOS=['Nueva solicitud','Otorgado','Devuelto/denegado','Liberado','Reservado/ocupado','Sin cambio'];
 const GS_FLUJO_COL={'Nueva solicitud':'#2563eb','Otorgado':'#16a34a','Devuelto/denegado':'#dc2626','Liberado':'#0d9488','Reservado/ocupado':'#d97706','Sin cambio':'#94a3b8'};
 const GS_CAUSE_ORDER=['Concurso','Transición Justa (NTJ)','Sin posibilidad de conexión','Limitación por posición','Valor referencia no acordado','RDL 7/2026 (art. 13.6)','Normativa (Orden TED)','Sin capacidad / 0*','Otros','Solicitable'];
@@ -2646,15 +2647,71 @@ function gsRenderCritZona(key,pkey,scope,side){
 
 const GS_VAR_NOTE_HTML='<b>C\u00f3mo se infieren los flujos</b> (sobre fotos mensuales de <i>stocks</i>, no transacciones).<br>Para cada nudo se compara este mes con el anterior y se clasifica su <b>movimiento neto</b> por prioridad: <b>Otorgado</b> (otorgada \u2191) \u00b7 <b>Devuelto/denegado</b> (disponible \u2191 con en curso u otorgada \u2193) \u00b7 <b>Nueva solicitud</b> (en curso/pendiente \u2191) \u00b7 <b>Liberado</b> (disponible o margen \u2191 sin otorgar ni cola \u2192 p. ej. RDL/nueva capacidad) \u00b7 <b>Reservado/ocupado</b> (disponible \u2193 sin cola ni otorgar) \u00b7 <b>Sin cambio</b> (umbral 1 MW).<br><i>Limitaciones:</i> es una <b>inferencia</b> del cambio neto; una bajada de \u00aben curso\u00bb puede ser otorgamiento o denegaci\u00f3n (se desambigua por si sube otorgada o disponible). En DSO no hay \u00aben curso/otorgada/margen\u00bb: se usan \u00abadmitida y no resuelta\u00bb como pendiente y \u00abocupada\u00bb como otorgada. Colores de \u0394 = signo (verde sube, rojo baja), sin juicio de valor.';
 function gsToggleVarNote(){ const n=document.getElementById('gs-var-note'); if(n.innerHTML.trim()===''){ n.innerHTML=GS_VAR_NOTE_HTML; } n.style.display=(n.style.display==='none'?'block':'none'); }
+function gsWhatsNewRecs(key,pkey,side,scope,vistaAgg){
+  const out=[];
+  for(const e of allEntries){
+    if(scope!=='ALL'&&e.grid!==scope) continue;
+    const mc=gsNodeMetrics(e,key); if(!mc) continue; const c=mc[side]; if(!c) continue;
+    const mp=gsNodeMetrics(e,pkey); const p=mp?mp[side]:null;
+    const cv=function(o,fq){ return (o&&!isNaN(o[fq]))?o[fq]:NaN; };
+    const dd=function(fq){ const a=cv(c,fq),b=p?cv(p,fq):NaN; if(isNaN(a)&&isNaN(b))return NaN; return (isNaN(a)?0:a)-(isNaN(b)?0:b); };
+    const now=cv(c,vistaAgg), prev=p?cv(p,vistaAgg):NaN;
+    const dv=(isNaN(now)&&isNaN(prev))?NaN:((isNaN(now)?0:now)-(isNaN(prev)?0:prev));
+    out.push({name:e.name, ccaa:e.ccaa||'', prov:e.prov||'', tens:e.tens||'', grid:e.grid, now:now, prev:prev, dv:dv,
+      causas:(c.causas||[]), flujo:gsFlujo(dd('disp'),dd('otorgada'),(e.grid==='DSO'?dd('admitida'):dd('enCurso')),dd('margen'))});
+  }
+  return out;
+}
+function renderWhatsNew(){
+  const host=document.getElementById('gs-wn-table'); if(!host) return;
+  const year=document.getElementById('gs-year').value, month=document.getElementById('gs-month').value;
+  let pi=GS_MONTHS.indexOf(month)-1, py=year; if(pi<0){pi=11;py=(parseInt(year)-1).toString();}
+  const key=year+'_'+month, pkey=py+'_'+GS_MONTHS[pi];
+  const side=document.getElementById('gs-side').value;
+  const scope=document.getElementById('gs-scope').value;
+  const desgBlock=((document.getElementById('gs-desg-block')||{}).value)||'margen';
+  const vistaAgg=(desgBlock==='no_otorgable')?'noOtorg':(desgBlock==='disp')?'disp':'margen';
+  const blockLbl=(desgBlock==='no_otorgable')?'No otorgable':(desgBlock==='disp')?'Disponible':'Margen';
+  const q=(((document.getElementById('gs-wn-search')||{}).value)||'').trim().toLowerCase();
+  const onlyChg=((document.getElementById('gs-wn-changed')||{}).checked)||false;
+  const onlyBlk=((document.getElementById('gs-wn-blocked')||{}).checked)||false;
+  let recs=gsWhatsNewRecs(key,pkey,side,scope,vistaAgg);
+  if(q) recs=recs.filter(function(r){ return r.name.toLowerCase().indexOf(q)>=0 || String(r.ccaa).toLowerCase().indexOf(q)>=0; });
+  if(onlyChg) recs=recs.filter(function(r){ return !isNaN(r.dv)&&Math.abs(r.dv)>=1; });
+  if(onlyBlk) recs=recs.filter(function(r){ return r.causas.length>0; });
+  recs.sort(function(a,b){ return Math.abs(b.dv||0)-Math.abs(a.dv||0); });
+  const total=recs.length, CAP=400, shown=recs.slice(0,CAP);
+  const flCol=function(fl){ return (typeof GS_FLUJO_COL!=='undefined'&&GS_FLUJO_COL[fl])||'#64748b'; };
+  const rows=shown.map(function(r){
+    const mot=r.causas.length?r.causas.join(' · '):'<span style="color:#16a34a;">— solicitable —</span>';
+    return '<tr>'
+      +'<td style="text-align:left;"><b>'+r.name+'</b></td>'
+      +'<td>'+(r.tens||'')+'</td>'
+      +'<td style="text-align:left;font-size:11px;">'+(r.ccaa||'')+'</td>'
+      +'<td>'+gsFmt(r.now)+'</td>'
+      +'<td style="color:#94a3b8;">'+gsFmt(r.prev)+'</td>'
+      +'<td>'+gsSigned(r.dv)+'</td>'
+      +'<td style="color:'+flCol(r.flujo)+';font-weight:600;">'+r.flujo+'</td>'
+      +'<td style="text-align:left;font-size:11px;">'+mot+'</td>'
+      +'</tr>';
+  }).join('');
+  host.innerHTML='<div style="font-size:11px;color:#64748b;margin-bottom:6px;">Perspectiva <b>'+(GS_SIDELBL[side]||side)+'</b> · Vista <b>'+blockLbl+'</b> · '+total+' nudos'+(total>CAP?(' (mostrando '+CAP+' por |Δ|)'):'')+'</div>'
+    +'<table class="gs-table"><thead><tr><th style="text-align:left;">Nudo</th><th>Tens</th><th style="text-align:left;">CCAA</th><th>'+blockLbl+' ahora</th><th>antes</th><th>Δ</th><th>Flujo</th><th style="text-align:left;">Motivo / bloqueo</th></tr></thead><tbody>'+(rows||'<tr><td colspan="8">Sin nudos que mostrar con estos filtros.</td></tr>')+'</tbody></table>';
+}
 function gsSetMode(m){ gsMode=m;
   document.getElementById('gs-tab-estado').classList.toggle('active',m==='estado');
+  document.getElementById('gs-tab-varmap').classList.toggle('active',m==='varmap');
   document.getElementById('gs-tab-var').classList.toggle('active',m==='var');
-  document.querySelector('#grid-status .gs-body').style.display=(m==='estado')?'flex':'none';
+  document.getElementById('gs-tab-whatsnew').classList.toggle('active',m==='whatsnew');
+  const showBody=(m==='estado'||m==='varmap'); gsGlobalMode=(m==='varmap')?'delta':'abs';
+  document.querySelector('#grid-status .gs-body').style.display=showBody?'flex':'none';
   document.getElementById('gs-mode-var').style.display=(m==='var')?'block':'none';
-  if(m==='estado'){ renderGridStatus(); if(gsMap) setTimeout(function(){ gsMap.invalidateSize(); gsRenderMap(); },60); }
-  else { renderVariaciones(); }
+  document.getElementById('gs-mode-whatsnew').style.display=(m==='whatsnew')?'block':'none';
+  if(showBody){ renderGridStatus(); if(gsMap) setTimeout(function(){ gsMap.invalidateSize(); gsRenderMap(); },60); }
+  else if(m==='var'){ renderVariaciones(); }
+  else { renderWhatsNew(); }
 }
-function gsRefresh(){ if(gsMode==='var') renderVariaciones(); else renderGridStatus(); }
+function gsRefresh(){ if(gsMode==='var') renderVariaciones(); else if(gsMode==='whatsnew') renderWhatsNew(); else renderGridStatus(); }
 function gsSetSort(c){ if(gsSort.col===c) gsSort.dir*=-1; else { gsSort.col=c; gsSort.dir=(c==='name')?1:-1; } renderGridStatus(); }
 // ---- Mapa de burbujas (nacional / comunidad / provincia) ----
 let gsMap=null, gsBubbles=null, gsView='table';
@@ -2694,13 +2751,14 @@ function gsRenderMap(){
     const scope=document.getElementById('gs-scope').value;
     const vista=((document.getElementById('gs-desg-block')||{}).value)||'margen';
     const metric=(vista==='no_otorgable')?'noOtorg':(vista==='disp')?'disp':'margen';
+    const DM=(gsGlobalMode==='delta');
     const maplevel=(level==='nac')?'ccaa':level;
     const SL=GS_SIDESHORT[side]||'';
     const ML={margen:'Margen '+SL,noOtorg:'No otorgable '+SL,disp:'Disponible '+SL};
     const cur=gsAggregate(maplevel,scope,key,side);
     const prev=gsAggregate(maplevel,scope,pkey,side); const pmap={}; prev.forEach(function(g){pmap[g.name]=g;});
-    cur.forEach(function(g){ const pm=(pmap[g.name]&&!isNaN(pmap[g.name].margen))?pmap[g.name].margen:0; g.aflorada=(isNaN(g.margen)?0:g.margen)-pm; });
-    let maxV=0; cur.forEach(function(g){ const v=Math.abs(gsBubbleVal(g,metric)); if(!isNaN(v)&&v>maxV)maxV=v; });
+    cur.forEach(function(g){ const pm=(pmap[g.name]&&!isNaN(pmap[g.name].margen))?pmap[g.name].margen:0; g.aflorada=(isNaN(g.margen)?0:g.margen)-pm; const pv=pmap[g.name]; g._dv=(isNaN(g[metric])?0:g[metric])-((pv&&!isNaN(pv[metric]))?pv[metric]:0); });
+    let maxV=0; cur.forEach(function(g){ const v=Math.abs(DM?g._dv:gsBubbleVal(g,metric)); if(!isNaN(v)&&v>maxV)maxV=v; });
     const stats={max:maxV,maxAbs:maxV};
     const gbk={}; cur.forEach(function(g){ gbk[gsGeoKeyForGroup(g.name,maplevel)]=g; });
     if(gsGeoLayer){ gsMap.removeLayer(gsGeoLayer); gsGeoLayer=null; }
@@ -2711,10 +2769,10 @@ function gsRenderMap(){
             if(gsGeoLayer){ gsMap.removeLayer(gsGeoLayer); gsGeoLayer=null; }
             const pick=function(props){ const ks=gsFeatKeys(props); for(let i=0;i<ks.length;i++){ if(gbk[ks[i]]) return gbk[ks[i]]; } return null; };
             gsGeoLayer=L.geoJSON(geo,{
-                style:function(feat){ const g=pick(feat.properties); return g ? { fillColor:gsChoroFill(metric,g,stats), fillOpacity:0.82, color:'#ffffff', weight:1 } : { fillColor:'#cbd5e1', fillOpacity:0.45, color:'#ffffff', weight:1, dashArray:'2,3' }; },
+                style:function(feat){ const g=pick(feat.properties); return g ? { fillColor:(DM?gsDivColor(g._dv,stats.maxAbs):gsChoroFill(metric,g,stats)), fillOpacity:0.82, color:'#ffffff', weight:1 } : { fillColor:'#cbd5e1', fillOpacity:0.45, color:'#ffffff', weight:1, dashArray:'2,3' }; },
                 onEachFeature:function(feat,lyr){ const g=pick(feat.properties); const nm=String((feat.properties&&feat.properties.name)||'');
-                    if(g){ const sat=g.satN?(100*g.satSum/g.satN):NaN; const mv=gsBubbleVal(g,metric); const vTxt=(metric==='sat')?(isNaN(sat)?'\u2013':sat.toFixed(0)+'%'):(gsFmt(mv)+(metric==='noSolic'?' nudos':' MW'));
-                        lyr.bindTooltip('<b>'+g.name+'</b> <span style="color:#94a3b8;">('+g.nTSO+'T\u00b7'+g.nDSO+'D)</span><br>'+(ML[metric]||metric)+': <b>'+vTxt+'</b><br>Saturacion: '+(isNaN(sat)?'\u2013':sat.toFixed(0)+'%'),{sticky:true}); }
+                    if(g){ const sat=g.satN?(100*g.satSum/g.satN):NaN; const mv=DM?g._dv:gsBubbleVal(g,metric); const vTxt=DM?((mv>=0?'+':'−')+gsFmt(Math.abs(mv))+' MW'):(gsFmt(mv)+' MW');
+                        lyr.bindTooltip('<b>'+g.name+'</b> <span style="color:#94a3b8;">('+g.nTSO+'T·'+g.nDSO+'D)</span><br>'+(DM?'Δ ':'')+(ML[metric]||metric)+': <b>'+vTxt+'</b><br>Saturación: '+(isNaN(sat)?'–':sat.toFixed(0)+'%'),{sticky:true}); }
                     else { lyr.bindTooltip(nm+'<br><span style="color:#94a3b8;">sin nudos</span>',{sticky:true}); }
                 }
             }).addTo(gsMap);
@@ -2749,14 +2807,14 @@ function gsRenderMap(){
     });
     const fmtV=function(x){ if(isNaN(x)) return '0'; if(metric==='sat') return Math.round(x)+'%'; if(metric==='noSolic') return Math.round(x); const ax=Math.abs(x); return ax>=1000?((x/1000).toFixed(1)+' GW'):(Math.round(x)+' MW'); };
     let barStops, lb0,lb1,lb2,lb3,lb4, divg=false;
-    if(metric==='aflorada'){ divg=true; barStops=[-1,-0.5,0,0.5,1].map(function(t){return gsDivColor(t*maxV,maxV);}); lb0=fmtV(-maxV); lb1=fmtV(-maxV/2); lb2=fmtV(0); lb3=fmtV(maxV/2); lb4=fmtV(maxV); }
+    if(DM||metric==='aflorada'){ divg=true; barStops=[-1,-0.5,0,0.5,1].map(function(t){return gsDivColor(t*maxV,maxV);}); lb0=fmtV(-maxV); lb1=fmtV(-maxV/2); lb2=fmtV(0); lb3=fmtV(maxV/2); lb4=fmtV(maxV); }
     else if(metric==='sat'){ barStops=[0,0.25,0.5,0.75,1].map(function(t){return gsSeqColor(t);}); lb0='0%'; lb1='25%'; lb2='50%'; lb3='75%'; lb4='100%'; }
     else { barStops=[0,0.25,0.5,0.75,1].map(function(t){return gsSeqColor(t);}); lb0=fmtV(0); lb1=fmtV(maxV*0.25); lb2=fmtV(maxV*0.5); lb3=fmtV(maxV*0.75); lb4=fmtV(maxV); }
     const which=(maplevel==='ccaa')?'ccaa':'prov';
-    let legHtml='<div style="font-size:11px;margin-bottom:3px;"><b>'+(ML[metric]||metric)+'</b>'+(level==='nac'?' <span style="color:#94a3b8;">(por CCAA)</span>':'')+'</div>'
+    let legHtml='<div style="font-size:11px;margin-bottom:3px;"><b>'+(DM?'Δ ':'')+(ML[metric]||metric)+'</b>'+(level==='nac'?' <span style="color:#94a3b8;">(por CCAA)</span>':'')+'</div>'
       +'<div style="height:12px;border-radius:3px;background:linear-gradient(to right,'+barStops.join(',')+');border:1px solid rgba(0,0,0,.08);"></div>'
       +'<div style="display:flex;justify-content:space-between;font-size:9px;color:#64748b;margin-top:2px;"><span>'+lb0+'</span><span>'+lb1+'</span><span>'+lb2+'</span><span>'+lb3+'</span><span>'+lb4+'</span></div>'
-      +'<div style="margin-top:5px;font-size:10px;"><span class="gs-leg-dot" style="background:#cbd5e1;"></span>sin nudos'+(divg?' · azul = decae / naranja = aflora':'')+'</div>';
+      +'<div style="margin-top:5px;font-size:10px;"><span class="gs-leg-dot" style="background:#cbd5e1;"></span>sin nudos'+(divg?' · azul = baja / naranja = sube':'')+'</div>';
     if(gsGeoMissing[which]) legHtml+='<div style="color:#b45309;font-size:10px;margin-top:3px;">Falta es_'+which+'.geojson en el repo.</div>';
     document.getElementById('gs-map-legend').innerHTML=legHtml;
 }
@@ -2775,8 +2833,9 @@ function openGridStatus(){
     gy.value=yEl.value; gm.value=mEl.value;
     document.getElementById('grid-status').classList.add('open');
     gsMode='estado';
-    document.getElementById('gs-tab-estado').classList.add('active'); document.getElementById('gs-tab-var').classList.remove('active');
-    document.querySelector('#grid-status .gs-body').style.display='flex'; document.getElementById('gs-mode-var').style.display='none';
+    gsGlobalMode='abs';
+    document.getElementById('gs-tab-estado').classList.add('active'); document.getElementById('gs-tab-varmap').classList.remove('active'); document.getElementById('gs-tab-var').classList.remove('active'); document.getElementById('gs-tab-whatsnew').classList.remove('active');
+    document.querySelector('#grid-status .gs-body').style.display='flex'; document.getElementById('gs-mode-var').style.display='none'; document.getElementById('gs-mode-whatsnew').style.display='none';
     gsInitMap();
     renderGridStatus();
     setTimeout(function(){ if(gsMap){ gsMap.invalidateSize(); gsRenderMap(); } },80);
@@ -2807,8 +2866,10 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
     <button id="gs-close" onclick="closeGridStatus()">✕ Cerrar</button>
   </div>
   <div class="gs-tabs">
-    <button id="gs-tab-estado" class="gs-tab active" onclick="gsSetMode('estado')">📊 Estado</button>
-    <button id="gs-tab-var" class="gs-tab" onclick="gsSetMode('var')">🔬 Variaciones</button>
+    <button id="gs-tab-estado" class="gs-tab active" onclick="gsSetMode('estado')">📊 Global</button>
+    <button id="gs-tab-varmap" class="gs-tab" onclick="gsSetMode('varmap')">📈 Variaciones</button>
+    <button id="gs-tab-var" class="gs-tab" onclick="gsSetMode('var')">🔬 Estadísticas</button>
+    <button id="gs-tab-whatsnew" class="gs-tab" onclick="gsSetMode('whatsnew')">🆕 What's New</button>
   </div>
   <div id="gs-controls">
     <label>Año:<select id="gs-year" onchange="gsRefresh()"></select></label>
@@ -2886,6 +2947,15 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
     <div class="gs-var-sec"><h3>Top nudos por variación</h3><div id="gs-var-B"></div></div>
     <div class="gs-var-sec"><h3>Transiciones de causa (mes anterior &#8594; mes actual)</h3><div id="gs-var-C"></div></div>
     <div class="gs-var-sec"><h3>Criterio limitante y zona (deduplicado)</h3><div id="gs-var-D"></div></div>
+  </div>
+  <div id="gs-mode-whatsnew" style="display:none;padding:8px 18px 18px;overflow:auto;max-height:calc(100vh - 200px);">
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:10px;font-size:13px;">
+      <input id="gs-wn-search" type="text" placeholder="Buscar nudo o CCAA…" oninput="renderWhatsNew()" style="padding:4px 8px;border:1px solid #cbd5e1;border-radius:6px;font-size:13px;min-width:180px;">
+      <label style="display:flex;align-items:center;gap:5px;cursor:pointer;"><input type="checkbox" id="gs-wn-changed" checked onchange="renderWhatsNew()"> Solo con cambio</label>
+      <label style="display:flex;align-items:center;gap:5px;cursor:pointer;"><input type="checkbox" id="gs-wn-blocked" onchange="renderWhatsNew()"> Solo bloqueados</label>
+      <span style="font-size:11px;color:#64748b;">Nivel de nodo · usa Perspectiva, Vista y Red · «Nivel» no aplica aquí.</span>
+    </div>
+    <div id="gs-wn-table"></div>
   </div>
 </div>
 
