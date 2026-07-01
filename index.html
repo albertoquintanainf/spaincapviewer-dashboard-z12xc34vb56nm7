@@ -694,6 +694,16 @@ async function cargarDatosJSON() {
     ));
     cargasDSO.filter(Boolean).forEach(({ p, j }) => { MONTHS_DATA_DSO[periodoToKey(p)] = j.nudos; });
 
+    // mes por defecto = último periodo del manifest (en vez de junio fijo)
+    try {
+      const _periods=(manifest.meses||[]).slice().sort();
+      const _last=_periods[_periods.length-1];
+      if(_last){ const _p=String(_last).split('_'), _yy=_p[0], _mm=_p[1];
+        const _yEl=document.getElementById('view-year'), _mEl=document.getElementById('view-month');
+        if(_yEl){ const _yv=String(_yy).slice(2); if([].some.call(_yEl.options,function(o){return o.value===_yv;})) _yEl.value=_yv; }
+        if(_mEl && MES_NUM2NAME[_mm]){ _mEl.value=MES_NUM2NAME[_mm]; }
+      }
+    } catch(e){ console.warn('No se pudo fijar el mes por defecto desde el manifest', e); }
     construirEntries();
 }
 
@@ -2728,9 +2738,9 @@ function gsSetSort(c){ if(gsSort.col===c) gsSort.dir*=-1; else { gsSort.col=c; g
 // ---- Mapa de burbujas (nacional / comunidad / provincia) ----
 let gsMap=null, gsBubbles=null, gsView='table';
 // --- Canarias en recuadro (inset) + ajuste del mapa al contenedor (constantes ajustables) ---
-const GS_CAN_DLON=8.5, GS_CAN_DLAT=5.5;          // desplazamiento de Canarias hacia el recuadro
-const GS_CAN_BOX=[[32.8,-10.1],[35.3,-4.5]];     // recuadro dibujado [ [S,W],[N,E] ] (Canarias ya desplazada)
-const GS_MAP_BOUNDS=[[32.5,-10.3],[44.0,4.6]];   // encuadre: península + Baleares + recuadro Canarias
+const GS_CAN_DLON=7.6, GS_CAN_DLAT=5.0;          // desplazamiento de Canarias hacia el recuadro
+const GS_CAN_BOX=[[32.4,-10.9],[34.8,-5.3]];     // recuadro dibujado [ [S,W],[N,E] ] (Canarias ya desplazada)
+const GS_MAP_BOUNDS=[[32.2,-11.0],[44.0,4.6]];   // encuadre: península + Baleares + recuadro Canarias
 function gsShiftCanarias(geo){
     if(!geo||!geo.features) return geo;
     const tr=function(c){ if(typeof c[0]==='number'){ return (c[0]<-11&&c[1]<32)?[c[0]+GS_CAN_DLON,c[1]+GS_CAN_DLAT]:c; } return c.map(tr); };
@@ -2743,6 +2753,8 @@ function gsInitMap(){
     if(gsMap) return;
     gsMap=L.map('gs-map',{zoomControl:false, dragging:false, scrollWheelZoom:false, doubleClickZoom:false, boxZoom:false, keyboard:false, touchZoom:false, tap:false});
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(gsMap);
+    gsMap.createPane('gsCanBg'); gsMap.getPane('gsCanBg').style.zIndex='350';
+    L.rectangle(GS_CAN_BOX,{pane:'gsCanBg',stroke:false,fillColor:'#f8fafc',fillOpacity:0.97,interactive:false}).addTo(gsMap);
     L.rectangle(GS_CAN_BOX,{color:'#94a3b8',weight:1,fill:false,dashArray:'3,4',interactive:false}).addTo(gsMap);
     L.marker([GS_CAN_BOX[1][0],GS_CAN_BOX[0][1]],{interactive:false,icon:L.divIcon({className:'',html:'<span style="font-size:10px;color:#64748b;background:rgba(255,255,255,.7);padding:0 3px;border-radius:3px;">Canarias</span>',iconSize:[54,14],iconAnchor:[0,0]})}).addTo(gsMap);
     gsBubbles=L.layerGroup().addTo(gsMap);
