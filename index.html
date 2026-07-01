@@ -2667,6 +2667,7 @@ function gsWhatsNewRecs(key,pkey,side,scope){
     if(scope!=='ALL'&&e.grid!==scope) continue;
     const mc=gsNodeMetrics(e,key); if(!mc) continue; const c=mc[side]; if(!c) continue;
     const mp=gsNodeMetrics(e,pkey); const p=mp?mp[side]:null;
+    const richC=richForMonth(key,e), richP=richForMonth(pkey,e);
     const cv=function(o,fq){ return (o&&!isNaN(o[fq]))?o[fq]:NaN; };
     const dd=function(fq){ const a=cv(c,fq),b=p?cv(p,fq):NaN; if(isNaN(a)&&isNaN(b))return NaN; return (isNaN(a)?0:a)-(isNaN(b)?0:b); };
     const vals={}, dlt={}; let chg=false;
@@ -2674,32 +2675,40 @@ function gsWhatsNewRecs(key,pkey,side,scope){
     const enF=(e.grid==='DSO')?'admitida':'enCurso';
     out.push({name:e.name, ccaa:e.ccaa||'', prov:e.prov||'', tens:e.tens||'', grid:e.grid,
       vals:vals, dlt:dlt, sat:cv(c,'sat'), crit:(c.crit||''), reason:(c.reason||''), causas:(c.causas||[]),
-      cSub:(c.sub||{}), pSub:(p&&p.sub)||{}, cSubD:(c.subD||{}), pSubD:(p&&p.subD)||{}, cSubN:(c.subN||{}), pSubN:(p&&p.subN)||{},
+      cRich:(richC&&richC[side])||{}, pRich:(richP&&richP[side])||{},
       flujo:gsFlujo(dd('disp'),dd('otorgada'),dd(enF),dd('margen')), hasChange:chg});
   }
   return out;
 }
 function gsWnToggle(id){ const d=document.getElementById(id); if(!d) return; const op=(d.style.display==='none'||d.style.display===''); d.style.display=op?'table-row':'none'; const ind=document.getElementById(id+'-i'); if(ind) ind.textContent=op?'\u25be':'\u25b8'; }
+const GS_WN_BLOCKS=[['margen','Margen (capacidad de acceso total)'],['disp','Disponible para solicitud'],['no_otorgable','No otorgable'],['no_disp','No disponible'],['otorgada','Otorgada \u00b7 situaci\u00f3n del nudo'],['en_curso','En curso \u00b7 pendiente de resoluci\u00f3n'],['posiciones','Posiciones'],['liberada','Liberada'],['reserva','Reserva'],['concurso','Concurso'],['lim_posicion','Limitaci\u00f3n por posici\u00f3n'],['crit_lim','Criterios limitantes'],['nodal','Criterios nodales / zona']];
+function gsWnNum(x){ if(x===null||x===undefined||x==='') return NaN; const v=Number(x); return isNaN(v)?NaN:v; }
 function gsWnDetailHTML(r,side){
-  const marL=GS_SUBLABELS[side]||[]; const dispL=(side==='gen')?GS_SUBLABELS_GENDISP:(GS_SUBLABELS[side]||[]);
+  const cR=r.cRich||{}, pR=r.pRich||{};
   const solic=(!isNaN(r.vals.disp)&&r.vals.disp>0);
   const verdict=solic
-    ? '<span style="color:#166534;background:#dcfce7;padding:3px 10px;border-radius:6px;font-weight:700;">\u2713 Capacidad SOLICITABLE \u2014 '+gsFmt(r.vals.disp)+' MW disponibles</span>'+(r.reason?(' <span style="font-size:11px;color:#b45309;">\u00b7 con restricci\u00f3n parcial: '+r.reason+'</span>'):'')
+    ? '<span style="color:#166534;background:#dcfce7;padding:3px 10px;border-radius:6px;font-weight:700;">\u2713 Capacidad SOLICITABLE \u2014 '+gsFmt(r.vals.disp)+' MW disponibles</span>'+(r.reason?(' <span style="font-size:11px;color:#b45309;">\u00b7 con restricci\u00f3n: '+r.reason+'</span>'):'')
     : '<span style="color:#991b1b;background:#fee2e2;padding:3px 10px;border-radius:6px;font-weight:700;">\u2717 NO solicitable</span>'+(r.reason?(' <span style="font-size:11px;color:#64748b;">\u00b7 '+r.reason+'</span>'):'');
-  const blocks=[['Margen',r.cSub,r.pSub,marL],['Disponible',r.cSubD,r.pSubD,dispL],['No otorgable',r.cSubN,r.pSubN,marL]];
-  const blkHtml=blocks.map(function(b){
-    const cur=b[1]||{}, prv=b[2]||{}, lbls=b[3];
-    const rws=lbls.map(function(L){
-      const a=(!isNaN(prv[L]))?prv[L]:NaN, n=(!isNaN(cur[L]))?cur[L]:NaN;
-      const dv=(isNaN(a)&&isNaN(n))?NaN:((isNaN(n)?0:n)-(isNaN(a)?0:a));
-      const dc=(isNaN(dv)||Math.abs(dv)<0.5)?'<span style="color:#cbd5e1;">=</span>':('<span style="color:'+(dv>0?'#16a34a':'#dc2626')+';font-weight:600;">'+(dv>0?'+':'\u2212')+gsFmt(Math.abs(dv))+'</span>');
-      return '<tr><td style="text-align:left;">'+L+'</td><td style="color:#94a3b8;">'+gsFmt(a)+'</td><td>'+gsFmt(n)+'</td><td>'+dc+'</td></tr>';
+  const blkHtml=GS_WN_BLOCKS.map(function(bo){
+    const cur=cR[bo[0]]||{}, prv=pR[bo[0]]||{};
+    const keys=Object.keys(cur).length?Object.keys(cur):Object.keys(prv);
+    if(!keys.length) return '';
+    const rws=keys.map(function(k){
+      const cn=gsWnNum(cur[k]), pn=gsWnNum(prv[k]);
+      if(!isNaN(cn)||!isNaN(pn)){
+        const dv=(isNaN(cn)&&isNaN(pn))?NaN:((isNaN(cn)?0:cn)-(isNaN(pn)?0:pn));
+        const dc=(isNaN(dv)||Math.abs(dv)<0.5)?'<span style="color:#cbd5e1;">=</span>':('<span style="color:'+(dv>0?'#16a34a':'#dc2626')+';font-weight:600;">'+(dv>0?'+':'\u2212')+gsFmt(Math.abs(dv))+'</span>');
+        return '<tr><td style="text-align:left;">'+k+'</td><td style="color:#94a3b8;">'+(isNaN(pn)?'\u2013':gsFmt(pn))+'</td><td>'+(isNaN(cn)?'\u2013':gsFmt(cn))+'</td><td>'+dc+'</td></tr>';
+      } else {
+        const cs=(cur[k]==null||cur[k]==='')?'':String(cur[k]), ps=(prv[k]==null||prv[k]==='')?'':String(prv[k]);
+        const changed=(cs!==ps);
+        const disp=(ps&&changed)?('<span style="color:#94a3b8;">'+ps+'</span> \u2192 '+(cs||'\u2013')):(cs||'<span style="color:#cbd5e1;">\u2013</span>');
+        return '<tr'+(changed?' style="background:#fef9c3;"':'')+'><td style="text-align:left;">'+k+'</td><td colspan="3" style="text-align:left;">'+disp+(changed?' <span style="color:#b45309;font-size:9px;">cambi\u00f3</span>':'')+'</td></tr>';
+      }
     }).join('');
-    return '<div style="min-width:190px;"><div style="font-weight:700;font-size:11px;color:#0078A8;margin-bottom:2px;">'+b[0]+'</div><table class="gs-table" style="font-size:11px;"><thead><tr><th style="text-align:left;">Comp.</th><th>antes</th><th>ahora</th><th>\u0394</th></tr></thead><tbody>'+(rws||'<tr><td colspan="4">\u2013</td></tr>')+'</tbody></table></div>';
+    return '<div style="min-width:235px;"><div style="font-weight:700;font-size:11px;color:#0078A8;margin-bottom:2px;">'+bo[1]+'</div><table class="gs-table" style="font-size:10px;"><thead><tr><th style="text-align:left;">Variable (REE)</th><th>antes</th><th>ahora</th><th>\u0394</th></tr></thead><tbody>'+rws+'</tbody></table></div>';
   }).join('');
-  return '<div style="padding:6px 4px 10px;"><div style="margin-bottom:8px;">'+verdict+'</div>'
-    +'<div style="display:flex;gap:18px;flex-wrap:wrap;">'+blkHtml+'</div>'
-    +'<div style="font-size:10px;color:#94a3b8;margin-top:6px;">Otorgada: '+gsFmt(r.vals.otorgada)+' ('+gsSigned(r.dlt.otorgada)+') \u00b7 Solicitado/en curso: '+gsFmt(r.vals.enCurso)+' ('+gsSigned(r.dlt.enCurso)+') \u00b7 Criterio limitante: <b>'+(r.crit||'\u2014')+'</b> \u00b7 Saturaci\u00f3n: '+(isNaN(r.sat)?'\u2013':(Math.round(r.sat*100)+'%'))+'</div></div>';
+  return '<div style="padding:6px 4px 10px;"><div style="margin-bottom:8px;">'+verdict+'</div><div style="display:flex;gap:16px;flex-wrap:wrap;">'+blkHtml+'</div><div style="font-size:9px;color:#94a3b8;margin-top:6px;">Variables con su nombre original de REE. Fondo amarillo = cambi\u00f3 respecto al mes anterior.</div></div>';
 }
 function renderWhatsNew(){
   const host=document.getElementById('gs-wn-table'); if(!host) return;
