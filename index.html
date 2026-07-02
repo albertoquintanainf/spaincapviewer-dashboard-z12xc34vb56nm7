@@ -254,7 +254,8 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 #gs-controls label { font-size:12px; font-weight:bold; color:#334155; }
 #gs-controls select { padding:5px 8px; border-radius:6px; border:1px solid #cbd5e1; font-size:13px; color:#0f172a; margin-left:4px; }
 .gs-body { padding:8px 18px 28px; display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap; }
-.gs-view-table { flex:1 1 54%; min-width:340px; display:flex; flex-direction:column; gap:14px; }
+.gs-view-table { flex:1 1 54%; min-width:340px; display:flex; flex-direction:column; gap:12px; height:calc(100vh - 210px); }
+#gs-nat-wrap { flex:0 0 auto; }
 #gs-map-wrap { flex:1 1 42%; min-width:320px; position:relative; }
 .gs-tabs { display:flex; gap:6px; margin:0 18px; }
 .gs-tab { background:#e2e8f0; border:none; border-radius:8px 8px 0 0; padding:7px 16px; font-size:13px; font-weight:bold; cursor:pointer; color:#475569; }
@@ -270,7 +271,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .gs-flujo-dot { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:5px; vertical-align:middle; }
 #gs-map { width:100%; height:calc(100vh - 210px); min-height:400px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
 /* Título de lo que se está visualizando, dentro del recuadro del mapa (item 7) */
-#gs-map-title { position:absolute; top:10px; left:10px; z-index:600; background:rgba(255,255,255,.94); border:1px solid #e2e8f0; border-radius:8px; padding:6px 11px; font-size:13px; font-weight:700; color:#0f172a; box-shadow:0 2px 6px rgba(0,0,0,.12); max-width:70%; pointer-events:none; }
+#gs-map-title { position:absolute; top:10px; left:10px; z-index:600; background:rgba(255,255,255,.94); border:1px solid #e2e8f0; border-radius:8px; padding:5px 9px; font-size:12px; font-weight:700; color:#0f172a; box-shadow:0 2px 6px rgba(0,0,0,.12); max-width:48%; pointer-events:none; }
 #gs-map-title small { display:block; font-size:10px; font-weight:600; color:#64748b; margin-top:1px; }
 /* Selector de campo a colorear en el mapa (punto 3) */
 #gs-map-fieldbox { position:absolute; top:10px; right:10px; z-index:600; background:rgba(255,255,255,.94); border:1px solid #e2e8f0; border-radius:8px; padding:5px 8px; font-size:11px; color:#334155; box-shadow:0 2px 6px rgba(0,0,0,.12); }
@@ -281,29 +282,33 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .gs-bubble-label { background:transparent !important; border:none !important; box-shadow:none !important; padding:0 !important; color:#fff; font-weight:700; font-size:11px; text-shadow:0 0 3px rgba(0,0,0,.85),0 0 2px rgba(0,0,0,.85); white-space:nowrap; }
 .gs-bubble-label::before { display:none !important; }
 .gs-leg-dot { display:inline-block; width:12px; height:12px; border-radius:50%; margin:0 4px; vertical-align:middle; border:1px solid #fff; box-shadow:0 0 0 1px #cbd5e1; }
-#gs-table-wrap { width:100%; overflow-x:hidden; overflow-y:auto; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); max-height:calc(100vh - 210px); }
+#gs-table-wrap { width:100%; overflow-x:hidden; overflow-y:auto; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); flex:1 1 auto; min-height:0; }
 .gs-table { border-collapse:collapse; width:100%; table-layout:fixed; font-size:13px; }
 .gs-table th, .gs-table td { padding:6px 4px; border-bottom:1px solid #e2e8f0; text-align:right; overflow-wrap:break-word; word-break:normal; }
 .gs-table th:first-child, .gs-table td:first-child { text-align:left; width:15%; }
 .gs-table th { background:#e2e8f0; color:#0f172a; position:sticky; top:0; font-size:12px; line-height:1.15; }
 .gs-table tbody tr:hover { background:#f8fafc; }
-#gs-mot { width:100%; box-sizing:border-box; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:14px; max-height:32vh; overflow:auto; }
+#gs-mot { width:100%; box-sizing:border-box; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:14px; max-height:32vh; overflow:auto; flex:0 0 auto; }
 #gs-mot h3 { margin:0 0 10px; font-size:13px; color:#F3721F; }
 .gs-mot-row { display:flex; justify-content:space-between; gap:10px; font-size:12px; padding:5px 0; border-bottom:1px dashed #e2e8f0; }
 
 /* --- Banner nacional destacado (item 4) --- */
 .gs-nat { background:linear-gradient(135deg,#F3721F 0%,#C85A16 100%); color:#fff; border-radius:12px; padding:14px 18px; margin-bottom:12px; box-shadow:0 4px 14px rgba(0,120,168,.28); }
-.gs-nat-top { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:10px; }
-.gs-nat-flag { font-size:13px; font-weight:800; letter-spacing:.5px; text-transform:uppercase; opacity:.95; }
+.gs-nat-top { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:10px; }
+.gs-nat-flag { font-size:26px; font-weight:800; letter-spacing:.5px; text-transform:uppercase; line-height:1; }
+.gs-nat-natlbl { font-size:12px; font-weight:600; opacity:.9; text-transform:none; letter-spacing:0; margin-left:6px; }
 .gs-nat-headnum { font-size:34px; font-weight:800; line-height:1; }
 .gs-nat-headunit { font-size:14px; font-weight:600; opacity:.9; margin-left:2px; }
 .gs-nat-headlbl { font-size:12px; opacity:.9; }
-.gs-nat-chips { display:flex; flex-wrap:wrap; gap:8px; }
-.gs-nat-chip { background:rgba(255,255,255,.16); border-radius:8px; padding:6px 10px; font-size:12px; white-space:nowrap; }
-.gs-nat-chip .k { opacity:.85; }
-.gs-nat-chip .v { font-weight:700; }
-.gs-nat-sat { margin-left:auto; text-align:right; }
-.gs-nat-sat .v { font-size:20px; font-weight:800; }
+.gs-nat-chips { display:flex; flex-wrap:wrap; gap:9px; }
+.gs-nat-chip { background:#ffffff; color:#0f172a; border-radius:9px; padding:8px 13px; font-size:13px; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,.14); }
+.gs-nat-chip .k { color:#64748b; font-weight:600; }
+.gs-nat-chip .v { font-weight:800; color:#0f172a; }
+.gs-nat-sat { margin-left:auto; display:flex; gap:18px; }
+.gs-nat-satitem { display:flex; flex-direction:column; align-items:flex-end; cursor:help; }
+.gs-nat-satitem .lbl { font-size:11px; opacity:.92; font-weight:600; }
+.gs-nat-satitem .val { font-size:23px; font-weight:800; line-height:1.05; }
+.gs-nat-formula { margin-top:9px; font-size:10.5px; opacity:.9; line-height:1.3; }
 
 /* --- Glosario de siglas (item 8) --- */
 #gs-gloss { display:none; margin:0 18px 8px; padding:12px 16px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; font-size:12px; color:#334155; line-height:1.6; }
@@ -320,13 +325,15 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .gs-table th, .gs-table td { padding:5px 3px; font-size:12px; }
   .gs-table th { font-size:11px; }
   #gs-map { height:calc(100vh - 220px); min-height:360px; }
-  #gs-table-wrap { max-height:calc(100vh - 220px); }
+  .gs-view-table { height:calc(100vh - 220px); }
   .gs-nat-headnum { font-size:30px; }
+  .gs-nat-flag { font-size:23px; }
 }
 @media (max-width:1100px){
-  .gs-view-table { flex:1 1 100%; min-width:0; }
+  .gs-view-table { flex:1 1 100%; min-width:0; height:auto; }
   #gs-map-wrap { flex:1 1 100%; min-width:0; }
   #gs-map { height:60vh; }
+  #gs-table-wrap { max-height:62vh; }
 }
 
 </style>
@@ -2540,6 +2547,9 @@ function gsNationalBanner(scope,key,pkey,side){
     const satAlm=g.satAlmN?(100*g.satAlmSum/g.satAlmN):NaN;
     const satMainLbl=isDSO?'Saturación':(side==='dem'?'Sat. Demanda':'Sat. Generación');
     const satTip='Saturación = media, solo en nudos con disponible publicado por REE, de (Otorgada + En curso) / (Otorgada + En curso + Disponible). Nudos usados: '+(g.satN||0)+(isDSO?'':' (Almacenamiento: '+(g.satAlmN||0)+')')+'. '+(isDSO?'DSO: (Ocupada + Admitida) / (… + Disponible).':'Generación/Demanda y Almacenamiento se calculan por separado, cada uno con su propio disponible.');
+    const satFormula=isDSO
+      ? 'Criterio de saturación: (Ocupada + Admitida) / (Ocupada + Admitida + Disponible), como media de los nudos.'
+      : 'Criterio de saturación: (Otorgada + En curso) / (Otorgada + En curso + Disponible), como media de los nudos con disponible publicado. Generación/Demanda y Almacenamiento se calculan por separado con su propio disponible.';
     // chip = etiqueta + valor (o Δ)
     const chip=function(lbl,v,pv){ return '<span class="gs-nat-chip"><span class="k">'+lbl+':</span> <span class="v">'+(DM?gsSigned((isNaN(v)?0:v)-(isNaN(pv)?0:pv)):gsFmt(v))+'</span>'+(DM?'':gsDelta(v,(pv===undefined?NaN:pv)))+'</span>'; };
     let chips='', headNum=NaN, headPv=NaN, vistaLbl='';
@@ -2556,12 +2566,16 @@ function gsNationalBanner(scope,key,pkey,side){
     const headVal=DM?gsSigned((isNaN(headNum)?0:headNum)-(isNaN(headPv)?0:headPv)):gsFmt(headNum);
     return '<div class="gs-nat">'
       +'<div class="gs-nat-top">'
-        +'<span class="gs-nat-flag">🇪🇸 España'+(isDSO?' · DSO':'')+'</span>'
+        +'<span class="gs-nat-flag">España'+(isDSO?' · DSO':'')+'<span class="gs-nat-natlbl">· Total nacional</span></span>'
         +'<span><span class="gs-nat-headnum">'+headVal+'</span><span class="gs-nat-headunit"> MW'+(DM?' Δ':'')+'</span> '
-          +'<span class="gs-nat-headlbl">'+(DM?'Δ ':'')+vistaLbl+' '+(isDSO?'':SL)+' · total nacional</span></span>'
-        +'<span class="gs-nat-sat" title="'+satTip+'"><span class="k" style="font-size:11px;opacity:.85;">'+satMainLbl+'</span><br><span class="v">'+(isNaN(sat)?'–':sat.toFixed(0)+'%')+'</span>'+((!isDSO&&!isNaN(satAlm))?'<span style="display:block;font-size:10px;opacity:.92;font-weight:600;margin-top:1px;">Alm.: '+satAlm.toFixed(0)+'%</span>':'')+'</span>'
+          +'<span class="gs-nat-headlbl">'+(DM?'Δ ':'')+vistaLbl+' '+(isDSO?'':SL)+'</span></span>'
+        +'<span class="gs-nat-sat">'
+          +'<span class="gs-nat-satitem" title="'+satTip+'"><span class="lbl">'+satMainLbl+'</span><span class="val">'+(isNaN(sat)?'–':sat.toFixed(0)+'%')+'</span></span>'
+          +(isDSO?'':'<span class="gs-nat-satitem" title="'+satTip+'"><span class="lbl">Sat. Almacenamiento</span><span class="val">'+(isNaN(satAlm)?'–':satAlm.toFixed(0)+'%')+'</span></span>')
+        +'</span>'
       +'</div>'
       +'<div class="gs-nat-chips"><span class="gs-nat-chip"><span class="k">Nudos:</span> <span class="v">'+g.n+'</span></span>'+chips+'</div>'
+      +'<div class="gs-nat-formula">'+satFormula+'</div>'
       +'</div>';
 }
 function renderGridStatus(){
@@ -2654,8 +2668,8 @@ function renderGridStatus(){
     } else { cHtml='<div style="color:#94a3b8;">Sin nudos en este alcance.</div>'; }
 
     let tableOut=table;
-    if(desg){ const _maxNote=(_aggSuffix==='(máx.)')?' · <b>Máx.</b> = suma, nudo a nudo, del criterio que más limita; por eso <b>no</b> coincide necesariamente con ninguna columna ni con la mayor categoría.':' · <b>Total</b> = suma de las columnas.'; tableOut='<div style="font-size:11px;color:#64748b;margin-bottom:4px;">'+(DM?'<b style="color:#F3721F;">Variación (Δ vs mes anterior)</b> · ':'')+'Desglose: <b>'+blockLbl+'</b>'+(desgBlock==='no_otorgable'?' · los <b>motivos</b> están en el panel de causas (derecha) →':'')+_maxNote+'</div>'+tableOut; }
-    tableOut=gsNationalBanner(scope,key,pkey,side)+tableOut;
+    if(desg){ const _maxNote=(_aggSuffix==='(máx.)')?' · <b>Máx.</b> = suma, nudo a nudo, del criterio más limitante de cada nudo. Puede no coincidir con ninguna columna ni con la mayor categoría, ya que el criterio limitante varía entre nudos: la suma de los máximos por nudo es siempre mayor o igual que el máximo de cualquier categoría sumada.':' · <b>Total</b> = suma de las columnas.'; tableOut='<div style="font-size:11px;color:#64748b;margin-bottom:4px;">'+(DM?'<b style="color:#F3721F;">Variación (Δ vs mes anterior)</b> · ':'')+'Desglose: <b>'+blockLbl+'</b>'+(desgBlock==='no_otorgable'?' · los <b>motivos</b> están en el panel de causas (derecha) →':'')+_maxNote+'</div>'+tableOut; }
+    document.getElementById('gs-nat-wrap').innerHTML=gsNationalBanner(scope,key,pkey,side);
     document.getElementById('gs-table-wrap').innerHTML=tableOut;
     document.getElementById('gs-mot-wrap').innerHTML=cHtml;
     document.getElementById('gs-mot-title').textContent='Causas de «no solicitable» ('+(GS_SIDELBL[side]||side)+')';
@@ -2947,25 +2961,49 @@ function gsSetSort(c){ if(gsSort.col===c) gsSort.dir*=-1; else { gsSort.col=c; g
 // ---- Mapa de burbujas (nacional / comunidad / provincia) ----
 let gsMap=null, gsBubbles=null, gsView='table';
 // --- Canarias en recuadro (inset) + ajuste del mapa al contenedor (constantes ajustables) ---
-const GS_CAN_DLON=7.6, GS_CAN_DLAT=5.0;          // desplazamiento de Canarias hacia el recuadro
-const GS_CAN_BOX=[[32.4,-10.9],[34.8,-5.3]];     // recuadro dibujado [ [S,W],[N,E] ] (Canarias ya desplazada)
-const GS_MAP_BOUNDS=[[32.2,-11.0],[44.0,4.6]];   // encuadre: península + Baleares + recuadro Canarias
-function gsShiftCanarias(geo){
+const GS_CAN_REAL=[28.3,-15.5];                  // centroide real aproximado de Canarias [lat,lon]
+const GS_CAN_BOXW=5.2, GS_CAN_BOXH=2.7;          // tamaño del recuadro (lon x lat, en grados)
+const GS_CAN_PAD=0.35;                            // separación al borde inferior-izq visible
+const GS_CAN_TOPMAX=35.2;                         // tope de latitud del recuadro (por debajo de la península)
+const GS_MAP_BOUNDS=[[32.2,-11.0],[45.4,4.6]];   // encuadre: + margen norte para no pisar con el título
+let gsCanState={box:[[32.4,-10.9],[35.1,-5.7]], dlon:7.6, dlat:6.8};
+// Calcula el recuadro pegado a la esquina inferior-izquierda REALMENTE visible (evita que "flote")
+function gsComputeCan(){
+    if(!gsMap) return;
+    let b; try{ b=gsMap.getBounds(); }catch(e){ return; }
+    const W=b.getWest()+GS_CAN_PAD, S=b.getSouth()+GS_CAN_PAD;
+    let top=S+GS_CAN_BOXH; if(top>GS_CAN_TOPMAX) top=GS_CAN_TOPMAX;
+    const bottom=top-GS_CAN_BOXH;
+    const box=[[bottom,W],[top,W+GS_CAN_BOXW]];   // [[S,W],[N,E]]
+    const cLat=(bottom+top)/2, cLon=(W+(W+GS_CAN_BOXW))/2;
+    gsCanState={box:box, dlat:cLat-GS_CAN_REAL[0], dlon:cLon-GS_CAN_REAL[1]};
+}
+function gsShiftCanarias(geo, dlon, dlat){
     if(!geo||!geo.features) return geo;
-    const tr=function(c){ if(typeof c[0]==='number'){ return (c[0]<-11&&c[1]<32)?[c[0]+GS_CAN_DLON,c[1]+GS_CAN_DLAT]:c; } return c.map(tr); };
+    dlon=(dlon===undefined)?gsCanState.dlon:dlon; dlat=(dlat===undefined)?gsCanState.dlat:dlat;
+    const tr=function(c){ if(typeof c[0]==='number'){ return (c[0]<-11&&c[1]<32)?[c[0]+dlon,c[1]+dlat]:c; } return c.map(tr); };
     const g=JSON.parse(JSON.stringify(geo));
     g.features.forEach(function(fe){ if(fe.geometry&&fe.geometry.coordinates) fe.geometry.coordinates=tr(fe.geometry.coordinates); });
     return g;
 }
-function gsFitMap(){ if(gsMap){ try{ gsMap.fitBounds(GS_MAP_BOUNDS,{padding:[6,6],animate:false}); }catch(e){} } }
+let gsCanBgGroup=null, gsCanFgGroup=null;
+function gsDrawCanBox(){
+    if(!gsCanBgGroup||!gsCanFgGroup) return;
+    const box=gsCanState.box;
+    gsCanBgGroup.clearLayers(); gsCanFgGroup.clearLayers();
+    L.rectangle(box,{pane:'gsCanBg',stroke:false,fillColor:'#f8fafc',fillOpacity:0.97,interactive:false}).addTo(gsCanBgGroup);
+    L.rectangle(box,{color:'#94a3b8',weight:1,fill:false,dashArray:'3,4',interactive:false}).addTo(gsCanFgGroup);
+    L.marker([box[1][0],box[0][1]],{interactive:false,icon:L.divIcon({className:'',html:'<span style="font-size:10px;color:#64748b;background:rgba(255,255,255,.7);padding:0 3px;border-radius:3px;">Canarias</span>',iconSize:[54,14],iconAnchor:[0,0]})}).addTo(gsCanFgGroup);
+}
+function gsUpdateCanaria(){ gsComputeCan(); gsDrawCanBox(); }
+function gsFitMap(){ if(gsMap){ try{ gsMap.fitBounds(GS_MAP_BOUNDS,{padding:[6,6],animate:false}); gsUpdateCanaria(); }catch(e){} } }
 function gsInitMap(){
     if(gsMap) return;
     gsMap=L.map('gs-map',{zoomControl:false, dragging:false, scrollWheelZoom:false, doubleClickZoom:false, boxZoom:false, keyboard:false, touchZoom:false, tap:false});
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(gsMap);
     gsMap.createPane('gsCanBg'); gsMap.getPane('gsCanBg').style.zIndex='350';
-    L.rectangle(GS_CAN_BOX,{pane:'gsCanBg',stroke:false,fillColor:'#f8fafc',fillOpacity:0.97,interactive:false}).addTo(gsMap);
-    L.rectangle(GS_CAN_BOX,{color:'#94a3b8',weight:1,fill:false,dashArray:'3,4',interactive:false}).addTo(gsMap);
-    L.marker([GS_CAN_BOX[1][0],GS_CAN_BOX[0][1]],{interactive:false,icon:L.divIcon({className:'',html:'<span style="font-size:10px;color:#64748b;background:rgba(255,255,255,.7);padding:0 3px;border-radius:3px;">Canarias</span>',iconSize:[54,14],iconAnchor:[0,0]})}).addTo(gsMap);
+    gsCanBgGroup=L.layerGroup().addTo(gsMap);   // fondo del recuadro (pane gsCanBg)
+    gsCanFgGroup=L.layerGroup().addTo(gsMap);   // borde discontinuo + etiqueta
     gsBubbles=L.layerGroup().addTo(gsMap);
     gsFitMap();
     window.addEventListener('resize', function(){ const gs=document.getElementById('grid-status'); if(gsMap&&gs&&gs.classList.contains('open')){ gsMap.invalidateSize(); gsFitMap(); } });
@@ -2991,6 +3029,7 @@ function gsBubbleVal(g,metric){
 }
 function gsRenderMap(){
     if(!gsMap) return;
+    gsUpdateCanaria();
     gsBubbles.clearLayers();
     const year=document.getElementById('gs-year').value, month=document.getElementById('gs-month').value;
     let pi=GS_MONTHS.indexOf(month)-1, py=year; if(pi<0){pi=11;py=(parseInt(year)-1).toString();}
@@ -3017,7 +3056,7 @@ function gsRenderMap(){
     {
         gsLoadGeo(maplevel,function(geo){
             if(!geo||!gsMap) return;
-            geo=gsShiftCanarias(geo);
+            geo=gsShiftCanarias(geo, gsCanState.dlon, gsCanState.dlat);
             if(document.getElementById('gs-level').value!==level) return;
             if(gsGeoLayer){ gsMap.removeLayer(gsGeoLayer); gsGeoLayer=null; }
             const pick=function(props){ const ks=gsFeatKeys(props); for(let i=0;i<ks.length;i++){ if(gbk[ks[i]]) return gbk[ks[i]]; } return null; };
@@ -3168,6 +3207,7 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
       <div id="gs-map-legend"></div>
     </div>
     <div id="gs-view-table" class="gs-view-table">
+      <div id="gs-nat-wrap"></div>
       <div id="gs-table-wrap"></div>
       <div id="gs-mot"><h3 id="gs-mot-title">Motivos no disponible (Gen)</h3><div id="gs-mot-wrap"></div></div>
     </div>
