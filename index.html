@@ -253,9 +253,9 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 #gs-controls { display:flex; gap:14px; align-items:center; flex-wrap:wrap; padding:12px 18px 4px; }
 #gs-controls label { font-size:12px; font-weight:bold; color:#334155; }
 #gs-controls select { padding:5px 8px; border-radius:6px; border:1px solid #cbd5e1; font-size:13px; color:#0f172a; margin-left:4px; }
-.gs-body { padding:8px 18px 28px; display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap; }
-.gs-view-table { flex:1 1 52%; min-width:420px; display:flex; flex-direction:column; gap:14px; }
-#gs-map-wrap { flex:1 1 44%; min-width:360px; }
+.gs-body { padding:8px 18px 28px; display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap; }
+.gs-view-table { flex:1 1 54%; min-width:340px; display:flex; flex-direction:column; gap:14px; }
+#gs-map-wrap { flex:1 1 42%; min-width:320px; position:relative; }
 .gs-tabs { display:flex; gap:6px; margin:0 18px; }
 .gs-tab { background:#e2e8f0; border:none; border-radius:8px 8px 0 0; padding:7px 16px; font-size:13px; font-weight:bold; cursor:pointer; color:#475569; }
 .gs-tab.active { background:#0078A8; color:#fff; }
@@ -268,8 +268,12 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .gs-matrix td.diag { background:#f8fafc; color:#cbd5e1; }
 .gs-matrix td.hot { background:#fef3c7; font-weight:bold; }
 .gs-flujo-dot { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:5px; vertical-align:middle; }
-#gs-map { width:100%; height:calc(100vh - 185px); min-height:440px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
-#gs-map-legend { margin-top:8px; font-size:11px; color:#475569; display:flex; gap:18px; align-items:center; flex-wrap:wrap; }
+#gs-map { width:100%; height:calc(100vh - 210px); min-height:400px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+/* Título de lo que se está visualizando, dentro del recuadro del mapa (item 7) */
+#gs-map-title { position:absolute; top:10px; left:10px; z-index:600; background:rgba(255,255,255,.94); border:1px solid #e2e8f0; border-radius:8px; padding:6px 11px; font-size:13px; font-weight:700; color:#0f172a; box-shadow:0 2px 6px rgba(0,0,0,.12); max-width:70%; pointer-events:none; }
+#gs-map-title small { display:block; font-size:10px; font-weight:600; color:#64748b; margin-top:1px; }
+/* Barra de color / leyenda, superpuesta dentro del recuadro del mapa (item 6) */
+#gs-map-legend { position:absolute; right:10px; bottom:14px; z-index:600; width:210px; max-width:56%; margin:0; padding:8px 10px; font-size:11px; color:#475569; background:rgba(255,255,255,.95); border:1px solid #e2e8f0; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,.12); }
 .gs-bubble-label { background:transparent !important; border:none !important; box-shadow:none !important; padding:0 !important; color:#fff; font-weight:700; font-size:11px; text-shadow:0 0 3px rgba(0,0,0,.85),0 0 2px rgba(0,0,0,.85); white-space:nowrap; }
 .gs-bubble-label::before { display:none !important; }
 .gs-leg-dot { display:inline-block; width:12px; height:12px; border-radius:50%; margin:0 4px; vertical-align:middle; border:1px solid #fff; box-shadow:0 0 0 1px #cbd5e1; }
@@ -281,6 +285,43 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 #gs-mot { width:100%; box-sizing:border-box; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:14px; max-height:32vh; overflow:auto; }
 #gs-mot h3 { margin:0 0 10px; font-size:13px; color:#0078A8; }
 .gs-mot-row { display:flex; justify-content:space-between; gap:10px; font-size:12px; padding:5px 0; border-bottom:1px dashed #e2e8f0; }
+
+/* --- Banner nacional destacado (item 4) --- */
+.gs-nat { background:linear-gradient(135deg,#0078A8 0%,#0a6a94 100%); color:#fff; border-radius:12px; padding:14px 18px; margin-bottom:12px; box-shadow:0 4px 14px rgba(0,120,168,.28); }
+.gs-nat-top { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:10px; }
+.gs-nat-flag { font-size:13px; font-weight:800; letter-spacing:.5px; text-transform:uppercase; opacity:.95; }
+.gs-nat-headnum { font-size:34px; font-weight:800; line-height:1; }
+.gs-nat-headunit { font-size:14px; font-weight:600; opacity:.9; margin-left:2px; }
+.gs-nat-headlbl { font-size:12px; opacity:.9; }
+.gs-nat-chips { display:flex; flex-wrap:wrap; gap:8px; }
+.gs-nat-chip { background:rgba(255,255,255,.16); border-radius:8px; padding:6px 10px; font-size:12px; white-space:nowrap; }
+.gs-nat-chip .k { opacity:.85; }
+.gs-nat-chip .v { font-weight:700; }
+.gs-nat-sat { margin-left:auto; text-align:right; }
+.gs-nat-sat .v { font-size:20px; font-weight:800; }
+
+/* --- Glosario de siglas (item 8) --- */
+#gs-gloss { display:none; margin:0 18px 8px; padding:12px 16px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; font-size:12px; color:#334155; line-height:1.6; }
+#gs-gloss h4 { margin:0 0 8px; font-size:12px; color:#0078A8; text-transform:uppercase; letter-spacing:.4px; }
+.gs-gloss-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:4px 22px; }
+.gs-gloss-grid div b { color:#0f172a; }
+.gs-gloss-note { margin-top:8px; font-size:10px; color:#94a3b8; }
+
+/* --- Ajuste responsive para portátiles ~14'' y pantallas medias (item 5) --- */
+@media (max-width:1440px){
+  #gs-controls { gap:10px; padding:10px 14px 4px; }
+  #gs-controls label, #gs-controls select { font-size:12px; }
+  .gs-body { padding:8px 14px 24px; gap:14px; }
+  .gs-table th, .gs-table td { padding:6px 7px; font-size:11px; }
+  .gs-table th { font-size:10px; }
+  #gs-map { height:calc(100vh - 220px); min-height:360px; }
+  .gs-nat-headnum { font-size:30px; }
+}
+@media (max-width:1100px){
+  .gs-view-table { flex:1 1 100%; min-width:0; }
+  #gs-map-wrap { flex:1 1 100%; min-width:0; }
+  #gs-map { height:60vh; }
+}
 
 </style>
 </head>
@@ -2261,6 +2302,29 @@ const GS_SIDELBL = {gen:'Generación', dem:'Demanda', alm:'Almacenamiento'};
 const GS_SIDESHORT = {gen:'Gen', dem:'Dem', alm:'Alm'};
 const GS_SUBLABELS = {gen:['MGES','MPE','Alm MGES','Alm MPE'], alm:['MGES','MPE'], dem:['CH','SH','No CEP','Alm CEP','Alm No CEP']};
 const GS_SUBLABELS_GENDISP=['MGES RdT','MPE RdT','Alm MGES RdT','Alm MPE RdT','MGES RdD','MPE RdD','Alm MGES RdD','Alm MPE RdD'];
+// Desgloses por tipo para las nuevas vistas Otorgada / En curso / Liberada autoconsumo (items 2 y 3)
+const GS_SUB_OT ={gen:['MGES','MPE'], dem:['CH','SH','ALM'], alm:[]};      // Otorgada
+const GS_SUB_EC ={gen:['MGES','MPE'], dem:['Demanda','ALM'], alm:[]};       // En curso
+const GS_SUB_LIB={gen:['MGES','MPE'], dem:[], alm:[]};                            // Liberada autoconsumo RDL 7/2026 (solo Gen)
+// Configuración única de "Vista": mapea el valor del desplegable a su sub-objeto, agregado, etiqueta y sub-columnas.
+function gsVistaCfg(vista, side){
+    switch(vista){
+        case 'no_otorgable': return {sub:'subN',  agg:'noOtorg', label:'No otorgable', labels:(GS_SUBLABELS[side]||[])};
+        case 'disp':         return {sub:'subD',  agg:'disp',    label:'Disponible',   labels:(side==='gen')?GS_SUBLABELS_GENDISP:(GS_SUBLABELS[side]||[])};
+        case 'otorgada':     return {sub:'subOt', agg:'otTot',   label:'Otorgada',     labels:(GS_SUB_OT[side]||[])};
+        case 'en_curso':     return {sub:'subEc', agg:'ecTot',   label:'En curso',     labels:(GS_SUB_EC[side]||[])};
+        case 'liberada':     return {sub:'subLib',agg:'libTot',  label:'Liberada autoconsumo (RDL 7/2026)', labels:(GS_SUB_LIB[side]||[])};
+        default:             return {sub:'sub',   agg:'margen',  label:'Margen',       labels:(GS_SUBLABELS[side]||[])};
+    }
+}
+// Oculta la vista "Liberada" cuando la perspectiva es Demanda (REE no publica ese bloque en demanda)
+function gsSyncVistaOptions(){
+    const side=(document.getElementById('gs-side')||{}).value;
+    const sel=document.getElementById('gs-desg-block'); if(!sel) return;
+    const opt=sel.querySelector('option[value="liberada"]');
+    if(opt){ opt.disabled=(side==='dem'); opt.style.display=(side==='dem')?'none':''; }
+    if(side==='dem' && sel.value==='liberada') sel.value='margen';
+}
 let gsSort = { col: 'margen', dir: -1 };   // dir: -1 desc, 1 asc
 
 function gsMaxOf(){ const n=[].slice.call(arguments).map(cleanNum).filter(function(v){return !isNaN(v);}); return n.length?Math.max.apply(null,n):NaN; }
@@ -2293,7 +2357,7 @@ function gsTSO(entry, key){
     const g=rich.gen||{}, d=rich.dem||{};
     const dg=g.disp||{}, dd=d.disp||{}, mg=g.margen||{}, md=d.margen||{};
     const nd=g.no_disp||{}, no=d.no_otorgable||{}, otg=g.otorgada||{}, otd=d.otorgada||{};
-    const resv=g.reserva||{}, conc=d.concurso||{}, ec=g.en_curso||{}, ecd=d.en_curso||{};
+    const resv=g.reserva||{}, conc=d.concurso||{}, ec=g.en_curso||{}, ecd=d.en_curso||{}, lib=g.liberada||{};
     const dispGen = gsMaxOf(dg.gen_mges_rdt, dg.gen_mpe_rdt, dg.gen_mges_rdd, dg.gen_mpe_rdd, dg.alm_mges_rdt, dg.alm_mpe_rdt, dg.alm_mges_rdd, dg.alm_mpe_rdd);
     const dispDem = gsMaxOf(dd.dem_ch, dd.dem_sh, dd.dem_no_cep, dd.alm_cep, dd.alm_no_cep);
     const almG = gsMaxOf(dg.alm_mges_rdt, dg.alm_mpe_rdt, dg.alm_mges_rdd, dg.alm_mpe_rdd);
@@ -2318,8 +2382,8 @@ function gsTSO(entry, key){
     const critG=gsBindCode([[cleanNum(mg.gen_mges),clg.gen_mges],[cleanNum(mg.gen_mpe),clg.gen_mpe],[cleanNum(mg.alm_mges),clg.alm_mges],[cleanNum(mg.alm_mpe),clg.alm_mpe]]);
     const critD=gsBindCode([[cleanNum(md.dem_ch),cld.dem_ch],[cleanNum(md.dem_sh),cld.dem_sh],[cleanNum(md.dem_no_cep),cld.dem_no_cep],[cleanNum(md.alm_cep_mpe),cld.alm_cep],[cleanNum(md.alm_no_cep_mges),cld.alm_no_cep]]);
     return { grid:'TSO',
-      gen:{disp:dispGen, margen:margenGen, noOtorg:noOtorgGen, otorgada:otGen, enCurso:cleanNum(ec.gen), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonGen!=='', causas:gsCausas(reasonGen), reason:reasonGen, crit:critG, sat:gsSat(gsAdd(otGen,cleanNum(ec.gen)),dispGen), enConcurso:enConcG, sub:{MGES:cleanNum(mg.gen_mges), MPE:cleanNum(mg.gen_mpe), 'Alm MGES':cleanNum(mg.alm_mges), 'Alm MPE':cleanNum(mg.alm_mpe)}, subN:{MGES:cleanNum(nd.gen_mges), MPE:cleanNum(nd.gen_mpe), 'Alm MGES':cleanNum(nd.alm_mges), 'Alm MPE':cleanNum(nd.alm_mpe)}, subD:{'MGES RdT':cleanNum(dg.gen_mges_rdt), 'MPE RdT':cleanNum(dg.gen_mpe_rdt), 'Alm MGES RdT':cleanNum(dg.alm_mges_rdt), 'Alm MPE RdT':cleanNum(dg.alm_mpe_rdt), 'MGES RdD':cleanNum(dg.gen_mges_rdd), 'MPE RdD':cleanNum(dg.gen_mpe_rdd), 'Alm MGES RdD':cleanNum(dg.alm_mges_rdd), 'Alm MPE RdD':cleanNum(dg.alm_mpe_rdd)}},
-      dem:{disp:dispDem, margen:margenDem, noOtorg:noOtorgDem, otorgada:otDem, enCurso:cleanNum(ecd.dem), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonDem!=='', causas:gsCausas(reasonDem), reason:reasonDem, crit:critD, sat:gsSat(gsAdd(otDem,cleanNum(ecd.dem)),dispDem), enConcurso:enConcD, sub:{CH:cleanNum(md.dem_ch), SH:cleanNum(md.dem_sh), 'No CEP':cleanNum(md.dem_no_cep), 'Alm CEP':cleanNum(md.alm_cep_mpe), 'Alm No CEP':cleanNum(md.alm_no_cep_mges)}, subN:{CH:cleanNum(no.dem_ch), SH:cleanNum(no.dem_sh), 'No CEP':cleanNum(no.dem_no_cep), 'Alm CEP':cleanNum(no.alm_cep), 'Alm No CEP':cleanNum(no.alm_no_cep)}, subD:{CH:cleanNum(dd.dem_ch), SH:cleanNum(dd.dem_sh), 'No CEP':cleanNum(dd.dem_no_cep), 'Alm CEP':cleanNum(dd.alm_cep), 'Alm No CEP':cleanNum(dd.alm_no_cep)}},
+      gen:{disp:dispGen, margen:margenGen, noOtorg:noOtorgGen, otorgada:otGen, enCurso:cleanNum(ec.gen), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonGen!=='', causas:gsCausas(reasonGen), reason:reasonGen, crit:critG, sat:gsSat(gsAdd(otGen,cleanNum(ec.gen)),dispGen), enConcurso:enConcG, otTot:gsAdd(cleanNum(otg.mges),cleanNum(otg.mpe)), ecTot:gsAdd(cleanNum(ec.mges),cleanNum(ec.mpe)), libTot:gsAdd(cleanNum(lib.lib_mges),cleanNum(lib.lib_mpe)), sub:{MGES:cleanNum(mg.gen_mges), MPE:cleanNum(mg.gen_mpe), 'Alm MGES':cleanNum(mg.alm_mges), 'Alm MPE':cleanNum(mg.alm_mpe)}, subN:{MGES:cleanNum(nd.gen_mges), MPE:cleanNum(nd.gen_mpe), 'Alm MGES':cleanNum(nd.alm_mges), 'Alm MPE':cleanNum(nd.alm_mpe)}, subD:{'MGES RdT':cleanNum(dg.gen_mges_rdt), 'MPE RdT':cleanNum(dg.gen_mpe_rdt), 'Alm MGES RdT':cleanNum(dg.alm_mges_rdt), 'Alm MPE RdT':cleanNum(dg.alm_mpe_rdt), 'MGES RdD':cleanNum(dg.gen_mges_rdd), 'MPE RdD':cleanNum(dg.gen_mpe_rdd), 'Alm MGES RdD':cleanNum(dg.alm_mges_rdd), 'Alm MPE RdD':cleanNum(dg.alm_mpe_rdd)}, subOt:{MGES:cleanNum(otg.mges), MPE:cleanNum(otg.mpe)}, subEc:{MGES:cleanNum(ec.mges), MPE:cleanNum(ec.mpe)}, subLib:{MGES:cleanNum(lib.lib_mges), MPE:cleanNum(lib.lib_mpe)}},
+      dem:{disp:dispDem, margen:margenDem, noOtorg:noOtorgDem, otorgada:otDem, enCurso:cleanNum(ecd.dem), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonDem!=='', causas:gsCausas(reasonDem), reason:reasonDem, crit:critD, sat:gsSat(gsAdd(otDem,cleanNum(ecd.dem)),dispDem), enConcurso:enConcD, otTot:gsAdd(gsAdd(cleanNum(otd.dem_ch_rdt),cleanNum(otd.dem_sh_rdt)),cleanNum(otd.alm_rdt)), ecTot:gsAdd(cleanNum(ecd.dem),cleanNum(ecd.alm_rdt)), sub:{CH:cleanNum(md.dem_ch), SH:cleanNum(md.dem_sh), 'No CEP':cleanNum(md.dem_no_cep), 'Alm CEP':cleanNum(md.alm_cep_mpe), 'Alm No CEP':cleanNum(md.alm_no_cep_mges)}, subN:{CH:cleanNum(no.dem_ch), SH:cleanNum(no.dem_sh), 'No CEP':cleanNum(no.dem_no_cep), 'Alm CEP':cleanNum(no.alm_cep), 'Alm No CEP':cleanNum(no.alm_no_cep)}, subD:{CH:cleanNum(dd.dem_ch), SH:cleanNum(dd.dem_sh), 'No CEP':cleanNum(dd.dem_no_cep), 'Alm CEP':cleanNum(dd.alm_cep), 'Alm No CEP':cleanNum(dd.alm_no_cep)}, subOt:{CH:cleanNum(otd.dem_ch_rdt), SH:cleanNum(otd.dem_sh_rdt), ALM:cleanNum(otd.alm_rdt)}, subEc:{Demanda:cleanNum(ecd.dem), ALM:cleanNum(ecd.alm_rdt)}},
       alm:{disp:dispAlm, margen:margenAlm, otorgada:otAlm, enCurso:cleanNum(ec.alm), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonAlm!=='', causas:gsCausas(reasonAlm), sat:gsSat(gsAdd(otAlm,cleanNum(ec.alm)),dispAlm), enConcurso:false, sub:{MGES:cleanNum(mg.alm_mges), MPE:cleanNum(mg.alm_mpe)}}
     };
 }
@@ -2355,14 +2419,18 @@ function gsAggregate(level, scope, key, side){
         else if(level==='ccaa') gk=e.ccaa||'(sin CCAA)';
         else if(level==='prov') gk=e.prov||'(sin provincia)';
         else gk=e.name;
-        const o=G[gk]||(G[gk]={name:gk,n:0,nTSO:0,nDSO:0,disp:0,margen:0,otorgada:0,enCurso:0,comprom:0,ocupada:0,admitida:0,noSolic:0,concurso:0,satSum:0,satN:0,causas:{},sumX:0,sumY:0,coordN:0,noOtorg:0,sub:{},subN:{},subD:{}});
+        const o=G[gk]||(G[gk]={name:gk,n:0,nTSO:0,nDSO:0,disp:0,margen:0,otorgada:0,enCurso:0,comprom:0,ocupada:0,admitida:0,noSolic:0,concurso:0,satSum:0,satN:0,causas:{},sumX:0,sumY:0,coordN:0,noOtorg:0,otTot:0,ecTot:0,libTot:0,sub:{},subN:{},subD:{},subOt:{},subEc:{},subLib:{}});
         o.n++; if(e.grid==='DSO')o.nDSO++; else o.nTSO++;
         if(!isNaN(e.x)&&!isNaN(e.y)){ o.sumX+=e.x; o.sumY+=e.y; o.coordN++; }
         const add=function(f,v){ if(!isNaN(v)) o[f]+=v; };
         add('disp',sm.disp); add('margen',sm.margen); add('noOtorg',sm.noOtorg); add('otorgada',sm.otorgada); add('enCurso',sm.enCurso); add('comprom',sm.comprom); add('ocupada',sm.ocupada); add('admitida',sm.admitida);
+        add('otTot',sm.otTot); add('ecTot',sm.ecTot); add('libTot',sm.libTot);
         if(sm.sub){ for(const sk in sm.sub){ const sv=sm.sub[sk]; if(!isNaN(sv)) o.sub[sk]=(o.sub[sk]||0)+sv; } }
         if(sm.subN){ for(const sk in sm.subN){ const sv=sm.subN[sk]; if(!isNaN(sv)) o.subN[sk]=(o.subN[sk]||0)+sv; } }
         if(sm.subD){ for(const sk in sm.subD){ const sv=sm.subD[sk]; if(!isNaN(sv)) o.subD[sk]=(o.subD[sk]||0)+sv; } }
+        if(sm.subOt){ for(const sk in sm.subOt){ const sv=sm.subOt[sk]; if(!isNaN(sv)) o.subOt[sk]=(o.subOt[sk]||0)+sv; } }
+        if(sm.subEc){ for(const sk in sm.subEc){ const sv=sm.subEc[sk]; if(!isNaN(sv)) o.subEc[sk]=(o.subEc[sk]||0)+sv; } }
+        if(sm.subLib){ for(const sk in sm.subLib){ const sv=sm.subLib[sk]; if(!isNaN(sv)) o.subLib[sk]=(o.subLib[sk]||0)+sv; } }
         if(sm.noSolic)o.noSolic++;
         if(sm.enConcurso)o.concurso++;
         if(!isNaN(sm.sat)){o.satSum+=sm.sat;o.satN++;}
@@ -2392,21 +2460,28 @@ function gsNationalBanner(scope,key,pkey,side){
     const g=cur[0], p=(prev.length?prev[0]:{});
     const SL=GS_SIDESHORT[side]||'', isDSO=(scope==='DSO'), DM=(gsGlobalMode==='delta');
     const sat=g.satN?(100*g.satSum/g.satN):NaN;
-    const cell=function(lbl,v,pv){ return '<span style="margin-right:18px;white-space:nowrap;"><span style="color:#64748b;">'+lbl+':</span> <b>'+(DM?gsSigned((isNaN(v)?0:v)-(isNaN(pv)?0:pv)):gsFmt(v))+'</b>'+(DM?'':gsDelta(v,(pv===undefined?NaN:pv)))+'</span>'; };
-    let mid, vistaLbl='';
-    if(isDSO){ mid=cell('Disponible',g.disp,p.disp)+cell('Ocupada',g.ocupada,p.ocupada)+cell('Admitida',g.admitida,p.admitida); }
-    else {
+    // chip = etiqueta + valor (o Δ)
+    const chip=function(lbl,v,pv){ return '<span class="gs-nat-chip"><span class="k">'+lbl+':</span> <span class="v">'+(DM?gsSigned((isNaN(v)?0:v)-(isNaN(pv)?0:pv)):gsFmt(v))+'</span>'+(DM?'':gsDelta(v,(pv===undefined?NaN:pv)))+'</span>'; };
+    let chips='', headNum=NaN, headPv=NaN, vistaLbl='';
+    if(isDSO){
+        chips=chip('Disponible',g.disp,p.disp)+chip('Ocupada',g.ocupada,p.ocupada)+chip('Admitida',g.admitida,p.admitida);
+        headNum=g.disp; headPv=p.disp; vistaLbl='Disponible';
+    } else {
         const vista=((document.getElementById('gs-desg-block')||{}).value)||'margen';
-        const subField=(vista==='no_otorgable')?'subN':(vista==='disp')?'subD':'sub';
-        vistaLbl=(vista==='no_otorgable')?'No otorgable':(vista==='disp')?'Disponible':'Margen';
-        const labels=(side==='gen'&&vista==='disp')?GS_SUBLABELS_GENDISP:(GS_SUBLABELS[side]||[]); const src=g[subField]||{}, psrc=p[subField]||{};
-        mid=labels.map(function(L){ return cell(L,(L in src)?src[L]:NaN,(L in psrc)?psrc[L]:NaN); }).join('');
+        const cfg=gsVistaCfg(vista,side); vistaLbl=cfg.label;
+        const src=g[cfg.sub]||{}, psrc=p[cfg.sub]||{};
+        chips=cfg.labels.map(function(L){ return chip(L,(L in src)?src[L]:NaN,(L in psrc)?psrc[L]:NaN); }).join('');
+        headNum=g[cfg.agg]; headPv=p[cfg.agg];
     }
-    return '<div style="background:#f0f9ff;border:1px solid #0078A8;border-radius:8px;padding:9px 14px;margin-bottom:10px;font-size:13px;display:flex;flex-wrap:wrap;align-items:center;gap:2px;color:#0f172a;">'
-      +'<span style="font-weight:700;color:#0078A8;margin-right:18px;">ESPAÑA · '+(isDSO?(DM?'variación nacional':'total nacional'):(DM?('Δ '+vistaLbl+' '+SL):(vistaLbl+' '+SL+' (MW)')))+'</span>'
-      +'<span style="margin-right:18px;white-space:nowrap;"><span style="color:#64748b;">Nudos:</span> <b>'+g.n+'</b></span>'
-      +mid
-      +'<span style="white-space:nowrap;"><span style="color:#64748b;">Saturación:</span> <b>'+(isNaN(sat)?'–':sat.toFixed(0)+'%')+'</b></span>'
+    const headVal=DM?gsSigned((isNaN(headNum)?0:headNum)-(isNaN(headPv)?0:headPv)):gsFmt(headNum);
+    return '<div class="gs-nat">'
+      +'<div class="gs-nat-top">'
+        +'<span class="gs-nat-flag">🇪🇸 España'+(isDSO?' · DSO':'')+'</span>'
+        +'<span><span class="gs-nat-headnum">'+headVal+'</span><span class="gs-nat-headunit"> MW'+(DM?' Δ':'')+'</span> '
+          +'<span class="gs-nat-headlbl">'+(DM?'Δ ':'')+vistaLbl+' '+(isDSO?'':SL)+' · total nacional</span></span>'
+        +'<span class="gs-nat-sat"><span class="k" style="font-size:11px;opacity:.85;">Saturación</span><br><span class="v">'+(isNaN(sat)?'–':sat.toFixed(0)+'%')+'</span></span>'
+      +'</div>'
+      +'<div class="gs-nat-chips"><span class="gs-nat-chip"><span class="k">Nudos:</span> <span class="v">'+g.n+'</span></span>'+chips+'</div>'
       +'</div>';
 }
 function renderGridStatus(){
@@ -2419,10 +2494,11 @@ function renderGridStatus(){
     const desg=scope!=='DSO';
     const DM=(gsGlobalMode==='delta');
     const desgBlock=((document.getElementById('gs-desg-block')||{}).value)||'margen';
-    const subField=(desgBlock==='no_otorgable')?'subN':(desgBlock==='disp')?'subD':'sub';
-    const blockLbl=(desgBlock==='no_otorgable')?'No otorgable':(desgBlock==='disp')?'Disponible':'Margen';
-    const vistaAgg=(desgBlock==='no_otorgable')?'noOtorg':(desgBlock==='disp')?'disp':'margen';
-    const subLabels=(side==='gen'&&desgBlock==='disp')?GS_SUBLABELS_GENDISP:(GS_SUBLABELS[side]||[]);
+    const _vc=gsVistaCfg(desgBlock,side);
+    const subField=_vc.sub;
+    const blockLbl=_vc.label;
+    const vistaAgg=_vc.agg;
+    const subLabels=_vc.labels;
     const SL=GS_SIDESHORT[side]||'';
     const cur=gsAggregate(level,scope,key,side);
     const prev=gsAggregate(level,scope,pkey,side);
@@ -2469,7 +2545,8 @@ function renderGridStatus(){
               +'</tr>';
         }
     }
-    const headDesg = hdr('Nivel','name','text-align:left;')+hdr('Nudos','n')+subLabels.map(function(L){return '<th title="'+blockLbl+' '+L+' (MW)">'+L+'</th>';}).join('')+hdr(blockLbl+' '+SL+' (máx.)',vistaAgg);
+    const _aggSuffix=(vistaAgg==='margen'||vistaAgg==='noOtorg'||vistaAgg==='disp')?'(máx.)':'(total)';
+    const headDesg = hdr('Nivel','name','text-align:left;')+hdr('Nudos','n')+subLabels.map(function(L){return '<th title="'+blockLbl+' '+L+' (MW)">'+L+'</th>';}).join('')+hdr(blockLbl+' '+SL+' '+_aggSuffix,vistaAgg);
     const head = desg ? headDesg : (isDSO
       ? (hdr('Nivel','name','text-align:left;')+hdr('Nudos','n')+hdr('Disponible (MW)','disp')+hdr('Comprom. regul.','comprom')+hdr('Ocupada (MW)','ocupada')+hdr('Admitida y no resuelta (MW)','admitida')+hdr('Satur.','sat'))
       : (hdr('Nivel','name','text-align:left;')+hdr('Nudos','n')+hdr('Margen '+SL,'margen')+hdr('Aflorada Δmargen','aflorada')+hdr('En curso','enCurso')+hdr('Otorgada '+SL,'otorgada')+hdr('Concurso','concurso')+hdr('No solicit.','noSolic')+hdr('Satur. '+SL,'sat')));
@@ -2786,7 +2863,7 @@ function gsSetMode(m){ gsMode=m;
   else if(m==='var'){ renderVariaciones(); }
   else { renderWhatsNew(); }
 }
-function gsRefresh(){ if(gsMode==='var') renderVariaciones(); else if(gsMode==='whatsnew') renderWhatsNew(); else renderGridStatus(); }
+function gsRefresh(){ gsSyncVistaOptions(); if(gsMode==='var') renderVariaciones(); else if(gsMode==='whatsnew') renderWhatsNew(); else renderGridStatus(); }
 function gsSetSort(c){ if(gsSort.col===c) gsSort.dir*=-1; else { gsSort.col=c; gsSort.dir=(c==='name')?1:-1; } renderGridStatus(); }
 // ---- Mapa de burbujas (nacional / comunidad / provincia) ----
 let gsMap=null, gsBubbles=null, gsView='table';
@@ -2843,11 +2920,12 @@ function gsRenderMap(){
     const level=document.getElementById('gs-level').value;
     const scope=document.getElementById('gs-scope').value;
     const vista=((document.getElementById('gs-desg-block')||{}).value)||'margen';
-    const metric=(vista==='no_otorgable')?'noOtorg':(vista==='disp')?'disp':'margen';
+    const _vcfg=gsVistaCfg(vista,side);
+    const metric=(scope==='DSO')?'disp':_vcfg.agg;
     const DM=(gsGlobalMode==='delta');
     const maplevel=(level==='nac')?'ccaa':level;
     const SL=GS_SIDESHORT[side]||'';
-    const ML={margen:'Margen '+SL,noOtorg:'No otorgable '+SL,disp:'Disponible '+SL};
+    const ML={margen:'Margen '+SL,noOtorg:'No otorgable '+SL,disp:'Disponible '+SL,otTot:'Otorgada '+SL,ecTot:'En curso '+SL,libTot:'Liberada autoconsumo (RDL 7/2026) '+SL};
     const cur=gsAggregate(maplevel,scope,key,side);
     const prev=gsAggregate(maplevel,scope,pkey,side); const pmap={}; prev.forEach(function(g){pmap[g.name]=g;});
     cur.forEach(function(g){ const pm=(pmap[g.name]&&!isNaN(pmap[g.name].margen))?pmap[g.name].margen:0; g.aflorada=(isNaN(g.margen)?0:g.margen)-pm; const pv=pmap[g.name]; g._dv=(isNaN(g[metric])?0:g[metric])-((pv&&!isNaN(pv[metric]))?pv[metric]:0); });
@@ -2905,7 +2983,13 @@ function gsRenderMap(){
     else if(metric==='sat'){ barStops=[0,0.25,0.5,0.75,1].map(function(t){return gsSeqColor(t);}); lb0='0%'; lb1='25%'; lb2='50%'; lb3='75%'; lb4='100%'; }
     else { barStops=[0,0.25,0.5,0.75,1].map(function(t){return gsSeqColor(t);}); lb0=fmtV(0); lb1=fmtV(maxV*0.25); lb2=fmtV(maxV*0.5); lb3=fmtV(maxV*0.75); lb4=fmtV(maxV); }
     const which=(maplevel==='ccaa')?'ccaa':'prov';
-    let legHtml='<div style="font-size:12px;font-weight:700;margin-bottom:4px;color:#334155;">'+(DM?'Δ ':'')+(ML[metric]||metric)+(metric==='sat'?'':' (MW)')+(DM?' <span style="font-weight:normal;color:#64748b;">· variación vs mes anterior</span>':'')+(level==='nac'?' <span style="color:#94a3b8;font-weight:normal;">(por CCAA)</span>':'')+'</div>'
+    // Título de lo visualizado, dentro del recuadro del mapa (item 7)
+    const _scopeLbl=(scope==='ALL')?'TSO+DSO':scope;
+    const _levelLbl=(maplevel==='prov')?'por provincia':'por CCAA';
+    const _tmain=(DM?'Δ ':'')+(ML[metric]||metric)+(metric==='sat'?'':' (MW'+(DM?' Δ':'')+')');
+    const _tsub=_levelLbl+' · '+(GS_MLBL[month]||month)+' 20'+year+' · '+_scopeLbl+(DM?' · variación vs mes anterior':'');
+    const _mt=document.getElementById('gs-map-title'); if(_mt) _mt.innerHTML='<span>'+_tmain+'</span><small>'+_tsub+'</small>';
+    let legHtml='<div style="font-size:11px;font-weight:700;margin-bottom:4px;color:#334155;">Escala de color'+(metric==='sat'?' · %':' · MW')+'</div>'
       +'<div style="height:14px;border-radius:3px;background:linear-gradient(to right,'+barStops.join(',')+');border:1px solid rgba(0,0,0,.12);"></div>'
       +'<div style="display:flex;justify-content:space-between;font-size:10px;color:#475569;margin-top:2px;">'+[lb0,lb1,lb2,lb3,lb4].map(function(x){return '<span>'+x+'</span>';}).join('')+'</div>'
       +(divg
@@ -2921,7 +3005,7 @@ function gsSetView(v){
     else { m.style.display='none'; t.style.display='flex'; }
 }
 
-function gsToggleNote(){ const n=document.getElementById('gs-note'); n.style.display=(n.style.display==='none'?'block':'none'); if(gsMap) setTimeout(function(){gsMap.invalidateSize();},60); }
+function gsToggleGloss(){ const n=document.getElementById('gs-gloss'); n.style.display=(n.style.display==='none'||!n.style.display)?'block':'none'; if(gsMap) setTimeout(function(){gsMap.invalidateSize();gsFitMap();},60); }
 function openGridStatus(){
     const yEl=document.getElementById('view-year'), mEl=document.getElementById('view-month');
     const gy=document.getElementById('gs-year'), gm=document.getElementById('gs-month');
@@ -2990,27 +3074,42 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
       </select>
     </label>
     <label>Vista:
-      <select id="gs-desg-block" onchange="renderGridStatus()" title="Vista de capacidad — afecta a tabla, mapa y dato nacional" style="font-size:12px;padding:2px 4px;border:1px solid #cbd5e1;border-radius:6px;"><option value="margen" selected>Margen</option><option value="no_otorgable">No otorgable</option><option value="disp">Disponible para solicitud</option></select>
+      <select id="gs-desg-block" onchange="renderGridStatus()" title="Vista de capacidad — afecta a tabla, mapa y dato nacional" style="font-size:12px;padding:2px 4px;border:1px solid #cbd5e1;border-radius:6px;"><option value="margen" selected>Margen</option><option value="no_otorgable">No otorgable</option><option value="disp">Disponible para solicitud</option><option value="otorgada">Otorgada (por tipo)</option><option value="en_curso">En curso (por tipo)</option><option value="liberada">Liberada autoconsumo RDL 7/2026 (por tipo)</option></select>
     </label>
     <span style="font-size:11px;color:#64748b;">Pulsa una cabecera para ordenar.</span>
-    <button type="button" onclick="gsToggleNote()" style="margin-left:auto;background:#e2e8f0;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:#0078A8;font-weight:bold;">&#9432; Cómo se calcula</button>
+    <button type="button" onclick="gsToggleGloss()" style="margin-left:auto;background:#e2e8f0;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:#0078A8;font-weight:bold;">&#9432; Siglas</button>
   </div>
-  <div id="gs-note" style="display:none;margin:0 18px 8px;padding:12px 16px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;font-size:12px;color:#334155;line-height:1.65;">
-    <b>Cómo se calculan los valores</b><br>
-    <b>Agregación:</b> por nivel se suman los MW de los nudos; los estados (Concurso, No solicit.) se cuentan en nº de nudos.<br>
-    <b>Margen:</b> máximo de las variables del bloque «margen de capacidad de acceso total» de la perspectiva. En <b>ambas</b> perspectivas incluye el almacenamiento (Generación: MGES/MPE de almacenamiento; Demanda: CEP-MPE / no-CEP-MGES). Se usa el máximo (no la suma) para no duplicar criterios equivalentes.<br>
-    <b>Vista (Margen / No otorgable / Disponible para solicitud):</b> selecciona qué capacidad se muestra, <b>por componente</b>, dentro de la perspectiva (Generación: MGES, MPE, Alm MGES, Alm MPE · Demanda: CH, SH, No CEP, Alm CEP, Alm No CEP). La Vista gobierna a la vez la <b>tabla</b> (desglose + agregado máx.), el <b>mapa</b> (colorea por la Vista) y el <b>dato nacional</b> (total de cada componente). En «No otorgable», los motivos están en el panel de causas. El desglose por componente solo aplica a la red TSO.<br>
-    <b>Mapa (coropleta, fijo):</b> colorea cada provincia/CCAA en tonos naranja según la <b>Vista</b> seleccionada (Margen / No otorgable / Disponible), de claro→oscuro. Gris = sin nudos. La leyenda muestra la escala con valores. Requiere es_prov.geojson y es_ccaa.geojson en la raíz del repo; pasa el cursor por una región para ver su valor.<br>
-    <b>Aflorada (Δmargen):</b> variación del margen respecto al mes anterior (verde = aflora, rojo = decae).<br>
-    <b>En curso:</b> capacidad en curso de tramitación/resolución.<br>
-    <b>Otorgada:</b> capacidad de acceso ya otorgada.<br>
-    <b>Concurso:</b> nº de nudos bloqueados a concurso (estado de concurso de REE).<br>
-    <b>No solicit.:</b> nº de nudos cuya capacidad NO es solicitable por cualquier causa (concurso, RDL 7/2026, sin posibilidad de conexión, valor de referencia no acordado, limitación por posición…). El desglose por causa está en el panel de la derecha.<br>
-    <b>Saturación (efectiva):</b> (otorgada + en curso) / (otorgada + en curso + disponible). Incluye la capacidad en curso/pendiente porque compite por el disponible (perspectiva de viabilidad de una nueva solicitud). Gen/Dem usan su otorgada + en curso (Dem RdT como aproximación de otorgada); DSO usa (ocupada + admitida y no resuelta) / (… + disponible).<br>
-    <b>DSO:</b> se muestran sus propios parámetros — Disponible, Comprometida por cuestiones regulatorias, Ocupada y Admitida y no resuelta.
+  <div id="gs-gloss">
+    <h4>Glosario de siglas (fuente: fichas de acceso de REE — Generación y Demanda)</h4>
+    <div class="gs-gloss-grid">
+      <div><b>MGES</b> — Módulos de Generación de Electricidad Síncronos.</div>
+      <div><b>MPE</b> — Módulos de Parque Eléctrico.</div>
+      <div><b>MGE</b> — Cabecera del Excel de REE («otorgada MGE»); no se define literalmente en las fichas (probable total de módulos de generación de electricidad).</div>
+      <div><b>GEN</b> — Generación.</div>
+      <div><b>ALM</b> — Almacenamiento.</div>
+      <div><b>CEP</b> — Consumo con interfaz de electrónica de potencia (demanda).</div>
+      <div><b>No CEP</b> — Consumo sin interfaz de electrónica de potencia.</div>
+      <div><b>CH</b> — Demanda CEP con cumplimiento del hueco de tensión («con hueco»). La ficha de demanda de REE define el tipo por su «cumplimiento de hueco de tensión».</div>
+      <div><b>SH</b> — Demanda CEP sin cumplimiento del hueco de tensión («sin hueco»).</div>
+      <div><b>WSCR</b> — Weighted Short Circuit Ratio (Índice Ponderado de Potencia de Cortocircuito).</div>
+      <div><b>ZIE</b> — Zona de Influencia Eléctrica.</div>
+      <div><b>CS</b> — Compensador Síncrono.</div>
+      <div><b>Scc</b> — Potencia de cortocircuito.</div>
+      <div><b>RdT</b> — Red de Transporte.</div>
+      <div><b>RdD</b> — Red de Distribución.</div>
+      <div><b>TSO</b> — Operador de la red de transporte (REE).</div>
+      <div><b>DSO</b> — Operador de red de distribución.</div>
+      <div><b>RDL 7/2026</b> — Real Decreto-Ley 7/2026 (capacidad liberada para autoconsumo).</div>
+      <div><b>P.O.</b> — Procedimiento de Operación.</div>
+      <div><b>ED</b> — Especificaciones de Detalle (CNMC).</div>
+      <div><b>OS</b> — Operador del Sistema (Red Eléctrica).</div>
+      <div><b>CNMC</b> — Comisión Nacional de los Mercados y la Competencia.</div>
+    </div>
+    <div class="gs-gloss-note">Verificado con las fichas de acceso de REE (Generación y Demanda): MGES, MPE, CEP, WSCR, ZIE, CS, Scc, ED, CNMC y OS aparecen definidos en el texto. «CH/SH» se apoyan en el concepto de «cumplimiento de hueco de tensión» de la ficha de demanda (con/sin hueco), aunque la abreviatura procede de las cabeceras de los Excel de REE. «MGE» solo figura como cabecera de Excel, no en las fichas.</div>
   </div>
   <div class="gs-body">
     <div id="gs-map-wrap">
+      <div id="gs-map-title"></div>
       <div id="gs-map"></div>
       <div id="gs-map-legend"></div>
     </div>
