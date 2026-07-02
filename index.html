@@ -291,6 +291,17 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .gg-chip .k { color:#64748b; font-size:10px; white-space:nowrap; }
 .gg-chip .v { font-weight:700; color:#0f172a; white-space:nowrap; }
 .gg-ab { display:flex; gap:16px; margin-top:9px; padding-top:8px; border-top:1px dashed #e2e8f0; font-size:12px; font-weight:700; }
+.gg-header { font-size:15px; font-weight:600; color:#64748b; margin-bottom:2px; }
+.gg-esp { color:#F3721F; font-size:27px; font-weight:800; letter-spacing:.3px; }
+.gg-rn { color:#0f172a; font-size:20px; font-weight:800; }
+.gg-sep { color:#cbd5e1; font-size:20px; }
+#gs-global-sub2 { font-size:12px; font-weight:600; color:#64748b; }
+.gg-note { font-size:12px; color:#64748b; margin-bottom:14px; }
+.gg-cols { display:flex; gap:16px; flex-wrap:wrap; align-items:flex-start; }
+.gg-col { flex:1 1 380px; min-width:300px; }
+.gg-col-h { font-size:14px; font-weight:800; padding:6px 11px; border-radius:8px; margin-bottom:10px; }
+.gg-col-gen { background:#fff4ec; color:#C85A16; border:1px solid #f6c8a8; }
+.gg-col-dem { background:#eef4ff; color:#1e40af; border:1px solid #c7d7f5; }
 /* Barra de color / leyenda, superpuesta dentro del recuadro del mapa (item 6) */
 #gs-map-legend { position:absolute; right:10px; bottom:14px; z-index:600; width:210px; max-width:56%; margin:0; padding:8px 10px; font-size:11px; color:#475569; background:rgba(255,255,255,.95); border:1px solid #e2e8f0; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,.12); }
 .gs-bubble-label { background:transparent !important; border:none !important; box-shadow:none !important; padding:0 !important; color:#fff; font-weight:700; font-size:11px; text-shadow:0 0 3px rgba(0,0,0,.85),0 0 2px rgba(0,0,0,.85); white-space:nowrap; }
@@ -306,22 +317,22 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .gs-mot-row { display:flex; justify-content:space-between; gap:10px; font-size:12px; padding:5px 0; border-bottom:1px dashed #e2e8f0; }
 
 /* --- Banner nacional destacado (item 4) --- */
-.gs-nat { background:linear-gradient(135deg,#F3721F 0%,#C85A16 100%); color:#fff; border-radius:12px; padding:14px 18px; margin-bottom:12px; box-shadow:0 4px 14px rgba(0,120,168,.28); }
-.gs-nat-top { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:10px; }
-.gs-nat-flag { font-size:26px; font-weight:800; letter-spacing:.5px; text-transform:uppercase; line-height:1; }
-.gs-nat-natlbl { font-size:12px; font-weight:600; opacity:.9; text-transform:none; letter-spacing:0; margin-left:6px; }
-.gs-nat-headnum { font-size:34px; font-weight:800; line-height:1; }
-.gs-nat-headunit { font-size:14px; font-weight:600; opacity:.9; margin-left:2px; }
-.gs-nat-headlbl { font-size:12px; opacity:.9; }
-.gs-nat-chips { display:flex; flex-wrap:wrap; gap:9px; }
-.gs-nat-chip { background:#ffffff; color:#0f172a; border-radius:9px; padding:8px 13px; font-size:13px; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,.14); }
+.gs-nat { background:linear-gradient(135deg,#F3721F 0%,#C85A16 100%); color:#fff; border-radius:10px; padding:8px 12px; margin-bottom:10px; box-shadow:0 1px 5px rgba(0,0,0,.14); }
+.gs-nat-top { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:6px; }
+.gs-nat-flag { font-size:15px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; line-height:1; }
+.gs-nat-natlbl { font-size:11px; font-weight:600; opacity:.9; text-transform:none; letter-spacing:0; margin-left:5px; }
+.gs-nat-headnum { font-size:21px; font-weight:800; line-height:1; }
+.gs-nat-headunit { font-size:11px; font-weight:600; opacity:.9; margin-left:2px; }
+.gs-nat-headlbl { font-size:11px; opacity:.9; }
+.gs-nat-chips { display:flex; flex-wrap:wrap; gap:6px; }
+.gs-nat-chip { background:#ffffff; color:#0f172a; border-radius:7px; padding:4px 9px; font-size:12px; white-space:nowrap; box-shadow:0 1px 2px rgba(0,0,0,.12); }
 .gs-nat-chip .k { color:#64748b; font-weight:600; }
 .gs-nat-chip .v { font-weight:800; color:#0f172a; }
-.gs-nat-sat { margin-left:auto; display:flex; gap:18px; }
+.gs-nat-sat { margin-left:auto; display:flex; gap:14px; }
 .gs-nat-satitem { display:flex; flex-direction:column; align-items:flex-end; cursor:help; }
-.gs-nat-satitem .lbl { font-size:11px; opacity:.92; font-weight:600; }
-.gs-nat-satitem .val { font-size:23px; font-weight:800; line-height:1.05; }
-.gs-nat-formula { margin-top:9px; font-size:10.5px; opacity:.9; line-height:1.3; }
+.gs-nat-satitem .lbl { font-size:10px; opacity:.92; font-weight:600; }
+.gs-nat-satitem .val { font-size:15px; font-weight:800; line-height:1.05; }
+.gs-nat-formula { margin-top:6px; font-size:10px; opacity:.9; line-height:1.25; }
 
 /* --- Glosario de siglas (item 8) --- */
 #gs-gloss { display:none; margin:0 18px 8px; padding:12px 16px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; font-size:12px; color:#334155; line-height:1.6; }
@@ -339,8 +350,8 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .gs-table th { font-size:11px; }
   #gs-map { height:calc(100vh - 220px); min-height:360px; }
   .gs-view-table { height:calc(100vh - 220px); }
-  .gs-nat-headnum { font-size:30px; }
-  .gs-nat-flag { font-size:23px; }
+  .gs-nat-headnum { font-size:20px; }
+  .gs-nat-flag { font-size:14px; }
 }
 @media (max-width:1100px){
   .gs-view-table { flex:1 1 100%; min-width:0; height:auto; }
@@ -2969,18 +2980,11 @@ function gsSetMode(m){ gsMode=m;
 }
 function gsRefresh(){ gsSyncVistaOptions(); if(gsMode==='global') renderGlobal(); else if(gsMode==='var') renderVariaciones(); else if(gsMode==='whatsnew') renderWhatsNew(); else renderGridStatus(); }
 // ---- Modo GLOBAL: resumen nacional de TODOS los bloques a la vez (sin elegir bloque) ----
-function renderGlobal(){
-    const year=document.getElementById('gs-year').value, month=document.getElementById('gs-month').value;
-    let pi=GS_MONTHS.indexOf(month)-1, py=year; if(pi<0){pi=11;py=(parseInt(year)-1).toString();}
-    const key=year+'_'+month, pkey=py+'_'+GS_MONTHS[pi];
-    const side=document.getElementById('gs-side').value;
-    const scope=document.getElementById('gs-scope').value;
+function gsGlobalCards(side, scope, key, pkey){
+    const g=(gsAggregate('nac',scope,key,side)[0])||null;
+    const p=(gsAggregate('nac',scope,pkey,side)[0])||{};
+    if(!g) return '<div style="color:#64748b;font-size:12px;">Sin datos.</div>';
     const SL=GS_SIDESHORT[side]||'';
-    const cur=gsAggregate('nac',scope,key,side), prev=gsAggregate('nac',scope,pkey,side);
-    const g=cur.length?cur[0]:null, p=prev.length?prev[0]:{};
-    const sub=document.getElementById('gs-global-sub'); if(sub) sub.textContent='España · '+(GS_MLBL[month]||month)+' 20'+year+' · '+(scope==='ALL'?'TSO+DSO':scope)+' · '+(GS_SIDELBL[side]||side)+' · Δ vs mes anterior';
-    const host=document.getElementById('gs-global-cards'); if(!host) return;
-    if(!g){ host.innerHTML='<div style="color:#64748b;">Sin datos para este mes.</div>'; return; }
     const blocks=['otorgada','en_curso','margen','no_otorgable','disp','liberada'];
     let html='';
     blocks.forEach(function(bk){
@@ -2996,7 +3000,19 @@ function renderGlobal(){
             +'<div class="gg-card-tot">'+gsFmt(tot)+gsDelta(tot,(ptot===undefined?NaN:ptot))+' <small>MW '+SL+'</small></div>'
             +'<div class="gg-chips">'+chips+'</div>'+ab+'</div>';
     });
-    host.innerHTML=html;
+    return html||'<div style="color:#64748b;font-size:12px;">Sin datos.</div>';
+}
+function renderGlobal(){
+    const year=document.getElementById('gs-year').value, month=document.getElementById('gs-month').value;
+    let pi=GS_MONTHS.indexOf(month)-1, py=year; if(pi<0){pi=11;py=(parseInt(year)-1).toString();}
+    const key=year+'_'+month, pkey=py+'_'+GS_MONTHS[pi];
+    const scope=document.getElementById('gs-scope').value;
+    const sub2=document.getElementById('gs-global-sub2'); if(sub2) sub2.textContent=' · '+(GS_MLBL[month]||month)+' 20'+year+' · '+(scope==='ALL'?'TSO+DSO':scope)+' · Generación y Demanda · Δ vs mes anterior';
+    const host=document.getElementById('gs-global-cards'); if(!host) return;
+    host.innerHTML='<div class="gg-cols">'
+        +'<div class="gg-col"><div class="gg-col-h gg-col-gen">Generación</div><div class="gg-grid">'+gsGlobalCards('gen',scope,key,pkey)+'</div></div>'
+        +'<div class="gg-col"><div class="gg-col-h gg-col-dem">Demanda</div><div class="gg-grid">'+gsGlobalCards('dem',scope,key,pkey)+'</div></div>'
+        +'</div>';
 }
 // ---- Mapa de burbujas (nacional / comunidad / provincia) ----
 let gsMap=null, gsBubbles=null;
@@ -3226,9 +3242,10 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
       <div id="gs-mot"><h3 id="gs-mot-title">Motivos no disponible (Gen)</h3><div id="gs-mot-wrap"></div></div>
     </div>
   </div>
-  <div id="gs-mode-global" style="display:none;padding:10px 18px 18px;overflow:auto;max-height:calc(100vh - 200px);">
-    <div style="font-size:12px;color:#64748b;margin-bottom:12px;">Resumen nacional de <b>todos los bloques</b> a la vez. <b id="gs-global-sub"></b><br>«Nivel» y «Bloque» no aplican aquí; para el detalle por región usa la pestaña «Regional».</div>
-    <div id="gs-global-cards" class="gg-grid"></div>
+  <div id="gs-mode-global" style="display:none;padding:12px 18px 18px;overflow:auto;max-height:calc(100vh - 200px);">
+    <div class="gg-header"><span class="gg-esp">España</span> <span class="gg-sep">·</span> <span class="gg-rn">Resumen nacional</span><span id="gs-global-sub2"></span></div>
+    <div class="gg-note">«Nivel» y «Bloque» no aplican aquí; para el detalle por región usa la pestaña «Regional».</div>
+    <div id="gs-global-cards"></div>
   </div>
   <div id="gs-mode-var">
     <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:10px;">
