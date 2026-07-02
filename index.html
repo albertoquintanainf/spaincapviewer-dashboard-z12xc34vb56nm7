@@ -30,42 +30,42 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 #left-search { position: fixed; top: var(--bar-off, 88px); left: 10px; width: 506px; z-index: 1300; display: none; box-sizing: border-box; }
 #left-search .search-wrapper { width: 100%; }
 #info-panel { display: none; position: absolute; top: calc(var(--bar-off, 88px) + var(--search-off, 52px)); left: 10px; z-index: 1000; text-align: center; background: white; padding: 18px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); width: 470px; max-height: calc(100vh - var(--bar-off, 88px) - var(--search-off, 52px) - 12px); overflow-y: auto; overflow-x: hidden; }
-.main-header { border-bottom: 2px solid #0078A8; padding-bottom: 10px; margin-bottom: 15px; }
+.main-header { border-bottom: 2px solid #F3721F; padding-bottom: 10px; margin-bottom: 15px; }
 .main-title { font-size: 14px; font-weight: bold; color: #1a202c; display: block; margin-bottom: 8px; }
 .month-selector-box { margin-bottom: 15px; background: #eef2f7; padding: 10px; border-radius: 8px; border: 1px solid #d1d9e6; }
 .month-selector-box label { font-size: 11px; font-weight: bold; color: #475569; display: block; margin-bottom: 5px; }
-.month-select, select { width: 100%; padding: 6px; border-radius: 4px; border: 1px solid #cbd5e1; font-size: 13px; font-weight: bold; color: #0078A8; cursor: pointer; }
+.month-select, select { width: 100%; padding: 6px; border-radius: 4px; border: 1px solid #cbd5e1; font-size: 13px; font-weight: bold; color: #F3721F; cursor: pointer; }
 .stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0; }
 .stat-box { text-align: center; }
 .stat-label { font-size: 9px; text-transform: uppercase; color: #64748b; display: block; }
 .stat-val { font-size: 15px; font-weight: bold; color: #334155; }
-.stat-val.total { color: #0078A8; }
+.stat-val.total { color: #F3721F; }
 
 /* --- FILTROS & SELECCIÓN --- */
 .section-header { display: flex; justify-content: space-between; align-items: center; margin: 15px 0 6px 0; border-bottom: 1px solid #eee; padding-bottom: 4px; }
 .section-title { font-size: 11px; font-weight: bold; color: #888; text-transform: uppercase; }
-.select-all-btn { font-size: 10px; color: #0078A8; cursor: pointer; text-decoration: underline; background: none; border: none; padding: 0; }
+.select-all-btn { font-size: 10px; color: #F3721F; cursor: pointer; text-decoration: underline; background: none; border: none; padding: 0; }
 .multiselect-container { border: 1px solid #ddd; border-radius: 6px; padding: 8px; max-height: 100px; overflow-y: auto; margin-bottom: 10px; background: #fafafa; }
 .select-option { display: flex; align-items: center; font-size: 12px; margin-bottom: 4px; cursor: pointer; }
 .select-option input { margin-right: 8px; }
 
 /* --- ICONO ⓘ  --- */
-.zero-star-icon { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; background: #0078A8; color: white !important; font-size: 10px; font-weight: bold; cursor: pointer; margin-left: 5px; vertical-align: middle; line-height: 1; flex-shrink: 0; transition: background 0.2s; }
+.zero-star-icon { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; background: #F3721F; color: white !important; font-size: 10px; font-weight: bold; cursor: pointer; margin-left: 5px; vertical-align: middle; line-height: 1; flex-shrink: 0; transition: background 0.2s; }
 .zero-star-icon:hover { background: #005a80; }
 /* --- MODAL nota 0* --- */
 #zero-star-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 200000; align-items: center; justify-content: center; }
 #zero-star-modal.open { display: flex; }
 #zero-star-modal-box { background: white; border-radius: 12px; padding: 24px 28px; max-width: 560px; width: 90%; box-shadow: 0 8px 32px rgba(0,0,0,0.3); position: relative; }
-#zero-star-modal-box h3 { margin: 0 0 14px 0; font-size: 14px; color: #0078A8; display: flex; align-items: center; gap: 8px; }
+#zero-star-modal-box h3 { margin: 0 0 14px 0; font-size: 14px; color: #F3721F; display: flex; align-items: center; gap: 8px; }
 #zero-star-modal-box .zs-lang { font-size: 10px; font-weight: bold; text-transform: uppercase; color: #64748b; margin-bottom: 4px; margin-top: 12px; }
 #zero-star-modal-box p { margin: 0; font-size: 12px; line-height: 1.7; color: #334155; }
 #zero-star-modal-close { position: absolute; top: 12px; right: 16px; font-size: 18px; cursor: pointer; color: #64748b; line-height: 1; background: none; border: none; padding: 0; }
-#zero-star-modal-close:hover { color: #0078A8; }
+#zero-star-modal-close:hover { color: #F3721F; }
 	
 /* --- ELEMENTOS DEL MAPA (LEYENDA) --- */
 .legend { padding: 12px; background: white !important; line-height: 22px; color: #333; box-shadow: 0 0 15px rgba(0,0,0,0.1); border-radius: 8px; font-size: 10px; min-width: 150px; }
 .legend-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 2px; }
-.legend-count { font-weight: bold; color: #0078A8; background: #eef2f7; padding: 0px 5px; border-radius: 3px; font-size: 10px; }
+.legend-count { font-weight: bold; color: #F3721F; background: #eef2f7; padding: 0px 5px; border-radius: 3px; font-size: 10px; }
 .legend i { display: inline-block; width: 10px; height: 10px; margin-right: 8px; border-radius: 50%; border: 1px solid #fff; vertical-align: middle; }
 .range-row { background: #fdfdfd; padding: 8px; border-radius: 8px; border: 1px solid #eaeaea; margin-bottom: 6px; font-size: 11px; }
 .range-row.disabled { opacity: 0.5; background: #f1f1f1; }
@@ -79,7 +79,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .modal-content { background: white; width: 720px; padding: 25px; border-radius: 15px; position: relative;overflow: visible !important; }
 .bar-chart { display: flex; align-items: flex-end; gap: 10px; height: 180px; border-bottom: 2px solid #cbd5e1; margin-top: 35px; padding-bottom: 5px; }
 .bar-container { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; }
-.bar { width: 80%; background: #0078A8; border-radius: 3px 3px 0 0; transition: height 0.3s; }
+.bar { width: 80%; background: #F3721F; border-radius: 3px 3px 0 0; transition: height 0.3s; }
 .bar-label { font-size: 8px; transform: rotate(-45deg); margin-top: 15px; white-space: nowrap; color: #64748b; }
 .bar-val { position: absolute; top: -18px; font-size: 9px; font-weight: bold; color: #334155; }
 #chart-container canvas { width: 100% !important; height: 100% !important; }
@@ -121,7 +121,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .wn-search { width: 100%; padding: 7px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 12px; outline: none; margin-bottom: 10px; }
 .wn-search:focus { border-color: #7c3aed; }
 .wn-empty { text-align: center; padding: 40px; color: #94a3b8; font-size: 13px; }
-.btn-access-login { width: 100%; padding: 11px; background: #0078A8; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.2s ease; }
+.btn-access-login { width: 100%; padding: 11px; background: #F3721F; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.2s ease; }
 .btn-access-login:hover { background-color: #005a7d; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0, 120, 168, 0.3); }
 .popup-btn-hist { width: 100%; margin-top: 8px; padding: 8px 8px; background-color: #f97316; color: white !important; border: none; border-radius: 6px; font-weight: 700; font-size: 12.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.2s ease; }
 .popup-btn-hist:hover { background-color: #ea5e9;}
@@ -131,15 +131,15 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 /* --- BUSCADORES (GENERAL & HISTÓRICO) --- */
 #search-container { position: fixed; top: 10px; right: 10px; z-index: 10001; width: 220px; display: flex; flex-direction: column; gap: 5px; }
-.search-wrapper { background: white; padding: 4px; border-radius: 10px; display: flex; border: 2px solid #0078A8; position: relative; box-sizing: border-box; width: 100%; }
+.search-wrapper { background: white; padding: 4px; border-radius: 10px; display: flex; border: 2px solid #F3721F; position: relative; box-sizing: border-box; width: 100%; }
 #node-search-input { width: 100%; padding: 10px; border: 1px solid #eee; border-radius: 6px; font-size: 12px; outline: none; background: #fff; padding-right: 30px; }
 .search-results { position: absolute;top: 100%;left: 0;width: 100%;background: white; border-radius: 8px; margin-top: 5px; max-height: 400px; overflow-y: auto; box-shadow: 0 8px 20px rgba(0,0,0,0.3); display: none; border: 1px solid #ddd; }
 .search-item { padding: 10px; cursor: pointer; font-size: 13px; border-bottom: 1px solid #eee; color: #333; }
-.search-item:hover, .suggestion-item:hover { background-color: #f8fafc; color: #0078A8; }
+.search-item:hover, .suggestion-item:hover { background-color: #f8fafc; color: #F3721F; }
 .search-section {position: relative; display: flex; flex-direction: column; align-items: center; margin-bottom: 25px; width: 100%; z-index: 1001;}
 .minimal-container { max-width: 600px; position: relative; width: 100%; }
 .minimal-input { width: 100%; padding: 10px 15px; padding-right: 35px; border: none; border-bottom: 2px solid #eee; background: transparent; font-size: 15px; transition: border-color 0.3s; outline: none; text-align: center; box-shadow: none !important; }
-.minimal-input:focus { border-bottom-color: #0078A8; }
+.minimal-input:focus { border-bottom-color: #F3721F; }
 #hist-search-input { max-width: 600px !important; padding: 12px 15px !important; font-size: 16px !important; }
 .suggestions-box-minimal { position: absolute; top: 100%; width: 100%; max-width: 600px; background: white; border-radius: 0 0 8px 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 9999; display: none; max-height: 320px; overflow-y: auto; border: 1px solid #eee; border-top: none; }
 #hist-suggestions { max-width: 600px !important; }
@@ -160,7 +160,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .type-badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; color: white; font-weight: bold; margin-right: 5px; }
 .voltage-info { font-size: 11px; color: #666; font-weight: bold; }
 
-.custom-measure-label {background: #0078A8 !important;color: white !important; border: 2px solid white !important; border-radius: 5px !important;padding: 4px 8px !important;font-weight: bold !important; font-size: 13px !important; box-shadow: 0 2px 10px rgba(0,0,0,0.4) !important;  white-space: nowrap !important;}
+.custom-measure-label {background: #F3721F !important;color: white !important; border: 2px solid white !important; border-radius: 5px !important;padding: 4px 8px !important;font-weight: bold !important; font-size: 13px !important; box-shadow: 0 2px 10px rgba(0,0,0,0.4) !important;  white-space: nowrap !important;}
 
 /* KML/KMZ */
 .leaflet-control-kml {background: white;width: 30px; height: 30px;border-radius: 4px;  border: 2px solid rgba(0,0,0,0.2); background-clip: padding-box; cursor: pointer;
@@ -185,15 +185,15 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 /* --- BARRA HORIZONTAL DE FILTROS --- */
 #filter-bar { position: fixed; top: 0; left: 0; right: 248px; box-sizing: border-box; z-index: 1500; display: flex; flex-wrap: wrap; align-items: center; gap: 5px; padding: 8px 12px; background: transparent; overflow: visible; pointer-events: none; }
 #filter-bar > * { pointer-events: auto; }
-.fb-title-card { box-sizing: border-box; display: flex; align-items: center; background: #ffffff; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.18); padding: 10px 16px; flex-shrink: 0; border-left: 4px solid #0078A8; font-size: 16px; font-weight: 800; color: #0078A8; line-height: 1.1; letter-spacing: .3px; }
+.fb-title-card { box-sizing: border-box; display: flex; align-items: center; background: #ffffff; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.18); padding: 10px 16px; flex-shrink: 0; border-left: 4px solid #F3721F; font-size: 16px; font-weight: 800; color: #F3721F; line-height: 1.1; letter-spacing: .3px; }
 .fb-counts-card { display: flex; align-items: center; gap: 14px; background: #ffffff; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.18); padding: 8px 14px; flex-shrink: 0; }
 .fb-cnt { display: flex; align-items: baseline; gap: 4px; }
 .fb-cnt b { font-size: 18px; font-weight: 800; color: #334155; line-height: 1; }
-.fb-cnt.total b { color: #0078A8; }
+.fb-cnt.total b { color: #F3721F; }
 .fb-cnt i { font-size: 9px; font-style: normal; text-transform: uppercase; color: #64748b; letter-spacing: .5px; }
 .fb-main { display: inline-flex; align-items: center; gap: 6px; background: #eaf4fb; border: 1px solid #b9def0; border-radius: 10px; padding: 6px 8px; flex-shrink: 0; box-shadow: 0 3px 12px rgba(0,0,0,0.15); }
-.fb-main-label { font-size: 10px; font-weight: bold; color: #0078A8; letter-spacing: .5px; }
-.fb-main-select { box-sizing: border-box; padding: 6px 8px; border-radius: 6px; border: 1.5px solid #0078A8; font-size: 13px; font-weight: bold; color: #0078A8; background: #fff; cursor: pointer; }
+.fb-main-label { font-size: 10px; font-weight: bold; color: #F3721F; letter-spacing: .5px; }
+.fb-main-select { box-sizing: border-box; padding: 6px 8px; border-radius: 6px; border: 1.5px solid #F3721F; font-size: 13px; font-weight: bold; color: #F3721F; background: #fff; cursor: pointer; }
 #view-month, #view-red { padding: 6px 4px; }
 #view-year { padding: 6px 2px; }
 .fb-break { flex-basis: 100%; height: 0; margin: 0; padding: 0; }
@@ -201,7 +201,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .fb-dropdown { position: relative; display: inline-block; flex-shrink: 0; }
 .fb-dd-btn { padding: 9px 12px; border-radius: 10px; border: 1px solid #cbd5e1; background: #ffffff; font-size: 12px; font-weight: bold; color: #475569; cursor: pointer; box-shadow: 0 3px 12px rgba(0,0,0,0.15); }
 .fb-dd-btn:hover { background: #eef2f7; border-color: #94a3b8; }
-.fb-dd-btn.has-filter { border-color: #0078A8; color: #0078A8; background: #eaf4fb; }
+.fb-dd-btn.has-filter { border-color: #F3721F; color: #F3721F; background: #eaf4fb; }
 .fb-dd-panel { display: none; position: fixed; min-width: 210px; max-width: 300px; background: #fff; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.18); padding: 10px; z-index: 1400; white-space: normal; }
 .fb-dd-panel.open { display: block; }
 .fb-dd-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid #eee; }
@@ -230,13 +230,13 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .nd-vartable th { padding: 3px 5px; text-align: center; color: #475569; font-weight: bold; white-space: nowrap; border-bottom: 1px solid #e2e8f0; line-height: 1.1; }
 .nd-vartable th.vh { text-align: left; }
 .nd-vartable td { padding: 3px 5px; text-align: right; font-weight: 700; color: #334155; white-space: nowrap; border-bottom: 1px solid #f1f5f9; }
-.nd-vartable td.vname { text-align: left; color: #0078A8; font-weight: bold; max-width: 150px; overflow: hidden; text-overflow: ellipsis; position: sticky; left: 0; background: #fff; }
+.nd-vartable td.vname { text-align: left; color: #F3721F; font-weight: bold; max-width: 150px; overflow: hidden; text-overflow: ellipsis; position: sticky; left: 0; background: #fff; }
 .nd-vartable td.nd { color: #cbd5e1; text-align: center; font-weight: 400; }
-.nd-vartable tr.maxrow td { border-top: 2px solid #cbd5e1; background: #f1f5f9; font-weight: 800; color: #0078A8; }
-.nd-vartable tr.maxrow td.vname { color: #0078A8; }
-.nd-vartable td.blkhdr { text-align: left; font-weight: 800; color: #0078A8; background: #eaf4fb; border-top: 2px solid #cfe6f4; padding: 4px 6px; letter-spacing: .5px; }
+.nd-vartable tr.maxrow td { border-top: 2px solid #cbd5e1; background: #f1f5f9; font-weight: 800; color: #F3721F; }
+.nd-vartable tr.maxrow td.vname { color: #F3721F; }
+.nd-vartable td.blkhdr { text-align: left; font-weight: 800; color: #F3721F; background: #eaf4fb; border-top: 2px solid #cfe6f4; padding: 4px 6px; letter-spacing: .5px; }
 .rich-side { border: 1px solid #cfe6f4; border-radius: 8px; background: #f7fbfe; padding: 4px 9px 7px; margin-top: 9px; }
-.rich-side-title { font-size: 12.5px; font-weight: 800; color: #0078A8; letter-spacing: .4px; padding: 3px 0 4px; border-bottom: 1px solid #e2eef6; margin-bottom: 3px; }
+.rich-side-title { font-size: 12.5px; font-weight: 800; color: #F3721F; letter-spacing: .4px; padding: 3px 0 4px; border-bottom: 1px solid #e2eef6; margin-bottom: 3px; }
 .rich-tbl { width: 100%; border-collapse: collapse; table-layout: fixed; }
 .rich-tbl td:first-child { width: 68%; }
 .rich-tbl td { border-bottom: 1px solid #eef4f8; }
@@ -246,10 +246,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 /* ===== GRID STATUS ===== */
 #grid-status { display:none; position:fixed; inset:0; background:#f1f5f9; z-index:300000; overflow:auto; }
 #grid-status.open { display:block; }
-#gs-head { position:sticky; top:0; background:#0078A8; color:#fff; padding:12px 18px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; box-shadow:0 2px 8px rgba(0,0,0,.2); z-index:2; }
+#gs-head { position:sticky; top:0; background:#F3721F; color:#fff; padding:12px 18px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; box-shadow:0 2px 8px rgba(0,0,0,.2); z-index:2; }
 #gs-head h2 { margin:0; font-size:18px; letter-spacing:.5px; }
 #gs-head .gs-period { font-size:12px; opacity:.92; }
-#gs-close { margin-left:auto; background:#fff; color:#0078A8; border:none; border-radius:8px; padding:6px 14px; font-weight:bold; cursor:pointer; }
+#gs-close { margin-left:auto; background:#fff; color:#F3721F; border:none; border-radius:8px; padding:6px 14px; font-weight:bold; cursor:pointer; }
 #gs-controls { display:flex; gap:14px; align-items:center; flex-wrap:wrap; padding:12px 18px 4px; }
 #gs-controls label { font-size:12px; font-weight:bold; color:#334155; }
 #gs-controls select { padding:5px 8px; border-radius:6px; border:1px solid #cbd5e1; font-size:13px; color:#0f172a; margin-left:4px; }
@@ -258,10 +258,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 #gs-map-wrap { flex:1 1 42%; min-width:320px; position:relative; }
 .gs-tabs { display:flex; gap:6px; margin:0 18px; }
 .gs-tab { background:#e2e8f0; border:none; border-radius:8px 8px 0 0; padding:7px 16px; font-size:13px; font-weight:bold; cursor:pointer; color:#475569; }
-.gs-tab.active { background:#0078A8; color:#fff; }
+.gs-tab.active { background:#F3721F; color:#fff; }
 #gs-mode-var { display:none; padding:8px 18px 18px; overflow:auto; max-height:calc(100vh - 200px); }
 .gs-var-sec { background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:14px; margin-bottom:14px; }
-.gs-var-sec h3 { margin:0 0 8px; font-size:14px; color:#0078A8; }
+.gs-var-sec h3 { margin:0 0 8px; font-size:14px; color:#F3721F; }
 .gs-matrix { border-collapse:collapse; font-size:11px; }
 .gs-matrix th,.gs-matrix td { border:1px solid #e2e8f0; padding:3px 6px; text-align:center; }
 .gs-matrix th { background:#f1f5f9; }
@@ -281,17 +281,18 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .gs-bubble-label { background:transparent !important; border:none !important; box-shadow:none !important; padding:0 !important; color:#fff; font-weight:700; font-size:11px; text-shadow:0 0 3px rgba(0,0,0,.85),0 0 2px rgba(0,0,0,.85); white-space:nowrap; }
 .gs-bubble-label::before { display:none !important; }
 .gs-leg-dot { display:inline-block; width:12px; height:12px; border-radius:50%; margin:0 4px; vertical-align:middle; border:1px solid #fff; box-shadow:0 0 0 1px #cbd5e1; }
-#gs-table-wrap { width:100%; overflow:auto; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); max-height:58vh; }
-.gs-table { border-collapse:collapse; width:100%; font-size:12px; }
-.gs-table th, .gs-table td { padding:7px 9px; border-bottom:1px solid #e2e8f0; text-align:right; white-space:nowrap; }
-.gs-table th { background:#e2e8f0; color:#0f172a; position:sticky; top:0; font-size:11px; }
+#gs-table-wrap { width:100%; overflow-x:hidden; overflow-y:auto; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); max-height:calc(100vh - 210px); }
+.gs-table { border-collapse:collapse; width:100%; table-layout:fixed; font-size:13px; }
+.gs-table th, .gs-table td { padding:6px 4px; border-bottom:1px solid #e2e8f0; text-align:right; overflow-wrap:break-word; word-break:normal; }
+.gs-table th:first-child, .gs-table td:first-child { text-align:left; width:15%; }
+.gs-table th { background:#e2e8f0; color:#0f172a; position:sticky; top:0; font-size:12px; line-height:1.15; }
 .gs-table tbody tr:hover { background:#f8fafc; }
 #gs-mot { width:100%; box-sizing:border-box; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:14px; max-height:32vh; overflow:auto; }
-#gs-mot h3 { margin:0 0 10px; font-size:13px; color:#0078A8; }
+#gs-mot h3 { margin:0 0 10px; font-size:13px; color:#F3721F; }
 .gs-mot-row { display:flex; justify-content:space-between; gap:10px; font-size:12px; padding:5px 0; border-bottom:1px dashed #e2e8f0; }
 
 /* --- Banner nacional destacado (item 4) --- */
-.gs-nat { background:linear-gradient(135deg,#0078A8 0%,#0a6a94 100%); color:#fff; border-radius:12px; padding:14px 18px; margin-bottom:12px; box-shadow:0 4px 14px rgba(0,120,168,.28); }
+.gs-nat { background:linear-gradient(135deg,#F3721F 0%,#C85A16 100%); color:#fff; border-radius:12px; padding:14px 18px; margin-bottom:12px; box-shadow:0 4px 14px rgba(0,120,168,.28); }
 .gs-nat-top { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:10px; }
 .gs-nat-flag { font-size:13px; font-weight:800; letter-spacing:.5px; text-transform:uppercase; opacity:.95; }
 .gs-nat-headnum { font-size:34px; font-weight:800; line-height:1; }
@@ -306,7 +307,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 /* --- Glosario de siglas (item 8) --- */
 #gs-gloss { display:none; margin:0 18px 8px; padding:12px 16px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; font-size:12px; color:#334155; line-height:1.6; }
-#gs-gloss h4 { margin:0 0 8px; font-size:12px; color:#0078A8; text-transform:uppercase; letter-spacing:.4px; }
+#gs-gloss h4 { margin:0 0 8px; font-size:12px; color:#F3721F; text-transform:uppercase; letter-spacing:.4px; }
 .gs-gloss-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:4px 22px; }
 .gs-gloss-grid div b { color:#0f172a; }
 .gs-gloss-note { margin-top:8px; font-size:10px; color:#94a3b8; }
@@ -316,9 +317,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   #gs-controls { gap:10px; padding:10px 14px 4px; }
   #gs-controls label, #gs-controls select { font-size:12px; }
   .gs-body { padding:8px 14px 24px; gap:14px; }
-  .gs-table th, .gs-table td { padding:6px 7px; font-size:11px; }
-  .gs-table th { font-size:10px; }
+  .gs-table th, .gs-table td { padding:5px 3px; font-size:12px; }
+  .gs-table th { font-size:11px; }
   #gs-map { height:calc(100vh - 220px); min-height:360px; }
+  #gs-table-wrap { max-height:calc(100vh - 220px); }
   .gs-nat-headnum { font-size:30px; }
 }
 @media (max-width:1100px){
@@ -338,7 +340,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
         <div style="font-size: 40px; margin-bottom: 25px;">⚡</div>
         <h2 style="margin: 0 0 4px 0; color: #1a202c; font-size: 23px; font-family: 'Segoe UI', sans-serif;">Spain Capacity Viewer</h2>
         <p style="margin: 0 0 30px 0; color: #64748b; font-size: 12px; font-family: 'Segoe UI', sans-serif;">Hanwha Energy Corporation Europe</p>
-        <input id="pwd-input" type="password" placeholder="Introduce password" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; margin-bottom: 12px;" onkeydown="if(event.key==='Enter') permit()" onfocus="this.style.borderColor='#0078A8'" onblur="this.style.borderColor='#cbd5e1'"/>
+        <input id="pwd-input" type="password" placeholder="Introduce password" style="width: 100%; box-sizing: border-box; padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; margin-bottom: 12px;" onkeydown="if(event.key==='Enter') permit()" onfocus="this.style.borderColor='#F3721F'" onblur="this.style.borderColor='#cbd5e1'"/>
         <div id="pwd-error" style="color: #dc2626; font-size: 12px; margin-bottom: 10px; min-height: 16px;"></div>
         <button class="btn-access-login" onclick="permit()">ACCESS</button>
     </div>
@@ -348,7 +350,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 
 <div id="search-container" style="display: none;">
-    <button class="btn-whats-new" onclick="openGridStatus()" style="background:#0078A8;">📊 GRID STATUS</button>
+    <button class="btn-whats-new" onclick="openGridStatus()" style="background:#F3721F;">📊 GRID STATUS</button>
 </div>
 
 <div id="left-search">
@@ -430,16 +432,16 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 		<div style="display: flex; gap: 6px; margin-bottom: 16px; align-items: center; background: #f8fafc; padding: 8px; border-radius: 6px; border: 1px solid #e2e8f0; overflow-x: auto; white-space: nowrap;">
     <span style="font-size: 11px; font-weight: bold; color: #64748b; margin-right: 0px;"></span>
-    <select id="wn-year" onchange="openWhatsNew(true)" style="flex: 1; min-width: 70px; padding: 4px 6px; border-radius: 5px; border: 1px solid #cbd5e1; font-size: 12px; color: #0078A8; font-weight: bold; cursor: pointer;">
+    <select id="wn-year" onchange="openWhatsNew(true)" style="flex: 1; min-width: 70px; padding: 4px 6px; border-radius: 5px; border: 1px solid #cbd5e1; font-size: 12px; color: #F3721F; font-weight: bold; cursor: pointer;">
         <option value="26">2026</option>
     </select>
-    <select id="wn-month" onchange="openWhatsNew(true)" style="flex: 1; min-width: 90px; padding: 4px 6px; border-radius: 5px; border: 1px solid #cbd5e1; font-size: 12px; color: #0078A8; font-weight: bold; cursor: pointer;">
+    <select id="wn-month" onchange="openWhatsNew(true)" style="flex: 1; min-width: 90px; padding: 4px 6px; border-radius: 5px; border: 1px solid #cbd5e1; font-size: 12px; color: #F3721F; font-weight: bold; cursor: pointer;">
         <option value="jan">January</option><option value="feb">February</option><option value="mar">March</option><option value="apr">April</option><option value="may">May</option><option value="jun">June</option><option value="jul">July</option><option value="ago">August</option><option value="sep">September</option><option value="oct">October</option><option value="nov">November</option><option value="dec">December</option>
     </select>
-    <select id="wn-red" onchange="openWhatsNew(true)" style="flex: 1; min-width: 85px; padding: 4px 6px; border-radius: 5px; border: 1px solid #cbd5e1; font-size: 12px; color: #0078A8; font-weight: bold; cursor: pointer;">
+    <select id="wn-red" onchange="openWhatsNew(true)" style="flex: 1; min-width: 85px; padding: 4px 6px; border-radius: 5px; border: 1px solid #cbd5e1; font-size: 12px; color: #F3721F; font-weight: bold; cursor: pointer;">
         <option value="ALL">DSO+TSO</option><option value="DSO">DSO</option><option value="TSO">TSO</option>
     </select>
-    <select id="wn-type" onchange="openWhatsNew(true)" style="flex: 1; min-width: 95px; padding: 4px 6px; border-radius: 5px; border: 1px solid #cbd5e1; font-size: 12px; color: #0078A8; font-weight: bold; cursor: pointer;">
+    <select id="wn-type" onchange="openWhatsNew(true)" style="flex: 1; min-width: 95px; padding: 4px 6px; border-radius: 5px; border: 1px solid #cbd5e1; font-size: 12px; color: #F3721F; font-weight: bold; cursor: pointer;">
         <option value="gen">Generation</option><option value="dem">Demand</option><option value="stg-gen">Storage Gen</option><option value="stg-dem">Storage Dem</option><option value="storage">Storage Min Effective</option>
     </select>
 </div>
@@ -482,7 +484,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 <div id="history-modal" class="modal-overlay">
     <div class="modal-content">
         <span onclick="closeHistory()" style="position: absolute; top: 15px; right: 20px; cursor: pointer; font-size: 24px;">&times;</span>
-        <h3 style="color: #0078A8; margin: 0 0 20px 0;">HISTORICAL DATA</h3>
+        <h3 style="color: #F3721F; margin: 0 0 20px 0;">HISTORICAL DATA</h3>
 
         <div class="search-section" style="position: relative; margin-bottom: 20px;">
             <div class="search-wrapper minimal-container">
@@ -505,7 +507,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
         </div>
 
         <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
-            <span style="font-size:11px; font-weight:bold; color:#0078A8; letter-spacing:.5px;">TYPE</span>
+            <span style="font-size:11px; font-weight:bold; color:#F3721F; letter-spacing:.5px;">TYPE</span>
             <select id="hist-type" class="fb-main-select" onchange="if(window._histNode) updateHistoryChart(window._histNode)">
                 <option value="gen">Generation (MW)</option>
                 <option value="dem">Demand (MW)</option>
@@ -591,7 +593,7 @@ map.pm.setGlobalOptions({ measurements: { measurement: true, displayFullDistance
     finishOn: 'dblclick', 
     allowSelfIntersection: false,
     templineStyle: { color: '#f97316', weight: 3 },
-    pathOptions: { color: '#0078A8', fillColor: '#0078A8', fillOpacity: 0.3, weight: 3 }
+    pathOptions: { color: '#F3721F', fillColor: '#F3721F', fillOpacity: 0.3, weight: 3 }
 });
 map.on('pm:create', function(e) {const layer = e.layer;
 		layer.setStyle({ interactive: false });
@@ -663,7 +665,7 @@ legendControl.update = function() {
     let html = `<div style="display:flex;gap:8px;justify-content:space-between;padding:2px 0 7px;margin-bottom:7px;border-bottom:1px solid #e2e8f0;">
         <div style="text-align:center;flex:1;"><div style="font-size:11px;font-weight:bold;color:#475569;text-transform:uppercase;letter-spacing:.5px;">DSO</div><div style="font-size:15px;font-weight:bold;color:#334155;line-height:1.1;">${cc.dso}</div></div>
         <div style="text-align:center;flex:1;border-left:1px solid #e2e8f0;"><div style="font-size:11px;font-weight:bold;color:#475569;text-transform:uppercase;letter-spacing:.5px;">TSO</div><div style="font-size:15px;font-weight:bold;color:#334155;line-height:1.1;">${cc.tso}</div></div>
-        <div style="text-align:center;flex:1;border-left:1px solid #e2e8f0;"><div style="font-size:11px;font-weight:bold;color:#0078A8;text-transform:uppercase;letter-spacing:.5px;">Total</div><div style="font-size:15px;font-weight:bold;color:#0078A8;line-height:1.1;">${cc.total}</div></div>
+        <div style="text-align:center;flex:1;border-left:1px solid #e2e8f0;"><div style="font-size:11px;font-weight:bold;color:#F3721F;text-transform:uppercase;letter-spacing:.5px;">Total</div><div style="font-size:15px;font-weight:bold;color:#F3721F;line-height:1.1;">${cc.total}</div></div>
     </div>`;
 
     html += `<strong>${monthText} 20${year} · ${varLabel}</strong><br>`;
@@ -894,7 +896,7 @@ function _richFilas(obj, prevObj, side) {
         const blkLbl = lblMap[blk] || {};
         const filas = Object.entries(sub).filter(([k, v]) => v !== null && v !== undefined && v !== '');
         if (!filas.length) continue;
-        h += `<tr><td colspan="2" style="padding:6px 0 3px;font-weight:bold;color:#0078A8;font-size:10.5px;">${RICH_BLOQUES[blk] || blk}</td></tr>`;
+        h += `<tr><td colspan="2" style="padding:6px 0 3px;font-weight:bold;color:#F3721F;font-size:10.5px;">${RICH_BLOQUES[blk] || blk}</td></tr>`;
         filas.forEach(([k, v]) => {
             const nombre = (k === 'estado') ? 'Estado' : (blkLbl[k] || k.replace(/_/g, ' '));
             h += `<tr><td style="color:#555;padding:2px 6px 2px 0;font-size:11.5px;line-height:1.25;word-break:break-word;">${nombre}</td><td style="text-align:right;font-weight:700;font-size:11.5px;vertical-align:top;word-break:break-word;overflow-wrap:anywhere;">${v}${changeIcon(v, (prevSub || {})[k])}</td></tr>`;
@@ -908,7 +910,7 @@ function renderRich(rich, which, prevRich) {
     which = which || 'both';
     const showGen = which !== 'dem', showDem = which !== 'gen';
     const pg = (prevRich && prevRich.gen) || null, pd = (prevRich && prevRich.dem) || null;
-    let h = '<details open style="margin-top:8px;"><summary style="cursor:pointer;font-size:12.5px;font-weight:bold;color:#0078A8;">View all variables ▾</summary>';
+    let h = '<details open style="margin-top:8px;"><summary style="cursor:pointer;font-size:12.5px;font-weight:bold;color:#F3721F;">View all variables ▾</summary>';
     if (showGen && rich.gen) {
         h += '<div class="rich-side"><div class="rich-side-title">Generación</div><table class="rich-tbl">' + _richFilas(rich.gen, pg, 'gen') + '</table></div>';
     }
@@ -972,7 +974,7 @@ function renderRichDSO(rich, which, prevRich) {
     const fg = (which !== 'dem') ? _dsoFilas(rich.gen, pg) : '';
     const fd = (which !== 'gen') ? _dsoFilas(rich.dem, pd) : '';
     if (!fg && !fd) return '';
-    let h = '<details open style="margin-top:8px;"><summary style="cursor:pointer;font-size:12.5px;font-weight:bold;color:#0078A8;">View all variables ▾</summary>';
+    let h = '<details open style="margin-top:8px;"><summary style="cursor:pointer;font-size:12.5px;font-weight:bold;color:#F3721F;">View all variables ▾</summary>';
     if (fg) h += '<div class="rich-side"><div class="rich-side-title">Generación</div><table class="rich-tbl">' + fg + '</table></div>';
     if (fd) h += '<div class="rich-side"><div class="rich-side-title">Demanda</div><table class="rich-tbl">' + fd + '</table></div>';
     h += '</details>';
@@ -1222,7 +1224,7 @@ function buildNodeFichaHTML(items) {
                 capacityRows = `
                 <tr><td style="color:#666;padding:2px 0;">Capacidad Firme (gen):</td><td style="font-weight:bold;text-align:right;color:#f97316;">${txt(vG)}${nodeTrendBadge(vG,pG)}</td></tr>
                 <tr><td style="color:#666;padding:2px 0;">Capacidad Firme (dem):</td><td style="font-weight:bold;text-align:right;color:#0ea5e9;">${txt(vD)}${nodeTrendBadge(vD,pD)}</td></tr>
-                <tr style="border-top:1px dashed #ccc;background:#f8fafc;"><td style="color:#000;padding:4px 0;font-weight:bold;">Capacidad Firme (mín. efectivo):</td><td style="font-weight:bold;text-align:right;color:#0078A8;">${txt(eff)}</td></tr>`;
+                <tr style="border-top:1px dashed #ccc;background:#f8fafc;"><td style="color:#000;padding:4px 0;font-weight:bold;">Capacidad Firme (mín. efectivo):</td><td style="font-weight:bold;text-align:right;color:#F3721F;">${txt(eff)}</td></tr>`;
             } else {
                 const lblMap = { alm_mpe_rdt: 'Gen · MPE RdT', alm_mpe_rdd: 'Gen · MPE RdD', alm_cep: 'Dem · CEP (MPE)', alm_mges_rdt: 'Gen · MGES RdT', alm_mges_rdd: 'Gen · MGES RdD', alm_no_cep: 'Dem · NO CEP (MGES)' };
                 let rws = '';
@@ -1230,7 +1232,7 @@ function buildNodeFichaHTML(items) {
                     const v = dispValue(item, mkey, s, f), pv = dispValue(item, pkey, s, f);
                     rws += `<tr><td style="color:#666;padding:2px 0;">${lblMap[f] || f}:</td><td style="font-weight:bold;text-align:right;color:#475569;">${txt(v)}${nodeTrendBadge(v,pv)}</td></tr>`;
                 });
-                capacityRows = rws + `<tr style="border-top:1px dashed #ccc;background:#f8fafc;"><td style="color:#000;padding:4px 0;font-weight:bold;">Effective Min · ${STORAGE_BRANCHES[branch].label}:</td><td style="font-weight:bold;text-align:right;color:#0078A8;">${txt(eff)}</td></tr>`;
+                capacityRows = rws + `<tr style="border-top:1px dashed #ccc;background:#f8fafc;"><td style="color:#000;padding:4px 0;font-weight:bold;">Effective Min · ${STORAGE_BRANCHES[branch].label}:</td><td style="font-weight:bold;text-align:right;color:#F3721F;">${txt(eff)}</td></tr>`;
             }
         } else {
             const varCode = (document.getElementById('view-var') || {}).value || (type === 'dem' ? 'dem_ch' : 'gen_mpe_rdt');
@@ -1912,7 +1914,7 @@ function updateHistoryChart(node) {
     if (historyChartInstance) historyChartInstance.destroy();
 
     // Paleta para hasta 8 variables
-    const palette = ['#0078A8', '#e74c3c', '#10b981', '#f59e0b', '#8b5cf6', '#06b6d4', '#ec4899', '#84cc16'];
+    const palette = ['#F3721F', '#e74c3c', '#10b981', '#f59e0b', '#8b5cf6', '#06b6d4', '#ec4899', '#84cc16'];
     let chartDatasets;
 
     if (node.grid === 'DSO') {
@@ -2163,8 +2165,8 @@ function wnRenderTable() {
         }
         const gridColor = c.grid === 'TSO' ? '#1e40af' : '#065f46';
         return `<tr>
-           	<td style="font-weight:600; color:#0078A8; text-align:left;">${c.name}</td>
-            <td><button onclick="closeWhatsNew(); focusNode('${c.name.toLowerCase()}')" style="background:#fff; color:#0078A8; border:1px solid rgba(0,120,168,0.25); border-radius:5px; padding:3px 7px; font-size:10px; cursor:pointer; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,0.06);" title="Map View">📍</button></td>
+           	<td style="font-weight:600; color:#F3721F; text-align:left;">${c.name}</td>
+            <td><button onclick="closeWhatsNew(); focusNode('${c.name.toLowerCase()}')" style="background:#fff; color:#F3721F; border:1px solid rgba(0,120,168,0.25); border-radius:5px; padding:3px 7px; font-size:10px; cursor:pointer; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,0.06);" title="Map View">📍</button></td>
 			<td style="color:#475569;">${c.prov}</td>
             <td><span style="background:${gridColor}; color:white; padding:1px 6px; border-radius:3px; font-size:10px; font-weight:bold;">${c.grid}</span></td>
             <td style="color:#475569; font-size:11px;">${c.oper}</td>
@@ -2173,7 +2175,7 @@ function wnRenderTable() {
             <td style="color:#334155; font-weight:bold;">${c.displayCur}</td>
             <td>${changeCell}</td>
             <td>${badgeMap[c.status]}</td>
-			<td><button onclick="openHistory('${c.name}')" style="background:#fff; color:#0078A8; border:1px solid rgba(0,120,168,0.25); border-radius:5px; padding:3px 7px; font-size:10px; cursor:pointer; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,0.06);" title="View Historical Data">📊</button></td>
+			<td><button onclick="openHistory('${c.name}')" style="background:#fff; color:#F3721F; border:1px solid rgba(0,120,168,0.25); border-radius:5px; padding:3px 7px; font-size:10px; cursor:pointer; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,0.06);" title="View Historical Data">📊</button></td>
         </tr>`;
     }).join('');
 }
@@ -2420,6 +2422,11 @@ function gsTSO(entry, key){
     const resv=g.reserva||{}, conc=d.concurso||{}, ec=g.en_curso||{}, ecd=d.en_curso||{}, lib=g.liberada||{};
     const dispGen = gsMaxOf(dg.gen_mges_rdt, dg.gen_mpe_rdt, dg.gen_mges_rdd, dg.gen_mpe_rdd, dg.alm_mges_rdt, dg.alm_mpe_rdt, dg.alm_mges_rdd, dg.alm_mpe_rdd);
     const dispDem = gsMaxOf(dd.dem_ch, dd.dem_sh, dd.dem_no_cep, dd.alm_cep, dd.alm_no_cep);
+    // Disponibles separados para una saturación coherente (numerador y denominador del mismo tipo) — punto 8
+    const dispGenOnly = gsMaxOf(dg.gen_mges_rdt, dg.gen_mpe_rdt, dg.gen_mges_rdd, dg.gen_mpe_rdd);
+    const dispAlmGenOnly = gsMaxOf(dg.alm_mges_rdt, dg.alm_mpe_rdt, dg.alm_mges_rdd, dg.alm_mpe_rdd);
+    const dispDemOnly = gsMaxOf(dd.dem_ch, dd.dem_sh, dd.dem_no_cep);
+    const dispAlmDemOnly = gsMaxOf(dd.alm_cep, dd.alm_no_cep);
     const almG = gsMaxOf(dg.alm_mges_rdt, dg.alm_mpe_rdt, dg.alm_mges_rdd, dg.alm_mpe_rdd);
     const almD = gsMaxOf(dd.alm_cep, dd.alm_no_cep);
     const dispAlm = gsMinDef(almG, almD);
@@ -2442,13 +2449,13 @@ function gsTSO(entry, key){
     const critG=gsBindCode([[cleanNum(mg.gen_mges),clg.gen_mges],[cleanNum(mg.gen_mpe),clg.gen_mpe],[cleanNum(mg.alm_mges),clg.alm_mges],[cleanNum(mg.alm_mpe),clg.alm_mpe]]);
     const critD=gsBindCode([[cleanNum(md.dem_ch),cld.dem_ch],[cleanNum(md.dem_sh),cld.dem_sh],[cleanNum(md.dem_no_cep),cld.dem_no_cep],[cleanNum(md.alm_cep_mpe),cld.alm_cep],[cleanNum(md.alm_no_cep_mges),cld.alm_no_cep]]);
     return { grid:'TSO',
-      gen:{disp:dispGen, margen:margenGen, noOtorg:noOtorgGen, otorgada:otGen, enCurso:cleanNum(ec.gen), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonGen!=='', causas:gsCausas(reasonGen), reason:reasonGen, crit:critG, sat:gsSat(gsAdd(otGen,cleanNum(ec.gen)),dispGen), enConcurso:enConcG, otTot:gsAdd(cleanNum(otg.gen),cleanNum(otg.alm)), ecTot:gsAdd(cleanNum(ec.gen),cleanNum(ec.alm)), libMax:gsMaxOf(lib.lib_mges,lib.lib_mpe),
+      gen:{disp:dispGen, margen:margenGen, noOtorg:noOtorgGen, otorgada:otGen, enCurso:cleanNum(ec.gen), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonGen!=='', causas:gsCausas(reasonGen), reason:reasonGen, crit:critG, sat:gsSat(gsAdd(otGen,cleanNum(ec.gen)),dispGenOnly), satAlm:gsSat(gsAdd(cleanNum(otg.alm),cleanNum(ec.alm)),dispAlmGenOnly), enConcurso:enConcG, otTot:gsAdd(cleanNum(otg.gen),cleanNum(otg.alm)), ecTot:gsAdd(cleanNum(ec.gen),cleanNum(ec.alm)), libMax:gsMaxOf(lib.lib_mges,lib.lib_mpe),
         sub:{'MGES':cleanNum(mg.gen_mges), 'MPE':cleanNum(mg.gen_mpe), 'Alm MGES':cleanNum(mg.alm_mges), 'Alm MPE':cleanNum(mg.alm_mpe), '_mMGES':gsMaxOf(mg.gen_mges,mg.alm_mges), '_mMPE':gsMaxOf(mg.gen_mpe,mg.alm_mpe)},
         subN:{'MGES':cleanNum(nd.gen_mges), 'MPE':cleanNum(nd.gen_mpe), 'Alm MGES':cleanNum(nd.alm_mges), 'Alm MPE':cleanNum(nd.alm_mpe), '_mMGES':gsMaxOf(nd.gen_mges,nd.alm_mges), '_mMPE':gsMaxOf(nd.gen_mpe,nd.alm_mpe)},
         subD:{'MGES RdT':cleanNum(dg.gen_mges_rdt), 'MPE RdT':cleanNum(dg.gen_mpe_rdt), 'MGES RdD':cleanNum(dg.gen_mges_rdd), 'MPE RdD':cleanNum(dg.gen_mpe_rdd), 'Alm MGES RdT':cleanNum(dg.alm_mges_rdt), 'Alm MPE RdT':cleanNum(dg.alm_mpe_rdt), 'Alm MGES RdD':cleanNum(dg.alm_mges_rdd), 'Alm MPE RdD':cleanNum(dg.alm_mpe_rdd), '_mMGESrdt':gsMaxOf(dg.gen_mges_rdt,dg.alm_mges_rdt), '_mMPErdt':gsMaxOf(dg.gen_mpe_rdt,dg.alm_mpe_rdt), '_mMGESrdd':gsMaxOf(dg.gen_mges_rdd,dg.alm_mges_rdd), '_mMPErdd':gsMaxOf(dg.gen_mpe_rdd,dg.alm_mpe_rdd)},
         subOt:{'GEN':cleanNum(otg.gen), 'ALM':cleanNum(otg.alm)}, subEc:{'GEN':cleanNum(ec.gen), 'ALM':cleanNum(ec.alm)},
         subLib:{'Liberada MGES':cleanNum(lib.lib_mges), 'Liberada MPE':cleanNum(lib.lib_mpe), 'Otorgada MGES':cleanNum(lib.otorg_mges), 'Otorgada MPE':cleanNum(lib.otorg_mpe), 'Disponible MGES':cleanNum(lib.disp_mges), 'Disponible MPE':cleanNum(lib.disp_mpe), '_libMax':gsMaxOf(lib.lib_mges,lib.lib_mpe), '_otorgMax':gsMaxOf(lib.otorg_mges,lib.otorg_mpe), '_dispMax':gsMaxOf(lib.disp_mges,lib.disp_mpe)}},
-      dem:{disp:dispDem, margen:margenDem, noOtorg:noOtorgDem, otorgada:otDem, enCurso:cleanNum(ecd.dem), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonDem!=='', causas:gsCausas(reasonDem), reason:reasonDem, crit:critD, sat:gsSat(gsAdd(otDem,cleanNum(ecd.dem)),dispDem), enConcurso:enConcD, otTot:gsAdd(cleanNum(otd.dem_rdt),cleanNum(otd.alm_rdt)), ecTot:gsAdd(cleanNum(ecd.dem),cleanNum(ecd.alm_rdt)), libMax:NaN,
+      dem:{disp:dispDem, margen:margenDem, noOtorg:noOtorgDem, otorgada:otDem, enCurso:cleanNum(ecd.dem), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonDem!=='', causas:gsCausas(reasonDem), reason:reasonDem, crit:critD, sat:gsSat(gsAdd(otDem,cleanNum(ecd.dem)),dispDemOnly), satAlm:gsSat(gsAdd(cleanNum(otd.alm_rdt),cleanNum(ecd.alm_rdt)),dispAlmDemOnly), enConcurso:enConcD, otTot:gsAdd(cleanNum(otd.dem_rdt),cleanNum(otd.alm_rdt)), ecTot:gsAdd(cleanNum(ecd.dem),cleanNum(ecd.alm_rdt)), libMax:NaN,
         sub:{'CH':cleanNum(md.dem_ch), 'SH':cleanNum(md.dem_sh), 'No CEP':cleanNum(md.dem_no_cep), 'Alm CEP':cleanNum(md.alm_cep_mpe), 'Alm No CEP':cleanNum(md.alm_no_cep_mges), '_mDem':gsMaxOf(md.dem_ch,md.dem_sh,md.dem_no_cep), '_mAlm':gsMaxOf(md.alm_cep_mpe,md.alm_no_cep_mges)},
         subN:{'CH':cleanNum(no.dem_ch), 'SH':cleanNum(no.dem_sh), 'No CEP':cleanNum(no.dem_no_cep), 'Alm CEP':cleanNum(no.alm_cep), 'Alm No CEP':cleanNum(no.alm_no_cep), '_mDem':gsMaxOf(no.dem_ch,no.dem_sh,no.dem_no_cep), '_mAlm':gsMaxOf(no.alm_cep,no.alm_no_cep)},
         subD:{'CH':cleanNum(dd.dem_ch), 'SH':cleanNum(dd.dem_sh), 'No CEP':cleanNum(dd.dem_no_cep), 'Alm CEP':cleanNum(dd.alm_cep), 'Alm No CEP':cleanNum(dd.alm_no_cep), '_mDem':gsMaxOf(dd.dem_ch,dd.dem_sh,dd.dem_no_cep), '_mAlm':gsMaxOf(dd.alm_cep,dd.alm_no_cep)},
@@ -2488,7 +2495,7 @@ function gsAggregate(level, scope, key, side){
         else if(level==='ccaa') gk=e.ccaa||'(sin CCAA)';
         else if(level==='prov') gk=e.prov||'(sin provincia)';
         else gk=e.name;
-        const o=G[gk]||(G[gk]={name:gk,n:0,nTSO:0,nDSO:0,disp:0,margen:0,otorgada:0,enCurso:0,comprom:0,ocupada:0,admitida:0,noSolic:0,concurso:0,satSum:0,satN:0,causas:{},sumX:0,sumY:0,coordN:0,noOtorg:0,otTot:0,ecTot:0,libMax:0,sub:{},subN:{},subD:{},subOt:{},subEc:{},subLib:{}});
+        const o=G[gk]||(G[gk]={name:gk,n:0,nTSO:0,nDSO:0,disp:0,margen:0,otorgada:0,enCurso:0,comprom:0,ocupada:0,admitida:0,noSolic:0,concurso:0,satSum:0,satN:0,satAlmSum:0,satAlmN:0,causas:{},sumX:0,sumY:0,coordN:0,noOtorg:0,otTot:0,ecTot:0,libMax:0,sub:{},subN:{},subD:{},subOt:{},subEc:{},subLib:{}});
         o.n++; if(e.grid==='DSO')o.nDSO++; else o.nTSO++;
         if(!isNaN(e.x)&&!isNaN(e.y)){ o.sumX+=e.x; o.sumY+=e.y; o.coordN++; }
         const add=function(f,v){ if(!isNaN(v)) o[f]+=v; };
@@ -2503,6 +2510,7 @@ function gsAggregate(level, scope, key, side){
         if(sm.noSolic)o.noSolic++;
         if(sm.enConcurso)o.concurso++;
         if(!isNaN(sm.sat)){o.satSum+=sm.sat;o.satN++;}
+        if(!isNaN(sm.satAlm)){o.satAlmSum+=sm.satAlm;o.satAlmN++;}
         if(sm.noSolic){ sm.causas.forEach(function(c){ o.causas[c]=(o.causas[c]||0)+1; }); }
     }
     return Object.keys(G).map(function(k){return G[k];});
@@ -2529,6 +2537,9 @@ function gsNationalBanner(scope,key,pkey,side){
     const g=cur[0], p=(prev.length?prev[0]:{});
     const SL=GS_SIDESHORT[side]||'', isDSO=(scope==='DSO'), DM=(gsGlobalMode==='delta');
     const sat=g.satN?(100*g.satSum/g.satN):NaN;
+    const satAlm=g.satAlmN?(100*g.satAlmSum/g.satAlmN):NaN;
+    const satMainLbl=isDSO?'Saturación':(side==='dem'?'Sat. Demanda':'Sat. Generación');
+    const satTip='Saturación = media, solo en nudos con disponible publicado por REE, de (Otorgada + En curso) / (Otorgada + En curso + Disponible). Nudos usados: '+(g.satN||0)+(isDSO?'':' (Almacenamiento: '+(g.satAlmN||0)+')')+'. '+(isDSO?'DSO: (Ocupada + Admitida) / (… + Disponible).':'Generación/Demanda y Almacenamiento se calculan por separado, cada uno con su propio disponible.');
     // chip = etiqueta + valor (o Δ)
     const chip=function(lbl,v,pv){ return '<span class="gs-nat-chip"><span class="k">'+lbl+':</span> <span class="v">'+(DM?gsSigned((isNaN(v)?0:v)-(isNaN(pv)?0:pv)):gsFmt(v))+'</span>'+(DM?'':gsDelta(v,(pv===undefined?NaN:pv)))+'</span>'; };
     let chips='', headNum=NaN, headPv=NaN, vistaLbl='';
@@ -2548,7 +2559,7 @@ function gsNationalBanner(scope,key,pkey,side){
         +'<span class="gs-nat-flag">🇪🇸 España'+(isDSO?' · DSO':'')+'</span>'
         +'<span><span class="gs-nat-headnum">'+headVal+'</span><span class="gs-nat-headunit"> MW'+(DM?' Δ':'')+'</span> '
           +'<span class="gs-nat-headlbl">'+(DM?'Δ ':'')+vistaLbl+' '+(isDSO?'':SL)+' · total nacional</span></span>'
-        +'<span class="gs-nat-sat"><span class="k" style="font-size:11px;opacity:.85;">Saturación</span><br><span class="v">'+(isNaN(sat)?'–':sat.toFixed(0)+'%')+'</span></span>'
+        +'<span class="gs-nat-sat" title="'+satTip+'"><span class="k" style="font-size:11px;opacity:.85;">'+satMainLbl+'</span><br><span class="v">'+(isNaN(sat)?'–':sat.toFixed(0)+'%')+'</span>'+((!isDSO&&!isNaN(satAlm))?'<span style="display:block;font-size:10px;opacity:.92;font-weight:600;margin-top:1px;">Alm.: '+satAlm.toFixed(0)+'%</span>':'')+'</span>'
       +'</div>'
       +'<div class="gs-nat-chips"><span class="gs-nat-chip"><span class="k">Nudos:</span> <span class="v">'+g.n+'</span></span>'+chips+'</div>'
       +'</div>';
@@ -2573,10 +2584,8 @@ function renderGridStatus(){
     const prev=gsAggregate(level,scope,pkey,side);
     const pmap={}; prev.forEach(function(g){pmap[g.name]=g;});
     cur.forEach(function(g){ const pm=(pmap[g.name]&&!isNaN(pmap[g.name].margen))?pmap[g.name].margen:0; g.aflorada=(isNaN(g.margen)?0:g.margen)-pm; });
-    const col=gsSort.col, dir=gsSort.dir;
-    const val=function(g){ if(col==='name')return g.name; if(col==='sat')return g.satN?g.satSum/g.satN:-1; return g[col]||0; };
-    cur.sort(function(a,b){ const va=val(a),vb=val(b); if(col==='name')return dir*String(va).localeCompare(String(vb)); return dir*((va||0)-(vb||0)); });
-    const hdr=function(lbl,c,extra){ const act=gsSort.col===c, ar=act?(gsSort.dir<0?' ▼':' ▲'):''; return '<th onclick="gsSetSort(\''+c+'\')" style="cursor:pointer;'+(extra||'')+'">'+lbl+ar+'</th>'; };
+    cur.sort(function(a,b){ return String(a.name).localeCompare(String(b.name),'es'); });
+    const hdr=function(lbl,c,extra){ return '<th style="'+(extra||'')+'">'+lbl+'</th>'; };
     const isDSO=(scope==='DSO');
     let rows='';
     for(const g of cur){
@@ -2645,7 +2654,7 @@ function renderGridStatus(){
     } else { cHtml='<div style="color:#94a3b8;">Sin nudos en este alcance.</div>'; }
 
     let tableOut=table;
-    if(desg) tableOut='<div style="font-size:11px;color:#64748b;margin-bottom:4px;">'+(DM?'<b style="color:#0078A8;">Variación (Δ vs mes anterior)</b> · ':'')+'Desglose: <b>'+blockLbl+'</b>'+(desgBlock==='no_otorgable'?' · los <b>motivos</b> están en el panel de causas (derecha) →':'')+'</div>'+tableOut;
+    if(desg){ const _maxNote=(_aggSuffix==='(máx.)')?' · <b>Máx.</b> = suma, nudo a nudo, del criterio que más limita; por eso <b>no</b> coincide necesariamente con ninguna columna ni con la mayor categoría.':' · <b>Total</b> = suma de las columnas.'; tableOut='<div style="font-size:11px;color:#64748b;margin-bottom:4px;">'+(DM?'<b style="color:#F3721F;">Variación (Δ vs mes anterior)</b> · ':'')+'Desglose: <b>'+blockLbl+'</b>'+(desgBlock==='no_otorgable'?' · los <b>motivos</b> están en el panel de causas (derecha) →':'')+_maxNote+'</div>'+tableOut; }
     tableOut=gsNationalBanner(scope,key,pkey,side)+tableOut;
     document.getElementById('gs-table-wrap').innerHTML=tableOut;
     document.getElementById('gs-mot-wrap').innerHTML=cHtml;
@@ -2797,12 +2806,12 @@ function gsRenderCritZona(key,pkey,scope,side){
   const blkHtml=blocks.length?blocks.map(function(b){ return '<div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:6px;padding:6px 10px;margin:4px 0;font-size:12px;"><b>⚠ '+b.recs.length+' nudos × '+gsSigned(b.d)+' MW idéntico</b> → probable <b>bloque zonal único</b> contado '+b.recs.length+' veces (suma naive '+gw(b.d*b.recs.length)+' GW). Nudos: '+b.recs.slice(0,8).map(function(r){return r.name;}).join(', ')+(b.recs.length>8?(' … +'+(b.recs.length-8)):'')+'</div>'; }).join(''):'<div style="color:#94a3b8;font-size:11px;">No se detectan bloques de Δ idéntico (≥3 nudos).</div>';
   host.innerHTML=
     '<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:12px;"><b>Afloramiento neto (Δ margen vs mes anterior): '+gw(totAflo)+' GW</b><br><span style="color:#16a34a;">Sumable (estático nodal): '+gw(sumable)+' GW</span> · <span style="color:#b45309;">Compartido (zonal, NO sumable): '+gw(compart)+' GW</span>'+(Math.abs(indet)>=1?(' · indeterminado '+gw(indet)+' GW'):'')+(nUnk?(' <span style="color:#94a3b8;">('+nUnk+' nudos zonales sin zona pública)</span>'):'')+'</div>'
-    +'<h4 style="margin:8px 0 4px;font-size:12px;color:#0078A8;">Descomposición del afloramiento por criterio</h4>'
+    +'<h4 style="margin:8px 0 4px;font-size:12px;color:#F3721F;">Descomposición del afloramiento por criterio</h4>'
     +'<table class="gs-table"><thead><tr><th style="text-align:left;">Criterio limitante</th><th>Nº nudos</th><th>ΣΔ naive (GW)</th><th>ΣΔ dedup (GW)</th><th>Tipo</th></tr></thead><tbody>'+famRows+'</tbody></table>'
     +'<div style="font-size:10px;color:#94a3b8;margin-top:4px;">«Sumable» = límite en el propio nudo (se suma). «Compartido» = límite de corredor/zona: el mismo hueco aparece en varios nudos, <b>NO se suma</b>. «Dedup» agrupa por código de zona estática y cuenta cada zona una vez → <b>cota inferior</b> del doble conteo (la zona dinámica oficial fusionaría más). Afloramiento = Δ del máx margen respecto al mes anterior, atribuido al criterio del mes actual. Solo TSO · Demanda.</div>'
-    +'<h4 style="margin:12px 0 4px;font-size:12px;color:#0078A8;">Detector de bloque zonal (Δ idéntico repetido)</h4>'+blkHtml
-    +'<h4 style="margin:12px 0 4px;font-size:12px;color:#0078A8;">Cruce geográfico del afloramiento (por CCAA)</h4>'+gsAfloraGeo(recs)
-    +'<h4 style="margin:12px 0 4px;font-size:12px;color:#0078A8;">Zonas con varios nudos (dedup por zona estática)</h4>'+zHtml
+    +'<h4 style="margin:12px 0 4px;font-size:12px;color:#F3721F;">Detector de bloque zonal (Δ idéntico repetido)</h4>'+blkHtml
+    +'<h4 style="margin:12px 0 4px;font-size:12px;color:#F3721F;">Cruce geográfico del afloramiento (por CCAA)</h4>'+gsAfloraGeo(recs)
+    +'<h4 style="margin:12px 0 4px;font-size:12px;color:#F3721F;">Zonas con varios nudos (dedup por zona estática)</h4>'+zHtml
     +'<div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:8px 12px;margin-top:10px;font-size:12px;"><b>Contexto absoluto del mes</b> — Margen (dedup): '+gw(tD)+' GW · <span style="color:#b45309;">Reservado (no otorgable): '+gw(tR)+' GW</span> · <span style="color:#16a34a;">Disponible (solicitable): '+gw(tS)+' GW</span><br><span style="color:#64748b;">Δ vs mes anterior — margen '+gsSigned(tD-tDp)+' · reservado '+gsSigned(tR-pR)+' · disponible '+gsSigned(tS-pS)+'  (MW)</span></div>';
 }
 
@@ -2862,7 +2871,7 @@ function gsWnDetailHTML(r,side,rid){
     const badge=changed
       ? '<span style="color:#b45309;font-weight:700;font-size:11px;">\u25cf Change detected</span> <span style="color:#94a3b8;font-size:9px;">('+nChg+' campo'+(nChg>1?'s':'')+(Math.abs(bnet)>=0.5?(' \u00b7 neto '+(bnet>0?'+':'\u2212')+gsFmt(Math.abs(bnet))):'')+')</span>'
       : '<span style="color:#cbd5e1;font-size:11px;">sin cambios</span>';
-    const row='<div onclick="gsWnToggle(\''+bid+'\')" style="cursor:pointer;padding:3px 6px;border-radius:5px;margin-top:2px;display:flex;align-items:center;gap:8px;'+(changed?'background:#fff7ed;border:1px solid #fed7aa;':'opacity:.65;')+'"><span id="'+bid+'-i" style="color:#0078A8;font-size:10px;width:10px;">\u25b8</span><b style="font-size:11px;min-width:230px;">'+bo[1]+'</b>'+badge+'</div>';
+    const row='<div onclick="gsWnToggle(\''+bid+'\')" style="cursor:pointer;padding:3px 6px;border-radius:5px;margin-top:2px;display:flex;align-items:center;gap:8px;'+(changed?'background:#fff7ed;border:1px solid #fed7aa;':'opacity:.65;')+'"><span id="'+bid+'-i" style="color:#F3721F;font-size:10px;width:10px;">\u25b8</span><b style="font-size:11px;min-width:230px;">'+bo[1]+'</b>'+badge+'</div>';
     const fields='<div id="'+bid+'" style="display:none;padding:3px 6px 8px 26px;"><table class="gs-table" style="font-size:10px;max-width:520px;"><thead><tr><th style="text-align:left;">Variable (REE)</th><th>antes</th><th>ahora</th><th>\u0394</th></tr></thead><tbody>'+rws+'</tbody></table></div>';
     return row+fields;
   }).join('');
@@ -2904,10 +2913,10 @@ function renderWhatsNew(){
   const blkCell=function(r,bo){ const c=r._blk[bo[0]]||{changed:false,n:0,net:0}; if(!c.changed) return '<span style="color:#cbd5e1;">\u00b7</span>'; const tt=bo[1]+': '+c.n+' campo(s)'+(Math.abs(c.net)>=0.5?(' \u00b7 neto '+(c.net>0?'+':'\u2212')+gsFmt(Math.abs(c.net))):' (texto)'); const txt=(Math.abs(c.net)>=0.5)?((c.net>0?'+':'\u2212')+gsFmt(Math.abs(c.net))):'\u25cf'; return '<span title="'+tt+'" style="color:#9a3412;font-weight:700;background:#fed7aa;padding:1px 5px;border-radius:4px;white-space:nowrap;font-size:10px;">'+txt+'</span>'; };
   const rows=shown.map(function(r,idx){
     const rid='wn'+idx;
-    const so=(!isNaN(r.vals.disp)&&r.vals.disp>0); const cc=so?('<span style="color:#166534;font-weight:600;">\u2713 Solicitable</span> <span style="color:#94a3b8;">'+gsFmt(r.vals.disp)+' MW</span>'):('<span style="color:#991b1b;font-weight:600;">\u2717 No solicitable</span>'+(r.reason?(' <a onclick="gsWnMotTgl(event,\''+rid+'\')" style="color:#0078A8;cursor:pointer;font-size:10px;">ver motivo</a><span id="'+rid+'-mf" style="display:none;color:#64748b;"> \u00b7 '+r.reason+'</span>'):''));
+    const so=(!isNaN(r.vals.disp)&&r.vals.disp>0); const cc=so?('<span style="color:#166534;font-weight:600;">\u2713 Solicitable</span> <span style="color:#94a3b8;">'+gsFmt(r.vals.disp)+' MW</span>'):('<span style="color:#991b1b;font-weight:600;">\u2717 No solicitable</span>'+(r.reason?(' <a onclick="gsWnMotTgl(event,\''+rid+'\')" style="color:#F3721F;cursor:pointer;font-size:10px;">ver motivo</a><span id="'+rid+'-mf" style="display:none;color:#64748b;"> \u00b7 '+r.reason+'</span>'):''));
     const satTxt=isNaN(r.sat)?'\u2013':(Math.round(r.sat*100)+'%');
     const summary='<tr onclick="gsWnToggleNode('+idx+')" style="cursor:pointer;">'
-      +'<td style="text-align:left;"><span id="'+rid+'-i" style="color:#0078A8;font-size:10px;">\u25b8</span> <b>'+r.name+'</b></td>'
+      +'<td style="text-align:left;"><span id="'+rid+'-i" style="color:#F3721F;font-size:10px;">\u25b8</span> <b>'+r.name+'</b></td>'
       +'<td style="text-align:left;font-size:11px;">'+(r.ccaa||'')+'</td>'
       +'<td style="text-align:left;font-size:11px;"><div style="max-width:200px;overflow-wrap:anywhere;">'+cc+'</div></td>'
       +'<td>'+satTxt+'</td>'
@@ -2916,7 +2925,7 @@ function renderWhatsNew(){
     const detail='<tr id="'+rid+'" style="display:none;background:#f8fafc;"><td colspan="'+(4+blkCols.length)+'"></td></tr>';
     return summary+detail;
   }).join('');
-  const blkHead=blkCols.map(function(bo){ const st=gsWnBlkFilter[bo[0]]||''; const stBg=st==='any'?'background:#0078A8;color:#fff;':st==='up'?'background:#16a34a;color:#fff;':st==='down'?'background:#dc2626;color:#fff;':'color:#334155;'; const stLbl=st==='any'?'\u25cf cambios':st==='up'?'\u25b2 subida':st==='down'?'\u25bc bajada':'filtrar'; return '<th onclick="gsWnToggleFilterBlk(\''+bo[0]+'\')" title="Clic para filtrar '+bo[1]+': cambios \u2192 subida \u2192 bajada" style="cursor:pointer;width:56px;font-size:10px;line-height:1.15;vertical-align:bottom;'+stBg+'">'+GS_WN_COL[bo[0]]+'<div style="font-size:8px;font-weight:normal;opacity:.85;">'+stLbl+'</div></th>'; }).join('');
+  const blkHead=blkCols.map(function(bo){ const st=gsWnBlkFilter[bo[0]]||''; const stBg=st==='any'?'background:#F3721F;color:#fff;':st==='up'?'background:#16a34a;color:#fff;':st==='down'?'background:#dc2626;color:#fff;':'color:#334155;'; const stLbl=st==='any'?'\u25cf cambios':st==='up'?'\u25b2 subida':st==='down'?'\u25bc bajada':'filtrar'; return '<th onclick="gsWnToggleFilterBlk(\''+bo[0]+'\')" title="Clic para filtrar '+bo[1]+': cambios \u2192 subida \u2192 bajada" style="cursor:pointer;width:56px;font-size:10px;line-height:1.15;vertical-align:bottom;'+stBg+'">'+GS_WN_COL[bo[0]]+'<div style="font-size:8px;font-weight:normal;opacity:.85;">'+stLbl+'</div></th>'; }).join('');
   host.innerHTML='<div style="font-size:11px;color:#64748b;margin-bottom:6px;">Perspectiva <b>'+(GS_SIDELBL[side]||side)+'</b> \u00b7 <b>pulsa un nudo</b> para el desglose \u00b7 <b>pulsa la cabecera de un bloque</b> para filtrar (cambios \u2192 subida \u2192 bajada; Y/O combina) \u00b7 celda naranja = cambi\u00f3 \u00b7 '+total+' nudos</div>'
     +'<div style="overflow:auto;"><table class="gs-table"><thead><tr><th style="text-align:left;">Nudo</th><th style="text-align:left;">CCAA</th><th style="text-align:left;">Conclusi\u00f3n</th><th>Sat.</th>'+blkHead+'</tr></thead><tbody>'+(rows||'<tr><td colspan="'+(4+blkCols.length)+'">Sin nudos que mostrar con estos filtros.</td></tr>')+'</tbody></table></div>';
 }
@@ -2970,7 +2979,7 @@ function gsGeoKeyForGroup(name,level){ let n=gsNorm(name); const al=(level==='cc
 function gsFeatKeys(props){ const raw=String((props&&props.name)||''); const out=[gsNorm(raw)]; if(raw.indexOf('/')>=0) raw.split('/').forEach(function(p){ out.push(gsNorm(p)); }); return out; }
 function gsLoadGeo(level,cb){ const which=(level==='ccaa')?'ccaa':'prov'; if(GS_GEO[which]){cb(GS_GEO[which]);return;} if(gsGeoTried[which]){cb(null);return;} gsGeoTried[which]=true;
   fetch(which==='ccaa'?'es_ccaa.geojson':'es_prov.geojson').then(function(r){return r.ok?r.json():null;}).then(function(j){ if(j){GS_GEO[which]=j;} else {gsGeoMissing[which]=true;} cb(j); if(j&&gsMap) gsRenderMap(); }).catch(function(e){ gsGeoMissing[which]=true; console.warn('GeoJSON no disponible',e); cb(null); }); }
-function gsSeqColor(t){ if(isNaN(t)) t=0; t=Math.max(0,Math.min(1,t)); const m=function(a,b){return Math.round(a+(b-a)*t);}; return 'rgb('+m(255,154)+','+m(237,52)+','+m(213,18)+')'; }
+function gsSeqColor(t){ if(isNaN(t)) t=0; t=Math.max(0,Math.min(1,t)); const m=function(a,b){return Math.round(a+(b-a)*t);}; return 'rgb('+m(219,7)+','+m(234,89)+','+m(254,133)+')'; }
 function gsDivColor(v,maxAbs){ if(isNaN(v)||!maxAbs) return '#eef2f7'; const t=Math.max(-1,Math.min(1,v/maxAbs)); const m=function(a,b,k){return Math.round(a+(b-a)*k);}; if(t>=0){ return 'rgb('+m(240,234,t)+','+m(240,88,t)+','+m(240,12,t)+')'; } const k=-t; return 'rgb('+m(240,71,k)+','+m(240,85,k)+','+m(240,105,k)+')'; }
 function gsChoroFill(metric,g,stats){ const v=gsBubbleVal(g,metric); if(metric==='sat') return gsSeqColor(isNaN(v)?NaN:v/100); if(metric==='aflorada') return gsDivColor(v,stats.maxAbs); return gsSeqColor(stats.max>0?Math.abs(v)/stats.max:NaN); }
 function gsSatColor(satPct){ if(isNaN(satPct)) return '#94a3b8'; const s=Math.max(0,Math.min(100,satPct))/100; return 'hsl('+(120*(1-s))+',70%,45%)'; }
@@ -3118,11 +3127,10 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
         <option value="DSO">DSO</option>
       </select>
     </label>
-    <label>Vista:
-      <select id="gs-desg-block" onchange="renderGridStatus()" title="Vista de capacidad — afecta a tabla, mapa y dato nacional" style="font-size:12px;padding:2px 4px;border:1px solid #cbd5e1;border-radius:6px;"><option value="margen" selected>Margen de capacidad</option><option value="no_otorgable">No otorgable</option><option value="disp">Disponible para solicitud</option><option value="otorgada">Capacidad otorgada</option><option value="en_curso">Capacidad en curso</option><option value="liberada">Liberada autoconsumo RDL 7/2026</option></select>
+    <label>Bloque:
+      <select id="gs-desg-block" onchange="renderGridStatus()" title="Bloque de capacidad — afecta a tabla, mapa y dato nacional"><option value="otorgada" selected>Capacidad otorgada</option><option value="en_curso">Capacidad en curso</option><option value="margen">Margen de capacidad</option><option value="no_otorgable">No otorgable</option><option value="disp">Disponible para solicitud</option><option value="liberada">Liberada autoconsumo RDL 7/2026</option></select>
     </label>
-    <span style="font-size:11px;color:#64748b;">Pulsa una cabecera para ordenar.</span>
-    <button type="button" onclick="gsToggleGloss()" style="margin-left:auto;background:#e2e8f0;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:#0078A8;font-weight:bold;">&#9432; Siglas</button>
+    <button type="button" onclick="gsToggleGloss()" style="margin-left:auto;background:#e2e8f0;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:#F3721F;font-weight:bold;">&#9432; Siglas</button>
   </div>
   <div id="gs-gloss">
     <h4>Glosario de siglas (fuente: fichas de acceso de REE — Generación y Demanda)</h4>
@@ -3155,7 +3163,7 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
   <div class="gs-body">
     <div id="gs-map-wrap">
       <div id="gs-map-title"></div>
-      <div id="gs-map-fieldbox"><label>Colorear:</label><select id="gs-map-field" onchange="gsRenderMap()"></select></div>
+      <div id="gs-map-fieldbox"><label>Tipo:</label><select id="gs-map-field" onchange="gsRenderMap()"></select></div>
       <div id="gs-map"></div>
       <div id="gs-map-legend"></div>
     </div>
@@ -3180,7 +3188,7 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
           <option value="dPend">&#916; en curso / pendiente</option>
         </select>
       </label>
-      <button type="button" onclick="gsToggleVarNote()" style="background:#e2e8f0;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:#0078A8;font-weight:bold;">&#9432; Cómo se clasifica</button>
+      <button type="button" onclick="gsToggleVarNote()" style="background:#e2e8f0;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:#F3721F;font-weight:bold;">&#9432; Cómo se clasifica</button>
       <span style="font-size:11px;color:#64748b;">Variaciones vs mes anterior · usa el filtro «Red» · «Nivel / Vista» no aplican aquí.</span>
     </div>
     <div id="gs-var-note" style="display:none;margin-bottom:12px;padding:12px 16px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;font-size:12px;color:#334155;line-height:1.6;"></div>
@@ -3194,7 +3202,7 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
       <input id="gs-wn-search" type="text" placeholder="Buscar nudo o CCAA…" oninput="renderWhatsNew()" style="padding:4px 8px;border:1px solid #cbd5e1;border-radius:6px;font-size:13px;min-width:180px;">
       <select id="gs-wn-concl" onchange="renderWhatsNew()" style="padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:12px;"><option value="">Conclusión: todas</option><option value="si">Solo solicitables</option><option value="no">Solo NO solicitables</option></select>
       <span style="font-size:12px;color:#334155;">Filtro en la cabecera de cada columna · combinar:</span>
-      <button id="gs-wn-mode" onclick="gsWnSetFilterMode()" title="Alternar Y (todos los marcados) / O (alguno de los marcados)" style="padding:3px 9px;border:1px solid #0078A8;background:#e0f2fe;color:#0078A8;border-radius:6px;font-weight:700;font-size:12px;cursor:pointer;">Y</button>
+      <button id="gs-wn-mode" onclick="gsWnSetFilterMode()" title="Alternar Y (todos los marcados) / O (alguno de los marcados)" style="padding:3px 9px;border:1px solid #F3721F;background:#e0f2fe;color:#F3721F;border-radius:6px;font-weight:700;font-size:12px;cursor:pointer;">Y</button>
     </div>
     <div id="gs-wn-table"></div>
   </div>
