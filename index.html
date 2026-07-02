@@ -2302,19 +2302,22 @@ const GS_SIDELBL = {gen:'Generación', dem:'Demanda', alm:'Almacenamiento'};
 const GS_SIDESHORT = {gen:'Gen', dem:'Dem', alm:'Alm'};
 const GS_SUBLABELS = {gen:['MGES','MPE','Alm MGES','Alm MPE'], alm:['MGES','MPE'], dem:['CH','SH','No CEP','Alm CEP','Alm No CEP']};
 const GS_SUBLABELS_GENDISP=['MGES RdT','MPE RdT','Alm MGES RdT','Alm MPE RdT','MGES RdD','MPE RdD','Alm MGES RdD','Alm MPE RdD'];
-// Desgloses por tipo para las nuevas vistas Otorgada / En curso / Liberada autoconsumo (items 2 y 3)
-const GS_SUB_OT ={gen:['MGES','MPE'], dem:['CH','SH','ALM'], alm:[]};      // Otorgada
-const GS_SUB_EC ={gen:['MGES','MPE'], dem:['Demanda','ALM'], alm:[]};       // En curso
-const GS_SUB_LIB={gen:['MGES','MPE'], dem:[], alm:[]};                            // Liberada autoconsumo RDL 7/2026 (solo Gen)
+// Desglose Máximo Generación/Almacenamiento para Margen, No otorgable y Disponible (puntos 5,6,8)
+const GS_SUB_MAX={gen:['Generación','Almacenamiento'], dem:['Demanda','Almacenamiento'], alm:['Almacenamiento']};
+// Otorgada / En curso: columnas AA/AB y AH/AI de REE (GEN y ALM); Demanda: su equivalente demanda RdT / alm RdT (puntos 2,4)
+const GS_SUB_OT ={gen:['GEN','ALM'], dem:['Demanda','ALM'], alm:[]};       // Capacidad otorgada
+const GS_SUB_EC ={gen:['GEN','ALM'], dem:['Demanda','ALM'], alm:[]};       // Capacidad en curso
+// Liberada autoconsumo RDL 7/2026: todas las variables del bloque (liberada, otorgada y disponible) por tipo MGES/MPE (punto 7)
+const GS_SUB_LIB={gen:['Liberada MGES','Liberada MPE','Otorgada MGES','Otorgada MPE','Disponible MGES','Disponible MPE'], dem:[], alm:[]};
 // Configuración única de "Vista": mapea el valor del desplegable a su sub-objeto, agregado, etiqueta y sub-columnas.
 function gsVistaCfg(vista, side){
     switch(vista){
-        case 'no_otorgable': return {sub:'subN',  agg:'noOtorg', label:'No otorgable', labels:(GS_SUBLABELS[side]||[])};
-        case 'disp':         return {sub:'subD',  agg:'disp',    label:'Disponible',   labels:(side==='gen')?GS_SUBLABELS_GENDISP:(GS_SUBLABELS[side]||[])};
-        case 'otorgada':     return {sub:'subOt', agg:'otTot',   label:'Otorgada',     labels:(GS_SUB_OT[side]||[])};
-        case 'en_curso':     return {sub:'subEc', agg:'ecTot',   label:'En curso',     labels:(GS_SUB_EC[side]||[])};
+        case 'no_otorgable': return {sub:'subN',  agg:'noOtorg', label:'No otorgable', labels:(GS_SUB_MAX[side]||[])};
+        case 'disp':         return {sub:'subD',  agg:'disp',    label:'Disponible',   labels:(GS_SUB_MAX[side]||[])};
+        case 'otorgada':     return {sub:'subOt', agg:'otTot',   label:'Capacidad otorgada', labels:(GS_SUB_OT[side]||[])};
+        case 'en_curso':     return {sub:'subEc', agg:'ecTot',   label:'Capacidad en curso', labels:(GS_SUB_EC[side]||[])};
         case 'liberada':     return {sub:'subLib',agg:'libTot',  label:'Liberada autoconsumo (RDL 7/2026)', labels:(GS_SUB_LIB[side]||[])};
-        default:             return {sub:'sub',   agg:'margen',  label:'Margen',       labels:(GS_SUBLABELS[side]||[])};
+        default:             return {sub:'sub',   agg:'margen',  label:'Margen de capacidad', labels:(GS_SUB_MAX[side]||[])};
     }
 }
 // Oculta la vista "Liberada" cuando la perspectiva es Demanda (REE no publica ese bloque en demanda)
@@ -2382,8 +2385,8 @@ function gsTSO(entry, key){
     const critG=gsBindCode([[cleanNum(mg.gen_mges),clg.gen_mges],[cleanNum(mg.gen_mpe),clg.gen_mpe],[cleanNum(mg.alm_mges),clg.alm_mges],[cleanNum(mg.alm_mpe),clg.alm_mpe]]);
     const critD=gsBindCode([[cleanNum(md.dem_ch),cld.dem_ch],[cleanNum(md.dem_sh),cld.dem_sh],[cleanNum(md.dem_no_cep),cld.dem_no_cep],[cleanNum(md.alm_cep_mpe),cld.alm_cep],[cleanNum(md.alm_no_cep_mges),cld.alm_no_cep]]);
     return { grid:'TSO',
-      gen:{disp:dispGen, margen:margenGen, noOtorg:noOtorgGen, otorgada:otGen, enCurso:cleanNum(ec.gen), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonGen!=='', causas:gsCausas(reasonGen), reason:reasonGen, crit:critG, sat:gsSat(gsAdd(otGen,cleanNum(ec.gen)),dispGen), enConcurso:enConcG, otTot:gsAdd(cleanNum(otg.mges),cleanNum(otg.mpe)), ecTot:gsAdd(cleanNum(ec.mges),cleanNum(ec.mpe)), libTot:gsAdd(cleanNum(lib.lib_mges),cleanNum(lib.lib_mpe)), sub:{MGES:cleanNum(mg.gen_mges), MPE:cleanNum(mg.gen_mpe), 'Alm MGES':cleanNum(mg.alm_mges), 'Alm MPE':cleanNum(mg.alm_mpe)}, subN:{MGES:cleanNum(nd.gen_mges), MPE:cleanNum(nd.gen_mpe), 'Alm MGES':cleanNum(nd.alm_mges), 'Alm MPE':cleanNum(nd.alm_mpe)}, subD:{'MGES RdT':cleanNum(dg.gen_mges_rdt), 'MPE RdT':cleanNum(dg.gen_mpe_rdt), 'Alm MGES RdT':cleanNum(dg.alm_mges_rdt), 'Alm MPE RdT':cleanNum(dg.alm_mpe_rdt), 'MGES RdD':cleanNum(dg.gen_mges_rdd), 'MPE RdD':cleanNum(dg.gen_mpe_rdd), 'Alm MGES RdD':cleanNum(dg.alm_mges_rdd), 'Alm MPE RdD':cleanNum(dg.alm_mpe_rdd)}, subOt:{MGES:cleanNum(otg.mges), MPE:cleanNum(otg.mpe)}, subEc:{MGES:cleanNum(ec.mges), MPE:cleanNum(ec.mpe)}, subLib:{MGES:cleanNum(lib.lib_mges), MPE:cleanNum(lib.lib_mpe)}},
-      dem:{disp:dispDem, margen:margenDem, noOtorg:noOtorgDem, otorgada:otDem, enCurso:cleanNum(ecd.dem), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonDem!=='', causas:gsCausas(reasonDem), reason:reasonDem, crit:critD, sat:gsSat(gsAdd(otDem,cleanNum(ecd.dem)),dispDem), enConcurso:enConcD, otTot:gsAdd(gsAdd(cleanNum(otd.dem_ch_rdt),cleanNum(otd.dem_sh_rdt)),cleanNum(otd.alm_rdt)), ecTot:gsAdd(cleanNum(ecd.dem),cleanNum(ecd.alm_rdt)), sub:{CH:cleanNum(md.dem_ch), SH:cleanNum(md.dem_sh), 'No CEP':cleanNum(md.dem_no_cep), 'Alm CEP':cleanNum(md.alm_cep_mpe), 'Alm No CEP':cleanNum(md.alm_no_cep_mges)}, subN:{CH:cleanNum(no.dem_ch), SH:cleanNum(no.dem_sh), 'No CEP':cleanNum(no.dem_no_cep), 'Alm CEP':cleanNum(no.alm_cep), 'Alm No CEP':cleanNum(no.alm_no_cep)}, subD:{CH:cleanNum(dd.dem_ch), SH:cleanNum(dd.dem_sh), 'No CEP':cleanNum(dd.dem_no_cep), 'Alm CEP':cleanNum(dd.alm_cep), 'Alm No CEP':cleanNum(dd.alm_no_cep)}, subOt:{CH:cleanNum(otd.dem_ch_rdt), SH:cleanNum(otd.dem_sh_rdt), ALM:cleanNum(otd.alm_rdt)}, subEc:{Demanda:cleanNum(ecd.dem), ALM:cleanNum(ecd.alm_rdt)}},
+      gen:{disp:dispGen, margen:margenGen, noOtorg:noOtorgGen, otorgada:otGen, enCurso:cleanNum(ec.gen), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonGen!=='', causas:gsCausas(reasonGen), reason:reasonGen, crit:critG, sat:gsSat(gsAdd(otGen,cleanNum(ec.gen)),dispGen), enConcurso:enConcG, otTot:gsAdd(cleanNum(otg.gen),cleanNum(otg.alm)), ecTot:gsAdd(cleanNum(ec.gen),cleanNum(ec.alm)), libTot:gsAdd(cleanNum(lib.lib_mges),cleanNum(lib.lib_mpe)), sub:{'Generación':gsMaxOf(mg.gen_mges,mg.gen_mpe), 'Almacenamiento':gsMaxOf(mg.alm_mges,mg.alm_mpe)}, subN:{'Generación':gsMaxOf(nd.gen_mges,nd.gen_mpe), 'Almacenamiento':gsMaxOf(nd.alm_mges,nd.alm_mpe)}, subD:{'Generación':gsMaxOf(dg.gen_mges_rdt,dg.gen_mpe_rdt,dg.gen_mges_rdd,dg.gen_mpe_rdd), 'Almacenamiento':gsMaxOf(dg.alm_mges_rdt,dg.alm_mpe_rdt,dg.alm_mges_rdd,dg.alm_mpe_rdd)}, subOt:{'GEN':cleanNum(otg.gen), 'ALM':cleanNum(otg.alm)}, subEc:{'GEN':cleanNum(ec.gen), 'ALM':cleanNum(ec.alm)}, subLib:{'Liberada MGES':cleanNum(lib.lib_mges), 'Liberada MPE':cleanNum(lib.lib_mpe), 'Otorgada MGES':cleanNum(lib.otorg_mges), 'Otorgada MPE':cleanNum(lib.otorg_mpe), 'Disponible MGES':cleanNum(lib.disp_mges), 'Disponible MPE':cleanNum(lib.disp_mpe)}},
+      dem:{disp:dispDem, margen:margenDem, noOtorg:noOtorgDem, otorgada:otDem, enCurso:cleanNum(ecd.dem), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonDem!=='', causas:gsCausas(reasonDem), reason:reasonDem, crit:critD, sat:gsSat(gsAdd(otDem,cleanNum(ecd.dem)),dispDem), enConcurso:enConcD, otTot:gsAdd(cleanNum(otd.dem_rdt),cleanNum(otd.alm_rdt)), ecTot:gsAdd(cleanNum(ecd.dem),cleanNum(ecd.alm_rdt)), sub:{'Demanda':gsMaxOf(md.dem_ch,md.dem_sh,md.dem_no_cep), 'Almacenamiento':gsMaxOf(md.alm_cep_mpe,md.alm_no_cep_mges)}, subN:{'Demanda':gsMaxOf(no.dem_ch,no.dem_sh,no.dem_no_cep), 'Almacenamiento':gsMaxOf(no.alm_cep,no.alm_no_cep)}, subD:{'Demanda':gsMaxOf(dd.dem_ch,dd.dem_sh,dd.dem_no_cep), 'Almacenamiento':gsMaxOf(dd.alm_cep,dd.alm_no_cep)}, subOt:{'Demanda':cleanNum(otd.dem_rdt), 'ALM':cleanNum(otd.alm_rdt)}, subEc:{'Demanda':cleanNum(ecd.dem), 'ALM':cleanNum(ecd.alm_rdt)}},
       alm:{disp:dispAlm, margen:margenAlm, otorgada:otAlm, enCurso:cleanNum(ec.alm), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonAlm!=='', causas:gsCausas(reasonAlm), sat:gsSat(gsAdd(otAlm,cleanNum(ec.alm)),dispAlm), enConcurso:false, sub:{MGES:cleanNum(mg.alm_mges), MPE:cleanNum(mg.alm_mpe)}}
     };
 }
@@ -2925,7 +2928,7 @@ function gsRenderMap(){
     const DM=(gsGlobalMode==='delta');
     const maplevel=(level==='nac')?'ccaa':level;
     const SL=GS_SIDESHORT[side]||'';
-    const ML={margen:'Margen '+SL,noOtorg:'No otorgable '+SL,disp:'Disponible '+SL,otTot:'Otorgada '+SL,ecTot:'En curso '+SL,libTot:'Liberada autoconsumo (RDL 7/2026) '+SL};
+    const ML={margen:'Margen de capacidad '+SL,noOtorg:'No otorgable '+SL,disp:'Disponible '+SL,otTot:'Capacidad otorgada '+SL,ecTot:'Capacidad en curso '+SL,libTot:'Liberada autoconsumo RDL 7/2026 '+SL};
     const cur=gsAggregate(maplevel,scope,key,side);
     const prev=gsAggregate(maplevel,scope,pkey,side); const pmap={}; prev.forEach(function(g){pmap[g.name]=g;});
     cur.forEach(function(g){ const pm=(pmap[g.name]&&!isNaN(pmap[g.name].margen))?pmap[g.name].margen:0; g.aflorada=(isNaN(g.margen)?0:g.margen)-pm; const pv=pmap[g.name]; g._dv=(isNaN(g[metric])?0:g[metric])-((pv&&!isNaN(pv[metric]))?pv[metric]:0); });
@@ -3074,7 +3077,7 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
       </select>
     </label>
     <label>Vista:
-      <select id="gs-desg-block" onchange="renderGridStatus()" title="Vista de capacidad — afecta a tabla, mapa y dato nacional" style="font-size:12px;padding:2px 4px;border:1px solid #cbd5e1;border-radius:6px;"><option value="margen" selected>Margen</option><option value="no_otorgable">No otorgable</option><option value="disp">Disponible para solicitud</option><option value="otorgada">Otorgada (por tipo)</option><option value="en_curso">En curso (por tipo)</option><option value="liberada">Liberada autoconsumo RDL 7/2026 (por tipo)</option></select>
+      <select id="gs-desg-block" onchange="renderGridStatus()" title="Vista de capacidad — afecta a tabla, mapa y dato nacional" style="font-size:12px;padding:2px 4px;border:1px solid #cbd5e1;border-radius:6px;"><option value="margen" selected>Margen de capacidad</option><option value="no_otorgable">No otorgable</option><option value="disp">Disponible para solicitud</option><option value="otorgada">Capacidad otorgada</option><option value="en_curso">Capacidad en curso</option><option value="liberada">Liberada autoconsumo RDL 7/2026</option></select>
     </label>
     <span style="font-size:11px;color:#64748b;">Pulsa una cabecera para ordenar.</span>
     <button type="button" onclick="gsToggleGloss()" style="margin-left:auto;background:#e2e8f0;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:#0078A8;font-weight:bold;">&#9432; Siglas</button>
