@@ -272,6 +272,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 /* Título de lo que se está visualizando, dentro del recuadro del mapa (item 7) */
 #gs-map-title { position:absolute; top:10px; left:10px; z-index:600; background:rgba(255,255,255,.94); border:1px solid #e2e8f0; border-radius:8px; padding:6px 11px; font-size:13px; font-weight:700; color:#0f172a; box-shadow:0 2px 6px rgba(0,0,0,.12); max-width:70%; pointer-events:none; }
 #gs-map-title small { display:block; font-size:10px; font-weight:600; color:#64748b; margin-top:1px; }
+/* Selector de campo a colorear en el mapa (punto 3) */
+#gs-map-fieldbox { position:absolute; top:10px; right:10px; z-index:600; background:rgba(255,255,255,.94); border:1px solid #e2e8f0; border-radius:8px; padding:5px 8px; font-size:11px; color:#334155; box-shadow:0 2px 6px rgba(0,0,0,.12); }
+#gs-map-fieldbox label { font-weight:700; margin-right:4px; }
+#gs-map-fieldbox select { font-size:11px; padding:2px 4px; border:1px solid #cbd5e1; border-radius:5px; color:#0f172a; max-width:190px; }
 /* Barra de color / leyenda, superpuesta dentro del recuadro del mapa (item 6) */
 #gs-map-legend { position:absolute; right:10px; bottom:14px; z-index:600; width:210px; max-width:56%; margin:0; padding:8px 10px; font-size:11px; color:#475569; background:rgba(255,255,255,.95); border:1px solid #e2e8f0; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,.12); }
 .gs-bubble-label { background:transparent !important; border:none !important; box-shadow:none !important; padding:0 !important; color:#fff; font-weight:700; font-size:11px; text-shadow:0 0 3px rgba(0,0,0,.85),0 0 2px rgba(0,0,0,.85); white-space:nowrap; }
@@ -2302,23 +2306,76 @@ const GS_SIDELBL = {gen:'Generación', dem:'Demanda', alm:'Almacenamiento'};
 const GS_SIDESHORT = {gen:'Gen', dem:'Dem', alm:'Alm'};
 const GS_SUBLABELS = {gen:['MGES','MPE','Alm MGES','Alm MPE'], alm:['MGES','MPE'], dem:['CH','SH','No CEP','Alm CEP','Alm No CEP']};
 const GS_SUBLABELS_GENDISP=['MGES RdT','MPE RdT','Alm MGES RdT','Alm MPE RdT','MGES RdD','MPE RdD','Alm MGES RdD','Alm MPE RdD'];
-// Desglose Máximo Generación/Almacenamiento para Margen, No otorgable y Disponible (puntos 5,6,8)
-const GS_SUB_MAX={gen:['Generación','Almacenamiento'], dem:['Demanda','Almacenamiento'], alm:['Almacenamiento']};
-// Otorgada / En curso: columnas AA/AB y AH/AI de REE (GEN y ALM); Demanda: su equivalente demanda RdT / alm RdT (puntos 2,4)
-const GS_SUB_OT ={gen:['GEN','ALM'], dem:['Demanda','ALM'], alm:[]};       // Capacidad otorgada
-const GS_SUB_EC ={gen:['GEN','ALM'], dem:['Demanda','ALM'], alm:[]};       // Capacidad en curso
-// Liberada autoconsumo RDL 7/2026: todas las variables del bloque (liberada, otorgada y disponible) por tipo MGES/MPE (punto 7)
-const GS_SUB_LIB={gen:['Liberada MGES','Liberada MPE','Otorgada MGES','Otorgada MPE','Disponible MGES','Disponible MPE'], dem:[], alm:[]};
-// Configuración única de "Vista": mapea el valor del desplegable a su sub-objeto, agregado, etiqueta y sub-columnas.
+// Columnas de tabla (desglose) por vista y perspectiva  (puntos 1,2,7)
+const GS_COLS = {
+  margen:      {gen:['MGES','MPE','Alm MGES','Alm MPE'], dem:['CH','SH','No CEP','Alm CEP','Alm No CEP']},
+  no_otorgable:{gen:['MGES','MPE','Alm MGES','Alm MPE'], dem:['CH','SH','No CEP','Alm CEP','Alm No CEP']},
+  disp:        {gen:['MGES RdT','MPE RdT','MGES RdD','MPE RdD','Alm MGES RdT','Alm MPE RdT','Alm MGES RdD','Alm MPE RdD'], dem:['CH','SH','No CEP','Alm CEP','Alm No CEP']},
+  otorgada:    {gen:['GEN','ALM'], dem:['Demanda','CH','SH','ALM']},
+  en_curso:    {gen:['GEN','ALM'], dem:['Demanda','ALM']},
+  liberada:    {gen:['Liberada MGES','Liberada MPE','Otorgada MGES','Otorgada MPE','Disponible MGES','Disponible MPE'], dem:[]}
+};
+// Campos representables en el mapa por vista y perspectiva: {key,label,sub}  (puntos 3,4,5)
+//   sub:true  -> se lee de g[<subObj>][key] (máximo por categoría, sumado por nudos)
+//   sub:false -> se lee del agregado de nivel superior g[key] (total/máximo global)
+const GS_MAPF = {
+  margen: {
+    gen:[{key:'_mMGES',label:'MGES (máx.)',sub:true},{key:'_mMPE',label:'MPE (máx.)',sub:true},{key:'margen',label:'Máximo total',sub:false}],
+    dem:[{key:'_mDem',label:'Demanda (máx.)',sub:true},{key:'_mAlm',label:'Almacenamiento (máx.)',sub:true},{key:'margen',label:'Máximo total',sub:false}]
+  },
+  no_otorgable: {
+    gen:[{key:'_mMGES',label:'MGES (máx.)',sub:true},{key:'_mMPE',label:'MPE (máx.)',sub:true},{key:'noOtorg',label:'Máximo total',sub:false}],
+    dem:[{key:'_mDem',label:'Demanda (máx.)',sub:true},{key:'_mAlm',label:'Almacenamiento (máx.)',sub:true},{key:'noOtorg',label:'Máximo total',sub:false}]
+  },
+  disp: {
+    gen:[{key:'_mMGESrdt',label:'MGES RdT (máx.)',sub:true},{key:'_mMPErdt',label:'MPE RdT (máx.)',sub:true},{key:'_mMGESrdd',label:'MGES RdD (máx.)',sub:true},{key:'_mMPErdd',label:'MPE RdD (máx.)',sub:true},{key:'disp',label:'Máximo total',sub:false}],
+    dem:[{key:'_mDem',label:'Demanda (máx.)',sub:true},{key:'_mAlm',label:'Almacenamiento (máx.)',sub:true},{key:'disp',label:'Máximo total',sub:false}]
+  },
+  otorgada: {
+    gen:[{key:'GEN',label:'Generación',sub:true},{key:'ALM',label:'Almacenamiento',sub:true},{key:'otTot',label:'Total (GEN+ALM)',sub:false}],
+    dem:[{key:'Demanda',label:'Demanda',sub:true},{key:'CH',label:'Demanda CH',sub:true},{key:'SH',label:'Demanda SH',sub:true},{key:'ALM',label:'Almacenamiento',sub:true},{key:'otTot',label:'Total (Dem+Alm)',sub:false}]
+  },
+  en_curso: {
+    gen:[{key:'GEN',label:'Generación',sub:true},{key:'ALM',label:'Almacenamiento',sub:true},{key:'ecTot',label:'Total (GEN+ALM)',sub:false}],
+    dem:[{key:'Demanda',label:'Demanda',sub:true},{key:'ALM',label:'Almacenamiento',sub:true},{key:'ecTot',label:'Total',sub:false}]
+  },
+  liberada: {
+    gen:[{key:'_libMax',label:'Liberada (máx.)',sub:true},{key:'_otorgMax',label:'Otorgada (máx.)',sub:true},{key:'_dispMax',label:'Disponible (máx.)',sub:true}],
+    dem:[]
+  }
+};
+const GS_VISTA_META = {
+  margen:      {sub:'sub',   agg:'margen',  suffix:'(máx.)', label:'Margen de capacidad'},
+  no_otorgable:{sub:'subN',  agg:'noOtorg', suffix:'(máx.)', label:'No otorgable'},
+  disp:        {sub:'subD',  agg:'disp',    suffix:'(máx.)', label:'Disponible'},
+  otorgada:    {sub:'subOt', agg:'otTot',   suffix:'(total)',label:'Capacidad otorgada'},
+  en_curso:    {sub:'subEc', agg:'ecTot',   suffix:'(total)',label:'Capacidad en curso'},
+  liberada:    {sub:'subLib',agg:'libMax',  suffix:'(máx.)', label:'Liberada autoconsumo (RDL 7/2026)'}
+};
+// Configuración única de "Vista": sub-objeto, agregado, etiqueta, columnas de tabla y campos de mapa.
 function gsVistaCfg(vista, side){
-    switch(vista){
-        case 'no_otorgable': return {sub:'subN',  agg:'noOtorg', label:'No otorgable', labels:(GS_SUB_MAX[side]||[])};
-        case 'disp':         return {sub:'subD',  agg:'disp',    label:'Disponible',   labels:(GS_SUB_MAX[side]||[])};
-        case 'otorgada':     return {sub:'subOt', agg:'otTot',   label:'Capacidad otorgada', labels:(GS_SUB_OT[side]||[])};
-        case 'en_curso':     return {sub:'subEc', agg:'ecTot',   label:'Capacidad en curso', labels:(GS_SUB_EC[side]||[])};
-        case 'liberada':     return {sub:'subLib',agg:'libTot',  label:'Liberada autoconsumo (RDL 7/2026)', labels:(GS_SUB_LIB[side]||[])};
-        default:             return {sub:'sub',   agg:'margen',  label:'Margen de capacidad', labels:(GS_SUB_MAX[side]||[])};
-    }
+    const key=GS_VISTA_META[vista]?vista:'margen';
+    const m=GS_VISTA_META[key];
+    return {sub:m.sub, agg:m.agg, suffix:m.suffix, label:m.label,
+        labels:((GS_COLS[key]||{})[side])||[],
+        mapFields:((GS_MAPF[key]||{})[side])||[{key:m.agg,label:'Total',sub:false}]};
+}
+// Campo de mapa seleccionado (o su valor por defecto: el «Máximo/Total» si existe)
+function gsCurrentMapField(cfg){
+    const sel=document.getElementById('gs-map-field'), v=sel?sel.value:'';
+    for(let i=0;i<cfg.mapFields.length;i++){ if(cfg.mapFields[i].key===v) return cfg.mapFields[i]; }
+    for(let i=0;i<cfg.mapFields.length;i++){ if(!cfg.mapFields[i].sub) return cfg.mapFields[i]; }
+    return cfg.mapFields[0]||{key:cfg.agg,label:cfg.label,sub:false};
+}
+// Rellena el desplegable «Colorear mapa» según la vista/perspectiva actual (punto 3)
+function gsSyncMapFields(){
+    const sel=document.getElementById('gs-map-field'); if(!sel) return;
+    const vista=((document.getElementById('gs-desg-block')||{}).value)||'margen';
+    const side=((document.getElementById('gs-side')||{}).value)||'gen';
+    const cfg=gsVistaCfg(vista,side), prev=sel.value; let keep=false, html='';
+    cfg.mapFields.forEach(function(f){ html+='<option value="'+f.key+'">'+f.label+'</option>'; if(f.key===prev) keep=true; });
+    sel.innerHTML=html;
+    if(keep){ sel.value=prev; } else { const d=gsCurrentMapField(cfg); if(d) sel.value=d.key; }
 }
 // Oculta la vista "Liberada" cuando la perspectiva es Demanda (REE no publica ese bloque en demanda)
 function gsSyncVistaOptions(){
@@ -2385,8 +2442,17 @@ function gsTSO(entry, key){
     const critG=gsBindCode([[cleanNum(mg.gen_mges),clg.gen_mges],[cleanNum(mg.gen_mpe),clg.gen_mpe],[cleanNum(mg.alm_mges),clg.alm_mges],[cleanNum(mg.alm_mpe),clg.alm_mpe]]);
     const critD=gsBindCode([[cleanNum(md.dem_ch),cld.dem_ch],[cleanNum(md.dem_sh),cld.dem_sh],[cleanNum(md.dem_no_cep),cld.dem_no_cep],[cleanNum(md.alm_cep_mpe),cld.alm_cep],[cleanNum(md.alm_no_cep_mges),cld.alm_no_cep]]);
     return { grid:'TSO',
-      gen:{disp:dispGen, margen:margenGen, noOtorg:noOtorgGen, otorgada:otGen, enCurso:cleanNum(ec.gen), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonGen!=='', causas:gsCausas(reasonGen), reason:reasonGen, crit:critG, sat:gsSat(gsAdd(otGen,cleanNum(ec.gen)),dispGen), enConcurso:enConcG, otTot:gsAdd(cleanNum(otg.gen),cleanNum(otg.alm)), ecTot:gsAdd(cleanNum(ec.gen),cleanNum(ec.alm)), libTot:gsAdd(cleanNum(lib.lib_mges),cleanNum(lib.lib_mpe)), sub:{'Generación':gsMaxOf(mg.gen_mges,mg.gen_mpe), 'Almacenamiento':gsMaxOf(mg.alm_mges,mg.alm_mpe)}, subN:{'Generación':gsMaxOf(nd.gen_mges,nd.gen_mpe), 'Almacenamiento':gsMaxOf(nd.alm_mges,nd.alm_mpe)}, subD:{'Generación':gsMaxOf(dg.gen_mges_rdt,dg.gen_mpe_rdt,dg.gen_mges_rdd,dg.gen_mpe_rdd), 'Almacenamiento':gsMaxOf(dg.alm_mges_rdt,dg.alm_mpe_rdt,dg.alm_mges_rdd,dg.alm_mpe_rdd)}, subOt:{'GEN':cleanNum(otg.gen), 'ALM':cleanNum(otg.alm)}, subEc:{'GEN':cleanNum(ec.gen), 'ALM':cleanNum(ec.alm)}, subLib:{'Liberada MGES':cleanNum(lib.lib_mges), 'Liberada MPE':cleanNum(lib.lib_mpe), 'Otorgada MGES':cleanNum(lib.otorg_mges), 'Otorgada MPE':cleanNum(lib.otorg_mpe), 'Disponible MGES':cleanNum(lib.disp_mges), 'Disponible MPE':cleanNum(lib.disp_mpe)}},
-      dem:{disp:dispDem, margen:margenDem, noOtorg:noOtorgDem, otorgada:otDem, enCurso:cleanNum(ecd.dem), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonDem!=='', causas:gsCausas(reasonDem), reason:reasonDem, crit:critD, sat:gsSat(gsAdd(otDem,cleanNum(ecd.dem)),dispDem), enConcurso:enConcD, otTot:gsAdd(cleanNum(otd.dem_rdt),cleanNum(otd.alm_rdt)), ecTot:gsAdd(cleanNum(ecd.dem),cleanNum(ecd.alm_rdt)), sub:{'Demanda':gsMaxOf(md.dem_ch,md.dem_sh,md.dem_no_cep), 'Almacenamiento':gsMaxOf(md.alm_cep_mpe,md.alm_no_cep_mges)}, subN:{'Demanda':gsMaxOf(no.dem_ch,no.dem_sh,no.dem_no_cep), 'Almacenamiento':gsMaxOf(no.alm_cep,no.alm_no_cep)}, subD:{'Demanda':gsMaxOf(dd.dem_ch,dd.dem_sh,dd.dem_no_cep), 'Almacenamiento':gsMaxOf(dd.alm_cep,dd.alm_no_cep)}, subOt:{'Demanda':cleanNum(otd.dem_rdt), 'ALM':cleanNum(otd.alm_rdt)}, subEc:{'Demanda':cleanNum(ecd.dem), 'ALM':cleanNum(ecd.alm_rdt)}},
+      gen:{disp:dispGen, margen:margenGen, noOtorg:noOtorgGen, otorgada:otGen, enCurso:cleanNum(ec.gen), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonGen!=='', causas:gsCausas(reasonGen), reason:reasonGen, crit:critG, sat:gsSat(gsAdd(otGen,cleanNum(ec.gen)),dispGen), enConcurso:enConcG, otTot:gsAdd(cleanNum(otg.gen),cleanNum(otg.alm)), ecTot:gsAdd(cleanNum(ec.gen),cleanNum(ec.alm)), libMax:gsMaxOf(lib.lib_mges,lib.lib_mpe),
+        sub:{'MGES':cleanNum(mg.gen_mges), 'MPE':cleanNum(mg.gen_mpe), 'Alm MGES':cleanNum(mg.alm_mges), 'Alm MPE':cleanNum(mg.alm_mpe), '_mMGES':gsMaxOf(mg.gen_mges,mg.alm_mges), '_mMPE':gsMaxOf(mg.gen_mpe,mg.alm_mpe)},
+        subN:{'MGES':cleanNum(nd.gen_mges), 'MPE':cleanNum(nd.gen_mpe), 'Alm MGES':cleanNum(nd.alm_mges), 'Alm MPE':cleanNum(nd.alm_mpe), '_mMGES':gsMaxOf(nd.gen_mges,nd.alm_mges), '_mMPE':gsMaxOf(nd.gen_mpe,nd.alm_mpe)},
+        subD:{'MGES RdT':cleanNum(dg.gen_mges_rdt), 'MPE RdT':cleanNum(dg.gen_mpe_rdt), 'MGES RdD':cleanNum(dg.gen_mges_rdd), 'MPE RdD':cleanNum(dg.gen_mpe_rdd), 'Alm MGES RdT':cleanNum(dg.alm_mges_rdt), 'Alm MPE RdT':cleanNum(dg.alm_mpe_rdt), 'Alm MGES RdD':cleanNum(dg.alm_mges_rdd), 'Alm MPE RdD':cleanNum(dg.alm_mpe_rdd), '_mMGESrdt':gsMaxOf(dg.gen_mges_rdt,dg.alm_mges_rdt), '_mMPErdt':gsMaxOf(dg.gen_mpe_rdt,dg.alm_mpe_rdt), '_mMGESrdd':gsMaxOf(dg.gen_mges_rdd,dg.alm_mges_rdd), '_mMPErdd':gsMaxOf(dg.gen_mpe_rdd,dg.alm_mpe_rdd)},
+        subOt:{'GEN':cleanNum(otg.gen), 'ALM':cleanNum(otg.alm)}, subEc:{'GEN':cleanNum(ec.gen), 'ALM':cleanNum(ec.alm)},
+        subLib:{'Liberada MGES':cleanNum(lib.lib_mges), 'Liberada MPE':cleanNum(lib.lib_mpe), 'Otorgada MGES':cleanNum(lib.otorg_mges), 'Otorgada MPE':cleanNum(lib.otorg_mpe), 'Disponible MGES':cleanNum(lib.disp_mges), 'Disponible MPE':cleanNum(lib.disp_mpe), '_libMax':gsMaxOf(lib.lib_mges,lib.lib_mpe), '_otorgMax':gsMaxOf(lib.otorg_mges,lib.otorg_mpe), '_dispMax':gsMaxOf(lib.disp_mges,lib.disp_mpe)}},
+      dem:{disp:dispDem, margen:margenDem, noOtorg:noOtorgDem, otorgada:otDem, enCurso:cleanNum(ecd.dem), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonDem!=='', causas:gsCausas(reasonDem), reason:reasonDem, crit:critD, sat:gsSat(gsAdd(otDem,cleanNum(ecd.dem)),dispDem), enConcurso:enConcD, otTot:gsAdd(cleanNum(otd.dem_rdt),cleanNum(otd.alm_rdt)), ecTot:gsAdd(cleanNum(ecd.dem),cleanNum(ecd.alm_rdt)), libMax:NaN,
+        sub:{'CH':cleanNum(md.dem_ch), 'SH':cleanNum(md.dem_sh), 'No CEP':cleanNum(md.dem_no_cep), 'Alm CEP':cleanNum(md.alm_cep_mpe), 'Alm No CEP':cleanNum(md.alm_no_cep_mges), '_mDem':gsMaxOf(md.dem_ch,md.dem_sh,md.dem_no_cep), '_mAlm':gsMaxOf(md.alm_cep_mpe,md.alm_no_cep_mges)},
+        subN:{'CH':cleanNum(no.dem_ch), 'SH':cleanNum(no.dem_sh), 'No CEP':cleanNum(no.dem_no_cep), 'Alm CEP':cleanNum(no.alm_cep), 'Alm No CEP':cleanNum(no.alm_no_cep), '_mDem':gsMaxOf(no.dem_ch,no.dem_sh,no.dem_no_cep), '_mAlm':gsMaxOf(no.alm_cep,no.alm_no_cep)},
+        subD:{'CH':cleanNum(dd.dem_ch), 'SH':cleanNum(dd.dem_sh), 'No CEP':cleanNum(dd.dem_no_cep), 'Alm CEP':cleanNum(dd.alm_cep), 'Alm No CEP':cleanNum(dd.alm_no_cep), '_mDem':gsMaxOf(dd.dem_ch,dd.dem_sh,dd.dem_no_cep), '_mAlm':gsMaxOf(dd.alm_cep,dd.alm_no_cep)},
+        subOt:{'Demanda':cleanNum(otd.dem_rdt), 'CH':cleanNum(otd.dem_ch_rdt), 'SH':cleanNum(otd.dem_sh_rdt), 'ALM':cleanNum(otd.alm_rdt)}, subEc:{'Demanda':cleanNum(ecd.dem), 'ALM':cleanNum(ecd.alm_rdt)}},
       alm:{disp:dispAlm, margen:margenAlm, otorgada:otAlm, enCurso:cleanNum(ec.alm), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonAlm!=='', causas:gsCausas(reasonAlm), sat:gsSat(gsAdd(otAlm,cleanNum(ec.alm)),dispAlm), enConcurso:false, sub:{MGES:cleanNum(mg.alm_mges), MPE:cleanNum(mg.alm_mpe)}}
     };
 }
@@ -2422,12 +2488,12 @@ function gsAggregate(level, scope, key, side){
         else if(level==='ccaa') gk=e.ccaa||'(sin CCAA)';
         else if(level==='prov') gk=e.prov||'(sin provincia)';
         else gk=e.name;
-        const o=G[gk]||(G[gk]={name:gk,n:0,nTSO:0,nDSO:0,disp:0,margen:0,otorgada:0,enCurso:0,comprom:0,ocupada:0,admitida:0,noSolic:0,concurso:0,satSum:0,satN:0,causas:{},sumX:0,sumY:0,coordN:0,noOtorg:0,otTot:0,ecTot:0,libTot:0,sub:{},subN:{},subD:{},subOt:{},subEc:{},subLib:{}});
+        const o=G[gk]||(G[gk]={name:gk,n:0,nTSO:0,nDSO:0,disp:0,margen:0,otorgada:0,enCurso:0,comprom:0,ocupada:0,admitida:0,noSolic:0,concurso:0,satSum:0,satN:0,causas:{},sumX:0,sumY:0,coordN:0,noOtorg:0,otTot:0,ecTot:0,libMax:0,sub:{},subN:{},subD:{},subOt:{},subEc:{},subLib:{}});
         o.n++; if(e.grid==='DSO')o.nDSO++; else o.nTSO++;
         if(!isNaN(e.x)&&!isNaN(e.y)){ o.sumX+=e.x; o.sumY+=e.y; o.coordN++; }
         const add=function(f,v){ if(!isNaN(v)) o[f]+=v; };
         add('disp',sm.disp); add('margen',sm.margen); add('noOtorg',sm.noOtorg); add('otorgada',sm.otorgada); add('enCurso',sm.enCurso); add('comprom',sm.comprom); add('ocupada',sm.ocupada); add('admitida',sm.admitida);
-        add('otTot',sm.otTot); add('ecTot',sm.ecTot); add('libTot',sm.libTot);
+        add('otTot',sm.otTot); add('ecTot',sm.ecTot); add('libMax',sm.libMax);
         if(sm.sub){ for(const sk in sm.sub){ const sv=sm.sub[sk]; if(!isNaN(sv)) o.sub[sk]=(o.sub[sk]||0)+sv; } }
         if(sm.subN){ for(const sk in sm.subN){ const sv=sm.subN[sk]; if(!isNaN(sv)) o.subN[sk]=(o.subN[sk]||0)+sv; } }
         if(sm.subD){ for(const sk in sm.subD){ const sv=sm.subD[sk]; if(!isNaN(sv)) o.subD[sk]=(o.subD[sk]||0)+sv; } }
@@ -2548,7 +2614,7 @@ function renderGridStatus(){
               +'</tr>';
         }
     }
-    const _aggSuffix=(vistaAgg==='margen'||vistaAgg==='noOtorg'||vistaAgg==='disp')?'(máx.)':'(total)';
+    const _aggSuffix=_vc.suffix;
     const headDesg = hdr('Nivel','name','text-align:left;')+hdr('Nudos','n')+subLabels.map(function(L){return '<th title="'+blockLbl+' '+L+' (MW)">'+L+'</th>';}).join('')+hdr(blockLbl+' '+SL+' '+_aggSuffix,vistaAgg);
     const head = desg ? headDesg : (isDSO
       ? (hdr('Nivel','name','text-align:left;')+hdr('Nudos','n')+hdr('Disponible (MW)','disp')+hdr('Comprom. regul.','comprom')+hdr('Ocupada (MW)','ocupada')+hdr('Admitida y no resuelta (MW)','admitida')+hdr('Satur.','sat'))
@@ -2586,6 +2652,7 @@ function renderGridStatus(){
     document.getElementById('gs-mot-title').textContent='Causas de «no solicitable» ('+(GS_SIDELBL[side]||side)+')';
     document.getElementById('gs-mot').style.display=(desgBlock==='no_otorgable')?'':'none';
     document.getElementById('gs-period').textContent = '20'+year+' · '+(GS_MLBL[month]||month)+' · '+(GS_SIDELBL[side]||side)+'  (Δ vs mes previo)';
+    gsSyncMapFields();
     if(gsMap) gsRenderMap();
 }
 // ===================== GRID STATUS — Variaciones / flujos =====================
@@ -2923,16 +2990,18 @@ function gsRenderMap(){
     const level=document.getElementById('gs-level').value;
     const scope=document.getElementById('gs-scope').value;
     const vista=((document.getElementById('gs-desg-block')||{}).value)||'margen';
-    const _vcfg=gsVistaCfg(vista,side);
-    const metric=(scope==='DSO')?'disp':_vcfg.agg;
+    const cfg=gsVistaCfg(vista,side);
     const DM=(gsGlobalMode==='delta');
     const maplevel=(level==='nac')?'ccaa':level;
     const SL=GS_SIDESHORT[side]||'';
-    const ML={margen:'Margen de capacidad '+SL,noOtorg:'No otorgable '+SL,disp:'Disponible '+SL,otTot:'Capacidad otorgada '+SL,ecTot:'Capacidad en curso '+SL,libTot:'Liberada autoconsumo RDL 7/2026 '+SL};
+    // Campo a colorear: el elegido en el desplegable «Colorear mapa» (Disponible fijo para DSO)
+    const mf=(scope==='DSO')?{key:'disp',label:'Disponible',sub:false}:gsCurrentMapField(cfg);
+    const mval=function(g){ return mf.sub ? cleanNum((g[cfg.sub]||{})[mf.key]) : cleanNum(g[mf.key]); };
+    const mlabel=mf.label+' · '+cfg.label+' '+SL;
     const cur=gsAggregate(maplevel,scope,key,side);
     const prev=gsAggregate(maplevel,scope,pkey,side); const pmap={}; prev.forEach(function(g){pmap[g.name]=g;});
-    cur.forEach(function(g){ const pm=(pmap[g.name]&&!isNaN(pmap[g.name].margen))?pmap[g.name].margen:0; g.aflorada=(isNaN(g.margen)?0:g.margen)-pm; const pv=pmap[g.name]; g._dv=(isNaN(g[metric])?0:g[metric])-((pv&&!isNaN(pv[metric]))?pv[metric]:0); });
-    let maxV=0; cur.forEach(function(g){ const v=Math.abs(DM?g._dv:gsBubbleVal(g,metric)); if(!isNaN(v)&&v>maxV)maxV=v; });
+    cur.forEach(function(g){ const pv=pmap[g.name]; const cv=mval(g), ppv=pv?mval(pv):NaN; g._mv=isNaN(cv)?0:cv; g._dv=g._mv-(isNaN(ppv)?0:ppv); });
+    let maxV=0; cur.forEach(function(g){ const v=Math.abs(DM?g._dv:g._mv); if(!isNaN(v)&&v>maxV)maxV=v; });
     const stats={max:maxV,maxAbs:maxV};
     const gbk={}; cur.forEach(function(g){ gbk[gsGeoKeyForGroup(g.name,maplevel)]=g; });
     if(gsGeoLayer){ gsMap.removeLayer(gsGeoLayer); gsGeoLayer=null; }
@@ -2944,55 +3013,28 @@ function gsRenderMap(){
             if(gsGeoLayer){ gsMap.removeLayer(gsGeoLayer); gsGeoLayer=null; }
             const pick=function(props){ const ks=gsFeatKeys(props); for(let i=0;i<ks.length;i++){ if(gbk[ks[i]]) return gbk[ks[i]]; } return null; };
             gsGeoLayer=L.geoJSON(geo,{
-                style:function(feat){ const g=pick(feat.properties); return g ? { fillColor:(DM?gsDivColor(g._dv,stats.maxAbs):gsChoroFill(metric,g,stats)), fillOpacity:0.82, color:'#ffffff', weight:1 } : { fillColor:'#cbd5e1', fillOpacity:0.45, color:'#ffffff', weight:1, dashArray:'2,3' }; },
+                style:function(feat){ const g=pick(feat.properties); return g ? { fillColor:(DM?gsDivColor(g._dv,stats.maxAbs):gsSeqColor(stats.max>0?Math.abs(g._mv)/stats.max:NaN)), fillOpacity:0.82, color:'#ffffff', weight:1 } : { fillColor:'#cbd5e1', fillOpacity:0.45, color:'#ffffff', weight:1, dashArray:'2,3' }; },
                 onEachFeature:function(feat,lyr){ const g=pick(feat.properties); const nm=String((feat.properties&&feat.properties.name)||'');
-                    if(g){ const sat=g.satN?(100*g.satSum/g.satN):NaN; const mv=DM?g._dv:gsBubbleVal(g,metric); const vTxt=DM?((mv>=0?'+':'−')+gsFmt(Math.abs(mv))+' MW'):(gsFmt(mv)+' MW');
-                        lyr.bindTooltip('<b>'+g.name+'</b> <span style="color:#94a3b8;">('+g.nTSO+'T·'+g.nDSO+'D)</span><br>'+(DM?'Δ ':'')+(ML[metric]||metric)+': <b>'+vTxt+'</b><br>Saturación: '+(isNaN(sat)?'–':sat.toFixed(0)+'%'),{sticky:true}); }
+                    if(g){ const sat=g.satN?(100*g.satSum/g.satN):NaN; const mv=DM?g._dv:g._mv; const vTxt=DM?((mv>=0?'+':'−')+gsFmt(Math.abs(mv))+' MW'):(gsFmt(mv)+' MW');
+                        lyr.bindTooltip('<b>'+g.name+'</b> <span style="color:#94a3b8;">('+g.nTSO+'T·'+g.nDSO+'D)</span><br>'+(DM?'Δ ':'')+mlabel+': <b>'+vTxt+'</b><br>Saturación: '+(isNaN(sat)?'–':sat.toFixed(0)+'%'),{sticky:true}); }
                     else { lyr.bindTooltip(nm+'<br><span style="color:#94a3b8;">sin nudos</span>',{sticky:true}); }
                 }
             }).addTo(gsMap);
             gsGeoLayer.bringToBack();
         });
     }
-    const showBub=false;
-    const minR=6,maxR=34;
-    if(showBub) cur.forEach(function(g){
-        if(!g.coordN) return;
-        const cx=g.sumX/g.coordN, cy=g.sumY/g.coordN;
-        let ll; try{ const c=proj4("EPSG:32630","EPSG:4326",[cx,cy]); ll=[c[1],c[0]]; }catch(e){ return; }
-        if(!isFinite(ll[0])||!isFinite(ll[1])) return;
-        const v=gsBubbleVal(g,metric), av=Math.abs(v);
-        const r=(isNaN(av)||maxV<=0)?minR:(minR+(maxR-minR)*Math.sqrt(av/maxV));
-        const sat=g.satN?(100*g.satSum/g.satN):NaN;
-        const mk=L.circleMarker(ll,{radius:r,fillColor:gsSatColor(sat),color:'#fff',weight:1.2,fillOpacity:0.78});
-        const sName=String(g.name);
-        const afl=isNaN(g.aflorada)?'–':((g.aflorada>=0?'+':'−')+gsFmt(Math.abs(g.aflorada)));
-        mk.bindPopup('<div style="font-size:13px;line-height:1.5;"><b>'+sName+'</b> <span style="color:#94a3b8;">('+g.nTSO+'T·'+g.nDSO+'D)</span><br>'
-            +'Margen: '+gsFmt(g.margen)+' MW<br>'
-            +'Aflorada Δmargen: '+afl+' MW<br>'
-            +'Otorgada: '+gsFmt(g.otorgada)+' MW<br>'
-            +'No solicit.: '+g.noSolic+' nudos<br>'
-            +'Saturación: '+(isNaN(sat)?'–':sat.toFixed(0)+'%')+'</div>');
-        let lblTxt;
-        if(metric==='sat') lblTxt=isNaN(v)?'':(v.toFixed(0)+'%');
-        else if(metric==='noSolic') lblTxt=isNaN(v)?'':String(Math.round(v));
-        else { const gw=v/1000; lblTxt=isNaN(gw)?'':(gw.toFixed(Math.abs(gw)>=100?0:1)+' GW'); }
-        if(lblTxt) mk.bindTooltip(lblTxt,{permanent:true,direction:'center',className:'gs-bubble-label'});
-        gsBubbles.addLayer(mk);
-    });
-    const fmtV=function(x){ if(isNaN(x)) return '0'; if(metric==='sat') return Math.round(x)+'%'; if(metric==='noSolic') return Math.round(x); const ax=Math.abs(x); return ax>=1000?((x/1000).toFixed(1)+' GW'):(Math.round(x)+' MW'); };
+    const fmtV=function(x){ if(isNaN(x)) return '0'; const ax=Math.abs(x); return ax>=1000?((x/1000).toFixed(1)+' GW'):(Math.round(x)+' MW'); };
     let barStops, lb0,lb1,lb2,lb3,lb4, divg=false;
-    if(DM||metric==='aflorada'){ divg=true; barStops=[-1,-0.5,0,0.5,1].map(function(t){return gsDivColor(t*maxV,maxV);}); lb0=fmtV(-maxV); lb1=fmtV(-maxV/2); lb2=fmtV(0); lb3=fmtV(maxV/2); lb4=fmtV(maxV); }
-    else if(metric==='sat'){ barStops=[0,0.25,0.5,0.75,1].map(function(t){return gsSeqColor(t);}); lb0='0%'; lb1='25%'; lb2='50%'; lb3='75%'; lb4='100%'; }
+    if(DM){ divg=true; barStops=[-1,-0.5,0,0.5,1].map(function(t){return gsDivColor(t*maxV,maxV);}); lb0=fmtV(-maxV); lb1=fmtV(-maxV/2); lb2=fmtV(0); lb3=fmtV(maxV/2); lb4=fmtV(maxV); }
     else { barStops=[0,0.25,0.5,0.75,1].map(function(t){return gsSeqColor(t);}); lb0=fmtV(0); lb1=fmtV(maxV*0.25); lb2=fmtV(maxV*0.5); lb3=fmtV(maxV*0.75); lb4=fmtV(maxV); }
     const which=(maplevel==='ccaa')?'ccaa':'prov';
-    // Título de lo visualizado, dentro del recuadro del mapa (item 7)
+    // Título de lo visualizado, dentro del recuadro del mapa
     const _scopeLbl=(scope==='ALL')?'TSO+DSO':scope;
     const _levelLbl=(maplevel==='prov')?'por provincia':'por CCAA';
-    const _tmain=(DM?'Δ ':'')+(ML[metric]||metric)+(metric==='sat'?'':' (MW'+(DM?' Δ':'')+')');
+    const _tmain=(DM?'Δ ':'')+mlabel+' (MW'+(DM?' Δ':'')+')';
     const _tsub=_levelLbl+' · '+(GS_MLBL[month]||month)+' 20'+year+' · '+_scopeLbl+(DM?' · variación vs mes anterior':'');
     const _mt=document.getElementById('gs-map-title'); if(_mt) _mt.innerHTML='<span>'+_tmain+'</span><small>'+_tsub+'</small>';
-    let legHtml='<div style="font-size:11px;font-weight:700;margin-bottom:4px;color:#334155;">Escala de color'+(metric==='sat'?' · %':' · MW')+'</div>'
+    let legHtml='<div style="font-size:11px;font-weight:700;margin-bottom:4px;color:#334155;">Escala de color · MW</div>'
       +'<div style="height:14px;border-radius:3px;background:linear-gradient(to right,'+barStops.join(',')+');border:1px solid rgba(0,0,0,.12);"></div>'
       +'<div style="display:flex;justify-content:space-between;font-size:10px;color:#475569;margin-top:2px;">'+[lb0,lb1,lb2,lb3,lb4].map(function(x){return '<span>'+x+'</span>';}).join('')+'</div>'
       +(divg
@@ -3113,6 +3155,7 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
   <div class="gs-body">
     <div id="gs-map-wrap">
       <div id="gs-map-title"></div>
+      <div id="gs-map-fieldbox"><label>Colorear:</label><select id="gs-map-field" onchange="gsRenderMap()"></select></div>
       <div id="gs-map"></div>
       <div id="gs-map-legend"></div>
     </div>
