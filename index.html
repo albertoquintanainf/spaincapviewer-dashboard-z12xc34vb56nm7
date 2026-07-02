@@ -280,7 +280,6 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 #gs-map-legend { position:absolute; right:10px; bottom:14px; z-index:600; width:210px; max-width:56%; margin:0; padding:8px 10px; font-size:11px; color:#475569; background:rgba(255,255,255,.95); border:1px solid #e2e8f0; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,.12); }
 .gs-bubble-label { background:transparent !important; border:none !important; box-shadow:none !important; padding:0 !important; color:#fff; font-weight:700; font-size:11px; text-shadow:0 0 3px rgba(0,0,0,.85),0 0 2px rgba(0,0,0,.85); white-space:nowrap; }
 .gs-bubble-label::before { display:none !important; }
-.gs-leg-dot { display:inline-block; width:12px; height:12px; border-radius:50%; margin:0 4px; vertical-align:middle; border:1px solid #fff; box-shadow:0 0 0 1px #cbd5e1; }
 #gs-table-wrap { width:100%; overflow-x:hidden; overflow-y:auto; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); flex:1 1 auto; min-height:0; }
 .gs-table { border-collapse:collapse; width:100%; table-layout:fixed; font-size:13px; }
 .gs-table th, .gs-table td { padding:6px 4px; border-bottom:1px solid #e2e8f0; text-align:right; overflow-wrap:break-word; word-break:normal; }
@@ -2294,12 +2293,20 @@ const GS_MAPF = {
     dem:[{key:'_mDem',label:'Demanda (máx.)',sub:true},{key:'_mAlm',label:'Almacenamiento (máx.)',sub:true},{key:'disp',label:'Máximo total',sub:false}]
   },
   otorgada: {
-    gen:[{key:'GEN',label:'Generación',sub:true},{key:'ALM',label:'Almacenamiento',sub:true},{key:'otTot',label:'Total (GEN+ALM)',sub:false}],
-    dem:[{key:'Demanda',label:'Demanda',sub:true},{key:'DEM-CH',label:'Demanda CH',sub:true},{key:'DEM-SH',label:'Demanda SH',sub:true},{key:'ALM',label:'Almacenamiento',sub:true},{key:'otTot',label:'Total (Dem+Alm)',sub:false}]
+    gen:[{key:'GEN',label:'Generación',sub:true},{key:'ALM',label:'Almacenamiento',sub:true},{key:'otTot',label:'Total (GEN+ALM)',sub:false},
+         {key:'altas',label:'▲ Altas · total',sub:false},{key:'altas::GEN',label:'▲ Altas · Generación',sub:false},{key:'altas::ALM',label:'▲ Altas · Almacenamiento',sub:false},
+         {key:'bajas',label:'▼ Bajas · total',sub:false},{key:'bajas::GEN',label:'▼ Bajas · Generación',sub:false},{key:'bajas::ALM',label:'▼ Bajas · Almacenamiento',sub:false}],
+    dem:[{key:'Demanda',label:'Demanda',sub:true},{key:'DEM-CH',label:'Demanda CH',sub:true},{key:'DEM-SH',label:'Demanda SH',sub:true},{key:'ALM',label:'Almacenamiento',sub:true},{key:'otTot',label:'Total (Dem+Alm)',sub:false},
+         {key:'altas',label:'▲ Altas · total',sub:false},{key:'altas::Demanda',label:'▲ Altas · Demanda',sub:false},{key:'altas::DEM-CH',label:'▲ Altas · DEM-CH',sub:false},{key:'altas::DEM-SH',label:'▲ Altas · DEM-SH',sub:false},{key:'altas::ALM',label:'▲ Altas · Almacenamiento',sub:false},
+         {key:'bajas',label:'▼ Bajas · total',sub:false},{key:'bajas::Demanda',label:'▼ Bajas · Demanda',sub:false},{key:'bajas::DEM-CH',label:'▼ Bajas · DEM-CH',sub:false},{key:'bajas::DEM-SH',label:'▼ Bajas · DEM-SH',sub:false},{key:'bajas::ALM',label:'▼ Bajas · Almacenamiento',sub:false}]
   },
   en_curso: {
-    gen:[{key:'GEN',label:'Generación',sub:true},{key:'ALM',label:'Almacenamiento',sub:true},{key:'ecTot',label:'Total (GEN+ALM)',sub:false}],
-    dem:[{key:'Demanda',label:'Demanda',sub:true},{key:'ALM',label:'Almacenamiento',sub:true},{key:'ecTot',label:'Total',sub:false}]
+    gen:[{key:'GEN',label:'Generación',sub:true},{key:'ALM',label:'Almacenamiento',sub:true},{key:'ecTot',label:'Total (GEN+ALM)',sub:false},
+         {key:'altas',label:'▲ Altas · total',sub:false},{key:'altas::GEN',label:'▲ Altas · Generación',sub:false},{key:'altas::ALM',label:'▲ Altas · Almacenamiento',sub:false},
+         {key:'bajas',label:'▼ Bajas · total',sub:false},{key:'bajas::GEN',label:'▼ Bajas · Generación',sub:false},{key:'bajas::ALM',label:'▼ Bajas · Almacenamiento',sub:false}],
+    dem:[{key:'Demanda',label:'Demanda',sub:true},{key:'ALM',label:'Almacenamiento',sub:true},{key:'ecTot',label:'Total',sub:false},
+         {key:'altas',label:'▲ Altas · total',sub:false},{key:'altas::Demanda',label:'▲ Altas · Demanda',sub:false},{key:'altas::ALM',label:'▲ Altas · Almacenamiento',sub:false},
+         {key:'bajas',label:'▼ Bajas · total',sub:false},{key:'bajas::Demanda',label:'▼ Bajas · Demanda',sub:false},{key:'bajas::ALM',label:'▼ Bajas · Almacenamiento',sub:false}]
   },
   liberada: {
     gen:[{key:'_libMax',label:'Liberada (máx.)',sub:true},{key:'_otorgMax',label:'Otorgada (máx.)',sub:true},{key:'_dispMax',label:'Disponible (máx.)',sub:true}],
@@ -2477,8 +2484,9 @@ function gsAggregate(level, scope, key, side){
 
 // Desglose de la variación en subidas (+) y bajadas (−), calculado NUDO A NUDO respecto al mes
 // anterior y agregado por región. Permite separar capacidad nueva de la que ha caído (no solo el neto).
-function gsAltasBajas(level, scope, key, pkey, side, metric){
+function gsAltasBajas(level, scope, key, pkey, side, metric, sub){
     const G={};
+    const getv=function(sm){ if(!sm) return 0; const raw=sub?((sm[sub]||{})[metric]):sm[metric]; return isNaN(raw)?0:cleanNum(raw); };
     for(const e of allEntries){
         if(scope!=='ALL' && e.grid!==scope) continue;
         const mc=gsNodeMetrics(e,key), mp=gsNodeMetrics(e,pkey);
@@ -2490,9 +2498,7 @@ function gsAltasBajas(level, scope, key, pkey, side, metric){
         else if(level==='prov') gk=e.prov||'(sin provincia)';
         else gk=e.name;
         const o=G[gk]||(G[gk]={altas:0,bajas:0});
-        const cv=(smc&&!isNaN(smc[metric]))?smc[metric]:0;
-        const pv=(smp&&!isNaN(smp[metric]))?smp[metric]:0;
-        const d=cv-pv;
+        const d=getv(smc)-getv(smp);
         if(d>0) o.altas+=d; else if(d<0) o.bajas+=d;
     }
     return G;
@@ -2536,6 +2542,11 @@ function gsNationalBanner(scope,key,pkey,side){
         const cfg=gsVistaCfg(vista,side); vistaLbl=cfg.label;
         const src=g[cfg.sub]||{}, psrc=p[cfg.sub]||{};
         chips=cfg.labels.map(function(L){ return chip(L,(L in src)?src[L]:NaN,(L in psrc)?psrc[L]:NaN); }).join('');
+        if(vista==='otorgada'||vista==='en_curso'){
+            const _ab=(gsAltasBajas('nac',scope,key,pkey,side,(vista==='otorgada')?'otTot':'ecTot')['España'])||{altas:0,bajas:0};
+            chips+='<span class="gs-nat-chip" title="Suma nacional, nudo a nudo, de las subidas de capacidad vs mes anterior"><span class="k">▲ Altas:</span> <span class="v" style="color:#16a34a;">'+(_ab.altas>0.5?'+'+gsFmt(_ab.altas):'0')+'</span></span>';
+            chips+='<span class="gs-nat-chip" title="Suma nacional, nudo a nudo, de las bajadas de capacidad vs mes anterior"><span class="k">▼ Bajas:</span> <span class="v" style="color:#dc2626;">'+(_ab.bajas<-0.5?'−'+gsFmt(Math.abs(_ab.bajas)):'0')+'</span></span>';
+        }
         headNum=g[cfg.agg]; headPv=p[cfg.agg];
     }
     const headVal=DM?gsSigned((isNaN(headNum)?0:headNum)-(isNaN(headPv)?0:headPv)):gsFmt(headNum);
@@ -3007,6 +3018,15 @@ function gsRenderMap(){
     const mval=function(g){ return mf.sub ? cleanNum((g[cfg.sub]||{})[mf.key]) : cleanNum(g[mf.key]); };
     const mlabel=mf.label+' · '+cfg.label+' '+SL;
     const cur=gsAggregate(maplevel,scope,key,side);
+    const isAB=(mf.key.indexOf('altas')===0||mf.key.indexOf('bajas')===0);
+    if(isAB){
+        const _which=(mf.key.indexOf('altas')===0)?'altas':'bajas';
+        const _ci=mf.key.indexOf('::'); const _cat=(_ci>=0)?mf.key.slice(_ci+2):null;
+        const _sub=(vista==='otorgada')?'subOt':'subEc';
+        const _metric=_cat?_cat:((vista==='otorgada')?'otTot':'ecTot');
+        const _abm=gsAltasBajas(maplevel,scope,key,pkey,side,_metric,_cat?_sub:null);
+        cur.forEach(function(g){ const a=_abm[g.name]||{altas:0,bajas:0}; g[mf.key]=(_which==='altas')?a.altas:a.bajas; });
+    }
     const prev=gsAggregate(maplevel,scope,pkey,side); const pmap={}; prev.forEach(function(g){pmap[g.name]=g;});
     cur.forEach(function(g){ const pv=pmap[g.name]; const cv=mval(g), ppv=pv?mval(pv):NaN; g._mv=isNaN(cv)?0:cv; g._dv=g._mv-(isNaN(ppv)?0:ppv); });
     let maxV=0; cur.forEach(function(g){ const v=Math.abs(DM?g._dv:g._mv); if(!isNaN(v)&&v>maxV)maxV=v; });
@@ -3032,8 +3052,8 @@ function gsRenderMap(){
         });
     }
     const fmtV=function(x){ if(isNaN(x)) return '0'; const ax=Math.abs(x); return ax>=1000?((x/1000).toFixed(1)+' GW'):(Math.round(x)+' MW'); };
-    let barStops, lb0,lb1,lb2,lb3,lb4, divg=false;
-    if(DM){ divg=true; barStops=[-1,-0.5,0,0.5,1].map(function(t){return gsDivColor(t*maxV,maxV);}); lb0=fmtV(-maxV); lb1=fmtV(-maxV/2); lb2=fmtV(0); lb3=fmtV(maxV/2); lb4=fmtV(maxV); }
+    let barStops, lb0,lb1,lb2,lb3,lb4;
+    if(DM){ barStops=[-1,-0.5,0,0.5,1].map(function(t){return gsDivColor(t*maxV,maxV);}); lb0=fmtV(-maxV); lb1=fmtV(-maxV/2); lb2=fmtV(0); lb3=fmtV(maxV/2); lb4=fmtV(maxV); }
     else { barStops=[0,0.25,0.5,0.75,1].map(function(t){return gsSeqColor(t);}); lb0=fmtV(0); lb1=fmtV(maxV*0.25); lb2=fmtV(maxV*0.5); lb3=fmtV(maxV*0.75); lb4=fmtV(maxV); }
     const which=(maplevel==='ccaa')?'ccaa':'prov';
     // Título de lo visualizado, dentro del recuadro del mapa
@@ -3044,10 +3064,7 @@ function gsRenderMap(){
     const _mt=document.getElementById('gs-map-title'); if(_mt) _mt.innerHTML='<span>'+_tmain+'</span><small>'+_tsub+'</small>';
     let legHtml='<div style="font-size:11px;font-weight:700;margin-bottom:4px;color:#334155;">Escala de color · MW</div>'
       +'<div style="height:14px;border-radius:3px;background:linear-gradient(to right,'+barStops.join(',')+');border:1px solid rgba(0,0,0,.12);"></div>'
-      +'<div style="display:flex;justify-content:space-between;font-size:10px;color:#475569;margin-top:2px;">'+[lb0,lb1,lb2,lb3,lb4].map(function(x){return '<span>'+x+'</span>';}).join('')+'</div>'
-      +(divg
-        ? '<div style="margin-top:7px;font-size:11px;color:#334155;display:flex;gap:14px;flex-wrap:wrap;align-items:center;"><span><span class="gs-leg-dot" style="background:'+gsDivColor(-maxV,maxV)+';"></span>baja</span><span><span class="gs-leg-dot" style="background:'+gsDivColor(0,maxV)+';"></span>sin cambio</span><span><span class="gs-leg-dot" style="background:'+gsDivColor(maxV,maxV)+';"></span>sube</span><span style="color:#94a3b8;"><span class="gs-leg-dot" style="background:#cbd5e1;"></span>sin nudos</span></div>'
-        : '<div style="margin-top:7px;font-size:11px;color:#334155;display:flex;gap:14px;flex-wrap:wrap;align-items:center;"><span><span class="gs-leg-dot" style="background:'+gsSeqColor(0.12)+';"></span>menos</span><span><span class="gs-leg-dot" style="background:'+gsSeqColor(1)+';"></span>más</span><span style="color:#94a3b8;"><span class="gs-leg-dot" style="background:#cbd5e1;"></span>sin nudos</span></div>');
+      +'<div style="display:flex;justify-content:space-between;font-size:10px;color:#475569;margin-top:2px;">'+[lb0,lb1,lb2,lb3,lb4].map(function(x){return '<span>'+x+'</span>';}).join('')+'</div>';
     if(gsGeoMissing[which]) legHtml+='<div style="color:#b45309;font-size:10px;margin-top:3px;">Falta es_'+which+'.geojson en el repo.</div>';
     document.getElementById('gs-map-legend').innerHTML=legHtml;
 }
