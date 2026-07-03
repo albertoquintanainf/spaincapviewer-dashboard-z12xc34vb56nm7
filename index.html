@@ -2991,7 +2991,7 @@ function gsGlobalCards(side, scope, key, pkey){
     const p=(gsAggregate('nac',scope,pkey,side)[0])||{};
     if(!g) return '<div style="color:#64748b;font-size:12px;">Sin datos.</div>';
     const SL=GS_SIDESHORT[side]||'';
-    const blocks=['otorgada','en_curso','margen','no_otorgable','disp','liberada'];
+    const blocks=['disp','otorgada','en_curso','margen','no_otorgable','liberada'];
     let html='';
     blocks.forEach(function(bk){
         const meta=GS_VISTA_META[bk]; if(!meta) return;
