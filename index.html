@@ -745,6 +745,8 @@ legendControl.update = function() {
 const MONTHS_DATA = {};            // { "26_jun": { "ABADES 400": {gen,dem}, ... }, ... }
 let   NODOS_BASE  = {};            // atributos estáticos por nombre de nudo
 const MONTHS_DATA_DSO = {};        // { "26_jun": { "IDE|...": {gen,dem}, ... }, ... }  (DSO: clave por identidad)
+const MONTHS_POS = {};             // { "26_jul": { "ABADES 400": {gen_pos:[],dem_pos:[],solicitudes_dem:[]}, ... } }  (pos_AAAA_MM.json)
+const MONTHS_POS_META = {};        // { "26_jul": {fuentes...} }  metadatos de la publicación por posición
 let   NODOS_BASE_DSO  = {};        // atributos estáticos DSO por clave de identidad (cada entrada trae .name legible)
 const MES_NUM2NAME = {"01":"jan","02":"feb","03":"mar","04":"apr","05":"may","06":"jun","07":"jul","08":"ago","09":"sep","10":"oct","11":"nov","12":"dec"};
 
@@ -772,6 +774,12 @@ async function cargarDatosJSON() {
         fetchJSON(`${DATA_BASE_URL}dso_${p}.json`).then(j => ({ p, j })).catch(() => null)
     ));
     cargasDSO.filter(Boolean).forEach(({ p, j }) => { MONTHS_DATA_DSO[periodoToKey(p)] = j.nudos; });
+
+    // Mensuales de POSICIONES/SOLICITUDES TSO (pos_AAAA_MM.json, generados con volcado_posiciones.py); los ausentes se ignoran
+    const cargasPOS = await Promise.all(manifest.meses.map(p =>
+        fetchJSON(`${DATA_BASE_URL}pos_${p}.json`).then(j => ({ p, j })).catch(() => null)
+    ));
+    cargasPOS.filter(Boolean).forEach(({ p, j }) => { MONTHS_POS[periodoToKey(p)] = j.nudos; MONTHS_POS_META[periodoToKey(p)] = j.fuentes || {}; });
 
     // mes por defecto = último periodo del manifest (en vez de junio fijo)
     try {
@@ -825,6 +833,106 @@ function richForMonth(key, entry) {
     let r = md[entry.name];
     if (!r && entry.alias) { for (const a of entry.alias) { if (md[a]) { r = md[a]; break; } } }
     return r;
+}
+
+// ====== POSICIONES, SOLICITUDES Y OPORTUNIDAD (pos_AAAA_MM.json · volcado_posiciones.py) ======
+// Datos de posiciones/solicitudes de un nudo probando su nombre actual y sus alias (renombrados)
+function posForMonth(key, entry) {
+    const md = MONTHS_POS[key];
+    if (!md) return undefined;
+    let r = md[entry.name];
+    if (!r && entry.alias) { for (const a of entry.alias) { if (md[a]) { r = md[a]; break; } } }
+    return r;
+}
+function _mwTxt(v) { return (v === null || v === undefined || v === '') ? '·' : v; }
+function _posCount(v) { const n = cleanNum(v); return isNaN(n) ? (v ? String(v) : '0') : String(n); }
+
+// Tabla compacta de posiciones de GENERACIÓN del nudo (ES/Pend/Curso · MGES/MPE)
+function _tablaPosGen(rows) {
+    let h = '<table class="rich-tbl" style="width:100%;font-size:10.5px;"><tr style="color:#64748b;"><th style="text-align:left;">Posición</th><th>Motivación</th><th>Servicio<br>MGES/MPE</th><th>Pendiente<br>MGES/MPE</th><th>En curso<br>MGES/MPE</th></tr>';
+    rows.forEach(p => {
+        h += `<tr><td style="word-break:break-word;">${p.pos || '<i>(sin posición asignada)</i>'}</td><td style="text-align:center;">${p.motiv || '·'}</td>` +
+             `<td style="text-align:center;">${_mwTxt(p.es_mges)}/${_mwTxt(p.es_mpe)}</td>` +
+             `<td style="text-align:center;">${_mwTxt(p.pen_mges)}/${_mwTxt(p.pen_mpe)}</td>` +
+             `<td style="text-align:center;">${_mwTxt(p.cur_mges)}/${_mwTxt(p.cur_mpe)}</td></tr>`;
+    });
+    return h + '</table>';
+}
+// Tabla compacta de posiciones de DEMANDA del nudo (ES/Pend · demanda/almacenamiento)
+function _tablaPosDem(rows) {
+    let h = '<table class="rich-tbl" style="width:100%;font-size:10.5px;"><tr style="color:#64748b;"><th style="text-align:left;">Posición</th><th>Red</th><th>Servicio<br>Dem/Alm</th><th>Pendiente<br>Dem/Alm</th></tr>';
+    rows.forEach(p => {
+        h += `<tr><td style="word-break:break-word;">${p.pos || '·'}</td><td style="text-align:center;">${p.rdtrdd || '·'}</td>` +
+             `<td style="text-align:center;">${_mwTxt(p.es_dem)}/${_mwTxt(p.es_alm)}</td>` +
+             `<td style="text-align:center;">${_mwTxt(p.pen_dem)}/${_mwTxt(p.pen_alm)}</td></tr>`;
+    });
+    return h + '</table>';
+}
+// Semáforo textual de solicitud (perspectiva promotor): dónde y por qué se puede solicitar
+function _oportunidad(rich, pd) {
+    if (!rich) return '';
+    const g = rich.gen || {}, d = rich.dem || {};
+    const dg = g.disp || {}, dd = d.disp || {};
+    const mx = (...a) => { const n = a.map(cleanNum).filter(v => !isNaN(v)); return n.length ? Math.max(...n) : NaN; };
+    const genDisp = mx(dg.gen_mges_rdt, dg.gen_mpe_rdt), almGDisp = mx(dg.alm_mges_rdt, dg.alm_mpe_rdt);
+    const demDisp = mx(dd.dem_ch, dd.dem_sh, dd.dem_no_cep), almDDisp = mx(dd.alm_cep, dd.alm_no_cep);
+    const ctG = (g.reserva || {}).estado || 'No tender', ctD = (d.concurso || {}).estado || 'No tender';
+    const pg = g.posiciones || {}, pdem = d.posiciones || {};
+    const clG = g.crit_lim || {}, clD = d.crit_lim || {};
+    const dot = ok => `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${ok === true ? '#16a34a' : ok === false ? '#dc2626' : '#f59e0b'};margin-right:5px;"></span>`;
+    const L = [];
+    // GEN/ALM (vertido)
+    if (/tender|concurso/i.test(ctG) && !/no tender/i.test(ctG)) {
+        L.push(dot(false) + `<b>GEN/ALM:</b> nudo en reserva/concurso (${ctG}) → capacidad no solicitable por criterio general; vigilar convocatoria.`);
+    } else if (genDisp > 0 || almGDisp > 0) {
+        L.push(dot(true) + `<b>GEN/ALM:</b> solicitable por criterio general (Circular 1/2021). Disp. RdT: gen ${isNaN(genDisp) ? '–' : genDisp} MW · alm ${isNaN(almGDisp) ? '–' : almGDisp} MW. Posiciones gen/alm a RdT E=${_posCount(pg.transporte_E)} P=${_posCount(pg.transporte_P)}. Criterio limitante: ${clG.gen_mpe || clG.gen_mges || '–'}.`);
+    } else {
+        L.push(dot(false) + `<b>GEN/ALM:</b> sin capacidad disponible publicada (criterio limitante: ${clG.gen_mpe || clG.gen_mges || '–'}). Vías: capacidad liberada por hitos/caducidades, concursos, o RdD si hay margen (${_mwTxt(dg.gen_mpe_rdd)} MW MPE RdD).`);
+    }
+    // DEMANDA/ALM (consumo)
+    const posConE = cleanNum(pdem.consumo_transporte_E), posConP = cleanNum(pdem.consumo_transporte_P);
+    if (/tender|concurso/i.test(ctD) && !/no tender/i.test(ctD)) {
+        L.push(dot(false) + `<b>DEMANDA:</b> nudo reservado a concurso de demanda (${ctD}); acceso solo vía concurso (RD 1183/2020).`);
+    } else if (demDisp > 0 || almDDisp > 0) {
+        L.push(dot(true) + `<b>DEMANDA:</b> solicitable por criterio general (Circular 1/2024; prelación temporal + prestación por reserva RDL 7/2026). Disp.: dem ${isNaN(demDisp) ? '–' : demDisp} MW · alm ${isNaN(almDDisp) ? '–' : almDDisp} MW. Posiciones consumo a RdT E=${_posCount(pdem.consumo_transporte_E)} P=${_posCount(pdem.consumo_transporte_P)}. Criterio limitante: ${clD.dem_ch || clD.dem_no_cep || '–'}.`);
+    } else {
+        L.push(dot(false) + `<b>DEMANDA:</b> sin capacidad disponible publicada. Vías: concursos de demanda, conexión vía RdD, o proyectos de alta prioridad (art. 13 RDL 7/2026).`);
+    }
+    if ((isNaN(posConE) || posConE === 0) && (isNaN(posConP) || posConP === 0)) {
+        L.push(dot(null) + `<b>Sin posición de consumo E/P:</b> no cabe solicitud ligada a posición inexistente; la vía es el <b>mecanismo de planificación de posiciones para demanda</b> (art. 4 bis Ley 24/2013, introducido por la Ley 9/2025 de Movilidad Sostenible y desarrollado por el RDL 7/2026: informe cuatrimestral del OS a la SEE desde 1-jun-2026 para re-finalizar o añadir posiciones).`);
+    }
+    if (pd && pd.solicitudes_dem && pd.solicitudes_dem.length) {
+        const tot = pd.solicitudes_dem.reduce((s, x) => s + (cleanNum(x.mw) || 0), 0);
+        L.push(dot(null) + `<b>Competencia:</b> ${pd.solicitudes_dem.length} solicitud(es) de demanda en publicación (art. 20 quater RD 1183/2020) por ${Math.round(tot * 10) / 10} MW → prelación temporal en riesgo.`);
+    }
+    return '<div style="background:#fff7ed;border:1px solid #fdba74;border-radius:6px;padding:6px 8px;margin-top:8px;font-size:11px;line-height:1.45;">' +
+           '<div style="font-weight:bold;color:#F3721F;margin-bottom:3px;">Análisis de oportunidad (promotor)</div>' + L.map(x => `<div style="margin:2px 0;">${x}</div>`).join('') + '</div>';
+}
+// Bloque completo: oportunidad + posiciones ocupadas + solicitudes de demanda del nudo
+function renderPosiciones(item, key, type) {
+    if (item.grid !== 'TSO') return '';
+    const rich = richForMonth(key, item);
+    const pd = posForMonth(key, item);
+    let h = _oportunidad(rich, pd);
+    if (pd) {
+        const showGen = type !== 'dem', showDem = type !== 'gen';
+        h += '<details style="margin-top:8px;"><summary style="cursor:pointer;font-size:12.5px;font-weight:bold;color:#F3721F;">Posiciones y solicitudes (publicación mensual REE) ▾</summary><div style="max-height:260px;overflow:auto;">';
+        if (showGen && pd.gen_pos && pd.gen_pos.length) {
+            h += '<div class="rich-side"><div class="rich-side-title">Capacidad ocupada por posición · Generación</div>' + _tablaPosGen(pd.gen_pos) + '</div>';
+        }
+        if (showDem && pd.dem_pos && pd.dem_pos.length) {
+            h += '<div class="rich-side"><div class="rich-side-title">Capacidad ocupada por posición · Demanda</div>' + _tablaPosDem(pd.dem_pos) + '</div>';
+        }
+        if (pd.solicitudes_dem && pd.solicitudes_dem.length) {
+            h += '<div class="rich-side"><div class="rich-side-title">Solicitudes de acceso de demanda en publicación</div><table class="rich-tbl" style="width:100%;font-size:10.5px;"><tr style="color:#64748b;"><th style="text-align:left;">ID</th><th>Posición</th><th>MW</th><th>Recepción</th><th>Concurso</th></tr>';
+            pd.solicitudes_dem.forEach(s => {
+                h += `<tr><td>${s.id || '·'}</td><td style="text-align:center;">${s.pos || '·'}</td><td style="text-align:center;">${_mwTxt(s.mw)}</td><td style="text-align:center;">${s.fecha || '·'}</td><td style="text-align:center;">${s.concurso || '·'}</td></tr>`;
+            });
+            h += '</table></div>';
+        }
+        h += '</div></details>';
+    }
+    return h;
 }
 
 function construirEntries() {
@@ -1286,6 +1394,7 @@ function buildNodeFichaHTML(items) {
         const richHtml = item.grid === 'DSO'
             ? renderRichDSO((MONTHS_DATA_DSO[year + '_' + month] || {})[item.dsoKey], which, (MONTHS_DATA_DSO[prevYear + '_' + pMonth] || {})[item.dsoKey])
             : renderRich(richForMonth(year + '_' + month, item), which, richForMonth(prevYear + '_' + pMonth, item));
+        const posHtml = renderPosiciones(item, year + '_' + month, type);
         const safeName = String(item.name).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
         const dispTitle = type === 'dem' ? 'Demand' : (type === 'storage' ? 'Storage' : 'Generation');
         html += `
@@ -1306,6 +1415,7 @@ function buildNodeFichaHTML(items) {
                     ${buildDispTrendHTML(item, type)}
                 </div>
                 <button class="popup-btn-hist" style="margin:8px 0 4px;" onclick="openHistory('${safeName}')">📊 View ALL Historical Data</button>
+                ${posHtml}
                 ${richHtml}
             </div>`;
     });
