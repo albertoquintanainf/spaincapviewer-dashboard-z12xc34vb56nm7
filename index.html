@@ -2625,8 +2625,12 @@ function renderGridStatus(){
     const showAB=(desgBlock==='otorgada'||desgBlock==='en_curso');
     const abMetric=(desgBlock==='otorgada')?'otTot':'ecTot';
     const abMap=showAB?gsAltasBajas(level,scope,key,pkey,side,abMetric):{};
+    // DSO: altas/bajas (nudo a nudo) para ocupada (otorgada) y admitida (en curso), mostradas en línea bajo el valor
+    const abOcMap=isDSO?gsAltasBajas(level,scope,key,pkey,side,'ocupada'):{};
+    const abAdMap=isDSO?gsAltasBajas(level,scope,key,pkey,side,'admitida'):{};
     const abAlta=function(v){ return (v>0.5)?'<span style="color:#16a34a;font-weight:700;">+'+gsFmt(v)+'</span>':'<span style="color:#94a3b8;">0</span>'; };
     const abBaja=function(v){ return (v<-0.5)?'<span style="color:#dc2626;font-weight:700;">−'+gsFmt(Math.abs(v))+'</span>':'<span style="color:#94a3b8;">0</span>'; };
+    const abLine=function(ab){ ab=ab||{altas:0,bajas:0}; return '<div style="font-size:9px;white-space:nowrap;line-height:1.2;margin-top:1px;"><span style="color:#16a34a;">▲'+(ab.altas>0.5?'+'+gsFmt(ab.altas):'0')+'</span> <span style="color:#dc2626;">▼'+(ab.bajas<-0.5?'−'+gsFmt(Math.abs(ab.bajas)):'0')+'</span></div>'; };
     let rows='';
     for(const g of cur){
         const p=pmap[g.name]||{};
@@ -2645,8 +2649,8 @@ function renderGridStatus(){
               +'<td style="text-align:left;">'+showName+'<div style="font-size:10px;color:#94a3b8;">'+nlab+'</div></td>'
               +'<td>'+g.n+'</td>'
               +'<td>'+gsFmt(g.disp)+gsDelta(g.disp,(p.disp===undefined?NaN:p.disp))+'</td>'
-              +'<td>'+gsFmt(g.ocupada)+'</td>'
-              +'<td>'+gsFmt(g.admitida)+'</td>'
+              +'<td>'+gsFmt(g.ocupada)+abLine(abOcMap[g.name])+'</td>'
+              +'<td>'+gsFmt(g.admitida)+abLine(abAdMap[g.name])+'</td>'
               +'<td>'+(isNaN(sat)?'–':sat.toFixed(0)+'%')+'</td>'
               +'</tr>';
         } else {
@@ -2695,6 +2699,7 @@ function renderGridStatus(){
 
     let tableOut=table;
     if(desg){ const _maxNote=(_aggSuffix==='(máx.)')?' · <b>Máx.</b> = suma, nudo a nudo, del criterio más limitante de cada nudo. Puede no coincidir con ninguna columna ni con la mayor categoría, ya que el criterio limitante varía entre nudos: la suma de los máximos por nudo es siempre mayor o igual que el máximo de cualquier categoría sumada.':' · <b>Total</b> = suma de las columnas.'; const _abNote=showAB?' · <b>Altas/Bajas</b> = suma, nudo a nudo, de las subidas y bajadas de capacidad frente al mes anterior (separa capacidad nueva de la que ha caído; Altas + Bajas = variación neta).':''; tableOut='<div style="font-size:11px;color:#64748b;margin-bottom:4px;">'+(DM?'<b style="color:#F3721F;">Variación (Δ vs mes anterior)</b> · ':'')+'Desglose: <b>'+blockLbl+'</b>'+(desgBlock==='no_otorgable'?' · los <b>motivos</b> están en el panel de causas (derecha) →':'')+_maxNote+_abNote+'</div>'+tableOut; }
+    else if(isDSO){ tableOut='<div style="font-size:11px;color:#64748b;margin-bottom:4px;">Bajo <b>Ocupada</b> y <b>Admitida</b>: <span style="color:#16a34a;">▲ Altas</span> / <span style="color:#dc2626;">▼ Bajas</span> = suma, nudo a nudo, de subidas y bajadas de capacidad frente al mes anterior (Altas + Bajas = variación neta).</div>'+tableOut; }
     document.getElementById('gs-nat-wrap').innerHTML=gsNationalBanner(scope,key,pkey,side);
     document.getElementById('gs-table-wrap').innerHTML=tableOut;
     document.getElementById('gs-mot-wrap').innerHTML=cHtml;
@@ -3009,8 +3014,10 @@ function gsGlobalCard(bk, side, g, p, SL, scope, key, pkey){
                      admitida:{agg:'admitida',label:'Capacidad en curso',suf:'(admitida y no evaluada)'} };
         const b=DMAP[bk]; if(!b) return '';
         const tot=g[b.agg], ptot=p[b.agg];
+        let ab='';
+        if(bk==='ocupada'||bk==='admitida'){ const _ab=(gsAltasBajas('nac',scope,key,pkey,side,b.agg)['España'])||{altas:0,bajas:0}; ab='<div class="gg-ab"><span style="color:#16a34a;">▲ Altas: '+(_ab.altas>0.5?'+'+gsFmt(_ab.altas):'0')+'</span><span style="color:#dc2626;">▼ Bajas: '+(_ab.bajas<-0.5?'−'+gsFmt(Math.abs(_ab.bajas)):'0')+'</span></div>'; }
         return '<div class="gg-card"><div class="gg-card-h">'+b.label+' <small>'+b.suf+'</small></div>'
-            +'<div class="gg-card-tot">'+gsFmt(tot)+gsDelta(tot,(ptot===undefined?NaN:ptot))+' <small>MW '+SL+'</small></div></div>';
+            +'<div class="gg-card-tot">'+gsFmt(tot)+gsDelta(tot,(ptot===undefined?NaN:ptot))+' <small>MW '+SL+'</small></div>'+ab+'</div>';
     }
     const meta=GS_VISTA_META[bk]; if(!meta) return '';
     const cols=((GS_COLS[bk]||{})[side])||[]; if(!cols.length) return '';
