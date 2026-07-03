@@ -300,7 +300,6 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .gg-rn { color:#0f172a; font-size:20px; font-weight:800; }
 .gg-sep { color:#cbd5e1; font-size:20px; }
 #gs-global-sub2 { font-size:12px; font-weight:600; color:#64748b; }
-.gg-note { font-size:12px; color:#64748b; margin-bottom:14px; }
 .gg-col-gen { background:#fff4ec; color:#C85A16; border:1px solid #f6c8a8; }
 .gg-col-dem { background:#eef4ff; color:#1e40af; border:1px solid #c7d7f5; }
 .dso-com-alert { margin-top:8px; padding:6px 10px; background:#fff7ed; border:1px solid #fed7aa; border-radius:8px; color:#b45309; font-size:12px; font-weight:600; line-height:1.35; }
@@ -314,7 +313,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .gs-table th:first-child, .gs-table td:first-child { text-align:left; width:15%; }
 .gs-table th { background:#e2e8f0; color:#0f172a; position:sticky; top:0; font-size:12px; line-height:1.15; }
 .gs-table tbody tr:hover { background:#f8fafc; }
-#gs-mot { width:100%; box-sizing:border-box; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:14px; max-height:32vh; overflow:auto; flex:0 0 auto; }
+#gs-mot { box-sizing:border-box; margin:0 18px 28px; background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:14px; max-height:40vh; overflow:auto; }
 #gs-mot h3 { margin:0 0 10px; font-size:13px; color:#F3721F; }
 .gs-mot-row { display:flex; justify-content:space-between; gap:10px; font-size:12px; padding:5px 0; border-bottom:1px dashed #e2e8f0; }
 
@@ -2373,6 +2372,8 @@ function gsCurrentMapField(cfg){
 // Rellena el desplegable «Colorear mapa» según la vista/perspectiva actual (punto 3)
 function gsSyncMapFields(){
     const sel=document.getElementById('gs-map-field'); if(!sel) return;
+    const scope=((document.getElementById('gs-scope')||{}).value)||'TSO';
+    if(scope==='DSO'){ sel.innerHTML='<option value="disp">Disponible</option>'; sel.value='disp'; return; }
     const vista=((document.getElementById('gs-desg-block')||{}).value)||'margen';
     const side=((document.getElementById('gs-side')||{}).value)||'gen';
     const cfg=gsVistaCfg(vista,side), prev=sel.value; let keep=false, html='';
@@ -2698,13 +2699,13 @@ function renderGridStatus(){
     } else { cHtml='<div style="color:#94a3b8;">Sin nudos en este alcance.</div>'; }
 
     let tableOut=table;
-    if(desg){ const _maxNote=(_aggSuffix==='(máx.)')?' · <b>Máx.</b> = suma, nudo a nudo, del criterio más limitante de cada nudo. Puede no coincidir con ninguna columna ni con la mayor categoría, ya que el criterio limitante varía entre nudos: la suma de los máximos por nudo es siempre mayor o igual que el máximo de cualquier categoría sumada.':' · <b>Total</b> = suma de las columnas.'; const _abNote=showAB?' · <b>Altas/Bajas</b> = suma, nudo a nudo, de las subidas y bajadas de capacidad frente al mes anterior (separa capacidad nueva de la que ha caído; Altas + Bajas = variación neta).':''; tableOut='<div style="font-size:11px;color:#64748b;margin-bottom:4px;">'+(DM?'<b style="color:#F3721F;">Variación (Δ vs mes anterior)</b> · ':'')+'Desglose: <b>'+blockLbl+'</b>'+(desgBlock==='no_otorgable'?' · los <b>motivos</b> están en el panel de causas (derecha) →':'')+_maxNote+_abNote+'</div>'+tableOut; }
+    if(desg){ const _maxNote=(_aggSuffix==='(máx.)')?' · <b>Máx.</b> = suma, nudo a nudo, del criterio más limitante de cada nudo. Puede no coincidir con ninguna columna ni con la mayor categoría, ya que el criterio limitante varía entre nudos: la suma de los máximos por nudo es siempre mayor o igual que el máximo de cualquier categoría sumada.':' · <b>Total</b> = suma de las columnas.'; const _abNote=showAB?' · <b>Altas/Bajas</b> = suma, nudo a nudo, de las subidas y bajadas de capacidad frente al mes anterior (separa capacidad nueva de la que ha caído; Altas + Bajas = variación neta).':''; tableOut='<div style="font-size:11px;color:#64748b;margin-bottom:4px;">'+(DM?'<b style="color:#F3721F;">Variación (Δ vs mes anterior)</b> · ':'')+'Desglose: <b>'+blockLbl+'</b>'+(desgBlock==='no_otorgable'?' · los <b>motivos</b> están en el panel de causas, debajo ↓':'')+_maxNote+_abNote+'</div>'+tableOut; }
     else if(isDSO){ tableOut='<div style="font-size:11px;color:#64748b;margin-bottom:4px;">Bajo <b>Ocupada</b> y <b>Admitida</b>: <span style="color:#16a34a;">▲ Altas</span> / <span style="color:#dc2626;">▼ Bajas</span> = suma, nudo a nudo, de subidas y bajadas de capacidad frente al mes anterior (Altas + Bajas = variación neta).</div>'+tableOut; }
     document.getElementById('gs-nat-wrap').innerHTML=gsNationalBanner(scope,key,pkey,side);
     document.getElementById('gs-table-wrap').innerHTML=tableOut;
     document.getElementById('gs-mot-wrap').innerHTML=cHtml;
     document.getElementById('gs-mot-title').textContent='Causas de «no solicitable» ('+(GS_SIDELBL[side]||side)+')';
-    document.getElementById('gs-mot').style.display=(desgBlock==='no_otorgable')?'':'none';
+    document.getElementById('gs-mot').style.display=(desgBlock==='no_otorgable' && scope!=='DSO')?'':'none';
     document.getElementById('gs-period').textContent = '20'+year+' · '+(GS_MLBL[month]||month)+' · '+(GS_SIDELBL[side]||side)+'  (Δ vs mes previo)';
     gsSyncMapFields();
     if(gsMap) gsRenderMap();
@@ -2985,8 +2986,22 @@ function gsSyncScopeOptions(){
   if(allOpt){ allOpt.hidden=!allowAll; allOpt.disabled=!allowAll; }
   if(!allowAll && sel.value==='ALL'){ sel.value='TSO'; }
 }
+// Oculta los desplegables que no aplican, para no confundir:
+//  - Global: no aplican Perspectiva, Nivel ni Bloque (muestra ambas perspectivas, nacional y todos los bloques).
+//  - Regional/Variaciones con Red = DSO: no aplica Bloque (el DSO va todo en una tabla, sin bloques).
+function gsSyncControls(){
+  const scope=(document.getElementById('gs-scope')||{}).value;
+  const isGlobal=(gsMode==='global');
+  const isReg=(gsMode==='estado'||gsMode==='varmap');
+  const show=function(id,on){ const el=document.getElementById(id); if(el) el.style.display=on?'':'none'; };
+  show('gs-lbl-side',  !isGlobal);
+  show('gs-lbl-level', !isGlobal);
+  show('gs-lbl-block', !isGlobal && !(isReg && scope==='DSO'));
+  show('gs-map-fieldbox', scope!=='DSO');   // en DSO el mapa solo representa «Disponible»: sin selector de tipo
+}
 function gsSetMode(m){ gsMode=m;
   gsSyncScopeOptions();
+  gsSyncControls();
   document.getElementById('gs-tab-global').classList.toggle('active',m==='global');
   document.getElementById('gs-tab-estado').classList.toggle('active',m==='estado');
   document.getElementById('gs-tab-varmap').classList.toggle('active',m==='varmap');
@@ -2994,6 +3009,7 @@ function gsSetMode(m){ gsMode=m;
   document.getElementById('gs-tab-whatsnew').classList.toggle('active',m==='whatsnew');
   const showBody=(m==='estado'||m==='varmap'); gsGlobalMode=(m==='varmap')?'delta':'abs';
   document.querySelector('#grid-status .gs-body').style.display=showBody?'flex':'none';
+  if(!showBody){ const _mot=document.getElementById('gs-mot'); if(_mot) _mot.style.display='none'; }  // gs-mot ya no vive dentro de gs-body
   document.getElementById('gs-mode-global').style.display=(m==='global')?'block':'none';
   document.getElementById('gs-mode-var').style.display=(m==='var')?'block':'none';
   document.getElementById('gs-mode-whatsnew').style.display=(m==='whatsnew')?'block':'none';
@@ -3002,7 +3018,7 @@ function gsSetMode(m){ gsMode=m;
   else if(m==='var'){ renderVariaciones(); }
   else { renderWhatsNew(); }
 }
-function gsRefresh(){ gsSyncVistaOptions(); if(gsMode==='global') renderGlobal(); else if(gsMode==='var') renderVariaciones(); else if(gsMode==='whatsnew') renderWhatsNew(); else renderGridStatus(); }
+function gsRefresh(){ gsSyncVistaOptions(); gsSyncControls(); if(gsMode==='global') renderGlobal(); else if(gsMode==='var') renderVariaciones(); else if(gsMode==='whatsnew') renderWhatsNew(); else renderGridStatus(); }
 // ---- Modo GLOBAL: resumen nacional de TODOS los bloques a la vez (sin elegir bloque) ----
 // Genera UNA tarjeta de bloque. En DSO usa los campos planos (disp/ocupada/admitida);
 // en TSO usa GS_VISTA_META (otTot/ecTot/…) con sus columnas y altas/bajas.
@@ -3218,13 +3234,13 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
   <div id="gs-controls">
     <label>Año:<select id="gs-year" onchange="gsRefresh()"></select></label>
     <label>Mes:<select id="gs-month" onchange="gsRefresh()"></select></label>
-    <label>Perspectiva:
+    <label id="gs-lbl-side">Perspectiva:
       <select id="gs-side" onchange="gsRefresh()">
         <option value="gen" selected>Generación</option>
         <option value="dem">Demanda</option>
       </select>
     </label>
-    <label>Nivel:
+    <label id="gs-lbl-level">Nivel:
       <select id="gs-level" onchange="gsRefresh()">
         <option value="ccaa" selected>Comunidad (CCAA)</option>
         <option value="prov">Provincia</option>
@@ -3237,7 +3253,7 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
         <option value="DSO">DSO</option>
       </select>
     </label>
-    <label>Bloque:
+    <label id="gs-lbl-block">Bloque:
       <select id="gs-desg-block" onchange="renderGridStatus()" title="Bloque de capacidad — afecta a tabla, mapa y dato nacional"><option value="otorgada" selected>Capacidad otorgada</option><option value="en_curso">Capacidad en curso</option><option value="margen">Margen de capacidad</option><option value="no_otorgable">No otorgable</option><option value="disp">Disponible para solicitud</option><option value="liberada">Liberada autoconsumo RDL 7/2026</option></select>
     </label>
     <button type="button" onclick="gsToggleGloss()" style="margin-left:auto;background:#e2e8f0;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:#F3721F;font-weight:bold;">&#9432; Glosario</button>
@@ -3278,12 +3294,11 @@ function closeGridStatus(){ document.getElementById('grid-status').classList.rem
     <div id="gs-view-table" class="gs-view-table">
       <div id="gs-nat-wrap"></div>
       <div id="gs-table-wrap"></div>
-      <div id="gs-mot"><h3 id="gs-mot-title">Motivos no disponible (Gen)</h3><div id="gs-mot-wrap"></div></div>
     </div>
   </div>
+  <div id="gs-mot"><h3 id="gs-mot-title">Motivos no disponible (Gen)</h3><div id="gs-mot-wrap"></div></div>
   <div id="gs-mode-global" style="display:none;padding:12px 18px 18px;overflow:auto;max-height:calc(100vh - 200px);">
     <div class="gg-header"><span class="gg-esp">España</span> <span class="gg-sep">·</span> <span class="gg-rn">Resumen nacional</span><span id="gs-global-sub2"></span></div>
-    <div class="gg-note">«Nivel» y «Bloque» no aplican aquí; para el detalle por región usa la pestaña «Regional».</div>
     <div id="gs-global-cards"></div>
   </div>
   <div id="gs-mode-var">
