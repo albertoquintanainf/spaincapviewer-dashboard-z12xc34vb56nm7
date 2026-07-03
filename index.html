@@ -2700,12 +2700,12 @@ function renderGridStatus(){
 
     let tableOut=table;
     if(desg){ const _maxNote=(_aggSuffix==='(máx.)')?' · <b>Máx.</b> = suma, nudo a nudo, del criterio más limitante de cada nudo. Puede no coincidir con ninguna columna ni con la mayor categoría, ya que el criterio limitante varía entre nudos: la suma de los máximos por nudo es siempre mayor o igual que el máximo de cualquier categoría sumada.':' · <b>Total</b> = suma de las columnas.'; const _abNote=showAB?' · <b>Altas/Bajas</b> = suma, nudo a nudo, de las subidas y bajadas de capacidad frente al mes anterior (separa capacidad nueva de la que ha caído; Altas + Bajas = variación neta).':''; tableOut='<div style="font-size:11px;color:#64748b;margin-bottom:4px;">'+(DM?'<b style="color:#F3721F;">Variación (Δ vs mes anterior)</b> · ':'')+'Desglose: <b>'+blockLbl+'</b>'+(desgBlock==='no_otorgable'?' · los <b>motivos</b> están en el panel de causas, debajo ↓':'')+_maxNote+_abNote+'</div>'+tableOut; }
-    else if(isDSO){ tableOut='<div style="font-size:11px;color:#64748b;margin-bottom:4px;">Bajo <b>Ocupada</b> y <b>Admitida</b>: <span style="color:#16a34a;">▲ Altas</span> / <span style="color:#dc2626;">▼ Bajas</span> = suma, nudo a nudo, de subidas y bajadas de capacidad frente al mes anterior (Altas + Bajas = variación neta).</div>'+tableOut; }
+    else if(isDSO){ tableOut='<div style="font-size:11px;color:#64748b;margin-bottom:4px;">Bajo <b>Ocupada</b> y <b>Admitida</b>: <span style="color:#16a34a;">▲ Altas</span> / <span style="color:#dc2626;">▼ Bajas</span> = suma, nudo a nudo, de subidas y bajadas de capacidad frente al mes anterior (Altas + Bajas = variación neta) · los <b>motivos de no solicitable</b> están en el panel de causas, debajo ↓</div>'+tableOut; }
     document.getElementById('gs-nat-wrap').innerHTML=gsNationalBanner(scope,key,pkey,side);
     document.getElementById('gs-table-wrap').innerHTML=tableOut;
     document.getElementById('gs-mot-wrap').innerHTML=cHtml;
     document.getElementById('gs-mot-title').textContent='Causas de «no solicitable» ('+(GS_SIDELBL[side]||side)+')';
-    document.getElementById('gs-mot').style.display=(desgBlock==='no_otorgable' && scope!=='DSO')?'':'none';
+    document.getElementById('gs-mot').style.display=(scope==='DSO' || desgBlock==='no_otorgable')?'':'none';
     document.getElementById('gs-period').textContent = '20'+year+' · '+(GS_MLBL[month]||month)+' · '+(GS_SIDELBL[side]||side)+'  (Δ vs mes previo)';
     gsSyncMapFields();
     if(gsMap) gsRenderMap();
@@ -3135,7 +3135,7 @@ function gsRenderMap(){
     // Campo a colorear: el elegido en el desplegable «Colorear mapa» (Disponible fijo para DSO)
     const mf=(scope==='DSO')?{key:'disp',label:'Disponible',sub:false}:gsCurrentMapField(cfg);
     const mval=function(g){ return mf.sub ? cleanNum((g[cfg.sub]||{})[mf.key]) : cleanNum(g[mf.key]); };
-    const mlabel=mf.label+' · '+cfg.label+' '+SL;
+    const mlabel=(scope==='DSO')?(mf.label+' '+SL):(mf.label+' · '+cfg.label+' '+SL);
     const cur=gsAggregate(maplevel,scope,key,side);
     const isAB=(mf.key.indexOf('altas')===0||mf.key.indexOf('bajas')===0);
     if(isAB){
