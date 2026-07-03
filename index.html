@@ -302,6 +302,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .gg-col-h { font-size:14px; font-weight:800; padding:6px 11px; border-radius:8px; margin-bottom:10px; }
 .gg-col-gen { background:#fff4ec; color:#C85A16; border:1px solid #f6c8a8; }
 .gg-col-dem { background:#eef4ff; color:#1e40af; border:1px solid #c7d7f5; }
+.dso-com-alert { margin-top:8px; padding:6px 10px; background:#fff7ed; border:1px solid #fed7aa; border-radius:8px; color:#b45309; font-size:12px; font-weight:600; line-height:1.35; }
 /* Barra de color / leyenda, superpuesta dentro del recuadro del mapa (item 6) */
 #gs-map-legend { position:absolute; right:10px; bottom:14px; z-index:600; width:210px; max-width:56%; margin:0; padding:8px 10px; font-size:11px; color:#475569; background:rgba(255,255,255,.95); border:1px solid #e2e8f0; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,.12); }
 .gs-bubble-label { background:transparent !important; border:none !important; box-shadow:none !important; padding:0 !important; color:#fff; font-weight:700; font-size:11px; text-shadow:0 0 3px rgba(0,0,0,.85),0 0 2px rgba(0,0,0,.85); white-space:nowrap; }
@@ -954,7 +955,7 @@ function renderRich(rich, which, prevRich) {
 
 // ====== POPUP ESPECÍFICO DSO (esquema plano: campos publicados por las distribuidoras) ======
 const DSO_LABELS = {
-    disp: 'Capacidad disponible (MW)', comprom: 'Capacidad comprometida (MW)',
+    disp: 'Capacidad disponible (MW)', comprom: 'Comprometida por cuestiones regulatorias',
     ocupada: 'Capacidad ocupada (MW)', admitida: 'Capacidad admitida (MW)',
     pos_ocup: 'Posiciones ocupadas', pos_libr: 'Posiciones libres',
     afeccion: 'Afección RdT', scc: 'Limitado por SCC',
@@ -985,6 +986,7 @@ function _dsoFilas(datos, prevDatos) {
     DSO_ORDER.forEach(k => {
         const v = datos[k];
         if (v === null || v === undefined || v === '') return;
+        if (k === 'comprom') return;   // se muestra como AVISO en renderRichDSO (flag 0/1, no MW)
         if (k === 'nudo0') {
             // Nudo 0*: 1=Sí / 0=No, con botón de info (nota aclaratoria) en ambos casos
             const is0 = dsoIs0Star(v);
@@ -1005,7 +1007,12 @@ function renderRichDSO(rich, which, prevRich) {
     const fg = (which !== 'dem') ? _dsoFilas(rich.gen, pg) : '';
     const fd = (which !== 'gen') ? _dsoFilas(rich.dem, pd) : '';
     if (!fg && !fd) return '';
-    let h = '<details open style="margin-top:8px;"><summary style="cursor:pointer;font-size:12.5px;font-weight:bold;color:#F3721F;">View all variables ▾</summary>';
+    // Aviso de capacidad comprometida por cuestiones regulatorias (flag 0/1; NO es MW, no entra en la saturación)
+    const cg = (which !== 'dem') ? cleanNum((rich.gen || {}).comprom) : NaN;
+    const cd = (which !== 'gen') ? cleanNum((rich.dem || {}).comprom) : NaN;
+    const sidesCom = []; if (cg >= 1) sidesCom.push('generación'); if (cd >= 1) sidesCom.push('demanda');
+    const alerta = sidesCom.length ? ('<div class="dso-com-alert">⚠ Posible <b>capacidad comprometida por cuestiones regulatorias</b> (' + sidesCom.join(' y ') + '). Revisa el comentario del nudo.</div>') : '';
+    let h = alerta + '<details open style="margin-top:8px;"><summary style="cursor:pointer;font-size:12.5px;font-weight:bold;color:#F3721F;">View all variables ▾</summary>';
     if (fg) h += '<div class="rich-side"><div class="rich-side-title">Generación</div><table class="rich-tbl">' + fg + '</table></div>';
     if (fd) h += '<div class="rich-side"><div class="rich-side-title">Demanda</div><table class="rich-tbl">' + fd + '</table></div>';
     h += '</details>';
@@ -2637,7 +2644,6 @@ function renderGridStatus(){
               +'<td style="text-align:left;">'+showName+'<div style="font-size:10px;color:#94a3b8;">'+nlab+'</div></td>'
               +'<td>'+g.n+'</td>'
               +'<td>'+gsFmt(g.disp)+gsDelta(g.disp,(p.disp===undefined?NaN:p.disp))+'</td>'
-              +'<td>'+gsFmt(g.comprom)+'</td>'
               +'<td>'+gsFmt(g.ocupada)+'</td>'
               +'<td>'+gsFmt(g.admitida)+'</td>'
               +'<td>'+(isNaN(sat)?'–':sat.toFixed(0)+'%')+'</td>'
@@ -2659,7 +2665,7 @@ function renderGridStatus(){
     const _aggSuffix=_vc.suffix;
     const headDesg = hdr('Nivel','name','text-align:left;')+hdr('Nudos','n')+subLabels.map(function(L){return '<th title="'+blockLbl+' '+L+' (MW)">'+L+'</th>';}).join('')+hdr(blockLbl+' '+SL+' '+_aggSuffix,vistaAgg)+(showAB?'<th title="Suma, nudo a nudo, de las subidas de capacidad respecto al mes anterior (capacidad nueva)">▲ Altas</th><th title="Suma, nudo a nudo, de las bajadas de capacidad respecto al mes anterior (capacidad que ha caído)">▼ Bajas</th>':'');
     const head = desg ? headDesg : (isDSO
-      ? (hdr('Nivel','name','text-align:left;')+hdr('Nudos','n')+hdr('Disponible (MW)','disp')+hdr('Comprom. regul.','comprom')+hdr('Ocupada (MW)','ocupada')+hdr('Admitida y no resuelta (MW)','admitida')+hdr('Satur.','sat'))
+      ? (hdr('Nivel','name','text-align:left;')+hdr('Nudos','n')+hdr('Disponible (MW)','disp')+hdr('Ocupada (MW)','ocupada')+hdr('Admitida y no resuelta (MW)','admitida')+hdr('Satur.','sat'))
       : (hdr('Nivel','name','text-align:left;')+hdr('Nudos','n')+hdr('Margen '+SL,'margen')+hdr('Aflorada Δmargen','aflorada')+hdr('En curso','enCurso')+hdr('Otorgada '+SL,'otorgada')+hdr('Concurso','concurso')+hdr('No solicit.','noSolic')+hdr('Satur. '+SL,'sat')));
     const table='<table class="gs-table"><thead><tr>'+head+'</tr></thead><tbody>'+(rows||'<tr><td colspan="12">Sin datos para este mes/alcance.</td></tr>')+'</tbody></table>';
 
