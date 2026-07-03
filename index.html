@@ -280,7 +280,11 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 #gs-can-inset .leaflet-container { background:#eef2f7; }
 .gs-can-lbl { position:absolute; top:2px; left:4px; z-index:5; font-size:9px; font-weight:700; color:#475569; background:rgba(255,255,255,.82); padding:0 3px; border-radius:3px; pointer-events:none; }
 /* Tarjetas del modo Global (resumen de todos los bloques) */
-.gg-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px; }
+.gg-matrix { display:grid; grid-template-columns:1fr 1fr; gap:12px 16px; align-items:stretch; }
+.gg-mh { font-size:14px; font-weight:800; padding:6px 11px; border-radius:8px; }
+.gg-cell { display:flex; }
+.gg-cell > .gg-card { flex:1 1 auto; }
+.gg-empty { display:flex; align-items:center; justify-content:center; color:#94a3b8; background:#f8fafc; border:1px dashed #e2e8f0; border-left:4px solid #e2e8f0; font-style:italic; box-shadow:none; }
 .gg-card { background:#fff; border:1px solid #e2e8f0; border-left:4px solid #F3721F; border-radius:10px; padding:12px 14px; box-shadow:0 1px 4px rgba(0,0,0,.06); }
 .gg-card-h { font-size:13px; font-weight:800; color:#0f172a; }
 .gg-card-h small { font-weight:600; color:#94a3b8; font-size:11px; }
@@ -297,9 +301,6 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .gg-sep { color:#cbd5e1; font-size:20px; }
 #gs-global-sub2 { font-size:12px; font-weight:600; color:#64748b; }
 .gg-note { font-size:12px; color:#64748b; margin-bottom:14px; }
-.gg-cols { display:flex; gap:16px; flex-wrap:wrap; align-items:flex-start; }
-.gg-col { flex:1 1 380px; min-width:300px; }
-.gg-col-h { font-size:14px; font-weight:800; padding:6px 11px; border-radius:8px; margin-bottom:10px; }
 .gg-col-gen { background:#fff4ec; color:#C85A16; border:1px solid #f6c8a8; }
 .gg-col-dem { background:#eef4ff; color:#1e40af; border:1px solid #c7d7f5; }
 .dso-com-alert { margin-top:8px; padding:6px 10px; background:#fff7ed; border:1px solid #fed7aa; border-radius:8px; color:#b45309; font-size:12px; font-weight:600; line-height:1.35; }
@@ -2968,7 +2969,19 @@ function renderWhatsNew(){
   host.innerHTML='<div style="font-size:11px;color:#64748b;margin-bottom:6px;">Perspectiva <b>'+(GS_SIDELBL[side]||side)+'</b> \u00b7 <b>pulsa un nudo</b> para el desglose \u00b7 <b>pulsa la cabecera de un bloque</b> para filtrar (cambios \u2192 subida \u2192 bajada; Y/O combina) \u00b7 celda naranja = cambi\u00f3 \u00b7 '+total+' nudos</div>'
     +'<div style="overflow:auto;"><table class="gs-table"><thead><tr><th style="text-align:left;">Nudo</th><th style="text-align:left;">CCAA</th><th style="text-align:left;">Conclusi\u00f3n</th><th>Sat.</th>'+blkHead+'</tr></thead><tbody>'+(rows||'<tr><td colspan="'+(4+blkCols.length)+'">Sin nudos que mostrar con estos filtros.</td></tr>')+'</tbody></table></div>';
 }
+// El ámbito combinado "TSO+DSO" (ALL) solo se ofrece en la pestaña "Análisis nodal" (por nudo,
+// donde combinar no requiere sumar). En las vistas agregadas se oculta y se fuerza a TSO, porque
+// sumar capacidades TSO+DSO no es coherente. No afecta al mapa principal (usa view-red) ni al
+// análisis nodal (mantiene la opción).
+function gsSyncScopeOptions(){
+  const sel=document.getElementById('gs-scope'); if(!sel) return;
+  const allOpt=sel.querySelector('option[value="ALL"]');
+  const allowAll=(gsMode==='whatsnew');
+  if(allOpt){ allOpt.hidden=!allowAll; allOpt.disabled=!allowAll; }
+  if(!allowAll && sel.value==='ALL'){ sel.value='TSO'; }
+}
 function gsSetMode(m){ gsMode=m;
+  gsSyncScopeOptions();
   document.getElementById('gs-tab-global').classList.toggle('active',m==='global');
   document.getElementById('gs-tab-estado').classList.toggle('active',m==='estado');
   document.getElementById('gs-tab-varmap').classList.toggle('active',m==='varmap');
@@ -2986,27 +2999,30 @@ function gsSetMode(m){ gsMode=m;
 }
 function gsRefresh(){ gsSyncVistaOptions(); if(gsMode==='global') renderGlobal(); else if(gsMode==='var') renderVariaciones(); else if(gsMode==='whatsnew') renderWhatsNew(); else renderGridStatus(); }
 // ---- Modo GLOBAL: resumen nacional de TODOS los bloques a la vez (sin elegir bloque) ----
-function gsGlobalCards(side, scope, key, pkey){
-    const g=(gsAggregate('nac',scope,key,side)[0])||null;
-    const p=(gsAggregate('nac',scope,pkey,side)[0])||{};
-    if(!g) return '<div style="color:#64748b;font-size:12px;">Sin datos.</div>';
-    const SL=GS_SIDESHORT[side]||'';
-    const blocks=['disp','otorgada','en_curso','margen','no_otorgable','liberada'];
-    let html='';
-    blocks.forEach(function(bk){
-        const meta=GS_VISTA_META[bk]; if(!meta) return;
-        const cols=((GS_COLS[bk]||{})[side])||[]; if(!cols.length) return;
-        const gsub=g[meta.sub]||{}, psub=p[meta.sub]||{};
-        const tot=g[meta.agg], ptot=p[meta.agg];
-        let chips='';
-        cols.forEach(function(L){ const v=(L in gsub)?gsub[L]:NaN, pv=(L in psub)?psub[L]:NaN; chips+='<span class="gg-chip"><span class="k">'+L+'</span><span class="v">'+gsFmt(v)+gsDelta(v,pv)+'</span></span>'; });
-        let ab='';
-        if(bk==='otorgada'||bk==='en_curso'){ const _ab=(gsAltasBajas('nac',scope,key,pkey,side,(bk==='otorgada')?'otTot':'ecTot')['España'])||{altas:0,bajas:0}; ab='<div class="gg-ab"><span style="color:#16a34a;">▲ Altas: '+(_ab.altas>0.5?'+'+gsFmt(_ab.altas):'0')+'</span><span style="color:#dc2626;">▼ Bajas: '+(_ab.bajas<-0.5?'−'+gsFmt(Math.abs(_ab.bajas)):'0')+'</span></div>'; }
-        html+='<div class="gg-card"><div class="gg-card-h">'+meta.label+' <small>'+meta.suffix+'</small></div>'
-            +'<div class="gg-card-tot">'+gsFmt(tot)+gsDelta(tot,(ptot===undefined?NaN:ptot))+' <small>MW '+SL+'</small></div>'
-            +'<div class="gg-chips">'+chips+'</div>'+ab+'</div>';
-    });
-    return html||'<div style="color:#64748b;font-size:12px;">Sin datos.</div>';
+// Genera UNA tarjeta de bloque. En DSO usa los campos planos (disp/ocupada/admitida);
+// en TSO usa GS_VISTA_META (otTot/ecTot/…) con sus columnas y altas/bajas.
+function gsGlobalCard(bk, side, g, p, SL, scope, key, pkey){
+    if(!g) return '';
+    if(scope==='DSO'){
+        const DMAP={ disp:{agg:'disp',label:'Disponible',suf:'(total)'},
+                     ocupada:{agg:'ocupada',label:'Capacidad otorgada',suf:'(ocupada)'},
+                     admitida:{agg:'admitida',label:'Capacidad en curso',suf:'(admitida y no evaluada)'} };
+        const b=DMAP[bk]; if(!b) return '';
+        const tot=g[b.agg], ptot=p[b.agg];
+        return '<div class="gg-card"><div class="gg-card-h">'+b.label+' <small>'+b.suf+'</small></div>'
+            +'<div class="gg-card-tot">'+gsFmt(tot)+gsDelta(tot,(ptot===undefined?NaN:ptot))+' <small>MW '+SL+'</small></div></div>';
+    }
+    const meta=GS_VISTA_META[bk]; if(!meta) return '';
+    const cols=((GS_COLS[bk]||{})[side])||[]; if(!cols.length) return '';
+    const gsub=g[meta.sub]||{}, psub=p[meta.sub]||{};
+    const tot=g[meta.agg], ptot=p[meta.agg];
+    let chips='';
+    cols.forEach(function(L){ const v=(L in gsub)?gsub[L]:NaN, pv=(L in psub)?psub[L]:NaN; chips+='<span class="gg-chip"><span class="k">'+L+'</span><span class="v">'+gsFmt(v)+gsDelta(v,pv)+'</span></span>'; });
+    let ab='';
+    if(bk==='otorgada'||bk==='en_curso'){ const _ab=(gsAltasBajas('nac',scope,key,pkey,side,(bk==='otorgada')?'otTot':'ecTot')['España'])||{altas:0,bajas:0}; ab='<div class="gg-ab"><span style="color:#16a34a;">▲ Altas: '+(_ab.altas>0.5?'+'+gsFmt(_ab.altas):'0')+'</span><span style="color:#dc2626;">▼ Bajas: '+(_ab.bajas<-0.5?'−'+gsFmt(Math.abs(_ab.bajas)):'0')+'</span></div>'; }
+    return '<div class="gg-card"><div class="gg-card-h">'+meta.label+' <small>'+meta.suffix+'</small></div>'
+        +'<div class="gg-card-tot">'+gsFmt(tot)+gsDelta(tot,(ptot===undefined?NaN:ptot))+' <small>MW '+SL+'</small></div>'
+        +'<div class="gg-chips">'+chips+'</div>'+ab+'</div>';
 }
 function renderGlobal(){
     const year=document.getElementById('gs-year').value, month=document.getElementById('gs-month').value;
@@ -3015,10 +3031,20 @@ function renderGlobal(){
     const scope=document.getElementById('gs-scope').value;
     const sub2=document.getElementById('gs-global-sub2'); if(sub2) sub2.textContent=' · '+(GS_MLBL[month]||month)+' 20'+year+' · '+(scope==='ALL'?'TSO+DSO':scope)+' · Generación y Demanda · Δ vs mes anterior';
     const host=document.getElementById('gs-global-cards'); if(!host) return;
-    host.innerHTML='<div class="gg-cols">'
-        +'<div class="gg-col"><div class="gg-col-h gg-col-gen">Generación</div><div class="gg-grid">'+gsGlobalCards('gen',scope,key,pkey)+'</div></div>'
-        +'<div class="gg-col"><div class="gg-col-h gg-col-dem">Demanda</div><div class="gg-grid">'+gsGlobalCards('dem',scope,key,pkey)+'</div></div>'
-        +'</div>';
+    const gGen=(gsAggregate('nac',scope,key,'gen')[0])||null, pGen=(gsAggregate('nac',scope,pkey,'gen')[0])||{};
+    const gDem=(gsAggregate('nac',scope,key,'dem')[0])||null, pDem=(gsAggregate('nac',scope,pkey,'dem')[0])||{};
+    if(!gGen && !gDem){ host.innerHTML='<div style="color:#64748b;font-size:12px;">Sin datos para este mes.</div>'; return; }
+    // DSO: bloques planos. TSO: bloques completos (Disponible primero).
+    const blocks=(scope==='DSO')?['disp','ocupada','admitida']:['disp','otorgada','en_curso','margen','no_otorgable','liberada'];
+    const SLg=GS_SIDESHORT['gen']||'', SLd=GS_SIDESHORT['dem']||'';
+    let rows='';
+    blocks.forEach(function(bk){
+        const cg=gsGlobalCard(bk,'gen',gGen,pGen,SLg,scope,key,pkey);
+        const cd=gsGlobalCard(bk,'dem',gDem,pDem,SLd,scope,key,pkey);
+        rows+='<div class="gg-cell">'+(cg||'<div class="gg-card gg-empty">—</div>')+'</div>'
+             +'<div class="gg-cell">'+(cd||'<div class="gg-card gg-empty">No aplica en demanda</div>')+'</div>';
+    });
+    host.innerHTML='<div class="gg-matrix"><div class="gg-mh gg-col-gen">Generación</div><div class="gg-mh gg-col-dem">Demanda</div>'+rows+'</div>';
 }
 // ---- Mapa de burbujas (nacional / comunidad / provincia) ----
 let gsMap=null, gsBubbles=null;
