@@ -241,16 +241,6 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 /* ===== GRID STATUS ===== */
 #grid-status { display:none; position:fixed; inset:0; background:#f1f5f9; z-index:300000; overflow:auto; }
 #grid-status.open { display:block; }
-/* ===== ANÁLISIS NODAL (panel propio, antes pestaña de Grid Status) ===== */
-#nodal-analysis { display:none; position:fixed; inset:0; background:#f1f5f9; z-index:300000; overflow:auto; }
-#nodal-analysis.open { display:block; }
-#na-head { position:sticky; top:0; background:#0f766e; color:#fff; padding:12px 18px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; box-shadow:0 2px 8px rgba(0,0,0,.2); z-index:2; }
-#na-head h2 { margin:0; font-size:18px; letter-spacing:.5px; }
-#na-close { margin-left:auto; background:#fff; color:#0f766e; border:none; border-radius:8px; padding:6px 14px; font-weight:bold; cursor:pointer; }
-#na-controls { display:flex; gap:14px; align-items:center; flex-wrap:wrap; padding:12px 18px 4px; }
-#na-controls label { font-size:12px; font-weight:bold; color:#334155; }
-#na-controls select { padding:5px 8px; border-radius:6px; border:1px solid #cbd5e1; font-size:13px; color:#0f172a; margin-left:4px; }
-.na-sec { background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:14px; margin:10px 18px; }
 #gs-head { position:sticky; top:0; background:#F3721F; color:#fff; padding:12px 18px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; box-shadow:0 2px 8px rgba(0,0,0,.2); z-index:2; }
 #gs-head h2 { margin:0; font-size:18px; letter-spacing:.5px; }
 #gs-head .gs-period { font-size:12px; opacity:.92; }
@@ -393,7 +383,6 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 <div id="search-container" style="display: none;">
     <button class="btn-whats-new" onclick="openGridStatus()" style="background:#F3721F;">📊 GRID STATUS</button>
-    <button class="btn-whats-new" onclick="openNodalAnalysis()" style="background:#0f766e;">🔎 ANÁLISIS NODAL</button>
 </div>
 
 <div id="left-search">
@@ -756,8 +745,6 @@ legendControl.update = function() {
 const MONTHS_DATA = {};            // { "26_jun": { "ABADES 400": {gen,dem}, ... }, ... }
 let   NODOS_BASE  = {};            // atributos estáticos por nombre de nudo
 const MONTHS_DATA_DSO = {};        // { "26_jun": { "IDE|...": {gen,dem}, ... }, ... }  (DSO: clave por identidad)
-const MONTHS_POS = {};             // { "26_jul": { "ABADES 400": {gen_pos:[],dem_pos:[],solicitudes_dem:[]}, ... } }  (pos_AAAA_MM.json)
-const MONTHS_POS_META = {};        // { "26_jul": {fuentes...} }  metadatos de la publicación por posición
 let   NODOS_BASE_DSO  = {};        // atributos estáticos DSO por clave de identidad (cada entrada trae .name legible)
 const MES_NUM2NAME = {"01":"jan","02":"feb","03":"mar","04":"apr","05":"may","06":"jun","07":"jul","08":"ago","09":"sep","10":"oct","11":"nov","12":"dec"};
 
@@ -785,12 +772,6 @@ async function cargarDatosJSON() {
         fetchJSON(`${DATA_BASE_URL}dso_${p}.json`).then(j => ({ p, j })).catch(() => null)
     ));
     cargasDSO.filter(Boolean).forEach(({ p, j }) => { MONTHS_DATA_DSO[periodoToKey(p)] = j.nudos; });
-
-    // Mensuales de POSICIONES/SOLICITUDES TSO (pos_AAAA_MM.json, generados con volcado_posiciones.py); los ausentes se ignoran
-    const cargasPOS = await Promise.all(manifest.meses.map(p =>
-        fetchJSON(`${DATA_BASE_URL}pos_${p}.json`).then(j => ({ p, j })).catch(() => null)
-    ));
-    cargasPOS.filter(Boolean).forEach(({ p, j }) => { MONTHS_POS[periodoToKey(p)] = j.nudos; MONTHS_POS_META[periodoToKey(p)] = j.fuentes || {}; });
 
     // mes por defecto = último periodo del manifest (en vez de junio fijo)
     try {
@@ -844,106 +825,6 @@ function richForMonth(key, entry) {
     let r = md[entry.name];
     if (!r && entry.alias) { for (const a of entry.alias) { if (md[a]) { r = md[a]; break; } } }
     return r;
-}
-
-// ====== POSICIONES, SOLICITUDES Y OPORTUNIDAD (pos_AAAA_MM.json · volcado_posiciones.py) ======
-// Datos de posiciones/solicitudes de un nudo probando su nombre actual y sus alias (renombrados)
-function posForMonth(key, entry) {
-    const md = MONTHS_POS[key];
-    if (!md) return undefined;
-    let r = md[entry.name];
-    if (!r && entry.alias) { for (const a of entry.alias) { if (md[a]) { r = md[a]; break; } } }
-    return r;
-}
-function _mwTxt(v) { return (v === null || v === undefined || v === '') ? '·' : v; }
-function _posCount(v) { const n = cleanNum(v); return isNaN(n) ? (v ? String(v) : '0') : String(n); }
-
-// Tabla compacta de posiciones de GENERACIÓN del nudo (ES/Pend/Curso · MGES/MPE)
-function _tablaPosGen(rows) {
-    let h = '<table class="rich-tbl" style="width:100%;font-size:10.5px;"><tr style="color:#64748b;"><th style="text-align:left;">Posición</th><th>Motivación</th><th>Servicio<br>MGES/MPE</th><th>Pendiente<br>MGES/MPE</th><th>En curso<br>MGES/MPE</th></tr>';
-    rows.forEach(p => {
-        h += `<tr><td style="word-break:break-word;">${p.pos || '<i>(sin posición asignada)</i>'}</td><td style="text-align:center;">${p.motiv || '·'}</td>` +
-             `<td style="text-align:center;">${_mwTxt(p.es_mges)}/${_mwTxt(p.es_mpe)}</td>` +
-             `<td style="text-align:center;">${_mwTxt(p.pen_mges)}/${_mwTxt(p.pen_mpe)}</td>` +
-             `<td style="text-align:center;">${_mwTxt(p.cur_mges)}/${_mwTxt(p.cur_mpe)}</td></tr>`;
-    });
-    return h + '</table>';
-}
-// Tabla compacta de posiciones de DEMANDA del nudo (ES/Pend · demanda/almacenamiento)
-function _tablaPosDem(rows) {
-    let h = '<table class="rich-tbl" style="width:100%;font-size:10.5px;"><tr style="color:#64748b;"><th style="text-align:left;">Posición</th><th>Red</th><th>Servicio<br>Dem/Alm</th><th>Pendiente<br>Dem/Alm</th></tr>';
-    rows.forEach(p => {
-        h += `<tr><td style="word-break:break-word;">${p.pos || '·'}</td><td style="text-align:center;">${p.rdtrdd || '·'}</td>` +
-             `<td style="text-align:center;">${_mwTxt(p.es_dem)}/${_mwTxt(p.es_alm)}</td>` +
-             `<td style="text-align:center;">${_mwTxt(p.pen_dem)}/${_mwTxt(p.pen_alm)}</td></tr>`;
-    });
-    return h + '</table>';
-}
-// Semáforo textual de solicitud (perspectiva promotor): dónde y por qué se puede solicitar
-function _oportunidad(rich, pd) {
-    if (!rich) return '';
-    const g = rich.gen || {}, d = rich.dem || {};
-    const dg = g.disp || {}, dd = d.disp || {};
-    const mx = (...a) => { const n = a.map(cleanNum).filter(v => !isNaN(v)); return n.length ? Math.max(...n) : NaN; };
-    const genDisp = mx(dg.gen_mges_rdt, dg.gen_mpe_rdt), almGDisp = mx(dg.alm_mges_rdt, dg.alm_mpe_rdt);
-    const demDisp = mx(dd.dem_ch, dd.dem_sh, dd.dem_no_cep), almDDisp = mx(dd.alm_cep, dd.alm_no_cep);
-    const ctG = (g.reserva || {}).estado || 'No tender', ctD = (d.concurso || {}).estado || 'No tender';
-    const pg = g.posiciones || {}, pdem = d.posiciones || {};
-    const clG = g.crit_lim || {}, clD = d.crit_lim || {};
-    const dot = ok => `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${ok === true ? '#16a34a' : ok === false ? '#dc2626' : '#f59e0b'};margin-right:5px;"></span>`;
-    const L = [];
-    // GEN/ALM (vertido)
-    if (/tender|concurso/i.test(ctG) && !/no tender/i.test(ctG)) {
-        L.push(dot(false) + `<b>GEN/ALM:</b> nudo en reserva/concurso (${ctG}) → capacidad no solicitable por criterio general; vigilar convocatoria.`);
-    } else if (genDisp > 0 || almGDisp > 0) {
-        L.push(dot(true) + `<b>GEN/ALM:</b> solicitable por criterio general (Circular 1/2021). Disp. RdT: gen ${isNaN(genDisp) ? '–' : genDisp} MW · alm ${isNaN(almGDisp) ? '–' : almGDisp} MW. Posiciones gen/alm a RdT E=${_posCount(pg.transporte_E)} P=${_posCount(pg.transporte_P)}. Criterio limitante: ${clG.gen_mpe || clG.gen_mges || '–'}.`);
-    } else {
-        L.push(dot(false) + `<b>GEN/ALM:</b> sin capacidad disponible publicada (criterio limitante: ${clG.gen_mpe || clG.gen_mges || '–'}). Vías: capacidad liberada por hitos/caducidades, concursos, o RdD si hay margen (${_mwTxt(dg.gen_mpe_rdd)} MW MPE RdD).`);
-    }
-    // DEMANDA/ALM (consumo)
-    const posConE = cleanNum(pdem.consumo_transporte_E), posConP = cleanNum(pdem.consumo_transporte_P);
-    if (/tender|concurso/i.test(ctD) && !/no tender/i.test(ctD)) {
-        L.push(dot(false) + `<b>DEMANDA:</b> nudo reservado a concurso de demanda (${ctD}); acceso solo vía concurso (RD 1183/2020).`);
-    } else if (demDisp > 0 || almDDisp > 0) {
-        L.push(dot(true) + `<b>DEMANDA:</b> solicitable por criterio general (Circular 1/2024; prelación temporal + prestación por reserva RDL 7/2026). Disp.: dem ${isNaN(demDisp) ? '–' : demDisp} MW · alm ${isNaN(almDDisp) ? '–' : almDDisp} MW. Posiciones consumo a RdT E=${_posCount(pdem.consumo_transporte_E)} P=${_posCount(pdem.consumo_transporte_P)}. Criterio limitante: ${clD.dem_ch || clD.dem_no_cep || '–'}.`);
-    } else {
-        L.push(dot(false) + `<b>DEMANDA:</b> sin capacidad disponible publicada. Vías: concursos de demanda, conexión vía RdD, o proyectos de alta prioridad (art. 13 RDL 7/2026).`);
-    }
-    if ((isNaN(posConE) || posConE === 0) && (isNaN(posConP) || posConP === 0)) {
-        L.push(dot(null) + `<b>Sin posición de consumo E/P:</b> no cabe solicitud ligada a posición inexistente; la vía es el <b>mecanismo de planificación de posiciones para demanda</b> (art. 4 bis Ley 24/2013, introducido por la Ley 9/2025 de Movilidad Sostenible y desarrollado por el RDL 7/2026: informe cuatrimestral del OS a la SEE desde 1-jun-2026 para re-finalizar o añadir posiciones).`);
-    }
-    if (pd && pd.solicitudes_dem && pd.solicitudes_dem.length) {
-        const tot = pd.solicitudes_dem.reduce((s, x) => s + (cleanNum(x.mw) || 0), 0);
-        L.push(dot(null) + `<b>Competencia:</b> ${pd.solicitudes_dem.length} solicitud(es) de demanda en publicación (art. 20 quater RD 1183/2020) por ${Math.round(tot * 10) / 10} MW → prelación temporal en riesgo.`);
-    }
-    return '<div style="background:#fff7ed;border:1px solid #fdba74;border-radius:6px;padding:6px 8px;margin-top:8px;font-size:11px;line-height:1.45;">' +
-           '<div style="font-weight:bold;color:#F3721F;margin-bottom:3px;">Análisis de oportunidad (promotor)</div>' + L.map(x => `<div style="margin:2px 0;">${x}</div>`).join('') + '</div>';
-}
-// Bloque del panel lateral: enlace al Análisis Nodal + posiciones ocupadas + solicitudes del nudo
-function renderPosiciones(item, key, type) {
-    if (item.grid !== 'TSO') return '';
-    const pd = posForMonth(key, item);
-    const esc = String(item.name).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
-    let h = '<div style="margin-top:8px;"><a onclick="openNodalAnalysis(\'' + esc + '\')" style="cursor:pointer;color:#0f766e;font-weight:bold;font-size:12px;">🔎 Abrir Análisis Nodal del nudo (oportunidad y diagnóstico) →</a></div>';
-    if (pd) {
-        const showGen = type !== 'dem', showDem = type !== 'gen';
-        h += '<details style="margin-top:8px;"><summary style="cursor:pointer;font-size:12.5px;font-weight:bold;color:#F3721F;">Posiciones y solicitudes (publicación mensual REE) ▾</summary><div style="max-height:260px;overflow:auto;">';
-        if (showGen && pd.gen_pos && pd.gen_pos.length) {
-            h += '<div class="rich-side"><div class="rich-side-title">Capacidad ocupada por posición · Generación</div>' + _tablaPosGen(pd.gen_pos) + '</div>';
-        }
-        if (showDem && pd.dem_pos && pd.dem_pos.length) {
-            h += '<div class="rich-side"><div class="rich-side-title">Capacidad ocupada por posición · Demanda</div>' + _tablaPosDem(pd.dem_pos) + '</div>';
-        }
-        if (pd.solicitudes_dem && pd.solicitudes_dem.length) {
-            h += '<div class="rich-side"><div class="rich-side-title">Solicitudes de acceso de demanda en publicación</div><table class="rich-tbl" style="width:100%;font-size:10.5px;"><tr style="color:#64748b;"><th style="text-align:left;">ID</th><th>Posición</th><th>MW</th><th>Recepción</th><th>Concurso</th></tr>';
-            pd.solicitudes_dem.forEach(s => {
-                h += `<tr><td>${s.id || '·'}</td><td style="text-align:center;">${s.pos || '·'}</td><td style="text-align:center;">${_mwTxt(s.mw)}</td><td style="text-align:center;">${s.fecha || '·'}</td><td style="text-align:center;">${s.concurso || '·'}</td></tr>`;
-            });
-            h += '</table></div>';
-        }
-        h += '</div></details>';
-    }
-    return h;
 }
 
 function construirEntries() {
@@ -1405,7 +1286,6 @@ function buildNodeFichaHTML(items) {
         const richHtml = item.grid === 'DSO'
             ? renderRichDSO((MONTHS_DATA_DSO[year + '_' + month] || {})[item.dsoKey], which, (MONTHS_DATA_DSO[prevYear + '_' + pMonth] || {})[item.dsoKey])
             : renderRich(richForMonth(year + '_' + month, item), which, richForMonth(prevYear + '_' + pMonth, item));
-        const posHtml = renderPosiciones(item, year + '_' + month, type);
         const safeName = String(item.name).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
         const dispTitle = type === 'dem' ? 'Demand' : (type === 'storage' ? 'Storage' : 'Generation');
         html += `
@@ -1426,7 +1306,6 @@ function buildNodeFichaHTML(items) {
                     ${buildDispTrendHTML(item, type)}
                 </div>
                 <button class="popup-btn-hist" style="margin:8px 0 4px;" onclick="openHistory('${safeName}')">📊 View ALL Historical Data</button>
-                ${posHtml}
                 ${richHtml}
             </div>`;
     });
@@ -2571,13 +2450,13 @@ function gsTSO(entry, key){
     const critG=gsBindCode([[cleanNum(mg.gen_mges),clg.gen_mges],[cleanNum(mg.gen_mpe),clg.gen_mpe],[cleanNum(mg.alm_mges),clg.alm_mges],[cleanNum(mg.alm_mpe),clg.alm_mpe]]);
     const critD=gsBindCode([[cleanNum(md.dem_ch),cld.dem_ch],[cleanNum(md.dem_sh),cld.dem_sh],[cleanNum(md.dem_no_cep),cld.dem_no_cep],[cleanNum(md.alm_cep_mpe),cld.alm_cep],[cleanNum(md.alm_no_cep_mges),cld.alm_no_cep]]);
     return { grid:'TSO',
-      gen:{disp:dispGen, margen:margenGen, noOtorg:noOtorgGen, otorgada:otGen, enCurso:cleanNum(ec.gen), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonGen!=='', causas:gsCausas(reasonGen), reason:reasonGen, crit:critG, sat:gsSat(gsAdd(otGen,cleanNum(ec.gen)),dispGenOnly), satAlm:gsSat(gsAdd(cleanNum(otg.alm),cleanNum(ec.alm)),dispAlmGenOnly), enConcurso:enConcG, otTot:gsAdd(cleanNum(otg.gen),cleanNum(otg.alm)), ecTot:gsAdd(cleanNum(ec.gen),cleanNum(ec.alm)), libMax:gsMaxOf(lib.lib_mges,lib.lib_mpe),
+      gen:{disp:dispGen, margen:margenGen, noOtorg:noOtorgGen, otorgada:otGen, enCurso:cleanNum(ec.gen), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonGen!=='', causas:gsCausas(reasonGen), reason:reasonGen, crit:critG, sat:gsSat(gsAdd(otGen,cleanNum(ec.gen)),dispGenOnly), satAlm:gsSat(gsAdd(cleanNum(otg.alm),cleanNum(ec.alm)),dispAlmGenOnly), enConcurso:enConcG, otTot:gsAdd(cleanNum(otg.gen),cleanNum(otg.alm)), otRdd:NaN, ecTot:gsAdd(cleanNum(ec.gen),cleanNum(ec.alm)), libMax:gsMaxOf(lib.lib_mges,lib.lib_mpe),
         sub:{'GEN-MGES':cleanNum(mg.gen_mges), 'GEN-MPE':cleanNum(mg.gen_mpe), 'Alm MGES':cleanNum(mg.alm_mges), 'Alm MPE':cleanNum(mg.alm_mpe), '_mMGES':gsMaxOf(mg.gen_mges,mg.alm_mges), '_mMPE':gsMaxOf(mg.gen_mpe,mg.alm_mpe)},
         subN:{'GEN-MGES':cleanNum(nd.gen_mges), 'GEN-MPE':cleanNum(nd.gen_mpe), 'Alm MGES':cleanNum(nd.alm_mges), 'Alm MPE':cleanNum(nd.alm_mpe), '_mMGES':gsMaxOf(nd.gen_mges,nd.alm_mges), '_mMPE':gsMaxOf(nd.gen_mpe,nd.alm_mpe)},
         subD:{'GEN-MGES RdT':cleanNum(dg.gen_mges_rdt), 'GEN-MPE RdT':cleanNum(dg.gen_mpe_rdt), 'GEN-MGES RdD':cleanNum(dg.gen_mges_rdd), 'GEN-MPE RdD':cleanNum(dg.gen_mpe_rdd), 'Alm MGES RdT':cleanNum(dg.alm_mges_rdt), 'Alm MPE RdT':cleanNum(dg.alm_mpe_rdt), 'Alm MGES RdD':cleanNum(dg.alm_mges_rdd), 'Alm MPE RdD':cleanNum(dg.alm_mpe_rdd), '_mMGESrdt':gsMaxOf(dg.gen_mges_rdt,dg.alm_mges_rdt), '_mMPErdt':gsMaxOf(dg.gen_mpe_rdt,dg.alm_mpe_rdt), '_mMGESrdd':gsMaxOf(dg.gen_mges_rdd,dg.alm_mges_rdd), '_mMPErdd':gsMaxOf(dg.gen_mpe_rdd,dg.alm_mpe_rdd)},
         subOt:{'GEN':cleanNum(otg.gen), 'ALM':cleanNum(otg.alm)}, subEc:{'GEN':cleanNum(ec.gen), 'ALM':cleanNum(ec.alm)},
         subLib:{'Liberada MGES':cleanNum(lib.lib_mges), 'Liberada MPE':cleanNum(lib.lib_mpe), 'Otorgada MGES':cleanNum(lib.otorg_mges), 'Otorgada MPE':cleanNum(lib.otorg_mpe), 'Disponible MGES':cleanNum(lib.disp_mges), 'Disponible MPE':cleanNum(lib.disp_mpe), '_libMax':gsMaxOf(lib.lib_mges,lib.lib_mpe), '_otorgMax':gsMaxOf(lib.otorg_mges,lib.otorg_mpe), '_dispMax':gsMaxOf(lib.disp_mges,lib.disp_mpe)}},
-      dem:{disp:dispDem, margen:margenDem, noOtorg:noOtorgDem, otorgada:otDem, enCurso:cleanNum(ecd.dem), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonDem!=='', causas:gsCausas(reasonDem), reason:reasonDem, crit:critD, sat:gsSat(gsAdd(otDem,cleanNum(ecd.dem)),dispDemOnly), satAlm:gsSat(gsAdd(cleanNum(otd.alm_rdt),cleanNum(ecd.alm_rdt)),dispAlmDemOnly), enConcurso:enConcD, otTot:gsAdd(cleanNum(otd.dem_rdt),cleanNum(otd.alm_rdt)), ecTot:gsAdd(cleanNum(ecd.dem),cleanNum(ecd.alm_rdt)), libMax:NaN,
+      dem:{disp:dispDem, margen:margenDem, noOtorg:noOtorgDem, otorgada:otDem, enCurso:cleanNum(ecd.dem), comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:reasonDem!=='', causas:gsCausas(reasonDem), reason:reasonDem, crit:critD, sat:gsSat(gsAdd(otDem,cleanNum(ecd.dem)),dispDemOnly), satAlm:gsSat(gsAdd(cleanNum(otd.alm_rdt),cleanNum(ecd.alm_rdt)),dispAlmDemOnly), enConcurso:enConcD, otTot:gsAdd(cleanNum(otd.dem_rdt),cleanNum(otd.alm_rdt)), otRdd:gsAdd(cleanNum(otd.dem_acept_rdd),cleanNum(otd.alm_acept_rdd)), ecTot:gsAdd(cleanNum(ecd.dem),cleanNum(ecd.alm_rdt)), libMax:NaN,
         sub:{'DEM-CEP-CH':cleanNum(md.dem_ch), 'DEM-CEP-SH':cleanNum(md.dem_sh), 'DEM-No CEP':cleanNum(md.dem_no_cep), 'Alm CEP':cleanNum(md.alm_cep_mpe), 'Alm No CEP':cleanNum(md.alm_no_cep_mges), '_mDem':gsMaxOf(md.dem_ch,md.dem_sh,md.dem_no_cep), '_mAlm':gsMaxOf(md.alm_cep_mpe,md.alm_no_cep_mges)},
         subN:{'DEM-CEP-CH':cleanNum(no.dem_ch), 'DEM-CEP-SH':cleanNum(no.dem_sh), 'DEM-No CEP':cleanNum(no.dem_no_cep), 'Alm CEP':cleanNum(no.alm_cep), 'Alm No CEP':cleanNum(no.alm_no_cep), '_mDem':gsMaxOf(no.dem_ch,no.dem_sh,no.dem_no_cep), '_mAlm':gsMaxOf(no.alm_cep,no.alm_no_cep)},
         subD:{'DEM-CEP-CH':cleanNum(dd.dem_ch), 'DEM-CEP-SH':cleanNum(dd.dem_sh), 'DEM-No CEP':cleanNum(dd.dem_no_cep), 'Alm CEP':cleanNum(dd.alm_cep), 'Alm No CEP':cleanNum(dd.alm_no_cep), '_mDem':gsMaxOf(dd.dem_ch,dd.dem_sh,dd.dem_no_cep), '_mAlm':gsMaxOf(dd.alm_cep,dd.alm_no_cep)},
@@ -2700,8 +2579,13 @@ function gsNationalBanner(scope,key,pkey,side){
         chips=cfg.labels.map(function(L){ return chip(L,(L in src)?src[L]:NaN,(L in psrc)?psrc[L]:NaN); }).join('');
         if(vista==='otorgada'||vista==='en_curso'){
             const _ab=(gsAltasBajas('nac',scope,key,pkey,side,(vista==='otorgada')?'otTot':'ecTot')['España'])||{altas:0,bajas:0};
-            chips+='<span class="gs-nat-chip" title="Suma nacional, nudo a nudo, de las subidas de capacidad vs mes anterior"><span class="k">▲ Altas:</span> <span class="v" style="color:#16a34a;">'+(_ab.altas>0.5?'+'+gsFmt(_ab.altas):'0')+'</span></span>';
-            chips+='<span class="gs-nat-chip" title="Suma nacional, nudo a nudo, de las bajadas de capacidad vs mes anterior"><span class="k">▼ Bajas:</span> <span class="v" style="color:#dc2626;">'+(_ab.bajas<-0.5?'−'+gsFmt(Math.abs(_ab.bajas)):'0')+'</span></span>';
+            const _perim=(vista==='otorgada')?'RdT: dem_rdt+alm_rdt. NO incluye capacidad con aceptabilidad RdD (se muestra aparte).':'RdT: en curso demanda + almacenamiento.';
+            chips+='<span class="gs-nat-chip" title="Suma nacional, nudo a nudo, de las subidas de capacidad vs mes anterior. Perímetro '+_perim+'"><span class="k">▲ Altas (RdT):</span> <span class="v" style="color:#16a34a;">'+(_ab.altas>0.5?'+'+gsFmt(_ab.altas):'0')+'</span></span>';
+            chips+='<span class="gs-nat-chip" title="Suma nacional, nudo a nudo, de las bajadas de capacidad vs mes anterior. Perímetro '+_perim+'"><span class="k">▼ Bajas (RdT):</span> <span class="v" style="color:#dc2626;">'+(_ab.bajas<-0.5?'−'+gsFmt(Math.abs(_ab.bajas)):'0')+'</span></span>';
+            if(vista==='otorgada'){
+                const _abR=(gsAltasBajas('nac',scope,key,pkey,side,'otRdd')['España'])||{altas:0,bajas:0};
+                if(_abR.altas>0.5||_abR.bajas<-0.5){ chips+='<span class="gs-nat-chip" title="Neto nacional de la capacidad otorgada con aceptabilidad en la red de distribución (dem_acept_rdd + alm_acept_rdd). Fuera del perímetro RdT anterior; se muestra para que la tabla nodal y este panel sumen lo mismo."><span class="k">Aceptab. RdD:</span> <span class="v" style="color:#1e40af;">'+(_abR.altas>0.5?('▲+'+gsFmt(_abR.altas)):'')+((_abR.altas>0.5&&_abR.bajas<-0.5)?' / ':'')+(_abR.bajas<-0.5?('▼−'+gsFmt(Math.abs(_abR.bajas))):'')+'</span></span>'; }
+            }
         }
         headNum=g[cfg.agg]; headPv=p[cfg.agg];
     }
@@ -2985,7 +2869,7 @@ function gsRenderCritZona(key,pkey,scope,side){
 const GS_VAR_NOTE_HTML='<b>C\u00f3mo se infieren los flujos</b> (sobre fotos mensuales de <i>stocks</i>, no transacciones).<br>Para cada nudo se compara este mes con el anterior y se clasifica su <b>movimiento neto</b> por prioridad: <b>Otorgado</b> (otorgada \u2191) \u00b7 <b>Devuelto/denegado</b> (disponible \u2191 con en curso u otorgada \u2193) \u00b7 <b>Nueva solicitud</b> (en curso/pendiente \u2191) \u00b7 <b>Liberado</b> (disponible o margen \u2191 sin otorgar ni cola \u2192 p. ej. RDL/nueva capacidad) \u00b7 <b>Reservado/ocupado</b> (disponible \u2193 sin cola ni otorgar) \u00b7 <b>Sin cambio</b> (umbral 1 MW).<br><i>Limitaciones:</i> es una <b>inferencia</b> del cambio neto; una bajada de \u00aben curso\u00bb puede ser otorgamiento o denegaci\u00f3n (se desambigua por si sube otorgada o disponible). En DSO no hay \u00aben curso/otorgada/margen\u00bb: se usan \u00abadmitida y no resuelta\u00bb como pendiente y \u00abocupada\u00bb como otorgada. Colores de \u0394 = signo (verde sube, rojo baja), sin juicio de valor.';
 function gsToggleVarNote(){ const n=document.getElementById('gs-var-note'); if(n.innerHTML.trim()===''){ n.innerHTML=GS_VAR_NOTE_HTML; } n.style.display=(n.style.display==='none'?'block':'none'); }
 function gsWhatsNewRecs(key,pkey,side,scope){
-  const out=[]; const flds=['margen','disp','noOtorg','otorgada','enCurso'];
+  const out=[]; const flds=['margen','disp','noOtorg','otorgada','enCurso','otTot','ecTot','otRdd'];
   for(const e of allEntries){
     if(scope!=='ALL'&&e.grid!==scope) continue;
     const mc=gsNodeMetrics(e,key); if(!mc) continue; const c=mc[side]; if(!c) continue;
@@ -3058,18 +2942,18 @@ function renderWhatsNew(){
   const GS_WN_AGG={margen:'margen',disp:'disp',no_otorgable:'noOtorg',no_disp:'noOtorg'};
   const GS_WN_MAXD={otorgada:1,en_curso:1,nodal:1,liberada:1,reserva:1};
   const GS_WN_COL={posiciones:'Posiciones',nodal:'Nodal',otorgada:'Otorgada',en_curso:'En curso',margen:'Margen',crit_lim:'Criterio limitante',no_otorgable:'No otorgable',no_disp:'No disponible',lim_posicion:'Limitación posición',disp:'Disponible',liberada:'Liberada',reserva:'Reserva',concurso:'Concurso'};
-  const year=document.getElementById('na-year').value, month=document.getElementById('na-month').value;
+  const year=document.getElementById('gs-year').value, month=document.getElementById('gs-month').value;
   let pi=GS_MONTHS.indexOf(month)-1, py=year; if(pi<0){pi=11;py=(parseInt(year)-1).toString();}
   const key=year+'_'+month, pkey=py+'_'+GS_MONTHS[pi];
-  const side=document.getElementById('na-side').value;
-  const scope=document.getElementById('na-scope').value;
-  const desgBlock=((document.getElementById('na-block')||{}).value)||'margen';
+  const side=document.getElementById('gs-side').value;
+  const scope=document.getElementById('gs-scope').value;
+  const desgBlock=((document.getElementById('gs-desg-block')||{}).value)||'margen';
   const sortAgg=(desgBlock==='no_otorgable')?'noOtorg':(desgBlock==='disp')?'disp':'margen';
   const q=(((document.getElementById('gs-wn-search')||{}).value)||'').trim().toLowerCase();
   const concl=((document.getElementById('gs-wn-concl')||{}).value)||'';
   const mb=document.getElementById('gs-wn-mode'); if(mb) mb.textContent=(gsWnFilterMode==='AND')?'Y':'O';
   let recs=gsWhatsNewRecs(key,pkey,side,scope);
-  recs.forEach(function(r){ r._blk={}; GS_WN_BLOCKS.forEach(function(bo){ const bk=bo[0]; const ch=gsWnBlkChange((r.cRich||{})[bk], (r.pRich||{})[bk]); if(GS_WN_AGG[bk]){ const dv=r.dlt[GS_WN_AGG[bk]]; ch.net=isNaN(dv)?0:dv; } else if(GS_WN_MAXD[bk]){ ch.net=gsWnMaxDelta((r.cRich||{})[bk], (r.pRich||{})[bk]); } r._blk[bk]=ch; }); });
+  recs.forEach(function(r){ r._blk={}; GS_WN_BLOCKS.forEach(function(bo){ const bk=bo[0]; const ch=gsWnBlkChange((r.cRich||{})[bk], (r.pRich||{})[bk]); if(GS_WN_AGG[bk]){ const dv=r.dlt[GS_WN_AGG[bk]]; ch.net=isNaN(dv)?0:dv; } else if(bk==='otorgada'&&!isNaN(r.dlt.otTot)){ ch.net=r.dlt.otTot; ch.netRdd=isNaN(r.dlt.otRdd)?0:r.dlt.otRdd; } else if(bk==='en_curso'&&!isNaN(r.dlt.ecTot)){ ch.net=r.dlt.ecTot; } else if(GS_WN_MAXD[bk]){ ch.net=gsWnMaxDelta((r.cRich||{})[bk], (r.pRich||{})[bk]); } r._blk[bk]=ch; }); });
   const blkCols=GS_WN_BLOCKS.filter(function(bo){ return recs.some(function(r){ return Object.keys((r.cRich||{})[bo[0]]||{}).length>0 || Object.keys((r.pRich||{})[bo[0]]||{}).length>0; }); });
   if(q) recs=recs.filter(function(r){ return r.name.toLowerCase().indexOf(q)>=0 || String(r.ccaa).toLowerCase().indexOf(q)>=0; });
   if(concl){ recs=recs.filter(function(r){ const so=(!isNaN(r.vals.disp)&&r.vals.disp>0); return concl==='si'?so:!so; }); }
@@ -3077,13 +2961,23 @@ function renderWhatsNew(){
   if(selBlk.length){ recs=recs.filter(function(r){ const hits=selBlk.filter(function(bk){ const st=gsWnBlkFilter[bk]; const c=r._blk[bk]||{}; if(st==='up') return c.net>0.5; if(st==='down') return c.net<-0.5; return c.changed; }); return (gsWnFilterMode==='AND')?(hits.length===selBlk.length):(hits.length>0); }); }
   recs.sort(function(a,b){ return Math.abs(b.dlt[sortAgg]||0)-Math.abs(a.dlt[sortAgg]||0); });
   const total=recs.length, shown=recs; gsWnShown=shown; gsWnSide=side;
-  const blkCell=function(r,bo){ const c=r._blk[bo[0]]||{changed:false,n:0,net:0}; if(!c.changed) return '<span style="color:#cbd5e1;">\u00b7</span>'; const tt=bo[1]+': '+c.n+' campo(s)'+(Math.abs(c.net)>=0.5?(' \u00b7 neto '+(c.net>0?'+':'\u2212')+gsFmt(Math.abs(c.net))):' (texto)'); const txt=(Math.abs(c.net)>=0.5)?((c.net>0?'+':'\u2212')+gsFmt(Math.abs(c.net))):'\u25cf'; return '<span title="'+tt+'" style="color:#9a3412;font-weight:700;background:#fed7aa;padding:1px 5px;border-radius:4px;white-space:nowrap;font-size:10px;">'+txt+'</span>'; };
+  const blkCell=function(r,bo){ const c=r._blk[bo[0]]||{changed:false,n:0,net:0}; if(!c.changed) return '<span style="color:#cbd5e1;">\u00b7</span>';
+    if(bo[0]==='otorgada'&&c.netRdd!==undefined){
+      const hasT=Math.abs(c.net)>=0.5, hasD=Math.abs(c.netRdd)>=0.5;
+      const tt='Otorgada \u00b7 neto RdT (dem_rdt+alm_rdt): '+((c.net>0?'+':'\u2212')+gsFmt(Math.abs(c.net)))+' \u00b7 neto aceptabilidad RdD: '+((c.netRdd>0?'+':'\u2212')+gsFmt(Math.abs(c.netRdd)))+' \u00b7 '+c.n+' campo(s) con cambio. Las Altas/Bajas del panel nacional suman SOLO el neto RdT.';
+      let h='';
+      if(hasT) h+='<span title="'+tt+'" style="color:#9a3412;font-weight:700;background:#fed7aa;padding:1px 5px;border-radius:4px;white-space:nowrap;font-size:10px;">'+((c.net>0?'+':'\u2212')+gsFmt(Math.abs(c.net)))+'</span>';
+      if(hasD) h+=(h?' ':'')+'<span title="'+tt+'" style="color:#1e40af;font-weight:700;background:#dbeafe;padding:1px 5px;border-radius:4px;white-space:nowrap;font-size:10px;">RdD '+((c.netRdd>0?'+':'\u2212')+gsFmt(Math.abs(c.netRdd)))+'</span>';
+      if(!h) h='<span title="'+tt+'" style="color:#9a3412;font-weight:700;background:#fed7aa;padding:1px 5px;border-radius:4px;white-space:nowrap;font-size:10px;">\u25cf</span>';
+      return h;
+    }
+    const tt=bo[1]+': '+c.n+' campo(s)'+(Math.abs(c.net)>=0.5?(' \u00b7 neto '+(c.net>0?'+':'\u2212')+gsFmt(Math.abs(c.net))):' (texto)'); const txt=(Math.abs(c.net)>=0.5)?((c.net>0?'+':'\u2212')+gsFmt(Math.abs(c.net))):'\u25cf'; return '<span title="'+tt+'" style="color:#9a3412;font-weight:700;background:#fed7aa;padding:1px 5px;border-radius:4px;white-space:nowrap;font-size:10px;">'+txt+'</span>'; };
   const rows=shown.map(function(r,idx){
     const rid='wn'+idx;
     const so=(!isNaN(r.vals.disp)&&r.vals.disp>0); const cc=so?('<span style="color:#166534;font-weight:600;">\u2713 Solicitable</span> <span style="color:#94a3b8;">'+gsFmt(r.vals.disp)+' MW</span>'):('<span style="color:#991b1b;font-weight:600;">\u2717 No solicitable</span>'+(r.reason?(' <a onclick="gsWnMotTgl(event,\''+rid+'\')" style="color:#F3721F;cursor:pointer;font-size:10px;">ver motivo</a><span id="'+rid+'-mf" style="display:none;color:#64748b;"> \u00b7 '+r.reason+'</span>'):''));
     const satTxt=isNaN(r.sat)?'\u2013':(Math.round(r.sat*100)+'%');
     const summary='<tr onclick="gsWnToggleNode('+idx+')" style="cursor:pointer;">'
-      +'<td style="text-align:left;"><span id="'+rid+'-i" style="color:#F3721F;font-size:10px;">\u25b8</span> <b>'+r.name+'</b> <a onclick="naDeepDiveIdx('+idx+');event.stopPropagation();" title="Diagnóstico en profundidad de este nudo" style="cursor:pointer;text-decoration:none;">🔬</a></td>'
+      +'<td style="text-align:left;"><span id="'+rid+'-i" style="color:#F3721F;font-size:10px;">\u25b8</span> <b>'+r.name+'</b></td>'
       +'<td style="text-align:left;font-size:11px;">'+(r.ccaa||'')+'</td>'
       +'<td style="text-align:left;font-size:11px;"><div style="max-width:200px;overflow-wrap:anywhere;">'+cc+'</div></td>'
       +'<td>'+satTxt+'</td>'
@@ -3103,7 +2997,7 @@ function renderWhatsNew(){
 function gsSyncScopeOptions(){
   const sel=document.getElementById('gs-scope'); if(!sel) return;
   const allOpt=sel.querySelector('option[value="ALL"]');
-  const allowAll=false; // "TSO+DSO" solo tiene sentido por nudo: vive en el panel ANÁLISIS NODAL
+  const allowAll=(gsMode==='whatsnew');
   if(allOpt){ allOpt.hidden=!allowAll; allOpt.disabled=!allowAll; }
   if(!allowAll && sel.value==='ALL'){ sel.value='TSO'; }
 }
@@ -3127,16 +3021,19 @@ function gsSetMode(m){ gsMode=m;
   document.getElementById('gs-tab-estado').classList.toggle('active',m==='estado');
   document.getElementById('gs-tab-varmap').classList.toggle('active',m==='varmap');
   document.getElementById('gs-tab-var').classList.toggle('active',m==='var');
+  document.getElementById('gs-tab-whatsnew').classList.toggle('active',m==='whatsnew');
   const showBody=(m==='estado'||m==='varmap'); gsGlobalMode=(m==='varmap')?'delta':'abs';
   document.querySelector('#grid-status .gs-body').style.display=showBody?'flex':'none';
   if(!showBody){ const _mot=document.getElementById('gs-mot'); if(_mot) _mot.style.display='none'; }  // gs-mot ya no vive dentro de gs-body
   document.getElementById('gs-mode-global').style.display=(m==='global')?'block':'none';
   document.getElementById('gs-mode-var').style.display=(m==='var')?'block':'none';
+  document.getElementById('gs-mode-whatsnew').style.display=(m==='whatsnew')?'block':'none';
   if(showBody){ renderGridStatus(); if(gsMap) setTimeout(function(){ gsMap.invalidateSize(); gsFitMap(); gsRenderMap(); },60); }
   else if(m==='global'){ renderGlobal(); }
   else if(m==='var'){ renderVariaciones(); }
+  else { renderWhatsNew(); }
 }
-function gsRefresh(){ gsSyncVistaOptions(); gsSyncControls(); if(gsMode==='global') renderGlobal(); else if(gsMode==='var') renderVariaciones(); else renderGridStatus(); }
+function gsRefresh(){ gsSyncVistaOptions(); gsSyncControls(); if(gsMode==='global') renderGlobal(); else if(gsMode==='var') renderVariaciones(); else if(gsMode==='whatsnew') renderWhatsNew(); else renderGridStatus(); }
 // ---- Modo GLOBAL: resumen nacional de TODOS los bloques a la vez (sin elegir bloque) ----
 // Genera UNA tarjeta de bloque. En DSO usa los campos planos (disp/ocupada/admitida);
 // en TSO usa GS_VISTA_META (otTot/ecTot/…) con sus columnas y altas/bajas.
@@ -3160,7 +3057,8 @@ function gsGlobalCard(bk, side, g, p, SL, scope, key, pkey){
     let chips='';
     cols.forEach(function(L){ const v=(L in gsub)?gsub[L]:NaN, pv=(L in psub)?psub[L]:NaN; chips+='<span class="gg-chip"><span class="k">'+L+'</span><span class="v">'+gsFmt(v)+gsDelta(v,pv)+'</span></span>'; });
     let ab='';
-    if(bk==='otorgada'||bk==='en_curso'){ const _ab=(gsAltasBajas('nac',scope,key,pkey,side,(bk==='otorgada')?'otTot':'ecTot')['España'])||{altas:0,bajas:0}; ab='<div class="gg-ab"><span style="color:#16a34a;">▲ Altas: '+(_ab.altas>0.5?'+'+gsFmt(_ab.altas):'0')+'</span><span style="color:#dc2626;">▼ Bajas: '+(_ab.bajas<-0.5?'−'+gsFmt(Math.abs(_ab.bajas)):'0')+'</span></div>'; }
+    if(bk==='otorgada'||bk==='en_curso'){ const _ab=(gsAltasBajas('nac',scope,key,pkey,side,(bk==='otorgada')?'otTot':'ecTot')['España'])||{altas:0,bajas:0}; ab='<div class="gg-ab"><span style="color:#16a34a;">▲ Altas (RdT): '+(_ab.altas>0.5?'+'+gsFmt(_ab.altas):'0')+'</span><span style="color:#dc2626;">▼ Bajas (RdT): '+(_ab.bajas<-0.5?'−'+gsFmt(Math.abs(_ab.bajas)):'0')+'</span></div>';
+      if(bk==='otorgada'){ const _abR=(gsAltasBajas('nac',scope,key,pkey,side,'otRdd')['España'])||{altas:0,bajas:0}; if(_abR.altas>0.5||_abR.bajas<-0.5){ ab+='<div class="gg-ab" title="Capacidad otorgada con aceptabilidad en la red de distribución (dem_acept_rdd + alm_acept_rdd). Fuera del perímetro RdT."><span style="color:#1e40af;">Aceptab. RdD: '+(_abR.altas>0.5?('▲+'+gsFmt(_abR.altas)):'')+((_abR.altas>0.5&&_abR.bajas<-0.5)?' / ':'')+(_abR.bajas<-0.5?('▼−'+gsFmt(Math.abs(_abR.bajas))):'')+'</span></div>'; } } }
     return '<div class="gg-card"><div class="gg-card-h">'+meta.label+' <small>'+meta.suffix+'</small></div>'
         +'<div class="gg-card-tot">'+gsFmt(tot)+gsDelta(tot,(ptot===undefined?NaN:ptot))+' <small>MW '+SL+'</small></div>'
         +'<div class="gg-chips">'+chips+'</div>'+ab+'</div>';
@@ -3318,173 +3216,6 @@ function openGridStatus(){
 }
 function closeGridStatus(){ document.getElementById('grid-status').classList.remove('open'); }
 
-/* ===================== ANÁLISIS NODAL — panel propio (antes pestaña de Grid Status) =====================
-   Integra: tabla de cambios por nudo (renderWhatsNew), oportunidad de promotor (antes en panel lateral)
-   y un diagnóstico en profundidad: serie mensual, atribución nudo vs zona e hipótesis de causa.
-   AVISO metodológico: REE NO publica el motivo de las variaciones (DIA negativa, desistimiento,
-   caducidad…); las "hipótesis" se infieren del patrón de cifras y requieren verificación externa. */
-let naCurrentNode=null;
-function openNodalAnalysis(nodeName){
-  const yEl=document.getElementById('view-year'), mEl=document.getElementById('view-month');
-  const ny=document.getElementById('na-year'), nm=document.getElementById('na-month');
-  ny.innerHTML=yEl.innerHTML; nm.innerHTML=mEl.innerHTML; ny.value=yEl.value; nm.value=mEl.value;
-  document.getElementById('nodal-analysis').classList.add('open');
-  if(nodeName) naCurrentNode=nodeName;
-  naRefresh();
-}
-function closeNodalAnalysis(){ document.getElementById('nodal-analysis').classList.remove('open'); }
-function naRefresh(){
-  const y=document.getElementById('na-year').value, m=document.getElementById('na-month').value;
-  const per=document.getElementById('na-period'); if(per) per.textContent='Periodo: '+m+' '+y+' (variaciones vs mes anterior)';
-  renderWhatsNew();
-  if(naCurrentNode){ naDeepDive(naCurrentNode); }
-  else { const dp=document.getElementById('na-deep'); if(dp) dp.innerHTML='<div style="color:#64748b;font-size:12px;">Pulsa <b>🔬</b> en un nudo de la tabla inferior (o entra desde «Abrir Análisis Nodal» del panel lateral del mapa) para el diagnóstico en profundidad: oportunidad de solicitud, serie mensual, atribución nudo/zona e hipótesis de por qué sube o baja la capacidad.</div>'; }
-}
-function naDeepDiveIdx(i){ const r=gsWnShown[i]; if(r) naDeepDive(r.name); }
-function naEntryByName(name){
-  for(const e of allEntries){ if(e.name===name) return e; }
-  for(const e of allEntries){ if(e.alias && e.alias.indexOf(name)>=0) return e; }
-  return null;
-}
-function naMonthKeysSorted(){
-  return Object.keys(MONTHS_DATA).sort(function(a,b){ const pa=a.split('_'),pb=b.split('_'); if(pa[0]!==pb[0]) return parseInt(pa[0],10)-parseInt(pb[0],10); return GS_MONTHS.indexOf(pa[1])-GS_MONTHS.indexOf(pb[1]); });
-}
-function naMet(entry,key,side){ const m=gsNodeMetrics(entry,key); return m?(m[side]||null):null; }
-function naD(entry,key,pkey,side,f){
-  const c=naMet(entry,key,side), p=naMet(entry,pkey,side);
-  const cv=(c&&!isNaN(c[f]))?c[f]:NaN, pv=(p&&!isNaN(p[f]))?p[f]:NaN;
-  if(isNaN(cv)&&isNaN(pv)) return NaN;
-  return (isNaN(cv)?0:cv)-(isNaN(pv)?0:pv);
-}
-// Zona de capacidad compartida del nudo según perspectiva (campos de la ficha REE)
-function naZona(entry,key,side){
-  const rich=richForMonth(key,entry); if(!rich) return null;
-  const g=((rich.gen||{}).nodal)||{}, d=((rich.dem||{}).nodal)||{};
-  let z=(side==='dem')?(d.estatico_dem_zona):(g.estatico_gen_zona||g.dinamico_zona);
-  z=(z==null?'':String(z).trim());
-  return z||null;
-}
-// Test de pares de zona: ¿los nudos que comparten zona movieron el margen en el mismo sentido?
-function naPeers(entry,key,pkey,side){
-  const zona=naZona(entry,key,side); if(!zona) return null;
-  const myD=naD(entry,key,pkey,side,'margen');
-  let n=0,same=0;
-  for(const e of allEntries){
-    if(e.grid!=='TSO'||e.name===entry.name) continue;
-    if(naZona(e,key,side)!==zona) continue;
-    n++;
-    const d=naD(e,key,pkey,side,'margen');
-    if(isNaN(d)||Math.abs(d)<1||isNaN(myD)||Math.abs(myD)<1) continue;
-    if((d>0)===(myD>0)) same++;
-  }
-  return {zona:zona,n:n,same:same,myD:myD};
-}
-// Hipótesis de causa por patrón de flujo (otorgada / en curso / disponible). NO son hechos.
-function naHipotesis(dOt,dEc,dDisp){
-  const H=[]; const sig=function(v){return !isNaN(v)&&Math.abs(v)>=1;};
-  if(sig(dEc)&&dEc<0&&(!sig(dOt)||dOt<=0)) H.push('Cae la capacidad <b>en curso</b> sin trasladarse a otorgada → compatible con <b>desistimiento del promotor, inadmisión o denegación</b> de solicitudes en tramitación.');
-  if(sig(dEc)&&dEc<0&&sig(dOt)&&dOt>0) H.push('Cae <b>en curso</b> y sube <b>otorgada</b> → compatible con <b>resolución favorable</b>: solicitudes que pasan de trámite a permiso otorgado.');
-  if(sig(dOt)&&dOt<0&&sig(dDisp)&&dDisp>0) H.push('Cae <b>otorgada</b> y aflora <b>disponible</b> → compatible con <b>caducidad por hitos (RDL 7/2026), renuncia o revocación</b> de permisos; una <b>DIA negativa</b> suele acabar en este patrón, pero la ficha no publica el motivo.');
-  if(sig(dOt)&&dOt<0&&(!sig(dDisp)||dDisp<=0)) H.push('Cae <b>otorgada</b> sin aflorar disponible → posible retirada de permisos <b>absorbida por el criterio limitante</b> (zonal) o reclasificación entre bloques; revisar el desglose del nudo.');
-  if(sig(dOt)&&dOt>0&&sig(dDisp)&&dDisp<0) H.push('Sube <b>otorgada</b> consumiendo <b>disponible</b> → nuevos permisos otorgados en el nudo (mayor competencia para futuras solicitudes).');
-  if(sig(dDisp)&&dDisp>0&&!sig(dOt)&&!sig(dEc)) H.push('Sube <b>disponible</b> sin movimientos de permisos del nudo → compatible con <b>recálculo de criterios</b> (nodal/zonal), refuerzos de red o liberaciones en otros nudos de la zona.');
-  if(sig(dDisp)&&dDisp<0&&!sig(dOt)&&!sig(dEc)) H.push('Cae <b>disponible</b> sin movimientos de permisos del nudo → probable <b>dinámica de zona</b> (otros nudos consumen el margen compartido) o recálculo de criterios.');
-  if(!H.length) H.push('Sin variaciones significativas (≥1 MW) entre los dos meses en esta perspectiva.');
-  return H;
-}
-// Serie mensual del nudo (todos los meses cargados) con Δ intermensual
-function naSerieHTML(entry,side){
-  const keys=naMonthKeysSorted();
-  let rows='', prev=null;
-  keys.forEach(function(k){
-    const m=naMet(entry,k,side); if(!m){ prev=null; return; }
-    const cell=function(f){
-      const v=m[f]; const pv=prev?prev[f]:NaN; let d='';
-      if(!isNaN(v)&&!isNaN(pv)){ const dv=v-pv; if(Math.abs(dv)>=1) d=' <span style="color:'+(dv>0?'#16a34a':'#dc2626')+';font-size:9px;">('+(dv>0?'+':'\u2212')+gsFmt(Math.abs(dv))+')</span>'; }
-      return '<td style="text-align:center;">'+(isNaN(v)?'\u2013':gsFmt(v))+d+'</td>';
-    };
-    rows+='<tr><td style="text-align:left;font-weight:600;">'+k.replace('_',' ')+'</td>'+cell('otorgada')+cell('enCurso')+cell('disp')+cell('margen')+'</tr>';
-    prev=m;
-  });
-  if(!rows) return '<div style="color:#94a3b8;font-size:11px;">Sin datos mensuales para este nudo.</div>';
-  return '<div style="overflow:auto;"><table class="rich-tbl" style="font-size:11px;"><tr style="color:#64748b;"><th style="text-align:left;">Mes</th><th>Otorgada</th><th>En curso</th><th>Disponible</th><th>Margen</th></tr>'+rows+'</table></div>';
-}
-// Diff posición a posición entre dos meses (requiere pos_AAAA_MM.json de ambos)
-function naPosDiffHTML(entry,key,pkey,side){
-  const c=posForMonth(key,entry), p=posForMonth(pkey,entry);
-  if(!c&&!p) return '<div style="color:#94a3b8;font-size:11px;">Sin publicación por posición cargada para este nudo (pos_AAAA_MM.json).</div>';
-  if(!c||!p) return '<div style="color:#94a3b8;font-size:11px;">Solo hay publicación por posición de uno de los dos meses: el desglose posición a posición necesita \u22652 meses de pos_AAAA_MM.json (disponible desde jul 2026 en adelante).</div>';
-  const lst=(side==='dem')?'dem_pos':'gen_pos';
-  const flds=(side==='dem')?[['es_dem','servicio dem'],['es_alm','servicio alm'],['pen_dem','pendiente dem'],['pen_alm','pendiente alm']]
-                           :[['es_mges','servicio MGES'],['es_mpe','servicio MPE'],['pen_mges','pendiente MGES'],['pen_mpe','pendiente MPE'],['cur_mges','en curso MGES'],['cur_mpe','en curso MPE']];
-  const kf=function(x){ return (x.pos||'(sin posición)')+'|'+(x.motiv||x.rdtrdd||''); };
-  const idx={}; (p[lst]||[]).forEach(function(x){ idx[kf(x)]=x; });
-  const out=[];
-  (c[lst]||[]).forEach(function(x){
-    const o=idx[kf(x)]||{}; const nuevo=!(kf(x) in idx); delete idx[kf(x)];
-    const difs=flds.map(function(f){ const a=cleanNum(x[f[0]]), b=cleanNum(o[f[0]]); const d=(isNaN(a)?0:a)-(isNaN(b)?0:b); return Math.abs(d)>=1?(f[1]+' '+(d>0?'+':'\u2212')+gsFmt(Math.abs(d))):null; }).filter(Boolean);
-    if(nuevo) out.push('<b>'+(x.pos||'(sin posición)')+'</b>: <span style="color:#16a34a;">posición nueva en la publicación</span>'+(difs.length?(' \u00b7 '+difs.join(' \u00b7 ')):''));
-    else if(difs.length) out.push('<b>'+(x.pos||'(sin posición)')+'</b>: '+difs.join(' \u00b7 '));
-  });
-  for(const k in idx){ out.push('<b>'+(idx[k].pos||'(sin posición)')+'</b>: <span style="color:#dc2626;">desaparece de la publicación</span> (posible baja/retirada; verificar)'); }
-  if(!out.length) return '<div style="color:#94a3b8;font-size:11px;">Sin cambios por posición entre los dos meses.</div>';
-  return '<ul style="margin:4px 0 0 16px;font-size:11px;">'+out.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ul>';
-}
-// Diagnóstico en profundidad de un nudo
-function naDeepDive(name){
-  naCurrentNode=name;
-  const host=document.getElementById('na-deep'); if(!host) return;
-  const entry=naEntryByName(name);
-  if(!entry){ host.innerHTML='<b>'+name+'</b>: nudo no encontrado en la base.'; return; }
-  const year=document.getElementById('na-year').value, month=document.getElementById('na-month').value;
-  let pi=GS_MONTHS.indexOf(month)-1, py=year; if(pi<0){pi=11;py=(parseInt(year,10)-1).toString();}
-  const key=year+'_'+month, pkey=py+'_'+GS_MONTHS[pi];
-  const side=document.getElementById('na-side').value;
-  const rich=richForMonth(key,entry), pd=posForMonth(key,entry);
-  const dOt=naD(entry,key,pkey,side,'otorgada'), dEc=naD(entry,key,pkey,side,'enCurso'),
-        dDisp=naD(entry,key,pkey,side,'disp'), dMg=naD(entry,key,pkey,side,'margen');
-  const met=naMet(entry,key,side)||{};
-  // Atribución nudo vs zona: familia del criterio limitante + test de pares de zona
-  const fam=gsCritFamily(met.crit||'');
-  let atrib='';
-  if(fam==='Estático nodal'||fam==='Cortocircuito') atrib='Criterio limitante <b>'+fam+'</b> (propio del nudo) → la variación apunta a <b>cuestión del nudo</b>.';
-  else if(fam==='Estático zonal'||fam==='Dinámico (zonal)') atrib='Criterio limitante <b>'+fam+'</b> (capacidad compartida) → la variación puede venir de <b>otros nudos de la zona</b>.';
-  else atrib='Criterio limitante: '+(met.crit||'sin dato')+'.';
-  const peers=(entry.grid==='TSO')?naPeers(entry,key,pkey,side):null;
-  if(peers&&peers.zona){
-    const pct=peers.n?Math.round(100*peers.same/peers.n):0;
-    atrib+=' Zona <b>'+peers.zona+'</b>: '+peers.n+' nudo(s) compañero(s); '+peers.same+' ('+pct+'%) variaron el margen en el mismo sentido → '
-      +(pct>=60?'<b>dinámica de zona</b>':((peers.same===0&&!isNaN(peers.myD)&&Math.abs(peers.myD)>=1)?'<b>movimiento específico de este nudo</b>':'señal mixta / insuficiente'))+'.';
-  }
-  const dTxt=function(v){ return isNaN(v)?'\u2013':(((v>0?'+':(v<0?'\u2212':'')))+gsFmt(Math.abs(v))+' MW'); };
-  const H=naHipotesis(dOt,dEc,dDisp);
-  host.innerHTML=
-    '<div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">'
-      +'<h3 style="margin:0;color:#0f766e;font-size:16px;">🔬 '+entry.name+'</h3>'
-      +'<span style="font-size:11px;color:#64748b;">'+(entry.ccaa||'')+' \u00b7 '+(entry.grid||'')+' \u00b7 perspectiva '+(GS_SIDELBL[side]||side)+' \u00b7 '+key.replace('_',' ')+' vs '+pkey.replace('_',' ')+'</span>'
-      +'<a onclick="naCurrentNode=null;naRefresh();" style="margin-left:auto;cursor:pointer;color:#dc2626;font-size:11px;">\u2715 quitar nudo</a></div>'
-    +(entry.grid==='TSO'?_oportunidad(rich,pd):'<div style="font-size:11px;color:#64748b;margin-top:6px;">El análisis de oportunidad detallado (criterios, posiciones, solicitudes) solo está disponible para nudos TSO.</div>')
-    +'<div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;">'
-      +'<div style="flex:1 1 300px;min-width:260px;">'
-        +'<div style="font-weight:bold;font-size:12px;color:#0f766e;">Variación del mes (\u0394 vs anterior)</div>'
-        +'<table class="rich-tbl" style="font-size:11px;width:100%;">'
-          +'<tr><td>Otorgada</td><td style="text-align:right;">'+dTxt(dOt)+'</td></tr>'
-          +'<tr><td>En curso</td><td style="text-align:right;">'+dTxt(dEc)+'</td></tr>'
-          +'<tr><td>Disponible</td><td style="text-align:right;">'+dTxt(dDisp)+'</td></tr>'
-          +'<tr><td>Margen</td><td style="text-align:right;">'+dTxt(dMg)+'</td></tr></table>'
-        +'<div style="font-size:11px;margin-top:6px;line-height:1.4;">'+atrib+'</div>'
-      +'</div>'
-      +'<div style="flex:1 1 360px;min-width:280px;">'
-        +'<div style="font-weight:bold;font-size:12px;color:#0f766e;">Hipótesis de causa (por patrón de cifras)</div>'
-        +'<ul style="margin:4px 0 0 16px;font-size:11px;line-height:1.45;">'+H.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>'
-        +'<div style="background:#fef2f2;border:1px solid #fecaca;border-radius:6px;padding:5px 8px;margin-top:6px;font-size:10.5px;color:#7f1d1d;"><b>Aviso:</b> REE no publica el motivo real de las variaciones (DIA negativa, desistimiento, caducidad, renuncia\u2026). Estas hipótesis se infieren del patrón de las cifras y deben verificarse en fuentes oficiales (resoluciones de acceso, BOE/boletines autonómicos, comunicaciones del promotor).</div>'
-      +'</div>'
-    +'</div>'
-    +'<div style="margin-top:10px;"><div style="font-weight:bold;font-size:12px;color:#0f766e;">Serie mensual (todos los meses cargados)</div>'+naSerieHTML(entry,side)+'</div>'
-    +'<div style="margin-top:10px;"><div style="font-weight:bold;font-size:12px;color:#0f766e;">Cambios por posición ('+key.replace('_',' ')+' vs '+pkey.replace('_',' ')+')</div>'+naPosDiffHTML(entry,key,pkey,side)+'</div>';
-  host.scrollIntoView({behavior:'smooth',block:'start'});
-}
-
 </script>
 
 <!-- Modal nota aclaratoria 0* -->
@@ -3514,6 +3245,7 @@ function naDeepDive(name){
     <button id="gs-tab-estado" class="gs-tab" onclick="gsSetMode('estado')">🗺️ Regional</button>
     <button id="gs-tab-varmap" class="gs-tab" onclick="gsSetMode('varmap')">📈 Variaciones</button>
     <button id="gs-tab-var" class="gs-tab" onclick="gsSetMode('var')">🔬 Estadísticas</button>
+    <button id="gs-tab-whatsnew" class="gs-tab" onclick="gsSetMode('whatsnew')">🔎 Análisis nodal</button>
   </div>
   <div id="gs-controls">
     <label>Año:<select id="gs-year" onchange="gsRefresh()"></select></label>
@@ -3610,36 +3342,7 @@ function naDeepDive(name){
     <div class="gs-var-sec"><h3>Transiciones de causa (mes anterior &#8594; mes actual)</h3><div id="gs-var-C"></div></div>
     <div class="gs-var-sec"><h3>Criterio limitante y zona (deduplicado)</h3><div id="gs-var-D"></div></div>
   </div>
-</div>
-
-<!-- ===== ANÁLISIS NODAL (panel propio a pantalla completa; antes pestaña de Grid Status) ===== -->
-<div id="nodal-analysis">
-  <div id="na-head">
-    <span class="hw-logo-pill" style="margin-right:8px;"><span class="hw-logo-img" style="height:20px;width:69px;"></span></span>
-    <h2>🔎 ANÁLISIS NODAL</h2>
-    <span class="gs-period" id="na-period" style="font-size:12px;opacity:.92;"></span>
-    <button id="na-close" onclick="closeNodalAnalysis()">✕ Cerrar</button>
-  </div>
-  <div id="na-controls">
-    <label>Año:<select id="na-year" onchange="naRefresh()"></select></label>
-    <label>Mes:<select id="na-month" onchange="naRefresh()"></select></label>
-    <label>Perspectiva:<select id="na-side" onchange="naRefresh()">
-      <option value="gen" selected>Generación</option>
-      <option value="dem">Demanda</option>
-    </select></label>
-    <label>Red:<select id="na-scope" onchange="naRefresh()">
-      <option value="TSO" selected>TSO</option>
-      <option value="DSO">DSO</option>
-      <option value="ALL">TSO+DSO</option>
-    </select></label>
-    <label>Ordenar por:<select id="na-block" onchange="renderWhatsNew()">
-      <option value="margen" selected>Δ Margen</option>
-      <option value="disp">Δ Disponible</option>
-      <option value="no_otorgable">Δ No otorgable</option>
-    </select></label>
-  </div>
-  <div class="na-sec" id="na-deep"></div>
-  <div class="na-sec" id="na-table-wrap">
+  <div id="gs-mode-whatsnew" style="display:none;padding:8px 18px 18px;overflow:auto;max-height:calc(100vh - 200px);">
     <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:10px;font-size:13px;">
       <input id="gs-wn-search" type="text" placeholder="Buscar nudo o CCAA…" oninput="renderWhatsNew()" style="padding:4px 8px;border:1px solid #cbd5e1;border-radius:6px;font-size:13px;min-width:180px;">
       <select id="gs-wn-concl" onchange="renderWhatsNew()" style="padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:12px;"><option value="">Conclusión: todas</option><option value="si">Solo solicitables</option><option value="no">Solo NO solicitables</option></select>
