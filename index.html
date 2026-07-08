@@ -3606,11 +3606,13 @@ function gsOppClass(r){
 }
 // --- FASE 1: KPIs ---
 function gsOppTotals(col){
-  const t={disp:0,dispAll:0,dispReal:0,nReal:0,nPosUnk:0,pend:0,nSolic:0,nTot:0,nConc:0,mwConc:0,satS:0,satN:0,lib:col.tLib};
+  const t={disp:0,dispAll:0,dispReal:0,nReal:0,dispPos:0,nPos:0,dispUnk:0,nPosUnk:0,pend:0,nSolic:0,nTot:0,nConc:0,mwConc:0,satS:0,satN:0,lib:col.tLib};
   col.recs.forEach(function(r){ t.nTot++;
     if(!isNaN(r.disp)) t.dispAll+=r.disp;   // perímetro de la pestaña Global: Σ disp de TODOS los nudos (bloqueados incluidos)
     if(!r.noSolic&&!isNaN(r.disp)&&r.disp>0){ t.nSolic++; t.disp+=r.disp; if(!isNaN(r.pend)) t.pend+=r.pend;
-      if(r.hasPos===true){ t.nReal++; t.dispReal+=r.disp; } else if(r.hasPos===null) t.nPosUnk++; }
+      if(r.hasPos===true){ t.nReal++; t.dispReal+=r.disp; }                                  // solicitable REAL: hay posición E/P dedicada
+      else if(r.hasPos===false){ t.nPos++; t.dispPos+=r.disp; }                              // POSIBLE si hubiera posiciones (E+P=0)
+      else { t.nPosUnk++; t.dispUnk+=r.disp; } }                                             // sin dato de posición (princip. DSO)
     if(r.enConcurso){ t.nConc++; if(!isNaN(r.margen)) t.mwConc+=r.margen; }
     if(!isNaN(r.sat)){ t.satS+=r.sat; t.satN++; } });
   t.pres=((t.disp+t.pend)>0)?(t.pend/(t.disp+t.pend)):NaN;
@@ -3619,16 +3621,17 @@ function gsOppTotals(col){
 }
 function gsOppCard(lbl,val,sub){ return '<div class="gs-kpi-card"><div class="gs-kpi-lbl">'+lbl+'</div><div class="gs-kpi-val">'+val+'</div><div class="gs-kpi-sub">'+(sub||'&nbsp;')+'</div></div>'; }
 function gsOppPP(a,b){ if(isNaN(a)||isNaN(b)) return ''; const d=100*(a-b); if(Math.abs(d)<0.5) return '<span style="color:#94a3b8;">=</span>'; return '<span style="color:'+(d>0?'#dc2626':'#16a34a')+';font-weight:700;">'+(d>0?'+':'−')+Math.abs(d).toFixed(1)+' pp</span> vs mes ant.'; }
-function gsOppRenderKPIs(cur,prev){
+function gsOppRenderKPIs(cur,prev,side){
   const host=document.getElementById('gs-opp-kpis'); if(!host) return;
   host.innerHTML=
     gsOppCard('MW disponibles (total)', gsFmt(cur.dispAll), 'mismo perímetro que Global (Σ disp. de todos los nudos) · '+gsSigned(cur.dispAll-prev.dispAll)+' MW')
    +gsOppCard('MW solicitables (sin bloqueo)', gsFmt(cur.disp), cur.nSolic+' de '+cur.nTot+' nudos · '+gsSigned(cur.disp-prev.disp)+' MW vs mes ant.')
-   +gsOppCard('Solicitable real (con posición)', gsFmt(cur.dispReal)+' <span style="font-size:13px;color:#64748b;">MW</span>', cur.nReal+' nudos con posición E/P dedicada'+(cur.nPosUnk?(' · '+cur.nPosUnk+' sin dato de posición'):''))
+   +gsOppCard('&#128994; Solicitable real (con posición)', gsFmt(cur.dispReal)+' <span style="font-size:13px;color:#64748b;">MW</span>', cur.nReal+' nudos con posición E/P dedicada · '+gsSigned(cur.dispReal-prev.dispReal)+' MW')
+   +gsOppCard('&#128993; Posible con nuevas posiciones', gsFmt(cur.dispPos)+' <span style="font-size:13px;color:#64748b;">MW</span>', cur.nPos+' nudos con disp. pero E+P=0 · vía planificación de posiciones (art. 4 bis Ley 24/2013)'+(cur.nPosUnk?(' · '+cur.nPosUnk+' nudos sin dato ('+gsFmt(cur.dispUnk)+' MW, princip. DSO)'):''))
    +gsOppCard('Presión de mercado', isNaN(cur.pres)?'–':(100*cur.pres).toFixed(0)+'%', 'pendiente / (pendiente + disp.) · '+gsOppPP(cur.pres,prev.pres))
    +gsOppCard('Nudos en concurso', cur.nConc, 'Σ margen bloqueado: '+gsFmt(cur.mwConc)+' MW')
    +gsOppCard('Saturación media', isNaN(cur.sat)?'–':(100*cur.sat).toFixed(0)+'%', gsOppPP(cur.sat,prev.sat))
-   +gsOppCard('Liberada RDL 7/2026', gsFmt(cur.lib)+' MW', 'ficha de generación (gen/alm) · '+gsSigned(cur.lib-prev.lib)+' MW');
+   +((side!=='dem')?gsOppCard('Liberada autoconsumo (RDL 7/2026)', gsFmt(cur.lib)+' MW', 'capacidad liberada por autoconsumo · solo generación/almacenamiento · '+gsSigned(cur.lib-prev.lib)+' MW'):'');
 }
 // --- FASE 2: ranking ---
 function gsOppToggleNote(){
@@ -3641,7 +3644,8 @@ function gsOppToggleNote(){
       +'<b>15%</b> tendencia del disponible en los últimos 6 meses (estable = 50 pts; subida suma, bajada resta; por eficiencia la tendencia se calcula solo para los 400 mejores candidatos, el resto queda neutro). '
       +'<b>Multiplicador ×0,5 si el nudo no tiene posición dedicada</b> (E+P=0 en la ficha REE: gen/alm a RdT, o consumo a RdT en demanda); sin dato de posición = sin penalizar. '
       +'Los nudos no solicitables o sin disponible puntúan 0. En DSO «pendiente» = capacidad admitida y no resuelta; en TSO = capacidad en curso. '
-      +'<b>Perímetros:</b> «MW disponibles (total)» replica la pestaña Global (Σ disponible de TODOS los nudos, bloqueados incluidos); «solicitables» excluye nudos con causa de bloqueo o disp.&le;0; «solicitable real» exige además posición E/P dedicada — solo se puede solicitar sobre una posición existente o planificada. '
+      +'<b>Perímetros:</b> «MW disponibles (total)» replica la pestaña Global (Σ disponible de TODOS los nudos, bloqueados incluidos); «solicitables» excluye nudos con causa de bloqueo o disp.&le;0. Los solicitables se desglosan en: <b>&#128994; solicitable real</b> (existe posición E/P dedicada → se puede solicitar ya), <b>&#128993; posible si hubiera posiciones</b> (hay disponible pero E+P=0 → la vía es el mecanismo de planificación de posiciones, art. 4 bis Ley 24/2013 / RDL 7/2026) y <b>sin dato de posición</b> (principalmente DSO, que no publica posiciones). '
+      +'«Liberada autoconsumo (RDL 7/2026)» es capacidad liberada por autoconsumo en la ficha de generación; no aplica a la perspectiva de demanda y se oculta en ella. '
       +'El contraste de posiciones usa la ficha mensual de REE y, en demanda, las solicitudes publicadas (art. 20 quater RD 1183/2020); pendiente de refinar con la información del portal de solicitudes de REE.';
     n.style.display='block';
   } else n.style.display='none';
@@ -3653,8 +3657,10 @@ function gsOppRenderRank(){
   const q=(document.getElementById('gs-opp-q').value||'').toLowerCase();
   const N=parseInt(document.getElementById('gs-opp-n').value,10)||25;
   const inclNo=document.getElementById('gs-opp-nosolic').checked;
+  const tipoSel=document.getElementById('gs-opp-tipo'); const tipo=tipoSel?tipoSel.value:'';
   let rows='',shown=0;
   for(const r of gsOppRecs){
+    if(tipo&&r.opp!==tipo) continue;
     if(!inclNo&&(r.noSolic||isNaN(r.disp)||r.disp<=0)) continue;
     if(!isNaN(r.disp)&&r.disp<min&&!(inclNo&&r.noSolic)) continue;
     if(isNaN(r.disp)&&min>0) continue;
@@ -3668,11 +3674,14 @@ function gsOppRenderRank(){
     let posTxt='<span style="color:#94a3b8;" title="Sin dato de posiciones (DSO o ficha sin bloque de posiciones)">·</span>';
     if(r.hasPos===true) posTxt='<span style="color:#16a34a;font-weight:700;">&#10003;</span> E:'+(isNaN(r.posE)?0:r.posE)+' · P:'+(isNaN(r.posP)?0:r.posP);
     else if(r.hasPos===false) posTxt='<span style="color:#dc2626;font-weight:700;" title="E+P=0: no cabe solicitud ligada a posición inexistente; vía = mecanismo de planificación de posiciones (art. 4 bis Ley 24/2013)">&#10007; sin posición</span>';
+    const OPP={real:['#dcfce7','#166534','Solicitable real'],posible:['#fef3c7','#92400e','Posible si hubiera posiciones'],sindato:['#e2e8f0','#475569','Sin dato de posición'],no:['#fee2e2','#991b1b','No solicitable']};
+    const oc=OPP[r.opp]||OPP.sindato;
+    const oppChip='<div style="margin-top:2px;"><span style="background:'+oc[0]+';color:'+oc[1]+';border-radius:8px;padding:1px 7px;font-size:10px;font-weight:600;">'+oc[2]+'</span></div>';
     rows+='<tr>'
       +'<td>'+shown+'</td>'
       +'<td><span class="gs-opp-badge '+r.cls+'"></span></td>'
       +'<td style="white-space:nowrap;"><span class="gs-opp-scorebar"><i style="width:'+r.score+'%;background:'+barCol+';"></i></span><span class="gs-opp-scoretxt">'+r.score+'</span></td>'
-      +'<td style="text-align:left;"><b>'+r.name+'</b> <a onclick="openNodalAnalysis(\''+r.name.replace(/'/g,"\\'")+'\')" style="cursor:pointer;font-size:11px;color:#F3721F;" title="Abrir Análisis Nodal">🔬</a><div style="font-size:10px;color:#94a3b8;">'+r.grid+' · '+(r.ccaa||'—')+'</div>'+motivo+comp+'</td>'
+      +'<td style="text-align:left;"><b>'+r.name+'</b> <a onclick="openNodalAnalysis(\''+r.name.replace(/'/g,"\\'")+'\')" style="cursor:pointer;font-size:11px;color:#F3721F;" title="Abrir Análisis Nodal">🔬</a><div style="font-size:10px;color:#94a3b8;">'+r.grid+' · '+(r.ccaa||'—')+'</div>'+oppChip+motivo+comp+'</td>'
       +'<td><b>'+gsFmt(r.disp)+'</b></td>'
       +'<td>'+gsFmt(r.pend)+'</td>'
       +'<td>'+(isNaN(r.presion)?'–':(100*r.presion).toFixed(0)+'%')+'</td>'
@@ -3735,7 +3744,9 @@ function renderOportunidades(){
   const side=document.getElementById('gs-side').value, scope=document.getElementById('gs-scope').value;
   const sub=document.getElementById('gs-opp-sub'); if(sub) sub.textContent=' · '+(GS_MLBL[month]||month)+' 20'+year+' · '+(GS_SIDELBL[side]||side)+' · '+(scope==='ALL'?'TSO+DSO':scope);
   const cur=gsOppCollect(key,side,scope), prev=gsOppCollect(pkey,side,scope);
-  gsOppRenderKPIs(gsOppTotals(cur),gsOppTotals(prev));
+  gsOppRenderKPIs(gsOppTotals(cur),gsOppTotals(prev),side);
+  // clasificación de oportunidad: real (con posición) / posible (si hubiera posiciones) / sindato / no
+  cur.recs.forEach(function(r){ r.opp=(r.noSolic||isNaN(r.disp)||r.disp<=0)?'no':(r.hasPos===true?'real':(r.hasPos===false?'posible':'sindato')); });
   // score: base sin tendencia → top 400 con tendencia → orden final
   const ctx={maxDisp:0};
   cur.recs.forEach(function(r){ if(!r.noSolic&&!isNaN(r.disp)&&r.disp>ctx.maxDisp) ctx.maxDisp=r.disp; });
@@ -3867,6 +3878,7 @@ function renderOportunidades(){
         <label>M&iacute;n. MW disp.: <input id="gs-opp-min" type="number" value="0" min="0" step="10" oninput="gsOppRenderRank()"></label>
         <label>CCAA: <select id="gs-opp-ccaa" onchange="gsOppRenderRank()"><option value="">Todas</option></select></label>
         <label>Buscar: <input id="gs-opp-q" type="text" placeholder="Nudo&hellip;" oninput="gsOppRenderRank()"></label>
+        <label>Oportunidad: <select id="gs-opp-tipo" onchange="gsOppRenderRank()"><option value="">Todas</option><option value="real">&#128994; Solicitable real (con posici&oacute;n)</option><option value="posible">&#128993; Posible si hubiera posiciones</option><option value="sindato">Sin dato de posici&oacute;n</option></select></label>
         <label>Mostrar: <select id="gs-opp-n" onchange="gsOppRenderRank()"><option value="10">10</option><option value="25" selected>25</option><option value="50">50</option><option value="100">100</option></select></label>
         <label><input id="gs-opp-nosolic" type="checkbox" onchange="gsOppRenderRank()"> incluir no solicitables</label>
         <span style="font-size:11px;color:#94a3b8;">&#128994; solicitable holgado &nbsp;&#128993; compartido/zonal, presi&oacute;n alta o sin posici&oacute;n dedicada &nbsp;&#128308; bloqueado / sin capacidad</span>
