@@ -1099,11 +1099,12 @@ const DSO_LABELS = {
     ocupada: 'Capacidad ocupada (MW)', admitida: 'Capacidad admitida (MW)',
     pos_ocup: 'Posiciones ocupadas', pos_libr: 'Posiciones libres',
     afeccion: 'Afección RdT', scc: 'Limitado por SCC',
+    viab: 'Viabilidad física para la conexión',
     eolica: 'Admitida eólica (MW)', solar: 'Admitida solar (MW)',
     almacen: 'Admitida almacenamiento (MW)', otras: 'Admitida otras (MW)',
     nudo0: 'Nudo 0*', coment: 'Comentario'
 };
-const DSO_ORDER = ['disp','comprom','ocupada','admitida','pos_ocup','pos_libr','afeccion','scc','eolica','solar','almacen','otras','nudo0','coment'];
+const DSO_ORDER = ['disp','comprom','ocupada','admitida','pos_ocup','pos_libr','afeccion','scc','viab','eolica','solar','almacen','otras','nudo0','coment'];
 
 // ¿Un valor de 'nudo 0' indica nudo 0* ? (lógica 1=Sí / 0=No, tolerante a SI/S/X/true)
 function dsoIs0Star(v) {

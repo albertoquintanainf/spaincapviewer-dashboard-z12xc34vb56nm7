@@ -55261,7 +55261,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "EIRIS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|PUR|15": {
   "codigo": "PUR",
@@ -55272,7 +55272,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "EL PUERTO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|GRE|15": {
   "codigo": "GRE",
@@ -55283,7 +55283,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LA GRELA 2 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200081|15": {
   "codigo": "2920200081",
@@ -55294,7 +55294,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SAN PEDRO DE VISMA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200081|66": {
   "codigo": "2920200081",
@@ -55305,7 +55305,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "SAN PEDRO DE VISMA 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200090|15": {
   "codigo": "2920200090",
@@ -55316,7 +55316,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LARACHA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200090|20": {
   "codigo": "2920200090",
@@ -55327,7 +55327,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "LARACHA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200090|66": {
   "codigo": "2920200090",
@@ -55338,7 +55338,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "LARACHA 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420308|15": {
   "codigo": "2920420308",
@@ -55349,7 +55349,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MORAS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420308|66": {
   "codigo": "2920420308",
@@ -55360,7 +55360,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "MORAS 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|SBO|15": {
   "codigo": "SBO",
@@ -55371,7 +55371,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SABON 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|SBO|66": {
   "codigo": "SBO",
@@ -55382,7 +55382,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "SABON 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|SBO|132": {
   "codigo": "SBO",
@@ -55393,7 +55393,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "SABON 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200070|20": {
   "codigo": "2920200070",
@@ -55404,7 +55404,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "MOURELA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200070|132": {
   "codigo": "2920200070",
@@ -55415,7 +55415,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "MOURELA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420095|20": {
   "codigo": "2920420095",
@@ -55426,7 +55426,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "SOMOZAS 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420095|132": {
   "codigo": "2920420095",
@@ -55437,7 +55437,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "SOMOZAS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200091|15": {
   "codigo": "2920200091",
@@ -55448,7 +55448,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "BERGONDO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200091|66": {
   "codigo": "2920200091",
@@ -55459,7 +55459,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "BERGONDO 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200077|15": {
   "codigo": "2920200077",
@@ -55470,7 +55470,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PEDRIDO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200077|66": {
   "codigo": "2920200077",
@@ -55481,7 +55481,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "PEDRIDO 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200077|132": {
   "codigo": "2920200077",
@@ -55492,7 +55492,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "PEDRIDO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200085|20": {
   "codigo": "2920200085",
@@ -55503,7 +55503,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "BOIRO 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200085|66": {
   "codigo": "2920200085",
@@ -55514,7 +55514,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "BOIRO 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200093|20": {
   "codigo": "2920200093",
@@ -55525,7 +55525,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "CABANA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200093|66": {
   "codigo": "2920200093",
@@ -55536,7 +55536,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "CABANA 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420309|66": {
   "codigo": "2920420309",
@@ -55547,7 +55547,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "CATASOL 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200098|15": {
   "codigo": "2920200098",
@@ -55558,7 +55558,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VILAR DO COLO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200098|132": {
   "codigo": "2920200098",
@@ -55569,7 +55569,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "VILAR DO COLO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420123|20": {
   "codigo": "2920420123",
@@ -55580,7 +55580,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "DO VILAN 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420123|66": {
   "codigo": "2920420123",
@@ -55591,7 +55591,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "DO VILAN 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420268|15": {
   "codigo": "2920420268",
@@ -55602,7 +55602,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "BERTOA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420268|66": {
   "codigo": "2920420268",
@@ -55613,7 +55613,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "BERTOA 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200072|15": {
   "codigo": "2920200072",
@@ -55624,7 +55624,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CARBALLO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200072|66": {
   "codigo": "2920200072",
@@ -55635,7 +55635,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "CARBALLO 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420256|15": {
   "codigo": "2920420256",
@@ -55646,7 +55646,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CARRAL 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420256|66": {
   "codigo": "2920420256",
@@ -55657,7 +55657,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "CARRAL 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|MDV|66": {
   "codigo": "MDV",
@@ -55668,7 +55668,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "MESON DO VENTO 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200097|20": {
   "codigo": "2920200097",
@@ -55679,7 +55679,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "CEDEIRA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200097|132": {
   "codigo": "2920200097",
@@ -55690,7 +55690,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "CEDEIRA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200083|20": {
   "codigo": "2920200083",
@@ -55701,7 +55701,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "PONTELLA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200083|66": {
   "codigo": "2920200083",
@@ -55712,7 +55712,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "PONTELLA 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|MEI|20": {
   "codigo": "MEI",
@@ -55723,7 +55723,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "MEIRAMA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|SDG|15": {
   "codigo": "SDG",
@@ -55734,7 +55734,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SIDEGASA-TEIXEIRO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|SDG|66": {
   "codigo": "SDG",
@@ -55745,7 +55745,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "SIDEGASA-TEIXEIRO 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920320001|15": {
   "codigo": "2920320001",
@@ -55756,7 +55756,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ASTANO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920320001|132": {
   "codigo": "2920320001",
@@ -55767,7 +55767,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "ASTANO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420196|15": {
   "codigo": "2920420196",
@@ -55778,7 +55778,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PUERTO EXTERIOR FERROL 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420196|132": {
   "codigo": "2920420196",
@@ -55789,7 +55789,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "PUERTO EXTERIOR FERROL 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200069|15": {
   "codigo": "2920200069",
@@ -55800,7 +55800,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SANTA MARINA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200069|132": {
   "codigo": "2920200069",
@@ -55811,7 +55811,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "SANTA MARINA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|MCO|66": {
   "codigo": "MCO",
@@ -55822,7 +55822,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "MAZARICOS 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200092|15": {
   "codigo": "2920200092",
@@ -55833,7 +55833,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MELIDE 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200092|66": {
   "codigo": "2920200092",
@@ -55844,7 +55844,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "MELIDE 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200068|15": {
   "codigo": "2920200068",
@@ -55855,7 +55855,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "EUME 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200068|132": {
   "codigo": "2920200068",
@@ -55866,7 +55866,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "EUME 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420240|20": {
   "codigo": "2920420240",
@@ -55877,7 +55877,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "MUROS 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420240|66": {
   "codigo": "2920420240",
@@ -55888,7 +55888,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "MUROS 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420299|66": {
   "codigo": "2920420299",
@@ -55899,7 +55899,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "MUXIA 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200079|15": {
   "codigo": "2920200079",
@@ -55910,7 +55910,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CORNIDO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200079|132": {
   "codigo": "2920200079",
@@ -55921,7 +55921,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "CORNIDO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420004|132": {
   "codigo": "2920420004",
@@ -55932,7 +55932,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "MEGASA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420259|15": {
   "codigo": "2920420259",
@@ -55943,7 +55943,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "RIO DO POZO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420259|132": {
   "codigo": "2920420259",
@@ -55954,7 +55954,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "RIO DO POZO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200107|20": {
   "codigo": "2920200107",
@@ -55965,7 +55965,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "NEGREIRA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200107|66": {
   "codigo": "2920200107",
@@ -55976,7 +55976,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "NEGREIRA 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|TAM|20": {
   "codigo": "TAM",
@@ -55987,7 +55987,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "TAMBRE II 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|TAM|66": {
   "codigo": "TAM",
@@ -55998,7 +55998,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "TAMBRE II 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200080|15": {
   "codigo": "2920200080",
@@ -56009,7 +56009,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SAN MARCOS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200080|132": {
   "codigo": "2920200080",
@@ -56020,7 +56020,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "SAN MARCOS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420190|20": {
   "codigo": "2920420190",
@@ -56031,7 +56031,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "SIGÜEIRO 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420190|66": {
   "codigo": "2920420190",
@@ -56042,7 +56042,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "SIGÜEIRO 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200084|20": {
   "codigo": "2920200084",
@@ -56053,7 +56053,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "MERA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200084|132": {
   "codigo": "2920200084",
@@ -56064,7 +56064,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "MERA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200094|15": {
   "codigo": "2920200094",
@@ -56075,7 +56075,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CESURAS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200094|66": {
   "codigo": "2920200094",
@@ -56086,7 +56086,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "CESURAS 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200074|20": {
   "codigo": "2920200074",
@@ -56097,7 +56097,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "PADRON 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200074|66": {
   "codigo": "2920200074",
@@ -56108,7 +56108,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "PADRON 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200095|20": {
   "codigo": "2920200095",
@@ -56119,7 +56119,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "PORTO DO SON 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200095|66": {
   "codigo": "2920200095",
@@ -56130,7 +56130,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "PORTO DO SON 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200075|20": {
   "codigo": "2920200075",
@@ -56141,7 +56141,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "PALMEIRA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200075|66": {
   "codigo": "2920200075",
@@ -56152,7 +56152,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "PALMEIRA 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420059|66": {
   "codigo": "2920420059",
@@ -56163,7 +56163,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "ROIS 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200109|15": {
   "codigo": "2920200109",
@@ -56174,7 +56174,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SADA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200109|132": {
   "codigo": "2920200109",
@@ -56185,7 +56185,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "SADA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420056|132": {
   "codigo": "2920420056",
@@ -56196,7 +56196,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "P.E. FORGOSELO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420062|66": {
   "codigo": "2920420062",
@@ -56207,7 +56207,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "BOAÑA 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420271|66": {
   "codigo": "2920420271",
@@ -56218,7 +56218,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "SANTA COMBA 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420341|20": {
   "codigo": "2920420341",
@@ -56229,7 +56229,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "FORMARIS 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420341|66": {
   "codigo": "2920420341",
@@ -56240,7 +56240,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "FORMARIS 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|CAY|20": {
   "codigo": "CAY",
@@ -56251,7 +56251,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "SAN CAYETANO 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|SCM|20": {
   "codigo": "SCM",
@@ -56262,7 +56262,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "SANTIAGO 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|SCM|66": {
   "codigo": "SCM",
@@ -56273,7 +56273,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "SANTIAGO 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|VIM|20": {
   "codigo": "VIM",
@@ -56284,7 +56284,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "VIMIANZO 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|VIM|66": {
   "codigo": "VIM",
@@ -56295,7 +56295,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "VIMIANZO 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|NRC|132": {
   "codigo": "NRC",
@@ -56306,7 +56306,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "C.T. NARCEA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410021|132": {
   "codigo": "3020410021",
@@ -56317,7 +56317,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "C.H.BURGUILLO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410015|132": {
   "codigo": "3020410015",
@@ -56328,7 +56328,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "C.H.PUENTENUEVO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|ZAL|25": {
   "codigo": "ZAL",
@@ -56339,7 +56339,7 @@
   "voltage": "25",
   "operador": "UFD",
   "name": "ZAL 25",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100062|15": {
   "codigo": "3020100062",
@@ -56350,7 +56350,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ABENOJAR 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100062|45": {
   "codigo": "3020100062",
@@ -56361,7 +56361,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ABENOJAR 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100062|132": {
   "codigo": "3020100062",
@@ -56372,7 +56372,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "ABENOJAR 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100063|15": {
   "codigo": "3020100063",
@@ -56383,7 +56383,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ALCAZAR 1 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100063|45": {
   "codigo": "3020100063",
@@ -56394,7 +56394,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ALCAZAR 1 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100063|132": {
   "codigo": "3020100063",
@@ -56405,7 +56405,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "ALCAZAR 1 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100064|15": {
   "codigo": "3020100064",
@@ -56416,7 +56416,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ALCAZAR 2 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100064|45": {
   "codigo": "3020100064",
@@ -56427,7 +56427,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ALCAZAR 2 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100074|15": {
   "codigo": "3020100074",
@@ -56438,7 +56438,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CINCO CASAS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100074|45": {
   "codigo": "3020100074",
@@ -56449,7 +56449,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CINCO CASAS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100074|132": {
   "codigo": "3020100074",
@@ -56460,7 +56460,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "CINCO CASAS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020310008|15": {
   "codigo": "3020310008",
@@ -56471,7 +56471,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MARAÑON 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020310008|45": {
   "codigo": "3020310008",
@@ -56482,7 +56482,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "MARAÑON 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100078|15": {
   "codigo": "3020100078",
@@ -56493,7 +56493,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "EL CUBO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100078|45": {
   "codigo": "3020100078",
@@ -56504,7 +56504,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "EL CUBO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410260|45": {
   "codigo": "3020410260",
@@ -56515,7 +56515,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "P.E. ALHAMBRA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410260|132": {
   "codigo": "3020410260",
@@ -56526,7 +56526,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "P.E. ALHAMBRA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100065|15": {
   "codigo": "3020100065",
@@ -56537,7 +56537,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ALMADEN 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100065|45": {
   "codigo": "3020100065",
@@ -56548,7 +56548,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ALMADEN 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100066|15": {
   "codigo": "3020100066",
@@ -56559,7 +56559,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ALMAGRO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100066|45": {
   "codigo": "3020100066",
@@ -56570,7 +56570,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ALMAGRO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410261|45": {
   "codigo": "3020410261",
@@ -56581,7 +56581,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ALMODOVAR DEL CAMPO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100086|15": {
   "codigo": "3020100086",
@@ -56592,7 +56592,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LA GARGANTA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100086|45": {
   "codigo": "3020100086",
@@ -56603,7 +56603,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "LA GARGANTA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100114|15": {
   "codigo": "3020100114",
@@ -56614,7 +56614,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ALMURADIEL 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100114|45": {
   "codigo": "3020100114",
@@ -56625,7 +56625,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ALMURADIEL 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100067|15": {
   "codigo": "3020100067",
@@ -56636,7 +56636,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ARGAMASILLA DE ALBA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100067|45": {
   "codigo": "3020100067",
@@ -56647,7 +56647,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ARGAMASILLA DE ALBA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100068|15": {
   "codigo": "3020100068",
@@ -56658,7 +56658,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ARGAMASILLA DE CALATRAVA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100068|45": {
   "codigo": "3020100068",
@@ -56669,7 +56669,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ARGAMASILLA DE CALATRAVA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100068|132": {
   "codigo": "3020100068",
@@ -56680,7 +56680,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "ARGAMASILLA DE CALATRAVA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100070|15": {
   "codigo": "3020100070",
@@ -56691,7 +56691,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CALZADA DE CALATRAVA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100070|45": {
   "codigo": "3020100070",
@@ -56702,7 +56702,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CALZADA DE CALATRAVA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100071|15": {
   "codigo": "3020100071",
@@ -56713,7 +56713,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CAMPO DE CRIPTANA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100071|45": {
   "codigo": "3020100071",
@@ -56724,7 +56724,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CAMPO DE CRIPTANA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410479|15": {
   "codigo": "3020410479",
@@ -56735,7 +56735,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "AEROPUERTO CIUDAD REAL 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410479|45": {
   "codigo": "3020410479",
@@ -56746,7 +56746,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "AEROPUERTO CIUDAD REAL 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|ARO|45": {
   "codigo": "ARO",
@@ -56757,7 +56757,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ALARCOS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|ARO|132": {
   "codigo": "ARO",
@@ -56768,7 +56768,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "ALARCOS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100182|15": {
   "codigo": "3020100182",
@@ -56779,7 +56779,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PUERTA DE TOLEDO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100182|45": {
   "codigo": "3020100182",
@@ -56790,7 +56790,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "PUERTA DE TOLEDO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100106|15": {
   "codigo": "3020100106",
@@ -56801,7 +56801,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SANTA TERESA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100106|132": {
   "codigo": "3020100106",
@@ -56812,7 +56812,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "SANTA TERESA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100060|15": {
   "codigo": "3020100060",
@@ -56823,7 +56823,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "DAIMIEL 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100060|45": {
   "codigo": "3020100060",
@@ -56834,7 +56834,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "DAIMIEL 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410208|15": {
   "codigo": "3020410208",
@@ -56845,7 +56845,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "DAIMIEL 2 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410208|132": {
   "codigo": "3020410208",
@@ -56856,7 +56856,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "DAIMIEL 2 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100079|15": {
   "codigo": "3020100079",
@@ -56867,7 +56867,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "EL ROBLEDO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100079|45": {
   "codigo": "3020100079",
@@ -56878,7 +56878,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "EL ROBLEDO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100083|15": {
   "codigo": "3020100083",
@@ -56889,7 +56889,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "HERENCIA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100083|45": {
   "codigo": "3020100083",
@@ -56900,7 +56900,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "HERENCIA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300115|15": {
   "codigo": "3020300115",
@@ -56911,7 +56911,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LA SOLANA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300115|45": {
   "codigo": "3020300115",
@@ -56922,7 +56922,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "LA SOLANA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100084|15": {
   "codigo": "3020100084",
@@ -56933,7 +56933,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "HERRERA DE LA MANCHA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100084|45": {
   "codigo": "3020100084",
@@ -56944,7 +56944,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "HERRERA DE LA MANCHA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100061|15": {
   "codigo": "3020100061",
@@ -56955,7 +56955,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MALAGON 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100061|45": {
   "codigo": "3020100061",
@@ -56966,7 +56966,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "MALAGON 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|PAO|15": {
   "codigo": "PAO",
@@ -56977,7 +56977,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LA PALOMA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|PAO|45": {
   "codigo": "PAO",
@@ -56988,7 +56988,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "LA PALOMA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|PAO|132": {
   "codigo": "PAO",
@@ -56999,7 +56999,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "LA PALOMA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410843|15": {
   "codigo": "3020410843",
@@ -57010,7 +57010,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MORAL DE CALATRAVA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410843|132": {
   "codigo": "3020410843",
@@ -57021,7 +57021,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "MORAL DE CALATRAVA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100090|15": {
   "codigo": "3020100090",
@@ -57032,7 +57032,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PEDRO MUÑOZ 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100090|45": {
   "codigo": "3020100090",
@@ -57043,7 +57043,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "PEDRO MUÑOZ 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100093|15": {
   "codigo": "3020100093",
@@ -57054,7 +57054,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PIEDRABUENA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100093|45": {
   "codigo": "3020100093",
@@ -57065,7 +57065,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "PIEDRABUENA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100094|15": {
   "codigo": "3020100094",
@@ -57076,7 +57076,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PUEBLA DEL PRINCIPE 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100094|45": {
   "codigo": "3020100094",
@@ -57087,7 +57087,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "PUEBLA DEL PRINCIPE 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100069|15": {
   "codigo": "3020100069",
@@ -57098,7 +57098,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CALATRAVA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|NAV|15": {
   "codigo": "NAV",
@@ -57109,7 +57109,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "COSTANILLA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|NAV|45": {
   "codigo": "NAV",
@@ -57120,7 +57120,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "COSTANILLA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020310127|15": {
   "codigo": "3020310127",
@@ -57131,7 +57131,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "RETUERTA DEL BULLAQUE 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020310127|45": {
   "codigo": "3020310127",
@@ -57142,7 +57142,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "RETUERTA DEL BULLAQUE 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100109|15": {
   "codigo": "3020100109",
@@ -57153,7 +57153,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "STA.CRUZ DE MUDELA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100109|45": {
   "codigo": "3020100109",
@@ -57164,7 +57164,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "STA.CRUZ DE MUDELA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100108|15": {
   "codigo": "3020100108",
@@ -57175,7 +57175,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SOCUELLAMOS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100108|45": {
   "codigo": "3020100108",
@@ -57186,7 +57186,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "SOCUELLAMOS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100105|15": {
   "codigo": "3020100105",
@@ -57197,7 +57197,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "RIEGA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100105|45": {
   "codigo": "3020100105",
@@ -57208,7 +57208,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "RIEGA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410350|15": {
   "codigo": "3020410350",
@@ -57219,7 +57219,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "TOMELLOSO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410350|45": {
   "codigo": "3020410350",
@@ -57230,7 +57230,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "TOMELLOSO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300113|15": {
   "codigo": "3020300113",
@@ -57241,7 +57241,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VALDEPEÑAS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300113|45": {
   "codigo": "3020300113",
@@ -57252,7 +57252,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VALDEPEÑAS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300113|132": {
   "codigo": "3020300113",
@@ -57263,7 +57263,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "VALDEPEÑAS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410904|15": {
   "codigo": "3020410904",
@@ -57274,7 +57274,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VILLAHERMOSA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410904|45": {
   "codigo": "3020410904",
@@ -57285,7 +57285,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VILLAHERMOSA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100112|15": {
   "codigo": "3020100112",
@@ -57296,7 +57296,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VILLANUEVA DE LOS INFANTES 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100112|45": {
   "codigo": "3020100112",
@@ -57307,7 +57307,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VILLANUEVA DE LOS INFANTES 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410484|15": {
   "codigo": "3020410484",
@@ -57318,7 +57318,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VILLARRUBIA DE LOS OJOS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410484|45": {
   "codigo": "3020410484",
@@ -57329,7 +57329,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VILLARRUBIA DE LOS OJOS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410008|132": {
   "codigo": "3020410008",
@@ -57340,7 +57340,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "C.H.BUENDIA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410352|15": {
   "codigo": "3020410352",
@@ -57351,7 +57351,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CAMPILLOS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410352|66": {
   "codigo": "3020410352",
@@ -57362,7 +57362,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "CAMPILLOS 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100171|15": {
   "codigo": "3020100171",
@@ -57373,7 +57373,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CAÑETE 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100171|66": {
   "codigo": "3020100171",
@@ -57384,7 +57384,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "CAÑETE 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100122|20": {
   "codigo": "3020100122",
@@ -57395,7 +57395,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "CUENCA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100122|66": {
   "codigo": "3020100122",
@@ -57406,7 +57406,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "CUENCA 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100122|132": {
   "codigo": "3020100122",
@@ -57417,7 +57417,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "CUENCA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100123|15": {
   "codigo": "3020100123",
@@ -57428,7 +57428,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LANDETE 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100123|66": {
   "codigo": "3020100123",
@@ -57439,7 +57439,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "LANDETE 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100124|15": {
   "codigo": "3020100124",
@@ -57450,7 +57450,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "OLMEDA DE LA CUESTA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100124|66": {
   "codigo": "3020100124",
@@ -57461,7 +57461,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "OLMEDA DE LA CUESTA 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100163|15": {
   "codigo": "3020100163",
@@ -57472,7 +57472,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "C.H.VILLALBA DE LA SIERRA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100163|66": {
   "codigo": "3020100163",
@@ -57483,7 +57483,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "C.H.VILLALBA DE LA SIERRA 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100157|15": {
   "codigo": "3020100157",
@@ -57494,7 +57494,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "C.H.ALMOGUERA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100157|45": {
   "codigo": "3020100157",
@@ -57505,7 +57505,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "C.H.ALMOGUERA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|BLQ|15": {
   "codigo": "BLQ",
@@ -57516,7 +57516,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "BOLARQUE 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|BLQ|45": {
   "codigo": "BLQ",
@@ -57527,7 +57527,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "BOLARQUE 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|BLQ|66": {
   "codigo": "BLQ",
@@ -57538,7 +57538,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "BOLARQUE 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|BLQ|132": {
   "codigo": "BLQ",
@@ -57549,7 +57549,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "BOLARQUE 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100126|15": {
   "codigo": "3020100126",
@@ -57560,7 +57560,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ILLANA (LA BUJEDA) 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100126|45": {
   "codigo": "3020100126",
@@ -57571,7 +57571,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ILLANA (LA BUJEDA) 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|JCB|45": {
   "codigo": "JCB",
@@ -57582,7 +57582,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "JOSÉ CABRERA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100159|15": {
   "codigo": "3020100159",
@@ -57593,7 +57593,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "C.H.ENTREPEÑAS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100159|45": {
   "codigo": "3020100159",
@@ -57604,7 +57604,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "C.H.ENTREPEÑAS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100159|132": {
   "codigo": "3020100159",
@@ -57615,7 +57615,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "C.H.ENTREPEÑAS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100125|15": {
   "codigo": "3020100125",
@@ -57626,7 +57626,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "BRIHUEGA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100125|45": {
   "codigo": "3020100125",
@@ -57637,7 +57637,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "BRIHUEGA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410580|15": {
   "codigo": "3020410580",
@@ -57648,7 +57648,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CHILOECHES 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410580|132": {
   "codigo": "3020410580",
@@ -57659,7 +57659,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "CHILOECHES 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100162|15": {
   "codigo": "3020100162",
@@ -57670,7 +57670,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CIFUENTES 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100162|66": {
   "codigo": "3020100162",
@@ -57681,7 +57681,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "CIFUENTES 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100162|132": {
   "codigo": "3020100162",
@@ -57692,7 +57692,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "CIFUENTES 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020420418|132": {
   "codigo": "3020420418",
@@ -57703,7 +57703,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "EL OLIVAR 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100169|15": {
   "codigo": "3020100169",
@@ -57714,7 +57714,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "FUENTENOVILLA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100169|45": {
   "codigo": "3020100169",
@@ -57725,7 +57725,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "FUENTENOVILLA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410814|15": {
   "codigo": "3020410814",
@@ -57736,7 +57736,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "FUENTE LA NIÑA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410814|132": {
   "codigo": "3020410814",
@@ -57747,7 +57747,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "FUENTE LA NIÑA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100161|15": {
   "codigo": "3020100161",
@@ -57758,7 +57758,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "GUADALAJARA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100161|45": {
   "codigo": "3020100161",
@@ -57769,7 +57769,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "GUADALAJARA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100161|132": {
   "codigo": "3020100161",
@@ -57780,7 +57780,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "GUADALAJARA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300117|15": {
   "codigo": "3020300117",
@@ -57791,7 +57791,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MARANCHON 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300117|66": {
   "codigo": "3020300117",
@@ -57802,7 +57802,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "MARANCHON 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300118|15": {
   "codigo": "3020300118",
@@ -57813,7 +57813,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MOLINA DE ARAGON 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300118|66": {
   "codigo": "3020300118",
@@ -57824,7 +57824,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "MOLINA DE ARAGON 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410351|15": {
   "codigo": "3020410351",
@@ -57835,7 +57835,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ALCOHETE 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410351|45": {
   "codigo": "3020410351",
@@ -57846,7 +57846,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ALCOHETE 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100177|45": {
   "codigo": "3020100177",
@@ -57857,7 +57857,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "C.H.ZORITA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100009|15": {
   "codigo": "3020100009",
@@ -57868,7 +57868,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ASTORGA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100009|45": {
   "codigo": "3020100009",
@@ -57879,7 +57879,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ASTORGA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100009|132": {
   "codigo": "3020100009",
@@ -57890,7 +57890,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "ASTORGA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020310006|15": {
   "codigo": "3020310006",
@@ -57901,7 +57901,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PIBASA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020310006|45": {
   "codigo": "3020310006",
@@ -57912,7 +57912,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "PIBASA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410336|15": {
   "codigo": "3020410336",
@@ -57923,7 +57923,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SANTALAVILLA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410336|45": {
   "codigo": "3020410336",
@@ -57934,7 +57934,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "SANTALAVILLA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300109|15": {
   "codigo": "3020300109",
@@ -57945,7 +57945,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CARUCEDO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300109|45": {
   "codigo": "3020300109",
@@ -57956,7 +57956,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CARUCEDO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300109|132": {
   "codigo": "3020300109",
@@ -57967,7 +57967,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "CARUCEDO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410088|45": {
   "codigo": "3020410088",
@@ -57978,7 +57978,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VILLAMARTIN 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100048|15": {
   "codigo": "3020100048",
@@ -57989,7 +57989,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "C.H.CIMANES DEL TEJAR 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100048|45": {
   "codigo": "3020100048",
@@ -58000,7 +58000,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "C.H.CIMANES DEL TEJAR 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410444|15": {
   "codigo": "3020410444",
@@ -58011,7 +58011,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CUBILLOS DEL SIL 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410444|45": {
   "codigo": "3020410444",
@@ -58022,7 +58022,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CUBILLOS DEL SIL 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300097|15": {
   "codigo": "3020300097",
@@ -58033,7 +58033,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ENCINEDO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300097|45": {
   "codigo": "3020300097",
@@ -58044,7 +58044,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ENCINEDO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410125|15": {
   "codigo": "3020410125",
@@ -58055,7 +58055,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ANTRACITAS FABERO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410125|45": {
   "codigo": "3020410125",
@@ -58066,7 +58066,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ANTRACITAS FABERO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100002|15": {
   "codigo": "3020100002",
@@ -58077,7 +58077,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "FABERO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100002|45": {
   "codigo": "3020100002",
@@ -58088,7 +58088,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "FABERO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100045|15": {
   "codigo": "3020100045",
@@ -58099,7 +58099,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "HOSPITAL DE ORBIGO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100045|45": {
   "codigo": "3020100045",
@@ -58110,7 +58110,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "HOSPITAL DE ORBIGO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100045|132": {
   "codigo": "3020100045",
@@ -58121,7 +58121,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "HOSPITAL DE ORBIGO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300101|15": {
   "codigo": "3020300101",
@@ -58132,7 +58132,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LA BAÑEZA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300101|45": {
   "codigo": "3020300101",
@@ -58143,7 +58143,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "LA BAÑEZA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300101|132": {
   "codigo": "3020300101",
@@ -58154,7 +58154,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "LA BAÑEZA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|ROB|132": {
   "codigo": "ROB",
@@ -58165,7 +58165,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "C.T. LA ROBLA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300098|15": {
   "codigo": "3020300098",
@@ -58176,7 +58176,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LAGUNA DE NEGRILLOS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300098|45": {
   "codigo": "3020300098",
@@ -58187,7 +58187,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "LAGUNA DE NEGRILLOS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100047|15": {
   "codigo": "3020100047",
@@ -58198,7 +58198,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "C.H.SAN ISIDORO BARRIOS DE LUNA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100047|132": {
   "codigo": "3020100047",
@@ -58209,7 +58209,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "C.H.SAN ISIDORO BARRIOS DE LUNA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100058|15": {
   "codigo": "3020100058",
@@ -58220,7 +58220,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CAMPONARAYA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100058|45": {
   "codigo": "3020100058",
@@ -58231,7 +58231,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CAMPONARAYA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020310126|15": {
   "codigo": "3020310126",
@@ -58242,7 +58242,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LA LLANADA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020310126|45": {
   "codigo": "3020310126",
@@ -58253,7 +58253,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "LA LLANADA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300110|15": {
   "codigo": "3020300110",
@@ -58264,7 +58264,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PONFERRADA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300110|33": {
   "codigo": "3020300110",
@@ -58286,7 +58286,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "PONFERRADA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300110|132": {
   "codigo": "3020300110",
@@ -58297,7 +58297,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "PONFERRADA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100049|15": {
   "codigo": "3020100049",
@@ -58308,7 +58308,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "C.H.ESPINOSA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100049|45": {
   "codigo": "3020100049",
@@ -58319,7 +58319,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "C.H.ESPINOSA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100049|132": {
   "codigo": "3020100049",
@@ -58330,7 +58330,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "C.H.ESPINOSA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100005|15": {
   "codigo": "3020100005",
@@ -58341,7 +58341,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SANTA MARIA DEL PARAMO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100005|45": {
   "codigo": "3020100005",
@@ -58352,7 +58352,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "SANTA MARIA DEL PARAMO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020310115|45": {
   "codigo": "3020310115",
@@ -58363,7 +58363,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CRISTALGLASS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300099|15": {
   "codigo": "3020300099",
@@ -58374,7 +58374,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MATARROSA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300099|45": {
   "codigo": "3020300099",
@@ -58385,7 +58385,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "MATARROSA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300108|15": {
   "codigo": "3020300108",
@@ -58396,7 +58396,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ALBARES 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300108|45": {
   "codigo": "3020300108",
@@ -58407,7 +58407,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ALBARES 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300108|132": {
   "codigo": "3020300108",
@@ -58418,7 +58418,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "ALBARES 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|VIB|33": {
   "codigo": "VIB",
@@ -58429,7 +58429,7 @@
   "voltage": "33",
   "operador": "UFD",
   "name": "VILLABLINO 33",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020310124|15": {
   "codigo": "3020310124",
@@ -58440,7 +58440,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VILLADANGOS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020310124|45": {
   "codigo": "3020310124",
@@ -58451,7 +58451,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VILLADANGOS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020310124|132": {
   "codigo": "3020310124",
@@ -58462,7 +58462,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "VILLADANGOS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100008|15": {
   "codigo": "3020100008",
@@ -58473,7 +58473,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VILLAFRANCA DEL BIERZO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100008|45": {
   "codigo": "3020100008",
@@ -58484,7 +58484,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VILLAFRANCA DEL BIERZO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420006|132": {
   "codigo": "2920420006",
@@ -58495,7 +58495,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "FIBRANOR 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200025|20": {
   "codigo": "2920200025",
@@ -58506,7 +58506,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "PEARES 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200025|132": {
   "codigo": "2920200025",
@@ -58517,7 +58517,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "PEARES 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|BEL|132": {
   "codigo": "BEL",
@@ -58528,7 +58528,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "BELESAR 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|CHA|20": {
   "codigo": "CHA",
@@ -58539,7 +58539,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "CHANTADA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|CHA|66": {
   "codigo": "CHA",
@@ -58550,7 +58550,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "CHANTADA 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|CHA|132": {
   "codigo": "CHA",
@@ -58561,7 +58561,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "CHANTADA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200103|20": {
   "codigo": "2920200103",
@@ -58572,7 +58572,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "FRIOL 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200103|66": {
   "codigo": "2920200103",
@@ -58583,7 +58583,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "FRIOL 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420303|132": {
   "codigo": "2920420303",
@@ -58594,7 +58594,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "P.E. MONTES DE ABELLA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200026|20": {
   "codigo": "2920200026",
@@ -58605,7 +58605,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "LUGO 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200026|132": {
   "codigo": "2920200026",
@@ -58616,7 +58616,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "LUGO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200029|20": {
   "codigo": "2920200029",
@@ -58627,7 +58627,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "MONFORTE 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200029|132": {
   "codigo": "2920200029",
@@ -58638,7 +58638,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "MONFORTE 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200065|20": {
   "codigo": "2920200065",
@@ -58649,7 +58649,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "CORGO 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200065|132": {
   "codigo": "2920200065",
@@ -58660,7 +58660,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "CORGO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200055|20": {
   "codigo": "2920200055",
@@ -58671,7 +58671,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "PALAS 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200055|66": {
   "codigo": "2920200055",
@@ -58682,7 +58682,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "PALAS 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200057|20": {
   "codigo": "2920200057",
@@ -58693,7 +58693,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "SARRIA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200057|132": {
   "codigo": "2920200057",
@@ -58704,7 +58704,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "SARRIA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200028|20": {
   "codigo": "2920200028",
@@ -58715,7 +58715,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "TRIACASTELA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200028|132": {
   "codigo": "2920200028",
@@ -58726,7 +58726,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "TRIACASTELA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100115|15": {
   "codigo": "3020100115",
@@ -58737,7 +58737,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "I.N.T.A. 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100115|45": {
   "codigo": "3020100115",
@@ -58748,7 +58748,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "I.N.T.A. 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100004|15": {
   "codigo": "3020100004",
@@ -58759,7 +58759,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ALCALA I 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100004|45": {
   "codigo": "3020100004",
@@ -58770,7 +58770,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ALCALA I 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100004|132": {
   "codigo": "3020100004",
@@ -58781,7 +58781,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "ALCALA I 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100001|15": {
   "codigo": "3020100001",
@@ -58792,7 +58792,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ALCALA II 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100001|132": {
   "codigo": "3020100001",
@@ -58803,7 +58803,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "ALCALA II 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|AEN|45": {
   "codigo": "AEN",
@@ -58814,7 +58814,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "AENA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100003|15": {
   "codigo": "3020100003",
@@ -58825,7 +58825,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ARANJUEZ I 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100003|45": {
   "codigo": "3020100003",
@@ -58836,7 +58836,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ARANJUEZ I 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100003|132": {
   "codigo": "3020100003",
@@ -58847,7 +58847,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "ARANJUEZ I 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410872|15": {
   "codigo": "3020410872",
@@ -58858,7 +58858,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CERRO GULLON 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410872|132": {
   "codigo": "3020410872",
@@ -58869,7 +58869,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "CERRO GULLON 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|ARD|15": {
   "codigo": "ARD",
@@ -58880,7 +58880,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ARGANDA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|ARD|45": {
   "codigo": "ARD",
@@ -58891,7 +58891,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ARGANDA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100129|15": {
   "codigo": "3020100129",
@@ -58902,7 +58902,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LA POVEDA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100129|45": {
   "codigo": "3020100129",
@@ -58913,7 +58913,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "LA POVEDA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410407|15": {
   "codigo": "3020410407",
@@ -58924,7 +58924,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LA SENDILLA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410407|45": {
   "codigo": "3020410407",
@@ -58935,7 +58935,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "LA SENDILLA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100010|15": {
   "codigo": "3020100010",
@@ -58946,7 +58946,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "COLMENAR DE OREJA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100010|45": {
   "codigo": "3020100010",
@@ -58957,7 +58957,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "COLMENAR DE OREJA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410851|15": {
   "codigo": "3020410851",
@@ -58968,7 +58968,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "BARRIO DEL JARAMA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410851|45": {
   "codigo": "3020410851",
@@ -58979,7 +58979,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "BARRIO DEL JARAMA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410232|15": {
   "codigo": "3020410232",
@@ -58990,7 +58990,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CITIPAL 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410232|45": {
   "codigo": "3020410232",
@@ -59001,7 +59001,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CITIPAL 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|COS|15": {
   "codigo": "COS",
@@ -59012,7 +59012,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "COSLADA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|COS|45": {
   "codigo": "COS",
@@ -59023,7 +59023,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "COSLADA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100043|15": {
   "codigo": "3020100043",
@@ -59034,7 +59034,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SAN FERNANDO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100043|45": {
   "codigo": "3020100043",
@@ -59045,7 +59045,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "SAN FERNANDO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|GTF|15": {
   "codigo": "GTF",
@@ -59056,7 +59056,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "GETAFE 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|GTF|45": {
   "codigo": "GTF",
@@ -59067,7 +59067,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "GETAFE 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|LOE|15": {
   "codigo": "LOE",
@@ -59078,7 +59078,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LOECHES 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|LOE|45": {
   "codigo": "LOE",
@@ -59089,7 +59089,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "LOECHES 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|LOE|132": {
   "codigo": "LOE",
@@ -59100,7 +59100,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "LOECHES 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020000005|15": {
   "codigo": "3020000005",
@@ -59111,7 +59111,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ALTO PALOMERAS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020000005|45": {
   "codigo": "3020000005",
@@ -59122,7 +59122,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ALTO PALOMERAS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410804|15": {
   "codigo": "3020410804",
@@ -59133,7 +59133,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ARAGON 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410804|45": {
   "codigo": "3020410804",
@@ -59144,7 +59144,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ARAGON 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|AZC|15": {
   "codigo": "AZC",
@@ -59155,7 +59155,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "AZCA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410247|15": {
   "codigo": "3020410247",
@@ -59166,7 +59166,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "BARAJAS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410247|45": {
   "codigo": "3020410247",
@@ -59177,7 +59177,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "BARAJAS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100119|15": {
   "codigo": "3020100119",
@@ -59188,7 +59188,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "BARRIO DE BILBAO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100119|45": {
   "codigo": "3020100119",
@@ -59199,7 +59199,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "BARRIO DE BILBAO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020000002|15": {
   "codigo": "3020000002",
@@ -59210,7 +59210,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "BARRIO DE LA PAZ 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020000002|45": {
   "codigo": "3020000002",
@@ -59221,7 +59221,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "BARRIO DE LA PAZ 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410252|15": {
   "codigo": "3020410252",
@@ -59232,7 +59232,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CAMINO CONGOSTO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410252|45": {
   "codigo": "3020410252",
@@ -59243,7 +59243,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CAMINO CONGOSTO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|CPN|15": {
   "codigo": "CPN",
@@ -59254,7 +59254,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CAMPO NACIONES NUEVO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|CPN|45": {
   "codigo": "CPN",
@@ -59265,7 +59265,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CAMPO NACIONES NUEVO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|CLJ|15": {
   "codigo": "CLJ",
@@ -59276,7 +59276,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CANILLEJAS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|CLJ|45": {
   "codigo": "CLJ",
@@ -59287,7 +59287,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CANILLEJAS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|CPL|15": {
   "codigo": "CPL",
@@ -59298,7 +59298,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CERRO DE LA PLATA NUEVA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|CPL|45": {
   "codigo": "CPL",
@@ -59309,7 +59309,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CERRO DE LA PLATA NUEVA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020000015|15": {
   "codigo": "3020000015",
@@ -59320,7 +59320,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CHAMARTIN 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020000015|45": {
   "codigo": "3020000015",
@@ -59331,7 +59331,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CHAMARTIN 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410237|45": {
   "codigo": "3020410237",
@@ -59342,7 +59342,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "COG. VALDEMINGOMEZ 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020000012|15": {
   "codigo": "3020000012",
@@ -59353,7 +59353,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CONCEPCION 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020000012|45": {
   "codigo": "3020000012",
@@ -59364,7 +59364,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CONCEPCION 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|LCT|15": {
   "codigo": "LCT",
@@ -59375,7 +59375,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "EL COTO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100128|15": {
   "codigo": "3020100128",
@@ -59386,7 +59386,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "EL VANDEL 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100128|45": {
   "codigo": "3020100128",
@@ -59397,7 +59397,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "EL VANDEL 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|HRZ|15": {
   "codigo": "HRZ",
@@ -59408,7 +59408,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "HORTALEZA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|HRZ|45": {
   "codigo": "HRZ",
@@ -59419,7 +59419,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "HORTALEZA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100117|15": {
   "codigo": "3020100117",
@@ -59430,7 +59430,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LAS MERCEDES 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100117|45": {
   "codigo": "3020100117",
@@ -59441,7 +59441,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "LAS MERCEDES 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020310117|15": {
   "codigo": "3020310117",
@@ -59452,7 +59452,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LAS PEÑUELAS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020310117|45": {
   "codigo": "3020310117",
@@ -59463,7 +59463,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "LAS PEÑUELAS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020420428|15": {
   "codigo": "3020420428",
@@ -59474,7 +59474,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LOS BERROCALES 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020420428|132": {
   "codigo": "3020420428",
@@ -59485,7 +59485,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "LOS BERROCALES 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|MBC|15": {
   "codigo": "MBC",
@@ -59496,7 +59496,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MANUEL BECERRA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|MAZ|15": {
   "codigo": "MAZ",
@@ -59507,7 +59507,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MAZARREDO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|MDI|15": {
   "codigo": "MDI",
@@ -59518,7 +59518,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MEDIODIA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020000028|15": {
   "codigo": "3020000028",
@@ -59529,7 +59529,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MERCAMADRID 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020000028|132": {
   "codigo": "3020000028",
@@ -59540,7 +59540,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "MERCAMADRID 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020000029|15": {
   "codigo": "3020000029",
@@ -59551,7 +59551,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MORATALAZ 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020000029|45": {
   "codigo": "3020000029",
@@ -59562,7 +59562,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "MORATALAZ 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|NOR|15": {
   "codigo": "NOR",
@@ -59573,7 +59573,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "NORTE 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|NOR|45": {
   "codigo": "NOR",
@@ -59584,7 +59584,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "NORTE 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100118|15": {
   "codigo": "3020100118",
@@ -59595,7 +59595,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "NUEVOS MINISTERIOS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100118|45": {
   "codigo": "3020100118",
@@ -59606,7 +59606,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "NUEVOS MINISTERIOS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100120|15": {
   "codigo": "3020100120",
@@ -59617,7 +59617,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PASEO DE RECOLETOS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100120|45": {
   "codigo": "3020100120",
@@ -59628,7 +59628,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "PASEO DE RECOLETOS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410449|15": {
   "codigo": "3020410449",
@@ -59639,7 +59639,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PINAR 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410449|45": {
   "codigo": "3020410449",
@@ -59650,7 +59650,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "PINAR 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020000036|15": {
   "codigo": "3020000036",
@@ -59661,7 +59661,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "POLIGONO 38 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020000036|45": {
   "codigo": "3020000036",
@@ -59672,7 +59672,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "POLIGONO 38 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|PRO|15": {
   "codigo": "PRO",
@@ -59683,7 +59683,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PROSPERIDAD 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|PPA|15": {
   "codigo": "PPA",
@@ -59694,7 +59694,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PUENTE PRINCESA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|PPA|45": {
   "codigo": "PPA",
@@ -59705,7 +59705,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "PUENTE PRINCESA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410857|15": {
   "codigo": "3020410857",
@@ -59716,7 +59716,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "REJAS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410857|45": {
   "codigo": "3020410857",
@@ -59727,7 +59727,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "REJAS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410448|15": {
   "codigo": "3020410448",
@@ -59738,7 +59738,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ROSALES 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410448|45": {
   "codigo": "3020410448",
@@ -59749,7 +59749,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ROSALES 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020000041|15": {
   "codigo": "3020000041",
@@ -59760,7 +59760,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SALAMANCA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020000041|45": {
   "codigo": "3020000041",
@@ -59771,7 +59771,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "SALAMANCA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100127|15": {
   "codigo": "3020100127",
@@ -59782,7 +59782,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SAN BLAS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100127|45": {
   "codigo": "3020100127",
@@ -59793,7 +59793,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "SAN BLAS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100116|15": {
   "codigo": "3020100116",
@@ -59804,7 +59804,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SAN DIEGO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100116|45": {
   "codigo": "3020100116",
@@ -59815,7 +59815,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "SAN DIEGO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410833|15": {
   "codigo": "3020410833",
@@ -59826,7 +59826,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SERRANO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410833|45": {
   "codigo": "3020410833",
@@ -59837,7 +59837,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "SERRANO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|SIM|15": {
   "codigo": "SIM",
@@ -59848,7 +59848,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SIMANCAS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410836|15": {
   "codigo": "3020410836",
@@ -59859,7 +59859,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VALDEBEBAS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410836|45": {
   "codigo": "3020410836",
@@ -59870,7 +59870,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VALDEBEBAS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|VLC|15": {
   "codigo": "VLC",
@@ -59881,7 +59881,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VALLECAS 2 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|VLC|45": {
   "codigo": "VLC",
@@ -59892,7 +59892,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VALLECAS 2 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410200|15": {
   "codigo": "3020410200",
@@ -59903,7 +59903,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VICALVARO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410200|45": {
   "codigo": "3020410200",
@@ -59914,7 +59914,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VICALVARO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020030089|15": {
   "codigo": "3020030089",
@@ -59925,7 +59925,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VILLAVERDE 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020030089|45": {
   "codigo": "3020030089",
@@ -59936,7 +59936,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VILLAVERDE 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100027|15": {
   "codigo": "3020100027",
@@ -59947,7 +59947,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MEJORADA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100027|45": {
   "codigo": "3020100027",
@@ -59958,7 +59958,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "MEJORADA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410013|132": {
   "codigo": "3020410013",
@@ -59969,7 +59969,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "C.H.LAS PICADAS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100121|15": {
   "codigo": "3020100121",
@@ -59980,7 +59980,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "NUEVO BAZTAN 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100121|45": {
   "codigo": "3020100121",
@@ -59991,7 +59991,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "NUEVO BAZTAN 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100035|15": {
   "codigo": "3020100035",
@@ -60002,7 +60002,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PERALES 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100035|45": {
   "codigo": "3020100035",
@@ -60013,7 +60013,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "PERALES 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410584|15": {
   "codigo": "3020410584",
@@ -60024,7 +60024,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LOS ARENALES 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410584|45": {
   "codigo": "3020410584",
@@ -60035,7 +60035,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "LOS ARENALES 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020420414|15": {
   "codigo": "3020420414",
@@ -60046,7 +60046,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CRISTO DE RIVAS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020420414|132": {
   "codigo": "3020420414",
@@ -60057,7 +60057,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "CRISTO DE RIVAS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410842|15": {
   "codigo": "3020410842",
@@ -60068,7 +60068,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MIRADOR DEL SUR 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410842|132": {
   "codigo": "3020410842",
@@ -60079,7 +60079,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "MIRADOR DEL SUR 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020310105|15": {
   "codigo": "3020310105",
@@ -60090,7 +60090,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VACIAMADRID 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020310105|45": {
   "codigo": "3020310105",
@@ -60101,7 +60101,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VACIAMADRID 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|PSF|45": {
   "codigo": "PSF",
@@ -60112,7 +60112,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "PUENTE DE SAN FERNANDO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410194|15": {
   "codigo": "3020410194",
@@ -60123,7 +60123,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PARQUE TEMATICO WARNER 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410194|45": {
   "codigo": "3020410194",
@@ -60134,7 +60134,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "PARQUE TEMATICO WARNER 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100044|15": {
   "codigo": "3020100044",
@@ -60145,7 +60145,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SAN MARTIN I 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100044|45": {
   "codigo": "3020100044",
@@ -60156,7 +60156,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "SAN MARTIN I 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100046|15": {
   "codigo": "3020100046",
@@ -60167,7 +60167,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SAN MARTIN II 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100046|45": {
   "codigo": "3020100046",
@@ -60178,7 +60178,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "SAN MARTIN II 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410017|132": {
   "codigo": "3020410017",
@@ -60189,7 +60189,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "C.H.SAN JUAN 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100050|15": {
   "codigo": "3020100050",
@@ -60200,7 +60200,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VALDEMORO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100050|45": {
   "codigo": "3020100050",
@@ -60211,7 +60211,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VALDEMORO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|VDM|15": {
   "codigo": "VDM",
@@ -60222,7 +60222,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VALDEMORO 2 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|VDM|45": {
   "codigo": "VDM",
@@ -60233,7 +60233,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VALDEMORO 2 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|VDM|132": {
   "codigo": "VDM",
@@ -60244,7 +60244,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "VALDEMORO 2 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100022|15": {
   "codigo": "3020100022",
@@ -60255,7 +60255,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LOS HUEROS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100022|45": {
   "codigo": "3020100022",
@@ -60266,7 +60266,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "LOS HUEROS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410206|15": {
   "codigo": "3020410206",
@@ -60277,7 +60277,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VILLAREJO DE SALVANES 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410206|45": {
   "codigo": "3020410206",
@@ -60288,7 +60288,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VILLAREJO DE SALVANES 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|VVI|132": {
   "codigo": "VVI",
@@ -60299,7 +60299,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "VILLAVICIOSA DE ODON 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200111|20": {
   "codigo": "2920200111",
@@ -60310,7 +60310,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "A RUA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200111|132": {
   "codigo": "2920200111",
@@ -60321,7 +60321,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "A RUA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200054|20": {
   "codigo": "2920200054",
@@ -60332,7 +60332,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "ALLARIZ 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200054|132": {
   "codigo": "2920200054",
@@ -60343,7 +60343,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "ALLARIZ 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|ALB|20": {
   "codigo": "ALB",
@@ -60354,7 +60354,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "ALBARELLOS 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420220|20": {
   "codigo": "2920420220",
@@ -60365,7 +60365,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "CARBALLEDA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420220|132": {
   "codigo": "2920420220",
@@ -60376,7 +60376,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "CARBALLEDA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|CTL|20": {
   "codigo": "CTL",
@@ -60387,7 +60387,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "CASTRELO 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200062|20": {
   "codigo": "2920200062",
@@ -60398,7 +60398,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "CELANOVA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200062|132": {
   "codigo": "2920200062",
@@ -60409,7 +60409,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "CELANOVA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200034|20": {
   "codigo": "2920200034",
@@ -60420,7 +60420,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "CONCHAS 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200034|132": {
   "codigo": "2920200034",
@@ -60431,7 +60431,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "CONCHAS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420016|132": {
   "codigo": "2920420016",
@@ -60442,7 +60442,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "SALAS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200035|15": {
   "codigo": "2920200035",
@@ -60453,7 +60453,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "O BARCO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200035|132": {
   "codigo": "2920200035",
@@ -60464,7 +60464,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "O BARCO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920320005|20": {
   "codigo": "2920320005",
@@ -60475,7 +60475,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "CARBALLINO 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920320005|132": {
   "codigo": "2920320005",
@@ -60486,7 +60486,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "CARBALLINO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420176|132": {
   "codigo": "2920420176",
@@ -60497,7 +60497,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "P.E.IRIXO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200060|20": {
   "codigo": "2920200060",
@@ -60508,7 +60508,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "BARBAÑA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200060|132": {
   "codigo": "2920200060",
@@ -60519,7 +60519,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "BARBAÑA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420111|20": {
   "codigo": "2920420111",
@@ -60530,7 +60530,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "SACEDA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420111|132": {
   "codigo": "2920420111",
@@ -60541,7 +60541,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "SACEDA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|VEL|20": {
   "codigo": "VEL",
@@ -60552,7 +60552,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "VELLE 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|FRI|20": {
   "codigo": "FRI",
@@ -60563,7 +60563,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "FRIEIRA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|FRI|132": {
   "codigo": "FRI",
@@ -60574,7 +60574,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "FRIEIRA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200043|20": {
   "codigo": "2920200043",
@@ -60585,7 +60585,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "REGUEIRO 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200043|132": {
   "codigo": "2920200043",
@@ -60596,7 +60596,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "REGUEIRO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200038|20": {
   "codigo": "2920200038",
@@ -60607,7 +60607,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "SAN CIPRIAN 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200038|132": {
   "codigo": "2920200038",
@@ -60618,7 +60618,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "SAN CIPRIAN 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420137|20": {
   "codigo": "2920420137",
@@ -60629,7 +60629,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "SARREAUS 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420137|132": {
   "codigo": "2920420137",
@@ -60640,7 +60640,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "SARREAUS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420285|20": {
   "codigo": "2920420285",
@@ -60651,7 +60651,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "VERIN II 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420285|132": {
   "codigo": "2920420285",
@@ -60662,7 +60662,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "VERIN II 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420116|132": {
   "codigo": "2920420116",
@@ -60673,7 +60673,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "LAROUCO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200053|20": {
   "codigo": "2920200053",
@@ -60684,7 +60684,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "XINZO 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200053|132": {
   "codigo": "2920200053",
@@ -60695,7 +60695,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "XINZO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200013|20": {
   "codigo": "2920200013",
@@ -60706,7 +60706,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "ESTRADA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200013|66": {
   "codigo": "2920200013",
@@ -60717,7 +60717,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "ESTRADA 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420297|20": {
   "codigo": "2920420297",
@@ -60728,7 +60728,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "BARRO 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420297|66": {
   "codigo": "2920420297",
@@ -60739,7 +60739,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "BARRO 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|TIB|20": {
   "codigo": "TIB",
@@ -60750,7 +60750,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "TIBO 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|TIB|66": {
   "codigo": "TIB",
@@ -60761,7 +60761,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "TIBO 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200020|20": {
   "codigo": "2920200020",
@@ -60772,7 +60772,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "CAMBADOS 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200020|66": {
   "codigo": "2920200020",
@@ -60783,7 +60783,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "CAMBADOS 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420284|20": {
   "codigo": "2920420284",
@@ -60794,7 +60794,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "CANGAS 2 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420284|66": {
   "codigo": "2920420284",
@@ -60805,7 +60805,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "CANGAS 2 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200016|20": {
   "codigo": "2920200016",
@@ -60816,7 +60816,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "SAN JORGE 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200016|66": {
   "codigo": "2920200016",
@@ -60827,7 +60827,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "SAN JORGE 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200021|20": {
   "codigo": "2920200021",
@@ -60838,7 +60838,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "GONDOMAR 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200021|132": {
   "codigo": "2920200021",
@@ -60849,7 +60849,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "GONDOMAR 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200012|20": {
   "codigo": "2920200012",
@@ -60860,7 +60860,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "LALIN 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200012|66": {
   "codigo": "2920200012",
@@ -60871,7 +60871,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "LALIN 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200120|15": {
   "codigo": "2920200120",
@@ -60882,7 +60882,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MOS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200120|132": {
   "codigo": "2920200120",
@@ -60893,7 +60893,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "MOS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|ATI|15": {
   "codigo": "ATI",
@@ -60904,7 +60904,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ATIOS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|ATI|132": {
   "codigo": "ATI",
@@ -60915,7 +60915,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "ATIOS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200006|20": {
   "codigo": "2920200006",
@@ -60926,7 +60926,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "ROSAL 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200006|132": {
   "codigo": "2920200006",
@@ -60937,7 +60937,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "ROSAL 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|PAZ|66": {
   "codigo": "PAZ",
@@ -60948,7 +60948,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "PAZOS DE BORBEN 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|PAZ|132": {
   "codigo": "PAZ",
@@ -60959,7 +60959,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "PAZOS DE BORBEN 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200023|20": {
   "codigo": "2920200023",
@@ -60970,7 +60970,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "PONTECALDELAS 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200023|66": {
   "codigo": "2920200023",
@@ -60981,7 +60981,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "PONTECALDELAS 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200024|20": {
   "codigo": "2920200024",
@@ -60992,7 +60992,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "PONTEAREAS 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200024|132": {
   "codigo": "2920200024",
@@ -61003,7 +61003,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "PONTEAREAS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|LOU|20": {
   "codigo": "LOU",
@@ -61014,7 +61014,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "LOURIZAN 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|LOU|66": {
   "codigo": "LOU",
@@ -61025,7 +61025,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "LOURIZAN 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200007|20": {
   "codigo": "2920200007",
@@ -61036,7 +61036,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "MOURENTE 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200007|66": {
   "codigo": "2920200007",
@@ -61047,7 +61047,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "MOURENTE 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200002|20": {
   "codigo": "2920200002",
@@ -61058,7 +61058,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "PONTESAMPAIO 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200002|66": {
   "codigo": "2920200002",
@@ -61069,7 +61069,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "PONTESAMPAIO 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200017|15": {
   "codigo": "2920200017",
@@ -61080,7 +61080,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "REDONDELA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200017|66": {
   "codigo": "2920200017",
@@ -61091,7 +61091,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "REDONDELA 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200019|20": {
   "codigo": "2920200019",
@@ -61102,7 +61102,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "SALVATERRA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200019|132": {
   "codigo": "2920200019",
@@ -61113,7 +61113,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "SALVATERRA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420292|20": {
   "codigo": "2920420292",
@@ -61124,7 +61124,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "SANXENXO 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420292|66": {
   "codigo": "2920420292",
@@ -61135,7 +61135,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "SANXENXO 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200011|20": {
   "codigo": "2920200011",
@@ -61146,7 +61146,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "VILLALONGA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200011|66": {
   "codigo": "2920200011",
@@ -61157,7 +61157,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "VILLALONGA 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420255|20": {
   "codigo": "2920420255",
@@ -61168,7 +61168,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "PAIZAS 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420255|66": {
   "codigo": "2920420255",
@@ -61179,7 +61179,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "PAIZAS 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920320002|20": {
   "codigo": "2920320002",
@@ -61190,7 +61190,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "TUI 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920320002|132": {
   "codigo": "2920320002",
@@ -61201,7 +61201,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "TUI 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200003|15": {
   "codigo": "2920200003",
@@ -61212,7 +61212,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "BALAIDOS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200003|132": {
   "codigo": "2920200003",
@@ -61223,7 +61223,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "BALAIDOS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420191|15": {
   "codigo": "2920420191",
@@ -61234,7 +61234,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "EL CASTRO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420191|132": {
   "codigo": "2920420191",
@@ -61245,7 +61245,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "EL CASTRO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200018|15": {
   "codigo": "2920200018",
@@ -61256,7 +61256,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SARDOMA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200018|132": {
   "codigo": "2920200018",
@@ -61267,7 +61267,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "SARDOMA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200001|15": {
   "codigo": "2920200001",
@@ -61278,7 +61278,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "TRONCAL 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920200001|132": {
   "codigo": "2920200001",
@@ -61289,7 +61289,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "TRONCAL 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420145|15": {
   "codigo": "2920420145",
@@ -61300,7 +61300,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VALLADARES 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420145|132": {
   "codigo": "2920420145",
@@ -61311,7 +61311,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "VALLADARES 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|PDM|15": {
   "codigo": "PDM",
@@ -61322,7 +61322,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PORTODEMOUROS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|PDM|66": {
   "codigo": "PDM",
@@ -61333,7 +61333,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "PORTODEMOUROS 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420129|20": {
   "codigo": "2920420129",
@@ -61344,7 +61344,7 @@
   "voltage": "20",
   "operador": "UFD",
   "name": "VILAGARCIA DE AROUSA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|2920420129|66": {
   "codigo": "2920420129",
@@ -61355,7 +61355,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "VILAGARCIA DE AROUSA 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410893|15": {
   "codigo": "3020410893",
@@ -61366,7 +61366,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PRADENA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410893|45": {
   "codigo": "3020410893",
@@ -61377,7 +61377,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "PRADENA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300105|15": {
   "codigo": "3020300105",
@@ -61388,7 +61388,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PUENTE DE PIEDRA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300105|45": {
   "codigo": "3020300105",
@@ -61399,7 +61399,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "PUENTE DE PIEDRA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300105|132": {
   "codigo": "3020300105",
@@ -61410,7 +61410,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "PUENTE DE PIEDRA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100013|15": {
   "codigo": "3020100013",
@@ -61421,7 +61421,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "BOCEGUILLAS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100013|45": {
   "codigo": "3020100013",
@@ -61432,7 +61432,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "BOCEGUILLAS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100015|15": {
   "codigo": "3020100015",
@@ -61443,7 +61443,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CAMPO DE SAN PEDRO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100015|45": {
   "codigo": "3020100015",
@@ -61454,7 +61454,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CAMPO DE SAN PEDRO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100016|15": {
   "codigo": "3020100016",
@@ -61465,7 +61465,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CANTALEJO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100016|45": {
   "codigo": "3020100016",
@@ -61476,7 +61476,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CANTALEJO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100016|132": {
   "codigo": "3020100016",
@@ -61487,7 +61487,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "CANTALEJO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300102|15": {
   "codigo": "3020300102",
@@ -61498,7 +61498,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "C.H.BURGOMILLODO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300102|45": {
   "codigo": "3020300102",
@@ -61509,7 +61509,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "C.H.BURGOMILLODO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300103|15": {
   "codigo": "3020300103",
@@ -61520,7 +61520,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CUELLAR 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300103|45": {
   "codigo": "3020300103",
@@ -61531,7 +61531,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CUELLAR 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100018|15": {
   "codigo": "3020100018",
@@ -61542,7 +61542,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CRISTO DEL CALOCO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100018|45": {
   "codigo": "3020100018",
@@ -61553,7 +61553,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CRISTO DEL CALOCO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100021|15": {
   "codigo": "3020100021",
@@ -61564,7 +61564,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LOS ANGELES DE S. RAFAEL 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100021|45": {
   "codigo": "3020100021",
@@ -61575,7 +61575,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "LOS ANGELES DE S. RAFAEL 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100020|15": {
   "codigo": "3020100020",
@@ -61586,7 +61586,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ESCALONA DEL PRADO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100020|45": {
   "codigo": "3020100020",
@@ -61597,7 +61597,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ESCALONA DEL PRADO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020420415|45": {
   "codigo": "3020420415",
@@ -61608,7 +61608,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "FUENTEPELAYO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|LST|15": {
   "codigo": "LST",
@@ -61619,7 +61619,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LASTRAS DEL POZO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|LST|45": {
   "codigo": "LST",
@@ -61630,7 +61630,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "LASTRAS DEL POZO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|LST|132": {
   "codigo": "LST",
@@ -61641,7 +61641,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "LASTRAS DEL POZO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300104|15": {
   "codigo": "3020300104",
@@ -61652,7 +61652,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "NAVA DE LA ASUNCION 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300104|45": {
   "codigo": "3020300104",
@@ -61663,7 +61663,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "NAVA DE LA ASUNCION 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100023|15": {
   "codigo": "3020100023",
@@ -61674,7 +61674,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "OTERO DE HERREROS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100023|45": {
   "codigo": "3020100023",
@@ -61685,7 +61685,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "OTERO DE HERREROS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100026|15": {
   "codigo": "3020100026",
@@ -61696,7 +61696,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SAN ILDEFONSO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100026|45": {
   "codigo": "3020100026",
@@ -61707,7 +61707,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "SAN ILDEFONSO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100025|15": {
   "codigo": "3020100025",
@@ -61718,7 +61718,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "RIAZA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100025|45": {
   "codigo": "3020100025",
@@ -61729,7 +61729,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "RIAZA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410188|45": {
   "codigo": "3020410188",
@@ -61740,7 +61740,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "DIGESNOR 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410254|15": {
   "codigo": "3020410254",
@@ -61751,7 +61751,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SANCHONUÑO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410254|45": {
   "codigo": "3020410254",
@@ -61762,7 +61762,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "SANCHONUÑO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100038|15": {
   "codigo": "3020100038",
@@ -61773,7 +61773,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "BATANES 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100038|45": {
   "codigo": "3020100038",
@@ -61784,7 +61784,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "BATANES 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100017|15": {
   "codigo": "3020100017",
@@ -61795,7 +61795,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CERRO DE LA HORCA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100017|45": {
   "codigo": "3020100017",
@@ -61806,7 +61806,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CERRO DE LA HORCA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410542|15": {
   "codigo": "3020410542",
@@ -61817,7 +61817,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PALAZUELOS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410542|45": {
   "codigo": "3020410542",
@@ -61828,7 +61828,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "PALAZUELOS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410542|132": {
   "codigo": "3020410542",
@@ -61839,7 +61839,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "PALAZUELOS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410005|45": {
   "codigo": "3020410005",
@@ -61850,7 +61850,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "PEROGORDO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410005|132": {
   "codigo": "3020410005",
@@ -61861,7 +61861,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "PEROGORDO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300106|15": {
   "codigo": "3020300106",
@@ -61872,7 +61872,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "TUREGANO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300106|45": {
   "codigo": "3020300106",
@@ -61883,7 +61883,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "TUREGANO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100028|15": {
   "codigo": "3020100028",
@@ -61894,7 +61894,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VALVERDE DEL MAJANO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100028|45": {
   "codigo": "3020100028",
@@ -61905,7 +61905,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VALVERDE DEL MAJANO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020420361|15": {
   "codigo": "3020420361",
@@ -61916,7 +61916,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VILLACASTIN 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020420361|45": {
   "codigo": "3020420361",
@@ -61927,7 +61927,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VILLACASTIN 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300119|15": {
   "codigo": "3020300119",
@@ -61938,7 +61938,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ARCOS DEL JALON 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300119|66": {
   "codigo": "3020300119",
@@ -61949,7 +61949,7 @@
   "voltage": "66",
   "operador": "UFD",
   "name": "ARCOS DEL JALON 66",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100164|15": {
   "codigo": "3020100164",
@@ -61960,7 +61960,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "AÑOVER DEL TAJO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100164|45": {
   "codigo": "3020100164",
@@ -61971,7 +61971,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "AÑOVER DEL TAJO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100164|132": {
   "codigo": "3020100164",
@@ -61982,7 +61982,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "AÑOVER DEL TAJO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410806|15": {
   "codigo": "3020410806",
@@ -61993,7 +61993,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ARCICOLLAR 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410806|45": {
   "codigo": "3020410806",
@@ -62004,7 +62004,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ARCICOLLAR 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410319|15": {
   "codigo": "3020410319",
@@ -62015,7 +62015,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CHOZAS DE CANALES 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410319|45": {
   "codigo": "3020410319",
@@ -62026,7 +62026,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CHOZAS DE CANALES 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300124|15": {
   "codigo": "3020300124",
@@ -62037,7 +62037,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "CORRAL DE ALMAGUER 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300124|45": {
   "codigo": "3020300124",
@@ -62048,7 +62048,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CORRAL DE ALMAGUER 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100173|132": {
   "codigo": "3020100173",
@@ -62059,7 +62059,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "C.H.CASTREJON 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300120|15": {
   "codigo": "3020300120",
@@ -62070,7 +62070,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ESCALONA DEL ALBERCHE 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300120|45": {
   "codigo": "3020300120",
@@ -62081,7 +62081,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ESCALONA DEL ALBERCHE 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410829|45": {
   "codigo": "3020410829",
@@ -62092,7 +62092,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "FRASCOLINOS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410829|132": {
   "codigo": "3020410829",
@@ -62103,7 +62103,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "FRASCOLINOS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300121|15": {
   "codigo": "3020300121",
@@ -62114,7 +62114,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "FUENSALIDA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300121|45": {
   "codigo": "3020300121",
@@ -62125,7 +62125,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "FUENSALIDA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100142|15": {
   "codigo": "3020100142",
@@ -62136,7 +62136,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ILLESCAS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100142|132": {
   "codigo": "3020100142",
@@ -62147,7 +62147,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "ILLESCAS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100402|15": {
   "codigo": "3020100402",
@@ -62158,7 +62158,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "ILLESCAS II 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100402|45": {
   "codigo": "3020100402",
@@ -62169,7 +62169,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "ILLESCAS II 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100402|132": {
   "codigo": "3020100402",
@@ -62180,7 +62180,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "ILLESCAS II 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|PDL|15": {
   "codigo": "PDL",
@@ -62191,7 +62191,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PRADILLOS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|PDL|132": {
   "codigo": "PDL",
@@ -62202,7 +62202,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "PRADILLOS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300122|15": {
   "codigo": "3020300122",
@@ -62213,7 +62213,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "LOS YEBENES 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300122|45": {
   "codigo": "3020300122",
@@ -62224,7 +62224,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "LOS YEBENES 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100151|15": {
   "codigo": "3020100151",
@@ -62235,7 +62235,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "URDA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100151|45": {
   "codigo": "3020100151",
@@ -62246,7 +62246,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "URDA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|MDD|15": {
   "codigo": "MDD",
@@ -62257,7 +62257,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MADRIDEJOS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|MDD|45": {
   "codigo": "MDD",
@@ -62268,7 +62268,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "MADRIDEJOS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|MDD|132": {
   "codigo": "MDD",
@@ -62279,7 +62279,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "MADRIDEJOS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100167|15": {
   "codigo": "3020100167",
@@ -62290,7 +62290,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MORA DE TOLEDO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100167|45": {
   "codigo": "3020100167",
@@ -62301,7 +62301,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "MORA DE TOLEDO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100167|132": {
   "codigo": "3020100167",
@@ -62312,7 +62312,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "MORA DE TOLEDO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410452|45": {
   "codigo": "3020410452",
@@ -62323,7 +62323,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "CARBONERA-C.SECCIONAMIENTO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410491|15": {
   "codigo": "3020410491",
@@ -62334,7 +62334,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "NOBLEJAS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410491|45": {
   "codigo": "3020410491",
@@ -62345,7 +62345,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "NOBLEJAS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100154|15": {
   "codigo": "3020100154",
@@ -62356,7 +62356,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "OCAÑA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100154|45": {
   "codigo": "3020100154",
@@ -62367,7 +62367,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "OCAÑA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300123|15": {
   "codigo": "3020300123",
@@ -62378,7 +62378,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "PANTOJA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300123|45": {
   "codigo": "3020300123",
@@ -62389,7 +62389,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "PANTOJA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410090|15": {
   "codigo": "3020410090",
@@ -62400,7 +62400,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "RECAS 2 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410090|45": {
   "codigo": "3020410090",
@@ -62411,7 +62411,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "RECAS 2 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410090|132": {
   "codigo": "3020410090",
@@ -62422,7 +62422,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "RECAS 2 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410920|15": {
   "codigo": "3020410920",
@@ -62433,7 +62433,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SANTA CRUZ DE LA ZARZA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410920|45": {
   "codigo": "3020410920",
@@ -62444,7 +62444,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "SANTA CRUZ DE LA ZARZA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100178|15": {
   "codigo": "3020100178",
@@ -62455,7 +62455,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "SESEÑA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100178|45": {
   "codigo": "3020100178",
@@ -62466,7 +62466,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "SESEÑA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100176|15": {
   "codigo": "3020100176",
@@ -62477,7 +62477,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VALMOJADO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100176|45": {
   "codigo": "3020100176",
@@ -62488,7 +62488,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VALMOJADO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410233|15": {
   "codigo": "3020410233",
@@ -62499,7 +62499,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "COLECTORA P.E. SIERRA DEL ROMERAL 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410233|132": {
   "codigo": "3020410233",
@@ -62510,7 +62510,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "COLECTORA P.E. SIERRA DEL ROMERAL 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100152|15": {
   "codigo": "3020100152",
@@ -62521,7 +62521,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VILLACAÑAS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100152|45": {
   "codigo": "3020100152",
@@ -62532,7 +62532,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VILLACAÑAS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100152|132": {
   "codigo": "3020100152",
@@ -62543,7 +62543,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "VILLACAÑAS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410255|15": {
   "codigo": "3020410255",
@@ -62554,7 +62554,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VILLAFRANCA DE LOS CABALLEROS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410255|45": {
   "codigo": "3020410255",
@@ -62565,7 +62565,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VILLAFRANCA DE LOS CABALLEROS 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410327|45": {
   "codigo": "3020410327",
@@ -62576,7 +62576,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "LA PLATA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410327|132": {
   "codigo": "3020410327",
@@ -62587,7 +62587,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "LA PLATA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100156|15": {
   "codigo": "3020100156",
@@ -62598,7 +62598,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VILLARRUBIA DE SANTIAGO 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100156|45": {
   "codigo": "3020100156",
@@ -62609,7 +62609,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VILLARRUBIA DE SANTIAGO 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|ACE|132": {
   "codigo": "ACE",
@@ -62620,7 +62620,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "C.T. ACECA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410483|15": {
   "codigo": "3020410483",
@@ -62631,7 +62631,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "VILLASEQUILLA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410483|45": {
   "codigo": "3020410483",
@@ -62642,7 +62642,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "VILLASEQUILLA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410483|132": {
   "codigo": "3020410483",
@@ -62653,7 +62653,7 @@
   "voltage": "132",
   "operador": "UFD",
   "name": "VILLASEQUILLA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410171|15": {
   "codigo": "3020410171",
@@ -62664,7 +62664,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "YELES II 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410171|45": {
   "codigo": "3020410171",
@@ -62675,7 +62675,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "YELES II 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410346|15": {
   "codigo": "3020410346",
@@ -62686,7 +62686,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "YEPES 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020410346|45": {
   "codigo": "3020410346",
@@ -62697,7 +62697,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "YEPES 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020100039|15": {
   "codigo": "3020100039",
@@ -62708,7 +62708,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "COBREROS 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300107|15": {
   "codigo": "3020300107",
@@ -62719,7 +62719,7 @@
   "voltage": "15",
   "operador": "UFD",
   "name": "MILLA DE TERA 15",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "UFD|3020300107|45": {
   "codigo": "3020300107",
@@ -62730,7 +62730,7 @@
   "voltage": "45",
   "operador": "UFD",
   "name": "MILLA DE TERA 45",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|101|20": {
   "codigo": "101",
@@ -62741,7 +62741,7 @@
   "voltage": "20",
   "operador": "VIESGO",
   "name": "ALMUÑA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|101|132": {
   "codigo": "101",
@@ -62752,7 +62752,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "ALMUÑA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|158|30": {
   "codigo": "158",
@@ -62763,7 +62763,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "ARBON 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|158|132": {
   "codigo": "158",
@@ -62774,7 +62774,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "ARBON 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|540|132": {
   "codigo": "540",
@@ -62785,7 +62785,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "ARENAS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|212|12": {
   "codigo": "212",
@@ -62796,7 +62796,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "BAIÑA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|212|30": {
   "codigo": "212",
@@ -62807,7 +62807,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "BAIÑA 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|560|132": {
   "codigo": "560",
@@ -62818,7 +62818,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "CAMARMEÑA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|754|12": {
   "codigo": "754",
@@ -62829,7 +62829,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "CAMPOMANES 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|754|30": {
   "codigo": "754",
@@ -62840,7 +62840,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "CAMPOMANES 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|574|132": {
   "codigo": "574",
@@ -62851,7 +62851,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "CANGAS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|59|30": {
   "codigo": "59",
@@ -62862,7 +62862,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "DOIRAS 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|59|132": {
   "codigo": "59",
@@ -62873,7 +62873,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "DOIRAS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|82|132": {
   "codigo": "82",
@@ -62884,7 +62884,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "EL PALO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|192|12": {
   "codigo": "192",
@@ -62895,7 +62895,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "ENTREPEÑAS 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|192|30": {
   "codigo": "192",
@@ -62906,7 +62906,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "ENTREPEÑAS 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|93|20": {
   "codigo": "93",
@@ -62917,7 +62917,7 @@
   "voltage": "20",
   "operador": "VIESGO",
   "name": "JARRIO 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|93|132": {
   "codigo": "93",
@@ -62928,7 +62928,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "JARRIO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|462|12": {
   "codigo": "462",
@@ -62939,7 +62939,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "LA_OLLA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|462|30": {
   "codigo": "462",
@@ -62950,7 +62950,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "LA_OLLA 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|685|12": {
   "codigo": "685",
@@ -62961,7 +62961,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "MOREDA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|685|30": {
   "codigo": "685",
@@ -62972,7 +62972,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "MOREDA 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1040|132": {
   "codigo": "1040",
@@ -62983,7 +62983,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "PICO GALLO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|838|12": {
   "codigo": "838",
@@ -62994,7 +62994,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "POLA_LENA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|838|30": {
   "codigo": "838",
@@ -63005,7 +63005,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "POLA_LENA 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|430|12": {
   "codigo": "430",
@@ -63016,7 +63016,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "POLIGONO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|430|30": {
   "codigo": "430",
@@ -63027,7 +63027,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "POLIGONO 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1757|30": {
   "codigo": "1757",
@@ -63038,7 +63038,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "POLIGONO DE BAIÑA 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1757|132": {
   "codigo": "1757",
@@ -63049,7 +63049,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "POLIGONO DE BAIÑA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|978|20": {
   "codigo": "978",
@@ -63060,7 +63060,7 @@
   "voltage": "20",
   "operador": "VIESGO",
   "name": "PORZUN 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|978|132": {
   "codigo": "978",
@@ -63071,7 +63071,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "PORZUN 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|236|30": {
   "codigo": "236",
@@ -63082,7 +63082,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "SAN_LUIS 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|328|12": {
   "codigo": "328",
@@ -63093,7 +63093,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "SANTA_CRUZ 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|328|30": {
   "codigo": "328",
@@ -63104,7 +63104,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "SANTA_CRUZ 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|328|132": {
   "codigo": "328",
@@ -63115,7 +63115,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "SANTA_CRUZ 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1015|12": {
   "codigo": "1015",
@@ -63126,7 +63126,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "SANZO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1015|132": {
   "codigo": "1015",
@@ -63137,7 +63137,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "SANZO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|668|132": {
   "codigo": "668",
@@ -63148,7 +63148,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "SIERO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|513|20": {
   "codigo": "513",
@@ -63159,7 +63159,7 @@
   "voltage": "20",
   "operador": "VIESGO",
   "name": "TAPIA 20",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|28|30": {
   "codigo": "28",
@@ -63170,7 +63170,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "TELLEDO 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|161|12": {
   "codigo": "161",
@@ -63181,7 +63181,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "ARIJA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|161|30": {
   "codigo": "161",
@@ -63192,7 +63192,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "ARIJA 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|594|12": {
   "codigo": "594",
@@ -63203,7 +63203,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "MELGAR 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|594|30": {
   "codigo": "594",
@@ -63214,7 +63214,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "MELGAR 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|429|12": {
   "codigo": "429",
@@ -63225,7 +63225,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "VILLADIEGO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|429|30": {
   "codigo": "429",
@@ -63236,7 +63236,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "VILLADIEGO 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1|12": {
   "codigo": "1",
@@ -63247,7 +63247,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "AGUILAR_P 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1|30": {
   "codigo": "1",
@@ -63258,7 +63258,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "AGUILAR_P 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|159|12": {
   "codigo": "159",
@@ -63269,7 +63269,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "AMBROSERO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|159|55": {
   "codigo": "159",
@@ -63280,7 +63280,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "AMBROSERO 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1021|12": {
   "codigo": "1021",
@@ -63291,7 +63291,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "ARENAS_IGUNA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1021|55": {
   "codigo": "1021",
@@ -63302,7 +63302,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "ARENAS_IGUNA 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|623|12": {
   "codigo": "623",
@@ -63313,7 +63313,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "ARGOÑOS 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|623|55": {
   "codigo": "623",
@@ -63324,7 +63324,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "ARGOÑOS 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|151|12": {
   "codigo": "151",
@@ -63335,7 +63335,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "ASTILLERO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|151|55": {
   "codigo": "151",
@@ -63346,7 +63346,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "ASTILLERO 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|327|12": {
   "codigo": "327",
@@ -63357,7 +63357,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "BRAÑAVIEJA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|327|30": {
   "codigo": "327",
@@ -63368,7 +63368,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "BRAÑAVIEJA 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|56|12": {
   "codigo": "56",
@@ -63379,7 +63379,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "CABEZON 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|56|55": {
   "codigo": "56",
@@ -63390,7 +63390,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "CABEZON 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|533|12": {
   "codigo": "533",
@@ -63401,7 +63401,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "CACICEDO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|533|55": {
   "codigo": "533",
@@ -63412,7 +63412,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "CACICEDO 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|95|12": {
   "codigo": "95",
@@ -63423,7 +63423,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "CANDINA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|95|55": {
   "codigo": "95",
@@ -63434,7 +63434,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "CANDINA 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|788|12": {
   "codigo": "788",
@@ -63445,7 +63445,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "CARRIEDO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|788|55": {
   "codigo": "788",
@@ -63456,7 +63456,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "CARRIEDO 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1072|12": {
   "codigo": "1072",
@@ -63467,7 +63467,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "CELIS 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1072|55": {
   "codigo": "1072",
@@ -63478,7 +63478,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "CELIS 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|133|55": {
   "codigo": "133",
@@ -63489,7 +63489,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "CICERO 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|153|12": {
   "codigo": "153",
@@ -63500,7 +63500,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "COMILLAS 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|153|55": {
   "codigo": "153",
@@ -63511,7 +63511,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "COMILLAS 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|877|12": {
   "codigo": "877",
@@ -63522,7 +63522,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "CORBAN 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|877|55": {
   "codigo": "877",
@@ -63533,7 +63533,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "CORBAN 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|264|12": {
   "codigo": "264",
@@ -63544,7 +63544,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "CORRALES 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|264|55": {
   "codigo": "264",
@@ -63555,7 +63555,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "CORRALES 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|33|12": {
   "codigo": "33",
@@ -63566,7 +63566,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "EL_BOSQUE 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|33|55": {
   "codigo": "33",
@@ -63577,7 +63577,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "EL_BOSQUE 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|890|12": {
   "codigo": "890",
@@ -63588,7 +63588,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "ESCOBEDO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|890|55": {
   "codigo": "890",
@@ -63599,7 +63599,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "ESCOBEDO 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|8500|12": {
   "codigo": "8500",
@@ -63610,7 +63610,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "HERRERIAS 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|8500|55": {
   "codigo": "8500",
@@ -63621,7 +63621,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "HERRERIAS 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|32|12": {
   "codigo": "32",
@@ -63632,7 +63632,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "LABARCES 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|32|55": {
   "codigo": "32",
@@ -63643,7 +63643,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "LABARCES 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|32|132": {
   "codigo": "32",
@@ -63654,7 +63654,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "LABARCES 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|126|12": {
   "codigo": "126",
@@ -63665,7 +63665,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "LA_HERMIDA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|126|30": {
   "codigo": "126",
@@ -63676,7 +63676,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "LA_HERMIDA 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|126|132": {
   "codigo": "126",
@@ -63687,7 +63687,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "LA_HERMIDA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|303|12": {
   "codigo": "303",
@@ -63698,7 +63698,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "LAS_LLAMAS 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|303|55": {
   "codigo": "303",
@@ -63709,7 +63709,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "LAS_LLAMAS 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|188|12": {
   "codigo": "188",
@@ -63720,7 +63720,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "LA_VENERA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|188|55": {
   "codigo": "188",
@@ -63731,7 +63731,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "LA_VENERA 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|707|12": {
   "codigo": "707",
@@ -63742,7 +63742,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "MALIAÑO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|707|55": {
   "codigo": "707",
@@ -63753,7 +63753,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "MALIAÑO 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|370|30": {
   "codigo": "370",
@@ -63764,7 +63764,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "MATAPORQUERA 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|370|132": {
   "codigo": "370",
@@ -63775,7 +63775,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "MATAPORQUERA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|373|12": {
   "codigo": "373",
@@ -63786,7 +63786,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "M_CUDEYO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|373|55": {
   "codigo": "373",
@@ -63797,7 +63797,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "M_CUDEYO 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1013|55": {
   "codigo": "1013",
@@ -63808,7 +63808,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "MECOBUSA 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1782|12": {
   "codigo": "1782",
@@ -63819,7 +63819,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "MERUELO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1782|55": {
   "codigo": "1782",
@@ -63830,7 +63830,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "MERUELO 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1000|12": {
   "codigo": "1000",
@@ -63841,7 +63841,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "N_MONTAÑA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1000|55": {
   "codigo": "1000",
@@ -63852,7 +63852,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "N_MONTAÑA 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|704|12": {
   "codigo": "704",
@@ -63863,7 +63863,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "OJEDO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|704|30": {
   "codigo": "704",
@@ -63874,7 +63874,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "OJEDO 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|329|12": {
   "codigo": "329",
@@ -63885,7 +63885,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "PENAGOS 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|329|55": {
   "codigo": "329",
@@ -63896,7 +63896,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "PENAGOS 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|26|12": {
   "codigo": "26",
@@ -63907,7 +63907,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "PEÑA BEJO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|26|55": {
   "codigo": "26",
@@ -63918,7 +63918,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "PEÑA BEJO 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|903|12": {
   "codigo": "903",
@@ -63929,7 +63929,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "POLIENTES 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|903|30": {
   "codigo": "903",
@@ -63940,7 +63940,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "POLIENTES 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|8|12": {
   "codigo": "8",
@@ -63951,7 +63951,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "PT_SANTANDER 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|8|55": {
   "codigo": "8",
@@ -63962,7 +63962,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "PT_SANTANDER 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|13|12": {
   "codigo": "13",
@@ -63973,7 +63973,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "PUERTO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|13|55": {
   "codigo": "13",
@@ -63984,7 +63984,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "PUERTO 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|87|12": {
   "codigo": "87",
@@ -63995,7 +63995,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "RAMALES 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|87|55": {
   "codigo": "87",
@@ -64006,7 +64006,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "RAMALES 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|302|12": {
   "codigo": "302",
@@ -64017,7 +64017,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "REINOSA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|302|30": {
   "codigo": "302",
@@ -64028,7 +64028,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "REINOSA 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|302|132": {
   "codigo": "302",
@@ -64039,7 +64039,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "REINOSA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|756|12": {
   "codigo": "756",
@@ -64050,7 +64050,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "RENEDO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|756|55": {
   "codigo": "756",
@@ -64061,7 +64061,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "RENEDO 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|99|12": {
   "codigo": "99",
@@ -64072,7 +64072,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "REOCIN 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|99|55": {
   "codigo": "99",
@@ -64083,7 +64083,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "REOCIN 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1759|12": {
   "codigo": "1759",
@@ -64094,7 +64094,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "RIAÑO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1759|55": {
   "codigo": "1759",
@@ -64105,7 +64105,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "RIAÑO 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1071|55": {
   "codigo": "1071",
@@ -64116,7 +64116,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "ROZADIO 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|957|12": {
   "codigo": "957",
@@ -64127,7 +64127,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "SAN_MIGUEL 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|957|55": {
   "codigo": "957",
@@ -64138,7 +64138,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "SAN_MIGUEL 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|957|132": {
   "codigo": "957",
@@ -64149,7 +64149,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "SAN_MIGUEL 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|23|55": {
   "codigo": "23",
@@ -64160,7 +64160,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "SOLVAY_N 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|996|12": {
   "codigo": "996",
@@ -64171,7 +64171,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "S_VICENTE 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|996|55": {
   "codigo": "996",
@@ -64182,7 +64182,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "S_VICENTE 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1010|12": {
   "codigo": "1010",
@@ -64193,7 +64193,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "TANOS 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1010|55": {
   "codigo": "1010",
@@ -64204,7 +64204,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "TANOS 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|125|12": {
   "codigo": "125",
@@ -64215,7 +64215,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "TANTIN 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|125|55": {
   "codigo": "125",
@@ -64226,7 +64226,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "TANTIN 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|518|12": {
   "codigo": "518",
@@ -64237,7 +64237,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "TORANZO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|518|55": {
   "codigo": "518",
@@ -64248,7 +64248,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "TORANZO 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|363|12": {
   "codigo": "363",
@@ -64259,7 +64259,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "TORINA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|363|55": {
   "codigo": "363",
@@ -64270,7 +64270,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "TORINA 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|54|12": {
   "codigo": "54",
@@ -64281,7 +64281,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "TRETO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|54|55": {
   "codigo": "54",
@@ -64292,7 +64292,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "TRETO 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1756|12": {
   "codigo": "1756",
@@ -64303,7 +64303,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "UDALLA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1756|55": {
   "codigo": "1756",
@@ -64314,7 +64314,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "UDALLA 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|604|30": {
   "codigo": "604",
@@ -64325,7 +64325,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "URDON 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|604|132": {
   "codigo": "604",
@@ -64336,7 +64336,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "URDON 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|22|12": {
   "codigo": "22",
@@ -64347,7 +64347,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "VALDECILLA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|22|55": {
   "codigo": "22",
@@ -64358,7 +64358,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "VALDECILLA 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|389|12": {
   "codigo": "389",
@@ -64369,7 +64369,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "VALDEOLEA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|389|30": {
   "codigo": "389",
@@ -64380,7 +64380,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "VALDEOLEA 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1067|132": {
   "codigo": "1067",
@@ -64391,7 +64391,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "BOIMENTE 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1039|132": {
   "codigo": "1039",
@@ -64402,7 +64402,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "CARBA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|313|132": {
   "codigo": "313",
@@ -64413,7 +64413,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "ESTELO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1755|132": {
   "codigo": "1755",
@@ -64424,7 +64424,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "FONSAGRADA 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|37|132": {
   "codigo": "37",
@@ -64435,7 +64435,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "LUDRIO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|73|132": {
   "codigo": "73",
@@ -64446,7 +64446,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "MONDONEDO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|1081|132": {
   "codigo": "1081",
@@ -64457,7 +64457,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "SETE_PONTES 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|77|132": {
   "codigo": "77",
@@ -64468,7 +64468,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "SAN_CIBRAO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|16|132": {
   "codigo": "16",
@@ -64479,7 +64479,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "RIBADEO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|260|12": {
   "codigo": "260",
@@ -64490,7 +64490,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "BARRUELO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|260|30": {
   "codigo": "260",
@@ -64501,7 +64501,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "BARRUELO 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|878|30": {
   "codigo": "878",
@@ -64512,7 +64512,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "C_AGUILAR 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|878|132": {
   "codigo": "878",
@@ -64523,7 +64523,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "C_AGUILAR 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|182|12": {
   "codigo": "182",
@@ -64534,7 +64534,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "CARRION_N 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|182|30": {
   "codigo": "182",
@@ -64545,7 +64545,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "CARRION_N 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|5|12": {
   "codigo": "5",
@@ -64556,7 +64556,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "CERVERA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|5|30": {
   "codigo": "5",
@@ -64567,7 +64567,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "CERVERA 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|255|12": {
   "codigo": "255",
@@ -64578,7 +64578,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "HERRERA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|255|30": {
   "codigo": "255",
@@ -64589,7 +64589,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "HERRERA 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|76|30": {
   "codigo": "76",
@@ -64600,7 +64600,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "MAZUELAS 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|76|132": {
   "codigo": "76",
@@ -64611,7 +64611,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "MAZUELAS 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|587|12": {
   "codigo": "587",
@@ -64622,7 +64622,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "OSORNO 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|587|30": {
   "codigo": "587",
@@ -64633,7 +64633,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "OSORNO 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|587|132": {
   "codigo": "587",
@@ -64644,7 +64644,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "OSORNO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|222|30": {
   "codigo": "222",
@@ -64655,7 +64655,7 @@
   "voltage": "30",
   "operador": "VIESGO",
   "name": "VILLABERMUDO 30",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|222|132": {
   "codigo": "222",
@@ -64666,7 +64666,7 @@
   "voltage": "132",
   "operador": "VIESGO",
   "name": "VILLABERMUDO 132",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|10|25": {
   "codigo": "10",
@@ -64677,7 +64677,7 @@
   "voltage": "25",
   "operador": "VIESGO",
   "name": "LA CANONJA 25",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "EREDES|272743|4809861|22": {
   "codigo": "S400030",
@@ -65414,7 +65414,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "LA PASIEGA 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|RPJ20270109|12": {
   "codigo": "RPJ20270109",
@@ -65425,7 +65425,7 @@
   "voltage": "12",
   "operador": "VIESGO",
   "name": "LA PASIEGA 12",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "VIESGO|RPJ20230120|55": {
   "codigo": "RPJ20230120",
@@ -65436,7 +65436,7 @@
   "voltage": "55",
   "operador": "VIESGO",
   "name": "LLANO LA PASIEGA 55",
-  "visto": "2026_06"
+  "visto": "2026_07"
  },
  "E-DISTRIBUCION|533508389|66": {
   "codigo": "533508389",
