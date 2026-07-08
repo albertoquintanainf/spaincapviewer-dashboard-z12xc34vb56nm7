@@ -1099,12 +1099,11 @@ const DSO_LABELS = {
     ocupada: 'Capacidad ocupada (MW)', admitida: 'Capacidad admitida (MW)',
     pos_ocup: 'Posiciones ocupadas', pos_libr: 'Posiciones libres',
     afeccion: 'Afección RdT', scc: 'Limitado por SCC',
-    viab: 'Viabilidad física para la conexión',
     eolica: 'Admitida eólica (MW)', solar: 'Admitida solar (MW)',
     almacen: 'Admitida almacenamiento (MW)', otras: 'Admitida otras (MW)',
     nudo0: 'Nudo 0*', coment: 'Comentario'
 };
-const DSO_ORDER = ['disp','comprom','ocupada','admitida','pos_ocup','pos_libr','afeccion','scc','viab','eolica','solar','almacen','otras','nudo0','coment'];
+const DSO_ORDER = ['disp','comprom','ocupada','admitida','pos_ocup','pos_libr','afeccion','scc','eolica','solar','almacen','otras','nudo0','coment'];
 
 // ¿Un valor de 'nudo 0' indica nudo 0* ? (lógica 1=Sí / 0=No, tolerante a SI/S/X/true)
 function dsoIs0Star(v) {
@@ -3549,9 +3548,22 @@ function gsOppCollect(key,side,scope){
     const pend=(e.grid==='DSO')?sm.admitida:sm.enCurso;
     const presion=(!isNaN(pend)&&!isNaN(sm.disp)&&(pend+Math.max(sm.disp,0))>0)?(pend/(pend+Math.max(sm.disp,0))):NaN;
     const fam=(e.grid==='TSO')?gsCritFamily(sm.crit||''):'—';
+    // Contraste con POSICIONES (ficha REE del nudo): E=existentes · P=planificadas.
+    // Sin posición dedicada no cabe solicitud → 'solicitable real' exige E+P>0 (gen/alm: transporte_E/P · dem: consumo_transporte_E/P).
+    let posE=NaN,posP=NaN,hasPos=null,nSolPub=0,mwSolPub=0;
+    if(e.grid==='TSO'){
+      const rich=richForMonth(key,e);
+      if(rich){ const pb=(side==='dem')?(((rich.dem||{}).posiciones)||{}):(((rich.gen||{}).posiciones)||{});
+        posE=cleanNum((side==='dem')?pb.consumo_transporte_E:pb.transporte_E);
+        posP=cleanNum((side==='dem')?pb.consumo_transporte_P:pb.transporte_P);
+        if(!(isNaN(posE)&&isNaN(posP))) hasPos=(((isNaN(posE)?0:posE)+(isNaN(posP)?0:posP))>0); }
+      if(side==='dem'){ const pd=posForMonth(key,e);
+        if(pd&&pd.solicitudes_dem&&pd.solicitudes_dem.length){ nSolPub=pd.solicitudes_dem.length; mwSolPub=pd.solicitudes_dem.reduce(function(s,x){ const v=cleanNum(x.mw); return s+(isNaN(v)?0:v); },0); } }
+    }
     recs.push({entry:e,name:e.name,ccaa:e.ccaa||'',grid:e.grid,disp:sm.disp,margen:sm.margen,otorg:sm.otorgada,
       pend:pend,noOtorg:(sm.noOtorg===undefined?NaN:sm.noOtorg),sat:sm.sat,presion:presion,
-      noSolic:!!sm.noSolic,reason:sm.reason||'',enConcurso:!!sm.enConcurso,crit:String(sm.crit||''),fam:fam});
+      noSolic:!!sm.noSolic,reason:sm.reason||'',enConcurso:!!sm.enConcurso,crit:String(sm.crit||''),fam:fam,
+      posE:posE,posP:posP,hasPos:hasPos,nSolPub:nSolPub,mwSolPub:mwSolPub});
   }
   return {recs:recs,tLib:tLib};
 }
@@ -3584,18 +3596,21 @@ function gsOppScore(r,ctx){
   if(r.grid==='TSO'){ if(r.fam==='Cortocircuito'||r.fam==='Estático nodal') sCrit=1;
     else if(r.fam==='Estático zonal') sCrit=0.6; else if(r.fam==='Dinámico (zonal)') sCrit=0.4; }
   const sTrend=(r.trend&&!isNaN(r.trend.rel))?(0.5+0.5*r.trend.rel):0.5;               // 15 % (neutro sin histórico)
-  return Math.round(100*(0.40*sDisp+0.25*sPres+0.20*sCrit+0.15*sTrend));
+  const kPos=(r.hasPos===false)?0.5:1;                                                 // ×0.5 sin posición dedicada (E+P=0); sin dato o DSO = neutro
+  return Math.round(100*kPos*(0.40*sDisp+0.25*sPres+0.20*sCrit+0.15*sTrend));
 }
 function gsOppClass(r){
   if(r.noSolic||isNaN(r.disp)||r.disp<=0) return 'rojo';
-  if((!isNaN(r.presion)&&r.presion>=0.5)||r.fam==='Estático zonal'||r.fam==='Dinámico (zonal)'||(!isNaN(r.sat)&&r.sat>=0.7)) return 'ambar';
+  if((!isNaN(r.presion)&&r.presion>=0.5)||r.fam==='Estático zonal'||r.fam==='Dinámico (zonal)'||(!isNaN(r.sat)&&r.sat>=0.7)||r.hasPos===false) return 'ambar';
   return 'verde';
 }
 // --- FASE 1: KPIs ---
 function gsOppTotals(col){
-  const t={disp:0,pend:0,nSolic:0,nTot:0,nConc:0,mwConc:0,satS:0,satN:0,lib:col.tLib};
+  const t={disp:0,dispAll:0,dispReal:0,nReal:0,nPosUnk:0,pend:0,nSolic:0,nTot:0,nConc:0,mwConc:0,satS:0,satN:0,lib:col.tLib};
   col.recs.forEach(function(r){ t.nTot++;
-    if(!r.noSolic&&!isNaN(r.disp)&&r.disp>0){ t.nSolic++; t.disp+=r.disp; if(!isNaN(r.pend)) t.pend+=r.pend; }
+    if(!isNaN(r.disp)) t.dispAll+=r.disp;   // perímetro de la pestaña Global: Σ disp de TODOS los nudos (bloqueados incluidos)
+    if(!r.noSolic&&!isNaN(r.disp)&&r.disp>0){ t.nSolic++; t.disp+=r.disp; if(!isNaN(r.pend)) t.pend+=r.pend;
+      if(r.hasPos===true){ t.nReal++; t.dispReal+=r.disp; } else if(r.hasPos===null) t.nPosUnk++; }
     if(r.enConcurso){ t.nConc++; if(!isNaN(r.margen)) t.mwConc+=r.margen; }
     if(!isNaN(r.sat)){ t.satS+=r.sat; t.satN++; } });
   t.pres=((t.disp+t.pend)>0)?(t.pend/(t.disp+t.pend)):NaN;
@@ -3606,10 +3621,10 @@ function gsOppCard(lbl,val,sub){ return '<div class="gs-kpi-card"><div class="gs
 function gsOppPP(a,b){ if(isNaN(a)||isNaN(b)) return ''; const d=100*(a-b); if(Math.abs(d)<0.5) return '<span style="color:#94a3b8;">=</span>'; return '<span style="color:'+(d>0?'#dc2626':'#16a34a')+';font-weight:700;">'+(d>0?'+':'−')+Math.abs(d).toFixed(1)+' pp</span> vs mes ant.'; }
 function gsOppRenderKPIs(cur,prev){
   const host=document.getElementById('gs-opp-kpis'); if(!host) return;
-  const dInt=function(a,b){ const d=a-b; if(!d) return '<span style="color:#94a3b8;">=</span>'; return '<span style="color:'+(d>0?'#16a34a':'#dc2626')+';font-weight:700;">'+(d>0?'+':'−')+Math.abs(d)+'</span> vs mes ant.'; };
   host.innerHTML=
-    gsOppCard('MW disponibles (solicitables)', gsFmt(cur.disp), gsSigned(cur.disp-prev.disp)+' MW vs mes ant.')
-   +gsOppCard('Nudos solicitables', cur.nSolic+' <span style="font-size:13px;color:#64748b;">/ '+cur.nTot+'</span>', dInt(cur.nSolic,prev.nSolic))
+    gsOppCard('MW disponibles (total)', gsFmt(cur.dispAll), 'mismo perímetro que Global (Σ disp. de todos los nudos) · '+gsSigned(cur.dispAll-prev.dispAll)+' MW')
+   +gsOppCard('MW solicitables (sin bloqueo)', gsFmt(cur.disp), cur.nSolic+' de '+cur.nTot+' nudos · '+gsSigned(cur.disp-prev.disp)+' MW vs mes ant.')
+   +gsOppCard('Solicitable real (con posición)', gsFmt(cur.dispReal)+' <span style="font-size:13px;color:#64748b;">MW</span>', cur.nReal+' nudos con posición E/P dedicada'+(cur.nPosUnk?(' · '+cur.nPosUnk+' sin dato de posición'):''))
    +gsOppCard('Presión de mercado', isNaN(cur.pres)?'–':(100*cur.pres).toFixed(0)+'%', 'pendiente / (pendiente + disp.) · '+gsOppPP(cur.pres,prev.pres))
    +gsOppCard('Nudos en concurso', cur.nConc, 'Σ margen bloqueado: '+gsFmt(cur.mwConc)+' MW')
    +gsOppCard('Saturación media', isNaN(cur.sat)?'–':(100*cur.sat).toFixed(0)+'%', gsOppPP(cur.sat,prev.sat))
@@ -3624,7 +3639,10 @@ function gsOppToggleNote(){
       +'<b>25%</b> baja presión de solicitudes (1 − pendiente/(pendiente+disponible); 50 pts neutros si no hay dato de pendientes) · '
       +'<b>20%</b> criterio limitante (cortocircuito / estático nodal = 100% · estático zonal = 60% · dinámico zonal = 40% · mixto, sin dato o DSO = 50%; la capacidad zonal se comparte entre nudos y es más volátil) · '
       +'<b>15%</b> tendencia del disponible en los últimos 6 meses (estable = 50 pts; subida suma, bajada resta; por eficiencia la tendencia se calcula solo para los 400 mejores candidatos, el resto queda neutro). '
-      +'Los nudos no solicitables o sin disponible puntúan 0. En DSO «pendiente» = capacidad admitida y no resuelta; en TSO = capacidad en curso.';
+      +'<b>Multiplicador ×0,5 si el nudo no tiene posición dedicada</b> (E+P=0 en la ficha REE: gen/alm a RdT, o consumo a RdT en demanda); sin dato de posición = sin penalizar. '
+      +'Los nudos no solicitables o sin disponible puntúan 0. En DSO «pendiente» = capacidad admitida y no resuelta; en TSO = capacidad en curso. '
+      +'<b>Perímetros:</b> «MW disponibles (total)» replica la pestaña Global (Σ disponible de TODOS los nudos, bloqueados incluidos); «solicitables» excluye nudos con causa de bloqueo o disp.&le;0; «solicitable real» exige además posición E/P dedicada — solo se puede solicitar sobre una posición existente o planificada. '
+      +'El contraste de posiciones usa la ficha mensual de REE y, en demanda, las solicitudes publicadas (art. 20 quater RD 1183/2020); pendiente de refinar con la información del portal de solicitudes de REE.';
     n.style.display='block';
   } else n.style.display='none';
 }
@@ -3646,21 +3664,26 @@ function gsOppRenderRank(){
     const barCol=(r.cls==='verde')?'#16a34a':((r.cls==='ambar')?'#d97706':'#dc2626');
     const critTxt=(r.grid==='TSO')?('<span title="'+r.crit.replace(/"/g,'&quot;')+'">'+r.fam+'</span>'):'<span style="color:#94a3b8;">– (DSO)</span>';
     const motivo=(r.noSolic&&r.reason)?('<div style="font-size:10px;color:#991b1b;">'+r.reason+'</div>'):'';
+    const comp=(r.nSolPub>0)?('<div style="font-size:10px;color:#b45309;">&#9888; '+r.nSolPub+' solicitud(es) de demanda publicadas · '+Math.round(r.mwSolPub)+' MW (prelación en riesgo)</div>'):'';
+    let posTxt='<span style="color:#94a3b8;" title="Sin dato de posiciones (DSO o ficha sin bloque de posiciones)">·</span>';
+    if(r.hasPos===true) posTxt='<span style="color:#16a34a;font-weight:700;">&#10003;</span> E:'+(isNaN(r.posE)?0:r.posE)+' · P:'+(isNaN(r.posP)?0:r.posP);
+    else if(r.hasPos===false) posTxt='<span style="color:#dc2626;font-weight:700;" title="E+P=0: no cabe solicitud ligada a posición inexistente; vía = mecanismo de planificación de posiciones (art. 4 bis Ley 24/2013)">&#10007; sin posición</span>';
     rows+='<tr>'
       +'<td>'+shown+'</td>'
       +'<td><span class="gs-opp-badge '+r.cls+'"></span></td>'
       +'<td style="white-space:nowrap;"><span class="gs-opp-scorebar"><i style="width:'+r.score+'%;background:'+barCol+';"></i></span><span class="gs-opp-scoretxt">'+r.score+'</span></td>'
-      +'<td style="text-align:left;"><b>'+r.name+'</b> <a onclick="openNodalAnalysis(\''+r.name.replace(/'/g,"\\'")+'\')" style="cursor:pointer;font-size:11px;color:#F3721F;" title="Abrir Análisis Nodal">🔬</a><div style="font-size:10px;color:#94a3b8;">'+r.grid+' · '+(r.ccaa||'—')+'</div>'+motivo+'</td>'
+      +'<td style="text-align:left;"><b>'+r.name+'</b> <a onclick="openNodalAnalysis(\''+r.name.replace(/'/g,"\\'")+'\')" style="cursor:pointer;font-size:11px;color:#F3721F;" title="Abrir Análisis Nodal">🔬</a><div style="font-size:10px;color:#94a3b8;">'+r.grid+' · '+(r.ccaa||'—')+'</div>'+motivo+comp+'</td>'
       +'<td><b>'+gsFmt(r.disp)+'</b></td>'
       +'<td>'+gsFmt(r.pend)+'</td>'
       +'<td>'+(isNaN(r.presion)?'–':(100*r.presion).toFixed(0)+'%')+'</td>'
       +'<td>'+(isNaN(r.sat)?'–':(100*r.sat).toFixed(0)+'%')+'</td>'
       +'<td style="text-align:left;font-size:11px;">'+critTxt+'</td>'
+      +'<td style="font-size:11px;white-space:nowrap;">'+posTxt+'</td>'
       +'<td>'+gsOppSpark(r.trend)+(r.trend&&!isNaN(r.trend.delta)?('<div style="font-size:10px;">'+gsSigned(r.trend.delta)+' MW/6m</div>'):'')+'</td>'
       +'</tr>';
   }
-  host.innerHTML='<div style="overflow:auto;"><table class="gs-table"><thead><tr><th>#</th><th>🚦</th><th>Score</th><th style="text-align:left;">Nudo</th><th>Disp. (MW)</th><th>Pend. (MW)</th><th>Presión</th><th>Sat.</th><th style="text-align:left;">Criterio limitante</th><th>Tendencia 6m</th></tr></thead><tbody>'
-    +(rows||'<tr><td colspan="10">Sin nudos que mostrar con estos filtros.</td></tr>')+'</tbody></table></div>';
+  host.innerHTML='<div style="overflow:auto;"><table class="gs-table"><thead><tr><th>#</th><th>🚦</th><th>Score</th><th style="text-align:left;">Nudo</th><th>Disp. (MW)</th><th>Pend. (MW)</th><th>Presión</th><th>Sat.</th><th style="text-align:left;">Criterio limitante</th><th title="Posiciones dedicadas en la ficha REE del nudo: E existentes · P planificadas (gen/alm: a RdT · dem: consumo a RdT)">Posición E/P</th><th>Tendencia 6m</th></tr></thead><tbody>'
+    +(rows||'<tr><td colspan="11">Sin nudos que mostrar con estos filtros.</td></tr>')+'</tbody></table></div>';
 }
 // --- FASE 3: gráficos (Chart.js, ya cargado) ---
 function gsOppRenderCharts(recs){
@@ -3846,7 +3869,7 @@ function renderOportunidades(){
         <label>Buscar: <input id="gs-opp-q" type="text" placeholder="Nudo&hellip;" oninput="gsOppRenderRank()"></label>
         <label>Mostrar: <select id="gs-opp-n" onchange="gsOppRenderRank()"><option value="10">10</option><option value="25" selected>25</option><option value="50">50</option><option value="100">100</option></select></label>
         <label><input id="gs-opp-nosolic" type="checkbox" onchange="gsOppRenderRank()"> incluir no solicitables</label>
-        <span style="font-size:11px;color:#94a3b8;">&#128994; solicitable holgado &nbsp;&#128993; compartido/zonal o presi&oacute;n alta &nbsp;&#128308; bloqueado / sin capacidad</span>
+        <span style="font-size:11px;color:#94a3b8;">&#128994; solicitable holgado &nbsp;&#128993; compartido/zonal, presi&oacute;n alta o sin posici&oacute;n dedicada &nbsp;&#128308; bloqueado / sin capacidad</span>
       </div>
       <div id="gs-opp-rank"></div>
     </div>
