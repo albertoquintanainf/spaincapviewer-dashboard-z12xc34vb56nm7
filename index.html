@@ -271,6 +271,27 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 #gs-mode-var { display:none; padding:8px 18px 18px; overflow:auto; max-height:calc(100vh - 200px); }
 .gs-var-sec { background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:14px; margin-bottom:14px; }
 .gs-var-sec h3 { margin:0 0 8px; font-size:14px; color:#F3721F; }
+/* ===== Radar de Oportunidades (pestaña Estadísticas · Fases 1-4) ===== */
+.gs-kpi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:10px; margin-bottom:14px; }
+.gs-kpi-card { background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:10px 12px; border-top:3px solid #F3721F; }
+.gs-kpi-card .gs-kpi-lbl { font-size:10px; text-transform:uppercase; letter-spacing:.4px; color:#64748b; font-weight:600; }
+.gs-kpi-card .gs-kpi-val { font-size:22px; font-weight:800; color:#0f172a; line-height:1.15; margin-top:2px; }
+.gs-kpi-card .gs-kpi-sub { font-size:11px; color:#64748b; margin-top:2px; }
+.gs-opp-filters { display:flex; gap:14px; align-items:center; flex-wrap:wrap; font-size:12px; color:#334155; margin-bottom:8px; }
+.gs-opp-filters input[type=number], .gs-opp-filters input[type=text] { padding:3px 6px; border:1px solid #cbd5e1; border-radius:6px; font-size:12px; width:90px; }
+.gs-opp-filters select { padding:3px 6px; border:1px solid #cbd5e1; border-radius:6px; font-size:12px; }
+.gs-opp-info { background:#e2e8f0; border:none; border-radius:6px; padding:3px 9px; font-size:11px; cursor:pointer; color:#F3721F; font-weight:bold; margin-left:8px; vertical-align:middle; }
+.gs-opp-badge { display:inline-block; width:11px; height:11px; border-radius:50%; vertical-align:middle; }
+.gs-opp-badge.verde { background:#16a34a; } .gs-opp-badge.ambar { background:#d97706; } .gs-opp-badge.rojo { background:#dc2626; }
+.gs-opp-scorebar { position:relative; background:#e2e8f0; border-radius:5px; height:14px; width:88px; display:inline-block; vertical-align:middle; overflow:hidden; }
+.gs-opp-scorebar > i { position:absolute; left:0; top:0; bottom:0; border-radius:5px; }
+.gs-opp-scoretxt { font-weight:800; font-size:12px; margin-left:6px; vertical-align:middle; }
+.gs-opp-chartwrap { position:relative; height:300px; width:100%; }
+.gs-opp-chartwrap.tall { height:440px; }
+#gs-opp-adv { background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:10px 14px; margin-bottom:14px; }
+#gs-opp-adv > summary { cursor:pointer; font-size:14px; font-weight:600; color:#F3721F; outline:none; }
+#gs-opp-adv .gs-var-sec { box-shadow:none; border:1px solid #e2e8f0; }
+#gs-opp-note { margin-bottom:10px; padding:10px 14px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; font-size:12px; color:#334155; line-height:1.6; }
 .gs-matrix { border-collapse:collapse; font-size:11px; }
 .gs-matrix th,.gs-matrix td { border:1px solid #e2e8f0; padding:3px 6px; text-align:center; }
 .gs-matrix th { background:#f1f5f9; }
@@ -3149,9 +3170,9 @@ function gsSetMode(m){ gsMode=m;
   document.getElementById('gs-mode-var').style.display=(m==='var')?'block':'none';
   if(showBody){ renderGridStatus(); if(gsMap) setTimeout(function(){ gsMap.invalidateSize(); gsFitMap(); gsRenderMap(); },60); }
   else if(m==='global'){ renderGlobal(); }
-  else if(m==='var'){ renderVariaciones(); }
+  else if(m==='var'){ renderOportunidades(); }
 }
-function gsRefresh(){ gsSyncVistaOptions(); gsSyncControls(); if(gsMode==='global') renderGlobal(); else if(gsMode==='var') renderVariaciones(); else renderGridStatus(); }
+function gsRefresh(){ gsSyncVistaOptions(); gsSyncControls(); if(gsMode==='global') renderGlobal(); else if(gsMode==='var') renderOportunidades(); else renderGridStatus(); }
 // ---- Modo GLOBAL: resumen nacional de TODOS los bloques a la vez (sin elegir bloque) ----
 // Genera UNA tarjeta de bloque. En DSO usa los campos planos (disp/ocupada/admitida);
 // en TSO usa GS_VISTA_META (otTot/ecTot/…) con sus columnas y altas/bajas.
@@ -3501,6 +3522,214 @@ function naDeepDive(name){
   host.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
+// ===================== RADAR DE OPORTUNIDADES (pestaña 🔬 Estadísticas · Fases 1-4) =====================
+// Reutiliza gsNodeMetrics/gsCritFamily/gsSat/gsFmt/gsSigned. Todo se calcula en cliente (compatible GitHub Pages).
+let gsOppRecs=[], gsOppKey='', gsOppChS=null, gsOppChB=null, gsOppChH=null;
+const gsOppCache={};  // memo de gsNodeMetrics por nudo+mes (los JSON mensuales se cargan una vez al inicio)
+function gsOppMetFull(entry,key){
+  const ck=(entry.grid==='DSO'?('D|'+entry.dsoKey):('T|'+entry.name))+'|'+key;
+  if(gsOppCache[ck]!==undefined) return gsOppCache[ck];
+  const m=gsNodeMetrics(entry,key)||null;
+  if(m) gsOppCache[ck]=m;              // no se cachean nulls por si un mes carga tarde
+  return m;
+}
+function gsOppMonthKeys(){
+  const S={}; Object.keys(MONTHS_DATA).forEach(function(k){S[k]=1;}); Object.keys(MONTHS_DATA_DSO).forEach(function(k){S[k]=1;});
+  return Object.keys(S).sort(function(a,b){ const pa=a.split('_'),pb=b.split('_'); if(pa[0]!==pb[0]) return parseInt(pa[0],10)-parseInt(pb[0],10); return GS_MONTHS.indexOf(pa[1])-GS_MONTHS.indexOf(pb[1]); });
+}
+// --- Registros por nudo del mes (perspectiva/alcance) + Σ liberada RDL 7/2026 (ficha gen) ---
+function gsOppCollect(key,side,scope){
+  const recs=[]; let tLib=0;
+  for(const e of allEntries){
+    if(scope!=='ALL'&&e.grid!==scope) continue;
+    const m=gsOppMetFull(e,key); if(!m) continue;
+    const sm=m[side]; if(!sm) continue;
+    if(m.gen&&!isNaN(m.gen.libMax)) tLib+=m.gen.libMax;
+    const pend=(e.grid==='DSO')?sm.admitida:sm.enCurso;
+    const presion=(!isNaN(pend)&&!isNaN(sm.disp)&&(pend+Math.max(sm.disp,0))>0)?(pend/(pend+Math.max(sm.disp,0))):NaN;
+    const fam=(e.grid==='TSO')?gsCritFamily(sm.crit||''):'—';
+    recs.push({entry:e,name:e.name,ccaa:e.ccaa||'',grid:e.grid,disp:sm.disp,margen:sm.margen,otorg:sm.otorgada,
+      pend:pend,noOtorg:(sm.noOtorg===undefined?NaN:sm.noOtorg),sat:sm.sat,presion:presion,
+      noSolic:!!sm.noSolic,reason:sm.reason||'',enConcurso:!!sm.enConcurso,crit:String(sm.crit||''),fam:fam});
+  }
+  return {recs:recs,tLib:tLib};
+}
+// --- Tendencia del disponible: hasta 6 meses (incluido el actual) ---
+function gsOppTrend(entry,side,key){
+  const ks=gsOppMonthKeys(); const i=ks.indexOf(key); if(i<0) return null;
+  const serie=[];
+  for(let j=Math.max(0,i-5);j<=i;j++){ const m=gsOppMetFull(entry,ks[j]); const sm=m?m[side]:null; serie.push((sm&&!isNaN(sm.disp))?sm.disp:NaN); }
+  let first=NaN,last=NaN,nDef=0;
+  serie.forEach(function(v){ if(!isNaN(v)){ if(isNaN(first)) first=v; last=v; nDef++; } });
+  if(isNaN(first)||nDef<2) return {serie:serie,delta:NaN,rel:NaN};
+  const delta=last-first, rel=Math.max(-1,Math.min(1,delta/Math.max(Math.abs(first),1)));
+  return {serie:serie,delta:delta,rel:rel};
+}
+function gsOppSpark(t){
+  if(!t) return '<span style="color:#94a3b8;">–</span>';
+  const s=t.serie.filter(function(v){return !isNaN(v);});
+  if(s.length<2) return '<span style="color:#94a3b8;">–</span>';
+  const w=80,h=22,min=Math.min.apply(null,s),max=Math.max.apply(null,s),rng=(max-min)||1;
+  const pts=s.map(function(v,i){ return ((i/(s.length-1))*w).toFixed(1)+','+(h-2-((v-min)/rng)*(h-4)).toFixed(1); }).join(' ');
+  const col=(t.delta>0.5)?'#16a34a':((t.delta<-0.5)?'#dc2626':'#64748b');
+  return '<svg width="'+w+'" height="'+h+'" style="vertical-align:middle;"><polyline fill="none" stroke="'+col+'" stroke-width="1.5" points="'+pts+'"/></svg>';
+}
+// --- Score heurístico 0-100 (priorización, NO probabilidad de obtención) ---
+function gsOppScore(r,ctx){
+  if(r.noSolic||isNaN(r.disp)||r.disp<=0) return 0;
+  const sDisp=(ctx.maxDisp>0)?(Math.log10(1+r.disp)/Math.log10(1+ctx.maxDisp)):0;      // 40 %
+  const sPres=isNaN(r.presion)?0.5:(1-r.presion);                                      // 25 % (neutro sin dato)
+  let sCrit=0.5;                                                                       // 20 % (neutro DSO/sin dato)
+  if(r.grid==='TSO'){ if(r.fam==='Cortocircuito'||r.fam==='Estático nodal') sCrit=1;
+    else if(r.fam==='Estático zonal') sCrit=0.6; else if(r.fam==='Dinámico (zonal)') sCrit=0.4; }
+  const sTrend=(r.trend&&!isNaN(r.trend.rel))?(0.5+0.5*r.trend.rel):0.5;               // 15 % (neutro sin histórico)
+  return Math.round(100*(0.40*sDisp+0.25*sPres+0.20*sCrit+0.15*sTrend));
+}
+function gsOppClass(r){
+  if(r.noSolic||isNaN(r.disp)||r.disp<=0) return 'rojo';
+  if((!isNaN(r.presion)&&r.presion>=0.5)||r.fam==='Estático zonal'||r.fam==='Dinámico (zonal)'||(!isNaN(r.sat)&&r.sat>=0.7)) return 'ambar';
+  return 'verde';
+}
+// --- FASE 1: KPIs ---
+function gsOppTotals(col){
+  const t={disp:0,pend:0,nSolic:0,nTot:0,nConc:0,mwConc:0,satS:0,satN:0,lib:col.tLib};
+  col.recs.forEach(function(r){ t.nTot++;
+    if(!r.noSolic&&!isNaN(r.disp)&&r.disp>0){ t.nSolic++; t.disp+=r.disp; if(!isNaN(r.pend)) t.pend+=r.pend; }
+    if(r.enConcurso){ t.nConc++; if(!isNaN(r.margen)) t.mwConc+=r.margen; }
+    if(!isNaN(r.sat)){ t.satS+=r.sat; t.satN++; } });
+  t.pres=((t.disp+t.pend)>0)?(t.pend/(t.disp+t.pend)):NaN;
+  t.sat=t.satN?(t.satS/t.satN):NaN;
+  return t;
+}
+function gsOppCard(lbl,val,sub){ return '<div class="gs-kpi-card"><div class="gs-kpi-lbl">'+lbl+'</div><div class="gs-kpi-val">'+val+'</div><div class="gs-kpi-sub">'+(sub||'&nbsp;')+'</div></div>'; }
+function gsOppPP(a,b){ if(isNaN(a)||isNaN(b)) return ''; const d=100*(a-b); if(Math.abs(d)<0.5) return '<span style="color:#94a3b8;">=</span>'; return '<span style="color:'+(d>0?'#dc2626':'#16a34a')+';font-weight:700;">'+(d>0?'+':'−')+Math.abs(d).toFixed(1)+' pp</span> vs mes ant.'; }
+function gsOppRenderKPIs(cur,prev){
+  const host=document.getElementById('gs-opp-kpis'); if(!host) return;
+  const dInt=function(a,b){ const d=a-b; if(!d) return '<span style="color:#94a3b8;">=</span>'; return '<span style="color:'+(d>0?'#16a34a':'#dc2626')+';font-weight:700;">'+(d>0?'+':'−')+Math.abs(d)+'</span> vs mes ant.'; };
+  host.innerHTML=
+    gsOppCard('MW disponibles (solicitables)', gsFmt(cur.disp), gsSigned(cur.disp-prev.disp)+' MW vs mes ant.')
+   +gsOppCard('Nudos solicitables', cur.nSolic+' <span style="font-size:13px;color:#64748b;">/ '+cur.nTot+'</span>', dInt(cur.nSolic,prev.nSolic))
+   +gsOppCard('Presión de mercado', isNaN(cur.pres)?'–':(100*cur.pres).toFixed(0)+'%', 'pendiente / (pendiente + disp.) · '+gsOppPP(cur.pres,prev.pres))
+   +gsOppCard('Nudos en concurso', cur.nConc, 'Σ margen bloqueado: '+gsFmt(cur.mwConc)+' MW')
+   +gsOppCard('Saturación media', isNaN(cur.sat)?'–':(100*cur.sat).toFixed(0)+'%', gsOppPP(cur.sat,prev.sat))
+   +gsOppCard('Liberada RDL 7/2026', gsFmt(cur.lib)+' MW', 'ficha de generación (gen/alm) · '+gsSigned(cur.lib-prev.lib)+' MW');
+}
+// --- FASE 2: ranking ---
+function gsOppToggleNote(){
+  const n=document.getElementById('gs-opp-note'); if(!n) return;
+  if(n.style.display==='none'||!n.style.display){
+    n.innerHTML='<b>Score heurístico de priorización 0-100 — no es una probabilidad real de obtención de capacidad.</b> Composición: '
+      +'<b>40%</b> capacidad disponible (escala logarítmica, normalizada al máximo del mes en el alcance elegido) · '
+      +'<b>25%</b> baja presión de solicitudes (1 − pendiente/(pendiente+disponible); 50 pts neutros si no hay dato de pendientes) · '
+      +'<b>20%</b> criterio limitante (cortocircuito / estático nodal = 100% · estático zonal = 60% · dinámico zonal = 40% · mixto, sin dato o DSO = 50%; la capacidad zonal se comparte entre nudos y es más volátil) · '
+      +'<b>15%</b> tendencia del disponible en los últimos 6 meses (estable = 50 pts; subida suma, bajada resta; por eficiencia la tendencia se calcula solo para los 400 mejores candidatos, el resto queda neutro). '
+      +'Los nudos no solicitables o sin disponible puntúan 0. En DSO «pendiente» = capacidad admitida y no resuelta; en TSO = capacidad en curso.';
+    n.style.display='block';
+  } else n.style.display='none';
+}
+function gsOppRenderRank(){
+  const host=document.getElementById('gs-opp-rank'); if(!host) return;
+  const min=parseFloat(document.getElementById('gs-opp-min').value)||0;
+  const cc=document.getElementById('gs-opp-ccaa').value;
+  const q=(document.getElementById('gs-opp-q').value||'').toLowerCase();
+  const N=parseInt(document.getElementById('gs-opp-n').value,10)||25;
+  const inclNo=document.getElementById('gs-opp-nosolic').checked;
+  let rows='',shown=0;
+  for(const r of gsOppRecs){
+    if(!inclNo&&(r.noSolic||isNaN(r.disp)||r.disp<=0)) continue;
+    if(!isNaN(r.disp)&&r.disp<min&&!(inclNo&&r.noSolic)) continue;
+    if(isNaN(r.disp)&&min>0) continue;
+    if(cc&&r.ccaa!==cc) continue;
+    if(q&&r.name.toLowerCase().indexOf(q)<0) continue;
+    shown++; if(shown>N) break;
+    const barCol=(r.cls==='verde')?'#16a34a':((r.cls==='ambar')?'#d97706':'#dc2626');
+    const critTxt=(r.grid==='TSO')?('<span title="'+r.crit.replace(/"/g,'&quot;')+'">'+r.fam+'</span>'):'<span style="color:#94a3b8;">– (DSO)</span>';
+    const motivo=(r.noSolic&&r.reason)?('<div style="font-size:10px;color:#991b1b;">'+r.reason+'</div>'):'';
+    rows+='<tr>'
+      +'<td>'+shown+'</td>'
+      +'<td><span class="gs-opp-badge '+r.cls+'"></span></td>'
+      +'<td style="white-space:nowrap;"><span class="gs-opp-scorebar"><i style="width:'+r.score+'%;background:'+barCol+';"></i></span><span class="gs-opp-scoretxt">'+r.score+'</span></td>'
+      +'<td style="text-align:left;"><b>'+r.name+'</b> <a onclick="openNodalAnalysis(\''+r.name.replace(/'/g,"\\'")+'\')" style="cursor:pointer;font-size:11px;color:#F3721F;" title="Abrir Análisis Nodal">🔬</a><div style="font-size:10px;color:#94a3b8;">'+r.grid+' · '+(r.ccaa||'—')+'</div>'+motivo+'</td>'
+      +'<td><b>'+gsFmt(r.disp)+'</b></td>'
+      +'<td>'+gsFmt(r.pend)+'</td>'
+      +'<td>'+(isNaN(r.presion)?'–':(100*r.presion).toFixed(0)+'%')+'</td>'
+      +'<td>'+(isNaN(r.sat)?'–':(100*r.sat).toFixed(0)+'%')+'</td>'
+      +'<td style="text-align:left;font-size:11px;">'+critTxt+'</td>'
+      +'<td>'+gsOppSpark(r.trend)+(r.trend&&!isNaN(r.trend.delta)?('<div style="font-size:10px;">'+gsSigned(r.trend.delta)+' MW/6m</div>'):'')+'</td>'
+      +'</tr>';
+  }
+  host.innerHTML='<div style="overflow:auto;"><table class="gs-table"><thead><tr><th>#</th><th>🚦</th><th>Score</th><th style="text-align:left;">Nudo</th><th>Disp. (MW)</th><th>Pend. (MW)</th><th>Presión</th><th>Sat.</th><th style="text-align:left;">Criterio limitante</th><th>Tendencia 6m</th></tr></thead><tbody>'
+    +(rows||'<tr><td colspan="10">Sin nudos que mostrar con estos filtros.</td></tr>')+'</tbody></table></div>';
+}
+// --- FASE 3: gráficos (Chart.js, ya cargado) ---
+function gsOppRenderCharts(recs){
+  if(typeof Chart==='undefined') return;
+  const sol=recs.filter(function(r){return !r.noSolic&&!isNaN(r.disp)&&r.disp>0;});
+  // 3a: scatter disponible vs presión
+  const mk=function(cls){ return sol.filter(function(r){return r.cls===cls;}).map(function(r){ return {x:Math.max(r.disp,0.1),y:isNaN(r.presion)?0:Math.round(100*r.presion),name:r.name}; }); };
+  if(gsOppChS) gsOppChS.destroy();
+  const cS=document.getElementById('gs-opp-scatter');
+  if(cS) gsOppChS=new Chart(cS.getContext('2d'),{type:'scatter',
+    data:{datasets:[{label:'Holgado',data:mk('verde'),backgroundColor:'rgba(22,163,74,.75)'},{label:'Compartido / presión alta',data:mk('ambar'),backgroundColor:'rgba(217,119,6,.75)'}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      scales:{x:{type:'logarithmic',title:{display:true,text:'Disponible (MW, escala log)',font:{size:10}}},y:{min:0,max:100,title:{display:true,text:'Presión de solicitudes (%)',font:{size:10}}}},
+      plugins:{legend:{position:'bottom',labels:{boxWidth:12,font:{size:10}}},
+        tooltip:{callbacks:{label:function(c){return c.raw.name+': '+Math.round(c.raw.x)+' MW · presión '+c.raw.y+'%';}}}}}});
+  // 3b: embudo apilado por CCAA
+  const G={};
+  recs.forEach(function(r){ const k=r.ccaa||'(sin CCAA)'; const o=G[k]||(G[k]={ot:0,pe:0,di:0,no:0});
+    if(!isNaN(r.otorg))o.ot+=r.otorg; if(!isNaN(r.pend))o.pe+=r.pend;
+    if(!r.noSolic&&!isNaN(r.disp)&&r.disp>0)o.di+=r.disp; if(!isNaN(r.noOtorg))o.no+=r.noOtorg; });
+  const labs=Object.keys(G).sort(function(a,b){ const A=G[a],B=G[b]; return (B.ot+B.pe+B.di+B.no)-(A.ot+A.pe+A.di+A.no); });
+  if(gsOppChB) gsOppChB.destroy();
+  const cB=document.getElementById('gs-opp-stack');
+  if(cB) gsOppChB=new Chart(cB.getContext('2d'),{type:'bar',
+    data:{labels:labs,datasets:[
+      {label:'Otorgada',data:labs.map(function(k){return Math.round(G[k].ot);}),backgroundColor:'#64748b'},
+      {label:'En curso / pendiente',data:labs.map(function(k){return Math.round(G[k].pe);}),backgroundColor:'#d97706'},
+      {label:'Disponible (solicitable)',data:labs.map(function(k){return Math.round(G[k].di);}),backgroundColor:'#16a34a'},
+      {label:'No otorgable',data:labs.map(function(k){return Math.round(G[k].no);}),backgroundColor:'#dc2626'}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      scales:{x:{stacked:true,title:{display:true,text:'MW',font:{size:10}}},y:{stacked:true,ticks:{font:{size:10}}}},
+      plugins:{legend:{position:'bottom',labels:{boxWidth:12,font:{size:10}}}}}});
+  // 3c: histograma del disponible
+  const B=[[0,10,'0-10'],[10,50,'10-50'],[50,100,'50-100'],[100,250,'100-250'],[250,500,'250-500'],[500,1000,'500-1000'],[1000,Infinity,'>1000']];
+  const cnt=B.map(function(b){ return sol.filter(function(r){return r.disp>=b[0]&&r.disp<b[1];}).length; });
+  if(gsOppChH) gsOppChH.destroy();
+  const cH=document.getElementById('gs-opp-hist');
+  if(cH) gsOppChH=new Chart(cH.getContext('2d'),{type:'bar',
+    data:{labels:B.map(function(b){return b[2];}),datasets:[{label:'Nº nudos solicitables',data:cnt,backgroundColor:'#F3721F'}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      scales:{y:{beginAtZero:true,title:{display:true,text:'Nº nudos',font:{size:10}}},x:{title:{display:true,text:'MW disponibles (tramo)',font:{size:10}}}},
+      plugins:{legend:{display:false}}}});
+}
+// --- Orquestador de la pestaña ---
+function renderOportunidades(){
+  const year=document.getElementById('gs-year').value, month=document.getElementById('gs-month').value;
+  let pi=GS_MONTHS.indexOf(month)-1, py=year; if(pi<0){pi=11;py=(parseInt(year)-1).toString();}
+  const key=year+'_'+month, pkey=py+'_'+GS_MONTHS[pi];
+  const side=document.getElementById('gs-side').value, scope=document.getElementById('gs-scope').value;
+  const sub=document.getElementById('gs-opp-sub'); if(sub) sub.textContent=' · '+(GS_MLBL[month]||month)+' 20'+year+' · '+(GS_SIDELBL[side]||side)+' · '+(scope==='ALL'?'TSO+DSO':scope);
+  const cur=gsOppCollect(key,side,scope), prev=gsOppCollect(pkey,side,scope);
+  gsOppRenderKPIs(gsOppTotals(cur),gsOppTotals(prev));
+  // score: base sin tendencia → top 400 con tendencia → orden final
+  const ctx={maxDisp:0};
+  cur.recs.forEach(function(r){ if(!r.noSolic&&!isNaN(r.disp)&&r.disp>ctx.maxDisp) ctx.maxDisp=r.disp; });
+  cur.recs.forEach(function(r){ r.trend=null; r.score=gsOppScore(r,ctx); r.cls=gsOppClass(r); });
+  cur.recs.sort(function(a,b){ return b.score-a.score; });
+  const lim=Math.min(400,cur.recs.length);
+  for(let i=0;i<lim;i++){ const r=cur.recs[i]; if(r.score>0){ r.trend=gsOppTrend(r.entry,side,key); r.score=gsOppScore(r,ctx); } }
+  cur.recs.sort(function(a,b){ return b.score-a.score; });
+  gsOppRecs=cur.recs; gsOppKey=key;
+  // selector CCAA (conservando selección)
+  const ccSel=document.getElementById('gs-opp-ccaa');
+  if(ccSel){ const prevV=ccSel.value; const seen={}; let opts='<option value="">Todas</option>';
+    cur.recs.map(function(r){return r.ccaa;}).filter(function(c){return c&&!seen[c]&&(seen[c]=1);}).sort(function(a,b){return a.localeCompare(b,'es');}).forEach(function(c){ opts+='<option value="'+c+'"'+(c===prevV?' selected':'')+'>'+c+'</option>'; });
+    ccSel.innerHTML=opts; }
+  gsOppRenderRank();
+  gsOppRenderCharts(cur.recs);
+  const adv=document.getElementById('gs-opp-adv'); if(adv&&adv.open) renderVariaciones();
+}
 </script>
 
 <!-- Modal nota aclaratoria 0* -->
@@ -3602,29 +3831,55 @@ function naDeepDive(name){
     <div id="gs-global-cards"></div>
   </div>
   <div id="gs-mode-var">
-    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:10px;">
-      <label style="font-size:13px;">Agrupar por:
-        <select id="gs-var-by" onchange="renderVariaciones()">
-          <option value="causa" selected>Causa</option>
-          <option value="flujo">Flujo (inferido)</option>
-        </select>
-      </label>
-      <label style="font-size:13px;">Top nudos por:
-        <select id="gs-var-topvar" onchange="renderVariaciones()">
-          <option value="dDisp" selected>&#916; disponible</option>
-          <option value="dMargen">&#916; margen</option>
-          <option value="dOtorg">&#916; otorgada</option>
-          <option value="dPend">&#916; en curso / pendiente</option>
-        </select>
-      </label>
-      <button type="button" onclick="gsToggleVarNote()" style="background:#e2e8f0;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:#F3721F;font-weight:bold;">&#9432; Cómo se clasifica</button>
-      <span style="font-size:11px;color:#64748b;">Variaciones vs mes anterior · usa el filtro «Red» · «Nivel / Vista» no aplican aquí.</span>
+    <div class="gg-header"><span class="gg-esp">España</span> <span class="gg-sep">·</span> <span class="gg-rn">Radar de oportunidades del promotor</span><span id="gs-opp-sub" style="font-size:12px;color:#94a3b8;"></span></div>
+    <div style="font-size:11px;color:#64748b;margin:2px 0 10px;">Usa los filtros <b>Año · Mes · Perspectiva · Red</b> de la barra superior · «Nivel» y «Bloque» no aplican en esta pestaña.</div>
+    <!-- FASE 1: KPIs -->
+    <div id="gs-opp-kpis" class="gs-kpi-grid"></div>
+    <!-- FASE 2: ranking con score -->
+    <div class="gs-var-sec">
+      <h3>&#127942; Top oportunidades <button type="button" class="gs-opp-info" onclick="gsOppToggleNote()">&#9432; C&oacute;mo se calcula el score</button></h3>
+      <div id="gs-opp-note" style="display:none;"></div>
+      <div class="gs-opp-filters">
+        <label>M&iacute;n. MW disp.: <input id="gs-opp-min" type="number" value="0" min="0" step="10" oninput="gsOppRenderRank()"></label>
+        <label>CCAA: <select id="gs-opp-ccaa" onchange="gsOppRenderRank()"><option value="">Todas</option></select></label>
+        <label>Buscar: <input id="gs-opp-q" type="text" placeholder="Nudo&hellip;" oninput="gsOppRenderRank()"></label>
+        <label>Mostrar: <select id="gs-opp-n" onchange="gsOppRenderRank()"><option value="10">10</option><option value="25" selected>25</option><option value="50">50</option><option value="100">100</option></select></label>
+        <label><input id="gs-opp-nosolic" type="checkbox" onchange="gsOppRenderRank()"> incluir no solicitables</label>
+        <span style="font-size:11px;color:#94a3b8;">&#128994; solicitable holgado &nbsp;&#128993; compartido/zonal o presi&oacute;n alta &nbsp;&#128308; bloqueado / sin capacidad</span>
+      </div>
+      <div id="gs-opp-rank"></div>
     </div>
-    <div id="gs-var-note" style="display:none;margin-bottom:12px;padding:12px 16px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;font-size:12px;color:#334155;line-height:1.6;"></div>
-    <div class="gs-var-sec"><h3 id="gs-var-A-title">&#916; de todas las variables</h3><div id="gs-var-A"></div></div>
-    <div class="gs-var-sec"><h3>Top nudos por variación</h3><div id="gs-var-B"></div></div>
-    <div class="gs-var-sec"><h3>Transiciones de causa (mes anterior &#8594; mes actual)</h3><div id="gs-var-C"></div></div>
-    <div class="gs-var-sec"><h3>Criterio limitante y zona (deduplicado)</h3><div id="gs-var-D"></div></div>
+    <!-- FASE 3: gráficos de contexto -->
+    <div class="gs-var-sec"><h3>&#128200; Disponible vs presi&oacute;n de solicitudes</h3><div style="font-size:11px;color:#64748b;margin-bottom:4px;">Cada punto es un nudo solicitable &middot; abajo-derecha = mucha capacidad y poca competencia (zona de oportunidad) &middot; eje X logar&iacute;tmico.</div><div class="gs-opp-chartwrap"><canvas id="gs-opp-scatter"></canvas></div></div>
+    <div class="gs-var-sec"><h3>&#127959;&#65039; Embudo de saturaci&oacute;n por CCAA</h3><div style="font-size:11px;color:#64748b;margin-bottom:4px;">Otorgada + en curso/pendiente + disponible + no otorgable (MW &middot; los valores sin dato se omiten &middot; en DSO no existen &laquo;no otorgable&raquo; ni margen).</div><div class="gs-opp-chartwrap tall"><canvas id="gs-opp-stack"></canvas></div></div>
+    <div class="gs-var-sec"><h3>&#128202; Distribuci&oacute;n de la capacidad disponible</h3><div style="font-size:11px;color:#64748b;margin-bottom:4px;">N&ordm; de nudos solicitables por tramo de MW disponibles: &iquest;capacidad concentrada en pocos nudos grandes o repartida?</div><div class="gs-opp-chartwrap"><canvas id="gs-opp-hist"></canvas></div></div>
+    <!-- FASE 4: contenido anterior de la pestaña, reubicado en acordeón -->
+    <details id="gs-opp-adv" ontoggle="if(this.open) renderVariaciones()">
+      <summary>&#128300; An&aacute;lisis avanzado de variaciones (&#916; vs mes anterior)</summary>
+      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:10px 0;">
+        <label style="font-size:13px;">Agrupar por:
+          <select id="gs-var-by" onchange="renderVariaciones()">
+            <option value="causa" selected>Causa</option>
+            <option value="flujo">Flujo (inferido)</option>
+          </select>
+        </label>
+        <label style="font-size:13px;">Top nudos por:
+          <select id="gs-var-topvar" onchange="renderVariaciones()">
+            <option value="dDisp" selected>&#916; disponible</option>
+            <option value="dMargen">&#916; margen</option>
+            <option value="dOtorg">&#916; otorgada</option>
+            <option value="dPend">&#916; en curso / pendiente</option>
+          </select>
+        </label>
+        <button type="button" onclick="gsToggleVarNote()" style="background:#e2e8f0;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:#F3721F;font-weight:bold;">&#9432; Cómo se clasifica</button>
+        <span style="font-size:11px;color:#64748b;">Variaciones vs mes anterior · usa el filtro «Red» · «Nivel / Vista» no aplican aquí.</span>
+      </div>
+      <div id="gs-var-note" style="display:none;margin-bottom:12px;padding:12px 16px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;font-size:12px;color:#334155;line-height:1.6;"></div>
+      <div class="gs-var-sec"><h3 id="gs-var-A-title">&#916; de todas las variables</h3><div id="gs-var-A"></div></div>
+      <div class="gs-var-sec"><h3>Top nudos por variación</h3><div id="gs-var-B"></div></div>
+      <div class="gs-var-sec"><h3>Transiciones de causa (mes anterior &#8594; mes actual)</h3><div id="gs-var-C"></div></div>
+      <div class="gs-var-sec"><h3>Criterio limitante y zona (deduplicado)</h3><div id="gs-var-D"></div></div>
+    </details>
   </div>
 </div>
 
