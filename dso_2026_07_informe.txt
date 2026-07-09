@@ -1,0 +1,256 @@
+INFORME DSO  ---  periodo 2026_07
+base previa: sí (5952 nudos)
+
+OPERADOR            base  con dato
+E-DISTRIBUCION      1851      1851
+E-REDES              197         0
+EASA                   5         0
+I-DE                3039      3030
+UFD                  680       679
+VIESGO               180       180
+TOTAL               5952      5740
+
+NUEVOS este mes: 0
+
+DESAPARECIDOS NUEVOS este mes (tenían dato el mes anterior): 5
+   [EASA] BAÑOS 3 (visto por última vez 2026_07)
+   [EASA] ERISTE 25 (visto por última vez 2026_07)
+   [EASA] PUEYO 11 (visto por última vez 2026_07)
+   [EASA] SABIÑANIGO 11 (visto por última vez 2026_07)
+   [EASA] SALLENT 20 (visto por última vez 2026_07)
+
+SIN DATO arrastrados de meses previos (persisten como no-info): 207
+   [I-DE] ARANDA IDE 132.00 (visto por última vez 2026_02)
+   [I-DE] STVTORO 45-2 (visto por última vez 2026_01)
+   [I-DE] ALFRESNO T2 (visto por última vez 2026_01)
+   [I-DE] FTEALAMO T1 (visto por última vez 2026_01)
+   [I-DE] TOTANA T1 (visto por última vez 2026_01)
+   [I-DE] TOTANA T2 (visto por última vez 2026_01)
+   [I-DE] VIVEROS T2 (visto por última vez 2026_01)
+   [I-DE] L.VINAS T1 (visto por última vez 2026_01)
+   [I-DE] LIRIA T3 (visto por última vez 2026_01)
+   [E-REDES] SE/CR ZORRINA 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR VILLAMAYOR 24 (visto por última vez 2026_06)
+   [E-REDES] SE/CR VENTA LAS RANAS 24 (visto por última vez 2026_06)
+   [E-REDES] SE/CR VEGUIN 2 24 (visto por última vez 2026_06)
+   [E-REDES] SE/CR URB LA VALLINA 1 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR TANES 24 (visto por última vez 2026_06)
+   [E-REDES] SE/CR SECTOR 4 20 (visto por última vez 2026_06)
+   [E-REDES] SE/CR SECTOR 13 20 (visto por última vez 2026_06)
+   [E-REDES] SE/CR SANTA EULALIA 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR SANDIN 24 (visto por última vez 2026_06)
+   [E-REDES] SE/CR SAN PEDRO 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR SAN MIGUEL 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR SAN ESTEBAN DE PRAVIA 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR SAMA 24 (visto por última vez 2026_06)
+   [E-REDES] SE/CR ROCES RESIDENCIAL 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR RIOSECO 24 (visto por última vez 2026_06)
+   [E-REDES] SE/CR RIAÑO 24 (visto por última vez 2026_06)
+   [E-REDES] SE/CR QUINTES 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR PROAZA 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR POSTIGO 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR PIEDELORO 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR PGNO LOS AZARBES 20 (visto por última vez 2026_06)
+   [E-REDES] SE/CR PEON 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR PALACIO DE CONGRESOS 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR OXIGENO 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR NUEVA 24 (visto por última vez 2026_06)
+   [E-REDES] SE/CR NOCEDA 24 (visto por última vez 2026_06)
+   [E-REDES] SE/CR NIEDA 24 (visto por última vez 2026_06)
+   [E-REDES] SE/CR NARANCO 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR MASIA BALO 20 (visto por última vez 2026_06)
+   [E-REDES] SE/CR MALLADERA 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR LUIÑA 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR LOS LLANOS-EL CRUCERO 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR LLEDIAS 24 (visto por última vez 2026_06)
+   [E-REDES] SE/CR LIERES 24 (visto por última vez 2026_06)
+   [E-REDES] SE/CR LAVIANA 24 (visto por última vez 2026_06)
+   [E-REDES] SE/CR LAGUARRES 25 (visto por última vez 2026_06)
+   [E-REDES] SE/CR LADA 24 (visto por última vez 2026_06)
+   [E-REDES] SE/CR LA PINAETA 20 (visto por última vez 2026_06)
+   [E-REDES] SE/CR LA ESTRADA 24 (visto por última vez 2026_06)
+   [E-REDES] SE/CR LA ESTACION 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR LA CABAÑA 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR LA BARRACA 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR LA ARENA 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR INSTITUTO 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR IBIAS 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR GRULLOS 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR GETAFE SUR 20 (visto por última vez 2026_06)
+   [E-REDES] SE/CR FERREROS 24 (visto por última vez 2026_06)
+   [E-REDES] SE/CR EZCURDIA 22 (visto por última vez 2026_06)
+   [E-REDES] SE/CR ENTRAGO 22 (visto por última vez 2026_06)
+   ... (+147)
+
+CAMBIOS DE COORDENADAS: 0
+
+COORDENADAS RECUPERADAS (estaban sin posición): 0
+
+COORDENADAS HEREDADAS de misma subestación (coord corrupta en el fichero): 2
+   PRAPOZUE T1: 433971.71,4464204.4 (de código 4880)
+   PRAPOZUE T2: 433971.71,4464204.4 (de código 4880)
+
+ANOMALÍAS DE COORDENADAS sin resolver (revisar): 0
+
+AFECCIÓN AGUAS ARRIBA (RdT)  ·  declaradas 5697 · heredadas subestación 45 · inferidas por nombre 7 · inferidas por proximidad 159 · SIN afección 44
+  Heredadas de otro nivel de tensión de la misma subestación:
+   STVTORO 45-2 -> VILLATORO 220
+   ALFRESNO T2 -> VILLAVICIOSA DE O 220
+   FTEALAMO T1 -> LA ASOMADA 400
+   TOTANA T1 -> TOTANA 400
+   TOTANA T2 -> TOTANA 400
+   VIVEROS T2 -> LA ELIANA (LIRI) 400
+   L.VINAS T1 -> TORRENTE REE 400
+   LIRIA T3 -> LA ELIANA (LIRI) 400
+   PONFERRADA 33 -> COMPOSTILLA 220
+   PUENTELARRA T2 30 -> CH PUENTELARRA 220
+   PUENTELARRA T3 30 -> CH PUENTELARRA 220
+   PIEDRAHITA T1 45 -> LASTRAS 400
+   DON BENITO STR T2 45 -> MERIDA 220
+   LA ROCA T1 20 -> CACERES 220
+   MEDELLIN T1 45 -> MERIDA 220
+   SANTA AMALIA T2 45 -> MERIDA 220
+   VALDECABALLEROS STR T2 45 -> VALDECABALLEROS 400
+   ABERTURA T2 45 -> TRUJILLO 220
+   ORIOL T4 45 -> CH JOSE MARIA ORIOL 220
+   CACERES2 T2 45 -> CACERES 220
+   CACERES3 T1 45 -> CACERES 220
+   EL CABEZO T2 15 -> CH JOSE MARIA ORIOL 220
+   MONTEHERMOSO T2 20 -> PLASENCIA 220
+   MONTEHERMOSO T2 45 -> PLASENCIA 220
+   NAVALMORAL MATA 45 -> ALMARAZ 220
+   PUENTE CUATERNO T2 13 -> CASATEJADA 220
+   PUENTE CUATERNO T2 45 -> CASATEJADA 220
+   ROBLEDO T1 20 -> CASATEJADA 220
+   ROBLEDO T2 45 -> CASATEJADA 220
+   VALCORCHERO T1 13 -> PLASENCIA 220
+   VALCORCHERO T2 45 -> PLASENCIA 220
+   SAN MILLAN T2 45 -> VILECHA 400
+   UNIVERSIDAD T2 20 -> VILECHA 400
+   Ardoz A1 66.000 -> ARDOZ NUEVA 220
+   Ardoz B1 66.000 -> ARDOZ NUEVA 220
+   LADA T2 30 -> CT LADA 400
+   BEJAR T2 45 -> VILLAMAYOR 220
+   ALBAHONDA T1 13 -> VILLAMAYOR 220
+   ALBAHONDA T2 45 -> VILLAMAYOR 220
+   SORIA T4 13 -> ALMAZAN 400
+   MEDINA SUR T1 13 -> MEDINA DE CAMPO 220
+   CORRALES T1 13 -> ZAMORA 220
+   UNIVERSIDAD CC T2 13 -> CACERES 220
+   PRAPOZUE T1 -> LEGANES 220
+   PRAPOZUE T2 -> LEGANES 220
+  Inferidas por similitud de nombre (VERIFICAR):
+   BAÑOS 3 -> SABIÑANIGO 220  (ratio 1.00 con BAÑOS 66, 0.0 km)
+   PUEYO 11 -> SABIÑANIGO 220  (ratio 1.00 con PUEYO 66, 0.0 km)
+   SABIÑANIGO 11 -> SABIÑANIGO 220  (ratio 1.00 con SABIÑANIGO 132, 0.0 km)
+   SALLENT 20 -> SABIÑANIGO 220  (ratio 1.00 con SALLENT 132, 0.0 km)
+   SE SAGUNTO 20 -> SAGUNTO REE 220  (ratio 1.00 con SAGUNTO 132.00, 0.2 km)
+   SE CAMARMEÑA 16 -> Siero 220 kV  (ratio 1.00 con CAMARMEÑA 132, 0.1 km)
+   ELPALMAR 20 -> EL PALMAR DE LA GOMERA 66  (ratio 1.00 con ELPALMAR 20, 0.0 km)
+  Inferidas por proximidad geográfica (VERIFICAR):
+   ARANDA IDE 132.00 -> VILLALBILLA 220  (1.5 km de PRADOMARINA T1 13)
+   ERISTE 25 -> CINCA 220  (13.1 km de SEIRA 110)
+   SE/CR ZORRINA 22 -> Salas 400 kV  (12.4 km de PICO GALLO 132)
+   SE/CR VILLAMAYOR 24 -> Siero 220 kV  (14.6 km de CANGAS 132)
+   SE/CR VEGUIN 2 24 -> Siero 220 kV  (5.8 km de SIERO 132)
+   SE/CR TANES 24 -> Siero 220 kV  (14.0 km de ENTREPEÑAS 12)
+   SE/CR SECTOR 4 20 -> PINTO 220  (0.8 km de PINTOSTR T1)
+   SE/CR SECTOR 13 20 -> TORRENTE REE 400  (2.1 km de EL OLIVE 132.00)
+   SE/CR SANTA EULALIA 22 -> Soto 220 kV  (4.3 km de BAIÑA 12)
+   SE/CR SANDIN 24 -> CT LADA 400  (0.9 km de LADA 132.00)
+   SE/CR SAN MIGUEL 22 -> Siero 220 kV  (1.4 km de SIERO 132)
+   SE/CR SAMA 24 -> CT LADA 400  (2.5 km de LADA 132.00)
+   SE/CR ROCES RESIDENCIAL 22 -> Siero 220 kV  (16.7 km de SIERO 132)
+   SE/CR RIOSECO 24 -> Siero 220 kV  (13.3 km de ENTREPEÑAS 12)
+   SE/CR RIAÑO 24 -> CT LADA 400  (2.3 km de LADA 132.00)
+   SE/CR PROAZA 22 -> Soto 220 kV  (15.8 km de BAIÑA 12)
+   SE/CR POSTIGO 22 -> Siero 220 kV  (7.0 km de SIERO 132)
+   SE/CR PGNO LOS AZARBES 20 -> ROJALES 220  (9.6 km de ROJALES T1)
+   SE/CR PALACIO DE CONGRESOS 22 -> Siero 220 kV  (8.6 km de SIERO 132)
+   SE/CR OXIGENO 22 -> Siero 220 kV  (18.7 km de SIERO 132)
+   SE/CR NUEVA 24 -> Siero 220 kV  (18.2 km de CANGAS 132)
+   SE/CR NOCEDA 24 -> Siero 220 kV  (6.8 km de CANGAS 132)
+   SE/CR NIEDA 24 -> Siero 220 kV  (1.8 km de CANGAS 132)
+   SE/CR NARANCO 22 -> Siero 220 kV  (8.1 km de SIERO 132)
+   SE/CR MASIA BALO 20 -> TORRENTE REE 400  (4.4 km de EL OLIVE 132.00)
+   SE/CR LOS LLANOS-EL CRUCERO 22 -> Salas 400 kV  (4.4 km de PICO GALLO 132)
+   SE/CR LLEDIAS 24 -> Siero 220 kV  (13.5 km de ARENAS 132)
+   SE/CR LIERES 24 -> CT LADA 400  (12.6 km de LADA 132.00)
+   SE/CR LAVIANA 24 -> Siero 220 kV  (11.5 km de ENTREPEÑAS 12)
+   SE/CR LAGUARRES 25 -> CINCA 220  (8.0 km de PERARRUA 110)
+   SE/CR LADA 24 -> CT LADA 400  (1.6 km de LADA 132.00)
+   SE/CR LA PINAETA 20 -> SAGUNTO REE 220  (2.3 km de P.SAGUNT 132.00)
+   SE/CR LA ESTRADA 24 -> Siero 220 kV  (6.4 km de CANGAS 132)
+   SE/CR LA CABAÑA 22 -> Siero 220 kV  (9.1 km de SIERO 132)
+   SE/CR INSTITUTO 22 -> El Palo 400 kV  (14.4 km de EL PALO 132)
+   SE/CR GETAFE SUR 20 -> PINTO 220  (2.2 km de VIENCINA T1)
+   SE/CR FERREROS 24 -> Siero 220 kV  (19.5 km de CANGAS 132)
+   SE/CR EZCURDIA 22 -> Siero 220 kV  (19.8 km de SIERO 132)
+   SE/CR EL RASO 20 -> ROJALES 220  (4.4 km de ROJALES T1)
+   SE/CR EL PUELO 22 -> El Palo 400 kV  (13.0 km de EL PALO 132)
+   SE/CR EL LLANO 22 -> Siero 220 kV  (18.7 km de SIERO 132)
+   SE/CR EL FRESNO 22 -> Siero 220 kV  (8.4 km de SIERO 132)
+   SE/CR EL CRISTO 22 -> Soto 220 kV  (9.3 km de BAIÑA 12)
+   SE/CR EL COBAYO 24 -> Siero 220 kV  (13.7 km de CANGAS 132)
+   SE/CR EL BERRON 22 -> Siero 220 kV  (4.6 km de SIERO 132)
+   SE/CR EDIFICIO SOCIAL 22 -> Siero 220 kV  (8.0 km de SIERO 132)
+   SE/CR DANONE (ALDAYA) 20 -> ALDAIA (TORR) 220  (0.6 km de ALDAIA T1)
+   SE/CR CTRA MADRID 15 -> PLAZA 220  (0.0 km de CR_MADRID 45)
+   SE/CR COSTANILLA 22 -> Siero 220 kV  (19.4 km de SIERO 132)
+   SE/CR CORNELLANA 22 -> Salas 400 kV  (19.7 km de PICO GALLO 132)
+   SE/CR COLINA DEL FAISAN 22 -> Siero 220 kV  (16.5 km de SIERO 132)
+   SE/CR CLAS 22 -> Siero 220 kV  (1.9 km de SIERO 132)
+   SE/CR CASIELLES 24 -> CT LADA 400  (3.1 km de LADA 132.00)
+   SE/CR CARROCERA I 24 -> CT LADA 400  (6.5 km de LADA 132.00)
+   SE/CR CAÑO 24 -> Siero 220 kV  (2.4 km de CANGAS 132)
+   SE/CR CABECERA 20 -> SAGUNTO REE 220  (3.4 km de P.SAGUNT 132.00)
+   SE/CR BONAIRE 3 20 -> ALDAIA (TORR) 220  (2.4 km de ALDAIA T1)
+   SE/CR BONAIRE 2 20 -> ALDAIA (TORR) 220  (2.5 km de ALDAIA T1)
+   SE/CR BONAIRE 1 20 -> ALDAIA (TORR) 220  (2.5 km de ALDAIA T1)
+   SE/CR BLIMEA 24 -> CT LADA 400  (9.7 km de LADA 132.00)
+   ... (+99)
+  Sin afección determinable (ni declarada, ni misma subestación, ni nombre/proximidad):
+   [E-REDES] SE/CR VENTA LAS RANAS 24
+   [E-REDES] SE/CR URB LA VALLINA 1 22
+   [E-REDES] SE/CR SAN PEDRO 22
+   [E-REDES] SE/CR SAN ESTEBAN DE PRAVIA 22
+   [E-REDES] SE/CR QUINTES 22
+   [E-REDES] SE/CR PIEDELORO 22
+   [E-REDES] SE/CR PEON 22
+   [E-REDES] SE/CR MALLADERA 22
+   [E-REDES] SE/CR LUIÑA 22
+   [E-REDES] SE/CR LA ESTACION 22
+   [E-REDES] SE/CR LA BARRACA 22
+   [E-REDES] SE/CR LA ARENA 22
+   [E-REDES] SE/CR IBIAS 22
+   [E-REDES] SE/CR GRULLOS 22
+   [E-REDES] SE/CR ENTRAGO 22
+   [E-REDES] SE/CR BOCINES 22
+   [E-REDES] SE/CR BEDRIÑANA 24
+   [E-REDES] SE/CR AMBAS 24
+   [E-REDES] SE/CR AEROPUERTO 22
+   [E-REDES] SE VILLAVICIOSA 132
+   [E-REDES] SE VILLAVICIOSA 50
+   [E-REDES] SE VILLAVICIOSA 24
+   [E-REDES] SE VILLALEGRE 50
+   [E-REDES] SE VILLALEGRE 22
+   [E-REDES] SE VEGA RENGOS 50
+   [E-REDES] SE VEGA RENGOS 22
+   [E-REDES] SE TRASONA 132
+   [E-REDES] SE TRASONA 50
+   [E-REDES] SE TRASONA 22
+   [E-REDES] SE TABIELLA 132
+   [E-REDES] SE TABIELLA 50
+   [E-REDES] SE TABIELLA 22
+   [E-REDES] SE ROMIO 132
+   [E-REDES] SE ROMIO 50
+   [E-REDES] SE ROMIO 22
+   [E-REDES] SE PUERTO DE GIJON 132
+   [E-REDES] SE PUERTO DE GIJON 22
+   [E-REDES] SE PRAVIA 50
+   [E-REDES] SE PRAVIA 22
+   [E-REDES] SE MARUCA 132
+   [E-REDES] SE MARUCA 22
+   [E-REDES] SE CUDILLERO 22
+   [E-REDES] SE AMBULATORIO 22
+   [E-REDES] R000042 22
