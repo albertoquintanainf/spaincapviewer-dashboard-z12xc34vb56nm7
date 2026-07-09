@@ -889,12 +889,15 @@ function gsDsoBlocks(rich, side) {
     if (!rich) return {};
     const d = (side === 'dem') ? (rich.dem || {}) : (rich.gen || {});
     if (!Object.keys(d).length) return {};
-    // Una columna filtrable por VARIABLE (bloque de un solo campo cada uno), no agrupadas.
+    // Columnas UNIFICADAS con TSO: mismas claves de bloque para las variables equivalentes,
+    // de modo que la tabla muestra una sola columna 'Disponible', 'Otorgada' y 'En curso' para
+    // ambas redes (TSO y DSO nunca coexisten en la misma tabla). Las etiquetas internas conservan
+    // el término propio del DSO. Las columnas específicas de DSO van con su clave 'dso_*'.
     const B = {};
-    B.dso_disp     = { 'Disponible': d.disp };
-    B.dso_ocupada  = { 'Ocupada (otorgada)': d.ocupada };
-    B.dso_admitida = { 'Admitida y no resuelta': d.admitida };
-    B.dso_pos_ocup = { 'Posiciones ocupadas': d.pos_ocup };
+    B.disp        = { 'Disponible': d.disp };
+    B.otorgada    = { 'Ocupada (otorgada)': d.ocupada };
+    B.en_curso    = { 'Admitida y no resuelta': d.admitida };
+    B.posiciones  = { 'Posiciones ocupadas': d.pos_ocup };
     B.dso_pos_libr = { 'Posiciones libres': d.pos_libr };
     B.dso_nudo0    = { 'Nudo 0*': d.nudo0 };
     B.dso_comprom  = { 'Comprometida': d.comprom };
@@ -3158,7 +3161,7 @@ function gsWhatsNewRecs(key,pkey,side,scope){
   return out;
 }
 function gsWnToggle(id){ const d=document.getElementById(id); if(!d) return; const op=(d.style.display==='none'); d.style.display=op?'':'none'; const ind=document.getElementById(id+'-i'); if(ind) ind.textContent=op?'\u25be':'\u25b8'; }
-const GS_WN_BLOCKS=[['posiciones','Posiciones'],['nodal','Criterios nodales / zona'],['otorgada','Otorgada \u00b7 situaci\u00f3n del nudo'],['en_curso','En curso \u00b7 pendiente de resoluci\u00f3n'],['margen','Margen (capacidad de acceso total)'],['crit_lim','Criterios limitantes'],['no_otorgable','No otorgable'],['no_disp','No disponible'],['lim_posicion','Limitaci\u00f3n por posici\u00f3n'],['disp','Disponible para solicitud'],['liberada','Liberada'],['reserva','Reserva'],['concurso','Concurso'],['dso_disp','DSO \u00b7 Disponible'],['dso_ocupada','DSO \u00b7 Ocupada (otorgada)'],['dso_admitida','DSO \u00b7 Admitida y no resuelta'],['dso_pos_ocup','DSO \u00b7 Posiciones ocupadas'],['dso_pos_libr','DSO \u00b7 Posiciones libres'],['dso_nudo0','DSO \u00b7 Nudo 0*'],['dso_comprom','DSO \u00b7 Comprometida']];
+const GS_WN_BLOCKS=[['posiciones','Posiciones',''],['otorgada','Otorgada \u00b7 situaci\u00f3n del nudo',''],['en_curso','En curso \u00b7 pendiente de resoluci\u00f3n',''],['disp','Disponible para solicitud',''],['margen','Margen (capacidad de acceso total)','TSO'],['nodal','Criterios nodales / zona','TSO'],['crit_lim','Criterios limitantes','TSO'],['no_otorgable','No otorgable','TSO'],['no_disp','No disponible','TSO'],['lim_posicion','Limitaci\u00f3n por posici\u00f3n','TSO'],['liberada','Liberada','TSO'],['reserva','Reserva','TSO'],['concurso','Concurso','TSO'],['dso_pos_libr','Posiciones libres','DSO'],['dso_nudo0','Nudo 0*','DSO'],['dso_comprom','Comprometida','DSO']];
 const GS_WN_HDR={"posiciones":{"genalm_transporte_E":"Gen/Alm a la red de transporte · E","genalm_transporte_P":"Gen/Alm a la red de transporte · P","consumo_transporte_E":"Consumo a la red de transporte · E","consumo_transporte_P":"Consumo a la red de transporte · P","distribucion_E":"A red de distribución · E","distribucion_P":"A red de distribución · P","transporte_E":"A red de transporte · E","transporte_P":"A red de transporte · P"},"nodal":{"wscr_cap":"Capacidad de acceso nodal","binudos":"Binudos","afeccion_cs_seguridad":"Afección de CS a seguridad del sistema","wscr_margen":"Margen no ocupado","estatico_dem_cap":"Capacidad de acceso nodal","estatico_dem_zona":"Zona con capacidad compartida a la que pertenece el nudo","estatico_dem_margen":"Margen no ocupado","lim_temporales_config":"Limitaciones temporales de acceso por configuración de la subestación","estatico_alm_cap":"Capacidad de acceso nodal","estatico_alm_zona":"Zona con capacidad compartida a la que pertenece el nudo","estatico_alm_margen":"Margen no ocupado","dinamico1_margen":"Margen no ocupado","dinamico2_margen":"Margen no ocupado","estatico_gen_cap":"Capacidad de acceso nodal","estatico_gen_zona":"Zona con capacidad compartida a la que pertenece el nudo","estatico_gen_margen":"Margen no ocupado","dinamico_cap":"Capacidad de acceso nodal","dinamico_zona":"Zona con capacidad compartida a la que pertenece el nudo","dinamico_lim_interna":"Limitación interna por configuración del nudo","dinamico_margen":"Margen no ocupado"},"otorgada":{"consumo_rdd_ref":"Capacidad de acceso para consumo en la RdD (valor de referencia)","estado_acuerdo_rdd":"Estado acuerdo sobre capacidad de acceso para consumo en la RdD (valor de referencia)","dem_adicional":"Capacidad de acceso otorgada a demanda adicional al valor de referencia","dem_cep_wscr":"Capacidad de acceso otorgada demanda CEP con afección a WSCR","dem_rdt":"Capacidad de acceso otorgada demanda RdT","dem_acept_rdd":"Capacidad de acceso demanda con aceptabilidad RdD","dem_acept_rdd_no_ref":"Capacidad de acceso demanda con aceptabilidad RdD no incluida en el valor de referencia","alm_adicional":"Capacidad de acceso otorgada almacenamiento adicional al valor de referencia","alm_rdt":"Capacidad de acceso otorgada almacenamiento RdT","alm_acept_rdd":"Capacidad de acceso almacenamiento con aceptabilidad RdD","alm_acept_rdd_no_ref":"Capacidad de acceso  almacenamiento con aceptabilidad RdD no incluida en el valor de referencia","dem_ch_rdt":"Capacidad de acceso otorgada demanda CH RdT","dem_sh_rdt":"Capacidad de acceso otorgada demanda SH RdT","ch_acept_rdd":"Capacidad de acceso CH con aceptabilidad en RdD","sh_acept_rdd":"Capacidad de acceso SH con aceptabilidad en RdD","mge":"Capacidad de acceso otorgada MGE","mges":"Capacidad de acceso otorgada MGES","mpe_con_wscr":"Capacidad de acceso otorgada MPE con afección WSCR","mpe_sin_wscr":"Capacidad de acceso otorgada MPE sin afección WSCR","mpe":"Capacidad de acceso otorgada MPE","gen":"Capacidad de acceso otorgada GEN","alm":"Capacidad de acceso otorgada ALM"},"en_curso":{"dem":"Capacidad de acceso solicitada en curso y pendiente resolver demanda RdT","alm_rdt":"Capacidad de acceso solicitada en curso y pendiente resolver almacenamiento RdT","total":"Capacidad de acceso solicitada en curso y pendiente resolver MGE","mges":"Capacidad de acceso solicitada en curso y pendiente resolver MGES","mpe_con_wscr":"Capacidad de acceso solicitada en curso y pendiente resolver MPE con afección WSCR","mpe_sin_wscr":"Capacidad de acceso solicitada en curso y pendiente resolver MPE sin afección WSCR","mpe":"Capacidad de acceso solicitada en curso y pendiente resolver MPE","gen":"Capacidad de acceso solicitada en curso y pendiente resolver GEN","alm":"Capacidad de acceso solicitada en curso y pendiente resolver ALM"},"margen":{"dem_ch":"DEMANDA · CEP · CH","dem_sh":"DEMANDA · CEP · SH","dem_no_cep":"DEMANDA · NO CEP","alm_cep_mpe":"ALMACENAMIENTO · CEP (MPE)","alm_no_cep_mges":"ALMACENAMIENTO · NO CEP (MGES)","gen_mges":"Generación · MGES  [MW]","gen_mpe":"Generación · MPE [MW]","alm_mges":"Almacenamiento · MGES  [MW]","alm_mpe":"Almacenamiento · MPE [MW]"},"crit_lim":{"dem_ch":"DEMANDA · CEP · CH","dem_sh":"DEMANDA · CEP · SH","dem_no_cep":"DEMANDA · NO CEP","alm_cep":"ALMACENAMIENTO · CEP (MPE)","alm_no_cep":"ALMACENAMIENTO · NO CEP (MGES)","gen_mges":"Generación · MGES","gen_mpe":"Generación · MPE","alm_mges":"Almacenamiento · MGES","alm_mpe":"Almacenamiento · MPE"},"no_otorgable":{"dem_ch":"DEMANDA · CEP · CH","dem_sh":"DEMANDA · CEP · SH","dem_no_cep":"DEMANDA · NO CEP","alm_cep":"ALMACENAMIENTO · CEP (MPE)","alm_no_cep":"ALMACENAMIENTO · NO CEP (MGES)","motivo":"Motivo capacidad no otorgable en RdT"},"disp":{"dem_ch":"DEMANDA · CEP · CH","dem_sh":"DEMANDA · CEP · SH","dem_no_cep":"DEMANDA · NO CEP","alm_cep":"ALMACENAMIENTO · CEP (MPE)","alm_no_cep":"ALMACENAMIENTO · NO CEP (MGES)","gen_mges_rdt":"Generación · MGES RdTo MPE con compensador síncrono RdT [MW]","gen_mpe_rdt":"Generación · MPE RdT [MW]","gen_mges_rdd":"Generación · MGES RdD, MPE no conectado al primer nivel de transformación RdD o MPE con compensador síncrono RdD [MW]","gen_mpe_rdd":"Generación · MPE RdD [MW]","alm_mges_rdt":"Almacenamiento · MGES RdTo MPE con compensador síncrono RdT [MW]","alm_mpe_rdt":"Almacenamiento · MPE RdT [MW]","alm_mges_rdd":"Almacenamiento · MGES RdD, MPE no conectado al primer nivel de transformación RdD o MPE con compensador síncrono RdD [MW]","alm_mpe_rdd":"Almacenamiento · MPE RdD [MW]"},"concurso":{"nudo_concurso":"nudo_concurso","normativa":"normativa"},"lim_posicion":{"cap_max_otorgable":"Limitación por Posición · Capacidad máxima otorgable en el nudo","existe":"Limitación por Posición · ¿Existe limitación por posición?","margen_mges":"Limitación por Posición · Margen MGES","margen_mpe":"Limitación por Posición · Margen MPE"},"no_disp":{"gen_mges":"Generación · MGES  [MW]","gen_mpe":"Generación · MPE [MW]","alm_mges":"Almacenamiento · MGES  [MW]","alm_mpe":"Almacenamiento · MPE [MW]","motivo":"Motivo capacidad no disponible"},"liberada":{"lib_mges":"Capacidad de acceso liberada para MGES  [MW]","lib_mpe":"Capacidad de acceso liberada para MPE  [MW]","otorg_mges":"Capacidad de acceso otorgada para MGES  [MW]","otorg_mpe":"Capacidad de acceso otorgada para MPE  [MW]","disp_mges":"Capacidad de acceso disponible para MGES  [MW]","disp_mpe":"Capacidad de acceso disponible para MPE  [MW]"},"reserva":{"motivo":"motivo","normativa":"normativa"}};
 function gsWnNum(x){ if(x===null||x===undefined||x==='') return NaN; const v=Number(x); return isNaN(v)?NaN:v; }
 function gsWnDetailHTML(r,side,rid){
@@ -3213,8 +3216,8 @@ function gsWnMotTgl(e,rid){ if(e&&e.stopPropagation) e.stopPropagation(); const 
 function renderWhatsNew(){
   const host=document.getElementById('gs-wn-table'); if(!host) return;
   const GS_WN_AGG={margen:'margen',disp:'disp',no_otorgable:'noOtorg',no_disp:'noOtorg'};
-  const GS_WN_MAXD={otorgada:1,en_curso:1,nodal:1,liberada:1,reserva:1,dso_disp:1,dso_ocupada:1,dso_admitida:1,dso_pos_ocup:1,dso_pos_libr:1,dso_nudo0:1,dso_comprom:1};
-  const GS_WN_COL={posiciones:'Posiciones',nodal:'Nodal',otorgada:'Otorgada',en_curso:'En curso',margen:'Margen',crit_lim:'Criterio limitante',no_otorgable:'No otorgable',no_disp:'No disponible',lim_posicion:'Limitación posición',disp:'Disponible',liberada:'Liberada',reserva:'Reserva',concurso:'Concurso',dso_disp:'Disponible',dso_ocupada:'Ocupada',dso_admitida:'Admitida',dso_pos_ocup:'Pos. ocupadas',dso_pos_libr:'Pos. libres',dso_nudo0:'Nudo 0*',dso_comprom:'Comprometida'};
+  const GS_WN_MAXD={otorgada:1,en_curso:1,nodal:1,liberada:1,reserva:1,posiciones:1,dso_pos_libr:1,dso_nudo0:1,dso_comprom:1};
+  const GS_WN_COL={posiciones:'Posiciones',nodal:'Nodal',otorgada:'Otorgada / Ocupada',en_curso:'En curso / Admitida',margen:'Margen',crit_lim:'Criterio limitante',no_otorgable:'No otorgable',no_disp:'No disponible',lim_posicion:'Limitación posición',disp:'Disponible',liberada:'Liberada',reserva:'Reserva',concurso:'Concurso',dso_pos_libr:'Pos. libres',dso_nudo0:'Nudo 0*',dso_comprom:'Comprometida'};
   const year=document.getElementById('na-year').value, month=document.getElementById('na-month').value;
   let pi=GS_MONTHS.indexOf(month)-1, py=year; if(pi<0){pi=11;py=(parseInt(year)-1).toString();}
   const key=year+'_'+month, pkey=py+'_'+GS_MONTHS[pi];
@@ -3266,8 +3269,10 @@ function renderWhatsNew(){
     const detail='<tr id="'+rid+'" style="display:none;background:#f8fafc;"><td colspan="'+(4+blkCols.length)+'"></td></tr>';
     return summary+detail;
   }).join('');
-  const blkHead=blkCols.map(function(bo){ const st=gsWnBlkFilter[bo[0]]||''; const stBg=st==='any'?'background:#F3721F;color:#fff;':st==='up'?'background:#16a34a;color:#fff;':st==='down'?'background:#dc2626;color:#fff;':'color:#334155;'; const stLbl=st==='any'?'\u25cf cambios':st==='up'?'\u25b2 subida':st==='down'?'\u25bc bajada':'filtrar'; return '<th onclick="gsWnToggleFilterBlk(\''+bo[0]+'\')" title="Clic para filtrar '+bo[1]+': cambios \u2192 subida \u2192 bajada" style="cursor:pointer;width:56px;font-size:10px;line-height:1.15;vertical-align:bottom;'+stBg+'">'+GS_WN_COL[bo[0]]+'<div style="font-size:8px;font-weight:normal;opacity:.85;">'+stLbl+'</div></th>'; }).join('');
-  host.innerHTML='<div style="font-size:11px;color:#64748b;margin-bottom:6px;">Perspectiva <b>'+(GS_SIDELBL[side]||side)+'</b> \u00b7 <b>pulsa un nudo</b> para el desglose \u00b7 <b>pulsa la cabecera de un bloque</b> para filtrar (cambios \u2192 subida \u2192 bajada; Y/O combina) \u00b7 celda naranja = cambi\u00f3 \u00b7 '+total+' nudos</div>'
+  const blkHead=blkCols.map(function(bo){ const st=gsWnBlkFilter[bo[0]]||''; const stBg=st==='any'?'background:#F3721F;color:#fff;':st==='up'?'background:#16a34a;color:#fff;':st==='down'?'background:#dc2626;color:#fff;':'color:#334155;'; const stLbl=st==='any'?'\u25cf cambios':st==='up'?'\u25b2 subida':st==='down'?'\u25bc bajada':'filtrar'; const sc=bo[2]||''; const scBadge=sc?('<div style="font-size:7.5px;font-weight:700;color:#fff;background:'+(sc==='TSO'?'#0369a1':'#7c3aed')+';border-radius:3px;padding:0 3px;margin-top:1px;display:inline-block;">solo '+sc+'</div>'):''; const scTitle=sc?(' (columna espec\u00edfica: solo aplica a '+sc+')'):''; return '<th onclick="gsWnToggleFilterBlk(\''+bo[0]+'\')" title="Clic para filtrar '+bo[1]+scTitle+': cambios \u2192 subida \u2192 bajada" style="cursor:pointer;width:56px;font-size:10px;line-height:1.15;vertical-align:bottom;'+stBg+'">'+GS_WN_COL[bo[0]]+'<div style="font-size:8px;font-weight:normal;opacity:.85;">'+stLbl+'</div>'+scBadge+'</th>'; }).join('');
+  const _hasTSOcol=blkCols.some(function(b){return b[2]==='TSO';}), _hasDSOcol=blkCols.some(function(b){return b[2]==='DSO';});
+  const _legend=(_hasTSOcol||_hasDSOcol)?(' \u00b7 columnas comunes (Otorgada/Ocupada, En curso/Admitida, Disponible, Posiciones) valen para TSO y DSO; las marcadas <span style="font-size:8px;font-weight:700;color:#fff;background:#0369a1;border-radius:3px;padding:0 3px;">solo TSO</span>'+(_hasDSOcol?' o <span style="font-size:8px;font-weight:700;color:#fff;background:#7c3aed;border-radius:3px;padding:0 3px;">solo DSO</span>':'')+' son espec\u00edficas de esa red'):'';
+  host.innerHTML='<div style="font-size:11px;color:#64748b;margin-bottom:6px;">Perspectiva <b>'+(GS_SIDELBL[side]||side)+'</b> \u00b7 <b>pulsa un nudo</b> para el desglose \u00b7 <b>pulsa la cabecera de un bloque</b> para filtrar (cambios \u2192 subida \u2192 bajada; Y/O combina) \u00b7 celda naranja = cambi\u00f3 \u00b7 '+total+' nudos'+_legend+'</div>'
     +'<div style="overflow:auto;"><table class="gs-table"><thead><tr><th style="text-align:left;">Nudo</th><th style="text-align:left;">CCAA</th><th style="text-align:left;">Conclusi\u00f3n</th><th>Sat.</th>'+blkHead+'</tr></thead><tbody>'+(rows||'<tr><td colspan="'+(4+blkCols.length)+'">Sin nudos que mostrar con estos filtros.</td></tr>')+'</tbody></table></div>';
 }
 // El ámbito combinado "TSO+DSO" (ALL) solo se ofrece en la pestaña "Análisis nodal" (por nudo,
@@ -3572,8 +3577,34 @@ function naRddInfo(entry,key,side){
   const bloq=porMotivo||porEstado;
   return bloq?{bloq:true, acuerdo:acuerdo, ref:ot.consumo_rdd_ref}:{bloq:false, acuerdo:acuerdo, ref:ot.consumo_rdd_ref};
 }
-function naHipotesis(dOt,dEc,dDisp,up,rdd){
+// Ventana de renuncias acogidas al RDL 7/2026: del 22-mar-2026 al 22-jul-2026.
+// El visor atribuye la caída al MES RECIENTE de la comparación; una renuncia RDL solo pudo ocurrir
+// dentro de la ventana, así que la hipótesis solo es plausible si ese mes es abr, may, jun o jul 2026.
+// Devuelve {enVentana, cierre} para que la hipótesis se module por fecha.
+function naVentanaRDL(key){
+  // key = 'AAAA_mmm' (mmm en GS_MONTHS). Traducir a (año, mes 1-12).
+  if(!key) return {enVentana:false};
+  const p=key.split('_'); const y=parseInt(p[0],10); const m=GS_MONTHS.indexOf(p[1])+1;
+  if(isNaN(y)||m<1) return {enVentana:false};
+  const enVentana=(y===2026 && m>=4 && m<=7);   // meses cuyo cambio refleja la ventana abierta
+  const cierre=(y===2026 && m===7);             // julio: mes de cierre (22-jul)
+  return {enVentana:enVentana, cierre:cierre, y:y, m:m};
+}
+function naHipotesis(dOt,dEc,dDisp,up,rdd,rdl){
   const H=[]; const sig=function(v){return !isNaN(v)&&Math.abs(v)>=1;};
+  // --- Hipótesis RENUNCIA acogida al RDL 7/2026 (solo DSO, que no la especifica; TSO ya la marca como no otorgable) ---
+  // Regla: una renuncia RDL cuya capacidad renunciada sea > 5 MW queda BLOQUEADA (no se reoferta como disponible).
+  // El DSO no marca la renuncia, así que esto es una HIPÓTESIS por patrón (caída de ocupada > 5 MW dentro de la ventana), nunca un hecho.
+  if(rdl && rdl.esDSO && rdl.ventana && rdl.ventana.enVentana){
+    const cai=(!isNaN(rdl.dOcupada)&&rdl.dOcupada<0)?(-rdl.dOcupada):NaN;   // MW de ocupada perdidos
+    if(!isNaN(cai) && cai>5){
+      H.push('Cae la <b>ocupada</b> en '+gsFmt(cai)+' MW (> 5 MW) dentro de la ventana del <b>RDL 7/2026</b> (22-mar a 22-jul-2026): <b>compatible con una renuncia acogida al RDL 7/2026</b>. En ese caso, al superar los 5 MW, la capacidad renunciada <b>queda bloqueada</b> (reservada, no reofertada como disponible) \u2014 lo que explicar\u00eda que la bajada de ocupada <b>no aflore</b> a disponible. En REE esto se publica como \u00abno otorgable\u00bb; el DSO no lo especifica, por lo que es una <b>hip\u00f3tesis por patr\u00f3n, no confirmada</b>.'+(rdl.ventana.cierre?' <span style="color:#b45309;">Julio es el mes de cierre de la ventana (22-jul): a partir del pr\u00f3ximo mes, una ca\u00edda de ocupada ya <b>no</b> podr\u00e1 ser una renuncia RDL.</span>':''));
+    } else if(!isNaN(cai) && cai>0 && cai<=5){
+      H.push('La ca\u00edda de ocupada ('+gsFmt(cai)+' MW) est\u00e1 <b>por debajo del umbral de 5 MW</b> del RDL 7/2026: si fuera una renuncia acogida al RDL, esta capacidad <b>no</b> quedar\u00eda bloqueada y podr\u00eda reofertarse. <span style="color:#94a3b8;">[hip\u00f3tesis por patr\u00f3n]</span>');
+    }
+  } else if(rdl && rdl.esDSO && rdl.ventana && !rdl.ventana.enVentana && !isNaN(rdl.dOcupada) && rdl.dOcupada<-5){
+    H.push('Cae la <b>ocupada</b> en '+gsFmt(-rdl.dOcupada)+' MW, pero <b>fuera de la ventana del RDL 7/2026</b> (cerrada el 22-jul-2026): esta p\u00e9rdida de permisos responde a <b>otros motivos</b> (caducidad por hitos, desistimiento, denegaci\u00f3n\u2026), no a una renuncia acogida al RDL.');
+  }
   // Contexto REGULATORIO prioritario: valor de referencia RdD no acordado.
   // Explica por qué una retirada de cola (en curso ↓) NO aflora en disponible/margen.
   const bloqRdd=rdd&&rdd.bloq;
@@ -3755,7 +3786,9 @@ function naDeepDive(name){
   const usForHip=isD?naUpstreamState(entry,key,pkey,side):null;   // estado del TSO aguas arriba (solo DSO)
   // bloqueo por valor de referencia RdD: en un nudo TSO se mira el propio; en un DSO, el de su padre
   const rddForHip=isD?(usForHip&&usForHip.up?naRddInfo(usForHip.up,key,side):null):naRddInfo(entry,key,side);
-  const H=naHipotesis(dOt,dEc,dDisp,usForHip,rddForHip);
+  // contexto RDL 7/2026 (solo DSO): la caída de ocupada es dOt para DSO; la ventana depende del mes reciente (key)
+  const rdlForHip=isD?{esDSO:true, dOcupada:dOt, ventana:naVentanaRDL(key)}:null;
+  const H=naHipotesis(dOt,dEc,dDisp,usForHip,rddForHip,rdlForHip);
   host.innerHTML=
     '<div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">'
       +'<h3 style="margin:0;color:#0f766e;font-size:16px;">🔬 '+entry.name+'</h3>'
