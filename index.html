@@ -925,6 +925,30 @@ function tsoEntryOfAfec(afTxt) {
     for (const e of allEntries) { if (e.grid === 'TSO' && e.alias && e.alias.some(a => normAfec(a) === t)) return e; }
     return null;
 }
+// Estado del nudo TSO AGUAS ARRIBA de un nudo DSO: capacidad del mes + Δ vs mes anterior,
+// zona estática y criterio limitante. Es el eslabón para explicar cambios del DSO por su padre TSO.
+// Devuelve null si el nudo no es DSO, no tiene afección conocida, o esa afección no casa con un TSO cargado.
+function naUpstreamState(entry, key, pkey, side) {
+    if (!entry || entry.grid !== 'DSO') return null;
+    const af = dsoAfeccion(entry, key) || dsoAfeccion(entry, null);
+    if (!af) return { af: null, up: null };
+    const up = tsoEntryOfAfec(af.txt);
+    if (!up) return { af: af, up: null };
+    const s = (side === 'dem') ? 'dem' : 'gen';
+    const mc = gsNodeMetrics(up, key), mp = gsNodeMetrics(up, pkey);
+    const c = (mc && mc[s]) || null, p = (mp && mp[s]) || null;
+    const dd = function (f) { const a = (c && !isNaN(c[f])) ? c[f] : NaN, b = (p && !isNaN(p[f])) ? p[f] : NaN; if (isNaN(a) && isNaN(b)) return NaN; return (isNaN(a) ? 0 : a) - (isNaN(b) ? 0 : b); };
+    // en curso / otorgada del TSO usan los totales (incluyen alm_rdt) igual que el motor de flujos
+    const dOt = !isNaN(dd('otTot')) ? dd('otTot') : dd('otorgada');
+    const dEc = !isNaN(dd('ecTot')) ? dd('ecTot') : dd('enCurso');
+    const zona = (up.grid === 'TSO' && typeof naZona === 'function') ? naZona(up, key, side) : null;
+    return {
+        af: af, up: up, upName: up.name,
+        disp: c ? c.disp : NaN, margen: c ? c.margen : NaN, sat: c ? c.sat : NaN, crit: (c && c.crit) || '',
+        dDisp: dd('disp'), dMargen: dd('margen'), dOt: dOt, dEc: dEc, zona: zona,
+        hayPrev: !!p
+    };
+}
 
 // ====== POSICIONES, SOLICITUDES Y OPORTUNIDAD (pos_AAAA_MM.json · volcado_posiciones.py) ======
 // Datos de posiciones/solicitudes de un nudo probando su nombre actual y sus alias (renombrados)
@@ -3491,15 +3515,60 @@ function naPeers(entry,key,pkey,side){
   return {zona:zona,n:n,same:same,myD:myD};
 }
 // Hipótesis de causa por patrón de flujo (otorgada / en curso / disponible). NO son hechos.
-function naHipotesis(dOt,dEc,dDisp){
+// Detecta el bloqueo por "valor de referencia RdD no acordado" en la perspectiva DEMANDA de un
+// nudo TSO. Mientras el valor de referencia no está acordado, disponible/margen de demanda no se
+// calculan (quedan a null), así que los movimientos de la cola (en curso) NO afloran en esas
+// variables. Devuelve {bloq, acuerdo, motivo} o null si no aplica (gen, o sin ficha).
+function naRddInfo(entry,key,side){
+  if(side!=='dem') return null;
+  const rich=(entry&&entry.grid==='TSO')?richForMonth(key,entry):null;
+  const d=rich&&rich.dem; if(!d) return null;
+  const ot=d.otorgada||{}, no=d.no_otorgable||{};
+  const acuerdo=ot.estado_acuerdo_rdd;                         // 'SI' / 'NO' / null
+  const motivo=String((no.motivo||'')).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  const porMotivo=/valor de referencia no acordado/.test(motivo);
+  const porEstado=(acuerdo!=null)&&(String(acuerdo).toUpperCase()!=='SI')&&(String(acuerdo).toUpperCase()!=='S\u00cd');
+  const bloq=porMotivo||porEstado;
+  return bloq?{bloq:true, acuerdo:acuerdo, ref:ot.consumo_rdd_ref}:{bloq:false, acuerdo:acuerdo, ref:ot.consumo_rdd_ref};
+}
+function naHipotesis(dOt,dEc,dDisp,up,rdd){
   const H=[]; const sig=function(v){return !isNaN(v)&&Math.abs(v)>=1;};
-  if(sig(dEc)&&dEc<0&&(!sig(dOt)||dOt<=0)) H.push('Cae la capacidad <b>en curso</b> sin trasladarse a otorgada → compatible con <b>desistimiento del promotor, inadmisión o denegación</b> de solicitudes en tramitación.');
+  // Contexto REGULATORIO prioritario: valor de referencia RdD no acordado.
+  // Explica por qué una retirada de cola (en curso ↓) NO aflora en disponible/margen.
+  const bloqRdd=rdd&&rdd.bloq;
+  if(bloqRdd&&sig(dEc)) H.push('<b>Valor de referencia RdD no acordado</b> en este nudo (estado de acuerdo \u00ab'+(rdd.acuerdo||'NO')+'\u00bb): mientras no se acuerda, la capacidad <b>disponible y el margen de demanda no se calculan</b> (quedan sin valor). Por eso la variaci\u00f3n de la cola (<b>en curso '+(dEc<0?'baja':'sube')+' '+gsFmt(Math.abs(dEc))+' MW</b>) <b>no aflora ni consume</b> disponible/margen: el l\u00edmite efectivo es <b>regulatorio</b> (falta el acuerdo del valor de referencia), no de capacidad f\u00edsica de red.');
+  else if(bloqRdd) H.push('<b>Valor de referencia RdD no acordado</b> (estado \u00ab'+(rdd.acuerdo||'NO')+'\u00bb): la capacidad disponible/margen de demanda no se publica hasta que se acuerde; cualquier movimiento queda enmascarado por este bloqueo <b>regulatorio</b>.');
+  if(sig(dEc)&&dEc<0&&(!sig(dOt)||dOt<=0)&&!bloqRdd) H.push('Cae la capacidad <b>en curso</b> sin trasladarse a otorgada → compatible con <b>desistimiento del promotor, inadmisión o denegación</b> de solicitudes en tramitación.');
+  else if(sig(dEc)&&dEc<0&&(!sig(dOt)||dOt<=0)&&bloqRdd) H.push('La ca\u00edda de <b>en curso</b> sin pasar a otorgada es compatible con <b>desistimiento/inadmisi\u00f3n/denegaci\u00f3n</b>; pero con el valor de referencia sin acordar, tampoco habr\u00eda aflorado disponible aunque se resolviera a favor.');
   if(sig(dEc)&&dEc<0&&sig(dOt)&&dOt>0) H.push('Cae <b>en curso</b> y sube <b>otorgada</b> → compatible con <b>resolución favorable</b>: solicitudes que pasan de trámite a permiso otorgado.');
   if(sig(dOt)&&dOt<0&&sig(dDisp)&&dDisp>0) H.push('Cae <b>otorgada</b> y aflora <b>disponible</b> → compatible con <b>caducidad por hitos (RDL 7/2026), renuncia o revocación</b> de permisos; una <b>DIA negativa</b> suele acabar en este patrón, pero la ficha no publica el motivo.');
   if(sig(dOt)&&dOt<0&&(!sig(dDisp)||dDisp<=0)) H.push('Cae <b>otorgada</b> sin aflorar disponible → posible retirada de permisos <b>absorbida por el criterio limitante</b> (zonal) o reclasificación entre bloques; revisar el desglose del nudo.');
   if(sig(dOt)&&dOt>0&&sig(dDisp)&&dDisp<0) H.push('Sube <b>otorgada</b> consumiendo <b>disponible</b> → nuevos permisos otorgados en el nudo (mayor competencia para futuras solicitudes).');
   if(sig(dDisp)&&dDisp>0&&!sig(dOt)&&!sig(dEc)) H.push('Sube <b>disponible</b> sin movimientos de permisos del nudo → compatible con <b>recálculo de criterios</b> (nodal/zonal), refuerzos de red o liberaciones en otros nudos de la zona.');
   if(sig(dDisp)&&dDisp<0&&!sig(dOt)&&!sig(dEc)) H.push('Cae <b>disponible</b> sin movimientos de permisos del nudo → probable <b>dinámica de zona</b> (otros nudos consumen el margen compartido) o recálculo de criterios.');
+  // --- Hip\u00f3tesis de CADENA: cambios del nudo DSO explicados por su nudo TSO aguas arriba ---
+  if(up&&up.up){
+    const uD=up.dDisp, uM=up.dMargen, uOt=up.dOt, uEc=up.dEc;
+    const upMoved=sig(uD)||sig(uM)||sig(uOt)||sig(uEc);
+    if(upMoved){
+      const dir=function(v){ return v>0?'sube':'baja'; };
+      let s='El nudo <b>aguas arriba</b> ('+up.upName+') tambi\u00e9n se movi\u00f3 este mes ('
+        +[sig(uD)?('disponible '+dir(uD)+' '+gsFmt(Math.abs(uD))):null,
+          sig(uOt)?('otorgada '+dir(uOt)+' '+gsFmt(Math.abs(uOt))):null,
+          sig(uEc)?('en curso '+dir(uEc)+' '+gsFmt(Math.abs(uEc))):null,
+          sig(uM)?('margen '+dir(uM)+' '+gsFmt(Math.abs(uM))):null].filter(Boolean).join(', ')+' MW)';
+      // correlaci\u00f3n de signo entre el DSO (disp) y el TSO (disp/margen)
+      const upCap=sig(uD)?uD:(sig(uM)?uM:NaN);
+      if(sig(dDisp)&&!isNaN(upCap)&&((dDisp>0)===(upCap>0))) s+=' <b>en el mismo sentido</b> que este nudo → parte del cambio del DSO puede <b>heredarse del transporte</b> (capacidad de la RdT del padre).';
+      else if(sig(dDisp)&&!isNaN(upCap)) s+=', en sentido contrario a este nudo → el cambio del DSO probablemente <b>no</b> viene del transporte; buscar causa local (red de distribuci\u00f3n).';
+      else s+=' → conviene revisar si el movimiento del padre afecta a la capacidad disponible en este nudo.';
+      s+=' <span style="color:#94a3b8;">[correlaci\u00f3n, no causalidad demostrada]</span>';
+      H.push(s);
+    } else if(sig(dDisp)||sig(dOt)||sig(dEc)){
+      H.push('El nudo <b>aguas arriba</b> ('+up.upName+') <b>no</b> cambi\u00f3 su capacidad este mes → el movimiento de este nudo DSO apunta a <b>causa local</b> (red de distribuci\u00f3n), no al transporte.');
+    }
+    if(up.af&&up.af.origen&&up.af.origen.indexOf('inferida')>=0) H.push('<span style="color:#b45309;">Aviso: la afecci\u00f3n aguas arriba de este nudo es <b>inferida</b> ('+up.af.origen+'), no declarada por la distribuidora \u2014 verifica que el nudo TSO es realmente el correcto antes de atribuir el cambio.</span>');
+  }
   if(!H.length) H.push('Sin variaciones significativas (≥1 MW) entre los dos meses en esta perspectiva.');
   return H;
 }
@@ -3581,15 +3650,31 @@ function naCadenaHTML(entry,key,pkey,side){
     return '<div style="font-size:11px;color:#64748b;margin-bottom:4px;">'+hijos.length+' nudo(s) de distribuci\u00f3n declaran/heredan afecci\u00f3n sobre <b>'+entry.name+'</b> \u00b7 perspectiva '+(GS_SIDELBL[side]||side)+' \u00b7 \u0394 vs mes anterior'+(hayPrev?'':' (no hay mensual DSO previo cargado: sin \u0394)')+' \u00b7 pulsa un nudo para su diagn\u00f3stico</div>'
       +'<div style="overflow:auto;max-height:280px;"><table class="rich-tbl" style="font-size:11px;width:100%;"><tr style="color:#64748b;position:sticky;top:0;background:#fff;"><th style="text-align:left;">Nudo DSO</th><th>Operador</th><th>Disponible</th><th>Ocupada</th><th>Admitida</th></tr>'+rows+'</table></div>';
   }
-  // DSO: hermanos de la misma afección + enlace aguas arriba
-  var af=dsoAfeccion(entry,key)||dsoAfeccion(entry,null);
-  if(!af) return '<div style="color:#94a3b8;font-size:11px;">Sin afecci\u00f3n aguas arriba conocida: no se puede construir la cadena.</div>';
-  var up=tsoEntryOfAfec(af.txt);
+  // DSO: ESTADO del nudo TSO aguas arriba (capacidad + \u0394) + hermanos de la misma afecci\u00f3n
+  var us=naUpstreamState(entry,key,pkey,side);
+  if(!us||!us.af) return '<div style="color:#94a3b8;font-size:11px;">Sin afecci\u00f3n aguas arriba conocida: no se puede construir la cadena.</div>';
+  var af=us.af;
+  var inf=af.origen&&af.origen.indexOf('inferida')>=0;
+  var afTag=inf?(' <span title="'+af.origen+'" style="color:#b45309;font-size:9px;">\u26a0 afecci\u00f3n inferida, verificar</span>'):(' <span style="color:#94a3b8;font-size:9px;">['+af.origen+']</span>');
+  if(!us.up){
+    return '<div style="font-size:11px;line-height:1.5;">Nudo declarado aguas arriba: <b>'+af.txt+'</b>'+afTag+' \u2014 no casa con ning\u00fan nudo TSO cargado (revisar nomenclatura, o el mensual TSO no est\u00e1 cargado).</div>';
+  }
+  // tabla de estado del TSO padre con \u0394 vs mes anterior
+  var upDTxt=function(v){ if(isNaN(v)) return ''; if(Math.abs(v)<1) return ' <span style="color:#cbd5e1;font-size:9px;">(=)</span>'; return ' <span style="color:'+(v>0?'#16a34a':'#dc2626')+';font-size:10px;font-weight:700;">('+(v>0?'+':'\u2212')+gsFmt(Math.abs(v))+')</span>'; };
+  var upRow=function(lbl,val,dv){ return '<tr><td style="text-align:left;color:#475569;">'+lbl+'</td><td style="text-align:right;font-weight:600;">'+fmtN(val)+upDTxt(dv)+'</td></tr>'; };
+  var upTbl='<table class="rich-tbl" style="font-size:11px;width:100%;max-width:340px;">'
+    +upRow('Disponible', us.disp, us.dDisp)
+    +upRow('Margen (acceso)', us.margen, us.dMargen)
+    +upRow('Otorgada (total)', NaN, us.dOt)
+    +upRow('En curso (total)', NaN, us.dEc)
+    +'</table>';
+  var critTxt=us.crit?('<div style="font-size:10.5px;color:#64748b;margin-top:3px;">Criterio limitante del padre: <b>'+us.crit+'</b>'+(us.zona?(' \u00b7 zona <b>'+us.zona+'</b>'):'')+'</div>'):'';
   var herm=dsoChildrenOf(af.txt).filter(function(h){ return h.e.dsoKey!==entry.dsoKey; });
-  var upHtml=up
-    ? ('Nudo TSO aguas arriba: <a onclick="naDeepDive(\''+String(up.name).replace(/'/g,"\\'")+'\')" style="cursor:pointer;color:#F3721F;font-weight:700;">'+up.name+'</a> (abre su diagn\u00f3stico: capacidad de zona, criterios y su lista aguas abajo).')
-    : ('Nudo declarado aguas arriba: <b>'+af.txt+'</b> \u2014 no casa con ning\u00fan nudo TSO cargado (revisar nomenclatura).');
-  return '<div style="font-size:11px;line-height:1.5;">'+upHtml+'<br>'+herm.length+' nudo(s) DSO hermano(s) comparten esta afecci\u00f3n'+(herm.length?': '+herm.slice(0,12).map(function(h){return '<a onclick="naDeepDive(\''+String(h.e.name).replace(/'/g,"\\'")+'\')" style="cursor:pointer;color:#F3721F;">'+h.e.name+'</a>';}).join(' \u00b7 ')+(herm.length>12?' \u2026 (+'+(herm.length-12)+')':''):'.')+'</div>';
+  var hermHtml='<div style="font-size:11px;margin-top:8px;color:#475569;">'+herm.length+' nudo(s) DSO hermano(s) cuelgan del mismo nudo TSO'+(herm.length?': '+herm.slice(0,12).map(function(h){return '<a onclick="naDeepDive(\''+String(h.e.name).replace(/'/g,"\\'")+'\')" style="cursor:pointer;color:#F3721F;">'+h.e.name+'</a>';}).join(' \u00b7 ')+(herm.length>12?' \u2026 (+'+(herm.length-12)+')':''):'.')+'</div>';
+  return '<div style="font-size:11px;line-height:1.5;">'
+    +'\u2b06 Nudo TSO aguas arriba: <a onclick="naDeepDive(\''+String(us.up.name).replace(/'/g,"\\'")+'\')" style="cursor:pointer;color:#F3721F;font-weight:700;">'+us.up.name+'</a>'+afTag
+    +(us.hayPrev?'':' <span style="color:#94a3b8;font-size:9px;">(sin mensual TSO previo: \u0394 parcial)</span>')+'</div>'
+    +'<div style="margin-top:4px;">'+upTbl+'</div>'+critTxt+hermHtml;
 }
 // Diagnóstico en profundidad de un nudo
 function naDeepDive(name){
@@ -3612,6 +3697,7 @@ function naDeepDive(name){
   if(fam==='Estático nodal'||fam==='Cortocircuito') atrib='Criterio limitante <b>'+fam+'</b> (propio del nudo) → la variación apunta a <b>cuestión del nudo</b>.';
   else if(fam==='Estático zonal'||fam==='Dinámico (zonal)') atrib='Criterio limitante <b>'+fam+'</b> (capacidad compartida) → la variación puede venir de <b>otros nudos de la zona</b>.';
   else atrib='Criterio limitante: '+(met.crit||'sin dato')+'.';
+  if(!isD){ const rddA=naRddInfo(entry,key,side); if(rddA&&rddA.bloq) atrib+=' <b>El l\u00edmite efectivo es regulatorio</b>: valor de referencia RdD no acordado (estado \u00ab'+(rddA.acuerdo||'NO')+'\u00bb) \u2192 disponible/margen de demanda no se calculan; los cambios de cola no afloran.'; }
   if(isD){   // DSO: no hay criterio limitante publicado; la trazabilidad es el nudo de afecci\u00f3n aguas arriba (RdT)
     const af=dsoAfeccion(entry,key)||dsoAfeccion(entry,null);
     atrib='Nudo DSO ('+(entry.oper||'distribuidora')+'). '+(af
@@ -3625,7 +3711,10 @@ function naDeepDive(name){
       +(pct>=60?'<b>dinámica de zona</b>':((peers.same===0&&!isNaN(peers.myD)&&Math.abs(peers.myD)>=1)?'<b>movimiento específico de este nudo</b>':'señal mixta / insuficiente'))+'.';
   }
   const dTxt=function(v){ return isNaN(v)?'\u2013':(((v>0?'+':(v<0?'\u2212':'')))+gsFmt(Math.abs(v))+' MW'); };
-  const H=naHipotesis(dOt,dEc,dDisp);
+  const usForHip=isD?naUpstreamState(entry,key,pkey,side):null;   // estado del TSO aguas arriba (solo DSO)
+  // bloqueo por valor de referencia RdD: en un nudo TSO se mira el propio; en un DSO, el de su padre
+  const rddForHip=isD?(usForHip&&usForHip.up?naRddInfo(usForHip.up,key,side):null):naRddInfo(entry,key,side);
+  const H=naHipotesis(dOt,dEc,dDisp,usForHip,rddForHip);
   host.innerHTML=
     '<div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">'
       +'<h3 style="margin:0;color:#0f766e;font-size:16px;">🔬 '+entry.name+'</h3>'
@@ -3650,7 +3739,7 @@ function naDeepDive(name){
     +'</div>'
     +'<div style="margin-top:10px;"><div style="font-weight:bold;font-size:12px;color:#0f766e;">Serie mensual (todos los meses cargados)</div>'+naSerieHTML(entry,side)+'</div>'
     +'<div style="margin-top:10px;"><div style="font-weight:bold;font-size:12px;color:#0f766e;">Cambios por posición ('+key.replace('_',' ')+' vs '+pkey.replace('_',' ')+')</div>'+naPosDiffHTML(entry,key,pkey,side)+'</div>'
-    +'<div style="margin-top:10px;"><div style="font-weight:bold;font-size:12px;color:#0f766e;">'+(entry.grid==='TSO'?'\u2b07 Aguas abajo \u00b7 nudos de distribuci\u00f3n afectados':'\u2b06 Cadena de afecci\u00f3n (aguas arriba y hermanos)')+'</div>'+naCadenaHTML(entry,key,pkey,side)+'</div>';
+    +'<div style="margin-top:10px;"><div style="font-weight:bold;font-size:12px;color:#0f766e;">'+(entry.grid==='TSO'?'\u2b07 Aguas abajo \u00b7 nudos de distribuci\u00f3n afectados':'\u2b06 Aguas arriba \u00b7 nudo TSO del que cuelga (estado y \u0394)')+'</div>'+naCadenaHTML(entry,key,pkey,side)+'</div>';
   host.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
