@@ -2710,13 +2710,40 @@ function gsDSO(entry, key){
     const is0=dsoIs0Star(g.nudo0)||dsoIs0Star(d.nudo0);
     const com=(g.coment&&String(g.coment).trim())||(d.coment&&String(d.coment).trim())||'';
     const noG=!isNaN(dispGen)&&dispGen<=0, noD=!isNaN(dispDem)&&dispDem<=0, noA=!isNaN(dispAlm)&&dispAlm<=0;
-    const base=(is0?'Nudo 0* ':'')+com;
-    const rG=noG?(base||'Sin capacidad'):'', rD=noD?(base||'Sin capacidad'):'', rA=noA?(base||'Sin capacidad'):'';
-    return { grid:'DSO',
-      gen:{disp:dispGen, margen:NaN, otorgada:ocG, enCurso:NaN, comprom:cleanNum(g.comprom), ocupada:ocG, admitida:cleanNum(g.admitida), noSolic:noG, causas:gsCausas(rG), sat:gsSat(gsAdd(ocG,cleanNum(g.admitida)),dispGen), enConcurso:false, sub:{}},
-      dem:{disp:dispDem, margen:NaN, otorgada:ocD, enCurso:NaN, comprom:cleanNum(d.comprom), ocupada:ocD, admitida:cleanNum(d.admitida), noSolic:noD, causas:gsCausas(rD), sat:gsSat(gsAdd(ocD,cleanNum(d.admitida)),dispDem), enConcurso:false, sub:{}},
-      alm:{disp:dispAlm, margen:NaN, otorgada:NaN, enCurso:NaN, comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:noA, causas:gsCausas(rA), sat:NaN, enConcurso:false, sub:{}}
+    // Motivo explicativo de 'no solicitable' por lado (prioridad: 0* > comprometida regulatoria > SCC > sin capacidad física).
+    // Un nudo con disp NaN (la distribuidora no publica ese lado este mes) NO es 'no solicitable': es 'sin dato'.
+    const motivoDSO=function(side){
+        const s=(side==='dem')?d:g;
+        const disp=cleanNum(s.disp);
+        if(isNaN(disp)) return '';                                   // sin publicación de ese lado -> no es bloqueo
+        if(disp>0) return '';                                        // hay capacidad: solicitable
+        const partes=[];
+        if(dsoIs0Star(s.nudo0)) partes.push('Nudo 0* (capacidad condicionada a refuerzos de red; ver nota 0*)');
+        const comp=cleanNum(s.comprom);
+        if(!isNaN(comp)&&comp>=1) partes.push('Capacidad comprometida por cuestiones regulatorias (no publicada como disponible)');
+        if(s.scc!=null && String(s.scc).trim() && dsoIs0Star(s.scc)) partes.push('Limitado por cortocircuito (SCC)');
+        const comen=(s.coment&&String(s.coment).trim())||'';
+        if(comen) partes.push(comen);
+        if(!partes.length) partes.push('Sin capacidad disponible publicada (ocupada/admitida agotan el nudo o sin margen físico)');
+        return partes.join(' · ');
     };
+    const rG=motivoDSO('gen'), rD=motivoDSO('dem');
+    const rA=noA?(motivoDSO('gen')||motivoDSO('dem')||'Sin capacidad'):'';
+    return { grid:'DSO',
+      gen:{disp:dispGen, margen:NaN, otorgada:ocG, enCurso:NaN, comprom:cleanNum(g.comprom), ocupada:ocG, admitida:cleanNum(g.admitida), noSolic:noG, causas:gsCausasDSO(rG,g), reason:rG, sat:gsSat(gsAdd(ocG,cleanNum(g.admitida)),dispGen), enConcurso:false, sub:{}},
+      dem:{disp:dispDem, margen:NaN, otorgada:ocD, enCurso:NaN, comprom:cleanNum(d.comprom), ocupada:ocD, admitida:cleanNum(d.admitida), noSolic:noD, causas:gsCausasDSO(rD,d), reason:rD, sat:gsSat(gsAdd(ocD,cleanNum(d.admitida)),dispDem), enConcurso:false, sub:{}},
+      alm:{disp:dispAlm, margen:NaN, otorgada:NaN, enCurso:NaN, comprom:NaN, ocupada:NaN, admitida:NaN, noSolic:noA, causas:gsCausasDSO(rA,{}), reason:rA, sat:NaN, enConcurso:false, sub:{}}
+    };
+}
+// Causas DSO (categorías para el panel), a partir del texto de motivo y los flags del lado
+function gsCausasDSO(text, side){
+    const out=gsCausas(text);   // reutiliza el clasificador (0*, comprometida via texto, etc.)
+    // asegurar la categoría 'Comprometida' aunque el texto no la nombre pero el flag sí
+    if(side && !isNaN(cleanNum(side.comprom)) && cleanNum(side.comprom)>=1 && out.indexOf('Capacidad comprometida (regulatoria)')<0){
+        const i=out.indexOf('Otros'); if(i>=0) out.splice(i,1);
+        out.push('Capacidad comprometida (regulatoria)');
+    }
+    return out;
 }
 function gsNodeMetrics(entry, key){ return entry.grid==='DSO' ? gsDSO(entry,key) : gsTSO(entry,key); }
 
@@ -3138,9 +3165,12 @@ function gsWnDetailHTML(r,side,rid){
   const cR=r.cRich||{}, pR=r.pRich||{};
   const lbl=function(bk,c){ return (typeof GS_WN_HDR!=='undefined'&&GS_WN_HDR[bk]&&GS_WN_HDR[bk][c])||c; };
   const solic=(!isNaN(r.vals.disp)&&r.vals.disp>0);
+  const sinDato=isNaN(r.vals.disp);
   const verdict=solic
     ? '<span style="color:#166534;background:#dcfce7;padding:3px 10px;border-radius:6px;font-weight:700;">\u2713 Capacidad SOLICITABLE \u2014 '+gsFmt(r.vals.disp)+' MW disponibles</span>'+(r.reason?(' <span style="font-size:11px;color:#b45309;">\u00b7 con restricci\u00f3n: '+r.reason+'</span>'):'')
-    : '<span style="color:#991b1b;background:#fee2e2;padding:3px 10px;border-radius:6px;font-weight:700;">\u2717 NO solicitable</span>'+(r.reason?(' <span style="font-size:11px;color:#64748b;">\u00b7 '+r.reason+'</span>'):'');
+    : (sinDato
+        ? '<span style="color:#475569;background:#f1f5f9;padding:3px 10px;border-radius:6px;font-weight:700;">\u2014 Sin dato publicado</span> <span style="font-size:11px;color:#64748b;">\u00b7 la distribuidora no publica esta perspectiva este mes</span>'
+        : '<span style="color:#991b1b;background:#fee2e2;padding:3px 10px;border-radius:6px;font-weight:700;">\u2717 NO solicitable</span>'+(r.reason?(' <span style="font-size:11px;color:#64748b;">\u00b7 <b>Motivo:</b> '+r.reason+'</span>'):' <span style="font-size:11px;color:#64748b;">\u00b7 sin motivo especificado por la distribuidora</span>'));
   const blkHtml=GS_WN_BLOCKS.map(function(bo,bi){
     const cur=cR[bo[0]]||{}, prv=pR[bo[0]]||{};
     const keys=Object.keys(cur).length?Object.keys(cur):Object.keys(prv);
@@ -3217,7 +3247,14 @@ function renderWhatsNew(){
     const tt=bo[1]+': '+c.n+' campo(s)'+(Math.abs(c.net)>=0.5?(' \u00b7 neto '+(c.net>0?'+':'\u2212')+gsFmt(Math.abs(c.net))):' (texto)'); const txt=(Math.abs(c.net)>=0.5)?((c.net>0?'+':'\u2212')+gsFmt(Math.abs(c.net))):'\u25cf'; return '<span title="'+tt+'" style="color:#9a3412;font-weight:700;background:#fed7aa;padding:1px 5px;border-radius:4px;white-space:nowrap;font-size:10px;">'+txt+'</span>'; };
   const rows=shown.map(function(r,idx){
     const rid='wn'+idx;
-    const so=(!isNaN(r.vals.disp)&&r.vals.disp>0); const cc=so?('<span style="color:#166534;font-weight:600;">\u2713 Solicitable</span> <span style="color:#94a3b8;">'+gsFmt(r.vals.disp)+' MW</span>'):('<span style="color:#991b1b;font-weight:600;">\u2717 No solicitable</span>'+(r.reason?(' <a onclick="gsWnMotTgl(event,\''+rid+'\')" style="color:#F3721F;cursor:pointer;font-size:10px;">ver motivo</a><span id="'+rid+'-mf" style="display:none;color:#64748b;"> \u00b7 '+r.reason+'</span>'):''));
+    const so=(!isNaN(r.vals.disp)&&r.vals.disp>0); const sinDato=isNaN(r.vals.disp);
+    // Motivo de 'no solicitable': visible siempre que exista (antes se ocultaba tras un clic).
+    const motLine=r.reason?('<div style="color:#64748b;font-size:10px;margin-top:2px;line-height:1.3;"><b>Motivo:</b> '+r.reason+'</div>'):'<div style="color:#94a3b8;font-size:10px;margin-top:2px;">Sin motivo especificado por la distribuidora</div>';
+    const cc=so
+      ? ('<span style="color:#166534;font-weight:600;">\u2713 Solicitable</span> <span style="color:#94a3b8;">'+gsFmt(r.vals.disp)+' MW</span>'+(r.reason?('<div style="color:#b45309;font-size:10px;margin-top:2px;">con restricci\u00f3n: '+r.reason+'</div>'):''))
+      : (sinDato
+          ? ('<span style="color:#475569;font-weight:600;">\u2014 Sin dato</span> <span style="color:#94a3b8;font-size:10px;">(no publicado este mes)</span>')
+          : ('<span style="color:#991b1b;font-weight:600;">\u2717 No solicitable</span>'+motLine));
     const satTxt=isNaN(r.sat)?'\u2013':(Math.round(r.sat*100)+'%');
     const summary='<tr onclick="gsWnToggleNode('+idx+')" style="cursor:pointer;">'
       +'<td style="text-align:left;"><span id="'+rid+'-i" style="color:#F3721F;font-size:10px;">\u25b8</span> <b>'+r.name+'</b> <a onclick="naDeepDiveIdx('+idx+');event.stopPropagation();" title="Diagnóstico en profundidad de este nudo" style="cursor:pointer;text-decoration:none;">🔬</a></td>'
