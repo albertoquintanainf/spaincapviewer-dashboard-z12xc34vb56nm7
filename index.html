@@ -3663,21 +3663,25 @@ function naHipotesis(dOt,dEc,dDisp,up,rdd,rdl){
 function naSerieHTML(entry,side){
   const keys=naMonthKeysSorted();
   const isD=(entry.grid==='DSO');   // DSO: columnas de su esquema (ocupada/admitida/disp); TSO: las de siempre
-  const cols=isD?[['ocupada','Ocupada (otorgada)'],['admitida','Admitida (pendiente)'],['disp','Disponible']]
-               :[['otorgada','Otorgada'],['enCurso','En curso'],['disp','Disponible'],['margen','Margen']];
+  // TSO: 'Otorgada' y 'En curso' usan los TOTALES (otTot/ecTot = demanda + almacenamiento RdT),
+  // no solo el campo de demanda; si no, una caida solo en almacenamiento (p. ej. LEGANES 220:
+  // en curso alm_rdt 110->0) quedaria invisible. gsFld() elige el total y cae al simple si falta.
+  const cols=isD?[['ocupada','ocupada','Ocupada (otorgada)'],['admitida','admitida','Admitida (pendiente)'],['disp','disp','Disponible']]
+               :[['otTot','otorgada','Otorgada'],['ecTot','enCurso','En curso'],['disp','disp','Disponible'],['margen','margen','Margen']];
+  const gsFld=function(m,c){ const v=m[c[0]]; if(v!==undefined && !(typeof v==='number' && isNaN(v))) return v; return m[c[1]]; };
   let rows='', prev=null;
   keys.forEach(function(k){
     const m=naMet(entry,k,side); if(!m){ prev=null; return; }
-    const cell=function(f){
-      const v=m[f]; const pv=prev?prev[f]:NaN; let d='';
+    const cell=function(c){
+      const v=gsFld(m,c); const pv=prev?gsFld(prev,c):NaN; let d='';
       if(!isNaN(v)&&!isNaN(pv)){ const dv=v-pv; if(Math.abs(dv)>=1) d=' <span style="color:'+(dv>0?'#16a34a':'#dc2626')+';font-size:9px;">('+(dv>0?'+':'\u2212')+gsFmt(Math.abs(dv))+')</span>'; }
       return '<td style="text-align:center;">'+(isNaN(v)?'\u2013':gsFmt(v))+d+'</td>';
     };
-    rows+='<tr><td style=\"text-align:left;font-weight:600;\">'+k.replace('_',' ')+'</td>'+cols.map(function(c){return cell(c[0]);}).join('')+'</tr>';
+    rows+='<tr><td style="text-align:left;font-weight:600;">'+k.replace('_',' ')+'</td>'+cols.map(function(c){return cell(c);}).join('')+'</tr>';
     prev=m;
   });
   if(!rows) return '<div style="color:#94a3b8;font-size:11px;">Sin datos mensuales para este nudo.</div>';
-  return '<div style="overflow:auto;"><table class="rich-tbl" style="font-size:11px;"><tr style="color:#64748b;"><th style="text-align:left;">Mes</th>'+cols.map(function(c){return '<th>'+c[1]+'</th>';}).join('')+'</tr>'+rows+'</table></div>';
+  return '<div style="overflow:auto;"><table class="rich-tbl" style="font-size:11px;"><tr style="color:#64748b;"><th style="text-align:left;">Mes</th>'+cols.map(function(c){return '<th>'+c[2]+'</th>';}).join('')+'</tr>'+rows+'</table></div>'+(isD?'':'<div style="font-size:9.5px;color:#94a3b8;margin-top:3px;">Otorgada y En curso = totales (demanda + almacenamiento RdT).</div>');
 }
 // Diff posición a posición entre dos meses (requiere pos_AAAA_MM.json de ambos)
 function naPosDiffHTML(entry,key,pkey,side){
@@ -3775,7 +3779,12 @@ function naDeepDive(name){
   const side=document.getElementById('na-side').value;
   const isD=(entry.grid==='DSO');
   const rich=isD?richDSOForMonth(key,entry):richForMonth(key,entry), pd=posForMonth(key,entry);
-  const dOt=naD(entry,key,pkey,side,'otorgada'), dEc=isD?naD(entry,key,pkey,side,'admitida'):naD(entry,key,pkey,side,'enCurso'),
+  // TSO: Δ Otorgada / Δ En curso sobre los TOTALES (otTot/ecTot = demanda + almacenamiento RdT), con
+  // fallback al campo simple si el total no existe. Así una caída solo en almacenamiento (LEGANES 220
+  // dem: en curso alm_rdt 110->0) se ve como −110 en vez de 0. DSO: ocupada / admitida.
+  const _naDT=function(f,fallback){ const v=naD(entry,key,pkey,side,f); return isNaN(v)?naD(entry,key,pkey,side,fallback):v; };
+  const dOt=isD?naD(entry,key,pkey,side,'otorgada'):_naDT('otTot','otorgada'),
+        dEc=isD?naD(entry,key,pkey,side,'admitida'):_naDT('ecTot','enCurso'),
         dDisp=naD(entry,key,pkey,side,'disp'), dMg=naD(entry,key,pkey,side,'margen');   // DSO: dOt=\u0394ocupada \u00b7 dEc=\u0394admitida (equivalentes funcionales)
   const met=naMet(entry,key,side)||{};
   // Atribución nudo vs zona: familia del criterio limitante + test de pares de zona
