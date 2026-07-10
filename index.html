@@ -2658,6 +2658,12 @@ function gsTSO(entry, key){
     const rich = richForMonth(key, entry); if(!rich) return null;
     const g=rich.gen||{}, d=rich.dem||{};
     const dg=g.disp||{}, dd=d.disp||{}, mg=g.margen||{}, md=d.margen||{};
+    // Limitación por posición: si existe y su margen (MGES/MPE) es 0, NO hay posición dedicada libre,
+    // por lo que el nudo no es solicitable aunque el disponible sea > 0. (Dato de la ficha, no inferencia.)
+    const lpG=g.lim_posicion||{};
+    const _lpMarg=gsMaxOf(lpG.margen_mges, lpG.margen_mpe);
+    const _lpExiste=(lpG.existe!=null)&&(String(lpG.existe).trim().toUpperCase()==='SI'||String(lpG.existe).trim().toUpperCase()==='S\u00cd');
+    const limPosGen=(_lpExiste && !isNaN(_lpMarg) && _lpMarg<=0);   // true = posición dedicada agotada
     const nd=g.no_disp||{}, no=d.no_otorgable||{}, otg=g.otorgada||{}, otd=d.otorgada||{};
     const resv=g.reserva||{}, conc=d.concurso||{}, ec=g.en_curso||{}, ecd=d.en_curso||{}, lib=g.liberada||{};
     const dispGen = gsMaxOf(dg.gen_mges_rdt, dg.gen_mpe_rdt, dg.gen_mges_rdd, dg.gen_mpe_rdd, dg.alm_mges_rdt, dg.alm_mpe_rdt, dg.alm_mges_rdd, dg.alm_mpe_rdd);
@@ -2681,9 +2687,9 @@ function gsTSO(entry, key){
     const ctG = ctGenFromRich(rich), ctD = ctDemFromRich(rich);
     const enConcG = gsIsTender(ctG), enConcD = gsIsTender(ctD);
     // texto de causa combinado (motivo + reserva/concurso + normativa + estado de concurso)
-    const reasonGen=[motG, (resv.motivo!=null?String(resv.motivo).trim():''), (resv.normativa!=null?String(resv.normativa).trim():''), (enConcG?'Concurso':'')].filter(Boolean).join(' · ');
+    const reasonGen=[motG, (resv.motivo!=null?String(resv.motivo).trim():''), (resv.normativa!=null?String(resv.normativa).trim():''), (enConcG?'Concurso':''), (limPosGen && String(motG||'').toLowerCase().indexOf('posici')<0 ? 'Sin posición dedicada disponible (margen de posición agotado)':'')].filter(Boolean).filter(function(v,i,a){return a.indexOf(v)===i;}).join(' · ');
     const concNudo=(String(conc.nudo_concurso||'').toUpperCase()==='SI')?'Nudo de concurso':'';
-    const reasonDem=[motD, concNudo, (conc.normativa!=null?String(conc.normativa).trim():''), (enConcD?'Concurso':'')].filter(Boolean).join(' · ');
+    const reasonDem=[motD, concNudo, (conc.normativa!=null?String(conc.normativa).trim():''), (enConcD?'Concurso':'')].filter(Boolean).filter(function(v,i,a){return a.indexOf(v)===i;}).join(' · ');
     const reasonAlm=(!isNaN(dispAlm)&&dispAlm<=0)?'Sin capacidad':'';
     const clg=g.crit_lim||{}, cld=d.crit_lim||{};
     const critG=gsBindCode([[cleanNum(mg.gen_mges),clg.gen_mges],[cleanNum(mg.gen_mpe),clg.gen_mpe],[cleanNum(mg.alm_mges),clg.alm_mges],[cleanNum(mg.alm_mpe),clg.alm_mpe]]);
@@ -3152,7 +3158,7 @@ function gsWhatsNewRecs(key,pkey,side,scope){
     const enF=(e.grid==='DSO')?'admitida':'enCurso';
     const afR=isD?dsoAfeccion(e,key):null;   // afección aguas arriba (para búsqueda y desglose)
     out.push({name:e.name, ccaa:e.ccaa||'', prov:e.prov||'', tens:e.tens||'', grid:e.grid, afec:(afR?afR.txt:''), afecOri:(afR?afR.origen:''),
-      vals:vals, dlt:dlt, sat:cv(c,'sat'), crit:(c.crit||''), reason:(c.reason||''), causas:(c.causas||[]),
+      vals:vals, dlt:dlt, sat:cv(c,'sat'), crit:(c.crit||''), reason:(c.reason||''), causas:(c.causas||[]), noSolic:!!c.noSolic,
       cRich:isD?gsDsoBlocks(richC,side):((richC&&richC[side])||{}), pRich:isD?gsDsoBlocks(richP,side):((richP&&richP[side])||{}),
       // flujo: usar totales otTot/ecTot (incluyen alm_rdt) si existen; si no, los campos simples.
       // Sin esto, una caída solo en almacenamiento en curso (p. ej. LEGANES 220 jul-2026: dem alm_rdt 110->0) se clasificaba 'Sin cambio'.
@@ -3167,13 +3173,16 @@ function gsWnNum(x){ if(x===null||x===undefined||x==='') return NaN; const v=Num
 function gsWnDetailHTML(r,side,rid){
   const cR=r.cRich||{}, pR=r.pRich||{};
   const lbl=function(bk,c){ return (typeof GS_WN_HDR!=='undefined'&&GS_WN_HDR[bk]&&GS_WN_HDR[bk][c])||c; };
-  const solic=(!isNaN(r.vals.disp)&&r.vals.disp>0);
+  const solic=(!isNaN(r.vals.disp)&&r.vals.disp>0&&!r.noSolic);   // solicitable = hay disponible Y no está marcado no solicitable (p.ej. sin posición dedicada)
   const sinDato=isNaN(r.vals.disp);
+  const dispCero=(!isNaN(r.vals.disp)&&r.vals.disp<=0);   // 0 MW disponibles: el motivo principal ES que no hay capacidad
   const verdict=solic
     ? '<span style="color:#166534;background:#dcfce7;padding:3px 10px;border-radius:6px;font-weight:700;">\u2713 Capacidad SOLICITABLE \u2014 '+gsFmt(r.vals.disp)+' MW disponibles</span>'+(r.reason?(' <span style="font-size:11px;color:#b45309;">\u00b7 con restricci\u00f3n: '+r.reason+'</span>'):'')
     : (sinDato
         ? '<span style="color:#475569;background:#f1f5f9;padding:3px 10px;border-radius:6px;font-weight:700;">\u2014 Sin dato publicado</span> <span style="font-size:11px;color:#64748b;">\u00b7 la distribuidora no publica esta perspectiva este mes</span>'
-        : '<span style="color:#991b1b;background:#fee2e2;padding:3px 10px;border-radius:6px;font-weight:700;">\u2717 NO solicitable</span>'+(r.reason?(' <span style="font-size:11px;color:#64748b;">\u00b7 <b>Motivo:</b> '+r.reason+'</span>'):' <span style="font-size:11px;color:#64748b;">\u00b7 sin motivo especificado por la distribuidora</span>'));
+        : dispCero
+          ? '<span style="color:#991b1b;background:#fee2e2;padding:3px 10px;border-radius:6px;font-weight:700;">\u2717 NO solicitable \u2014 0 MW disponibles</span> <span style="font-size:11px;color:#64748b;">\u00b7 sin capacidad disponible en el nudo</span>'+(r.reason?(' <span style="font-size:11px;color:#64748b;">('+r.reason+')</span>'):'')
+          : '<span style="color:#991b1b;background:#fee2e2;padding:3px 10px;border-radius:6px;font-weight:700;">\u2717 NO solicitable</span> <span style="font-size:11px;color:#94a3b8;">('+gsFmt(r.vals.disp)+' MW existen pero bloqueados)</span>'+(r.reason?(' <span style="font-size:11px;color:#64748b;">\u00b7 <b>Motivo:</b> '+r.reason+'</span>'):' <span style="font-size:11px;color:#64748b;">\u00b7 sin motivo especificado por la distribuidora</span>'));
   const blkHtml=GS_WN_BLOCKS.map(function(bo,bi){
     const cur=cR[bo[0]]||{}, prv=pR[bo[0]]||{};
     const keys=Object.keys(cur).length?Object.keys(cur):Object.keys(prv);
@@ -3232,7 +3241,7 @@ function renderWhatsNew(){
   recs.forEach(function(r){ r._blk={}; GS_WN_BLOCKS.forEach(function(bo){ const bk=bo[0]; const ch=gsWnBlkChange((r.cRich||{})[bk], (r.pRich||{})[bk]); if(GS_WN_AGG[bk]){ const dv=r.dlt[GS_WN_AGG[bk]]; ch.net=isNaN(dv)?0:dv; } else if(bk==='otorgada'&&!isNaN(r.dlt.otTot)){ ch.net=r.dlt.otTot; ch.netRdd=isNaN(r.dlt.otRdd)?0:r.dlt.otRdd; } else if(bk==='en_curso'&&!isNaN(r.dlt.ecTot)){ ch.net=r.dlt.ecTot; } else if(GS_WN_MAXD[bk]){ ch.net=gsWnMaxDelta((r.cRich||{})[bk], (r.pRich||{})[bk]); } r._blk[bk]=ch; }); });
   const blkCols=GS_WN_BLOCKS.filter(function(bo){ return recs.some(function(r){ return Object.keys((r.cRich||{})[bo[0]]||{}).length>0 || Object.keys((r.pRich||{})[bo[0]]||{}).length>0; }); });
   if(q) recs=recs.filter(function(r){ return r.name.toLowerCase().indexOf(q)>=0 || String(r.ccaa).toLowerCase().indexOf(q)>=0 || String(r.afec||'').toLowerCase().indexOf(q)>=0; });   // afec: escribir p. ej. 'LEGANES 220' en ámbito DSO lista sus nudos aguas abajo
-  if(concl){ recs=recs.filter(function(r){ const so=(!isNaN(r.vals.disp)&&r.vals.disp>0); return concl==='si'?so:!so; }); }
+  if(concl){ recs=recs.filter(function(r){ const so=(!isNaN(r.vals.disp)&&r.vals.disp>0&&!r.noSolic); return concl==='si'?so:!so; }); }
   const selBlk=blkCols.map(function(b){return b[0];}).filter(function(bk){ return gsWnBlkFilter[bk]; });
   if(selBlk.length){ recs=recs.filter(function(r){ const hits=selBlk.filter(function(bk){ const st=gsWnBlkFilter[bk]; const c=r._blk[bk]||{}; if(st==='up') return c.net>0.5; if(st==='down') return c.net<-0.5; return c.changed; }); return (gsWnFilterMode==='AND')?(hits.length===selBlk.length):(hits.length>0); }); }
   recs.sort(function(a,b){ const da=Math.abs(a.dlt[sortAgg]||0), db=Math.abs(b.dlt[sortAgg]||0); if(db!==da) return db-da; return Math.abs(b.dlt.disp||0)-Math.abs(a.dlt.disp||0); });   // 2º criterio: Δ Disponible (los nudos DSO no tienen margen)
@@ -3252,14 +3261,18 @@ function renderWhatsNew(){
     const tt=bo[1]+': '+c.n+' campo(s)'+(Math.abs(c.net)>=0.5?(' \u00b7 neto '+(c.net>0?'+':'\u2212')+gsFmt(Math.abs(c.net))):' (texto)'); const txt=(Math.abs(c.net)>=0.5)?((c.net>0?'+':'\u2212')+gsFmt(Math.abs(c.net))):'\u25cf'; return '<span title="'+tt+'" style="'+_sty(c.net)+'font-weight:700;padding:1px 5px;border-radius:4px;white-space:nowrap;font-size:10px;">'+txt+'</span>'; };
   const rows=shown.map(function(r,idx){
     const rid='wn'+idx;
-    const so=(!isNaN(r.vals.disp)&&r.vals.disp>0); const sinDato=isNaN(r.vals.disp);
-    // Motivo de 'no solicitable': visible siempre que exista (antes se ocultaba tras un clic).
+    const so=(!isNaN(r.vals.disp)&&r.vals.disp>0&&!r.noSolic); const sinDato=isNaN(r.vals.disp);
+    const dispCero=(!isNaN(r.vals.disp)&&r.vals.disp<=0);   // 0 MW: el motivo principal es la falta de capacidad
+    // Motivo secundario (0*/comprometida/comentario), si lo hay
+    const motSec=r.reason?(' <span style="color:#94a3b8;font-size:10px;">('+r.reason+')</span>'):'';
     const motLine=r.reason?('<div style="color:#64748b;font-size:10px;margin-top:2px;line-height:1.3;"><b>Motivo:</b> '+r.reason+'</div>'):'<div style="color:#94a3b8;font-size:10px;margin-top:2px;">Sin motivo especificado por la distribuidora</div>';
     const cc=so
       ? ('<span style="color:#166534;font-weight:600;">\u2713 Solicitable</span> <span style="color:#94a3b8;">'+gsFmt(r.vals.disp)+' MW</span>'+(r.reason?('<div style="color:#b45309;font-size:10px;margin-top:2px;">con restricci\u00f3n: '+r.reason+'</div>'):''))
       : (sinDato
           ? ('<span style="color:#475569;font-weight:600;">\u2014 Sin dato</span> <span style="color:#94a3b8;font-size:10px;">(no publicado este mes)</span>')
-          : ('<span style="color:#991b1b;font-weight:600;">\u2717 No solicitable</span>'+motLine));
+          : dispCero
+            ? ('<span style="color:#991b1b;font-weight:600;">\u2717 No solicitable</span> <span style="color:#94a3b8;">0 MW</span>'+motSec)
+            : ('<span style="color:#991b1b;font-weight:600;">\u2717 No solicitable</span> <span style="color:#94a3b8;">'+gsFmt(r.vals.disp)+' MW bloqueados</span>'+motLine));
     const satTxt=isNaN(r.sat)?'\u2013':(Math.round(r.sat*100)+'%');
     const summary='<tr onclick="gsWnToggleNode('+idx+')" style="cursor:pointer;">'
       +'<td style="text-align:left;"><span id="'+rid+'-i" style="color:#F3721F;font-size:10px;">\u25b8</span> <b>'+r.name+'</b> <a onclick="naDeepDiveIdx('+idx+');event.stopPropagation();" title="Diagnóstico en profundidad de este nudo" style="cursor:pointer;text-decoration:none;">🔬</a></td>'
@@ -3744,7 +3757,7 @@ function naCadenaHTML(entry,key,pkey,side){
     +'</table>';
   var critTxt=us.crit?('<div style="font-size:10.5px;color:#64748b;margin-top:3px;">Criterio limitante del padre: <b>'+us.crit+'</b>'+(us.zona?(' \u00b7 zona <b>'+us.zona+'</b>'):'')+'</div>'):'';
   var herm=dsoChildrenOf(af.txt).filter(function(h){ return h.e.dsoKey!==entry.dsoKey; });
-  var hermHtml='<div style="font-size:11px;margin-top:8px;color:#475569;">'+herm.length+' nudo(s) DSO hermano(s) cuelgan del mismo nudo TSO'+(herm.length?': '+herm.slice(0,12).map(function(h){return '<a onclick="naDeepDive(\''+String(h.e.name).replace(/'/g,"\\'")+'\')" style="cursor:pointer;color:#F3721F;">'+h.e.name+'</a>';}).join(' \u00b7 ')+(herm.length>12?' \u2026 (+'+(herm.length-12)+')':''):'.')+'</div>';
+  var hermHtml='<div style="font-size:11px;margin-top:8px;color:#475569;">'+herm.length+' nudo(s) DSO hermano(s) cuelgan del mismo nudo TSO'+(herm.length?': '+herm.map(function(h){return '<a onclick="naDeepDive(\''+String(h.e.name).replace(/'/g,"\\'")+'\')" style="cursor:pointer;color:#F3721F;">'+h.e.name+'</a>';}).join(' \u00b7 '):'.')+'</div>';
   return '<div style="font-size:11px;line-height:1.5;">'
     +'\u2b06 Nudo TSO aguas arriba: <a onclick="naDeepDive(\''+String(us.up.name).replace(/'/g,"\\'")+'\')" style="cursor:pointer;color:#F3721F;font-weight:700;">'+us.up.name+'</a>'+afTag
     +(us.hayPrev?'':' <span style="color:#94a3b8;font-size:9px;">(sin mensual TSO previo: \u0394 parcial)</span>')+'</div>'
