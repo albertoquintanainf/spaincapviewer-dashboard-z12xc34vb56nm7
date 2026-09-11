@@ -400,6 +400,18 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 #bs-head { position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:10px; padding:10px 16px;
   background:#0f172a; color:#fff; }
 #bs-head h2 { margin:0; font-size:16px; letter-spacing:.5px; }
+#bs-alert { display:none; position:fixed; inset:0; z-index:500000; background:rgba(15,23,42,.55);
+  align-items:center; justify-content:center; padding:20px; }
+#bs-alert.open { display:flex; }
+#bs-alert-box { background:#fff; border-radius:12px; max-width:560px; width:100%; padding:18px 22px;
+  box-shadow:0 14px 40px rgba(0,0,0,.3); font-family:Arial,Helvetica,sans-serif; max-height:88vh; overflow:auto; }
+.bs-al-h { background:#B3261E; color:#fff; margin:-18px -22px 12px; padding:10px 22px; border-radius:12px 12px 0 0;
+  font-size:14px; font-weight:bold; letter-spacing:.4px; }
+.bs-al-lang { font-size:11px; font-weight:bold; color:#5b6472; margin:10px 0 2px; }
+#bs-alert-box p { margin:0 0 6px; font-size:12.5px; line-height:1.5; color:#262626; }
+.bs-al-chk { display:block; margin:12px 0 10px; font-size:11.5px; color:#5b6472; }
+.bs-al-btn { width:100%; background:#F3721F; color:#fff; border:none; border-radius:8px; padding:9px 14px;
+  font-size:13px; font-weight:bold; cursor:pointer; }
 .bs-test { background:#B3261E; color:#fff; font-size:10px; font-weight:bold; letter-spacing:.6px;
   padding:3px 8px; border-radius:10px; }
 #bs-testbox { margin:10px 16px 0; padding:9px 13px; border-radius:8px; background:#FBEAE8;
@@ -427,6 +439,9 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-kpi-v { font-size:24px; font-weight:bold; line-height:1.1; }
 .bs-kpi-t { font-size:11px; color:#5b6472; margin-top:2px; }
 
+.bs-count { font-size:11.5px; color:#5b6472; margin-bottom:6px; }
+.bs-diag { background:#f4f4f4; border-left:4px solid #7a8495; border-radius:6px; padding:7px 10px;
+  font-size:11.5px; color:#262626; margin-bottom:10px; line-height:1.45; }
 .bs-tbl { width:100%; border-collapse:collapse; font-size:12px; background:#fff; }
 .bs-tbl th { background:#222; color:#fff; padding:6px 8px; text-align:center; font-size:11px; font-weight:bold; }
 .bs-tbl th span { font-weight:normal; opacity:.8; font-size:10px; }
@@ -507,6 +522,18 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 #bs-head { position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:10px; padding:10px 16px;
   background:#0f172a; color:#fff; }
 #bs-head h2 { margin:0; font-size:16px; letter-spacing:.5px; }
+#bs-alert { display:none; position:fixed; inset:0; z-index:500000; background:rgba(15,23,42,.55);
+  align-items:center; justify-content:center; padding:20px; }
+#bs-alert.open { display:flex; }
+#bs-alert-box { background:#fff; border-radius:12px; max-width:560px; width:100%; padding:18px 22px;
+  box-shadow:0 14px 40px rgba(0,0,0,.3); font-family:Arial,Helvetica,sans-serif; max-height:88vh; overflow:auto; }
+.bs-al-h { background:#B3261E; color:#fff; margin:-18px -22px 12px; padding:10px 22px; border-radius:12px 12px 0 0;
+  font-size:14px; font-weight:bold; letter-spacing:.4px; }
+.bs-al-lang { font-size:11px; font-weight:bold; color:#5b6472; margin:10px 0 2px; }
+#bs-alert-box p { margin:0 0 6px; font-size:12.5px; line-height:1.5; color:#262626; }
+.bs-al-chk { display:block; margin:12px 0 10px; font-size:11.5px; color:#5b6472; }
+.bs-al-btn { width:100%; background:#F3721F; color:#fff; border:none; border-radius:8px; padding:9px 14px;
+  font-size:13px; font-weight:bold; cursor:pointer; }
 .bs-test { background:#B3261E; color:#fff; font-size:10px; font-weight:bold; letter-spacing:.6px;
   padding:3px 8px; border-radius:10px; }
 #bs-testbox { margin:10px 16px 0; padding:9px 13px; border-radius:8px; background:#FBEAE8;
@@ -534,6 +561,9 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-kpi-v { font-size:24px; font-weight:bold; line-height:1.1; }
 .bs-kpi-t { font-size:11px; color:#5b6472; margin-top:2px; }
 
+.bs-count { font-size:11.5px; color:#5b6472; margin-bottom:6px; }
+.bs-diag { background:#f4f4f4; border-left:4px solid #7a8495; border-radius:6px; padding:7px 10px;
+  font-size:11.5px; color:#262626; margin-bottom:10px; line-height:1.45; }
 .bs-tbl { width:100%; border-collapse:collapse; font-size:12px; background:#fff; }
 .bs-tbl th { background:#222; color:#fff; padding:6px 8px; text-align:center; font-size:11px; font-weight:bold; }
 .bs-tbl th span { font-weight:normal; opacity:.8; font-size:10px; }
@@ -4494,6 +4524,29 @@ function renderOportunidades(){
   </div>
 </div>
 
+
+<!-- Aviso de fase de pruebas · se muestra al abrir cualquiera de los tres módulos -->
+<div id="bs-alert" onclick="if(event.target.id==='bs-alert')bsAlertClose()">
+  <div id="bs-alert-box">
+    <div class="bs-al-h">⚠ <span id="bs-al-mod">MÓDULO</span> · FASE DE PRUEBAS / TEST PHASE</div>
+    <div class="bs-al-lang">🇪🇸 Español</div>
+    <p>Este módulo está <b>en fase de pruebas</b>. Los cálculos se apoyan en una lectura propia de los ficheros
+    mensuales publicados que <b>no está confirmada con la leyenda oficial de REE</b>, y la parte de redes de
+    distribución (DSO) está incompleta porque el fichero de las distribuidoras no desglosa el almacenamiento ni
+    publica el criterio limitante.</p>
+    <p>Úsalo para <b>explorar y contrastar</b>, no como base única de una decisión de inversión. Verifica siempre
+    con el estudio de red del gestor antes de comprometer nada.</p>
+    <div class="bs-al-lang">🇬🇧 English</div>
+    <p>This module is <b>in test phase</b>. Figures rely on our own reading of the published monthly files, which is
+    <b>not confirmed against REE's official legend</b>, and the distribution-grid (DSO) side is incomplete because the
+    DSO file neither breaks out storage nor publishes the limiting criterion.</p>
+    <p>Use it to <b>explore and cross-check</b>, not as the sole basis for an investment decision. Always verify
+    against the network operator's grid study before committing.</p>
+    <label class="bs-al-chk"><input type="checkbox" id="bs-al-dont"> No volver a mostrar en esta sesión / Don&#39;t show again this session</label>
+    <button class="bs-al-btn" onclick="bsAlertClose()">Entendido / Got it</button>
+  </div>
+</div>
+
 <!-- ===== BESS STAND ALONE (módulo de análisis de almacenamiento sin consumidor asociado) ===== -->
 <div id="bess-analysis">
   <div id="bs-head">
@@ -4523,7 +4576,7 @@ function renderOportunidades(){
       <option value="margen">Margen de descarga</option>
       <option value="nombre">Nombre</option>
     </select></label>
-    <label><input id="bs-only" type="checkbox" onchange="bsRender()" checked> Solo nudos con potencial &gt; 0</label>
+    <label title="Al escribir en el buscador este filtro se ignora, para que puedas encontrar cualquier nudo"><input id="bs-only" type="checkbox" onchange="bsRender()"> Solo nudos con potencial &gt; 0</label>
     <button type="button" onclick="bsToggleNota()" style="margin-left:auto;background:#e2e8f0;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:#F3721F;font-weight:bold;">&#9432; Metodología</button>
   </div>
 
@@ -4570,11 +4623,30 @@ let bsSel = {};            // nudos seleccionados para el informe
 let bsRows = [];           // filas calculadas del último render
 let bsFichaNode = null;    // nudo abierto en la ficha inferior
 
+
+/* ---------- aviso de fase de pruebas ----------
+   Se engancha a los tres módulos DECORANDO sus funciones de apertura, sin
+   modificar su código original: se guarda la referencia y se envuelve.      */
+let bsAlertOff = false;
+function bsAlertClose() {
+    const c = document.getElementById('bs-al-dont');
+    if (c && c.checked) bsAlertOff = true;
+    document.getElementById('bs-alert').classList.remove('open');
+}
+function bsTestAlert(modulo) {
+    if (bsAlertOff) return;
+    document.getElementById('bs-al-mod').textContent = modulo;
+    const c = document.getElementById('bs-al-dont'); if (c) c.checked = false;
+    document.getElementById('bs-alert').classList.add('open');
+}
+
 /* ---------- utilidades ---------- */
+/* Clave de mes con el MISMO formato que el resto del visor: '26_sep'
+   (los selectores ya traen value='26' y value='sep'). */
 function bsKey() {
     const y = document.getElementById('bs-year').value;
     const m = document.getElementById('bs-month').value;
-    return periodoToKey(m, y);
+    return y + '_' + m;
 }
 function bsNum(v) { const n = Number(v); return isFinite(n) ? n : 0; }
 function bsMW(v) { return (v == null || !isFinite(Number(v))) ? '—' : Number(v).toLocaleString('es-ES') + ' MW'; }
@@ -4589,7 +4661,12 @@ function bsTarget() { return Math.max(0, bsNum(document.getElementById('bs-targe
    Los MW eficaces son el mínimo entre carga y descarga (perfil simétrico).      */
 function bsMetricsTSO(entry, key) {
     const r = richForMonth(key, entry);
-    if (!r) return null;
+    if (!r) return { name: entry.name, grid: 'TSO', prov: entry.prov || '', ccaa: entry.ccaa || '', tens: entry.tens || '',
+        sinDatos: true, cargaDisp: 0, descDisp: 0, margenMPE: null, margenMGES: null, posMPE: null, capMax: null,
+        cargaMargen: null, cargaNoCep: null, cargaCrit: '—', descCrit: '—', cargaOtorg: 0, cargaCola: 0, cargaNoOtorg: null,
+        cargaRefRdd: 0, cargaAcuerdo: false, descOtorg: 0, descCola: 0, liberada: null, noDisp: 0, motivo: null,
+        reserva: '', posExist: 0, posPrev: 0, potencial: 0, eficazHoy: 0, eficazConc: 0,
+        bloqueoConcurso: false, limitaPosicion: false, sinPosicion: false };
     const g = r.gen || {}, d = r.dem || {};
     const gd = g.disp || {}, gm = g.margen || {}, lp = g.lim_posicion || {};
     const nd = g.no_disp || {}, rs = g.reserva || {}, lb = g.liberada || {}, ec = g.en_curso || {}, ot = g.otorgada || {};
@@ -4610,6 +4687,7 @@ function bsMetricsTSO(entry, key) {
         cargaMargen: bsNum(dm.alm_cep_mpe != null ? dm.alm_cep_mpe : dd.alm_cep),
         cargaNoCep: bsNum(dd.dem_no_cep),
         cargaCrit: dcl.alm_cep || dcl.dem_no_cep || '—',
+        descCrit: (g.crit_lim || {}).alm_mpe || (g.crit_lim || {}).alm_mges || '—',
         cargaOtorg: bsNum(dot.alm_rdt) + bsNum(dot.dem_rdt),
         cargaCola: bsNum(dec.dem) + bsNum(dec.alm_rdt),
         cargaNoOtorg: bsNum(dno.alm_cep),
@@ -4643,7 +4721,12 @@ function bsMetricsTSO(entry, key) {
    publicado, en lugar de inferirlo.                                            */
 function bsMetricsDSO(entry, key) {
     const r = richDSOForMonth(key, entry);
-    if (!r) return null;
+    if (!r) return { name: entry.name, grid: 'DSO', prov: entry.prov || '', ccaa: entry.ccaa || '', tens: entry.tens || '',
+        oper: entry.oper || '', sinDatos: true, cargaDisp: 0, descDisp: 0, margenMPE: null, margenMGES: null, posMPE: null,
+        capMax: null, cargaMargen: null, cargaNoCep: null, cargaCrit: 'no publicado en DSO', descCrit: 'no publicado en DSO',
+        cargaOtorg: 0, cargaCola: 0, cargaNoOtorg: null, cargaRefRdd: null, cargaAcuerdo: false, descOtorg: 0, descCola: 0,
+        liberada: null, noDisp: null, motivo: null, reserva: '', posExist: 0, posPrev: 0, potencial: 0,
+        eficazHoy: 0, eficazConc: 0, bloqueoConcurso: false, limitaPosicion: false, sinPosicion: false };
     const g = r.gen || {}, d = r.dem || {};
     const cargaDisp = bsNum(d.disp), descDisp = bsNum(g.disp);
     return {
@@ -4664,9 +4747,50 @@ function bsMetricsDSO(entry, key) {
     };
 }
 
+/* ---------- diagnóstico: por qué un nudo está como está ----------
+   Se evalúa siempre, también para los nudos a cero, que son la mayoría.     */
+function bsDiag(m) {
+    if (m.sinDatos) return { tipo: 'sin datos', txt: 'Sin ficha publicada para este mes: el nudo existe en la base pero no aparece en el fichero del periodo.' };
+    const partes = [];
+    if (m.cargaDisp <= 0) {
+        partes.push('CARGA a cero: no hay margen de almacenamiento en la perspectiva de demanda' +
+            (m.cargaCrit && m.cargaCrit !== '—' ? ' (criterio limitante: ' + m.cargaCrit + ')' : '') +
+            (m.cargaNoOtorg > 0 ? ' y hay ' + bsMW(m.cargaNoOtorg) + ' marcados como no otorgables' : '') + '.');
+    } else {
+        partes.push('CARGA abierta: ' + bsMW(m.cargaDisp) + ' solicitables' +
+            (m.cargaOtorg > 0 ? ', con ' + bsMW(m.cargaOtorg) + ' ya otorgados' : '') +
+            (m.cargaCola > 0 ? ' y ' + bsMW(m.cargaCola) + ' en cola' : '') + '.');
+    }
+    if (m.descDisp > 0) {
+        partes.push('DESCARGA abierta: ' + bsMW(m.descDisp) + ' solicitables por prelación temporal.');
+    } else if (m.bloqueoConcurso) {
+        partes.push('DESCARGA reservada a CONCURSO: hay ' + bsMW(m.margenMPE) + ' de margen técnico pero no son solicitables' +
+            (m.motivo ? ' (' + m.motivo + ')' : '') + (m.reserva ? ' · estado: ' + m.reserva : '') + '.');
+    } else if (m.margenMPE === 0) {
+        partes.push('DESCARGA a cero por falta de margen técnico' +
+            (m.descCrit && m.descCrit !== '—' ? ' (criterio limitante: ' + m.descCrit + ')' : '') + '.');
+    } else if (m.margenMPE == null) {
+        partes.push('DESCARGA: el fichero de este mes no publica margen de almacenamiento para esta red.');
+    } else {
+        partes.push('DESCARGA a cero: margen de ' + bsMW(m.margenMPE) + ' no disponible' + (m.motivo ? ' (' + m.motivo + ')' : '') + '.');
+    }
+    if (m.limitaPosicion) partes.push('La POSICIÓN limita: ' + bsMW(m.posMPE) + ' frente a ' + bsMW(m.margenMPE) + ' de red.');
+    if (m.sinPosicion && m.grid === 'TSO') partes.push('Sin posición de transporte existente ni prevista: su viabilidad se consulta al TSO.');
+    if (m.liberada > 0) partes.push('Hay ' + bsMW(m.liberada) + ' en el bloque liberada, afectos a autoconsumo del RDL 7/2026: no utilizables por un proyecto stand alone.');
+    let tipo = 'sin potencial';
+    if (m.eficazHoy > 0) tipo = 'abierto';
+    else if (m.eficazConc > 0) tipo = m.bloqueoConcurso ? 'concurso' : 'condicionado';
+    return { tipo: tipo, txt: partes.join(' ') };
+}
+function bsDiagPill(d) {
+    const c = { 'abierto': '#1B7F4B', 'concurso': '#A67C00', 'condicionado': '#F06818', 'sin potencial': '#7a8495', 'sin datos': '#B3261E' }[d.tipo] || '#7a8495';
+    return '<span class="bs-pill" style="background:' + c + '">' + d.tipo.toUpperCase() + '</span>';
+}
+
 /* ---------- semáforo de acción ---------- */
 function bsSem(m) {
     const t = bsTarget();
+    if (m.sinDatos) return { col: '#B3261E', txt: 'SIN DATOS', num: '–', acc: 'El nudo no aparece en el fichero de este periodo: prueba otro mes' };
     if (m.eficazHoy >= t && t > 0) return { col: '#1B7F4B', txt: 'SOLICITAR YA', num: '1', acc: 'Hay capacidad solicitable hoy en ambos lados para el objetivo de ' + t + ' MW' };
     if (m.eficazConc >= t && t > 0 && m.bloqueoConcurso) return { col: '#1B7F4B', txt: 'PERSEGUIR', num: '2', acc: 'Preparar candidatura al CONCURSO: el potencial cubre el objetivo de ' + t + ' MW' };
     if (m.eficazConc > 0 && m.limitaPosicion) return { col: '#F06818', txt: 'CONSULTAR TSO', num: '3', acc: 'Consultar la ampliación de posición: el margen de red es mayor que el de posición' };
@@ -4717,7 +4841,7 @@ function bsCollect() {
     for (const e of allEntries) {
         if ((e.grid || 'TSO') !== scope) continue;
         const m = (scope === 'TSO') ? bsMetricsTSO(e, key) : bsMetricsDSO(e, key);
-        if (m) out.push(m);
+        if (m) { m.oper = m.oper || e.oper || ''; out.push(m); }
     }
     return out;
 }
@@ -4726,9 +4850,12 @@ function bsRender() {
     const q = (document.getElementById('bs-search').value || '').trim().toUpperCase();
     const only = document.getElementById('bs-only').checked;
     const ord = document.getElementById('bs-order').value;
-    let rows = bsCollect();
-    if (only) rows = rows.filter(r => r.eficazConc > 0);
-    if (q) rows = rows.filter(r => (r.name + ' ' + r.prov + ' ' + r.ccaa).toUpperCase().indexOf(q) >= 0);
+    const todos = bsCollect();
+    let rows = todos;
+    // El buscador manda: si hay texto, se ignora el filtro de potencial para
+    // que cualquier nudo sea localizable y se pueda ver su casuística.
+    if (q) rows = rows.filter(r => (r.name + ' ' + r.prov + ' ' + r.ccaa + ' ' + (r.oper || '')).toUpperCase().indexOf(q) >= 0);
+    else if (only) rows = rows.filter(r => r.eficazConc > 0);
     const cmp = {
         efic: (a, b) => b.eficazConc - a.eficazConc,
         hoy: (a, b) => b.eficazHoy - a.eficazHoy,
@@ -4744,9 +4871,10 @@ function bsRender() {
     const nConc = rows.filter(r => r.eficazConc > 0).length;
     const sumConc = rows.reduce((a, r) => a + r.eficazConc, 0);
     const nBloq = rows.filter(r => r.bloqueoConcurso).length;
+    const conDatos = todos.filter(r => !r.sinDatos).length;
     document.getElementById('bs-kpis').innerHTML =
         '<div class="bs-kpis">' +
-        bsKpi(rows.length, 'nudos analizados', '#222') +
+        bsKpi(conDatos + ' / ' + todos.length, 'nudos con ficha en el mes / totales de la red', '#222') +
         bsKpi(nHoy, 'con capacidad solicitable HOY en ambos lados', nHoy ? '#1B7F4B' : '#B3261E') +
         bsKpi(nConc, 'con potencial si se convoca el CONCURSO', '#F06818') +
         bsKpi(sumConc.toLocaleString('es-ES'), 'MW eficaces potenciales sumados', '#1F4E79') +
@@ -4758,7 +4886,7 @@ function bsRender() {
         '<th style="width:28px;"></th><th>Nudo</th><th>CCAA</th>' +
         '<th>CARGA<br><span>solicitable</span></th><th>CARGA<br><span>otorg. / cola</span></th>' +
         '<th>DESCARGA<br><span>solicitable</span></th><th>DESCARGA<br><span>margen / posición</span></th><th>DESCARGA<br><span>otorg. / cola</span></th>' +
-        '<th>BESS eficaz<br><span>hoy / con CONCURSO</span></th><th>Acción</th><th></th></tr></thead><tbody>';
+        '<th>BESS eficaz<br><span>hoy / con CONCURSO</span></th><th>Caso</th><th>Acción</th><th></th></tr></thead><tbody>';
     for (const r of bsRows) {
         const s = bsSem(r);
         h += '<tr>' +
@@ -4771,12 +4899,16 @@ function bsRender() {
             '<td class="bs-num">' + (r.margenMPE == null ? 'no publicado' : bsMW(r.margenMPE) + ' / ' + (r.posMPE == null ? '—' : bsMW(r.posMPE))) + '</td>' +
             '<td class="bs-num">' + bsMW(r.descOtorg) + ' / ' + bsMW(r.descCola) + '</td>' +
             '<td class="bs-num"><span class="' + (r.eficazHoy > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(r.eficazHoy) + '</span> / <b class="bs-must">' + bsMW(r.eficazConc) + '</b></td>' +
+            '<td>' + bsDiagPill(bsDiag(r)) + '</td>' +
             '<td><span class="bs-pill" style="background:' + s.col + '">' + s.txt + '</span></td>' +
             '<td><button class="bs-mini" onclick="bsFicha(\'' + r.name.replace(/'/g, "\\'") + '\')">🔬</button></td>' +
             '</tr>';
     }
     h += '</tbody></table>';
-    if (!bsRows.length) h = '<div style="color:#64748b;font-size:13px;">Sin nudos que cumplan el filtro en este mes.</div>';
+    h = '<div class="bs-count">Mostrando <b>' + bsRows.length + '</b> de ' + todos.length + ' nudos ' +
+        (q ? '· búsqueda «' + q + '» (el filtro de potencial se ignora al buscar)' : (only ? '· filtro: solo potencial > 0' : '· sin filtros')) +
+        ' · mes ' + bsKey() + '</div>' + h;
+    if (!bsRows.length) h = '<div class="bs-count">Ningún nudo coincide. Revisa el mes seleccionado (clave usada: <b>' + bsKey() + '</b>), la red (TSO/DSO) o limpia el buscador.</div>';
     document.getElementById('bs-table').innerHTML = h;
     bsSelCount();
     if (bsFichaNode) bsFicha(bsFichaNode);
@@ -4829,6 +4961,7 @@ function bsFichaHTML(m, paraInforme) {
         '<h3>' + m.name + '</h3>' +
         '<div class="bs-sub2">' + (m.ccaa || '') + (m.prov ? ' · ' + m.prov : '') + (m.tens ? ' · ' + m.tens + ' kV' : '') + ' · red ' + m.grid +
         (m.motivo ? ' · ' + m.motivo : '') + (m.reserva ? ' · reserva: ' + m.reserva : '') + '</div>' +
+        '<div class="bs-diag">' + bsDiagPill(bsDiag(m)) + ' <b>Diagnóstico:</b> ' + bsDiag(m).txt + '</div>' +
         '<table class="bs-cols"><tr>' +
         '<td class="bs-col bs-col-carga"><div class="bs-col-h">CARGA · permiso de demanda</div>' +
         '<div class="bs-big bs-blue">' + bsMW(m.cargaDisp) + '</div>' +
@@ -4936,6 +5069,23 @@ function bsDownload() {
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(() => URL.revokeObjectURL(a.href), 4000);
 }
+
+/* Enganche del aviso: al final del módulo, cuando las tres funciones de
+   apertura ya están definidas. Se decoran, no se modifican.               */
+(function () {
+    const wrap = function (nombre, etiqueta) {
+        const orig = window[nombre];
+        if (typeof orig !== 'function') { console.warn('[BESS] no se pudo enganchar el aviso a', nombre); return; }
+        window[nombre] = function () {
+            const r = orig.apply(this, arguments);
+            try { bsTestAlert(etiqueta); } catch (e) { }
+            return r;
+        };
+    };
+    wrap('openGridStatus', 'GRID STATUS');
+    wrap('openNodalAnalysis', 'ANÁLISIS NODAL');
+    wrap('openBess', 'BESS STAND ALONE');
+})();
 </script>
 
 </body>
