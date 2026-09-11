@@ -393,6 +393,221 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 }
 
 </style>
+<style>
+/* ===== BESS STAND ALONE · estilos del módulo ===== */
+#bess-analysis { display:none; position:fixed; inset:0; background:#f1f5f9; z-index:300000; overflow:auto; }
+#bess-analysis.open { display:block; }
+#bs-head { position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:10px; padding:10px 16px;
+  background:#0f172a; color:#fff; }
+#bs-head h2 { margin:0; font-size:16px; letter-spacing:.5px; }
+.bs-test { background:#B3261E; color:#fff; font-size:10px; font-weight:bold; letter-spacing:.6px;
+  padding:3px 8px; border-radius:10px; }
+#bs-testbox { margin:10px 16px 0; padding:9px 13px; border-radius:8px; background:#FBEAE8;
+  border-left:5px solid #B3261E; font-size:12px; line-height:1.45; color:#262626; }
+.bs-rep-test { border-left:4px solid #B3261E; background:#FBEAE8; padding:6px 10px; font-size:10.5px;
+  color:#262626; margin-bottom:12px; }
+#bs-close { margin-left:auto; background:#F3721F; color:#fff; border:none; border-radius:6px; padding:6px 12px;
+  font-size:13px; font-weight:bold; cursor:pointer; }
+#bs-controls { display:flex; gap:14px; align-items:center; flex-wrap:wrap; padding:10px 16px; background:#fff;
+  border-bottom:1px solid #e2e8f0; font-size:13px; }
+#bs-controls label { display:flex; gap:6px; align-items:center; color:#334155; }
+#bs-controls select { padding:4px 6px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px; }
+#bs-nota { display:none; margin:10px 16px; }
+.bs-metod { background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:10px 14px; font-size:12px; color:#262626; }
+.bs-metod ul { margin:6px 0 0 16px; padding:0; }
+.bs-metod li { margin-bottom:4px; }
+
+.bs-bn { margin:10px 16px; padding:10px 14px; border-radius:8px; font-size:12.5px; line-height:1.45; color:#262626; }
+.bs-bn-tso { background:#FBF3DC; border-left:5px solid #A67C00; }
+.bs-bn-dso { background:#EAF1F8; border-left:5px solid #1F4E79; }
+.bs-bn-sub { display:block; margin-top:4px; color:#5b6472; font-style:italic; }
+
+.bs-kpis { display:flex; gap:10px; flex-wrap:wrap; }
+.bs-kpi { flex:1 1 160px; background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:10px 12px; }
+.bs-kpi-v { font-size:24px; font-weight:bold; line-height:1.1; }
+.bs-kpi-t { font-size:11px; color:#5b6472; margin-top:2px; }
+
+.bs-tbl { width:100%; border-collapse:collapse; font-size:12px; background:#fff; }
+.bs-tbl th { background:#222; color:#fff; padding:6px 8px; text-align:center; font-size:11px; font-weight:bold; }
+.bs-tbl th span { font-weight:normal; opacity:.8; font-size:10px; }
+.bs-tbl td { border-bottom:1px solid #eef2f6; padding:6px 8px; vertical-align:middle; }
+.bs-tbl tr:nth-child(even) td { background:#fbfcfe; }
+.bs-num { text-align:right; white-space:nowrap; }
+.bs-sub { font-size:10px; color:#7a8495; }
+.bs-blue { color:#1F4E79; font-weight:bold; }
+.bs-must { color:#A67C00; font-weight:bold; }
+.bs-green { color:#1B7F4B; font-weight:bold; }
+.bs-red { color:#B3261E; font-weight:bold; }
+.bs-pill { display:inline-block; color:#fff; font-weight:bold; font-size:10px; padding:3px 8px; border-radius:10px; white-space:nowrap; }
+.bs-mini { background:#e2e8f0; border:none; border-radius:6px; padding:4px 9px; font-size:11px; cursor:pointer; color:#334155; }
+.bs-dl { margin-left:auto; background:#1B7F4B; color:#fff; border:none; border-radius:6px; padding:6px 12px;
+  font-size:12px; font-weight:bold; cursor:pointer; }
+
+/* ---- ficha de nudo (y página del informe) ---- */
+.bs-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:14px 16px; margin-bottom:14px; }
+.bs-card h3 { margin:0 0 2px; font-size:20px; color:#222; }
+.bs-sub2 { font-size:11.5px; color:#5b6472; margin-bottom:10px; }
+.bs-cols { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
+.bs-col { width:50%; border:1px solid #cbd5e1; border-radius:8px; vertical-align:top; padding:0 0 6px; }
+.bs-col-h { padding:6px 10px; color:#fff; font-size:12px; font-weight:bold; }
+.bs-col-carga { border-color:#1F4E79; } .bs-col-carga .bs-col-h { background:#1F4E79; }
+.bs-col-desc  { border-color:#A67C00; } .bs-col-desc  .bs-col-h { background:#A67C00; }
+.bs-big { font-size:30px; font-weight:bold; padding:8px 10px 0; line-height:1.1; }
+.bs-pot { font-size:12px; }
+.bs-lbl { font-size:11.5px; font-weight:bold; color:#262626; padding:2px 10px 0; }
+.bs-warn { font-size:11.5px; color:#B3261E; padding:2px 10px 0; }
+.bs-it { font-size:10.5px; color:#5b6472; font-style:italic; padding:4px 10px; }
+.bs-mini-tbl { width:100%; border-collapse:collapse; font-size:10.5px; margin:4px 0 2px; }
+.bs-mini-tbl td { padding:3px 10px; }
+.bs-mini-tbl td:last-child { text-align:right; font-weight:bold; color:#222; white-space:nowrap; }
+.bs-t-carga tr:nth-child(odd) td { background:#EAF1F8; }
+.bs-t-desc  tr:nth-child(odd) td { background:#FBF3DC; }
+.bs-mini-tbl tr.bs-hl td { font-weight:bold; border-top:1px solid #94a3b8; border-bottom:1px solid #94a3b8; }
+.bs-t-carga tr.bs-hl td { background:#dce9f6; color:#1F4E79; }
+.bs-t-desc  tr.bs-hl td { background:#f6eccd; color:#B3261E; }
+
+.bs-concl { width:100%; border-collapse:collapse; background:#f4f4f4; border:1px solid #94a3b8;
+  border-left:6px solid #222; border-radius:8px; margin-top:12px; }
+.bs-concl td { padding:8px 10px; vertical-align:middle; }
+.bs-concl-h { width:34%; font-size:10.5px; color:#262626; }
+.bs-concl-h b { font-size:11.5px; color:#222; }
+.bs-concl-b { width:20%; }
+.bs-concl-t { font-size:10.5px; font-weight:bold; color:#222; }
+.bs-concl-s { font-size:9.5px; color:#5b6472; }
+.bs-concl-v { width:13%; font-size:22px; font-weight:bold; text-align:right; }
+.bs-acc { width:100%; border-collapse:collapse; border-radius:8px; margin-top:8px; color:#fff; }
+.bs-acc td { padding:8px 10px; vertical-align:middle; }
+.bs-acc-n { width:30px; text-align:center; }
+.bs-acc-n span { display:inline-block; width:22px; height:22px; line-height:22px; border-radius:50%;
+  background:#fff; color:#222; font-weight:bold; font-size:12px; text-align:center; }
+.bs-acc-t { width:170px; font-weight:bold; font-size:14px; letter-spacing:.5px; }
+.bs-acc-d { font-size:12px; font-weight:bold; border-left:1px solid rgba(255,255,255,.6); }
+.bs-foot { font-size:9.5px; color:#7a8495; margin-top:8px; font-style:italic; }
+
+/* ---- informe descargable ---- */
+.bs-rep-head { display:flex; gap:8px; align-items:center; font-size:12px; color:#222; border-bottom:2px solid #F3721F;
+  padding-bottom:6px; margin-bottom:14px; }
+.bs-rep-head span { margin-left:auto; color:#7a8495; }
+.bs-rep-foot { font-size:10px; color:#7a8495; border-top:1px solid #e2e8f0; padding-top:6px; margin-top:10px; font-style:italic; }
+@page { size:A4 landscape; margin:10mm; }
+@media print {
+  .bs-page { page-break-after:always; break-after:page; border:none; box-shadow:none; }
+  .bs-page:last-of-type { page-break-after:auto; break-after:auto; }
+  .bs-cols, .bs-concl, .bs-acc, .bs-tbl { page-break-inside:avoid; break-inside:avoid; }
+  .bs-rep-head { margin-bottom:8px; }
+  .bs-acc { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .bs-col-h, .bs-pill, .bs-mini-tbl tr.bs-hl td { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+}
+</style>
+
+<style id="bs-report-css" type="text/plain">
+/* ===== BESS STAND ALONE · estilos del módulo ===== */
+#bess-analysis { display:none; position:fixed; inset:0; background:#f1f5f9; z-index:300000; overflow:auto; }
+#bess-analysis.open { display:block; }
+#bs-head { position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:10px; padding:10px 16px;
+  background:#0f172a; color:#fff; }
+#bs-head h2 { margin:0; font-size:16px; letter-spacing:.5px; }
+.bs-test { background:#B3261E; color:#fff; font-size:10px; font-weight:bold; letter-spacing:.6px;
+  padding:3px 8px; border-radius:10px; }
+#bs-testbox { margin:10px 16px 0; padding:9px 13px; border-radius:8px; background:#FBEAE8;
+  border-left:5px solid #B3261E; font-size:12px; line-height:1.45; color:#262626; }
+.bs-rep-test { border-left:4px solid #B3261E; background:#FBEAE8; padding:6px 10px; font-size:10.5px;
+  color:#262626; margin-bottom:12px; }
+#bs-close { margin-left:auto; background:#F3721F; color:#fff; border:none; border-radius:6px; padding:6px 12px;
+  font-size:13px; font-weight:bold; cursor:pointer; }
+#bs-controls { display:flex; gap:14px; align-items:center; flex-wrap:wrap; padding:10px 16px; background:#fff;
+  border-bottom:1px solid #e2e8f0; font-size:13px; }
+#bs-controls label { display:flex; gap:6px; align-items:center; color:#334155; }
+#bs-controls select { padding:4px 6px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px; }
+#bs-nota { display:none; margin:10px 16px; }
+.bs-metod { background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:10px 14px; font-size:12px; color:#262626; }
+.bs-metod ul { margin:6px 0 0 16px; padding:0; }
+.bs-metod li { margin-bottom:4px; }
+
+.bs-bn { margin:10px 16px; padding:10px 14px; border-radius:8px; font-size:12.5px; line-height:1.45; color:#262626; }
+.bs-bn-tso { background:#FBF3DC; border-left:5px solid #A67C00; }
+.bs-bn-dso { background:#EAF1F8; border-left:5px solid #1F4E79; }
+.bs-bn-sub { display:block; margin-top:4px; color:#5b6472; font-style:italic; }
+
+.bs-kpis { display:flex; gap:10px; flex-wrap:wrap; }
+.bs-kpi { flex:1 1 160px; background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:10px 12px; }
+.bs-kpi-v { font-size:24px; font-weight:bold; line-height:1.1; }
+.bs-kpi-t { font-size:11px; color:#5b6472; margin-top:2px; }
+
+.bs-tbl { width:100%; border-collapse:collapse; font-size:12px; background:#fff; }
+.bs-tbl th { background:#222; color:#fff; padding:6px 8px; text-align:center; font-size:11px; font-weight:bold; }
+.bs-tbl th span { font-weight:normal; opacity:.8; font-size:10px; }
+.bs-tbl td { border-bottom:1px solid #eef2f6; padding:6px 8px; vertical-align:middle; }
+.bs-tbl tr:nth-child(even) td { background:#fbfcfe; }
+.bs-num { text-align:right; white-space:nowrap; }
+.bs-sub { font-size:10px; color:#7a8495; }
+.bs-blue { color:#1F4E79; font-weight:bold; }
+.bs-must { color:#A67C00; font-weight:bold; }
+.bs-green { color:#1B7F4B; font-weight:bold; }
+.bs-red { color:#B3261E; font-weight:bold; }
+.bs-pill { display:inline-block; color:#fff; font-weight:bold; font-size:10px; padding:3px 8px; border-radius:10px; white-space:nowrap; }
+.bs-mini { background:#e2e8f0; border:none; border-radius:6px; padding:4px 9px; font-size:11px; cursor:pointer; color:#334155; }
+.bs-dl { margin-left:auto; background:#1B7F4B; color:#fff; border:none; border-radius:6px; padding:6px 12px;
+  font-size:12px; font-weight:bold; cursor:pointer; }
+
+/* ---- ficha de nudo (y página del informe) ---- */
+.bs-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:14px 16px; margin-bottom:14px; }
+.bs-card h3 { margin:0 0 2px; font-size:20px; color:#222; }
+.bs-sub2 { font-size:11.5px; color:#5b6472; margin-bottom:10px; }
+.bs-cols { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
+.bs-col { width:50%; border:1px solid #cbd5e1; border-radius:8px; vertical-align:top; padding:0 0 6px; }
+.bs-col-h { padding:6px 10px; color:#fff; font-size:12px; font-weight:bold; }
+.bs-col-carga { border-color:#1F4E79; } .bs-col-carga .bs-col-h { background:#1F4E79; }
+.bs-col-desc  { border-color:#A67C00; } .bs-col-desc  .bs-col-h { background:#A67C00; }
+.bs-big { font-size:30px; font-weight:bold; padding:8px 10px 0; line-height:1.1; }
+.bs-pot { font-size:12px; }
+.bs-lbl { font-size:11.5px; font-weight:bold; color:#262626; padding:2px 10px 0; }
+.bs-warn { font-size:11.5px; color:#B3261E; padding:2px 10px 0; }
+.bs-it { font-size:10.5px; color:#5b6472; font-style:italic; padding:4px 10px; }
+.bs-mini-tbl { width:100%; border-collapse:collapse; font-size:10.5px; margin:4px 0 2px; }
+.bs-mini-tbl td { padding:3px 10px; }
+.bs-mini-tbl td:last-child { text-align:right; font-weight:bold; color:#222; white-space:nowrap; }
+.bs-t-carga tr:nth-child(odd) td { background:#EAF1F8; }
+.bs-t-desc  tr:nth-child(odd) td { background:#FBF3DC; }
+.bs-mini-tbl tr.bs-hl td { font-weight:bold; border-top:1px solid #94a3b8; border-bottom:1px solid #94a3b8; }
+.bs-t-carga tr.bs-hl td { background:#dce9f6; color:#1F4E79; }
+.bs-t-desc  tr.bs-hl td { background:#f6eccd; color:#B3261E; }
+
+.bs-concl { width:100%; border-collapse:collapse; background:#f4f4f4; border:1px solid #94a3b8;
+  border-left:6px solid #222; border-radius:8px; margin-top:12px; }
+.bs-concl td { padding:8px 10px; vertical-align:middle; }
+.bs-concl-h { width:34%; font-size:10.5px; color:#262626; }
+.bs-concl-h b { font-size:11.5px; color:#222; }
+.bs-concl-b { width:20%; }
+.bs-concl-t { font-size:10.5px; font-weight:bold; color:#222; }
+.bs-concl-s { font-size:9.5px; color:#5b6472; }
+.bs-concl-v { width:13%; font-size:22px; font-weight:bold; text-align:right; }
+.bs-acc { width:100%; border-collapse:collapse; border-radius:8px; margin-top:8px; color:#fff; }
+.bs-acc td { padding:8px 10px; vertical-align:middle; }
+.bs-acc-n { width:30px; text-align:center; }
+.bs-acc-n span { display:inline-block; width:22px; height:22px; line-height:22px; border-radius:50%;
+  background:#fff; color:#222; font-weight:bold; font-size:12px; text-align:center; }
+.bs-acc-t { width:170px; font-weight:bold; font-size:14px; letter-spacing:.5px; }
+.bs-acc-d { font-size:12px; font-weight:bold; border-left:1px solid rgba(255,255,255,.6); }
+.bs-foot { font-size:9.5px; color:#7a8495; margin-top:8px; font-style:italic; }
+
+/* ---- informe descargable ---- */
+.bs-rep-head { display:flex; gap:8px; align-items:center; font-size:12px; color:#222; border-bottom:2px solid #F3721F;
+  padding-bottom:6px; margin-bottom:14px; }
+.bs-rep-head span { margin-left:auto; color:#7a8495; }
+.bs-rep-foot { font-size:10px; color:#7a8495; border-top:1px solid #e2e8f0; padding-top:6px; margin-top:10px; font-style:italic; }
+@page { size:A4 landscape; margin:10mm; }
+@media print {
+  .bs-page { page-break-after:always; break-after:page; border:none; box-shadow:none; }
+  .bs-page:last-of-type { page-break-after:auto; break-after:auto; }
+  .bs-cols, .bs-concl, .bs-acc, .bs-tbl { page-break-inside:avoid; break-inside:avoid; }
+  .bs-rep-head { margin-bottom:8px; }
+  .bs-acc { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .bs-col-h, .bs-pill, .bs-mini-tbl tr.bs-hl td { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+}
+
+body{font-family:Arial,Helvetica,sans-serif;margin:18px;color:#262626;background:#fff;}
+.bs-card{box-shadow:none;}</style>
 </head>
 <body>
 
@@ -415,6 +630,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 <div id="search-container" style="display: none;">
     <button class="btn-whats-new" onclick="openGridStatus()" style="background:#F3721F;">📊 GRID STATUS</button>
     <button class="btn-whats-new" onclick="openNodalAnalysis()" style="background:#0f766e;">🔎 ANÁLISIS NODAL</button>
+    <button class="btn-whats-new" onclick="openBess()" style="background:#1B7F4B;">🔋 BESS STAND ALONE</button>
 </div>
 
 <div id="left-search">
@@ -4105,6 +4321,7 @@ function renderOportunidades(){
   <div id="gs-head">
     <span class="hw-logo-pill" style="margin-right:8px;"><span class="hw-logo-img" style="height:20px;width:69px;"></span></span>
     <h2>📊 GRID STATUS</h2>
+    <span class="bs-test">FASE DE PRUEBAS</span>
     <span class="gs-period" id="gs-period"></span>
     <button id="gs-close" onclick="closeGridStatus()">✕ Cerrar</button>
   </div>
@@ -4243,6 +4460,7 @@ function renderOportunidades(){
   <div id="na-head">
     <span class="hw-logo-pill" style="margin-right:8px;"><span class="hw-logo-img" style="height:20px;width:69px;"></span></span>
     <h2>🔎 ANÁLISIS NODAL</h2>
+    <span class="bs-test">FASE DE PRUEBAS</span>
     <span class="gs-period" id="na-period" style="font-size:12px;opacity:.92;"></span>
     <button id="na-close" onclick="closeNodalAnalysis()">✕ Cerrar</button>
   </div>
@@ -4275,6 +4493,450 @@ function renderOportunidades(){
     <div id="gs-wn-table"></div>
   </div>
 </div>
+
+<!-- ===== BESS STAND ALONE (módulo de análisis de almacenamiento sin consumidor asociado) ===== -->
+<div id="bess-analysis">
+  <div id="bs-head">
+    <span class="hw-logo-pill" style="margin-right:8px;"><span class="hw-logo-img" style="height:20px;width:69px;"></span></span>
+    <h2>🔋 BESS STAND ALONE</h2>
+    <span class="bs-test">FASE DE PRUEBAS</span>
+    <span class="gs-period" id="bs-period" style="font-size:12px;opacity:.92;"></span>
+    <button id="bs-close" onclick="closeBess()">✕ Cerrar</button>
+  </div>
+
+  <div id="bs-controls">
+    <label>Año:<select id="bs-year" onchange="bsRefresh()"></select></label>
+    <label>Mes:<select id="bs-month" onchange="bsRefresh()"></select></label>
+    <label>Red:<select id="bs-scope" onchange="bsRefresh()">
+      <option value="TSO" selected>TSO</option>
+      <option value="DSO">DSO</option>
+    </select></label>
+    <label>Perfil:<select id="bs-perfil" onchange="bsRefresh()">
+      <option value="sim" selected>Simétrico (carga = descarga)</option>
+      <option value="asim">Asimétrico</option>
+    </select></label>
+    <label>Objetivo (MW):<input id="bs-target" type="number" min="0" step="5" value="50" oninput="bsRefresh()" style="width:70px;padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:13px;"></label>
+    <label>Ordenar por:<select id="bs-order" onchange="bsRender()">
+      <option value="efic" selected>MW eficaces con concurso</option>
+      <option value="hoy">MW eficaces hoy</option>
+      <option value="carga">Carga solicitable</option>
+      <option value="margen">Margen de descarga</option>
+      <option value="nombre">Nombre</option>
+    </select></label>
+    <label><input id="bs-only" type="checkbox" onchange="bsRender()" checked> Solo nudos con potencial &gt; 0</label>
+    <button type="button" onclick="bsToggleNota()" style="margin-left:auto;background:#e2e8f0;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:#F3721F;font-weight:bold;">&#9432; Metodología</button>
+  </div>
+
+  <div id="bs-testbox">
+    <b>⚠ Módulo en FASE DE PRUEBAS.</b> Los cálculos se apoyan en una lectura propia de los campos publicados que
+    <b>no está confirmada con la leyenda oficial de REE</b>, y la parte de DSO está incompleta porque el fichero de las
+    distribuidoras no desglosa el almacenamiento ni publica el criterio limitante.
+    Úsalo para explorar y contrastar, <b>no como base única de una decisión de inversión</b>: verifica siempre con el
+    estudio del gestor de red antes de comprometer nada.
+  </div>
+  <div id="bs-nota"></div>
+  <div id="bs-banner"></div>
+  <div class="na-sec" id="bs-kpis"></div>
+
+  <div class="na-sec" id="bs-table-wrap">
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px;font-size:13px;">
+      <input id="bs-search" type="text" placeholder="Buscar nudo, provincia o CCAA…" oninput="bsRender()" style="padding:4px 8px;border:1px solid #cbd5e1;border-radius:6px;font-size:13px;min-width:200px;">
+      <button type="button" onclick="bsSelAll(true)" class="bs-mini">Seleccionar todos</button>
+      <button type="button" onclick="bsSelAll(false)" class="bs-mini">Limpiar</button>
+      <span id="bs-selcount" style="color:#64748b;"></span>
+      <button type="button" onclick="bsPrint()" class="bs-dl">🖨 Descargar PDF de los seleccionados</button>
+      <button type="button" onclick="bsDownload()" class="bs-mini" title="Descarga el mismo informe como HTML autónomo, editable y sin depender del navegador">⬇ HTML</button>
+    </div>
+    <div id="bs-table"></div>
+  </div>
+
+  <div class="na-sec" id="bs-ficha"></div>
+</div>
+
+<script>
+/* =========================================================================
+   MÓDULO BESS STAND ALONE
+   Evalúa, nudo a nudo, la capacidad realmente solicitable para una batería
+   sin consumidor asociado. A diferencia del resto del visor, que mira una
+   sola perspectiva, aquí se cruzan las DOS: la batería necesita permiso de
+   DEMANDA para cargar y permiso de GENERACIÓN para descargar, y manda el
+   menor de los dos.
+   Fuentes normativas citadas en el módulo: Resolución CNMC de 31/07/2026
+   (BOE-A-2026-17571), RDL 7/2026, RD 1183/2020 y Resolución CNMC de
+   1/12/2025.
+   ========================================================================= */
+
+let bsSel = {};            // nudos seleccionados para el informe
+let bsRows = [];           // filas calculadas del último render
+let bsFichaNode = null;    // nudo abierto en la ficha inferior
+
+/* ---------- utilidades ---------- */
+function bsKey() {
+    const y = document.getElementById('bs-year').value;
+    const m = document.getElementById('bs-month').value;
+    return periodoToKey(m, y);
+}
+function bsNum(v) { const n = Number(v); return isFinite(n) ? n : 0; }
+function bsMW(v) { return (v == null || !isFinite(Number(v))) ? '—' : Number(v).toLocaleString('es-ES') + ' MW'; }
+function bsMin(a, b) { return Math.min(bsNum(a), bsNum(b)); }
+function bsTarget() { return Math.max(0, bsNum(document.getElementById('bs-target').value)); }
+
+/* ---------- métricas TSO ----------
+   CARGA    · dem.disp.alm_cep      → almacenamiento en modo demanda solicitable
+   DESCARGA · gen.disp.alm_mpe_rdt  → almacenamiento MPE solicitable (batería = MPE)
+   El potencial de descarga es el margen técnico acotado por la posición:
+   min(gen.margen.alm_mpe, gen.lim_posicion.margen_mpe).
+   Los MW eficaces son el mínimo entre carga y descarga (perfil simétrico).      */
+function bsMetricsTSO(entry, key) {
+    const r = richForMonth(key, entry);
+    if (!r) return null;
+    const g = r.gen || {}, d = r.dem || {};
+    const gd = g.disp || {}, gm = g.margen || {}, lp = g.lim_posicion || {};
+    const nd = g.no_disp || {}, rs = g.reserva || {}, lb = g.liberada || {}, ec = g.en_curso || {}, ot = g.otorgada || {};
+    const dd = d.disp || {}, dm = d.margen || {}, dcl = d.crit_lim || {}, dot = d.otorgada || {}, dec = d.en_curso || {}, dno = d.no_otorgable || {};
+    const pos = g.posiciones || {};
+
+    const cargaDisp = bsNum(dd.alm_cep);
+    const descDisp = bsNum(gd.alm_mpe_rdt);
+    const margenMPE = bsNum(gm.alm_mpe);
+    const margenMGES = bsNum(gm.alm_mges);
+    const posMPE = (lp.margen_mpe == null) ? null : bsNum(lp.margen_mpe);
+    const potencial = (posMPE == null) ? margenMPE : Math.min(margenMPE, posMPE);
+
+    const m = {
+        name: entry.name, grid: 'TSO', prov: entry.prov || '', ccaa: entry.ccaa || '', tens: entry.tens || '',
+        // carga
+        cargaDisp: cargaDisp,
+        cargaMargen: bsNum(dm.alm_cep_mpe != null ? dm.alm_cep_mpe : dd.alm_cep),
+        cargaNoCep: bsNum(dd.dem_no_cep),
+        cargaCrit: dcl.alm_cep || dcl.dem_no_cep || '—',
+        cargaOtorg: bsNum(dot.alm_rdt) + bsNum(dot.dem_rdt),
+        cargaCola: bsNum(dec.dem) + bsNum(dec.alm_rdt),
+        cargaNoOtorg: bsNum(dno.alm_cep),
+        cargaRefRdd: bsNum(dot.consumo_rdd_ref),
+        cargaAcuerdo: (dot.estado_acuerdo_rdd || '').toString().toUpperCase().startsWith('S'),
+        // descarga
+        descDisp: descDisp,
+        margenMPE: margenMPE, margenMGES: margenMGES,
+        posMPE: posMPE, capMax: (lp.cap_max_otorgable == null ? null : bsNum(lp.cap_max_otorgable)),
+        descOtorg: bsNum(ot.gen) + bsNum(ot.alm),
+        descCola: bsNum(ec.total),
+        liberada: bsNum(lb.lib_mpe),
+        noDisp: bsNum(nd.alm_mpe), motivo: nd.motivo || null,
+        reserva: (rs.estado || '') + (rs.fecha ? ' · ' + rs.fecha : ''),
+        posExist: bsNum(pos.transporte_E), posPrev: bsNum(pos.transporte_P),
+        // resultado
+        potencial: potencial,
+        eficazHoy: Math.min(cargaDisp, descDisp),
+        eficazConc: Math.min(cargaDisp, potencial),
+    };
+    m.bloqueoConcurso = (descDisp <= 0 && margenMPE > 0);
+    m.limitaPosicion = (posMPE != null && posMPE < margenMPE);
+    m.sinPosicion = (m.posExist <= 0 && m.posPrev <= 0);
+    return m;
+}
+
+/* ---------- métricas DSO ----------
+   El fichero DSO publica un único disponible por perspectiva, sin desglose de
+   almacenamiento ni criterio limitante, así que la evaluación no es homologable
+   a la del TSO. Se calcula lo que el dato permite y se marca el resto como no
+   publicado, en lugar de inferirlo.                                            */
+function bsMetricsDSO(entry, key) {
+    const r = richDSOForMonth(key, entry);
+    if (!r) return null;
+    const g = r.gen || {}, d = r.dem || {};
+    const cargaDisp = bsNum(d.disp), descDisp = bsNum(g.disp);
+    return {
+        name: entry.name, grid: 'DSO', prov: entry.prov || '', ccaa: entry.ccaa || '', tens: entry.tens || '',
+        oper: entry.oper || '',
+        cargaDisp: cargaDisp, cargaMargen: null, cargaNoCep: null, cargaCrit: 'no publicado en DSO',
+        cargaOtorg: bsNum(d.ocupada), cargaCola: bsNum(d.admitida), cargaNoOtorg: null,
+        cargaRefRdd: null, cargaAcuerdo: false, cargaComent: d.coment || null,
+        descDisp: descDisp, margenMPE: null, margenMGES: null, posMPE: null, capMax: null,
+        descOtorg: bsNum(g.ocupada), descCola: bsNum(g.admitida), liberada: null,
+        noDisp: null, motivo: g.coment || null, reserva: '',
+        posExist: bsNum(d.pos_ocup), posPrev: bsNum(d.pos_libr),
+        afeccion: (dsoAfeccion(entry, key) || {}).txt || null,
+        potencial: descDisp,
+        eficazHoy: Math.min(cargaDisp, descDisp),
+        eficazConc: Math.min(cargaDisp, descDisp),
+        bloqueoConcurso: false, limitaPosicion: false, sinPosicion: bsNum(d.pos_libr) <= 0,
+    };
+}
+
+/* ---------- semáforo de acción ---------- */
+function bsSem(m) {
+    const t = bsTarget();
+    if (m.eficazHoy >= t && t > 0) return { col: '#1B7F4B', txt: 'SOLICITAR YA', num: '1', acc: 'Hay capacidad solicitable hoy en ambos lados para el objetivo de ' + t + ' MW' };
+    if (m.eficazConc >= t && t > 0 && m.bloqueoConcurso) return { col: '#1B7F4B', txt: 'PERSEGUIR', num: '2', acc: 'Preparar candidatura al CONCURSO: el potencial cubre el objetivo de ' + t + ' MW' };
+    if (m.eficazConc > 0 && m.limitaPosicion) return { col: '#F06818', txt: 'CONSULTAR TSO', num: '3', acc: 'Consultar la ampliación de posición: el margen de red es mayor que el de posición' };
+    if (m.eficazConc > 0 && m.sinPosicion) return { col: '#F06818', txt: 'CONSULTAR TSO', num: '3', acc: 'Consultar la viabilidad de una posición: no hay posición existente ni prevista' };
+    if (m.eficazConc > 0) return { col: '#F06818', txt: 'VIGILAR', num: '4', acc: 'Potencial por debajo del objetivo: seguimiento mensual' };
+    return { col: '#B3261E', txt: 'SIN POTENCIAL', num: '5', acc: 'Sin margen de descarga publicado en este mes' };
+}
+
+/* ---------- banner regulatorio (diferencia TSO / DSO) ---------- */
+function bsBanner(scope) {
+    if (scope === 'TSO') {
+        return '<div class="bs-bn bs-bn-tso"><b>Red de TRANSPORTE (TSO) · el almacenamiento es flexible por defecto.</b>' +
+            ' Las solicitudes de demanda de almacenamiento conectado a la red de transporte se analizan como <b>acceso flexible</b> conforme a la Resolución de 1 de diciembre de 2025 (ap. primero.3 de la Resolución de 31/07/2026), y los permisos ya emitidos se consideran flexibles <b>sin necesidad de reconversión</b> (ap. quinto.5).' +
+            ' El <b>tipo 3 no aplica</b>: el anexo IV.1 excluye expresamente el almacenamiento que consume de la red. No hay, por tanto, patrones horarios ni cupos de nudo en este lado.' +
+            '<br><span class="bs-bn-sub">Conclusión operativa: en TSO el factor limitante es la <b>evacuación</b>, no la carga.</span></div>';
+    }
+    return '<div class="bs-bn bs-bn-dso"><b>Redes de DISTRIBUCIÓN (DSO) · la demanda flexible es obligatoria.</b>' +
+        ' El almacenamiento pasa a ser flexible por ley (RDL 7/2026) y debe acogerse a una de las modalidades de los anexos I a III: <b>tipo 0</b> (patrón horario), <b>tipo 1</b> (desconexión ante N-1) o <b>tipo 2</b> (instrucciones del GRD), con plazo de <b>3 meses</b> para convertir los permisos vigentes (ap. quinto.1).' +
+        ' Los cupos por nudo de los tipos 1 y 2 —300 MW, 20 % y 3 instalaciones— <b>no</b> se aplican al almacenamiento previo que se adapte (ap. quinto.3).' +
+        '<br><span class="bs-bn-sub">Limitación del dato: el fichero DSO publica un único disponible por perspectiva, <b>sin desglose de almacenamiento ni criterio limitante</b>, así que las columnas de margen, posición y patrón no se pueden calcular. El módulo lo marca como no publicado en lugar de inferirlo.</span></div>';
+}
+
+/* ---------- apertura / cierre ---------- */
+function openBess(nodeName) {
+    const yEl = document.getElementById('view-year'), mEl = document.getElementById('view-month');
+    const by = document.getElementById('bs-year'), bm = document.getElementById('bs-month');
+    by.innerHTML = yEl.innerHTML; bm.innerHTML = mEl.innerHTML; by.value = yEl.value; bm.value = mEl.value;
+    document.getElementById('bess-analysis').classList.add('open');
+    if (nodeName) { bsFichaNode = nodeName; bsSel[nodeName] = true; }
+    bsRefresh();
+}
+function closeBess() { document.getElementById('bess-analysis').classList.remove('open'); }
+function bsToggleNota() { const n = document.getElementById('bs-nota'); n.style.display = (n.style.display === 'block') ? 'none' : 'block'; }
+
+function bsRefresh() {
+    const scope = document.getElementById('bs-scope').value;
+    const y = document.getElementById('bs-year').value, m = document.getElementById('bs-month').value;
+    document.getElementById('bs-period').textContent = 'Periodo: ' + m + ' ' + y + ' · perfil ' + (document.getElementById('bs-perfil').value === 'sim' ? 'simétrico' : 'asimétrico');
+    document.getElementById('bs-banner').innerHTML = bsBanner(scope);
+    document.getElementById('bs-nota').innerHTML = bsNotaHTML();
+    bsRender();
+}
+
+/* ---------- cálculo del conjunto ---------- */
+function bsCollect() {
+    const key = bsKey(), scope = document.getElementById('bs-scope').value;
+    const out = [];
+    for (const e of allEntries) {
+        if ((e.grid || 'TSO') !== scope) continue;
+        const m = (scope === 'TSO') ? bsMetricsTSO(e, key) : bsMetricsDSO(e, key);
+        if (m) out.push(m);
+    }
+    return out;
+}
+
+function bsRender() {
+    const q = (document.getElementById('bs-search').value || '').trim().toUpperCase();
+    const only = document.getElementById('bs-only').checked;
+    const ord = document.getElementById('bs-order').value;
+    let rows = bsCollect();
+    if (only) rows = rows.filter(r => r.eficazConc > 0);
+    if (q) rows = rows.filter(r => (r.name + ' ' + r.prov + ' ' + r.ccaa).toUpperCase().indexOf(q) >= 0);
+    const cmp = {
+        efic: (a, b) => b.eficazConc - a.eficazConc,
+        hoy: (a, b) => b.eficazHoy - a.eficazHoy,
+        carga: (a, b) => b.cargaDisp - a.cargaDisp,
+        margen: (a, b) => bsNum(b.margenMPE) - bsNum(a.margenMPE),
+        nombre: (a, b) => a.name.localeCompare(b.name),
+    }[ord];
+    rows.sort(cmp);
+    bsRows = rows;
+
+    // KPIs
+    const nHoy = rows.filter(r => r.eficazHoy > 0).length;
+    const nConc = rows.filter(r => r.eficazConc > 0).length;
+    const sumConc = rows.reduce((a, r) => a + r.eficazConc, 0);
+    const nBloq = rows.filter(r => r.bloqueoConcurso).length;
+    document.getElementById('bs-kpis').innerHTML =
+        '<div class="bs-kpis">' +
+        bsKpi(rows.length, 'nudos analizados', '#222') +
+        bsKpi(nHoy, 'con capacidad solicitable HOY en ambos lados', nHoy ? '#1B7F4B' : '#B3261E') +
+        bsKpi(nConc, 'con potencial si se convoca el CONCURSO', '#F06818') +
+        bsKpi(sumConc.toLocaleString('es-ES'), 'MW eficaces potenciales sumados', '#1F4E79') +
+        bsKpi(nBloq, 'nudos con la descarga reservada a CONCURSO', '#B3261E') +
+        '</div>';
+
+    // tabla
+    let h = '<table class="bs-tbl"><thead><tr>' +
+        '<th style="width:28px;"></th><th>Nudo</th><th>CCAA</th>' +
+        '<th>CARGA<br><span>solicitable</span></th><th>CARGA<br><span>otorg. / cola</span></th>' +
+        '<th>DESCARGA<br><span>solicitable</span></th><th>DESCARGA<br><span>margen / posición</span></th><th>DESCARGA<br><span>otorg. / cola</span></th>' +
+        '<th>BESS eficaz<br><span>hoy / con CONCURSO</span></th><th>Acción</th><th></th></tr></thead><tbody>';
+    for (const r of bsRows) {
+        const s = bsSem(r);
+        h += '<tr>' +
+            '<td><input type="checkbox" ' + (bsSel[r.name] ? 'checked' : '') + ' onchange="bsToggleSel(\'' + r.name.replace(/'/g, "\\'") + '\')"></td>' +
+            '<td><b>' + r.name + '</b><div class="bs-sub">' + (r.tens ? r.tens + ' kV' : '') + (r.oper ? ' · ' + r.oper : '') + '</div></td>' +
+            '<td>' + (r.ccaa || '—') + '</td>' +
+            '<td class="bs-num bs-blue">' + bsMW(r.cargaDisp) + '</td>' +
+            '<td class="bs-num">' + bsMW(r.cargaOtorg) + ' / ' + bsMW(r.cargaCola) + '</td>' +
+            '<td class="bs-num ' + (r.descDisp > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(r.descDisp) + (r.bloqueoConcurso ? '<div class="bs-sub bs-red">reservado a CONCURSO</div>' : '') + '</td>' +
+            '<td class="bs-num">' + (r.margenMPE == null ? 'no publicado' : bsMW(r.margenMPE) + ' / ' + (r.posMPE == null ? '—' : bsMW(r.posMPE))) + '</td>' +
+            '<td class="bs-num">' + bsMW(r.descOtorg) + ' / ' + bsMW(r.descCola) + '</td>' +
+            '<td class="bs-num"><span class="' + (r.eficazHoy > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(r.eficazHoy) + '</span> / <b class="bs-must">' + bsMW(r.eficazConc) + '</b></td>' +
+            '<td><span class="bs-pill" style="background:' + s.col + '">' + s.txt + '</span></td>' +
+            '<td><button class="bs-mini" onclick="bsFicha(\'' + r.name.replace(/'/g, "\\'") + '\')">🔬</button></td>' +
+            '</tr>';
+    }
+    h += '</tbody></table>';
+    if (!bsRows.length) h = '<div style="color:#64748b;font-size:13px;">Sin nudos que cumplan el filtro en este mes.</div>';
+    document.getElementById('bs-table').innerHTML = h;
+    bsSelCount();
+    if (bsFichaNode) bsFicha(bsFichaNode);
+}
+function bsKpi(v, t, c) { return '<div class="bs-kpi"><div class="bs-kpi-v" style="color:' + c + '">' + v + '</div><div class="bs-kpi-t">' + t + '</div></div>'; }
+function bsToggleSel(n) { bsSel[n] = !bsSel[n]; bsSelCount(); }
+function bsSelAll(v) { for (const r of bsRows) bsSel[r.name] = v; bsRender(); }
+function bsSelCount() {
+    const n = Object.keys(bsSel).filter(k => bsSel[k]).length;
+    document.getElementById('bs-selcount').textContent = n + ' nudo(s) seleccionado(s)';
+}
+
+/* ---------- ficha de nudo (mismo contenido que el informe) ---------- */
+function bsFicha(name) {
+    bsFichaNode = name;
+    const m = bsRows.filter(r => r.name === name)[0] || bsMetricsByName(name);
+    if (!m) { document.getElementById('bs-ficha').innerHTML = ''; return; }
+    document.getElementById('bs-ficha').innerHTML = bsFichaHTML(m, false);
+}
+function bsMetricsByName(name) {
+    const key = bsKey(), scope = document.getElementById('bs-scope').value;
+    const e = naEntryByName(name); if (!e) return null;
+    return (scope === 'TSO') ? bsMetricsTSO(e, key) : bsMetricsDSO(e, key);
+}
+
+function bsFichaHTML(m, paraInforme) {
+    const s = bsSem(m), t = bsTarget();
+    const filaC = [
+        ['SOLICITABLE AHORA', bsMW(m.cargaDisp), true],
+        ['Margen técnico para almacenamiento', m.cargaMargen == null ? 'no publicado' : bsMW(m.cargaMargen), false],
+        ['Margen alternativo: demanda «no CEP»', m.cargaNoCep == null ? 'no publicado' : bsMW(m.cargaNoCep), false],
+        ['Límite por posición', m.grid === 'TSO' ? 'no se publica en demanda' : (m.posPrev ? bsMW(m.posPrev) + ' libres' : 'no publicado'), false],
+        ['Ya otorgado en el nudo', bsMW(m.cargaOtorg), false],
+        ['En cola: solicitudes en curso', bsMW(m.cargaCola), false],
+        ['Reservado a otra finalidad', m.cargaNoOtorg == null ? 'no publicado' : bsMW(m.cargaNoOtorg), false],
+    ];
+    const filaD = [
+        ['SOLICITABLE AHORA' + (m.bloqueoConcurso ? ' · reservado a CONCURSO' : ''), bsMW(m.descDisp), true],
+        ['Margen técnico para almacenamiento (MPE)', m.margenMPE == null ? 'no publicado' : bsMW(m.margenMPE), false],
+        ['Margen alternativo: MGES (síncrono)', m.margenMGES == null ? 'no publicado' : bsMW(m.margenMGES), false],
+        ['Límite por posición (MPE)', m.posMPE == null ? 'no publicado' : bsMW(m.posMPE) + (m.capMax ? ' · máx. ' + bsMW(m.capMax) : ''), false],
+        ['Ya otorgado en el nudo', bsMW(m.descOtorg), false],
+        ['En cola: solicitudes en curso', bsMW(m.descCola), false],
+        ['Reservado a otra finalidad', m.liberada == null ? 'no publicado' : bsMW(m.liberada) + ' · autoconsumo', false],
+    ];
+    const tabla = (rows, cls) => '<table class="bs-mini-tbl ' + cls + '">' + rows.map(r =>
+        '<tr class="' + (r[2] ? 'bs-hl' : '') + '"><td>' + r[0] + '</td><td class="bs-num">' + r[1] + '</td></tr>').join('') + '</table>';
+
+    return '<div class="bs-card' + (paraInforme ? ' bs-page' : '') + '">' +
+        '<h3>' + m.name + '</h3>' +
+        '<div class="bs-sub2">' + (m.ccaa || '') + (m.prov ? ' · ' + m.prov : '') + (m.tens ? ' · ' + m.tens + ' kV' : '') + ' · red ' + m.grid +
+        (m.motivo ? ' · ' + m.motivo : '') + (m.reserva ? ' · reserva: ' + m.reserva : '') + '</div>' +
+        '<table class="bs-cols"><tr>' +
+        '<td class="bs-col bs-col-carga"><div class="bs-col-h">CARGA · permiso de demanda</div>' +
+        '<div class="bs-big bs-blue">' + bsMW(m.cargaDisp) + '</div>' +
+        '<div class="bs-lbl">solicitables hoy para almacenamiento</div>' +
+        '<div class="bs-it">Criterio limitante: ' + (m.cargaCrit || '—') + '</div>' +
+        tabla(filaC, 'bs-t-carga') +
+        (m.cargaRefRdd ? '<div class="bs-it">Además, ' + bsMW(m.cargaRefRdd) + ' de consumo de referencia acordados con el DSO' + (m.cargaAcuerdo ? ' (acuerdo cerrado)' : '') + '.</div>' : '') +
+        (m.cargaComent ? '<div class="bs-it">' + m.cargaComent + '</div>' : '') +
+        '</td>' +
+        '<td class="bs-col bs-col-desc"><div class="bs-col-h">DESCARGA · permiso de generación' + (m.bloqueoConcurso ? ' · reservado a CONCURSO' : '') + '</div>' +
+        '<div class="bs-big bs-must">' + bsMW(m.potencial) + ' <span class="bs-pot">potencial</span></div>' +
+        (m.bloqueoConcurso ? '<div class="bs-warn"><b>pero 0 MW solicitables hoy:</b> toda la capacidad está reservada a <b>CONCURSO</b></div>'
+            : '<div class="bs-lbl">solicitables hoy para almacenamiento (MPE)</div>') +
+        '<div class="bs-it">' + (m.motivo ? 'Motivo: ' + m.motivo + ' · ' : '') + (m.reserva || '') + '</div>' +
+        tabla(filaD, 'bs-t-desc') +
+        (m.sinPosicion ? '<div class="bs-it">Sin posición existente ni prevista: su viabilidad se consulta al TSO.</div>' : '') +
+        '</td></tr></table>' +
+        '<table class="bs-concl"><tr>' +
+        '<td class="bs-concl-h"><b>BESS STAND ALONE · PERFIL SIMÉTRICO</b><div>carga y descarga por la misma potencia: necesita ambos permisos y manda el menor</div></td>' +
+        '<td class="bs-concl-b"><div class="bs-concl-t">SOLICITABLE HOY</div><div class="bs-concl-s">mín(carga ' + m.cargaDisp + ' · descarga ' + m.descDisp + ')</div></td>' +
+        '<td class="bs-concl-v bs-red">' + bsMW(m.eficazHoy) + '</td>' +
+        '<td class="bs-concl-b"><div class="bs-concl-t">MW EFICACES CON CONCURSO</div><div class="bs-concl-s">mín(carga ' + m.cargaDisp + ' · potencial ' + m.potencial + ')</div></td>' +
+        '<td class="bs-concl-v bs-green">' + bsMW(m.eficazConc) + '</td></tr></table>' +
+        '<table class="bs-acc" style="background:' + s.col + '"><tr><td class="bs-acc-n"><span>' + s.num + '</span></td><td class="bs-acc-t">' + s.txt + '</td><td class="bs-acc-d">' + s.acc + '</td></tr></table>' +
+        '<div class="bs-foot">Objetivo de proyecto: ' + t + ' MW · módulo en fase de pruebas · ' + bsFuente(m) + '</div>' +
+        '</div>';
+}
+function bsFuente(m) {
+    return m.grid === 'TSO'
+        ? 'Fuente: ficha de acceso de REE del periodo seleccionado. Almacenamiento en TSO: flexible sin reconversión (ap. quinto.5); el tipo 3 no aplica (anexo IV.1). Reserva a concurso: art. 20.5 RD 1183/2020.'
+        : 'Fuente: publicación conjunta de los gestores de red de distribución del periodo seleccionado. Almacenamiento en DSO: flexible obligatorio, tipos 0, 1 o 2 (anexos I a III); conversión en 3 meses (ap. quinto.1).';
+}
+
+/* ---------- informe descargable ---------- */
+function bsNotaHTML() {
+    return '<div class="bs-metod"><b>Metodología</b>' +
+        '<ul>' +
+        '<li><b>CARGA solicitable</b> = disponible de almacenamiento en la perspectiva de demanda. <b>DESCARGA solicitable</b> = disponible de almacenamiento MPE en generación (una batería conecta por convertidores, por eso se usa MPE y no MGES).</li>' +
+        '<li><b>Potencial de descarga</b> = mín(margen técnico MPE, margen por posición). No es capacidad adjudicada ni comprometida: es el techo que podría salir a concurso si se convoca.</li>' +
+        '<li><b>MW eficaces</b> = mín(carga, descarga) en perfil simétrico. Un BESS stand alone necesita los dos permisos, así que manda el menor.</li>' +
+        '<li>La capacidad del bloque <i>liberada</i> está afecta al <b>autoconsumo</b> del RDL 7/2026 (10 % de su disposición adicional décima): no la puede usar un proyecto sin consumidor asociado.</li>' +
+        '<li>Cálculo propio sobre los campos publicados. La lectura de algunas etiquetas no está confirmada con la leyenda oficial de REE; verificar antes de decidir una inversión.</li>' +
+        '</ul></div>';
+}
+function bsResumenHTML(rows) {
+    let h = '<div class="bs-card bs-page"><h3>Resumen · capacidad para BESS stand alone</h3>' +
+        '<div class="bs-sub2">' + rows.length + ' nudos seleccionados · red ' + rows[0].grid + ' · objetivo de proyecto ' + bsTarget() + ' MW</div>' +
+        '<table class="bs-tbl"><thead><tr><th>Nudo</th><th>CCAA</th><th>CARGA solicitable</th><th>DESCARGA solicitable</th><th>Potencial descarga</th><th>BESS eficaz hoy / con CONCURSO</th><th>Acción</th></tr></thead><tbody>';
+    for (const r of rows) {
+        const s = bsSem(r);
+        h += '<tr><td><b>' + r.name + '</b></td><td>' + (r.ccaa || '—') + '</td>' +
+            '<td class="bs-num bs-blue">' + bsMW(r.cargaDisp) + '</td>' +
+            '<td class="bs-num ' + (r.descDisp > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(r.descDisp) + (r.bloqueoConcurso ? ' (CONCURSO)' : '') + '</td>' +
+            '<td class="bs-num bs-must">' + bsMW(r.potencial) + '</td>' +
+            '<td class="bs-num">' + bsMW(r.eficazHoy) + ' / <b>' + bsMW(r.eficazConc) + '</b></td>' +
+            '<td><span class="bs-pill" style="background:' + s.col + '">' + s.txt + '</span></td></tr>';
+    }
+    h += '</tbody></table>' + bsNotaHTML() + '</div>';
+    return h;
+}
+/* Construye el documento del informe (se usa tanto para el PDF como para el HTML) */
+function bsBuildReport() {
+    const names = Object.keys(bsSel).filter(k => bsSel[k]);
+    if (!names.length) { alert('Selecciona al menos un nudo en la tabla.'); return null; }
+    const metr = names.map(n => bsRows.filter(r => r.name === n)[0] || bsMetricsByName(n)).filter(Boolean);
+    if (!metr.length) { alert('No hay datos para los nudos seleccionados en este periodo.'); return null; }
+    const y = document.getElementById('bs-year').value, mm = document.getElementById('bs-month').value;
+    let body = '';
+    if (metr.length > 1) body += bsResumenHTML(metr);
+    body += metr.map(x => bsFichaHTML(x, true)).join('');
+    const css = document.getElementById('bs-report-css').textContent;
+    const titulo = 'BESS stand alone · ' + mm + ' ' + y;
+    const doc = '<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">' +
+        '<title>' + titulo + '</title><style>' + css + '</style></head><body>' +
+        '<div class="bs-rep-head"><b>Hanwha Energy Europe</b> · BESS stand alone · capacidad solicitable por nudo · ' + mm + ' ' + y +
+        '<span>Internal use only</span></div>' +
+        '<div class="bs-rep-test"><b>⚠ FASE DE PRUEBAS.</b> Informe generado por un módulo en validación: la lectura de los campos publicados no está confirmada con la leyenda oficial de REE y la parte de DSO está incompleta. No usar como base única de una decisión de inversión.</div>' + body +
+        '<div class="bs-rep-foot">Generado por SPAIN CAP VIEWER (módulo BESS stand alone, fase de pruebas) a partir de los ficheros mensuales de capacidad de acceso. Documento de uso interno; no constituye asesoramiento jurídico.</div>' +
+        '</body></html>';
+    const fname = 'BESS_stand_alone_' + mm + '_' + y + (metr.length > 1 ? '_' + metr.length + 'nudos' : '_' + metr[0].name.replace(/\s+/g, '_'));
+    return { doc: doc, fname: fname, n: metr.length };
+}
+
+/* PDF: abre el informe en una ventana y lanza la impresión nativa del navegador.
+   El usuario elige «Guardar como PDF» en el diálogo. Sin librerías externas, así
+   que funciona también si el visor se abre sin acceso a los CDN.                */
+function bsPrint() {
+    const r = bsBuildReport(); if (!r) return;
+    const w = window.open('', '_blank');
+    if (!w) { alert('El navegador ha bloqueado la ventana emergente. Permítela para generar el PDF, o usa el botón HTML.'); return; }
+    w.document.open(); w.document.write(r.doc); w.document.close();
+    w.document.title = r.fname;                 // nombre propuesto del PDF
+    w.focus();
+    const go = function () { try { w.print(); } catch (e) { } };
+    if (w.document.readyState === 'complete') setTimeout(go, 250); else w.onload = function () { setTimeout(go, 250); };
+}
+
+/* HTML autónomo: alternativa si se quiere editar el informe o archivarlo */
+function bsDownload() {
+    const r = bsBuildReport(); if (!r) return;
+    const blob = new Blob([r.doc], { type: 'text/html;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = r.fname + '.html';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+</script>
 
 </body>
 </html>
