@@ -476,9 +476,16 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-spark { border-collapse:separate; border-spacing:3px 0; margin:2px 0 8px; }
 .bs-spark td { padding:0; text-align:center; vertical-align:bottom; }
 .bs-bar { width:14px; }
+.bs-bg { padding:0 3px 0 0 !important; vertical-align:bottom; }
+.bs-bgt { border-collapse:separate; border-spacing:1px 0; }
+.bs-b1 { width:6px; height:44px; padding:0; font-size:0; line-height:0; }
+.bs-ley { display:flex; gap:8px; flex-wrap:wrap; font-size:8.5px; color:#5b6472; margin:1px 0 2px; }
+.bs-ley span { display:inline-flex; align-items:center; gap:3px; white-space:nowrap; }
+.bs-ley i { display:inline-block; width:7px; height:7px; border-radius:1px; }
 .bs-duo { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
 .bs-duo > tr > td { width:50%; vertical-align:top; padding:0; }
-.bs-bar-t { width:100%; border-collapse:collapse; }
+.bs-bar-t { width:100%; height:44px; border-collapse:collapse; }
+.bs-bgt td, .bs-bg { height:44px; }
 .bs-bar-t td { padding:0; font-size:0; line-height:0; }
 .bs-spark-x { font-size:9px; color:#5b6472; text-align:center; height:auto; padding-top:2px; }
 .bs-spark-v { font-size:8.5px; color:#7a8495; text-align:center; height:auto; }
@@ -502,7 +509,12 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-tbl th span { font-weight:normal; opacity:.8; font-size:10px; }
 .bs-tbl td { border-bottom:1px solid #eef2f6; padding:6px 8px; vertical-align:middle; }
 .bs-tbl tr:nth-child(even) td { background:#fbfcfe; }
-.bs-num { text-align:right; white-space:nowrap; }
+.bs-num { text-align:center; white-space:nowrap; }
+/* Todo centrado en su columna: cabeceras, filtros y datos. */
+.bs-tbl th, .bs-tbl td, .bs-res th, .bs-res td { text-align:center; }
+.bs-tbl tr.bs-flt td { text-align:center; }
+.bs-tbl td.bs-clic { text-align:left; }
+.bs-ficha-t td.bs-num, .bs-res td.bs-num { text-align:center; }
 .bs-sub { font-size:10px; color:#7a8495; }
 .bs-blue { color:#1F4E79; font-weight:bold; }
 .bs-must { color:#A67C00; font-weight:bold; }
@@ -540,7 +552,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-ficha-t td.bs-cD.bs-cR { border-right:1px solid #A67C00; width:17%; }
 .bs-fr td { padding:2px 9px; vertical-align:middle; overflow:hidden;
   text-overflow:ellipsis; white-space:nowrap; }
-.bs-fr td.bs-num { text-align:right; font-weight:bold; color:#222; }
+.bs-fr td.bs-num { text-align:center; font-weight:bold; color:#222; }
 .bs-fr.bs-hl td { font-weight:bold; border-top:1px solid #94a3b8; border-bottom:1px solid #94a3b8; }
 .bs-fr.bs-hl td.bs-cC { background:#dce9f6; color:#1F4E79; }
 .bs-fr.bs-hl td.bs-cD { background:#f6eccd; color:#B3261E; }
@@ -552,7 +564,12 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   white-space:normal; }
 .bs-res td { border-bottom:1px solid #eef2f6; padding:2px 5px; vertical-align:middle; white-space:normal;
   word-break:break-word; }
-.bs-res td.bs-num { text-align:right; white-space:nowrap; }
+.bs-res td.bs-num { text-align:center; white-space:nowrap; }
+/* Todo centrado en su columna: cabeceras, filtros y datos. */
+.bs-tbl th, .bs-tbl td, .bs-res th, .bs-res td { text-align:center; }
+.bs-tbl tr.bs-flt td { text-align:center; }
+.bs-tbl td.bs-clic { text-align:left; }
+.bs-ficha-t td.bs-num, .bs-res td.bs-num { text-align:center; }
 .bs-nt { font-size:9.5px; color:#5b6472; font-style:italic; white-space:normal !important; padding:3px 9px !important; }
 .bs-cols { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
 .bs-col { width:50%; border:1px solid #cbd5e1; border-radius:8px; vertical-align:top; padding:0 0 6px; }
@@ -574,6 +591,20 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 /* La portada lleva mucho texto: se compacta para que entre siempre en la
    primera hoja sin que el autoajuste tenga que reducirla tanto que no se lea. */
 .bs-portada { padding:10px 12px; }
+.bs-port-top { width:100%; border-collapse:collapse; margin-bottom:8px; }
+.bs-port-top td { vertical-align:middle; padding:0; }
+.bs-port-ic { width:120px; }
+.bs-port-ic svg { display:block; }
+.bs-port-lg { width:170px; text-align:right; }
+.bs-port-lg .hw-logo-img { height:34px; width:117px; }
+/* El objetivo del proyecto es el dato que encuadra todo el informe: en la
+   portada va a mayor tamaño que en el resto. */
+.bs-obj-big .bs-obj td { padding:8px 12px; font-size:12px; }
+.bs-obj-big .bs-obj-h { width:200px; font-size:13px; }
+.bs-obj-big .bs-obj td b { font-size:20px; }
+.bs-obj-big .bs-obj-n { font-size:9.5px; }
+.bs-pie { border-top:1px solid #e2e8f0; margin-top:8px; padding-top:4px;
+  font-size:9px; color:#7a8495; text-align:center; }
 .bs-portada .bs-port-h { font-size:17px; }
 .bs-portada .bs-port-s { font-size:9.5px; margin-bottom:7px; }
 .bs-portada .bs-obj td { padding:4px 8px; font-size:9.5px; }
@@ -592,7 +623,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-it { font-size:10.5px; color:#5b6472; font-style:italic; padding:4px 10px; }
 .bs-mini-tbl { width:100%; border-collapse:collapse; font-size:10.5px; margin:4px 0 2px; }
 .bs-mini-tbl td { padding:3px 10px; }
-.bs-mini-tbl td:last-child { text-align:right; font-weight:bold; color:#222; white-space:nowrap; }
+.bs-mini-tbl td:last-child { text-align:center; font-weight:bold; color:#222; white-space:nowrap; }
 .bs-t-carga tr:nth-child(odd) td { background:#EAF1F8; }
 .bs-t-desc  tr:nth-child(odd) td { background:#FBF3DC; }
 .bs-mini-tbl tr.bs-hl td { font-weight:bold; border-top:1px solid #94a3b8; border-bottom:1px solid #94a3b8; }
@@ -607,7 +638,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-concl-b { width:20%; }
 .bs-concl-t { font-size:10.5px; font-weight:bold; color:#222; }
 .bs-concl-s { font-size:9.5px; color:#5b6472; }
-.bs-concl-v { width:13%; font-size:22px; font-weight:bold; text-align:right; }
+.bs-concl-v { width:13%; font-size:22px; font-weight:bold; text-align:center; }
 .bs-accfoot { width:100%; border-collapse:collapse; margin-top:6px; }
 .bs-accfoot > tr > td { vertical-align:middle; padding:0; }
 .bs-accfoot > tr > td:first-child { width:64%; }
@@ -678,6 +709,11 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-lbl2 { font-size:8.5px; padding:1px 8px 0; }
   .bs-head3 { min-height:62px; }
   .bs-portada .bs-port-h { font-size:16px; }
+  .bs-pie { font-size:7.5px; margin-top:5px; padding-top:3px; }
+  .bs-port-ic { width:100px; } .bs-port-lg { width:140px; }
+  .bs-port-lg .hw-logo-img { height:28px; width:96px; }
+  .bs-obj-big .bs-obj td { padding:6px 10px; font-size:10.5px; }
+  .bs-obj-big .bs-obj td b { font-size:17px; }
   .bs-portada .bs-port-s { font-size:8.5px; }
   .bs-portada .bs-port-t { font-size:10px; }
   .bs-portada .bs-port-av p { font-size:8px; line-height:1.3; margin:0 0 4px; }
@@ -712,6 +748,9 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-lin { font-size:9px; }
   .bs-prev-l { font-size:8.5px; margin:3px 0 0 12px; }
   .bs-bar { width:8px; }
+  .bs-b1 { width:5px; }
+  .bs-ley { font-size:7px; gap:5px; }
+  .bs-ley i { width:6px; height:6px; }
   .bs-duo { border-spacing:4px 0; }
   .bs-spark-h { display:block; }
   .bs-spark-h span { display:block; }
@@ -823,9 +862,16 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-spark { border-collapse:separate; border-spacing:3px 0; margin:2px 0 8px; }
 .bs-spark td { padding:0; text-align:center; vertical-align:bottom; }
 .bs-bar { width:14px; }
+.bs-bg { padding:0 3px 0 0 !important; vertical-align:bottom; }
+.bs-bgt { border-collapse:separate; border-spacing:1px 0; }
+.bs-b1 { width:6px; height:44px; padding:0; font-size:0; line-height:0; }
+.bs-ley { display:flex; gap:8px; flex-wrap:wrap; font-size:8.5px; color:#5b6472; margin:1px 0 2px; }
+.bs-ley span { display:inline-flex; align-items:center; gap:3px; white-space:nowrap; }
+.bs-ley i { display:inline-block; width:7px; height:7px; border-radius:1px; }
 .bs-duo { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
 .bs-duo > tr > td { width:50%; vertical-align:top; padding:0; }
-.bs-bar-t { width:100%; border-collapse:collapse; }
+.bs-bar-t { width:100%; height:44px; border-collapse:collapse; }
+.bs-bgt td, .bs-bg { height:44px; }
 .bs-bar-t td { padding:0; font-size:0; line-height:0; }
 .bs-spark-x { font-size:9px; color:#5b6472; text-align:center; height:auto; padding-top:2px; }
 .bs-spark-v { font-size:8.5px; color:#7a8495; text-align:center; height:auto; }
@@ -849,7 +895,12 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-tbl th span { font-weight:normal; opacity:.8; font-size:10px; }
 .bs-tbl td { border-bottom:1px solid #eef2f6; padding:6px 8px; vertical-align:middle; }
 .bs-tbl tr:nth-child(even) td { background:#fbfcfe; }
-.bs-num { text-align:right; white-space:nowrap; }
+.bs-num { text-align:center; white-space:nowrap; }
+/* Todo centrado en su columna: cabeceras, filtros y datos. */
+.bs-tbl th, .bs-tbl td, .bs-res th, .bs-res td { text-align:center; }
+.bs-tbl tr.bs-flt td { text-align:center; }
+.bs-tbl td.bs-clic { text-align:left; }
+.bs-ficha-t td.bs-num, .bs-res td.bs-num { text-align:center; }
 .bs-sub { font-size:10px; color:#7a8495; }
 .bs-blue { color:#1F4E79; font-weight:bold; }
 .bs-must { color:#A67C00; font-weight:bold; }
@@ -887,7 +938,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-ficha-t td.bs-cD.bs-cR { border-right:1px solid #A67C00; width:17%; }
 .bs-fr td { padding:2px 9px; vertical-align:middle; overflow:hidden;
   text-overflow:ellipsis; white-space:nowrap; }
-.bs-fr td.bs-num { text-align:right; font-weight:bold; color:#222; }
+.bs-fr td.bs-num { text-align:center; font-weight:bold; color:#222; }
 .bs-fr.bs-hl td { font-weight:bold; border-top:1px solid #94a3b8; border-bottom:1px solid #94a3b8; }
 .bs-fr.bs-hl td.bs-cC { background:#dce9f6; color:#1F4E79; }
 .bs-fr.bs-hl td.bs-cD { background:#f6eccd; color:#B3261E; }
@@ -899,7 +950,12 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   white-space:normal; }
 .bs-res td { border-bottom:1px solid #eef2f6; padding:2px 5px; vertical-align:middle; white-space:normal;
   word-break:break-word; }
-.bs-res td.bs-num { text-align:right; white-space:nowrap; }
+.bs-res td.bs-num { text-align:center; white-space:nowrap; }
+/* Todo centrado en su columna: cabeceras, filtros y datos. */
+.bs-tbl th, .bs-tbl td, .bs-res th, .bs-res td { text-align:center; }
+.bs-tbl tr.bs-flt td { text-align:center; }
+.bs-tbl td.bs-clic { text-align:left; }
+.bs-ficha-t td.bs-num, .bs-res td.bs-num { text-align:center; }
 .bs-nt { font-size:9.5px; color:#5b6472; font-style:italic; white-space:normal !important; padding:3px 9px !important; }
 .bs-cols { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
 .bs-col { width:50%; border:1px solid #cbd5e1; border-radius:8px; vertical-align:top; padding:0 0 6px; }
@@ -921,6 +977,20 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 /* La portada lleva mucho texto: se compacta para que entre siempre en la
    primera hoja sin que el autoajuste tenga que reducirla tanto que no se lea. */
 .bs-portada { padding:10px 12px; }
+.bs-port-top { width:100%; border-collapse:collapse; margin-bottom:8px; }
+.bs-port-top td { vertical-align:middle; padding:0; }
+.bs-port-ic { width:120px; }
+.bs-port-ic svg { display:block; }
+.bs-port-lg { width:170px; text-align:right; }
+.bs-port-lg .hw-logo-img { height:34px; width:117px; }
+/* El objetivo del proyecto es el dato que encuadra todo el informe: en la
+   portada va a mayor tamaño que en el resto. */
+.bs-obj-big .bs-obj td { padding:8px 12px; font-size:12px; }
+.bs-obj-big .bs-obj-h { width:200px; font-size:13px; }
+.bs-obj-big .bs-obj td b { font-size:20px; }
+.bs-obj-big .bs-obj-n { font-size:9.5px; }
+.bs-pie { border-top:1px solid #e2e8f0; margin-top:8px; padding-top:4px;
+  font-size:9px; color:#7a8495; text-align:center; }
 .bs-portada .bs-port-h { font-size:17px; }
 .bs-portada .bs-port-s { font-size:9.5px; margin-bottom:7px; }
 .bs-portada .bs-obj td { padding:4px 8px; font-size:9.5px; }
@@ -939,7 +1009,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-it { font-size:10.5px; color:#5b6472; font-style:italic; padding:4px 10px; }
 .bs-mini-tbl { width:100%; border-collapse:collapse; font-size:10.5px; margin:4px 0 2px; }
 .bs-mini-tbl td { padding:3px 10px; }
-.bs-mini-tbl td:last-child { text-align:right; font-weight:bold; color:#222; white-space:nowrap; }
+.bs-mini-tbl td:last-child { text-align:center; font-weight:bold; color:#222; white-space:nowrap; }
 .bs-t-carga tr:nth-child(odd) td { background:#EAF1F8; }
 .bs-t-desc  tr:nth-child(odd) td { background:#FBF3DC; }
 .bs-mini-tbl tr.bs-hl td { font-weight:bold; border-top:1px solid #94a3b8; border-bottom:1px solid #94a3b8; }
@@ -954,7 +1024,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-concl-b { width:20%; }
 .bs-concl-t { font-size:10.5px; font-weight:bold; color:#222; }
 .bs-concl-s { font-size:9.5px; color:#5b6472; }
-.bs-concl-v { width:13%; font-size:22px; font-weight:bold; text-align:right; }
+.bs-concl-v { width:13%; font-size:22px; font-weight:bold; text-align:center; }
 .bs-accfoot { width:100%; border-collapse:collapse; margin-top:6px; }
 .bs-accfoot > tr > td { vertical-align:middle; padding:0; }
 .bs-accfoot > tr > td:first-child { width:64%; }
@@ -1025,6 +1095,11 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-lbl2 { font-size:8.5px; padding:1px 8px 0; }
   .bs-head3 { min-height:62px; }
   .bs-portada .bs-port-h { font-size:16px; }
+  .bs-pie { font-size:7.5px; margin-top:5px; padding-top:3px; }
+  .bs-port-ic { width:100px; } .bs-port-lg { width:140px; }
+  .bs-port-lg .hw-logo-img { height:28px; width:96px; }
+  .bs-obj-big .bs-obj td { padding:6px 10px; font-size:10.5px; }
+  .bs-obj-big .bs-obj td b { font-size:17px; }
   .bs-portada .bs-port-s { font-size:8.5px; }
   .bs-portada .bs-port-t { font-size:10px; }
   .bs-portada .bs-port-av p { font-size:8px; line-height:1.3; margin:0 0 4px; }
@@ -1059,6 +1134,9 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-lin { font-size:9px; }
   .bs-prev-l { font-size:8.5px; margin:3px 0 0 12px; }
   .bs-bar { width:8px; }
+  .bs-b1 { width:5px; }
+  .bs-ley { font-size:7px; gap:5px; }
+  .bs-ley i { width:6px; height:6px; }
   .bs-duo { border-spacing:4px 0; }
   .bs-spark-h { display:block; }
   .bs-spark-h span { display:block; }
@@ -1086,6 +1164,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 }
 
+.hw-logo-img { display:inline-block; vertical-align:middle; background:url('data:image/png;base64,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') no-repeat left center; background-size:contain; }
 body{font-family:Arial,Helvetica,sans-serif;margin:18px;color:#262626;background:#fff;}
 .bs-card{box-shadow:none;}</style>
 </head>
@@ -5205,15 +5284,29 @@ function bsPintaFiltros(forzar) {
         '<td></td>' +
         '<td><span class="bs-fu">≥</span><input type="number" min="0" step="10" value="' + bsF.minDesc + '" title="Mínimo de margen técnico MPE de descarga, en MW" oninput="bsSetF(\'minDesc\',this.value)"></td>' +
         '<td></td>' +
-        '<td><select title="Pronóstico" onchange="bsSetF(\'prev\',this.value)">' + opt(['FAVORABLE', 'NEUTRO', 'DESFAVORABLE'], bsF.prev) + '</select></td>' +
-        '<td><select title="Comportamiento del margen en el histórico" onchange="bsSetF(\'estab\',this.value)">' + opt(['estacionario', 'tendencia positiva', 'tendencia negativa', 'alta variabilidad', 'sin serie'], bsF.estab) + '</select></td>' +
+        '<td><select title="Pronóstico" onchange="bsSetF(\'prev\',this.value)">' + opt(['Favorable', 'Neutro', 'Desfavorable'], bsF.prev) + '</select></td>' +
+        '<td><select title="Comportamiento del margen en el histórico" onchange="bsSetF(\'estab\',this.value)">' + opt(['Estacionario', 'Tendencia positiva', 'Tendencia negativa', 'Alta variabilidad', 'Sin serie'], bsF.estab) + '</select></td>' +
         '<td></td>' +
         '<td><span class="bs-fu">≥</span><input type="number" min="0" step="10" value="' + bsF.minEfic + '" title="Mínimo de BESS simétrico alcanzable con concurso, en MW" oninput="bsSetF(\'minEfic\',this.value)"></td>' +
-        '<td><select title="Caso del nudo" onchange="bsSetF(\'caso\',this.value)">' + opt(['abierto', 'concurso', 'condicionado', 'sin potencial', 'sin datos'], bsF.caso) + '</select></td>' +
-        '<td><select title="Acción recomendada" onchange="bsSetF(\'accion\',this.value)">' + opt(['SOLICITAR', 'SOLICITABLE CON COLA', 'CONCURSO', 'REDIMENSIONAR', 'SIN CAPACIDAD · CARGA', 'SIN CAPACIDAD · DESCARGA', 'SIN CAPACIDAD · AMBOS', 'SIN DATOS'], bsF.accion) + '</select></td>' +
+        '<td><select title="Caso del nudo" onchange="bsSetF(\'caso\',this.value)">' + opt(['Abierto', 'Concurso', 'Condicionado', 'Sin potencial', 'Sin datos'], bsF.caso) + '</select></td>' +
+        '<td><select title="Acción recomendada" onchange="bsSetF(\'accion\',this.value)">' + opt(['Solicitar', 'Solicitable con cola', 'Concurso', 'Redimensionar', 'Sin capacidad · carga', 'Sin capacidad · descarga', 'Sin capacidad · ambos', 'Sin datos'], bsF.accion) + '</select></td>' +
         '</tr>';
     cont.innerHTML = '<div id="bs-count"></div><div id="bs-scroll"><table class="bs-tbl">' + col +
         '<thead>' + cab + flt + '</thead><tbody id="bs-tbody"></tbody></table></div>';
+}
+
+const BS_ICONO = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="118" height="71"> <rect width="200" height="120" fill="#ffffff"/> <g stroke="#1F4E79" fill="none" stroke-linecap="round"> <g stroke-width="2.4"> <path d="M26 100 L40 46"/> <path d="M62 100 L48 46"/> </g> <g stroke-width="1.5"> <path d="M29 89 L59 89"/><path d="M32 78 L56 78"/> <path d="M34.5 67 L53.5 67"/><path d="M37 56 L51 56"/> </g> <g stroke-width="1.2"> <path d="M26 100 L59 89 M62 100 L29 89"/> <path d="M29 89 L56 78 M59 89 L32 78"/> <path d="M32 78 L53.5 67 M56 78 L34.5 67"/> <path d="M34.5 67 L51 56 M53.5 67 L37 56"/> <path d="M37 56 L48 46 M51 56 L40 46"/> </g> <g stroke-width="1.8"> <path d="M40 46 L48 46"/><path d="M44 46 L44 33"/><path d="M41 36 L47 36"/> </g> <g stroke-width="2"> <path d="M20 52 L68 52"/><path d="M25 43 L63 43"/> </g> <g stroke-width="1.1"> <path d="M20 52 L40 46 M68 52 L48 46 M25 43 L41 46 M63 43 L47 46"/> </g> <g stroke-width="1.6"> <path d="M20 52 L20 58 M68 52 L68 58 M25 43 L25 48 M63 43 L63 48"/> </g> </g> <g fill="#1F4E79"> <circle cx="20" cy="59.5" r="1.6"/><circle cx="68" cy="59.5" r="1.6"/> <circle cx="25" cy="49.5" r="1.4"/><circle cx="63" cy="49.5" r="1.4"/> </g> <path d="M96 24 L88 41 L95 41 L90 56 L104 37 L96 37 L102 24 Z" fill="#F3721F" stroke="#ffffff" stroke-width="1"/> <path d="M68 62 Q96 78 124 66" stroke="#A67C00" stroke-width="2.6" fill="none" stroke-linecap="round"/> <circle cx="68" cy="62" r="2.6" fill="#A67C00"/> <circle cx="124" cy="66" r="2.6" fill="#A67C00"/> <g> <rect x="124" y="34" width="52" height="56" rx="4" fill="#ffffff" stroke="#1F4E79" stroke-width="2.4"/> <rect x="140" y="28" width="20" height="7" rx="2" fill="#1F4E79"/> <rect x="130" y="75" width="40" height="9" rx="2" fill="#1B7F4B"/> <rect x="130" y="64" width="40" height="9" rx="2" fill="#1B7F4B"/> <rect x="130" y="53" width="40" height="9" rx="2" fill="#1B7F4B"/> <rect x="130" y="42" width="40" height="9" rx="2" fill="#d9e3ee"/> </g> <path d="M14 104 L186 104" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round"/> </svg>';
+const BS_MESES = { ene:'Enero', feb:'Febrero', mar:'Marzo', abr:'Abril', apr:'Abril', may:'Mayo',
+    jun:'Junio', jul:'Julio', ago:'Agosto', aug:'Agosto', sep:'Septiembre', oct:'Octubre', nov:'Noviembre', dec:'Diciembre', dic:'Diciembre' };
+function bsMesAnio() {
+    const p = String(bsKey()).split('_');
+    const mes = BS_MESES[p[1]] || (p[1] || '').toUpperCase();
+    const anio = p[0] ? (p[0].length === 2 ? '20' + p[0] : p[0]) : '';
+    return mes + ' ' + anio;
+}
+function bsPieHoja() {
+    return '<div class="bs-pie">Datos actualizados a <b>' + bsMesAnio() + '</b>' +
+        ' · Hanwha Energy Europe · BESS stand alone · uso interno</div>';
 }
 
 /* ---------- utilidades ---------- */
@@ -5488,10 +5581,10 @@ function bsZona(entry, key) {
     zs.sort(function (a, b) { return (a.pool - b.pool) || (b.cola - a.cola); });
     const z = zs[0];
     const ratio = z.pool > 0 ? z.cola / z.pool : (z.cola > 0 ? Infinity : 0);
-    let riesgo = 'bajo';
-    if (!isFinite(ratio) || ratio >= 1) riesgo = 'agotado';
-    else if (ratio >= 0.8) riesgo = 'alto';
-    else if (ratio >= 0.4) riesgo = 'medio';
+    let riesgo = 'Bajo';
+    if (!isFinite(ratio) || ratio >= 1) riesgo = 'Agotado';
+    else if (ratio >= 0.8) riesgo = 'Alto';
+    else if (ratio >= 0.4) riesgo = 'Medio';
     return { zona: z.id, zonas: ids, multizona: ids.length > 1, pool: z.pool, cap: z.cap || null,
              oficial: !!z.oficial, nudos: z.nudos, cola: z.cola, otorgada: z.otorgada,
              ratio: ratio, riesgo: riesgo, margenNudo: bsNum(r.gen.nodal.dinamico_margen) };
@@ -5522,6 +5615,10 @@ function bsSerie(entry) {
             key: k,
             carga: (d.disp && d.disp.alm_cep != null) ? bsNum(d.disp.alm_cep) : null,
             cargaMargen: (d.margen && d.margen.alm_cep_mpe != null) ? bsNum(d.margen.alm_cep_mpe) : null,
+            cargaOtorg: bsNum((d.otorgada || {}).alm_rdt) + bsNum((d.otorgada || {}).dem_rdt),
+            cargaCola: bsNum((d.en_curso || {}).dem) + bsNum((d.en_curso || {}).alm_rdt),
+            descOtorg: bsNum((g.otorgada || {}).gen) + bsNum((g.otorgada || {}).alm),
+            descCola: bsNum((g.en_curso || {}).total),
             descDisp: bsNum((g.disp || {}).alm_mpe_rdt),
             margenMPE: mpe,
             potencial: (pos == null) ? mpe : Math.min(mpe, bsNum(pos)),
@@ -5554,7 +5651,7 @@ function bsTrend(entry) {
     const nm = s.length;
     const res = { n: nm, serie: s, serieCompleta: todaLaSerie, recortada: desde > 0,
         desde: desde > 0 ? s[0].key : null, ventana: BS_VENTANA, suficiente: nm >= 4,
-        pendDesc: null, pendCarga: null, proy3: null, cambios: [], estado: 'sin datos' };
+        pendDesc: null, pendCarga: null, proy3: null, cambios: [], estado: 'Sin datos' };
     if (!nm) return res;
     const reg = function (vals) {
         const pts = vals.map(function (v, i) { return { x: i, y: v }; }).filter(function (p) { return p.y != null; });
@@ -5593,7 +5690,7 @@ function bsForecast(m, entry, key) {
     const t = bsTecho(entry, key), z = bsZona(entry, key), tr = bsTrend(entry);
     const avisos = [];
     let nivel = 'neutro';
-    if (z && (z.riesgo === 'agotado' || z.riesgo === 'alto')) {
+    if (z && (z.riesgo === 'Agotado' || z.riesgo === 'Alto')) {
         nivel = 'riesgo';
         avisos.push('El margen de este nudo depende del fondo común de la zona ' + z.zona + ', que comparte con ' +
             z.nudos + ' nudos: ' + bsMW(z.pool) + ' de margen frente a ' + bsMW(z.cola) + ' en cola' +
@@ -5657,36 +5754,62 @@ function bsForecastPill(f) {
     // al fondo zonal, el techo por criterio y la pendiente del margen. Usa
     // vocabulario propio para no confundirse con la serie histórica.
     const c = { 'riesgo': '#B3261E', 'oportunidad': '#1B7F4B', 'neutro': '#7a8495' }[f.nivel];
-    const txt = { 'riesgo': 'DESFAVORABLE', 'oportunidad': 'FAVORABLE', 'neutro': 'NEUTRO' }[f.nivel];
+    const txt = { 'riesgo': 'Desfavorable', 'oportunidad': 'Favorable', 'neutro': 'Neutro' }[f.nivel];
     return '<span class="bs-pill" style="background:' + c + '">' + txt + '</span>';
 }
 /* Mini gráfico de la serie, en HTML puro para que imprima en el PDF.        */
-function bsSpark(tr, campo, etiqueta, aclara) {
-    const s = tr.serie.filter(function (x) { return x[campo] != null; });
+/* Gráfico combinado por lado. Cada mes lleva tres barras:
+     1. MARGEN técnico, con la parte SOLICITABLE pintada en verde en su base
+        (así se ve de un golpe cuánto del margen era realmente pedible)
+     2. OTORGADO en el nudo
+     3. COLA de solicitudes pendientes
+   Todo a la misma escala, con barras dibujadas como celdas de tabla con
+   fondo, que es lo único que imprimen por igual navegador y conversores.  */
+function bsBarras(tr, conf, etiqueta, aclara) {
+    const s = tr.serie.filter(function (x) { return x[conf.margen] != null || x[conf.disp] != null; });
     if (s.length < 2) return '<div class="bs-sub">' + (etiqueta || '') + ': sin serie suficiente</div>';
-    const vals = s.map(function (x) { return x[campo]; });
-    const mx = Math.max.apply(null, vals) || 1, mn = Math.min.apply(null, vals);
-    const dif = vals[vals.length - 1] - vals[0];
-    // Las barras se dibujan como CELDAS con fondo en línea, no como <span> con
-    // alto por CSS ni como SVG: el fondo de celda es lo único que imprimen por
-    // igual el navegador y los conversores a PDF. Antes desaparecían al
-    // imprimir.
-    const ALTO = 40;
-    let fila = '', ejes = '', nums = '';
+    const v = function (x, k) { return bsNum(x[conf[k]]); };
+    let mx = 1;
+    for (const x of s) mx = Math.max(mx, v(x, 'margen'), v(x, 'disp'), v(x, 'otorg'), v(x, 'cola'));
+    const ALTO = 44;
+    const alto = function (val) { return Math.max(val > 0 ? 2 : 0, Math.round(val / mx * ALTO)); };
+    let fila = '', ejes = '';
     for (let i = 0; i < s.length; i++) {
-        const alto = Math.max(2, Math.round(vals[i] / mx * ALTO));
-        const col = (i === s.length - 1) ? '#1F4E79' : '#A67C00';
-        fila += '<td class="bs-bar" title="' + s[i].key + ': ' + vals[i] + ' MW">' +
-                '<table class="bs-bar-t"><tr><td style="height:' + (ALTO - alto) + 'px"></td></tr>' +
-                '<tr><td style="height:' + alto + 'px;background:' + col + '"></td></tr></table></td>';
-        ejes += '<td class="bs-spark-x">' + String(s[i].key).split('_')[1] + '</td>';
-        nums += '<td class="bs-spark-v">' + (i === 0 || i === s.length - 1 || vals[i] === mx ? vals[i] : '') + '</td>';
+        const x = s[i];
+        const hM = alto(v(x, 'margen')), hD = Math.min(alto(v(x, 'disp')), hM);
+        // Cada barra es UNA celda de alto fijo pintada con un degradado que
+        // arranca en su borde inferior. Así la base es exacta por definición,
+        // sin depender de que el motor respete vertical-align en tablas
+        // anidadas, que era lo que descuadraba las barras.
+        const barra = function (h, color, tit) {
+            return '<td class="bs-b1" title="' + tit + '" style="background:linear-gradient(to top,' +
+                color + ' 0,' + color + ' ' + h + 'px,transparent ' + h + 'px)"></td>';
+        };
+        const apil = '<td class="bs-b1" title="' + x.key + ' · margen ' + v(x, 'margen') + ' MW · solicitable ' +
+            v(x, 'disp') + ' MW" style="background:linear-gradient(to top,' +
+            '#1B7F4B 0,#1B7F4B ' + hD + 'px,' +
+            '#A67C00 ' + hD + 'px,#A67C00 ' + hM + 'px,' +
+            'transparent ' + hM + 'px)"></td>';
+        fila += '<td class="bs-bg"><table class="bs-bgt"><tr>' + apil +
+            barra(alto(v(x, 'otorg')), '#94a3b8', x.key + ' · otorgado ' + v(x, 'otorg') + ' MW') +
+            barra(alto(v(x, 'cola')), '#B3261E', x.key + ' · en cola ' + v(x, 'cola') + ' MW') +
+            '</tr></table></td>';
+        ejes += '<td class="bs-spark-x">' + String(x.key).split('_')[1] + '</td>';
     }
-    return '<div class="bs-spark-h"><b>' + (etiqueta || '') + '</b><span>máx. ' + bsMW(mx) + ' · mín. ' + bsMW(mn) +
-        ' · ' + (dif >= 0 ? '+' : '') + dif + ' MW en ' + s.length + ' meses</span></div>' +
+    const ult = s[s.length - 1];
+    return '<div class="bs-spark-h"><b>' + (etiqueta || '') + '</b><span>escala hasta ' + bsMW(mx) + '</span></div>' +
         (aclara ? '<div class="bs-spark-q">' + aclara + '</div>' : '') +
-        '<table class="bs-spark"><tr>' + fila + '</tr><tr>' + ejes + '</tr><tr>' + nums + '</tr></table>';
+        '<table class="bs-spark"><tr>' + fila + '</tr><tr>' + ejes + '</tr></table>' +
+        '<div class="bs-ley">' +
+        '<span><i style="background:#A67C00"></i>Margen</span>' +
+        '<span><i style="background:#1B7F4B"></i>Solicitable</span>' +
+        '<span><i style="background:#94a3b8"></i>Otorgado</span>' +
+        '<span><i style="background:#B3261E"></i>Cola</span>' +
+        '</div>' +
+        '<div class="bs-sub">Último mes (' + ult.key + '): margen <b>' + bsMW(v(ult, 'margen')) + '</b> · solicitable <b>' +
+        bsMW(v(ult, 'disp')) + '</b> · otorgado ' + bsMW(v(ult, 'otorg')) + ' · cola ' + bsMW(v(ult, 'cola')) + '</div>';
 }
+
 
 
 
@@ -5761,7 +5884,7 @@ function bsEstab(m) {
     const tr = bsTrend(m._e || { name: m.name, grid: m.grid });
     const s = tr.serie;
     if (s.length < 2) return { n: s.length, suficiente: false, cambios: 0, sube: 0, baja: 0,
-        clase: 'sin serie', critClase: 'sin serie', margenClase: 'sin serie',
+        clase: 'Sin serie', critClase: 'Sin serie', margenClase: 'Sin serie',
         famActual: s.length ? bsCritFam(s[0].critDesc).fam : null, derivaWscr: false };
     let cambios = 0, sube = 0, baja = 0;
     for (let i = 1; i < s.length; i++) {
@@ -5778,15 +5901,15 @@ function bsEstab(m) {
     // para que las dos señales no puedan leerse como contradictorias:
     //   · la serie describe el comportamiento OBSERVADO del margen del nudo
     //   · el pronóstico valora lo que cabe esperar cruzando zona, techo y pendiente
-    const critClase = cambios === 0 ? 'sin reclasificar' : (cambios === 1 ? '1 reclasificación' : cambios + ' reclasificaciones');
-    let margenClase = 'estacionario';
-    if (sube >= 2 && baja >= 2) margenClase = 'alta variabilidad';
-    else if (sube > baja) margenClase = 'tendencia positiva';
-    else if (baja > sube) margenClase = 'tendencia negativa';
-    else if (sube + baja > 0) margenClase = 'alta variabilidad';
+    const critClase = cambios === 0 ? 'Sin reclasificar' : (cambios === 1 ? '1 reclasificación' : cambios + ' reclasificaciones');
+    let margenClase = 'Estacionario';
+    if (sube >= 2 && baja >= 2) margenClase = 'Alta variabilidad';
+    else if (sube > baja) margenClase = 'Tendencia positiva';
+    else if (baja > sube) margenClase = 'Tendencia negativa';
+    else if (sube + baja > 0) margenClase = 'Alta variabilidad';
     // «volátil» se reserva a lo que de verdad lo es
-    const clase = (cambios >= 2 || margenClase === 'alta variabilidad') ? 'alta variabilidad'
-                : (cambios > 0 ? 'reclasificado' : margenClase);
+    const clase = (cambios >= 2 || margenClase === 'Alta variabilidad') ? 'Alta variabilidad'
+                : (cambios > 0 ? 'Reclasificado' : margenClase);
     const famAct = bsCritFam(s[s.length - 1].critDesc);
     // deriva: acabó en WSCR habiendo estado antes en otra familia
     const derivaWscr = famAct.fam === 'WSCR' && s.some(function (x) { return bsCritFam(x.critDesc).fam !== 'WSCR'; });
@@ -5798,7 +5921,7 @@ function bsEstab(m) {
 /* ---------- diagnóstico: por qué un nudo está como está ----------
    Se evalúa siempre, también para los nudos a cero, que son la mayoría.     */
 function bsDiag(m) {
-    if (m.sinDatos) return { tipo: 'sin datos', txt: 'Sin ficha publicada para este mes: el nudo existe en la base pero no aparece en el fichero del periodo.' };
+    if (m.sinDatos) return { tipo: 'Sin datos', txt: 'Sin ficha publicada para este mes: el nudo existe en la base pero no aparece en el fichero del periodo.' };
     const partes = [];
     if (m.cargaConcurso) {
         partes.push('CARGA reservada a CONCURSO de demanda' +
@@ -5831,14 +5954,14 @@ function bsDiag(m) {
     if (m.limitaPosicion) partes.push('La POSICIÓN limita: ' + bsMW(m.posMPE) + ' frente a ' + bsMW(m.margenMPE) + ' de red.');
     if (m.sinPosicion && m.grid === 'TSO') partes.push('Sin posición de transporte existente ni prevista: su viabilidad se consulta al TSO.');
     if (m.liberada > 0) partes.push('Hay ' + bsMW(m.liberada) + ' en el bloque liberada, afectos a autoconsumo del RDL 7/2026: no utilizables por un proyecto stand alone.');
-    let tipo = 'sin potencial';
-    if (m.eficazHoy > 0) tipo = 'abierto';
-    else if (m.eficazConc > 0) tipo = m.bloqueoConcurso ? 'concurso' : 'condicionado';
+    let tipo = 'Sin potencial';
+    if (m.eficazHoy > 0) tipo = 'Abierto';
+    else if (m.eficazConc > 0) tipo = m.bloqueoConcurso ? 'Concurso' : 'Condicionado';
     return { tipo: tipo, txt: partes.join(' ') };
 }
 function bsDiagPill(d) {
-    const c = { 'abierto': '#1B7F4B', 'concurso': '#A67C00', 'condicionado': '#F06818', 'sin potencial': '#7a8495', 'sin datos': '#B3261E' }[d.tipo] || '#7a8495';
-    return '<span class="bs-pill" style="background:' + c + '">' + d.tipo.toUpperCase() + '</span>';
+    const c = { 'Abierto': '#1B7F4B', 'Concurso': '#A67C00', 'Condicionado': '#F06818', 'Sin potencial': '#7a8495', 'Sin datos': '#B3261E' }[d.tipo] || '#7a8495';
+    return '<span class="bs-pill" style="background:' + c + '">' + d.tipo + '</span>';
 }
 
 /* Cola de solicitudes pendientes frente a lo solicitable. Importa porque el
@@ -5877,21 +6000,39 @@ function bsColaTxt(x, etq) {
    píldora del listado y en la banda de la ficha, para que la etiqueta no haya
    que interpretarla de memoria.                                             */
 const BS_DEF = {
-    'SOLICITAR': 'Carga y descarga están disponibles hoy para el objetivo, y las solicitudes pendientes no comprometen esa capacidad.',
-    'SOLICITABLE CON COLA': 'Hay capacidad hoy en los dos lados, pero las solicitudes pendientes igualan o superan lo disponible y, por prelación temporal, se resuelven antes.',
-    'CONCURSO': 'El objetivo solo se alcanza si se convoca el concurso que hoy tiene reservada la capacidad. Hasta entonces no es solicitable.',
-    'REDIMENSIONAR': 'Hay capacidad utilizable en los dos lados, pero no llega al objetivo: procede replantear la potencia, el perfil o el nudo.',
-    'SIN CAPACIDAD · CARGA': 'No hay margen utilizable en el lado de demanda. Sin permiso de carga el proyecto no es viable a ninguna potencia.',
-    'SIN CAPACIDAD · DESCARGA': 'No hay margen utilizable en el lado de generación. Sin evacuación el proyecto no es viable a ninguna potencia.',
-    'SIN CAPACIDAD · AMBOS': 'No hay margen utilizable ni en carga ni en descarga en este nudo y periodo.',
-    'SIN DATOS': 'El nudo no aparece en el fichero de este periodo: no se puede evaluar.',
+    'Solicitar': 'Carga y descarga están disponibles hoy para el objetivo, y las solicitudes pendientes no comprometen esa capacidad.',
+    'Solicitable con cola': 'Hay capacidad hoy en los dos lados, pero las solicitudes pendientes igualan o superan lo disponible y, por prelación temporal, se resuelven antes.',
+    'Concurso': 'El objetivo solo se alcanza si se convoca el concurso que hoy tiene reservada la capacidad. Hasta entonces no es solicitable.',
+    'Redimensionar': 'Hay capacidad utilizable en los dos lados, pero no llega al objetivo: procede replantear la potencia, el perfil o el nudo.',
+    'Sin capacidad · carga': 'No hay margen utilizable en el lado de demanda. Sin permiso de carga el proyecto no es viable a ninguna potencia.',
+    'Sin capacidad · descarga': 'No hay margen utilizable en el lado de generación. Sin evacuación el proyecto no es viable a ninguna potencia.',
+    'Sin capacidad · ambos': 'No hay margen utilizable ni en carga ni en descarga en este nudo y periodo.',
+    'Sin datos': 'El nudo no aparece en el fichero de este periodo: no se puede evaluar.',
 };
+/* Los matices nombran la CAUSA, no un grado de prudencia: «Con cautela» no
+   decía por qué había que tenerla y obligaba a abrir la ficha. El color lo
+   fija siempre la acción, así que dos nudos con la misma acción se ven
+   igual aunque su matiz difiera.                                           */
 const BS_MOD = {
-    'sin demora': 'Disponible hoy, pero el pronóstico es desfavorable: la ventana se está estrechando.',
-    'con cautela': 'Depende de que se convoque el concurso y, mientras se espera, el pronóstico es desfavorable.',
-    'pronóstico favorable': 'Por debajo del objetivo, pero con el margen creciendo.',
-    'cola amplia': 'Las solicitudes pendientes llegan al menos a la mitad de lo disponible.',
+    'Cola por delante': 'Las solicitudes pendientes igualan o superan lo disponible y, por prelación temporal, se resuelven antes.',
+    'Cola amplia': 'Las solicitudes pendientes llegan al menos a la mitad de lo disponible.',
+    'Zona comprometida': 'El margen depende de un fondo zonal compartido cuya cola se acerca o supera el margen disponible.',
+    'Margen cayendo': 'El margen de descarga viene reduciéndose en la ventana de los últimos meses.',
+    'Margen creciendo': 'El margen de descarga viene aumentando en la ventana de los últimos meses.',
+    'Reclasificado a WSCR': 'El nudo ha pasado a estar limitado por WSCR, el criterio del que casi nunca se sale.',
 };
+
+/* Causa dominante del aviso, por orden de relevancia para la decisión. */
+function bsMotivo(m) {
+    const cl = bsCola(m), f = bsFc(m), e = bsEstab(m);
+    if (cl.grave) return 'Cola por delante';
+    if (f.zona && (f.zona.riesgo === 'Agotado' || f.zona.riesgo === 'Alto')) return 'Zona comprometida';
+    if (e.derivaWscr) return 'Reclasificado a WSCR';
+    if (f.trend && f.trend.suficiente && f.trend.pendDesc < -1) return 'Margen cayendo';
+    if (f.trend && f.trend.suficiente && f.trend.pendDesc > 1) return 'Margen creciendo';
+    if (cl.aviso) return 'Cola amplia';
+    return null;
+}
 
 /* Acción recomendada. Cinco etiquetas, con el matiz aparte para no inflar el
    vocabulario: antes había once combinaciones distintas.                    */
@@ -5900,7 +6041,7 @@ function bsSem(m) {
         return { col: col, txt: txt, num: num, acc: acc, mod: mod || null,
                  def: BS_DEF[txt] || '', modDef: mod ? (BS_MOD[mod] || '') : '' };
     };
-    if (m.sinDatos) return sal('#7a8495', 'SIN DATOS', '–', 'El nudo no aparece en el fichero de este periodo: prueba otro mes');
+    if (m.sinDatos) return sal('#7a8495', 'Sin datos', '–', 'El nudo no aparece en el fichero de este periodo: prueba otro mes');
 
     const c = bsCover(m), t = c.t, cl = bsCola(m), f = bsFc(m);
     const desfav = f.nivel === 'riesgo', favor = f.nivel === 'oportunidad';
@@ -5908,11 +6049,11 @@ function bsSem(m) {
     // 1) ningún lado tiene margen utilizable: el proyecto no cabe a ninguna potencia
     const sinC = bsNum(m.cargaDisp) <= 0 && bsNum(m.cargaMargenCep) <= 0;
     const sinD = bsNum(m.potencial) <= 0;
-    if (sinC && sinD) return sal('#B3261E', 'SIN CAPACIDAD · AMBOS', '5', 'Sin margen utilizable ni en carga ni en descarga');
-    if (sinD) return sal('#B3261E', 'SIN CAPACIDAD · DESCARGA', '5',
+    if (sinC && sinD) return sal('#B3261E', 'Sin capacidad · ambos', '5', 'Sin margen utilizable ni en carga ni en descarga');
+    if (sinD) return sal('#B3261E', 'Sin capacidad · descarga', '5',
         'La evacuación no tiene margen' + (m.descCrit && m.descCrit !== '—' ? ' (criterio limitante: ' + m.descCrit + ')' : '') +
         ': el proyecto no es viable a ninguna potencia');
-    if (sinC) return sal('#B3261E', 'SIN CAPACIDAD · CARGA', '5',
+    if (sinC) return sal('#B3261E', 'Sin capacidad · carga', '5',
         'La demanda no tiene margen' + (m.cargaCrit && m.cargaCrit !== '—' ? ' (criterio limitante: ' + m.cargaCrit + ')' : '') +
         ': sin permiso de carga el proyecto no es viable');
 
@@ -5921,33 +6062,33 @@ function bsSem(m) {
         if (cl.grave) {
             const cual = cl.desc.nivel === 'supera' ? cl.desc : cl.carga;
             const lado = cl.desc.nivel === 'supera' ? 'descarga' : 'carga';
-            return sal('#F06818', 'SOLICITABLE CON COLA', '1',
+            return sal('#F06818', 'Solicitable con cola', '1',
                 'Cubre el objetivo hoy, pero en ' + lado + ' hay ' + bsMW(cual.cola) + ' en cola frente a ' +
                 bsMW(cual.disp) + ' solicitables: por prelación temporal esas solicitudes van primero');
         }
         const base = 'Carga y descarga cubren el objetivo hoy (' + bsMW(t.carga) + ' / ' + bsMW(t.desc) + ')';
         if (desfav) {
             const ritmo = (f.trend && f.trend.suficiente && f.trend.pendDesc < 0)
-                ? ' El margen de descarga cae ' + Math.abs(f.trend.pendDesc).toFixed(1) + ' MW/mes.' : '';
-            return sal('#1B7F4B', 'SOLICITAR', '1', base + '.' + ritmo + ' ' + (f.avisos[0] || '').slice(0, 110), 'sin demora');
+                ? ' El margen de descarga cae ' + Math.abs(f.trend.pendDesc).toFixed(1) + ' MW/mes, así que conviene no demorarlo.' : '';
+            return sal('#1B7F4B', 'Solicitar', '1', base + '.' + ritmo + ' ' + (f.avisos[0] || '').slice(0, 110), bsMotivo(m));
         }
-        return sal('#1B7F4B', 'SOLICITAR', '1', base, cl.aviso ? 'cola amplia' : null);
+        return sal('#1B7F4B', 'Solicitar', '1', base, bsMotivo(m));
     }
 
     // 3) cubriría si se convoca el concurso
     if (c.okCargaHoy && c.okDescConc) {
-        return sal(desfav ? '#F06818' : '#1F4E79', 'CONCURSO', '2',
+        return sal('#1F4E79', 'Concurso', '2',
             'La carga ya cubre el objetivo y la descarga lo cubriría con el CONCURSO' +
-            (desfav ? ': ' + (f.avisos[0] || '').slice(0, 130) : ''), desfav ? 'con cautela' : null);
+            (desfav ? '. Mientras se espera: ' + (f.avisos[0] || '').slice(0, 130) : ''), bsMotivo(m));
     }
 
     // 4) hay capacidad en los dos lados pero no llega al objetivo
     const falta = [];
     if (!c.okCargaHoy) falta.push('carga ' + bsMW(m.cargaDisp) + ' de ' + bsMW(t.carga));
     if (!c.okDescConc) falta.push('descarga ' + bsMW(m.potencial) + ' de ' + bsMW(t.desc));
-    return sal('#F06818', 'REDIMENSIONAR', '3',
+    return sal('#F06818', 'Redimensionar', '3',
         'No llega al objetivo (' + falta.join(' · ') + ') · lo mayor que cabría es ' + bsMW(c.simConc) + ' simétricos',
-        favor ? 'pronóstico favorable' : (cl.grave ? 'cola por delante' : null));
+        bsMotivo(m));
 }
 
 /* ---------- banner regulatorio (diferencia TSO / DSO) ---------- */
@@ -6035,7 +6176,7 @@ function bsRenderInterno() {
     }
     if (bsF.prev) rows = rows.filter(function (r) {
         if (r.sinDatos) return false;
-        const t = { 'riesgo': 'DESFAVORABLE', 'oportunidad': 'FAVORABLE', 'neutro': 'NEUTRO' }[bsFc(r).nivel];
+        const t = { 'riesgo': 'Desfavorable', 'oportunidad': 'Favorable', 'neutro': 'Neutro' }[bsFc(r).nivel];
         return t === bsF.prev;
     });
     if (bsF.estab) rows = rows.filter(r => !r.sinDatos && bsEstab(r).margenClase === bsF.estab);
@@ -6092,11 +6233,11 @@ function bsRenderInterno() {
             '<td>' + (r.sinDatos ? '<span class="bs-sub">—</span>' : bsForecastPill(bsFc(r))) + '</td>' +
             '<td>' + (r.sinDatos ? '<span class="bs-sub">—</span>' : (function () {
                 const e2 = bsEstab(r);
-                const c2 = { 'estacionario': '#7a8495', 'tendencia positiva': '#1B7F4B',
-                             'tendencia negativa': '#B3261E', 'alta variabilidad': '#A67C00' }[e2.margenClase] || '#7a8495';
-                const ab = { 'estacionario': 'ESTACIONARIO', 'tendencia positiva': 'TEND. POSITIVA',
-                             'tendencia negativa': 'TEND. NEGATIVA', 'alta variabilidad': 'VARIABILIDAD ALTA',
-                             'sin serie': 'SIN SERIE' }[e2.margenClase] || e2.margenClase.toUpperCase();
+                const c2 = { 'Estacionario': '#7a8495', 'Tendencia positiva': '#1B7F4B',
+                             'Tendencia negativa': '#B3261E', 'Alta variabilidad': '#A67C00' }[e2.margenClase] || '#7a8495';
+                const ab = { 'Estacionario': 'Estacionario', 'Tendencia positiva': 'Tend. positiva',
+                             'Tendencia negativa': 'Tend. negativa', 'Alta variabilidad': 'Variabilidad alta',
+                             'Sin serie': 'Sin serie' }[e2.margenClase] || e2.margenClase;
                 return '<span class="bs-pill" style="background:' + c2 + '">' + ab + '</span>' +
                     '<div class="bs-sub">' + (e2.famActual || '—') + ' · ' + e2.critClase +
                     (e2.derivaWscr ? ' · reclasificado a WSCR' : '') + '</div>';
@@ -6305,7 +6446,7 @@ function bsFichaHTML(m, paraInforme) {
               '</span></td><td class="bs-acc-t" title="' + s.def.replace(/"/g, '') + '">' + s.txt +
               (s.mod ? '<div class="bs-acc-m" title="' + s.modDef.replace(/"/g, '') + '">' + s.mod + '</div>' : '') +
               '</td><td class="bs-acc-d">' + s.acc + '</td></tr></table>' +
-              '</td><td class="bs-accfoot-p"></td></tr></table>'
+              '</td><td class="bs-accfoot-p"></td></tr></table>' + bsPieHoja()
             : '<table class="bs-acc" style="background:' + s.col + '"><tr><td class="bs-acc-n"><span>' + s.num +
               '</span></td><td class="bs-acc-t" title="' + s.def.replace(/"/g, '') + '">' + s.txt +
               (s.mod ? '<div class="bs-acc-m" title="' + s.modDef.replace(/"/g, '') + '">' + s.mod + '</div>' : '') +
@@ -6349,7 +6490,7 @@ function bsPrevHTML(m, compacto) {
     // ── exposición zonal: en el informe va en su propia columna ──
     h += '<div class="bs-prev-t2">Exposición zonal</div>';
     if (z) {
-        const col = { 'agotado': 'bs-red', 'alto': 'bs-red', 'medio': 'bs-must', 'bajo': 'bs-green' }[z.riesgo];
+        const col = { 'Agotado': 'bs-red', 'Alto': 'bs-red', 'Medio': 'bs-must', 'Bajo': 'bs-green' }[z.riesgo];
         h += '<div class="bs-lin">' +
             '<div><span>zona' + (z.multizona ? ' (' + z.zonas.length + ')' : '') + '</span><b>' + z.zona + '</b></div>' +
             '<div><span>fondo común · ' + z.nudos + ' nudos</span><b>' + bsMW(z.pool) + '</b></div>' +
@@ -6375,14 +6516,11 @@ function bsPrevHTML(m, compacto) {
     // Las dos series dibujan la MISMA magnitud, el margen mensual, para que
     // sean comparables. Debajo de cada título se indica lo solicitable hoy,
     // que es lo que ese margen deja realmente pedir.
-    const gD = bsSpark(tr, 'potencial', 'DESCARGA · margen mensual (ALM MPE)',
-        'margen técnico acotado por el límite de posición · <b>solicitable hoy ' + bsMW(m.descDisp) + '</b>' +
-        (m.bloqueoConcurso ? ', el resto está reservado a CONCURSO' : ''));
-    // si el margen no está publicado en toda la serie, se cae al disponible
-    const campoC = tr.serie.filter(function (x) { return x.cargaMargen != null; }).length >= 2 ? 'cargaMargen' : 'carga';
-    const gC = bsSpark(tr, campoC, 'CARGA · margen mensual (ALM CEP)' + (campoC === 'carga' ? ' — serie de disponible' : ''),
-        'margen de almacenamiento en demanda · <b>solicitable hoy ' + bsMW(m.cargaDisp) + '</b>' +
-        (m.cargaNoOtorgCep > 0 ? ', ' + bsMW(m.cargaNoOtorgCep) + ' no otorgables' : ''));
+    const gD = bsBarras(tr, { margen: 'potencial', disp: 'descDisp', otorg: 'descOtorg', cola: 'descCola' },
+        'DESCARGA (ALM MPE)', 'margen acotado por el límite de posición' +
+        (m.bloqueoConcurso ? ' · lo solicitable es cero mientras la capacidad esté reservada a CONCURSO' : ''));
+    const gC = bsBarras(tr, { margen: 'cargaMargen', disp: 'carga', otorg: 'cargaOtorg', cola: 'cargaCola' },
+        'CARGA (ALM CEP)', 'margen de almacenamiento en la perspectiva de demanda');
     h += compacto ? '<table class="bs-duo"><tr><td>' + gD + '</td><td>' + gC + '</td></tr></table>' : gD + gC;
     h += '<div class="bs-sub">' + (tr.suficiente
         ? 'Pendiente del <b>margen de descarga</b>: <b>' + (tr.pendDesc >= 0 ? '+' : '') + tr.pendDesc.toFixed(1) + ' MW/mes</b> · proyección: ' +
@@ -6398,8 +6536,8 @@ function bsPrevHTML(m, compacto) {
     // estabilidad del propio nudo y tasas observadas de su criterio
     const famA = est.famActual || '—';
     const tf = (tas.fam || {})[famA] || null;
-    const colEst = { 'estacionario': '', 'tendencia positiva': 'bs-green',
-                     'tendencia negativa': 'bs-red', 'alta variabilidad': 'bs-must' }[est.margenClase] || '';
+    const colEst = { 'Estacionario': '', 'Tendencia positiva': 'bs-green',
+                     'Tendencia negativa': 'bs-red', 'Alta variabilidad': 'bs-must' }[est.margenClase] || '';
     h += '<div class="bs-sub"><b>Criterio:</b> ' + est.critClase + ' (' + est.cambios + ' cambio(s) en ' + est.n + ' meses)' +
         ' · <b>Margen:</b> <b class="' + colEst + '">' + est.margenClase + '</b> (' + est.sube + ' subida(s) / ' + est.baja + ' bajada(s) &gt;' + BS_UMBRAL_MW + ' MW)</div>' +
         (tf ? '<div class="bs-sub">Referencia del histórico, sobre observaciones nudo-mes: los nudos limitados por ' + famA +
@@ -6456,13 +6594,16 @@ function bsNotaPortada() {
 /* Portada: recoge una sola vez el objetivo, la metodología y todos los
    avisos, de modo que las fichas quedan limpias de textos legales.        */
 function bsPortadaHTML(metr, mes, anio) {
-    const nudos = metr.map(function (x) { return x.name; }).join(' · ');
     return '<div class="bs-card bs-page bs-portada">' +
         '<div class="bs-wm-w"><div class="bs-wm">FASE DE PRUEBAS</div></div>' +
-        '<h2 class="bs-port-h">BESS stand alone · capacidad solicitable por nudo</h2>' +
-        '<div class="bs-port-s">Red ' + (metr[0] ? metr[0].grid : 'TSO') + ' · periodo ' + mes + ' ' + anio +
-        ' · ' + metr.length + ' nudo(s): ' + nudos + '</div>' +
-        bsObjHTML() +
+        '<table class="bs-port-top"><tr>' +
+        '<td class="bs-port-ic">' + BS_ICONO + '</td>' +
+        '<td><h2 class="bs-port-h">BESS stand alone · capacidad solicitable por nudo</h2>' +
+        '<div class="bs-port-s">Red ' + (metr[0] ? metr[0].grid : 'TSO') + ' · ' + metr.length +
+        ' nudo(s) · datos de ' + bsMesAnio() + '</div></td>' +
+        '<td class="bs-port-lg"><span class="hw-logo-img"></span></td>' +
+        '</tr></table>' +
+        '<div class="bs-obj-big">' + bsObjHTML() + '</div>' +
         '<div class="bs-port-g"><div>' +
         '<div class="bs-port-t">Metodología</div>' + bsNotaPortada() +
         '</div><div>' +
@@ -6482,7 +6623,7 @@ function bsPortadaHTML(metr, mes, anio) {
         'globales: el mismo código significa cosas distintas en generación y en demanda.</p>' +
         '<p class="bs-port-cr">Generado por SPAIN CAP VIEWER a partir de los ficheros mensuales de capacidad de acceso. ' +
         'Uso interno; no constituye asesoramiento jurídico.</p>' +
-        '</div></div></div></div>';
+        '</div></div></div>' + bsPieHoja() + '</div>';
 }
 
 /* ---------- informe descargable ---------- */
