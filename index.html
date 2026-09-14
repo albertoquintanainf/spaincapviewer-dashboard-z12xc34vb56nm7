@@ -544,6 +544,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-foot { font-size:9.5px; color:#7a8495; margin-top:8px; font-style:italic; }
 
 /* ---- informe descargable ---- */
+#bs-obj-wrap { margin:10px 16px 0; }
 .bs-obj { width:100%; border-collapse:collapse; background:#EAF1F8; border:1px solid #1F4E79;
   border-left:6px solid #1F4E79; border-radius:8px; margin-bottom:10px; }
 .bs-obj td { padding:6px 10px; vertical-align:middle; font-size:11px; color:#262626; }
@@ -761,6 +762,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-foot { font-size:9.5px; color:#7a8495; margin-top:8px; font-style:italic; }
 
 /* ---- informe descargable ---- */
+#bs-obj-wrap { margin:10px 16px 0; }
 .bs-obj { width:100%; border-collapse:collapse; background:#EAF1F8; border:1px solid #1F4E79;
   border-left:6px solid #1F4E79; border-radius:8px; margin-bottom:10px; }
 .bs-obj td { padding:6px 10px; vertical-align:middle; font-size:11px; color:#262626; }
@@ -4781,6 +4783,7 @@ function renderOportunidades(){
   </div>
   <div id="bs-nota"></div>
   <div id="bs-banner"></div>
+  <div id="bs-obj-wrap"></div>
   <div class="na-sec" id="bs-kpis"></div>
 
   <div class="na-sec" id="bs-table-wrap">
@@ -4854,6 +4857,20 @@ function bsCargarZonas(key) {
     } else if (typeof fetch === 'function') {
         fetch(url).then(function (r) { return r.ok ? r.json() : null; }).then(tras).catch(function () { bsZonasOficiales[key] = {}; });
     } else bsZonasOficiales[key] = {};
+}
+
+/* Banda de objetivo del proyecto. Es un ajuste global, no una propiedad del
+   nudo, así que vive fuera de la ficha: en el visor va bajo los controles y en
+   el informe en la cabecera, una sola vez.                                  */
+function bsObjHTML() {
+    const t = bsTargets();
+    return '<table class="bs-obj"><tr>' +
+        '<td class="bs-obj-h"><b>OBJETIVO DEL PROYECTO</b></td>' +
+        '<td><span>carga</span><b>' + bsMW(t.carga) + '</b></td>' +
+        '<td><span>descarga</span><b>' + bsMW(t.desc) + '</b></td>' +
+        '<td><span>ratio carga/descarga</span><b>' + (t.desc > 0 ? t.ratio.toFixed(2) : '—') + '</b></td>' +
+        '<td class="bs-obj-n">Carga y descarga son dos permisos distintos: cada lado se evalúa por separado, ' +
+        'y para un perfil simétrico manda el menor de los dos.</td></tr></table>';
 }
 
 /* ---------- utilidades ---------- */
@@ -5403,7 +5420,7 @@ function bsDiag(m) {
         partes.push('CARGA reservada a CONCURSO de demanda' +
             (m.cargaNoOtorg > 0 ? ': ' + bsMW(m.cargaNoOtorg) + ' retenidos' : '') +
             (m.cargaMotivo ? ' (' + m.cargaMotivo + ')' : '') +
-            (m.cargaConcEstado ? ' · estado: ' + m.cargaConcEstado : '') + '.');
+            (m.cargaConcEstado && !/^\s*no tender/i.test(m.cargaConcEstado) ? ' · estado: ' + m.cargaConcEstado : '') + '.');
     } else if (m.cargaDisp <= 0) {
         partes.push('CARGA a cero: no hay margen de almacenamiento en la perspectiva de demanda' +
             (m.cargaCrit && m.cargaCrit !== '—' ? ' (criterio limitante: ' + m.cargaCrit + ')' : '') +
@@ -5417,7 +5434,8 @@ function bsDiag(m) {
         partes.push('DESCARGA abierta: ' + bsMW(m.descDisp) + ' solicitables por prelación temporal.');
     } else if (m.bloqueoConcurso) {
         partes.push('DESCARGA reservada a CONCURSO: hay ' + bsMW(m.margenMPE) + ' de margen técnico pero no son solicitables' +
-            (m.motivo ? ' (' + m.motivo + ')' : '') + (m.reserva ? ' · estado: ' + m.reserva : '') + '.');
+            (m.motivo ? ' (' + m.motivo + ')' : '') +
+            (m.reserva && !/^\s*no tender/i.test(m.reserva) ? ' · estado: ' + m.reserva : '') + '.');
     } else if (m.margenMPE === 0) {
         partes.push('DESCARGA a cero por falta de margen técnico' +
             (m.descCrit && m.descCrit !== '—' ? ' (criterio limitante: ' + m.descCrit + ')' : '') + '.');
@@ -5447,17 +5465,26 @@ function bsSem(m) {
     // 1) los dos lados cubren hoy
     if (c.okCargaHoy && c.okDescHoy) {
         const f1 = bsFc(m);
-        return { col: f1.nivel === 'riesgo' ? '#F06818' : '#1B7F4B',
-            txt: f1.nivel === 'riesgo' ? 'SOLICITAR YA · CON CAUTELA' : 'SOLICITAR YA', num: '1',
-            acc: 'Carga y descarga cubren el objetivo hoy (' + bsMW(t.carga) + ' / ' + bsMW(t.desc) + ')' +
-                 (f1.nivel === 'riesgo' ? ' · pero con previsión a la baja: ' + (f1.avisos[0] || '').slice(0, 120) : '') };
+        const base = 'Carga y descarga cubren el objetivo hoy (' + bsMW(t.carga) + ' / ' + bsMW(t.desc) + ')';
+        // Si la capacidad está disponible HOY y además va a la baja, el aviso
+        // es de urgencia: la ventana se estrecha. La cautela solo tiene sentido
+        // cuando hay que esperar a un concurso.
+        if (f1.nivel === 'riesgo') {
+            const tr1 = f1.trend;
+            const ritmo = (tr1 && tr1.suficiente && tr1.pendDesc < 0)
+                ? ' El potencial cae ' + Math.abs(tr1.pendDesc).toFixed(1) + ' MW/mes.' : '';
+            return { col: '#1B7F4B', txt: 'SOLICITAR SIN DEMORA', num: '1',
+                acc: base + '. La ventana se está estrechando:' + ritmo + ' ' + (f1.avisos[0] || '').slice(0, 110) };
+        }
+        return { col: '#1B7F4B', txt: 'SOLICITAR', num: '1', acc: base };
     }
     // 2) los dos cubrirían con el concurso. Si la previsión avisa de erosión,
     //    la acción se matiza en lugar de contradecirla.
     if (c.okCargaHoy && c.okDescConc) {
         const f = bsFc(m);
         if (f.nivel === 'riesgo') return { col: '#F06818', txt: 'PERSEGUIR CON CAUTELA', num: '2',
-            acc: 'El potencial cubre el objetivo, pero la previsión va a la baja: ' + (f.avisos[0] || '').slice(0, 150) };
+            acc: 'El potencial cubre el objetivo, pero hay que esperar al CONCURSO y el margen se está reduciendo mientras tanto: ' +
+                 (f.avisos[0] || '').slice(0, 130) };
         return { col: '#1F4E79', txt: 'PERSEGUIR', num: '2',
             acc: 'La carga ya cubre el objetivo y la descarga lo cubriría con el CONCURSO' };
     }
@@ -5468,8 +5495,13 @@ function bsSem(m) {
     if (c.okCargaHoy && !c.okDescConc) return { col: '#F06818', txt: 'SOLO CARGA', num: '4',
         acc: 'Falta EVACUACIÓN: ' + falta('la descarga', m.potencial, t.desc) + ' · simétrico máximo ' + bsMW(c.simConc) };
     // 5) ninguno
-    if (c.simConc > 0) return { col: '#F06818', txt: 'POR DEBAJO', num: '5',
-        acc: 'Ningún lado cubre el objetivo · lo mayor que cabría es ' + bsMW(c.simConc) + ' simétricos' };
+    if (c.simConc > 0) {
+        const f5 = bsFc(m);
+        if (f5.nivel === 'oportunidad') return { col: '#F06818', txt: 'POR DEBAJO · AL ALZA', num: '5',
+            acc: 'Hoy solo caben ' + bsMW(c.simConc) + ' simétricos, pero el margen crece: ' + (f5.avisos[0] || '').slice(0, 120) };
+        return { col: '#F06818', txt: 'POR DEBAJO', num: '5',
+            acc: 'Ningún lado cubre el objetivo · lo mayor que cabría es ' + bsMW(c.simConc) + ' simétricos' };
+    }
     return { col: '#B3261E', txt: 'SIN CAPACIDAD', num: '6', acc: 'Sin capacidad utilizable en este nudo y periodo' };
 }
 
@@ -5569,6 +5601,8 @@ function bsRenderInterno() {
     const nConc = rows.filter(r => { const c = bsCover(r); return c.okCargaHoy && c.okDescConc; }).length;
     const nSoloDesc = rows.filter(r => { const c = bsCover(r); return (c.okDescHoy || c.okDescConc) && !c.okCargaHoy; }).length;
     const nSoloCarga = rows.filter(r => { const c = bsCover(r); return c.okCargaHoy && !c.okDescConc; }).length;
+    const objEl = bsEl('bs-obj-wrap');
+    if (objEl) objEl.innerHTML = bsObjHTML();
     const conDatos = todos.filter(r => !r.sinDatos).length;
     document.getElementById('bs-kpis').innerHTML =
         '<div class="bs-kpis">' +
@@ -5728,8 +5762,8 @@ function bsFichaHTML(m, paraInforme) {
 
     return '<div class="bs-card' + (paraInforme ? ' bs-page' : '') + '">' +
         '<h3>' + m.name + '</h3>' +
-        '<div class="bs-sub2">' + (m.ccaa || '') + (m.prov ? ' · ' + m.prov : '') + (m.tens ? ' · ' + m.tens + ' kV' : '') + ' · red ' + m.grid +
-        (m.motivo ? ' · ' + m.motivo : '') + (m.reserva ? ' · reserva: ' + m.reserva : '') + '</div>' +
+        '<div class="bs-sub2">' + (m.ccaa || '') + (m.prov ? ' · ' + m.prov : '') + (m.tens ? ' · ' + m.tens + ' kV' : '') +
+        ' · red ' + m.grid + (m.oper ? ' · ' + m.oper : '') + '</div>' +
         '<div class="bs-diag">' + bsDiagPill(bsDiag(m)) + ' <b>Diagnóstico:</b> ' + bsDiag(m).txt + '</div>' +
         '<table class="bs-cols"><tr>' +
         '<td class="bs-col bs-col-carga"><div class="bs-col-h">CARGA · permiso de demanda' + (m.cargaConcurso ? ' · reservado a CONCURSO' : '') + '</div>' +
@@ -5740,7 +5774,7 @@ function bsFichaHTML(m, paraInforme) {
               (m.cargaMotivo ? ' · ' + m.cargaMotivo : '') + '</div>'
             : '<div class="bs-lbl">solicitables hoy para almacenamiento</div>') +
         '<div class="bs-it">Criterio limitante: ' + (m.cargaCrit || '—') +
-        (m.cargaConcEstado ? ' · concurso de demanda: ' + m.cargaConcEstado : '') +
+        (m.cargaConcEstado && !/^\s*no tender/i.test(m.cargaConcEstado) ? ' · concurso de demanda: ' + m.cargaConcEstado : '') +
         (m.cargaConcResuelto ? ' · concurso ya resuelto (ver normativa en la ficha de REE)' : '') +
         (!m.cargaConcurso && m.cargaMotivo ? ' · ' + m.cargaMotivo : '') + '</div>' +
         tabla(filaC, 'bs-t-carga') +
@@ -5751,15 +5785,17 @@ function bsFichaHTML(m, paraInforme) {
         '<div class="bs-big bs-must">' + bsMW(m.potencial) + ' <span class="bs-pot">potencial</span></div>' +
         (m.bloqueoConcurso ? '<div class="bs-warn"><b>pero 0 MW solicitables hoy:</b> toda la capacidad está reservada a <b>CONCURSO</b></div>'
             : '<div class="bs-lbl">solicitables hoy para almacenamiento (MPE)</div>') +
-        '<div class="bs-it">' + (m.motivo ? 'Motivo: ' + m.motivo + ' · ' : '') + (m.reserva || '') + '</div>' +
+        (function () {
+            const hayReserva = m.reserva && !/^\s*no tender/i.test(m.reserva);
+            const txt = (m.motivo ? 'Motivo: ' + m.motivo : '') + (hayReserva ? (m.motivo ? ' · ' : '') + 'reserva: ' + m.reserva : '');
+            return txt ? '<div class="bs-it">' + txt + '</div>' : '';
+        })() +
         tabla(filaD, 'bs-t-desc') +
         (m.sinPosicion ? '<div class="bs-it">Sin posición existente ni prevista: su viabilidad se consulta al TSO.</div>' : '') +
         '</td></tr></table>' +
         '<table class="bs-concl"><tr>' +
-        (paraInforme ? '' :
-            '<td class="bs-concl-h"><b>OBJETIVO DEL PROYECTO</b><div>carga ' + bsMW(cv.t.carga) + ' · descarga ' + bsMW(cv.t.desc) +
-            (cv.t.desc > 0 ? ' (ratio ' + cv.t.ratio.toFixed(2) + ')' : '') +
-            '<br>carga y descarga son dos permisos distintos: cada lado se evalúa por separado</div></td>') +
+        '<td class="bs-concl-h"><b>COBERTURA DEL OBJETIVO</b><div>sobre ' + bsMW(cv.t.carga) + ' de carga y ' +
+        bsMW(cv.t.desc) + ' de descarga' + (cv.t.desc > 0 ? ' · ratio ' + cv.t.ratio.toFixed(2) : '') + '</div></td>' +
         '<td class="bs-concl-b"><div class="bs-concl-t">COBERTURA CARGA</div><div class="bs-concl-s">' + bsMW(m.cargaDisp) + ' de ' + bsMW(cv.t.carga) + '</div></td>' +
         '<td class="bs-concl-v ' + (cv.okCargaHoy ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobCargaHoy) + '</td>' +
         '<td class="bs-concl-b"><div class="bs-concl-t">COBERTURA DESCARGA</div><div class="bs-concl-s">' + bsMW(m.potencial) + ' de ' + bsMW(cv.t.desc) +
@@ -5933,14 +5969,7 @@ function bsBuildReport() {
     const y = document.getElementById('bs-year').value, mm = document.getElementById('bs-month').value;
     // El objetivo del proyecto es el mismo para todos los nudos: se imprime una
     // sola vez en la cabecera en lugar de repetirse en cada hoja.
-    const tg = bsTargets();
-    let body = '<table class="bs-obj"><tr>' +
-        '<td class="bs-obj-h"><b>OBJETIVO DEL PROYECTO</b></td>' +
-        '<td><span>carga</span><b>' + bsMW(tg.carga) + '</b></td>' +
-        '<td><span>descarga</span><b>' + bsMW(tg.desc) + '</b></td>' +
-        '<td><span>ratio carga/descarga</span><b>' + (tg.desc > 0 ? tg.ratio.toFixed(2) : '—') + '</b></td>' +
-        '<td class="bs-obj-n">Carga y descarga son dos permisos distintos: cada lado se evalúa por separado, ' +
-        'y para un perfil simétrico manda el menor de los dos.</td></tr></table>';
+    let body = bsObjHTML();
     if (metr.length > 1) body += bsResumenHTML(metr);
     body += metr.map(x => bsFichaHTML(x, true)).join('');
     // La última página NO debe forzar salto: si lo hace, el navegador añade una
