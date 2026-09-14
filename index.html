@@ -476,6 +476,12 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-spark { border-collapse:separate; border-spacing:3px 0; margin:2px 0 8px; }
 .bs-spark td { padding:0; text-align:center; vertical-align:bottom; }
 .bs-bar { width:14px; }
+.bs-ht { width:100%; table-layout:fixed; border-collapse:collapse; margin:1px 0 3px; }
+.bs-ht td { padding:0; vertical-align:middle; }
+.bs-hm { width:26px; font-size:8px; color:#5b6472; text-align:right; padding-right:4px !important; }
+.bs-hc { width:auto; padding:1px 0 !important; }
+.bs-hb { border-collapse:collapse; margin-bottom:1px; }
+.bs-hb td { padding:0; font-size:0; line-height:0; }
 .bs-bg { padding:0 3px 0 0 !important; vertical-align:bottom; }
 .bs-bgt { border-collapse:separate; border-spacing:1px 0; }
 .bs-b1 { width:6px; height:44px; padding:0; font-size:0; line-height:0; }
@@ -557,8 +563,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-fr.bs-hl td.bs-cC { background:#dce9f6; color:#1F4E79; }
 .bs-fr.bs-hl td.bs-cD { background:#f6eccd; color:#B3261E; }
 .bs-fr.bs-mg td { font-style:italic; }
-.bs-frL td.bs-cC { border-bottom:1px solid #1F4E79; border-radius:0 0 8px 8px; }
-.bs-frL td.bs-cD { border-bottom:1px solid #A67C00; border-radius:0 0 8px 8px; }
+.bs-frL td.bs-cC { border-bottom:1px solid #1F4E79; border-left:1px solid #1F4E79;
+  border-right:1px solid #1F4E79; border-radius:0 0 8px 8px; }
+.bs-frL td.bs-cD { border-bottom:1px solid #A67C00; border-left:1px solid #A67C00;
+  border-right:1px solid #A67C00; border-radius:0 0 8px 8px; }
 .bs-res { width:100%; border-collapse:collapse; table-layout:auto; font-size:9.5px; }
 .bs-res th { background:#222; color:#fff; padding:3px 5px; font-size:8.5px; font-weight:bold; text-align:center;
   white-space:normal; }
@@ -591,18 +599,16 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 /* La portada lleva mucho texto: se compacta para que entre siempre en la
    primera hoja sin que el autoajuste tenga que reducirla tanto que no se lea. */
 .bs-portada { padding:10px 12px; }
-.bs-port-top { width:100%; border-collapse:collapse; margin-bottom:8px; }
-.bs-port-top td { vertical-align:middle; padding:0; }
-.bs-port-ic { width:120px; }
-.bs-port-ic svg { display:block; }
-.bs-port-lg { width:170px; text-align:right; }
-.bs-port-lg .hw-logo-img { height:34px; width:117px; }
+.bs-port-marcas { display:flex; align-items:center; gap:18px; margin-bottom:14px; }
+.bs-port-marcas svg { display:block; width:180px; height:108px; }
+.bs-port-marcas .hw-logo-img { height:46px; width:159px; }
 /* El objetivo del proyecto es el dato que encuadra todo el informe: en la
    portada va a mayor tamaño que en el resto. */
-.bs-obj-big .bs-obj td { padding:8px 12px; font-size:12px; }
-.bs-obj-big .bs-obj-h { width:200px; font-size:13px; }
-.bs-obj-big .bs-obj td b { font-size:20px; }
-.bs-obj-big .bs-obj-n { font-size:9.5px; }
+.bs-obj-big { margin-top:4px; }
+.bs-obj-big .bs-obj td { padding:11px 16px; font-size:13px; }
+.bs-obj-big .bs-obj-h { width:230px; font-size:14px; }
+.bs-obj-big .bs-obj td b { font-size:22px; }
+.bs-obj-big .bs-obj-n { width:34%; font-size:10px; }
 .bs-pie { border-top:1px solid #e2e8f0; margin-top:8px; padding-top:4px;
   font-size:9px; color:#7a8495; text-align:center; }
 .bs-portada .bs-port-h { font-size:17px; }
@@ -710,10 +716,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-head3 { min-height:62px; }
   .bs-portada .bs-port-h { font-size:16px; }
   .bs-pie { font-size:7.5px; margin-top:5px; padding-top:3px; }
-  .bs-port-ic { width:100px; } .bs-port-lg { width:140px; }
-  .bs-port-lg .hw-logo-img { height:28px; width:96px; }
-  .bs-obj-big .bs-obj td { padding:6px 10px; font-size:10.5px; }
-  .bs-obj-big .bs-obj td b { font-size:17px; }
+  .bs-port-marcas svg { width:150px; height:90px; }
+  .bs-port-marcas .hw-logo-img { height:38px; width:131px; }
+  .bs-obj-big .bs-obj td { padding:8px 12px; font-size:11.5px; }
+  .bs-obj-big .bs-obj td b { font-size:19px; }
   .bs-portada .bs-port-s { font-size:8.5px; }
   .bs-portada .bs-port-t { font-size:10px; }
   .bs-portada .bs-port-av p { font-size:8px; line-height:1.3; margin:0 0 4px; }
@@ -748,7 +754,8 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-lin { font-size:9px; }
   .bs-prev-l { font-size:8.5px; margin:3px 0 0 12px; }
   .bs-bar { width:8px; }
-  .bs-b1 { width:5px; }
+
+  .bs-hm { width:22px; font-size:7px; }
   .bs-ley { font-size:7px; gap:5px; }
   .bs-ley i { width:6px; height:6px; }
   .bs-duo { border-spacing:4px 0; }
@@ -862,6 +869,12 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-spark { border-collapse:separate; border-spacing:3px 0; margin:2px 0 8px; }
 .bs-spark td { padding:0; text-align:center; vertical-align:bottom; }
 .bs-bar { width:14px; }
+.bs-ht { width:100%; table-layout:fixed; border-collapse:collapse; margin:1px 0 3px; }
+.bs-ht td { padding:0; vertical-align:middle; }
+.bs-hm { width:26px; font-size:8px; color:#5b6472; text-align:right; padding-right:4px !important; }
+.bs-hc { width:auto; padding:1px 0 !important; }
+.bs-hb { border-collapse:collapse; margin-bottom:1px; }
+.bs-hb td { padding:0; font-size:0; line-height:0; }
 .bs-bg { padding:0 3px 0 0 !important; vertical-align:bottom; }
 .bs-bgt { border-collapse:separate; border-spacing:1px 0; }
 .bs-b1 { width:6px; height:44px; padding:0; font-size:0; line-height:0; }
@@ -943,8 +956,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-fr.bs-hl td.bs-cC { background:#dce9f6; color:#1F4E79; }
 .bs-fr.bs-hl td.bs-cD { background:#f6eccd; color:#B3261E; }
 .bs-fr.bs-mg td { font-style:italic; }
-.bs-frL td.bs-cC { border-bottom:1px solid #1F4E79; border-radius:0 0 8px 8px; }
-.bs-frL td.bs-cD { border-bottom:1px solid #A67C00; border-radius:0 0 8px 8px; }
+.bs-frL td.bs-cC { border-bottom:1px solid #1F4E79; border-left:1px solid #1F4E79;
+  border-right:1px solid #1F4E79; border-radius:0 0 8px 8px; }
+.bs-frL td.bs-cD { border-bottom:1px solid #A67C00; border-left:1px solid #A67C00;
+  border-right:1px solid #A67C00; border-radius:0 0 8px 8px; }
 .bs-res { width:100%; border-collapse:collapse; table-layout:auto; font-size:9.5px; }
 .bs-res th { background:#222; color:#fff; padding:3px 5px; font-size:8.5px; font-weight:bold; text-align:center;
   white-space:normal; }
@@ -977,18 +992,16 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 /* La portada lleva mucho texto: se compacta para que entre siempre en la
    primera hoja sin que el autoajuste tenga que reducirla tanto que no se lea. */
 .bs-portada { padding:10px 12px; }
-.bs-port-top { width:100%; border-collapse:collapse; margin-bottom:8px; }
-.bs-port-top td { vertical-align:middle; padding:0; }
-.bs-port-ic { width:120px; }
-.bs-port-ic svg { display:block; }
-.bs-port-lg { width:170px; text-align:right; }
-.bs-port-lg .hw-logo-img { height:34px; width:117px; }
+.bs-port-marcas { display:flex; align-items:center; gap:18px; margin-bottom:14px; }
+.bs-port-marcas svg { display:block; width:180px; height:108px; }
+.bs-port-marcas .hw-logo-img { height:46px; width:159px; }
 /* El objetivo del proyecto es el dato que encuadra todo el informe: en la
    portada va a mayor tamaño que en el resto. */
-.bs-obj-big .bs-obj td { padding:8px 12px; font-size:12px; }
-.bs-obj-big .bs-obj-h { width:200px; font-size:13px; }
-.bs-obj-big .bs-obj td b { font-size:20px; }
-.bs-obj-big .bs-obj-n { font-size:9.5px; }
+.bs-obj-big { margin-top:4px; }
+.bs-obj-big .bs-obj td { padding:11px 16px; font-size:13px; }
+.bs-obj-big .bs-obj-h { width:230px; font-size:14px; }
+.bs-obj-big .bs-obj td b { font-size:22px; }
+.bs-obj-big .bs-obj-n { width:34%; font-size:10px; }
 .bs-pie { border-top:1px solid #e2e8f0; margin-top:8px; padding-top:4px;
   font-size:9px; color:#7a8495; text-align:center; }
 .bs-portada .bs-port-h { font-size:17px; }
@@ -1096,10 +1109,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-head3 { min-height:62px; }
   .bs-portada .bs-port-h { font-size:16px; }
   .bs-pie { font-size:7.5px; margin-top:5px; padding-top:3px; }
-  .bs-port-ic { width:100px; } .bs-port-lg { width:140px; }
-  .bs-port-lg .hw-logo-img { height:28px; width:96px; }
-  .bs-obj-big .bs-obj td { padding:6px 10px; font-size:10.5px; }
-  .bs-obj-big .bs-obj td b { font-size:17px; }
+  .bs-port-marcas svg { width:150px; height:90px; }
+  .bs-port-marcas .hw-logo-img { height:38px; width:131px; }
+  .bs-obj-big .bs-obj td { padding:8px 12px; font-size:11.5px; }
+  .bs-obj-big .bs-obj td b { font-size:19px; }
   .bs-portada .bs-port-s { font-size:8.5px; }
   .bs-portada .bs-port-t { font-size:10px; }
   .bs-portada .bs-port-av p { font-size:8px; line-height:1.3; margin:0 0 4px; }
@@ -1134,7 +1147,8 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-lin { font-size:9px; }
   .bs-prev-l { font-size:8.5px; margin:3px 0 0 12px; }
   .bs-bar { width:8px; }
-  .bs-b1 { width:5px; }
+
+  .bs-hm { width:22px; font-size:7px; }
   .bs-ley { font-size:7px; gap:5px; }
   .bs-ley i { width:6px; height:6px; }
   .bs-duo { border-spacing:4px 0; }
@@ -5771,44 +5785,50 @@ function bsBarras(tr, conf, etiqueta, aclara) {
     const v = function (x, k) { return bsNum(x[conf[k]]); };
     let mx = 1;
     for (const x of s) mx = Math.max(mx, v(x, 'margen'), v(x, 'disp'), v(x, 'otorg'), v(x, 'cola'));
-    const ALTO = 44;
-    const alto = function (val) { return Math.max(val > 0 ? 2 : 0, Math.round(val / mx * ALTO)); };
-    let fila = '', ejes = '';
-    for (let i = 0; i < s.length; i++) {
-        const x = s[i];
-        const hM = alto(v(x, 'margen')), hD = Math.min(alto(v(x, 'disp')), hM);
-        // Cada barra es UNA celda de alto fijo pintada con un degradado que
-        // arranca en su borde inferior. Así la base es exacta por definición,
-        // sin depender de que el motor respete vertical-align en tablas
-        // anidadas, que era lo que descuadraba las barras.
-        const barra = function (h, color, tit) {
-            return '<td class="bs-b1" title="' + tit + '" style="background:linear-gradient(to top,' +
-                color + ' 0,' + color + ' ' + h + 'px,transparent ' + h + 'px)"></td>';
-        };
-        const apil = '<td class="bs-b1" title="' + x.key + ' · margen ' + v(x, 'margen') + ' MW · solicitable ' +
-            v(x, 'disp') + ' MW" style="background:linear-gradient(to top,' +
-            '#1B7F4B 0,#1B7F4B ' + hD + 'px,' +
-            '#A67C00 ' + hD + 'px,#A67C00 ' + hM + 'px,' +
-            'transparent ' + hM + 'px)"></td>';
-        fila += '<td class="bs-bg"><table class="bs-bgt"><tr>' + apil +
-            barra(alto(v(x, 'otorg')), '#94a3b8', x.key + ' · otorgado ' + v(x, 'otorg') + ' MW') +
-            barra(alto(v(x, 'cola')), '#B3261E', x.key + ' · en cola ' + v(x, 'cola') + ' MW') +
-            '</tr></table></td>';
-        ejes += '<td class="bs-spark-x">' + String(x.key).split('_')[1] + '</td>';
+    // Barras HORIZONTALES: el ancho en porcentaje de una celda es lo único que
+    // todos los motores dibujan igual. Las verticales dependían de
+    // vertical-align o de degradados, y se descolocaban o no se veían.
+    // Anchos en PÍXELES con atributos HTML clásicos (width, height, bgcolor):
+    // es la única forma que respetan por igual los navegadores y los
+    // conversores a PDF. Con CSS en tablas anidadas, unos motores encogían la
+    // tabla y las barras se veían como bloques diminutos.
+    const ANCHO = 150;
+    const px = function (val) { return Math.max(val > 0 ? 2 : 0, Math.round(val / mx * ANCHO)); };
+    const barra = function (partes, tit) {
+        let c = '', usado = 0;
+        for (const p of partes) {
+            if (p[0] <= 0) continue;
+            c += '<td width="' + p[0] + '" height="4" bgcolor="' + p[1] + '"></td>';
+            usado += p[0];
+        }
+        const resto = Math.max(0, ANCHO - usado);
+        return '<table width="' + ANCHO + '" cellspacing="0" cellpadding="0" class="bs-hb" title="' + tit + '"><tr>' + c +
+               (resto ? '<td width="' + resto + '" height="4"></td>' : '') + '</tr></table>';
+    };
+    let filas = '';
+    for (const x of s) {
+        const pM = px(v(x, 'margen')), pD = Math.min(px(v(x, 'disp')), pM);
+        filas += '<tr><td class="bs-hm">' + String(x.key).split('_')[1] + '</td><td class="bs-hc">' +
+            barra([[pD, '#1B7F4B'], [Math.max(0, pM - pD), '#A67C00']],
+                  x.key + ' · margen ' + v(x, 'margen') + ' MW, de los que ' + v(x, 'disp') + ' MW solicitables') +
+            barra([[px(v(x, 'otorg')), '#94a3b8']], x.key + ' · otorgado ' + v(x, 'otorg') + ' MW') +
+            barra([[px(v(x, 'cola')), '#B3261E']], x.key + ' · en cola ' + v(x, 'cola') + ' MW') +
+            '</td></tr>';
     }
     const ult = s[s.length - 1];
     return '<div class="bs-spark-h"><b>' + (etiqueta || '') + '</b><span>escala hasta ' + bsMW(mx) + '</span></div>' +
         (aclara ? '<div class="bs-spark-q">' + aclara + '</div>' : '') +
-        '<table class="bs-spark"><tr>' + fila + '</tr><tr>' + ejes + '</tr></table>' +
         '<div class="bs-ley">' +
-        '<span><i style="background:#A67C00"></i>Margen</span>' +
         '<span><i style="background:#1B7F4B"></i>Solicitable</span>' +
+        '<span><i style="background:#A67C00"></i>Resto del margen</span>' +
         '<span><i style="background:#94a3b8"></i>Otorgado</span>' +
         '<span><i style="background:#B3261E"></i>Cola</span>' +
         '</div>' +
+        '<table class="bs-ht">' + filas + '</table>' +
         '<div class="bs-sub">Último mes (' + ult.key + '): margen <b>' + bsMW(v(ult, 'margen')) + '</b> · solicitable <b>' +
         bsMW(v(ult, 'disp')) + '</b> · otorgado ' + bsMW(v(ult, 'otorg')) + ' · cola ' + bsMW(v(ult, 'cola')) + '</div>';
 }
+
 
 
 
@@ -6596,13 +6616,10 @@ function bsNotaPortada() {
 function bsPortadaHTML(metr, mes, anio) {
     return '<div class="bs-card bs-page bs-portada">' +
         '<div class="bs-wm-w"><div class="bs-wm">FASE DE PRUEBAS</div></div>' +
-        '<table class="bs-port-top"><tr>' +
-        '<td class="bs-port-ic">' + BS_ICONO + '</td>' +
-        '<td><h2 class="bs-port-h">BESS stand alone · capacidad solicitable por nudo</h2>' +
+        '<div class="bs-port-marcas">' + BS_ICONO + '<span class="hw-logo-img"></span></div>' +
+        '<h2 class="bs-port-h">BESS STAND ALONE · CAPACIDAD SOLICITABLE POR NUDO</h2>' +
         '<div class="bs-port-s">Red ' + (metr[0] ? metr[0].grid : 'TSO') + ' · ' + metr.length +
-        ' nudo(s) · datos de ' + bsMesAnio() + '</div></td>' +
-        '<td class="bs-port-lg"><span class="hw-logo-img"></span></td>' +
-        '</tr></table>' +
+        ' nudo(s) · datos de ' + bsMesAnio() + '</div>' +
         '<div class="bs-obj-big">' + bsObjHTML() + '</div>' +
         '<div class="bs-port-g"><div>' +
         '<div class="bs-port-t">Metodología</div>' + bsNotaPortada() +
