@@ -986,7 +986,10 @@ map.on('pm:create', function(e) {const layer = e.layer;
 proj4.defs("EPSG:32630", "+proj=utm +zone=30 +ellps=WGS84 +datum=WGS84 +units=m +no_defs");
 
 
-   	const DATA_BASE_URL = ''; // rawData eliminado: los datos se leen de la raíz del repo (JSON)
+   	const DATA_BASE_URL  = '';            // raíz: manifest.json y los GeoJSON
+   	const DATA_TSO_URL   = 'data_TSO/';   // nodos_base_REE.json, <periodo>.json, pos_<periodo>.json
+   	const DATA_DSO_URL   = 'data_DSO/';   // nodos_base_DSO.json, dso_<periodo>.json
+   	const DATA_ZONAS_URL = 'zonas_REE/';  // zonas_val_gen_<periodo>.json (opcional)
 
 
         let ranges = [
@@ -1095,27 +1098,27 @@ async function cargarDatosJSON() {
     let manifest;
     try { manifest = await fetchJSON(DATA_BASE_URL + 'manifest.json'); }
     catch (err) { console.error('No se pudo leer manifest.json', err); alert('No se pudieron cargar los datos (manifest.json).'); return; }
-    try { NODOS_BASE = await fetchJSON(DATA_BASE_URL + 'nodos_base_REE.json'); }
+    try { NODOS_BASE = await fetchJSON(DATA_TSO_URL + 'nodos_base_REE.json'); }
     catch (err) { console.error('No se pudo leer nodos_base_REE.json', err); alert('No se pudo cargar nodos_base_REE.json.'); return; }
 
     // Base DSO (opcional): si aún no se ha subido, el visor sigue funcionando solo con TSO
-    try { NODOS_BASE_DSO = await fetchJSON(DATA_BASE_URL + 'nodos_base_DSO.json'); }
+    try { NODOS_BASE_DSO = await fetchJSON(DATA_DSO_URL + 'nodos_base_DSO.json'); }
     catch (err) { console.warn('Sin base DSO (nodos_base_DSO.json):', err.message); NODOS_BASE_DSO = {}; }
 
     const cargas = await Promise.all(manifest.meses.map(p =>
-        fetchJSON(`${DATA_BASE_URL}${p}.json`).then(j => ({ p, j })).catch(() => null)
+        fetchJSON(`${DATA_TSO_URL}${p}.json`).then(j => ({ p, j })).catch(() => null)
     ));
     cargas.filter(Boolean).forEach(({ p, j }) => { MONTHS_DATA[periodoToKey(p)] = j.nudos; });
 
     // Mensuales DSO: se intentan para los mismos periodos del manifest (dso_AAAA_MM.json); los ausentes se ignoran
     const cargasDSO = await Promise.all(manifest.meses.map(p =>
-        fetchJSON(`${DATA_BASE_URL}dso_${p}.json`).then(j => ({ p, j })).catch(() => null)
+        fetchJSON(`${DATA_DSO_URL}dso_${p}.json`).then(j => ({ p, j })).catch(() => null)
     ));
     cargasDSO.filter(Boolean).forEach(({ p, j }) => { MONTHS_DATA_DSO[periodoToKey(p)] = j.nudos; });
 
     // Mensuales de POSICIONES/SOLICITUDES TSO (pos_AAAA_MM.json, generados con volcado_posiciones.py); los ausentes se ignoran
     const cargasPOS = await Promise.all(manifest.meses.map(p =>
-        fetchJSON(`${DATA_BASE_URL}pos_${p}.json`).then(j => ({ p, j })).catch(() => null)
+        fetchJSON(`${DATA_TSO_URL}pos_${p}.json`).then(j => ({ p, j })).catch(() => null)
     ));
     cargasPOS.filter(Boolean).forEach(({ p, j }) => { MONTHS_POS[periodoToKey(p)] = j.nudos; MONTHS_POS_META[periodoToKey(p)] = j.fuentes || {}; });
 
@@ -3734,7 +3737,7 @@ const GS_ALIAS_CCAA={'castilla y leon':'castilla-leon','comunidad foral de navar
 function gsGeoKeyForGroup(name,level){ let n=gsNorm(name); const al=(level==='ccaa')?GS_ALIAS_CCAA:GS_ALIAS_PROV; if(al[n]) n=gsNorm(al[n]); return n; }
 function gsFeatKeys(props){ const raw=String((props&&props.name)||''); const out=[gsNorm(raw)]; if(raw.indexOf('/')>=0) raw.split('/').forEach(function(p){ out.push(gsNorm(p)); }); return out; }
 function gsLoadGeo(level,cb){ const which=(level==='ccaa')?'ccaa':'prov'; if(GS_GEO[which]){cb(GS_GEO[which]);return;} if(gsGeoTried[which]){cb(null);return;} gsGeoTried[which]=true;
-  fetch(which==='ccaa'?'es_ccaa.geojson':'es_prov.geojson').then(function(r){return r.ok?r.json():null;}).then(function(j){ if(j){GS_GEO[which]=j;} else {gsGeoMissing[which]=true;} cb(j); if(j&&gsMap) gsRenderMap(); }).catch(function(e){ gsGeoMissing[which]=true; console.warn('GeoJSON no disponible',e); cb(null); }); }
+  fetch(DATA_BASE_URL + (which==='ccaa'?'es_ccaa.geojson':'es_prov.geojson')).then(function(r){return r.ok?r.json():null;}).then(function(j){ if(j){GS_GEO[which]=j;} else {gsGeoMissing[which]=true;} cb(j); if(j&&gsMap) gsRenderMap(); }).catch(function(e){ gsGeoMissing[which]=true; console.warn('GeoJSON no disponible',e); cb(null); }); }
 function gsSeqColor(t){ if(isNaN(t)) t=0; t=Math.max(0,Math.min(1,t)); const m=function(a,b){return Math.round(a+(b-a)*t);}; return 'rgb('+m(219,7)+','+m(234,89)+','+m(254,133)+')'; }
 function gsDivColor(v,maxAbs){ if(isNaN(v)||!maxAbs) return '#eef2f7'; const t=Math.max(-1,Math.min(1,v/maxAbs)); const m=function(a,b,k){return Math.round(a+(b-a)*k);}; if(t>=0){ return 'rgb('+m(240,234,t)+','+m(240,88,t)+','+m(240,12,t)+')'; } const k=-t; return 'rgb('+m(240,71,k)+','+m(240,85,k)+','+m(240,105,k)+')'; }
 function gsRenderMap(){
@@ -4699,6 +4702,30 @@ function bsTestAlert(modulo) {
     document.getElementById('bs-alert').classList.add('open');
 }
 
+/* Márgenes zonales oficiales publicados por REE (hoja «Zonas» del Excel,
+   extraída a zonas_val_gen_<mes>.json). Son la única fuente del fondo
+   COMPARTIDO de cada zona; sin ellos el módulo lo aproxima a partir de los
+   nudos. La carga es opcional: si el fichero no está, el módulo sigue.      */
+let bsZonasOficiales = {};
+let bsZonasPend = {};
+function bsCargarZonas(key) {
+    if (bsZonasOficiales[key] || bsZonasPend[key]) return;
+    bsZonasPend[key] = true;
+    const base = (typeof DATA_ZONAS_URL === 'string') ? DATA_ZONAS_URL
+               : ((typeof DATA_BASE_URL === 'string') ? DATA_BASE_URL : '');
+    const url = base + 'zonas_val_gen_' + key + '.json';
+    const tras = function (j) {
+        bsZonasOficiales[key] = (j && j.valores) ? j.valores : {};
+        bsZonaCache = {}; bsFcCache = {};
+        try { bsRender(); } catch (e) { }
+    };
+    if (typeof fetchJSON === 'function') {
+        fetchJSON(url).then(tras).catch(function () { bsZonasOficiales[key] = {}; });
+    } else if (typeof fetch === 'function') {
+        fetch(url).then(function (r) { return r.ok ? r.json() : null; }).then(tras).catch(function () { bsZonasOficiales[key] = {}; });
+    } else bsZonasOficiales[key] = {};
+}
+
 /* ---------- utilidades ---------- */
 /* Clave de mes con el MISMO formato que el resto del visor: '26_sep'
    (los selectores ya traen value='26' y value='sep'). */
@@ -4767,7 +4794,8 @@ function bsMetricsTSO(entry, key) {
     if (!r) return { name: entry.name, grid: 'TSO', prov: entry.prov || '', ccaa: entry.ccaa || '', tens: entry.tens || '',
         sinDatos: true, cargaDisp: 0, descDisp: 0, margenMPE: null, margenMGES: null, posMPE: null, capMax: null,
         cargaMargen: null, cargaNoCep: null, cargaCrit: '—', descCrit: '—', cargaOtorg: 0, cargaCola: 0, cargaNoOtorg: null,
-        cargaRefRdd: 0, cargaAcuerdo: false, descOtorg: 0, descCola: 0, liberada: null, noDisp: 0, motivo: null,
+        cargaRefRdd: 0, cargaAcuerdo: false, cargaConcEstado: null, cargaConcNudo: null, cargaConcNorma: null,
+        cargaMotivo: null, cargaConcurso: false, cargaConcResuelto: false, descOtorg: 0, descCola: 0, liberada: null, noDisp: 0, motivo: null,
         reserva: '', posExist: 0, posPrev: 0, potencial: 0, eficazHoy: 0, eficazConc: 0,
         bloqueoConcurso: false, limitaPosicion: false, sinPosicion: false };
     const g = r.gen || {}, d = r.dem || {};
@@ -4795,6 +4823,12 @@ function bsMetricsTSO(entry, key) {
         cargaCola: bsNum(dec.dem) + bsNum(dec.alm_rdt),
         cargaNoOtorg: bsNum(dno.alm_cep),
         cargaRefRdd: bsNum(dot.consumo_rdd_ref),
+        // el lado de DEMANDA tiene su propio concurso, independiente del de
+        // generación: 50 nudos pendientes y 17 con MW retenidos en sep-2026
+        cargaConcEstado: ((d.concurso || {}).estado) || null,
+        cargaConcNudo: ((d.concurso || {}).nudo_concurso) || null,
+        cargaConcNorma: ((d.concurso || {}).normativa) || null,
+        cargaMotivo: (dno.motivo) || null,
         cargaAcuerdo: (dot.estado_acuerdo_rdd || '').toString().toUpperCase().startsWith('S'),
         // descarga
         descDisp: descDisp,
@@ -4812,6 +4846,8 @@ function bsMetricsTSO(entry, key) {
         eficazConc: Math.min(cargaDisp, potencial),
     };
     m.bloqueoConcurso = (descDisp <= 0 && margenMPE > 0);
+    m.cargaConcurso = (m.cargaConcEstado === 'Tender pending') || /concurso/i.test(m.cargaMotivo || '');
+    m.cargaConcResuelto = !!m.cargaConcNorma;
     m.limitaPosicion = (posMPE != null && posMPE < margenMPE);
     m.sinPosicion = (m.posExist <= 0 && m.posPrev <= 0);
     return m;
@@ -4827,7 +4863,8 @@ function bsMetricsDSO(entry, key) {
     if (!r) return { name: entry.name, grid: 'DSO', prov: entry.prov || '', ccaa: entry.ccaa || '', tens: entry.tens || '',
         oper: entry.oper || '', sinDatos: true, cargaDisp: 0, descDisp: 0, margenMPE: null, margenMGES: null, posMPE: null,
         capMax: null, cargaMargen: null, cargaNoCep: null, cargaCrit: 'no publicado en DSO', descCrit: 'no publicado en DSO',
-        cargaOtorg: 0, cargaCola: 0, cargaNoOtorg: null, cargaRefRdd: null, cargaAcuerdo: false, descOtorg: 0, descCola: 0,
+        cargaOtorg: 0, cargaCola: 0, cargaNoOtorg: null, cargaRefRdd: null, cargaAcuerdo: false,
+        cargaConcEstado: null, cargaConcNudo: null, cargaConcNorma: null, cargaMotivo: null, cargaConcurso: false, cargaConcResuelto: false, descOtorg: 0, descCola: 0,
         liberada: null, noDisp: null, motivo: null, reserva: '', posExist: 0, posPrev: 0, potencial: 0,
         eficazHoy: 0, eficazConc: 0, bloqueoConcurso: false, limitaPosicion: false, sinPosicion: false };
     const g = r.gen || {}, d = r.dem || {};
@@ -4837,6 +4874,8 @@ function bsMetricsDSO(entry, key) {
         oper: entry.oper || '',
         cargaDisp: cargaDisp, cargaMargen: null, cargaNoCep: null, cargaCrit: 'no publicado en DSO',
         cargaOtorg: bsNum(d.ocupada), cargaCola: bsNum(d.admitida), cargaNoOtorg: null,
+        cargaConcEstado: null, cargaConcNudo: null, cargaConcNorma: null, cargaMotivo: d.coment || null,
+        cargaConcurso: false, cargaConcResuelto: false,
         cargaRefRdd: null, cargaAcuerdo: false, cargaComent: d.coment || null,
         descDisp: descDisp, margenMPE: null, margenMGES: null, posMPE: null, capMax: null,
         descOtorg: bsNum(g.ocupada), descCola: bsNum(g.admitida), liberada: null,
@@ -4893,6 +4932,14 @@ function bsTecho(entry, key) {
 
 /* Fondo común de la zona. Se calcula una vez por mes y se cachea: hay que
    recorrer todos los nudos para sumar la cola de la zona.                  */
+/* Una celda de zona puede contener VARIAS zonas separadas por coma
+   ("D54_SEPE, D76_SEPE_Bin"): 5 nudos están así en septiembre de 2026. Antes se
+   trataba como una sola clave inexistente y esos nudos se quedaban sin fondo
+   zonal.                                                                     */
+function bsZonasDe(v) {
+    if (!v) return [];
+    return String(v).split(',').map(function (x) { return x.trim(); }).filter(Boolean);
+}
 let bsZonaCache = {};
 let bsFcCache = {};     // previsión por nudo y mes: bsForecast es costoso
 let bsCovCache = null;  // cobertura por nudo: se recalcula al cambiar objetivos
@@ -4903,29 +4950,53 @@ function bsZonasDelMes(key) {
         if ((e.grid || 'TSO') !== 'TSO') continue;
         const r = richForMonth(key, e);
         if (!r || !r.gen || !r.gen.nodal) continue;
-        const id = r.gen.nodal.dinamico_zona;
-        if (!id) continue;
-        if (!z[id]) z[id] = { id: id, pool: 0, nudos: 0, cola: 0, otorgada: 0, miembros: [] };
-        z[id].pool = bsNum(r.gen.nodal.dinamico_margen);   // compartido: mismo valor en todos
-        z[id].nudos += 1;
-        z[id].cola += bsNum((r.gen.en_curso || {}).total);
-        z[id].otorgada += bsNum((r.gen.otorgada || {}).gen);
-        z[id].miembros.push(e.name);
+        for (const id of bsZonasDe(r.gen.nodal.dinamico_zona)) {
+            if (!z[id]) z[id] = { id: id, pool: null, poolNudo: 0, nudos: 0, cola: 0, otorgada: 0, miembros: [], oficial: false };
+            // el margen por nudo puede ser MENOR que el de su zona (limitación
+            // interna de configuración), así que como aproximación se toma el
+            // mayor de los nudos, y si hay dato oficial de REE, ese manda.
+            z[id].poolNudo = Math.max(z[id].poolNudo, bsNum(r.gen.nodal.dinamico_margen));
+            z[id].nudos += 1;
+            z[id].cola += bsNum((r.gen.en_curso || {}).total);
+            z[id].otorgada += bsNum((r.gen.otorgada || {}).gen);
+            z[id].miembros.push(e.name);
+        }
+    }
+    // margen zonal oficial, si se ha cargado zonas_val_gen_<mes>.json
+    const of = (bsZonasOficiales[key] || {})['Dinámico'] || null;
+    for (const id in z) {
+        if (of && of[id]) {
+            const v = of[id];
+            const mg = v['Margen zonal (MW)'];
+            z[id].pool = (mg == null) ? z[id].poolNudo : bsNum(mg);
+            z[id].cap = v['Capacidad zonal (MW)'];
+            z[id].oficial = true;
+        } else {
+            z[id].pool = z[id].poolNudo;
+        }
     }
     bsZonaCache[key] = z;
     return z;
 }
 function bsZona(entry, key) {
     const r = richForMonth(key, entry);
-    if (!r || !r.gen || !r.gen.nodal || !r.gen.nodal.dinamico_zona) return null;
-    const z = bsZonasDelMes(key)[r.gen.nodal.dinamico_zona];
-    if (!z) return null;
+    if (!r || !r.gen || !r.gen.nodal) return null;
+    const ids = bsZonasDe(r.gen.nodal.dinamico_zona);
+    if (!ids.length) return null;
+    const todas = bsZonasDelMes(key);
+    const zs = ids.map(function (i) { return todas[i]; }).filter(Boolean);
+    if (!zs.length) return null;
+    // si el nudo pertenece a varias zonas, manda la más restrictiva
+    zs.sort(function (a, b) { return (a.pool - b.pool) || (b.cola - a.cola); });
+    const z = zs[0];
     const ratio = z.pool > 0 ? z.cola / z.pool : (z.cola > 0 ? Infinity : 0);
     let riesgo = 'bajo';
     if (!isFinite(ratio) || ratio >= 1) riesgo = 'agotado';
     else if (ratio >= 0.8) riesgo = 'alto';
     else if (ratio >= 0.4) riesgo = 'medio';
-    return { zona: z.id, pool: z.pool, nudos: z.nudos, cola: z.cola, otorgada: z.otorgada, ratio: ratio, riesgo: riesgo };
+    return { zona: z.id, zonas: ids, multizona: ids.length > 1, pool: z.pool, cap: z.cap || null,
+             oficial: !!z.oficial, nudos: z.nudos, cola: z.cola, otorgada: z.otorgada,
+             ratio: ratio, riesgo: riesgo, margenNudo: bsNum(r.gen.nodal.dinamico_margen) };
 }
 
 /* Serie histórica del nudo y tendencia. La demanda arranca un mes más tarde
@@ -5056,7 +5127,12 @@ function bsSpark(tr, campo) {
 function bsDiag(m) {
     if (m.sinDatos) return { tipo: 'sin datos', txt: 'Sin ficha publicada para este mes: el nudo existe en la base pero no aparece en el fichero del periodo.' };
     const partes = [];
-    if (m.cargaDisp <= 0) {
+    if (m.cargaConcurso) {
+        partes.push('CARGA reservada a CONCURSO de demanda' +
+            (m.cargaNoOtorg > 0 ? ': ' + bsMW(m.cargaNoOtorg) + ' retenidos' : '') +
+            (m.cargaMotivo ? ' (' + m.cargaMotivo + ')' : '') +
+            (m.cargaConcEstado ? ' · estado: ' + m.cargaConcEstado : '') + '.');
+    } else if (m.cargaDisp <= 0) {
         partes.push('CARGA a cero: no hay margen de almacenamiento en la perspectiva de demanda' +
             (m.cargaCrit && m.cargaCrit !== '—' ? ' (criterio limitante: ' + m.cargaCrit + ')' : '') +
             (m.cargaNoOtorg > 0 ? ' y hay ' + bsMW(m.cargaNoOtorg) + ' marcados como no otorgables' : '') + '.');
@@ -5147,6 +5223,7 @@ function bsTitulo() {
 }
 function bsRefresh() {
     bsZonaCache = {}; bsFcCache = {}; bsCovCache = null;   // se recalcula al cambiar de mes o de red
+    bsCargarZonas(bsKey());
     const scope = bsVal('bs-scope', 'TSO');
     bsTitulo();
     document.getElementById('bs-banner').innerHTML = bsBanner(scope);
@@ -5233,7 +5310,8 @@ function bsRenderInterno() {
             '<td><input type="checkbox" ' + (bsSel[r.name] ? 'checked' : '') + ' onchange="bsToggleSel(\'' + r.name.replace(/'/g, "\\'") + '\')"></td>' +
             '<td class="bs-clic" onclick="bsFicha(\'' + r.name.replace(/'/g, "\\'") + '\')" title="Ver ficha del nudo"><b>' + r.name + '</b><div class="bs-sub">' + (r.tens ? r.tens + ' kV' : '') + (r.oper ? ' · ' + r.oper : '') + '</div></td>' +
             '<td>' + (r.ccaa || '—') + '</td>' +
-            '<td class="bs-num bs-blue">' + bsMW(r.cargaDisp) + '</td>' +
+            '<td class="bs-num bs-blue">' + bsMW(r.cargaDisp) +
+            (r.cargaConcurso ? '<div class="bs-sub bs-red">reservado a CONCURSO</div>' : '') + '</td>' +
             '<td class="bs-num">' + bsMW(r.cargaOtorg) + ' / ' + bsMW(r.cargaCola) + '</td>' +
             '<td class="bs-num ' + (r.descDisp > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(r.descDisp) + (r.bloqueoConcurso ? '<div class="bs-sub bs-red">reservado a CONCURSO</div>' : '') + '</td>' +
             '<td class="bs-num">' + (r.margenMPE == null ? 'no publicado' : bsMW(r.margenMPE) + ' / ' + (r.posMPE == null ? '—' : bsMW(r.posMPE))) + '</td>' +
@@ -5339,10 +5417,17 @@ function bsFichaHTML(m, paraInforme) {
         (m.motivo ? ' · ' + m.motivo : '') + (m.reserva ? ' · reserva: ' + m.reserva : '') + '</div>' +
         '<div class="bs-diag">' + bsDiagPill(bsDiag(m)) + ' <b>Diagnóstico:</b> ' + bsDiag(m).txt + '</div>' +
         '<table class="bs-cols"><tr>' +
-        '<td class="bs-col bs-col-carga"><div class="bs-col-h">CARGA · permiso de demanda</div>' +
+        '<td class="bs-col bs-col-carga"><div class="bs-col-h">CARGA · permiso de demanda' + (m.cargaConcurso ? ' · reservado a CONCURSO' : '') + '</div>' +
         '<div class="bs-big bs-blue">' + bsMW(m.cargaDisp) + '</div>' +
-        '<div class="bs-lbl">solicitables hoy para almacenamiento</div>' +
-        '<div class="bs-it">Criterio limitante: ' + (m.cargaCrit || '—') + '</div>' +
+        (m.cargaConcurso
+            ? '<div class="bs-warn"><b>reservado a CONCURSO de demanda:</b> ' +
+              (m.cargaNoOtorg > 0 ? bsMW(m.cargaNoOtorg) + ' retenidos' : 'nudo de concurso') +
+              (m.cargaMotivo ? ' · ' + m.cargaMotivo : '') + '</div>'
+            : '<div class="bs-lbl">solicitables hoy para almacenamiento</div>') +
+        '<div class="bs-it">Criterio limitante: ' + (m.cargaCrit || '—') +
+        (m.cargaConcEstado ? ' · concurso de demanda: ' + m.cargaConcEstado : '') +
+        (m.cargaConcResuelto ? ' · concurso ya resuelto (ver normativa en la ficha de REE)' : '') +
+        (!m.cargaConcurso && m.cargaMotivo ? ' · ' + m.cargaMotivo : '') + '</div>' +
         tabla(filaC, 'bs-t-carga') +
         (m.cargaRefRdd ? '<div class="bs-it">Además, ' + bsMW(m.cargaRefRdd) + ' de consumo de referencia acordados con el DSO' + (m.cargaAcuerdo ? ' (acuerdo cerrado)' : '') + '.</div>' : '') +
         (m.cargaComent ? '<div class="bs-it">' + m.cargaComent + '</div>' : '') +
@@ -5402,8 +5487,10 @@ function bsPrevHTML(m) {
     if (z) {
         const col = { 'agotado': 'bs-red', 'alto': 'bs-red', 'medio': 'bs-must', 'bajo': 'bs-green' }[z.riesgo];
         h += '<table class="bs-mini-tbl">' +
-            '<tr><td>Zona dinámica</td><td class="bs-num">' + z.zona + '</td></tr>' +
-            '<tr><td>Fondo común (compartido)</td><td class="bs-num">' + bsMW(z.pool) + '</td></tr>' +
+            '<tr><td>Zona dinámica</td><td class="bs-num">' + (z.multizona ? z.zonas.join(' + ') + ' <span class="bs-sub">(manda la más restrictiva)</span>' : z.zona) + '</td></tr>' +
+            '<tr><td>Fondo común (compartido)</td><td class="bs-num">' + bsMW(z.pool) +
+            ' <span class="bs-sub">' + (z.oficial ? 'dato oficial de REE' : 'estimado de los nudos') + '</span></td></tr>' +
+            (z.margenNudo < z.pool ? '<tr><td>Margen utilizable en este nudo</td><td class="bs-num">' + bsMW(z.margenNudo) + ' <span class="bs-sub">limitación interna</span></td></tr>' : '') +
             '<tr><td>Nudos que lo comparten</td><td class="bs-num">' + z.nudos + '</td></tr>' +
             '<tr><td>Cola en la zona</td><td class="bs-num">' + bsMW(z.cola) + '</td></tr>' +
             '<tr class="bs-hl"><td>Cola sobre fondo</td><td class="bs-num ' + col + '">' + (isFinite(z.ratio) ? Math.round(z.ratio * 100) + ' %' : 'sin fondo') + '</td></tr>' +
@@ -5429,7 +5516,9 @@ function bsNotaHTML() {
         '<li><b>Potencial de descarga</b> = mín(margen técnico MPE, margen por posición). No es capacidad adjudicada ni comprometida: es el techo que podría salir a concurso si se convoca.</li>' +
         '<li><b>Cobertura</b> = disponible de cada lado sobre el objetivo correspondiente. Carga y descarga son <b>dos permisos distintos</b>, así que se evalúan por separado y no se promedian.</li>' +
         '<li><b>BESS simétrico máximo</b> = mín(carga, descarga): la mayor batería con la misma potencia en ambos sentidos que admitiría el nudo. Si se acepta asimetría, el techo de cada lado es su propio disponible.</li>' +
-        '<li><b>Previsión.</b> Tres piezas: <i>techo por criterio</i> (qué margen habría si se levantara el criterio que hoy limita), <i>exposición zonal</i> (los criterios de zona son un fondo común: 85 de las 86 zonas dinámicas comparten el mismo margen entre todos sus nudos, así que la cola de la zona erosiona el margen de todos) y <i>tendencia</i> (pendiente por mínimos cuadrados sobre el histórico; no se proyecta con menos de 4 meses).</li>' +
+        '<li><b>Previsión.</b> Tres piezas: <i>techo por criterio</i> (qué margen habría si se levantara el criterio que hoy limita), <i>exposición zonal</i> (los criterios de zona son un fondo común, así que la cola de la zona erosiona el margen de todos sus nudos) y <i>tendencia</i> (pendiente por mínimos cuadrados sobre el histórico; no se proyecta con menos de 4 meses).</li>' +
+        '<li>La red de transporte tiene <b>81 zonas dinámicas</b> en generación y 1.836 en demanda, con <b>identificadores que se solapan</b>: el mismo código significa cosas distintas en cada perspectiva. El módulo solo usa las de generación, que son las que gobiernan la evacuación.</li>' +
+        '<li>Un nudo puede pertenecer a <b>varias zonas del mismo criterio</b>; en ese caso manda la más restrictiva. Y su margen utilizable puede ser <b>menor que el fondo de su zona</b> si tiene limitación interna por configuración, así que el cálculo usa siempre el valor del nudo.</li>' +
         '<li>Un cambio de criterio <b>de nudo a zona</b> es un cambio de naturaleza del riesgo: el margen deja de ser propio y pasa a compartirse, puede caer a cero sin que ocurra nada en el nudo, y su liberación deja de depender de una actuación local.</li>' +
         '<li>No se aplica ninguna tolerancia de asimetría: la normativa no establece ninguna, y un desajuste del 2 % o del 60 % se muestran como lo que son, no como «pasa» o «no pasa».</li>' +
         '<li>La capacidad del bloque <i>liberada</i> está afecta al <b>autoconsumo</b> del RDL 7/2026 (10 % de su disposición adicional décima): no la puede usar un proyecto sin consumidor asociado.</li>' +
@@ -5443,7 +5532,8 @@ function bsResumenHTML(rows) {
     for (const r of rows) {
         const s = bsSem(r), cv = bsCover(r);
         h += '<tr><td><b>' + r.name + '</b></td><td>' + (r.ccaa || '—') + '</td>' +
-            '<td class="bs-num bs-blue">' + bsMW(r.cargaDisp) + '</td>' +
+            '<td class="bs-num bs-blue">' + bsMW(r.cargaDisp) +
+            (r.cargaConcurso ? '<div class="bs-sub bs-red">reservado a CONCURSO</div>' : '') + '</td>' +
             '<td class="bs-num ' + (r.descDisp > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(r.descDisp) + (r.bloqueoConcurso ? ' (CONCURSO)' : '') + '</td>' +
             '<td class="bs-num bs-must">' + bsMW(r.potencial) + '</td>' +
             '<td class="bs-num"><span class="' + (cv.okCargaHoy ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobCargaHoy) + '</span> / <span class="' + (cv.okDescConc ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobDescConc) + '</span></td>' +
