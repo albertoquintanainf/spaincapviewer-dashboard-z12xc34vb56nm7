@@ -6521,21 +6521,28 @@ function bsPrevHTML(m, compacto) {
             '</div><div class="bs-sub">' + (z.oficial ? 'margen zonal oficial de REE' : 'fondo estimado de los nudos') +
             ' · lo consume cualquier proyecto de la zona</div>';
     } else h += '<div class="bs-sub">sin criterio dinámico de zona: el margen es propio del nudo</div>';
+    // La serie, sus tasas de referencia y la aclaración van en esta columna:
+    // la de la derecha la ocupan los dos gráficos y, si además cargaba estos
+    // textos, la ficha se iba a una tercera hoja.
+    const est = bsEstab(m), tas = bsTasas();
+    h += '<div class="bs-prev-t2">Serie del nudo</div>';
+    const famA = est.famActual || '—';
+    const tf = (tas.fam || {})[famA] || null;
+    const colEst = { 'Estacionario': '', 'Tendencia positiva': 'bs-green',
+                     'Tendencia negativa': 'bs-red', 'Alta variabilidad': 'bs-must' }[est.margenClase] || '';
+    h += '<div class="bs-sub"><b>Criterio:</b> ' + est.critClase + ' (' + est.cambios + ' cambio(s) en ' + est.n + ' meses)' +
+        ' · <b>Margen:</b> <b class="' + colEst + '">' + est.margenClase + '</b> (' + est.sube + ' subida(s) / ' + est.baja + ' bajada(s) &gt;' + BS_UMBRAL_MW + ' MW)</div>' +
+        (tf ? '<div class="bs-sub">Referencia del histórico, sobre observaciones nudo-mes: los nudos limitados por ' + famA +
+              ' cambian de criterio en el ' + bsPct1(tf.pCambio) + ' de los casos (' + bsFrec(tf.pCambio) +
+              ') y ven subir su margen más de ' + BS_UMBRAL_MW + ' MW en el ' + bsPct1(tf.pSube) + ' (' + bsFrec(tf.pSube) + ').</div>' : '');
+    if (est.derivaWscr) h += '<div class="bs-sub bs-red"><b>Reclasificado a WSCR:</b> criterio del que casi no se sale.</div>';
     h += '</td>';
 
-    // ── tendencia y estabilidad, columna derecha ──
-    const est = bsEstab(m), tas = bsTasas();
-    h += '<td><div class="bs-prev-t">Tendencia y estabilidad · últimos ' + tr.n + ' meses</div>';
-    // En el informe los dos gráficos van uno al lado del otro: así se ven
-    // ambas series sin gastar el doble de alto, que es lo que obligaba a pasar
-    // de hoja.
-    // Las dos series no son la misma magnitud y conviene decirlo: la de
-    // descarga es POTENCIAL (margen acotado por la posición), porque lo
-    // solicitable está a cero mientras haya reserva a concurso; la de carga
-    // es directamente lo SOLICITABLE.
-    // Las dos series dibujan la MISMA magnitud, el margen mensual, para que
-    // sean comparables. Debajo de cada título se indica lo solicitable hoy,
-    // que es lo que ese margen deja realmente pedir.
+    // ── columna derecha: solo los dos gráficos y la pendiente ──
+    h += '<td><div class="bs-prev-t">Tendencia · últimos ' + tr.n + ' meses</div>';
+    // Los dos gráficos, uno al lado del otro en el informe. Dibujan la misma
+    // magnitud (el margen mensual de cada lado) para que sean comparables, y
+    // bajo cada título se indica lo solicitable hoy.
     const gD = bsBarras(tr, { margen: 'potencial', disp: 'descDisp', otorg: 'descOtorg', cola: 'descCola' },
         'DESCARGA (ALM MPE)', 'margen acotado por el límite de posición' +
         (m.bloqueoConcurso ? ' · lo solicitable es cero mientras la capacidad esté reservada a CONCURSO' : ''));
@@ -6554,16 +6561,6 @@ function bsPrevHTML(m, compacto) {
               ') no coincide con el potencial del mes activo (' + bsMW(m.potencial) + ')</span>' : '') +
         '</div>';
     // estabilidad del propio nudo y tasas observadas de su criterio
-    const famA = est.famActual || '—';
-    const tf = (tas.fam || {})[famA] || null;
-    const colEst = { 'Estacionario': '', 'Tendencia positiva': 'bs-green',
-                     'Tendencia negativa': 'bs-red', 'Alta variabilidad': 'bs-must' }[est.margenClase] || '';
-    h += '<div class="bs-sub"><b>Criterio:</b> ' + est.critClase + ' (' + est.cambios + ' cambio(s) en ' + est.n + ' meses)' +
-        ' · <b>Margen:</b> <b class="' + colEst + '">' + est.margenClase + '</b> (' + est.sube + ' subida(s) / ' + est.baja + ' bajada(s) &gt;' + BS_UMBRAL_MW + ' MW)</div>' +
-        (tf ? '<div class="bs-sub">Referencia del histórico, sobre observaciones nudo-mes: los nudos limitados por ' + famA +
-              ' cambian de criterio en el ' + bsPct1(tf.pCambio) + ' de los casos (' + bsFrec(tf.pCambio) +
-              ') y ven subir su margen más de ' + BS_UMBRAL_MW + ' MW en el ' + bsPct1(tf.pSube) + ' (' + bsFrec(tf.pSube) + ').</div>' : '');
-    if (est.derivaWscr) h += '<div class="bs-sub bs-red"><b>Ha derivado a WSCR:</b> estado del que casi no se vuelve.</div>';
     h += '</td></tr></table>';
 
     if (!compacto) {
@@ -6616,7 +6613,7 @@ function bsNotaPortada() {
 function bsPortadaHTML(metr, mes, anio) {
     return '<div class="bs-card bs-page bs-portada">' +
         '<div class="bs-wm-w"><div class="bs-wm">FASE DE PRUEBAS</div></div>' +
-        '<div class="bs-port-marcas">' + BS_ICONO + '<span class="hw-logo-img"></span></div>' +
+        '<div class="bs-port-marcas"><span class="hw-logo-img"></span>' + BS_ICONO + '</div>' +
         '<h2 class="bs-port-h">BESS STAND ALONE · CAPACIDAD SOLICITABLE POR NUDO</h2>' +
         '<div class="bs-port-s">Red ' + (metr[0] ? metr[0].grid : 'TSO') + ' · ' + metr.length +
         ' nudo(s) · datos de ' + bsMesAnio() + '</div>' +
