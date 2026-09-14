@@ -1,0 +1,276 @@
+{
+ "periodo": "26_sep",
+ "generacion": [
+  {
+   "titulo": "NOMBRES Y TENSIÓN DEL NUDO",
+   "definiciones": [],
+   "texto": [
+    "Identificador del nombre del nudo de la red de transporte y su nivel de tensión [kV]. Se muestran todos los nudos de la red de transporte sin perjuicio de que exista o no capacidad disponible.",
+    "Código de subestación: Código único de activo regulado conforme a la Circular 1/2025, de 22 de julio."
+   ]
+  },
+  {
+   "titulo": "POSICIONES DE GENERACIÓN / ALMACENAMIENTO",
+   "definiciones": [],
+   "texto": [
+    "Se muestra en esta columna el número de posiciones de generación y/o almacenamiento en la red de transporte: ● A LA RED DE TRANSPORTE: indica el número de posiciones en la red de transporte dedicadas a la conexión de generación/almacenamiento, ya sean Existente(s) (E) o Planificada(s) (P) ● A LA RED DE DISTRIBUCIÓN: indica el número de posiciones desde el nudo de la red de transporte de apoyo a la red de distribución, ya sean Existente(s) (E) o Planificada(s) (P)",
+    "Las posiciones marcadas corresponden con posiciones planificadas específicamente para generación de emergencia. Teniendo en cuenta la motivación específica con la que se ha planificado la posición junto con el carácter no permanente de la generación en ella conectada, no son posiciones en las que se puedan iniciar procedimientos de acceso y conexión para instalaciones cuya naturaleza difiera de la de generación de emergencia."
+   ]
+  },
+  {
+   "titulo": "CRITERIO DE POTENCIA DE CORTOCIRCUITO (WSCR)",
+   "definiciones": [
+    {
+     "campo": "CAPACIDAD DE ACCESO NODAL",
+     "definicion": "Valor de capacidad de acceso en el nudo resultante al aplicar la metodología del criterio WSCR establecida en las Especificaciones de Detalle (ED). ● BINUDOS: indica mediante identificadores alfanuméricos los nudos que conforman las dos partes del binudo, ya que estas dos partes conforman una zona a efectos del otorgamiento de capacidad de acceso ya que comparten capacidad. Para conocer la capacidad de la zona, es necesario consultarla en el archivo de “Dicccionario de zonas” publicado en www.ree.es, en la misma URL que el presente archivo. ● AFECCIÓN DE COMPENSADORES SÍNCRONOS (CS) A SEGURIDAD DEL SISTEMA: Este campo informa del estado del nudo en cuanto a los niveles máximos de corriente de cortocircuito (Icc). El campo informa sobre dos cuestiones, de acuerdo a lo establecido en las ED: - “Superación valor max Icc”. En este caso, la corriente de cortocircuito está cercana al límite máximo soportado por la red de transporte, por lo que no se permitirá la instalación de compensadores síncronos en dicho nudo para aprovechar la capacidad que pueda resultar, siendo estas solictudes denegadas. - “Riesgo de interacciones”. Estos nudos están cercanos a subestaciones en las que existen conectados en la red de transporte grandes equipos de electrónica de potencia (HVDC, FACTS...). En estos nudos el OS recomienda la no inclusión de compensadores síncronos. ● MARGEN NO OCUPADO: Valor de margen de capacidad, es decir, diferencia entre el valor de la capacidad nodal o zonal por criterio WSCR, según el que limite, y la capacidad de acceso otorgada. A este respecto, y para este criterio en particular, la capacidad de acceso otorgada contabilizada en la red de distribución es la conectada únicamente en el primer nivel de transformación, en línea con lo expuesto en las ED."
+    }
+   ],
+   "texto": []
+  },
+  {
+   "titulo": "CRITERIO ESTÁTICO GENERACIÓN",
+   "definiciones": [
+    {
+     "campo": "CAPACIDAD DE ACCESO NODAL",
+     "definicion": "Valor de capacidad de acceso en el nudo resultante de aplicar la metodología del criterio estático establecida en las ED. ● ZONA CON CAPACIDAD COMPARTIDA A LA QUE PERTENECE EL NUDO: indica mediante identificadores los nudos que conforman las zonas con capacidad compartida por criterio estático. Para conocer la capacidad de la zona, es necesario consultarla en el “diccionario de zonas” publicado en www.ree.es, en la misma URL que el presente archivo. ● MARGEN NO OCUPADO: Valor de margen de capacidad, es decir, diferencia entre el valor de la capacidad nodal o zonal por criterio estático, según el que limite, y la capacidad de acceso otorgada en el nudo."
+    }
+   ],
+   "texto": []
+  },
+  {
+   "titulo": "CRITERIO ESTÁTICO ALMACENAMIENTO",
+   "definiciones": [
+    {
+     "campo": "CAPACIDAD DE ACCESO NODAL",
+     "definicion": "Valor de capacidad de acceso en el nudo resultante de aplicar la metodología del criterio estático para instalaciones de almacenamiento stand-alone establecida en las ED. ● ZONA CON CAPACIDAD COMPARTIDA A LA QUE PERTENECE EL NUDO: indica mediante identificadores los nudos que conforman las zonas con capacidad compartida por criterio estático. Para conocer la capacidad de la zona, es necesario consultarla en el “diccionario de zonas” publicado en www.ree.es ● MARGEN NO OCUPADO: Valor de margen de capacidad, es decir, diferencia entre el valor de la capacidad nodal o zonal por criterio estático, según el que limite, y la capacidad de acceso otorgada en el nudo."
+    }
+   ],
+   "texto": []
+  },
+  {
+   "titulo": "CRITERIO DINÁMICO",
+   "definiciones": [
+    {
+     "campo": "CAPACIDAD DE ACCESO NODAL",
+     "definicion": "Valor de capacidad de acceso en el nudo resultante de aplicar la metodología del criterio dinámico para un nudo establecida en las ED. En las ocasiones en donde ha sido posible trasladarlo directamente, se ha internalizado el valor de la limitación interna por configuración de nudo. ● ZONA CON CAPACIDAD COMPARTIDA A LA QUE PERTENECE EL NUDO: indica mediante identificadores los nudos que conforman las zonas con capacidad compartida por criterio dinámico. Para conocer la capacidad de la zona, es necesario consultarla en el “diccionario de zonas” publicado en www.ree.es, en la misma URL que el presente archivo. ● LIMITACIÓN INTERNA POR CONFIGURACIÓN DEL NUDO: En los nudos cuya subestación tiene configuración de interruptor y medio, anillo o NSR, se introducen limitaciones por configuración del nudo, en aras de limitar la generación conectada a un mismo diámetro o calle de la subestación y evitar pérdidas de generación por concentración de generación en dicho diámetro o calle. Donde este límite ha sido directamente trasladable, siempre y cuando resultara limitante, se ha internalizado este valor dentro de la capacidad de acceso nodal por criterio dinámico. Este valor constituye una limitación de la capacidad de acceso que puede ser otorgada en la posición. ● MARGEN NO OCUPADO: Valor de margen de capacidad, es decir, diferencia entre el valor de la capacidad nodal o zonal por criterio dinámico, según el que limite, y la capacidad de acceso otorgada en el nudo."
+    }
+   ],
+   "texto": []
+  },
+  {
+   "titulo": "SITUACIÓN NUDO CAPACIDAD DE ACCESO OTORGADA",
+   "definiciones": [
+    {
+     "campo": "CAPACIDAD DE ACCESO OTORGADA MGE",
+     "definicion": "Valor de capacidad de acceso ya otorgada en el nudo para módulos de generación eléctricos (MGE) con conexión directa a la red de transporte y a los conectados a la red de distribución con afección significativa sobre la red de transporte. Correspondiente a MGE puestos en servicio y con permiso de acceso ya otorgado pendientes de puesta en servicio. ● CAPACIDAD DE ACCESO OTORGADA MGES: Valor de capacidad de acceso ya otorgada en el nudo para módulos de generación síncronos (MGES) con conexión directa a la red de transporte y a los conectados a la red de distribución con afección significativa sobre la red de transporte. Correspondiente a MGES puestos en servicio y con permiso de acceso ya otorgado pendientes de puesta en servicio. ● CAPACIDAD DE ACCESO OTORGADA MPE CON AFECCIÓN WSCR: Valor de capacidad de acceso ya otorgada en el nudo para módulos de parque eléctrico (MPE) con conexión directa a la red de transporte y a los conectados a la red de distribución con afección significativa sobre la red de transporte, y ubicados en nudos donde exista o esté planificada una transformación directa a la red de transporte. Correspondiente a MPE puestos en servicio y con permiso de acceso ya otorgado pendientes de puesta en servicio. ● CAPACIDAD DE ACCESO OTORGADA MPE SIN AFECCIÓN WSCR: Valor de capacidad de acceso ya otorgada en el nudo para módulos de parque eléctrico (MPE) que incluyan compensadores síncronos con conexión directa a la red de transporte y a los conectados a la red de distribución sin afección significativa sobre la red de transporte, y ubicados en nudos donde no exista o no esté planificada una transformación directa a la red de transporte. Correspondiente a MPE puestos en servicio y con permiso de acceso ya otorgado pendientes de puesta en servicio. ● CAPACIDAD DE ACCESO OTORGADA MPE: Valor de capacidad de acceso ya otorgada en el nudo para módulos de parque eléctrico (MPE) con conexión directa a la red de transporte y a los conectados a la red de distribución con afección significativa sobre la red de transporte. Correspondiente a MPE puestos en servicio y con permiso de acceso ya otorgado pendientes de puesta en servicio. ● CAPACIDAD DE ACCESO OTORGADA GEN: Valor de capacidad de acceso ya otorgada en el nudo para instalaciones de generación (GEN) con conexión directa a la red de transporte y a los conectados a la red de distribución con afección significativa sobre la red de transporte. GEN puestos en servicio y con permiso de acceso ya otorgado pendientes de puesta en servicio. ● CAPACIDAD DE ACCESO OTORGADA ALM: Valor de capacidad de acceso ya otorgada en el nudo para instalaciones de almacenamiento (ALM) con conexión directa a la red de transporte y a los conectados a la red de distribución con afección significativa sobre la red de transporte. ALM puestos en servicio y con permiso de acceso ya otorgado pendientes de puesta en servicio."
+    }
+   ],
+   "texto": []
+  },
+  {
+   "titulo": "SITUACIÓN NUDO CAPACIDAD DE ACCESO EN CURSO",
+   "definiciones": [
+    {
+     "campo": "CAPACIDAD DE ACCESO SOLICITADA EN CURSO Y PENDIENTE DE RESOLVER MGE",
+     "definicion": "Valor de capacidad de acceso solicitada y pendiente de resolver en el nudo para módulos de generación eléctricos (MGE) con conexión directa a la red de transporte y a los conectados a la red de distribución con afección significativa sobre la red de transporte. ● CAPACIDAD DE ACCESO SOLICITADA EN CURSO Y PENDIENTE DE RESOLVERMGES: Valor de capacidad de acceso solicitada y pendiente de resolver en el nudo para módulos de generación síncronos (MGES) con conexión directa a la red de transporte y a los conectados a la red de distribución con afección significativa sobre la red de transporte. ● CAPACIDAD DE ACCESO SOLICITADA EN CURSO Y PENDIENTE DE RESOLVER MPE CON AFECCIÓN WSCR: Valor de capacidad de acceso solicitada y pendiente de resolver en el nudo para módulos de parque eléctrico (MPE) con conexión directa a la red de transporte y a los conectados a la red de distribución con afección significativa sobre la red de transporte, y ubicados en nudos donde exista o esté planificada una transformación directa a la red de transporte. ● CAPACIDAD DE ACCESO SOLICITADA EN CURSO Y PENDIENTE DE RESOLVER MPE SIN AFECCIÓN WSCR: Valor de capacidad de acceso solicitada y pendiente de resolver en el nudo para módulos de parque eléctrico (MPE) que incluyan compensadores síncronos con conexión directa a la red de transporte y a los conectados a la red de distribución sin afección significativa sobre la red de transporte, y ubicados en nudos donde no exista o no esté planificada una transformación directa a la red de transporte. ● CAPACIDAD DE ACCESO SOLICITADA EN CURSO Y PENDIENTE DE RESOLVER MPE: Valor de capacidad de acceso solicitada y pendiente de resolver en el nudo para módulos de parque eléctrico (MPE) con conexión directa a la red de transporte y a los conectados a la red de distribución con afección significativa sobre la red de transporte. ● CAPACIDAD DE ACCESO SOLICITADA EN CURSO Y PENDIENTE DE RESOLVER GEN: Valor de capacidad de acceso solicitada y pendiente de resolver en el nudo para instalaciones de generación (GEN) con conexión directa a la red de transporte y a los conectados a la red de distribución con afección significativa sobre la red de transporte. ● CAPACIDAD DE ACCESO SOLICITADA EN CURSO Y PENDIENTE DE RESOLVER ALM: Valor de capacidad de acceso solicitada y pendiente de resolver en el nudo para instalaciones de almacenamiento (ALM) con conexión directa a la red de transporte y a los conectados a la red de distribución con afección significativa sobre la red de transporte."
+    }
+   ],
+   "texto": []
+  },
+  {
+   "titulo": "CAPACIDAD DE ACCESO TOTAL",
+   "definiciones": [
+    {
+     "campo": "CAPACIDAD DE ACCESO TOTAL GENERACIÓN MGES",
+     "definicion": "Valor de capacidad de acceso total en el nudo para instalaciones de generación de tipo MGES. Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios estático generación y dinámico, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla. ● CAPACIDAD DE ACCESO TOTAL GENERACIÓN MPE: Valor de capacidad de acceso total en el nudo para instalaciones de generación de tipo MPE. Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios de potencia de cortocircuito (WSCR), estático generación y dinámico tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla. ● CAPACIDAD DE ACCESO TOTAL ALMACENAMIENTO MGES: Valor de capacidad de acceso total en el nudo para instalaciones de almacenamiento stand-alone de tipo MGES. Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios estático almacenamiento y dinámico, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla. ● CAPACIDAD DE ACCESO TOTAL ALMACENAMIENTO MPE: Valor de capacidad de acceso total en el nudo para instalaciones de generación de tipo MPE. Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios de potencia de cortocircuito (WSCR), estático almacenamiento y dinámico tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla."
+    }
+   ],
+   "texto": []
+  },
+  {
+   "titulo": "CRITERIOS LIMITANTES",
+   "definiciones": [
+    {
+     "campo": "CRITERIO LIMITANTE GENERACIÓN",
+     "definicion": "Indica el criterio o los criterios limitantes del valor de la capacidad de acceso total para instalaciones de generación (MGES o MPE) pudiendo corresponder a la capacidad estática nodal (“E_Nudo”); la capacidad estática zonal (“E_Zona”); la capacidad dinámica nodal (“D_Nudo”); la capacidad dinámica zonal (“D_Zona) o la capacidad por criterio de potencia de cortocircuito (“WSCR”) ● CRITERIO LIMITANTE ALMACENAMIENTO: Indica el criterio o los criterios limitantes del valor de la capacidad de acceso total para instalaciones de de almacanmiento stand-alone (MGES o MPE) pudiendo corresponder a la capacidad estática nodal (“E_Nudo”); la capacidad estática zonal (“E_Zona”); la capacidad dinámica nodal (“D_Nudo”); la capacidad dinámica zonal (“D_Zona) o la capacidad por criterio de potencia de cortocircuito (“WSCR”)"
+    },
+    {
+     "campo": "Limitación por Posición",
+     "definicion": "Valor máximo de capacidad otorgable por posición de la red de transporte para instalaciones de generación y de almacenamiento en el Sistema Eléctrico Peninsular Español (SEPE), de acuerdo a lo establecido en el apartado 4.2.2. de las ED, siendo estos límites de: - Nivel de tensión de 400 kV en el SEPE: 600 MW. - Nivel de tensión de 220 kV en el SEPE: 400 MW. Los valores de potencia máxima por posición regulados en este apartado podrán ser excepcionalmente superados siempre que no se comprometa la seguridad del sistema. ● Capacidad máxima otorgable en el nudo: Indicación a nivel de nudo de la capacidad máxima por posición otorgable, considerando el número de posiciones existentes y planificada en la RdT multiplicado por el valor máximo por posición por nivel de tensión en SEPE. ● ¿Existe limitación por posición?: Se indica Sí cuando se ha superado el valor máximo por posición otorgado. ● Margen MGES: Margen de capacidad de acceso para generación de tipo MGES considerando el valor de capacidad ya otorgado en el nudo. ● Margen MPE: Margen de capacidad de acceso para generación de tipo MGES considerando el valor de capacidad ya otorgado en el nudo."
+    },
+    {
+     "campo": "CAPACIDAD DE ACCESO NO DISPONIBLE GENERACIÓN MGES",
+     "definicion": "Valor de capacidad de acceso en el nudo para instalaciones de generación de tipo MGES que, resultando de aplicar la totalidad de los criterios definidos en las ED, no está disponible para solicitudes de acceso y conexión de generación en la red de transporte o para solicitudes de aceptabilidad debido a alguno de los motivos indicados en la columna Motivo capacidad no disponible. ● CAPACIDAD DE ACCESO NO DISPONIBLE GENERACIÓN MPE: Valor de capacidad de acceso en el nudo para instalaciones de generación de tipo MPE que, resultando de aplicar la totalidad de los criterios definidos en las ED, no está disponible para solicitudes de acceso y conexión de generación en la red de transporte o para solicitudes de aceptabilidad debido a alguno de los motivos indicados en la columna Motivo capacidad no disponible. ● CAPACIDAD DE ACCESO NO DISPONIBLE ALMACENAMIENTO MGES: Valor de capacidad de acceso en el nudo para instalaciones de almacenamiento stand-alone de tipo MGES que, resultando de aplicar la totalidad de los criterios definidos en las ED, no está disponible para solicitudes de acceso y conexión de generación en la red de transporte o para solicitudes de aceptabilidad debido a alguno de los motivos indicados en la columna Motivo capacidad no disponible. ● CAPACIDAD DE ACCESO NO DISPONIBLE ALMACENAMIENTO MPE: Valor de capacidad de accesoen el nudo para instalaciones de generación de tipo MPE que, resultando de aplicar la totalidad de los criterios definidos en las ED, no está disponible para solicitudes de acceso y conexión de generación en la red de transporte o para solicitudes de aceptabilidad debido a alguno de los motivos indicados en la columna Motivo capacidad no disponible. ● MOTIVO CAPACIDAD NO DISPONIBLE: Indica mediante categorías los motivos por los que la capacidad de acceso indicada en la columna anterior no está disponible para solicitudes de acceso y conexión a la red de transporte o para solicitudes de aceptabilidad . Las categorías son: - Sin posible conex. Indica que en ese nudo no existe posibilidad de conexión por no existir posiciones de generación en la red de transporte ni posiciones de conexión a la red de distribución. No obstante, cuando en el nudo existan posiciones de consumo se entenderá que dicha capacidad sí está disponible para generación conectada en dicha posición de consumo. - Posible concurso. Cuando el nudo cumpla las condiciones para la celebración de un concurso de capacidad de acuerdo con lo establecido en el Capítulo V del RD 1183/2020, y así haya sido comunicado al Ministerio para la Transición Ecológica y Reto Demográfico mediante un informe mensual del Operador del Sistema, sin perjuicio de que todavía no se haya incluido el nudo en una resolución. - Concurso por resolución SEE. Cuando el nudo haya sido incluido en una resolución de la Secretaría de Estado de Energía indicando el interés en que se celebre un concurso de capacidad en ese nudo, o ya haya sido celebrado de acuerdo con lo establecido en el Capítulo V del RD 1183/2020. - Margen zonal reservado concurso/posible concurso. Cuando el nudo pertenece a una bolsa que contiene un nudo categorizado como \"Posible concurso\" o \"Concurso por resolución SEE\". - Nudo de Transición Justa. Los Nudos de Transición Justa (NTJ) son los recogidos en el listado del Anexo del RDL 23/2020, y estarán sujetos a otros mecanismos de otorgamiento de la capacidad de acceso. - Margen zonal reservado Nudo Transición Justa. Cuando un nudo pertenece a una bolsa que contiene un nudo categorizado como \"Nudo Transición Justa\". - Limitación por posición. Cuando en un nudo se ha superado el valor máximo de capacidad por posición establecido en el apartado 4.2.2. establecido en las ED."
+    },
+    {
+     "campo": "CAPACIDAD DE ACCESO DISPONIBLE GENERACIÓN MGES RdT o MPE con compensador síncrono RdT [MW]",
+     "definicion": "Valor de capacidad de acceso disponible para solicitudes de acceso y conexión de instalaciones de generación de tipo MGES o MPE con compensador síncrono y con conexión directa a la RdT. Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios estático generación y dinámico, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla. ● CAPACIDAD DE ACCESO DISPONIBLE GENERACIÓN MPE RdT [MW]: Valor de capacidad de acceso disponible para solicitudes de acceso y conexión de instalaciones de generación de tipo MPE con conexión directa a la RdT. Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios de potencia de cortocircuito, estático generación y dinámico, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla. ● CAPACIDAD DE ACCESO DISPONIBLE GENERACIÓN MGES O MPE NO CONECTADO AL PRIMER NIVEL DE TRANFORMACIÓN RdD O MPE CON COMPENSADOR SÍNCRONO[MW]: Valor de capacidad de acceso disponible para solicitudes de aceptabilidad de instalaciones de generación de tipo MGES conectados a la RdD, solicitudes de aceptabilidad de instalaciones de generación de tipo de MPE no conectados al primer nivel de tranformación de la RdD o solicitudes de aceptabilidad de instalaciones de generación de tipo de MPE con compensador síncrono conectados a la RdD . Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios estático generación y dinámico, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla. ● CAPACIDAD DE ACCESO DISPONIBLE GENERACIÓN MPE RdD [MW]: Valor de capacidad de acceso disponible para solicitudes de aceptabilidad de instalaciones de generación de tipo MPE conectados a la RdD. Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios de potencia de cortocircuito, estático generación y dinámico, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla. ● CAPACIDAD DE ACCESO DISPONIBLE ALMACENAMIENTO MGES RdT o MPE con compensador síncrono RdT [MW]: Valor de capacidad de acceso disponible para solicitudes de acceso y conexión de instalaciones de almacenamiento stand-alone de tipo MGES o MPE con compensador síncrono y con conexión directa a la RdT. Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios estático almacenamiento y dinámico, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla. ● CAPACIDAD DE ACCESO DISPONIBLE ALMACENAMIENTO MPE RdT [MW]: Valor de capacidad de acceso disponible para solicitudes de acceso y conexión de instalaciones de almacenamiento de tipo MPE con conexión directa a la RdT. Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios de potencia de cortocircuito, estático almacenamiento y dinámico, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla. ● CAPACIDAD DE ACCESO DISPONIBLE ALMACENAMIENTO MGES O MPE NO CONECTADO AL PRIMER NIVEL DE TRANFORMACIÓN RdD O MPE CON COMPENSADOR SÍNCRONO[MW]: Valor de capacidad de acceso disponible para solicitudes de aceptabilidad de instalaciones de almacenamiento stand-alone de tipo MGES conectados a la RdD, solicitudes de aceptabilidad de instalaciones de almacenamiento stand-alone de tipo de MPE no conectados al primer nivel de tranformación de la RdD o solicitudes de aceptabilidad de instalaciones de almacenamiento stand-alone de tipo de MPE con compensador síncrono conectados a la RdD . Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios estático almacenamiento y dinámico, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla. ● CAPACIDAD DE ACCESO DISPONIBLE ALMACENAMIENTO MPE RdD [MW]: Valor de capacidad de acceso disponible para solicitudes de aceptabilidad de instalaciones de almacenamiento stand-alone de tipo MPE conectados a la RdD. Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios de potencia de cortocircuito, estático almacenamiento y dinámico, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla."
+    },
+    {
+     "campo": "CAPACIDAD DE ACCESO LIBERADA PARA MGES [MW]",
+     "definicion": "Capacidad de acceso liberada en nudos de concurso para solicitudes de autoconsumo que incluyan MGES según lo previsto en el RDL 7/2026. ● CAPACIDAD DE ACCESO LIBERADA PARA MPE [MW]: Capacidad de acceso liberada en nudos de concurso para solicitudes de autoconsumo que incluyan MPE según lo previsto en el RDL 7/2026. ● CAPACIDAD DE ACCESO OTORGADA PARA MGES [MW]: Capacidad de acceso otorgada para MPE en régimen de autoconsumo según lo previsto en el RDL 7/2026 ● CAPACIDAD DE ACCESO OTORGADA PARA MPE [MW]: Capacidad de acceso otorgada para MGES en régimen de autoconsumo según lo previsto en el RDL 7/2025. ● CAPACIDAD DE ACCESO DISPONIBLE PARA MGES [MW]: Capacidad de acceso disponible para solicitudes de autoconsumo que incluyan MGES según lo previsto en el RDL 7/2026. Se calcula como la capacidad de acceso liberada menos la otorgada. ● CAPACIDAD DE ACCESO DISPONIBLE PARA MPE[MW]: Capacidad de acceso disponible para solicitudes de autoconsumo que incluyan MPE según lo previsto en el RDL 7/2026. Se calcula como la capacidad de acceso liberada menos la otorgada."
+    }
+   ],
+   "texto": [
+    "CAPACIDAD DE ACCESO NO DISPONIBLE PARA SOLICITUDES A LA RED DE TRANSPORTE Y ACEPTABILIDADES",
+    "CAPACIDAD DE ACCESO DISPONIBLE PARA SOLICITUDES A LA RED DE TRANSPORTE Y ACEPTABILIDADES",
+    "CAPACIDAD DE ACCESO LIBERADA PARA SOLICITUDES DE AUTOCONSUMO SEGÚN REAL DECRETO-LEY 7/2026"
+   ]
+  },
+  {
+   "titulo": "MOTIVO DE RESERVA DE CAPACIDAD DE ACCESO EN EL NUDO",
+   "definiciones": [],
+   "texto": [
+    "Indica si la capacidad de acceso disponible en el nudo está reservada para concurso, posible concurso o NTJ."
+   ]
+  },
+  {
+   "titulo": "NORMATIVA ESPECÍFICA REGULADORA DE LA CONCENSIÓN DE LA CAPACIDAD DE ACCESO",
+   "definiciones": [],
+   "texto": [
+    "Se indica el conjunto de normativa específica que regula la concesión de la capacidad de acceso en aquellos nudos de la red de transporte en los cuales el otorgamiento de la capacidad de acceso se rige por otros mecanismos diferentes al procedimiento general establecido en el RD 1183/2020."
+   ]
+  }
+ ],
+ "demanda": [
+  {
+   "titulo": "NOMBRES Y TENSIÓN DEL NUDO",
+   "definiciones": [],
+   "texto": [
+    "Identificador del nombre del nudo de la red de transporte y su nivel de tensión [kV]. Se muestran todos los nudos de la red de transporte sin perjuicio de que exista o no capacidad disponible.",
+    "Código de subestación: Código único de activo regulado conforme a la Circular 1/2025, de 22 de julio."
+   ]
+  },
+  {
+   "titulo": "COMUNIDAD AUTÓNOMA",
+   "definiciones": [],
+   "texto": [
+    "Comunidad autónoma en la que se encuentra el nudo"
+   ]
+  },
+  {
+   "titulo": "POSICIONES",
+   "definiciones": [],
+   "texto": [
+    "Se muestra en esta columna una indicación con el número de posiciones del nudo: ● Gen/Alm a la red de transporte: indica el número de posiciones en la red de transporte dedicadas a la conexión de generación/almacenamiento, ya sean Existente(s) (E) o Planificada(s) (P) ● Consumo a la red de transporte: indica el número de posiciones en la red de transporte dedicadas a la conexión de consumo, ya sean Existente(s) (E) o Planificada(s) (P) ● Red de distribución: indica el número de posiciones desde el nudo de la red de transporte de apoyo a la red de distribución, ya sean Existente(s) (E) o Planificada(s) (P)"
+   ]
+  },
+  {
+   "titulo": "CRITERIO DE POTENCIA DE CORTOCIRCUITO (WSCR)",
+   "definiciones": [
+    {
+     "campo": "CAPACIDAD DE ACCESO NODAL",
+     "definicion": "Valor de capacidad de acceso adiccional en el nudo resultante al aplicar la metodología del criterio WSCR establecida en las Especificaciones de Detalle (ED). ● BINUDOS: indica mediante identificadores alfanuméricos los nudos que conforman las dos partes del binudo, ya que estas dos partes conforman una zona a efectos del otorgamiento de capacidad de acceso ya que comparten capacidad. Para conocer la capacidad de la zona, es necesario consultarla en el archivo de “Dicccionario de zonas” publicado en www.ree.es, en la misma URL que el presente archivo. ● AFECCIÓN DE COMPENSADORES SÍNCRONOS (CS) A SEGURIDAD DEL SISTEMA: Este campo informa del estado del nudo en cuanto a los niveles máximos de corriente de cortocircuito (Icc). El campo informa sobre dos cuestiones, de acuerdo a lo establecido en las ED: - “Superación valor max Icc”. En este caso, la corriente de cortocircuito está cercana al límite máximo soportado por la red de transporte, por lo que no se permitirá la instalación de compensadores síncronos en dicho nudo para aprovechar la capacidad que pueda resultar, siendo estas solictudes denegadas. - “Riesgo de interacciones”. Estos nudos están cercanos a subestaciones en las que existen conectados en la red de transporte grandes equipos de electrónica de potencia (HVDC, FACTS...). En estos nudos el OS recomienda la no inclusión de compensadores síncronos. ● MARGEN NO OCUPADO: Valor de margen de capacidad, es decir, diferencia entre el valor de la capacidad nodal o zonal por criterio WSCR, según el que limite, y la capacidad de acceso otorgada. A este respecto, y para este criterio en particular, la capacidad de acceso otorgada contabilizada en la red de distribución es la conectada únicamente en el primer nivel de transformación, en línea con lo expuesto en las ED."
+    }
+   ],
+   "texto": []
+  },
+  {
+   "titulo": "CRITERIO ESTÁTICO DEMANDA",
+   "definiciones": [
+    {
+     "campo": "CAPACIDAD DE ACCESO NODAL",
+     "definicion": "Valor de capacidad de acceso adiccional en el nudo resultante de aplicar la metodología del criterio estático establecida en las Especificaciones de Detalle (ED). ● ZONA CON CAPACIDAD COMPARTIDA A LA QUE PERTENECE EL NUDO: indica mediante identificadores los nudos que conforman las zonas con capacidad compartida por criterio estático. Para conocer la capacidad de la zona, es necesario consultarla en el “diccionario de zonas” ● MARGEN NO OCUPADO: Valor de margen de capacidad, es decir, diferencia entre el valor de la capacidad nodal o zonal por criterio estático, según el que limite, y la capacidad de acceso otorgada en el nudo. ● LIMITACIONES TEMPORALES DE ACCESO POR CONFIGURACIÓN DE LA SUBESTACIÓN: Limitaciones indicadas en el apartado 4.4.2.7.d) de la Resolución de 1 de diciembre de 2025, de la Comisión Nacional de los Mercados y la Competencia, por la que se establecen las especificaciones de detalle para la determinación de la capacidad de acceso de la demanda a las redes de transporte de electricidad. En caso de aplicación se indica el motivo: Caso a) Limitaciones temporales por enfrentamientos de posiciones de conexión de generación con transformadores de distribución, generador o consumidor en subestaciones de interruptor y medio. Caso b) Limitaciones temporales del acceso posibles debido a conexión de consumos en subestaciones con configuración de barra simple. Caso c) Limitaciones temporales del acceso posibles debido a conexión de consumos en subestaciones con configuración de anillo"
+    }
+   ],
+   "texto": []
+  },
+  {
+   "titulo": "CRITERIO ESTÁTICO ALMACENAMIENTO",
+   "definiciones": [
+    {
+     "campo": "CAPACIDAD DE ACCESO NODAL",
+     "definicion": "Valor de capacidad de acceso adiccional en el nudo resultante de aplicar la metodología del criterio estático establecida en las Especificaciones de Detalle (ED). ● ZONA CON CAPACIDAD COMPARTIDA A LA QUE PERTENECE EL NUDO: indica mediante identificadores los nudos que conforman las zonas con capacidad compartida por criterio estático. Para conocer la capacidad de la zona, es necesario consultarla en el “diccionario de zonas” ● MARGEN NO OCUPADO: Valor de margen de capacidad, es decir, diferencia entre el valor de la capacidad nodal o zonal por criterio estático, según el que limite, y la capacidad de acceso otorgada en el nudo."
+    }
+   ],
+   "texto": []
+  },
+  {
+   "titulo": "CRITERIO DINÁMICO 1",
+   "definiciones": [],
+   "texto": [
+    "Criterio que será aplicable a las instalaciones tipo CEP que declaren que soportan el hueco de tensión sin desconexión y que tienen la capacidad de recuperación de potencia activa de la instalación que se detallan en las Especificaciones de Detalle (ED). También será de aplicación al resto de instalaciones que no sean CEP. ● MARGEN NO OCUPADO: Valor de margen de capacidad, es decir, diferencia entre el valor de la capacidad nodal o zonal por criterio dinámico 1, según el que limite, y la capacidad de acceso otorgada en el nudo."
+   ]
+  },
+  {
+   "titulo": "CRITERIO DINÁMICO 2",
+   "definiciones": [],
+   "texto": [
+    "Criterio que será aplicable a las instalaciones tipo CEP que declaren que no soportan el hueco de tensión sin desconexión y que no tienen la capacidad de recuperación de potencia activa de la instalación que se detallan en las Especificaciones de Detalle (ED) ● MARGEN NO OCUPADO: Valor de margen de capacidad, es decir, diferencia entre el valor de la capacidad nodal o zonal por criterio dinámico 2, según el que limite, y la capacidad de acceso otorgada en el nudo."
+   ]
+  },
+  {
+   "titulo": "SITUACIÓN NUDO CAPACIDAD DE ACCESO OTORGADA",
+   "definiciones": [
+    {
+     "campo": "CAPACIDAD DE ACCESO PARA CONSUMO EN LA RDD (VALOR DE REFERENCIA)",
+     "definicion": "valor de referencia utilizado para la realización del cálculo de capacidad. En los casos en los que no se ha acordado, el valor mostrado es el resultante del valor de fallo simple del transformador, según lo establecido en las especificaciones de detalle ● ESTADO ACUERDO SOBRE CAPACIDAD DE ACCESO PARA CONSUMO EN LA RDD (VALOR DE REFERENCIA): indicación relativa a si existe o no acuerdo sobre el valor de referencia con el gestor de la red de distribución. ● CAPACIDAD DE ACCESO OTORGADA A DEMANDA ADICIONAL AL VALOR DE REFERENCIA: Valor de capacidad de acceso ya otorgada en el nudo para instalaciones de demanda ● CAPACIDAD DE ACCESO OTORGADA DEMANDA CEP CON AFECCIÓN A WSCR: Valor de capacidad de acceso ya otorgada en el nudo para instalaciones de demanda con interfaz de electrónica de potencia (CEP) con conexión directa a la red de transporte y a los conectados a la red de distribución con afección significativa sobre la red de transporte, y ubicados en nudos donde exista o esté planificada una transformación directa a la red de transporte. ● CAPACIDAD DE ACCESO OTORGADA DEMANDA RDT: Valor de capacidad de acceso ya otorgada en el nudo para instalaciones de demanda con conexión directa a la red de transporte. ● CAPACIDAD DE ACCESO DEMANDA CON ACEPTABILIDAD RDD: Valor de capacidad de acceso ya otorgada en el nudo para instalaciones de demanda con conexión a la red de distribución con afección significativa sobre la red de transporte y que cuenta con informe de aceptabilidad favorable desde la perspectiva de la RdT. ● CAPACIDAD DE ACCESO DEMANDA CON ACEPTABILIDAD RDD NO INCLUIDA EN EL VALOR DE REFERENCIA: Valor de capacidad de acceso ya otorgada en el nudo para instalaciones de demanda con conexión a la red de distribución con afección significativa sobre la red de transporte que cuenta con informe de aceptabilidad favorable desde la perspectiva de la RdT, cuyo suministro no es posible atender con el valor de referencia definido para la realización del cálculo de capacidad. ● CAPACIDAD DE ACCESO OTORGADA ALMACENAMIENTO ADICIONAL AL VALOR DE REFERENCIA: Valor de capacidad de acceso ya otorgada en el nudo para instalaciones de almacenamiento con conexión directa a la red de transporte. ● CAPACIDAD DE ACCESO ALMACENAMIENTO CON ACEPTABILIDAD RDD: Valor de capacidad de acceso ya otorgada en el nudo para instalaciones de almacenamiento con conexión a la red de distribución con afección significativa sobre la red de transporte y que cuentan con aceptabilidad. ● CAPACIDAD DE ACCESO ALMACENAMIENTO CON ACEPTABILIDAD RDD NO INCLUIDA EN EL VALOR DE REFERENCIA: Valor de capacidad de acceso ya otorgada en el nudo para instalaciones de almacenamiento con conexión a la red de distribución con afección significativa sobre la red de transporte cuyo suministro no es posible atender con el valor de referencia y que cuentan con informe de aceptabilidad favorable desde la perspectiva de la RdT. ● CAPACIDAD DE ACCESO OTORGADA DEMANDA CH RDT: Valor de capacidad de acceso ya otorgada en el nudo para instalaciones de demanda con cumplimiento de hueco de tensión con conexión directa a la red de transporte. ● CAPACIDAD DE ACCESO OTORGADA DEMANDA SH RDT: Valor de capacidad de acceso ya otorgada en el nudo para instalaciones de demanda sin cumplimiento de hueco de tensión con conexión directa a la red de transporte. ● CAPACIDAD DE ACCESO DEMANDA CH CON ACEPTABILIDAD RDD: Valor de capacidad de acceso ya otorgada en el nudo para instalaciones de demanda con cumplimiento de hueco de tensión con conexión a la red de distribución con afección significativa sobre la red de transporte y que cuentan con informe de aceptabilidad favorable desde la perspectiva de la RdT. ● CAPACIDAD DE ACCESO DEMANDA SH CON ACEPTABILIDAD RDD: Valor de capacidad de acceso ya otorgada en el nudo para instalaciones de demanda sin cumplimiento de hueco de tensión con conexión a la red de distribución con afección significativa sobre la red de transporte y que cuentan con informe de aceptabilidad favorable desde la perspectiva de la RdT.."
+    }
+   ],
+   "texto": []
+  },
+  {
+   "titulo": "SITUACIÓN NUDO CAPACIDAD DE ACCESO EN CURSO Y PENDIENTE DE RESOLVER",
+   "definiciones": [
+    {
+     "campo": "CAPACIDAD DE ACCESO SOLICITADA EN CURSO Y PENDIENTE DE RESOLVER DEMANDA RDT",
+     "definicion": "Valor de capacidad de acceso solicitada y pendiente de resolver en el nudo para instalaciones de demanda con conexión directa a la red de transporte ● CAPACIDAD DE ACCESO SOLICITADA EN CURSO Y PENDIENTE DE RESOLVER ALMACENAMIENTO RDT: Valor de capacidad de acceso solicitada y pendiente de resolver en el nudo para instalaciones de almacenamiento con conexión directa a la red de transporte."
+    }
+   ],
+   "texto": []
+  },
+  {
+   "titulo": "MARGEN CAPACIDAD DE ACCESO TOTAL PARA CONEXIÓN A LA RDT",
+   "definiciones": [
+    {
+     "campo": "CAPACIDAD DE ACCESO TOTAL DEMANDA CEP CH",
+     "definicion": "Valor de capacidad de acceso total en el nudo para instalaciones de demanda con interfaz de electrónica de potencia (CEP) y cumplimiento de hueco de tensión. Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios de potencia de cortocircuito (WSCR), estático generación y dinámico 1, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla. ● CAPACIDAD DE ACCESO TOTAL DEMANDA CEP SH: Valor de capacidad de acceso total en el nudo para instalaciones de demanda con interfaz de electrónica de potencia (CEP) y sin cumplimiento de hueco de tensión. Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios de potencia de cortocircuito (WSCR), estático generación y dinámico 2, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla. ● CAPACIDAD DE ACCESO TOTAL DEMANDA NO CEP: Valor de capacidad de acceso total en el nudo para instalaciones de demanda sin interfaz de electrónica de potencia (CEP). Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios estático generación y dinámico 1, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla. ● CAPACIDAD DE ACCESO TOTAL ALMACENAMIENTO CEP (MPE): Valor de capacidad de acceso total en el nudo para instalaciones de almacenamiento con interfaz de electrónica de potencia (CEP ó MPE). Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios estático almacenamiento y dinámico, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla. ● CAPACIDAD DE ACCESO TOTAL ALMACENAMIENTO NO CEP (MGES): Valor de capacidad de acceso total en el nudo para instalaciones de almacenamiento sin interfaz de electrónica de potencia (NO CEP Ó MGES). Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios estático almacenamiento y dinámico, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla."
+    }
+   ],
+   "texto": []
+  },
+  {
+   "titulo": "CRITERIOS LIMITANTES",
+   "definiciones": [
+    {
+     "campo": "CRITERIO LIMITANTE DEMANDA CEP CH",
+     "definicion": "Indica el criterio o los criterios limitantes del valor de la capacidad de acceso total para instalaciones de demanda con interfaz de electrónica de potencia (CEP) y cumplimiento de hueco de tensión pudiendo corresponder a la capacidad estática nodal (“E_Nudo”); la capacidad estática zonal (“E_Zona”); la capacidad dinámica 1 zonal (“D1_Zona\") o la capacidad por criterio de potencia de cortocircuito (“WSCR”) ● CRITERIO LIMITANTE DEMANDA CEP SH: Indica el criterio o los criterios limitantes del valor de la capacidad de acceso total para instalaciones de demanda con interfaz de electrónica de potencia (CEP) y sin cumplimiento de hueco de tensión pudiendo corresponder a la capacidad estática nodal (“E_Nudo”); la capacidad estática zonal (“E_Zona”); la capacidad dinámica 2 zonal (“D2_Zona\") o la capacidad por criterio de potencia de cortocircuito (“WSCR”) ● CRITERIO LIMITANTE DEMANDA NO CEP: Indica el criterio o los criterios limitantes del valor de la capacidad de acceso total para instalaciones de demanda sin interfaz de electrónica de potencia (CEP) pudiendo corresponder a la capacidad estática nodal (“E_Nudo”); la capacidad estática zonal (“E_Zona”) o la capacidad dinámica 1 zonal (“D1_Zona\"). ● CRITERIO LIMITANTE ALMACENAMIENTO CEP (MPE): Indica el criterio o los criterios limitantes del valor de la capacidad de acceso total para instalaciones de almacenamiento con interfaz de electrónica de potencia (CEP) y cumplimiento de hueco de tensión pudiendo corresponder a la capacidad estática nodal (“E_Nudo”); la capacidad estática zonal (“E_Zona”) o la capacidad dinámica 1 zonal (“D1_Zona\"). ● CRITERIO LIMITANTE ALMACENAMIENTO NO CEP (MGES):Indica el criterio o los criterios limitantes del valor de la capacidad de acceso total para instalaciones de almacenamiento sin interfaz de electrónica de potencia pudiendo corresponder a la capacidad estática nodal (“E_Nudo”); la capacidad estática zonal (“E_Zona”) o la capacidad dinámica 1 zonal (“D1_Zona\")."
+    }
+   ],
+   "texto": []
+  },
+  {
+   "titulo": "CAPACIDAD DE ACCESO NO OTORGABLE EN RDT",
+   "definiciones": [
+    {
+     "campo": "CAPACIDAD DE ACCESO NO OTORGABLE EN RDT DEMANDA CEP CH",
+     "definicion": "Valor de capacidad de acceso total en el nudo para instalaciones de demanda con interfaz de electrónica de potencia (CEP) y cumplimiento de hueco de tensión que, resultando de aplicar la totalidad de los criterios definidos en las ED, no es otorgable en red de transporte debido a alguno de los motivos indicados en la columna Motivo capacidad no otorgable en RdT. ● CAPACIDAD DE ACCESO NO OTORGABLE EN RDT CEP SH: Valor de capacidad de acceso total en el nudo para instalaciones de demanda con interfaz de electrónica de potencia (CEP) y sin cumplimiento de hueco de tensión que, resultando de aplicar la totalidad de los criterios definidos en las ED, no es otorgable en red de transporte debido a alguno de los motivos indicados en la columna Motivo capacidad no otorgable en RdT. ● CAPACIDAD DE ACCESO NO OTORGABLE EN RDT DEMANDA NO CEP: Valor de capacidad de acceso total en el nudo para instalaciones de demanda sin interfaz de electrónica de potencia (CEP) resultando de aplicar la totalidad de los criterios definidos en las ED, no es otorgable en red de transporte debido a alguno de los motivos indicados en la columna Motivo capacidad no otorgable en RdT. ● CAPACIDAD DE ACCESO NO OTORGABLE EN RDT ALMACENAMIENTO CEP (MPE): Valor de capacidad de acceso total en el nudo para instalaciones de almacenamiento con interfaz de electrónica de potencia (CEP) resultando de aplicar la totalidad de los criterios definidos en las ED, no es otorgable en red de transporte debido a alguno de los motivos indicados en la columna Motivo capacidad no otorgable en RdT. ● CAPACIDAD DE ACCESO NO OTORGABLE EN RDT ALMACENAMIENTO NO CEP (MGES): Valor de capacidad de acceso total en el nudo para instalaciones de almacenamiento sin interfaz de electrónica de potencia que, resultando de aplicar la totalidad de los criterios definidos en las ED, no es otorgable en red de transporte debido a alguno de los motivos indicados en la columna Motivo capacidad no otorgable en RdT. ● MOTIVO CAPACIDAD NO OTORGABLE EN RDT: Indica mediante categorías los motivos por los que la capacidad de acceso indicada en la columna anterior no es otorgable en RdT. Las categorías son: - Nudo de concurso. Cuando el nudo cumpla las condiciones para la celebración de un concurso de capacidad de acuerdo con lo establecido en el Capítulo V del RD 1183/2020, y así haya sido comunicado al Ministerio para la Transición Ecológica y Reto Demográfico mediante un informe mensual del Operador del Sistema. - Margen zonal reservado concurso. Cuando el nudo pertenece a una zona que contiene un nudo categorizado como \"Nudo de concurso\". - Valor de referencia no acordado. Cuando no haya sido posible acordar el valor de referencia con el gestor de la red de distribución. - Valor de referencia no acordado en la zona estática. Cuando el nudo pertenece a una zona esática que contiene un nudo en el que no ha sido posible acordar el valor de referencia con el gestor de la red de distribución."
+    }
+   ],
+   "texto": []
+  },
+  {
+   "titulo": "CAPACIDAD DE ACCESO DISPONIBLE PARA SOLICITUDES CRITERIO GENERAL",
+   "definiciones": [
+    {
+     "campo": "CAPACIDAD DE ACCESO DISPONIBLE DEMANDA CEP CH",
+     "definicion": "Valor de capacidad de acceso disponible para solicitudes de acceso y conexión en el nudo para instalaciones de demanda con interfaz de electrónica de potencia (CEP) y cumplimiento de hueco de tensión. Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios de potencia de cortocircuito (WSCR), estático generación y dinámico 1, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla. ● CAPACIDAD DE ACCESO DISPONIBLE DEMANDA CEP SH: Valor de capacidad de acceso disponible para solicitudes de acceso y conexión en el nudo para instalaciones de demanda con interfaz de electrónica de potencia (CEP) y sin cumplimiento de hueco de tensión. Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios de potencia de cortocircuito (WSCR), estático generación y dinámico 2, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla. ● CAPACIDAD DE ACCESO DISPONIBLE DEMANDA NO CEP: Valor de capacidad de acceso disponible para solicitudes de acceso y conexión en el nudo para instalaciones de demanda sin interfaz de electrónica de potencia (CEP). Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios estático generación y dinámico 1, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla. ● CAPACIDAD DE ACCESO DISPONIBLE ALMACENAMIENTO CEP (MPE): Valor de capacidad de acceso disponible para solicitudes de acceso y conexión en el nudo para instalaciones de almacenamiento con interfaz de electrónica de potencia (CEP), el cual corresponde al mínimo de los márgenes no ocupados calculados según los criterios estático almacenamiento y dinámico, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla. ● CAPACIDAD DE ACCESO DISPONIBLE ALMACENAMIENTO NO CEP (MGES): Valor de capacidad de acceso disponible para solicitudes de acceso y conexión en el nudo para instalaciones de almacenamiento sin interfaz de electrónica de potencia. Este valor corresponderá al mínimo de los márgenes no ocupados calculados según los criterios estático almacenamiento y dinámico, tal como se establece en las ED, y mostrados en las secciones correspondientes de esta tabla."
+    },
+    {
+     "campo": "Nudo de concurso",
+     "definicion": "indica si el nudo ha cumplido las condiciones de concurso de demanda"
+    }
+   ],
+   "texto": [
+    "NUDO DE CONCURSO"
+   ]
+  },
+  {
+   "titulo": "NORMATIVA ESPECÍFICA REGULADORA DE LA CONCENSIÓN DE LA CAPACIDAD DE ACCESO",
+   "definiciones": [],
+   "texto": [
+    "Se indica el conjunto de normativa específica que regula la concesión de la capacidad de acceso en aquellos nudos de la red de transporte en los cuales el otorgamiento de la capacidad de acceso se rige por otros mecanismos diferentes al procedimiento general establecido en el RD 1183/2020."
+   ]
+  }
+ ]
+}

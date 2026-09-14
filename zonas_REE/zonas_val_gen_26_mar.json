@@ -1,0 +1,2376 @@
+{
+ "periodo": "26_mar",
+ "perspectiva": "gen",
+ "fuente": "2026_03_02_GRT_generacion.xlsx",
+ "dia": "02",
+ "zonas": true,
+ "firma_composicion": "400f3f6f642b19d9",
+ "validacion": {
+  "zonas_inexistentes": [],
+  "nudo_no_figura": [
+   [
+    "CASTELLON, C.T. 400",
+    "Estático",
+    "E272_SEPE"
+   ],
+   [
+    "PILAR, EL 220",
+    "Estático",
+    "E45_SEPE"
+   ],
+   [
+    "PILAR, EL 220",
+    "Dinámico",
+    "D42_SEPE"
+   ],
+   [
+    "SAGRERA, LA 220",
+    "Estático",
+    "E352_SEPE"
+   ],
+   [
+    "VALLITOS 220",
+    "Estático",
+    "E17_SEC"
+   ]
+  ],
+  "nudos_revisados": 793,
+  "fiable": true,
+  "tasa_error": 0.0063
+ },
+ "valores": {
+  "WSCR": {
+   "W01_SEPE_BIN": {
+    "Capacidad zonal (MW)": 243,
+    "Margen zonal (MW)": 225
+   },
+   "W02_SEPE_BIN": {
+    "Capacidad zonal (MW)": 370,
+    "Margen zonal (MW)": 370
+   },
+   "W03_SEPE_BIN": {
+    "Capacidad zonal (MW)": 919,
+    "Margen zonal (MW)": 884
+   },
+   "W04_SEPE_BIN": {
+    "Capacidad zonal (MW)": 941,
+    "Margen zonal (MW)": 804
+   },
+   "W05_SEPE_BIN": {
+    "Capacidad zonal (MW)": 1080,
+    "Margen zonal (MW)": 1050
+   },
+   "W06_SEPE_BIN": {
+    "Capacidad zonal (MW)": 857,
+    "Margen zonal (MW)": 310
+   },
+   "W07_SEPE_BIN": {
+    "Capacidad zonal (MW)": 273,
+    "Margen zonal (MW)": 273
+   },
+   "W08_SEPE_BIN": {
+    "Capacidad zonal (MW)": 722,
+    "Margen zonal (MW)": 484
+   },
+   "W09_SEPE_BIN": {
+    "Capacidad zonal (MW)": 763,
+    "Margen zonal (MW)": 763
+   },
+   "W11_SEPE_BIN": {
+    "Capacidad zonal (MW)": 374,
+    "Margen zonal (MW)": 370
+   },
+   "W12_SEPE_BIN": {
+    "Capacidad zonal (MW)": 280,
+    "Margen zonal (MW)": 0
+   },
+   "W13_SEPE_BIN": {
+    "Capacidad zonal (MW)": 1180,
+    "Margen zonal (MW)": 1180
+   },
+   "W14_SEPE_BIN": {
+    "Capacidad zonal (MW)": 598,
+    "Margen zonal (MW)": 598
+   },
+   "W15_SEPE_BIN": {
+    "Capacidad zonal (MW)": 1365,
+    "Margen zonal (MW)": 1365
+   },
+   "W16_SEPE_BIN": {
+    "Capacidad zonal (MW)": 1241,
+    "Margen zonal (MW)": 1143
+   },
+   "W01_SEC_BIN": {
+    "Capacidad zonal (MW)": 0,
+    "Margen zonal (MW)": 0
+   },
+   "W02_SEC_BIN": {
+    "Capacidad zonal (MW)": 0,
+    "Margen zonal (MW)": 0
+   },
+   "W03_SEC_BIN": {
+    "Capacidad zonal (MW)": 0,
+    "Margen zonal (MW)": 0
+   },
+   "W04_SEC_BIN": {
+    "Capacidad zonal (MW)": 122,
+    "Margen zonal (MW)": 72
+   },
+   "W01_SEB_BIN": {
+    "Capacidad zonal (MW)": 15,
+    "Margen zonal (MW)": 15
+   },
+   "W02_SEB_BIN": {
+    "Capacidad zonal (MW)": 189,
+    "Margen zonal (MW)": 153
+   }
+  },
+  "Estático": {
+   "E01_SEB": {
+    "Capacidad zonal GEN (MW)": 765,
+    "Capacidad zonal ALM (MW)": 777,
+    "Margen zonal GEN (MW)": 547,
+    "Margen zonal ALM (MW)": 559
+   },
+   "E01_SEC": {
+    "Capacidad zonal GEN (MW)": 535,
+    "Capacidad zonal ALM (MW)": 550,
+    "Margen zonal GEN (MW)": 145,
+    "Margen zonal ALM (MW)": 159
+   },
+   "E02_SEB": {
+    "Capacidad zonal GEN (MW)": 405,
+    "Capacidad zonal ALM (MW)": 424,
+    "Margen zonal GEN (MW)": 405,
+    "Margen zonal ALM (MW)": 424
+   },
+   "E02_SEC": {
+    "Capacidad zonal GEN (MW)": 968,
+    "Capacidad zonal ALM (MW)": 1002,
+    "Margen zonal GEN (MW)": 968,
+    "Margen zonal ALM (MW)": 1002
+   },
+   "E03_SEC": {
+    "Capacidad zonal GEN (MW)": 733,
+    "Capacidad zonal ALM (MW)": 798,
+    "Margen zonal GEN (MW)": 733,
+    "Margen zonal ALM (MW)": 798
+   },
+   "E05_SEB": {
+    "Capacidad zonal GEN (MW)": 390,
+    "Capacidad zonal ALM (MW)": 433,
+    "Margen zonal GEN (MW)": 390,
+    "Margen zonal ALM (MW)": 433
+   },
+   "E05_SEC": {
+    "Capacidad zonal GEN (MW)": 251,
+    "Capacidad zonal ALM (MW)": 309,
+    "Margen zonal GEN (MW)": 234,
+    "Margen zonal ALM (MW)": 272
+   },
+   "E06_SEB": {
+    "Capacidad zonal GEN (MW)": 311,
+    "Capacidad zonal ALM (MW)": 421,
+    "Margen zonal GEN (MW)": 311,
+    "Margen zonal ALM (MW)": 421
+   },
+   "E06_SEC": {
+    "Capacidad zonal GEN (MW)": 824,
+    "Capacidad zonal ALM (MW)": 849,
+    "Margen zonal GEN (MW)": 824,
+    "Margen zonal ALM (MW)": 849
+   },
+   "E07_SEB": {
+    "Capacidad zonal GEN (MW)": 295,
+    "Capacidad zonal ALM (MW)": 305,
+    "Margen zonal GEN (MW)": 192,
+    "Margen zonal ALM (MW)": 192
+   },
+   "E07_SEC": {
+    "Capacidad zonal GEN (MW)": 131,
+    "Capacidad zonal ALM (MW)": 140,
+    "Margen zonal GEN (MW)": 68,
+    "Margen zonal ALM (MW)": 68
+   },
+   "E08_SEB": {
+    "Capacidad zonal GEN (MW)": 449,
+    "Capacidad zonal ALM (MW)": 521,
+    "Margen zonal GEN (MW)": 449,
+    "Margen zonal ALM (MW)": 521
+   },
+   "E08_SEC": {
+    "Capacidad zonal GEN (MW)": 269,
+    "Capacidad zonal ALM (MW)": 281,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 0
+   },
+   "E09_SEB": {
+    "Capacidad zonal GEN (MW)": 319,
+    "Capacidad zonal ALM (MW)": 392,
+    "Margen zonal GEN (MW)": 319,
+    "Margen zonal ALM (MW)": 392
+   },
+   "E09_SEC": {
+    "Capacidad zonal GEN (MW)": 102,
+    "Capacidad zonal ALM (MW)": 115,
+    "Margen zonal GEN (MW)": 67,
+    "Margen zonal ALM (MW)": 67
+   },
+   "E1_SEPE": {
+    "Capacidad zonal GEN (MW)": 1166,
+    "Capacidad zonal ALM (MW)": 1346,
+    "Margen zonal GEN (MW)": 640,
+    "Margen zonal ALM (MW)": 820
+   },
+   "E10_SEB": {
+    "Capacidad zonal GEN (MW)": 478,
+    "Capacidad zonal ALM (MW)": 547,
+    "Margen zonal GEN (MW)": 478,
+    "Margen zonal ALM (MW)": 547
+   },
+   "E10_SEC": {
+    "Capacidad zonal GEN (MW)": 254,
+    "Capacidad zonal ALM (MW)": 271,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 0
+   },
+   "E10_SEPE": {
+    "Capacidad zonal GEN (MW)": 1154,
+    "Capacidad zonal ALM (MW)": 1385,
+    "Margen zonal GEN (MW)": 841,
+    "Margen zonal ALM (MW)": 942
+   },
+   "E101_SEPE": {
+    "Capacidad zonal GEN (MW)": 1278,
+    "Capacidad zonal ALM (MW)": 1448,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 0
+   },
+   "E103_SEPE": {
+    "Capacidad zonal GEN (MW)": 1441,
+    "Capacidad zonal ALM (MW)": 1744,
+    "Margen zonal GEN (MW)": 1092,
+    "Margen zonal ALM (MW)": 1395
+   },
+   "E104_SEPE": {
+    "Capacidad zonal GEN (MW)": 1826,
+    "Capacidad zonal ALM (MW)": 2135,
+    "Margen zonal GEN (MW)": 1460,
+    "Margen zonal ALM (MW)": 1769
+   },
+   "E105_SEPE": {
+    "Capacidad zonal GEN (MW)": 1661,
+    "Capacidad zonal ALM (MW)": 1708,
+    "Margen zonal GEN (MW)": 1295,
+    "Margen zonal ALM (MW)": 1342
+   },
+   "E106_SEPE": {
+    "Capacidad zonal GEN (MW)": 1518,
+    "Capacidad zonal ALM (MW)": 1796,
+    "Margen zonal GEN (MW)": 1430,
+    "Margen zonal ALM (MW)": 1709
+   },
+   "E107_SEPE": {
+    "Capacidad zonal GEN (MW)": 1939,
+    "Capacidad zonal ALM (MW)": 2510,
+    "Margen zonal GEN (MW)": 769,
+    "Margen zonal ALM (MW)": 1339
+   },
+   "E108_SEPE": {
+    "Capacidad zonal GEN (MW)": 2346,
+    "Capacidad zonal ALM (MW)": 3013,
+    "Margen zonal GEN (MW)": 1955,
+    "Margen zonal ALM (MW)": 2622
+   },
+   "E109_SEPE": {
+    "Capacidad zonal GEN (MW)": 4808,
+    "Capacidad zonal ALM (MW)": 5971,
+    "Margen zonal GEN (MW)": 3776,
+    "Margen zonal ALM (MW)": 4938
+   },
+   "E11_SEB": {
+    "Capacidad zonal GEN (MW)": 295,
+    "Capacidad zonal ALM (MW)": 434,
+    "Margen zonal GEN (MW)": 255,
+    "Margen zonal ALM (MW)": 384
+   },
+   "E11_SEC": {
+    "Capacidad zonal GEN (MW)": 263,
+    "Capacidad zonal ALM (MW)": 305,
+    "Margen zonal GEN (MW)": 263,
+    "Margen zonal ALM (MW)": 305
+   },
+   "E110_SEPE": {
+    "Capacidad zonal GEN (MW)": 3237,
+    "Capacidad zonal ALM (MW)": 3250,
+    "Margen zonal GEN (MW)": 2977,
+    "Margen zonal ALM (MW)": 2990
+   },
+   "E111_SEPE": {
+    "Capacidad zonal GEN (MW)": 4946,
+    "Capacidad zonal ALM (MW)": 5562,
+    "Margen zonal GEN (MW)": 4240,
+    "Margen zonal ALM (MW)": 4856
+   },
+   "E112_SEPE": {
+    "Capacidad zonal GEN (MW)": 3146,
+    "Capacidad zonal ALM (MW)": 3784,
+    "Margen zonal GEN (MW)": 308,
+    "Margen zonal ALM (MW)": 946
+   },
+   "E113_SEPE": {
+    "Capacidad zonal GEN (MW)": 3675,
+    "Capacidad zonal ALM (MW)": 4810,
+    "Margen zonal GEN (MW)": 1990,
+    "Margen zonal ALM (MW)": 2685
+   },
+   "E115_SEPE": {
+    "Capacidad zonal GEN (MW)": 1832,
+    "Capacidad zonal ALM (MW)": 2080,
+    "Margen zonal GEN (MW)": 1680,
+    "Margen zonal ALM (MW)": 1928
+   },
+   "E116_SEPE": {
+    "Capacidad zonal GEN (MW)": 2185,
+    "Capacidad zonal ALM (MW)": 2759,
+    "Margen zonal GEN (MW)": 1718,
+    "Margen zonal ALM (MW)": 2293
+   },
+   "E117_SEPE": {
+    "Capacidad zonal GEN (MW)": 4231,
+    "Capacidad zonal ALM (MW)": 4594,
+    "Margen zonal GEN (MW)": 4231,
+    "Margen zonal ALM (MW)": 4594
+   },
+   "E118_SEPE": {
+    "Capacidad zonal GEN (MW)": 2507,
+    "Capacidad zonal ALM (MW)": 3088,
+    "Margen zonal GEN (MW)": 2170,
+    "Margen zonal ALM (MW)": 2751
+   },
+   "E119_SEPE": {
+    "Capacidad zonal GEN (MW)": 2528,
+    "Capacidad zonal ALM (MW)": 2807,
+    "Margen zonal GEN (MW)": 2490,
+    "Margen zonal ALM (MW)": 2769
+   },
+   "E12_SEB": {
+    "Capacidad zonal GEN (MW)": 356,
+    "Capacidad zonal ALM (MW)": 396,
+    "Margen zonal GEN (MW)": 65,
+    "Margen zonal ALM (MW)": 68
+   },
+   "E12_SEC": {
+    "Capacidad zonal GEN (MW)": 158,
+    "Capacidad zonal ALM (MW)": 207,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 33
+   },
+   "E12_SEPE": {
+    "Capacidad zonal GEN (MW)": 716,
+    "Capacidad zonal ALM (MW)": 829,
+    "Margen zonal GEN (MW)": 291,
+    "Margen zonal ALM (MW)": 405
+   },
+   "E120_SEPE": {
+    "Capacidad zonal GEN (MW)": 2828,
+    "Capacidad zonal ALM (MW)": 2916,
+    "Margen zonal GEN (MW)": 1557,
+    "Margen zonal ALM (MW)": 1646
+   },
+   "E121_SEPE": {
+    "Capacidad zonal GEN (MW)": 1364,
+    "Capacidad zonal ALM (MW)": 1572,
+    "Margen zonal GEN (MW)": 836,
+    "Margen zonal ALM (MW)": 1044
+   },
+   "E122_SEPE": {
+    "Capacidad zonal GEN (MW)": 2200,
+    "Capacidad zonal ALM (MW)": 2599,
+    "Margen zonal GEN (MW)": 1457,
+    "Margen zonal ALM (MW)": 1856
+   },
+   "E123_SEPE": {
+    "Capacidad zonal GEN (MW)": 1106,
+    "Capacidad zonal ALM (MW)": 1282,
+    "Margen zonal GEN (MW)": 1056,
+    "Margen zonal ALM (MW)": 1232
+   },
+   "E124_SEPE": {
+    "Capacidad zonal GEN (MW)": 1484,
+    "Capacidad zonal ALM (MW)": 1605,
+    "Margen zonal GEN (MW)": 1087,
+    "Margen zonal ALM (MW)": 1208
+   },
+   "E125_SEPE": {
+    "Capacidad zonal GEN (MW)": 766,
+    "Capacidad zonal ALM (MW)": 922,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 0
+   },
+   "E126_SEPE": {
+    "Capacidad zonal GEN (MW)": 1128,
+    "Capacidad zonal ALM (MW)": 1346,
+    "Margen zonal GEN (MW)": 220,
+    "Margen zonal ALM (MW)": 439
+   },
+   "E127_SEPE": {
+    "Capacidad zonal GEN (MW)": 1094,
+    "Capacidad zonal ALM (MW)": 1237,
+    "Margen zonal GEN (MW)": 382,
+    "Margen zonal ALM (MW)": 525
+   },
+   "E128_SEPE": {
+    "Capacidad zonal GEN (MW)": 1106,
+    "Capacidad zonal ALM (MW)": 3673,
+    "Margen zonal GEN (MW)": 301,
+    "Margen zonal ALM (MW)": 2868
+   },
+   "E129_SEPE": {
+    "Capacidad zonal GEN (MW)": 755,
+    "Capacidad zonal ALM (MW)": 831,
+    "Margen zonal GEN (MW)": 308,
+    "Margen zonal ALM (MW)": 384
+   },
+   "E13_SEB": {
+    "Capacidad zonal GEN (MW)": 293,
+    "Capacidad zonal ALM (MW)": 349,
+    "Margen zonal GEN (MW)": 293,
+    "Margen zonal ALM (MW)": 349
+   },
+   "E13_SEC": {
+    "Capacidad zonal GEN (MW)": 564,
+    "Capacidad zonal ALM (MW)": 574,
+    "Margen zonal GEN (MW)": 564,
+    "Margen zonal ALM (MW)": 574
+   },
+   "E13_SEPE": {
+    "Capacidad zonal GEN (MW)": 1092,
+    "Capacidad zonal ALM (MW)": 1237,
+    "Margen zonal GEN (MW)": 682,
+    "Margen zonal ALM (MW)": 828
+   },
+   "E130_SEPE": {
+    "Capacidad zonal GEN (MW)": 677,
+    "Capacidad zonal ALM (MW)": 764,
+    "Margen zonal GEN (MW)": 677,
+    "Margen zonal ALM (MW)": 764
+   },
+   "E131_SEPE": {
+    "Capacidad zonal GEN (MW)": 1678,
+    "Capacidad zonal ALM (MW)": 1755,
+    "Margen zonal GEN (MW)": 1678,
+    "Margen zonal ALM (MW)": 1755
+   },
+   "E133_SEPE": {
+    "Capacidad zonal GEN (MW)": 1114,
+    "Capacidad zonal ALM (MW)": 1402,
+    "Margen zonal GEN (MW)": 688,
+    "Margen zonal ALM (MW)": 976
+   },
+   "E134_SEPE": {
+    "Capacidad zonal GEN (MW)": 829,
+    "Capacidad zonal ALM (MW)": 1296,
+    "Margen zonal GEN (MW)": 112,
+    "Margen zonal ALM (MW)": 578
+   },
+   "E135_SEPE": {
+    "Capacidad zonal GEN (MW)": 1816,
+    "Capacidad zonal ALM (MW)": 2356,
+    "Margen zonal GEN (MW)": 314,
+    "Margen zonal ALM (MW)": 854
+   },
+   "E136_SEPE": {
+    "Capacidad zonal GEN (MW)": 5343,
+    "Capacidad zonal ALM (MW)": 5642,
+    "Margen zonal GEN (MW)": 4234,
+    "Margen zonal ALM (MW)": 4533
+   },
+   "E138_SEPE": {
+    "Capacidad zonal GEN (MW)": 3466,
+    "Capacidad zonal ALM (MW)": 4132,
+    "Margen zonal GEN (MW)": 2293,
+    "Margen zonal ALM (MW)": 2959
+   },
+   "E139_SEPE": {
+    "Capacidad zonal GEN (MW)": 1727,
+    "Capacidad zonal ALM (MW)": 2060,
+    "Margen zonal GEN (MW)": 1499,
+    "Margen zonal ALM (MW)": 1833
+   },
+   "E14_SEB": {
+    "Capacidad zonal GEN (MW)": 120,
+    "Capacidad zonal ALM (MW)": 127,
+    "Margen zonal GEN (MW)": 95,
+    "Margen zonal ALM (MW)": 97
+   },
+   "E14_SEC": {
+    "Capacidad zonal GEN (MW)": 403,
+    "Capacidad zonal ALM (MW)": 473,
+    "Margen zonal GEN (MW)": 6,
+    "Margen zonal ALM (MW)": 76
+   },
+   "E140_SEPE": {
+    "Capacidad zonal GEN (MW)": 1304,
+    "Capacidad zonal ALM (MW)": 1667,
+    "Margen zonal GEN (MW)": 1204,
+    "Margen zonal ALM (MW)": 1567
+   },
+   "E141_SEPE": {
+    "Capacidad zonal GEN (MW)": 1216,
+    "Capacidad zonal ALM (MW)": 1620,
+    "Margen zonal GEN (MW)": 982,
+    "Margen zonal ALM (MW)": 1386
+   },
+   "E142_SEPE": {
+    "Capacidad zonal GEN (MW)": 2387,
+    "Capacidad zonal ALM (MW)": 3173,
+    "Margen zonal GEN (MW)": 2387,
+    "Margen zonal ALM (MW)": 3173
+   },
+   "E143_SEPE": {
+    "Capacidad zonal GEN (MW)": 1688,
+    "Capacidad zonal ALM (MW)": 1973,
+    "Margen zonal GEN (MW)": 1609,
+    "Margen zonal ALM (MW)": 1895
+   },
+   "E144_SEPE": {
+    "Capacidad zonal GEN (MW)": 3785,
+    "Capacidad zonal ALM (MW)": 4323,
+    "Margen zonal GEN (MW)": 3785,
+    "Margen zonal ALM (MW)": 4323
+   },
+   "E145_SEPE": {
+    "Capacidad zonal GEN (MW)": 2624,
+    "Capacidad zonal ALM (MW)": 2874,
+    "Margen zonal GEN (MW)": 2115,
+    "Margen zonal ALM (MW)": 2266
+   },
+   "E146_SEPE_Bin": {
+    "Capacidad zonal GEN (MW)": 3161,
+    "Capacidad zonal ALM (MW)": 3263,
+    "Margen zonal GEN (MW)": 1833,
+    "Margen zonal ALM (MW)": 1860
+   },
+   "E148_SEPE_Bin": {
+    "Capacidad zonal GEN (MW)": 2461,
+    "Capacidad zonal ALM (MW)": 2678,
+    "Margen zonal GEN (MW)": 1943,
+    "Margen zonal ALM (MW)": 1950
+   },
+   "E15_SEB": {
+    "Capacidad zonal GEN (MW)": 100,
+    "Capacidad zonal ALM (MW)": 113,
+    "Margen zonal GEN (MW)": 53,
+    "Margen zonal ALM (MW)": 61
+   },
+   "E15_SEC": {
+    "Capacidad zonal GEN (MW)": 453,
+    "Capacidad zonal ALM (MW)": 471,
+    "Margen zonal GEN (MW)": 307,
+    "Margen zonal ALM (MW)": 325
+   },
+   "E15_SEPE": {
+    "Capacidad zonal GEN (MW)": 937,
+    "Capacidad zonal ALM (MW)": 1072,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 122
+   },
+   "E150_SEPE_Bin": {
+    "Capacidad zonal GEN (MW)": 1695,
+    "Capacidad zonal ALM (MW)": 1980,
+    "Margen zonal GEN (MW)": 1695,
+    "Margen zonal ALM (MW)": 1945
+   },
+   "E152_SEPE_Bin": {
+    "Capacidad zonal GEN (MW)": 694,
+    "Capacidad zonal ALM (MW)": 1195,
+    "Margen zonal GEN (MW)": 670,
+    "Margen zonal ALM (MW)": 1033
+   },
+   "E154_SEPE_Bin": {
+    "Capacidad zonal GEN (MW)": 811,
+    "Capacidad zonal ALM (MW)": 927,
+    "Margen zonal GEN (MW)": 759,
+    "Margen zonal ALM (MW)": 870
+   },
+   "E156_SEPE_Bin": {
+    "Capacidad zonal GEN (MW)": 1168,
+    "Capacidad zonal ALM (MW)": 1388,
+    "Margen zonal GEN (MW)": 1152,
+    "Margen zonal ALM (MW)": 1373
+   },
+   "E158_SEPE_Bin": {
+    "Capacidad zonal GEN (MW)": 1575,
+    "Capacidad zonal ALM (MW)": 1892,
+    "Margen zonal GEN (MW)": 1575,
+    "Margen zonal ALM (MW)": 1892
+   },
+   "E16_SEB": {
+    "Capacidad zonal GEN (MW)": 620,
+    "Capacidad zonal ALM (MW)": 623,
+    "Margen zonal GEN (MW)": 559,
+    "Margen zonal ALM (MW)": 559
+   },
+   "E16_SEC": {
+    "Capacidad zonal GEN (MW)": 745,
+    "Capacidad zonal ALM (MW)": 820,
+    "Margen zonal GEN (MW)": 744,
+    "Margen zonal ALM (MW)": 769
+   },
+   "E16_SEPE": {
+    "Capacidad zonal GEN (MW)": 1549,
+    "Capacidad zonal ALM (MW)": 1564,
+    "Margen zonal GEN (MW)": 240,
+    "Margen zonal ALM (MW)": 240
+   },
+   "E160_SEPE_Bin": {
+    "Capacidad zonal GEN (MW)": 621,
+    "Capacidad zonal ALM (MW)": 772,
+    "Margen zonal GEN (MW)": 236,
+    "Margen zonal ALM (MW)": 387
+   },
+   "E162_SEPE_Bin": {
+    "Capacidad zonal GEN (MW)": 1162,
+    "Capacidad zonal ALM (MW)": 1297,
+    "Margen zonal GEN (MW)": 1162,
+    "Margen zonal ALM (MW)": 1297
+   },
+   "E164_SEPE_Bin": {
+    "Capacidad zonal GEN (MW)": 1136,
+    "Capacidad zonal ALM (MW)": 1399,
+    "Margen zonal GEN (MW)": 845,
+    "Margen zonal ALM (MW)": 1108
+   },
+   "E168_SEPE_Bin": {
+    "Capacidad zonal GEN (MW)": 982,
+    "Capacidad zonal ALM (MW)": 1749,
+    "Margen zonal GEN (MW)": 964,
+    "Margen zonal ALM (MW)": 1731
+   },
+   "E169_SEPE_Bin": {
+    "Capacidad zonal GEN (MW)": 631,
+    "Capacidad zonal ALM (MW)": 960,
+    "Margen zonal GEN (MW)": 564,
+    "Margen zonal ALM (MW)": 819
+   },
+   "E17_SEB_BIN": {
+    "Capacidad zonal GEN (MW)": 109,
+    "Capacidad zonal ALM (MW)": 184,
+    "Margen zonal GEN (MW)": 65,
+    "Margen zonal ALM (MW)": 131
+   },
+   "E17_SEC": {
+    "Capacidad zonal GEN (MW)": 278,
+    "Capacidad zonal ALM (MW)": 340,
+    "Margen zonal GEN (MW)": 278,
+    "Margen zonal ALM (MW)": 340
+   },
+   "E17_SEPE": {
+    "Capacidad zonal GEN (MW)": 608,
+    "Capacidad zonal ALM (MW)": 1040,
+    "Margen zonal GEN (MW)": 91,
+    "Margen zonal ALM (MW)": 523
+   },
+   "E170_SEPE_Bin": {
+    "Capacidad zonal GEN (MW)": 2769,
+    "Capacidad zonal ALM (MW)": 3611,
+    "Margen zonal GEN (MW)": 362,
+    "Margen zonal ALM (MW)": 1204
+   },
+   "E173_SEPE": {
+    "Capacidad zonal GEN (MW)": 856,
+    "Capacidad zonal ALM (MW)": 1092,
+    "Margen zonal GEN (MW)": 220,
+    "Margen zonal ALM (MW)": 455
+   },
+   "E174_SEPE": {
+    "Capacidad zonal GEN (MW)": 1153,
+    "Capacidad zonal ALM (MW)": 1392,
+    "Margen zonal GEN (MW)": 968,
+    "Margen zonal ALM (MW)": 1192
+   },
+   "E175_SEPE": {
+    "Capacidad zonal GEN (MW)": 588,
+    "Capacidad zonal ALM (MW)": 596,
+    "Margen zonal GEN (MW)": 455,
+    "Margen zonal ALM (MW)": 462
+   },
+   "E176_SEPE": {
+    "Capacidad zonal GEN (MW)": 993,
+    "Capacidad zonal ALM (MW)": 1155,
+    "Margen zonal GEN (MW)": 428,
+    "Margen zonal ALM (MW)": 562
+   },
+   "E177_SEPE": {
+    "Capacidad zonal GEN (MW)": 301,
+    "Capacidad zonal ALM (MW)": 301,
+    "Margen zonal GEN (MW)": 24,
+    "Margen zonal ALM (MW)": 24
+   },
+   "E178_SEPE": {
+    "Capacidad zonal GEN (MW)": 1090,
+    "Capacidad zonal ALM (MW)": 1536,
+    "Margen zonal GEN (MW)": 211,
+    "Margen zonal ALM (MW)": 658
+   },
+   "E179_SEPE": {
+    "Capacidad zonal GEN (MW)": 1091,
+    "Capacidad zonal ALM (MW)": 1172,
+    "Margen zonal GEN (MW)": 512,
+    "Margen zonal ALM (MW)": 592
+   },
+   "E18_SEB_BIN": {
+    "Capacidad zonal GEN (MW)": 390,
+    "Capacidad zonal ALM (MW)": 390,
+    "Margen zonal GEN (MW)": 390,
+    "Margen zonal ALM (MW)": 390
+   },
+   "E18_SEC": {
+    "Capacidad zonal GEN (MW)": 220,
+    "Capacidad zonal ALM (MW)": 227,
+    "Margen zonal GEN (MW)": 168,
+    "Margen zonal ALM (MW)": 168
+   },
+   "E18_SEPE": {
+    "Capacidad zonal GEN (MW)": 973,
+    "Capacidad zonal ALM (MW)": 1077,
+    "Margen zonal GEN (MW)": 235,
+    "Margen zonal ALM (MW)": 340
+   },
+   "E180_SEPE": {
+    "Capacidad zonal GEN (MW)": 1697,
+    "Capacidad zonal ALM (MW)": 1942,
+    "Margen zonal GEN (MW)": 996,
+    "Margen zonal ALM (MW)": 1231
+   },
+   "E182_SEPE": {
+    "Capacidad zonal GEN (MW)": 2922,
+    "Capacidad zonal ALM (MW)": 3890,
+    "Margen zonal GEN (MW)": 1809,
+    "Margen zonal ALM (MW)": 2776
+   },
+   "E183_SEPE": {
+    "Capacidad zonal GEN (MW)": 929,
+    "Capacidad zonal ALM (MW)": 1002,
+    "Margen zonal GEN (MW)": 74,
+    "Margen zonal ALM (MW)": 74
+   },
+   "E184_SEPE": {
+    "Capacidad zonal GEN (MW)": 863,
+    "Capacidad zonal ALM (MW)": 880,
+    "Margen zonal GEN (MW)": 841,
+    "Margen zonal ALM (MW)": 841
+   },
+   "E185_SEPE": {
+    "Capacidad zonal GEN (MW)": 365,
+    "Capacidad zonal ALM (MW)": 438,
+    "Margen zonal GEN (MW)": 328,
+    "Margen zonal ALM (MW)": 377
+   },
+   "E186_SEPE": {
+    "Capacidad zonal GEN (MW)": 2436,
+    "Capacidad zonal ALM (MW)": 2636,
+    "Margen zonal GEN (MW)": 2182,
+    "Margen zonal ALM (MW)": 2382
+   },
+   "E187_SEPE": {
+    "Capacidad zonal GEN (MW)": 2257,
+    "Capacidad zonal ALM (MW)": 2899,
+    "Margen zonal GEN (MW)": 2141,
+    "Margen zonal ALM (MW)": 2783
+   },
+   "E188_SEPE": {
+    "Capacidad zonal GEN (MW)": 1290,
+    "Capacidad zonal ALM (MW)": 1456,
+    "Margen zonal GEN (MW)": 834,
+    "Margen zonal ALM (MW)": 1000
+   },
+   "E189_SEPE": {
+    "Capacidad zonal GEN (MW)": 932,
+    "Capacidad zonal ALM (MW)": 1094,
+    "Margen zonal GEN (MW)": 436,
+    "Margen zonal ALM (MW)": 598
+   },
+   "E19_SEC": {
+    "Capacidad zonal GEN (MW)": 244,
+    "Capacidad zonal ALM (MW)": 249,
+    "Margen zonal GEN (MW)": 170,
+    "Margen zonal ALM (MW)": 175
+   },
+   "E19_SEPE": {
+    "Capacidad zonal GEN (MW)": 430,
+    "Capacidad zonal ALM (MW)": 495,
+    "Margen zonal GEN (MW)": 65,
+    "Margen zonal ALM (MW)": 76
+   },
+   "E191_SEPE": {
+    "Capacidad zonal GEN (MW)": 920,
+    "Capacidad zonal ALM (MW)": 1785,
+    "Margen zonal GEN (MW)": 920,
+    "Margen zonal ALM (MW)": 1785
+   },
+   "E192_SEPE": {
+    "Capacidad zonal GEN (MW)": 502,
+    "Capacidad zonal ALM (MW)": 2075,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 1294
+   },
+   "E193_SEPE": {
+    "Capacidad zonal GEN (MW)": 952,
+    "Capacidad zonal ALM (MW)": 1137,
+    "Margen zonal GEN (MW)": 902,
+    "Margen zonal ALM (MW)": 1029
+   },
+   "E194_SEPE": {
+    "Capacidad zonal GEN (MW)": 1526,
+    "Capacidad zonal ALM (MW)": 1871,
+    "Margen zonal GEN (MW)": 838,
+    "Margen zonal ALM (MW)": 1083
+   },
+   "E195_SEPE": {
+    "Capacidad zonal GEN (MW)": 569,
+    "Capacidad zonal ALM (MW)": 836,
+    "Margen zonal GEN (MW)": 464,
+    "Margen zonal ALM (MW)": 731
+   },
+   "E196_SEPE": {
+    "Capacidad zonal GEN (MW)": 1368,
+    "Capacidad zonal ALM (MW)": 1630,
+    "Margen zonal GEN (MW)": 812,
+    "Margen zonal ALM (MW)": 1033
+   },
+   "E197_SEPE": {
+    "Capacidad zonal GEN (MW)": 758,
+    "Capacidad zonal ALM (MW)": 1474,
+    "Margen zonal GEN (MW)": 441,
+    "Margen zonal ALM (MW)": 1158
+   },
+   "E198_SEPE": {
+    "Capacidad zonal GEN (MW)": 386,
+    "Capacidad zonal ALM (MW)": 893,
+    "Margen zonal GEN (MW)": 384,
+    "Margen zonal ALM (MW)": 862
+   },
+   "E199_SEPE": {
+    "Capacidad zonal GEN (MW)": 1341,
+    "Capacidad zonal ALM (MW)": 1449,
+    "Margen zonal GEN (MW)": 1341,
+    "Margen zonal ALM (MW)": 1449
+   },
+   "E2_SEPE": {
+    "Capacidad zonal GEN (MW)": 1787,
+    "Capacidad zonal ALM (MW)": 2249,
+    "Margen zonal GEN (MW)": 1048,
+    "Margen zonal ALM (MW)": 1510
+   },
+   "E20_SEB": {
+    "Capacidad zonal GEN (MW)": 393,
+    "Capacidad zonal ALM (MW)": 405,
+    "Margen zonal GEN (MW)": 123,
+    "Margen zonal ALM (MW)": 123
+   },
+   "E20_SEC": {
+    "Capacidad zonal GEN (MW)": 253,
+    "Capacidad zonal ALM (MW)": 254,
+    "Margen zonal GEN (MW)": 234,
+    "Margen zonal ALM (MW)": 234
+   },
+   "E20_SEPE": {
+    "Capacidad zonal GEN (MW)": 827,
+    "Capacidad zonal ALM (MW)": 1143,
+    "Margen zonal GEN (MW)": 177,
+    "Margen zonal ALM (MW)": 492
+   },
+   "E200_SEPE": {
+    "Capacidad zonal GEN (MW)": 545,
+    "Capacidad zonal ALM (MW)": 600,
+    "Margen zonal GEN (MW)": 203,
+    "Margen zonal ALM (MW)": 209
+   },
+   "E201_SEPE": {
+    "Capacidad zonal GEN (MW)": 2725,
+    "Capacidad zonal ALM (MW)": 4503,
+    "Margen zonal GEN (MW)": 1877,
+    "Margen zonal ALM (MW)": 3655
+   },
+   "E202_SEPE": {
+    "Capacidad zonal GEN (MW)": 316,
+    "Capacidad zonal ALM (MW)": 1129,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 733
+   },
+   "E204_SEPE": {
+    "Capacidad zonal GEN (MW)": 120,
+    "Capacidad zonal ALM (MW)": 182,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 0
+   },
+   "E205_SEPE": {
+    "Capacidad zonal GEN (MW)": 278,
+    "Capacidad zonal ALM (MW)": 910,
+    "Margen zonal GEN (MW)": 15,
+    "Margen zonal ALM (MW)": 509
+   },
+   "E206_SEPE": {
+    "Capacidad zonal GEN (MW)": 1043,
+    "Capacidad zonal ALM (MW)": 1348,
+    "Margen zonal GEN (MW)": 1002,
+    "Margen zonal ALM (MW)": 1216
+   },
+   "E207_SEPE": {
+    "Capacidad zonal GEN (MW)": 1415,
+    "Capacidad zonal ALM (MW)": 1532,
+    "Margen zonal GEN (MW)": 1377,
+    "Margen zonal ALM (MW)": 1469
+   },
+   "E208_SEPE": {
+    "Capacidad zonal GEN (MW)": 336,
+    "Capacidad zonal ALM (MW)": 1149,
+    "Margen zonal GEN (MW)": 40,
+    "Margen zonal ALM (MW)": 745
+   },
+   "E209_SEPE": {
+    "Capacidad zonal GEN (MW)": 436,
+    "Capacidad zonal ALM (MW)": 563,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 0
+   },
+   "E21_SEB": {
+    "Capacidad zonal GEN (MW)": 106,
+    "Capacidad zonal ALM (MW)": 112,
+    "Margen zonal GEN (MW)": 1,
+    "Margen zonal ALM (MW)": 1
+   },
+   "E21_SEC": {
+    "Capacidad zonal GEN (MW)": 240,
+    "Capacidad zonal ALM (MW)": 243,
+    "Margen zonal GEN (MW)": 217,
+    "Margen zonal ALM (MW)": 219
+   },
+   "E21_SEPE": {
+    "Capacidad zonal GEN (MW)": 209,
+    "Capacidad zonal ALM (MW)": 609,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 199
+   },
+   "E210_SEPE": {
+    "Capacidad zonal GEN (MW)": 1424,
+    "Capacidad zonal ALM (MW)": 1610,
+    "Margen zonal GEN (MW)": 111,
+    "Margen zonal ALM (MW)": 277
+   },
+   "E211_SEPE": {
+    "Capacidad zonal GEN (MW)": 401,
+    "Capacidad zonal ALM (MW)": 556,
+    "Margen zonal GEN (MW)": 401,
+    "Margen zonal ALM (MW)": 556
+   },
+   "E212_SEPE": {
+    "Capacidad zonal GEN (MW)": 599,
+    "Capacidad zonal ALM (MW)": 708,
+    "Margen zonal GEN (MW)": 274,
+    "Margen zonal ALM (MW)": 384
+   },
+   "E213_SEPE": {
+    "Capacidad zonal GEN (MW)": 553,
+    "Capacidad zonal ALM (MW)": 656,
+    "Margen zonal GEN (MW)": 433,
+    "Margen zonal ALM (MW)": 433
+   },
+   "E214_SEPE": {
+    "Capacidad zonal GEN (MW)": 397,
+    "Capacidad zonal ALM (MW)": 818,
+    "Margen zonal GEN (MW)": 385,
+    "Margen zonal ALM (MW)": 806
+   },
+   "E215_SEPE": {
+    "Capacidad zonal GEN (MW)": 621,
+    "Capacidad zonal ALM (MW)": 875,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 4
+   },
+   "E216_SEPE": {
+    "Capacidad zonal GEN (MW)": 856,
+    "Capacidad zonal ALM (MW)": 931,
+    "Margen zonal GEN (MW)": 856,
+    "Margen zonal ALM (MW)": 931
+   },
+   "E218_SEPE": {
+    "Capacidad zonal GEN (MW)": 1130,
+    "Capacidad zonal ALM (MW)": 1338,
+    "Margen zonal GEN (MW)": 364,
+    "Margen zonal ALM (MW)": 364
+   },
+   "E22_SEC": {
+    "Capacidad zonal GEN (MW)": 210,
+    "Capacidad zonal ALM (MW)": 212,
+    "Margen zonal GEN (MW)": 162,
+    "Margen zonal ALM (MW)": 164
+   },
+   "E22_SEPE": {
+    "Capacidad zonal GEN (MW)": 966,
+    "Capacidad zonal ALM (MW)": 1004,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 0
+   },
+   "E227_SEPE": {
+    "Capacidad zonal GEN (MW)": 3317,
+    "Capacidad zonal ALM (MW)": 3967,
+    "Margen zonal GEN (MW)": 1449,
+    "Margen zonal ALM (MW)": 1851
+   },
+   "E228_SEPE": {
+    "Capacidad zonal GEN (MW)": 1325,
+    "Capacidad zonal ALM (MW)": 1438,
+    "Margen zonal GEN (MW)": 452,
+    "Margen zonal ALM (MW)": 452
+   },
+   "E23_SEB": {
+    "Capacidad zonal GEN (MW)": 106,
+    "Capacidad zonal ALM (MW)": 107,
+    "Margen zonal GEN (MW)": 106,
+    "Margen zonal ALM (MW)": 107
+   },
+   "E23_SEC": {
+    "Capacidad zonal GEN (MW)": 66,
+    "Capacidad zonal ALM (MW)": 91,
+    "Margen zonal GEN (MW)": 46,
+    "Margen zonal ALM (MW)": 70
+   },
+   "E23_SEPE": {
+    "Capacidad zonal GEN (MW)": 654,
+    "Capacidad zonal ALM (MW)": 712,
+    "Margen zonal GEN (MW)": 39,
+    "Margen zonal ALM (MW)": 47
+   },
+   "E24_SEC": {
+    "Capacidad zonal GEN (MW)": 202,
+    "Capacidad zonal ALM (MW)": 210,
+    "Margen zonal GEN (MW)": 178,
+    "Margen zonal ALM (MW)": 185
+   },
+   "E240_SEPE": {
+    "Capacidad zonal GEN (MW)": 1112,
+    "Capacidad zonal ALM (MW)": 1370,
+    "Margen zonal GEN (MW)": 1020,
+    "Margen zonal ALM (MW)": 1278
+   },
+   "E244_SEPE": {
+    "Capacidad zonal GEN (MW)": 1401,
+    "Capacidad zonal ALM (MW)": 1460,
+    "Margen zonal GEN (MW)": 364,
+    "Margen zonal ALM (MW)": 364
+   },
+   "E245_SEPE": {
+    "Capacidad zonal GEN (MW)": 592,
+    "Capacidad zonal ALM (MW)": 809,
+    "Margen zonal GEN (MW)": 254,
+    "Margen zonal ALM (MW)": 461
+   },
+   "E25_SEC": {
+    "Capacidad zonal GEN (MW)": 282,
+    "Capacidad zonal ALM (MW)": 296,
+    "Margen zonal GEN (MW)": 233,
+    "Margen zonal ALM (MW)": 247
+   },
+   "E251_SEPE": {
+    "Capacidad zonal GEN (MW)": 983,
+    "Capacidad zonal ALM (MW)": 1612,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 22
+   },
+   "E256_SEPE": {
+    "Capacidad zonal GEN (MW)": 250,
+    "Capacidad zonal ALM (MW)": 373,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 0
+   },
+   "E259_SEPE": {
+    "Capacidad zonal GEN (MW)": 1982,
+    "Capacidad zonal ALM (MW)": 2686,
+    "Margen zonal GEN (MW)": 1575,
+    "Margen zonal ALM (MW)": 2279
+   },
+   "E26_SEC": {
+    "Capacidad zonal GEN (MW)": 97,
+    "Capacidad zonal ALM (MW)": 108,
+    "Margen zonal GEN (MW)": 82,
+    "Margen zonal ALM (MW)": 83
+   },
+   "E26_SEPE": {
+    "Capacidad zonal GEN (MW)": 254,
+    "Capacidad zonal ALM (MW)": 396,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 0
+   },
+   "E260_SEPE": {
+    "Capacidad zonal GEN (MW)": 1713,
+    "Capacidad zonal ALM (MW)": 1963,
+    "Margen zonal GEN (MW)": 1174,
+    "Margen zonal ALM (MW)": 1424
+   },
+   "E261_SEPE": {
+    "Capacidad zonal GEN (MW)": 2324,
+    "Capacidad zonal ALM (MW)": 2325,
+    "Margen zonal GEN (MW)": 2324,
+    "Margen zonal ALM (MW)": 2325
+   },
+   "E262_SEPE": {
+    "Capacidad zonal GEN (MW)": 1339,
+    "Capacidad zonal ALM (MW)": 2382,
+    "Margen zonal GEN (MW)": 1339,
+    "Margen zonal ALM (MW)": 2382
+   },
+   "E263_SEPE": {
+    "Capacidad zonal GEN (MW)": 4209,
+    "Capacidad zonal ALM (MW)": 4520,
+    "Margen zonal GEN (MW)": 3480,
+    "Margen zonal ALM (MW)": 3791
+   },
+   "E264_SEPE": {
+    "Capacidad zonal GEN (MW)": 1886,
+    "Capacidad zonal ALM (MW)": 2819,
+    "Margen zonal GEN (MW)": 1886,
+    "Margen zonal ALM (MW)": 2819
+   },
+   "E266_SEPE": {
+    "Capacidad zonal GEN (MW)": 1584,
+    "Capacidad zonal ALM (MW)": 2015,
+    "Margen zonal GEN (MW)": 1506,
+    "Margen zonal ALM (MW)": 1937
+   },
+   "E267_SEPE": {
+    "Capacidad zonal GEN (MW)": 1491,
+    "Capacidad zonal ALM (MW)": 1523,
+    "Margen zonal GEN (MW)": 855,
+    "Margen zonal ALM (MW)": 886
+   },
+   "E268_SEPE": {
+    "Capacidad zonal GEN (MW)": 2406,
+    "Capacidad zonal ALM (MW)": 2408,
+    "Margen zonal GEN (MW)": 2049,
+    "Margen zonal ALM (MW)": 2051
+   },
+   "E269_SEPE": {
+    "Capacidad zonal GEN (MW)": 3043,
+    "Capacidad zonal ALM (MW)": 3193,
+    "Margen zonal GEN (MW)": 2399,
+    "Margen zonal ALM (MW)": 2549
+   },
+   "E27_SEB": {
+    "Capacidad zonal GEN (MW)": 95,
+    "Capacidad zonal ALM (MW)": 97,
+    "Margen zonal GEN (MW)": 88,
+    "Margen zonal ALM (MW)": 88
+   },
+   "E27_SEC": {
+    "Capacidad zonal GEN (MW)": 128,
+    "Capacidad zonal ALM (MW)": 140,
+    "Margen zonal GEN (MW)": 116,
+    "Margen zonal ALM (MW)": 116
+   },
+   "E27_SEPE": {
+    "Capacidad zonal GEN (MW)": 998,
+    "Capacidad zonal ALM (MW)": 1051,
+    "Margen zonal GEN (MW)": 787,
+    "Margen zonal ALM (MW)": 810
+   },
+   "E270_SEPE": {
+    "Capacidad zonal GEN (MW)": 759,
+    "Capacidad zonal ALM (MW)": 1071,
+    "Margen zonal GEN (MW)": 532,
+    "Margen zonal ALM (MW)": 843
+   },
+   "E271_SEPE": {
+    "Capacidad zonal GEN (MW)": 1320,
+    "Capacidad zonal ALM (MW)": 1322,
+    "Margen zonal GEN (MW)": 1046,
+    "Margen zonal ALM (MW)": 1046
+   },
+   "E272_SEPE": {
+    "Capacidad zonal GEN (MW)": 2501,
+    "Capacidad zonal ALM (MW)": 3114,
+    "Margen zonal GEN (MW)": 2501,
+    "Margen zonal ALM (MW)": 3114
+   },
+   "E273_SEPE": {
+    "Capacidad zonal GEN (MW)": 1852,
+    "Capacidad zonal ALM (MW)": 2233,
+    "Margen zonal GEN (MW)": 1852,
+    "Margen zonal ALM (MW)": 2233
+   },
+   "E274_SEPE": {
+    "Capacidad zonal GEN (MW)": 1721,
+    "Capacidad zonal ALM (MW)": 2043,
+    "Margen zonal GEN (MW)": 1147,
+    "Margen zonal ALM (MW)": 1469
+   },
+   "E275_SEPE": {
+    "Capacidad zonal GEN (MW)": 638,
+    "Capacidad zonal ALM (MW)": 643,
+    "Margen zonal GEN (MW)": 295,
+    "Margen zonal ALM (MW)": 301
+   },
+   "E276_SEPE": {
+    "Capacidad zonal GEN (MW)": 1665,
+    "Capacidad zonal ALM (MW)": 1813,
+    "Margen zonal GEN (MW)": 1221,
+    "Margen zonal ALM (MW)": 1370
+   },
+   "E277_SEPE": {
+    "Capacidad zonal GEN (MW)": 2263,
+    "Capacidad zonal ALM (MW)": 2348,
+    "Margen zonal GEN (MW)": 1408,
+    "Margen zonal ALM (MW)": 1408
+   },
+   "E279_SEPE": {
+    "Capacidad zonal GEN (MW)": 466,
+    "Capacidad zonal ALM (MW)": 679,
+    "Margen zonal GEN (MW)": 370,
+    "Margen zonal ALM (MW)": 557
+   },
+   "E28_SEB": {
+    "Capacidad zonal GEN (MW)": 234,
+    "Capacidad zonal ALM (MW)": 252,
+    "Margen zonal GEN (MW)": 223,
+    "Margen zonal ALM (MW)": 234
+   },
+   "E28_SEC": {
+    "Capacidad zonal GEN (MW)": 216,
+    "Capacidad zonal ALM (MW)": 239,
+    "Margen zonal GEN (MW)": 216,
+    "Margen zonal ALM (MW)": 239
+   },
+   "E280_SEPE": {
+    "Capacidad zonal GEN (MW)": 709,
+    "Capacidad zonal ALM (MW)": 749,
+    "Margen zonal GEN (MW)": 27,
+    "Margen zonal ALM (MW)": 27
+   },
+   "E281_SEPE": {
+    "Capacidad zonal GEN (MW)": 2749,
+    "Capacidad zonal ALM (MW)": 4899,
+    "Margen zonal GEN (MW)": 2730,
+    "Margen zonal ALM (MW)": 4837
+   },
+   "E282_SEPE": {
+    "Capacidad zonal GEN (MW)": 361,
+    "Capacidad zonal ALM (MW)": 481,
+    "Margen zonal GEN (MW)": 361,
+    "Margen zonal ALM (MW)": 481
+   },
+   "E283_SEPE": {
+    "Capacidad zonal GEN (MW)": 1401,
+    "Capacidad zonal ALM (MW)": 2178,
+    "Margen zonal GEN (MW)": 1192,
+    "Margen zonal ALM (MW)": 1969
+   },
+   "E284_SEPE": {
+    "Capacidad zonal GEN (MW)": 2247,
+    "Capacidad zonal ALM (MW)": 3232,
+    "Margen zonal GEN (MW)": 1676,
+    "Margen zonal ALM (MW)": 2661
+   },
+   "E285_SEPE": {
+    "Capacidad zonal GEN (MW)": 382,
+    "Capacidad zonal ALM (MW)": 599,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 11
+   },
+   "E287_SEPE": {
+    "Capacidad zonal GEN (MW)": 1603,
+    "Capacidad zonal ALM (MW)": 1726,
+    "Margen zonal GEN (MW)": 1603,
+    "Margen zonal ALM (MW)": 1726
+   },
+   "E289_SEPE": {
+    "Capacidad zonal GEN (MW)": 763,
+    "Capacidad zonal ALM (MW)": 1449,
+    "Margen zonal GEN (MW)": 763,
+    "Margen zonal ALM (MW)": 1449
+   },
+   "E29_SEC": {
+    "Capacidad zonal GEN (MW)": 87,
+    "Capacidad zonal ALM (MW)": 89,
+    "Margen zonal GEN (MW)": 52,
+    "Margen zonal ALM (MW)": 54
+   },
+   "E29_SEPE": {
+    "Capacidad zonal GEN (MW)": 588,
+    "Capacidad zonal ALM (MW)": 646,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 36
+   },
+   "E290_SEPE": {
+    "Capacidad zonal GEN (MW)": 151,
+    "Capacidad zonal ALM (MW)": 1273,
+    "Margen zonal GEN (MW)": 129,
+    "Margen zonal ALM (MW)": 1251
+   },
+   "E291_SEPE": {
+    "Capacidad zonal GEN (MW)": 1300,
+    "Capacidad zonal ALM (MW)": 1605,
+    "Margen zonal GEN (MW)": 568,
+    "Margen zonal ALM (MW)": 873
+   },
+   "E292_SEPE": {
+    "Capacidad zonal GEN (MW)": 722,
+    "Capacidad zonal ALM (MW)": 1059,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 210
+   },
+   "E293_SEPE_Bin": {
+    "Capacidad zonal GEN (MW)": 2651,
+    "Capacidad zonal ALM (MW)": 2952,
+    "Margen zonal GEN (MW)": 1935,
+    "Margen zonal ALM (MW)": 2236
+   },
+   "E294_SEPE_Bin": {
+    "Capacidad zonal GEN (MW)": 3514,
+    "Capacidad zonal ALM (MW)": 3869,
+    "Margen zonal GEN (MW)": 2100,
+    "Margen zonal ALM (MW)": 2455
+   },
+   "E296_SEPE_Bin": {
+    "Capacidad zonal GEN (MW)": 1152,
+    "Capacidad zonal ALM (MW)": 1305,
+    "Margen zonal GEN (MW)": 1134,
+    "Margen zonal ALM (MW)": 1287
+   },
+   "E297_SEPE": {
+    "Capacidad zonal GEN (MW)": 668,
+    "Capacidad zonal ALM (MW)": 740,
+    "Margen zonal GEN (MW)": 227,
+    "Margen zonal ALM (MW)": 300
+   },
+   "E298_SEPE": {
+    "Capacidad zonal GEN (MW)": 955,
+    "Capacidad zonal ALM (MW)": 1050,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 0
+   },
+   "E299_SEPE": {
+    "Capacidad zonal GEN (MW)": 1702,
+    "Capacidad zonal ALM (MW)": 2007,
+    "Margen zonal GEN (MW)": 1297,
+    "Margen zonal ALM (MW)": 1602
+   },
+   "E3_SEPE": {
+    "Capacidad zonal GEN (MW)": 650,
+    "Capacidad zonal ALM (MW)": 717,
+    "Margen zonal GEN (MW)": 70,
+    "Margen zonal ALM (MW)": 89
+   },
+   "E30_SEB": {
+    "Capacidad zonal GEN (MW)": 118,
+    "Capacidad zonal ALM (MW)": 127,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 0
+   },
+   "E30_SEPE": {
+    "Capacidad zonal GEN (MW)": 368,
+    "Capacidad zonal ALM (MW)": 431,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 0
+   },
+   "E304_SEPE": {
+    "Capacidad zonal GEN (MW)": 2857,
+    "Capacidad zonal ALM (MW)": 3037,
+    "Margen zonal GEN (MW)": 2516,
+    "Margen zonal ALM (MW)": 2696
+   },
+   "E306_SEPE": {
+    "Capacidad zonal GEN (MW)": 3145,
+    "Capacidad zonal ALM (MW)": 4546,
+    "Margen zonal GEN (MW)": 2966,
+    "Margen zonal ALM (MW)": 4368
+   },
+   "E307_SEPE": {
+    "Capacidad zonal GEN (MW)": 897,
+    "Capacidad zonal ALM (MW)": 1076,
+    "Margen zonal GEN (MW)": 394,
+    "Margen zonal ALM (MW)": 573
+   },
+   "E308_SEPE": {
+    "Capacidad zonal GEN (MW)": 2564,
+    "Capacidad zonal ALM (MW)": 2871,
+    "Margen zonal GEN (MW)": 1703,
+    "Margen zonal ALM (MW)": 2010
+   },
+   "E31_SEPE": {
+    "Capacidad zonal GEN (MW)": 643,
+    "Capacidad zonal ALM (MW)": 727,
+    "Margen zonal GEN (MW)": 643,
+    "Margen zonal ALM (MW)": 727
+   },
+   "E314_SEPE": {
+    "Capacidad zonal GEN (MW)": 814,
+    "Capacidad zonal ALM (MW)": 913,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 0
+   },
+   "E315_SEPE": {
+    "Capacidad zonal GEN (MW)": 3643,
+    "Capacidad zonal ALM (MW)": 4116,
+    "Margen zonal GEN (MW)": 2713,
+    "Margen zonal ALM (MW)": 3186
+   },
+   "E318_SEPE": {
+    "Capacidad zonal GEN (MW)": 951,
+    "Capacidad zonal ALM (MW)": 1049,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 0
+   },
+   "E32_SEC_BIN": {
+    "Capacidad zonal GEN (MW)": 761,
+    "Capacidad zonal ALM (MW)": 761,
+    "Margen zonal GEN (MW)": 375,
+    "Margen zonal ALM (MW)": 375
+   },
+   "E32_SEPE": {
+    "Capacidad zonal GEN (MW)": 707,
+    "Capacidad zonal ALM (MW)": 719,
+    "Margen zonal GEN (MW)": 707,
+    "Margen zonal ALM (MW)": 719
+   },
+   "E320_SEPE": {
+    "Capacidad zonal GEN (MW)": 709,
+    "Capacidad zonal ALM (MW)": 858,
+    "Margen zonal GEN (MW)": 384,
+    "Margen zonal ALM (MW)": 384
+   },
+   "E321_SEPE": {
+    "Capacidad zonal GEN (MW)": 1844,
+    "Capacidad zonal ALM (MW)": 1882,
+    "Margen zonal GEN (MW)": 1492,
+    "Margen zonal ALM (MW)": 1492
+   },
+   "E322_SEPE": {
+    "Capacidad zonal GEN (MW)": 3968,
+    "Capacidad zonal ALM (MW)": 3978,
+    "Margen zonal GEN (MW)": 3104,
+    "Margen zonal ALM (MW)": 3114
+   },
+   "E323_SEPE": {
+    "Capacidad zonal GEN (MW)": 862,
+    "Capacidad zonal ALM (MW)": 1191,
+    "Margen zonal GEN (MW)": 49,
+    "Margen zonal ALM (MW)": 378
+   },
+   "E326_SEPE": {
+    "Capacidad zonal GEN (MW)": 585,
+    "Capacidad zonal ALM (MW)": 758,
+    "Margen zonal GEN (MW)": 117,
+    "Margen zonal ALM (MW)": 289
+   },
+   "E327_SEPE": {
+    "Capacidad zonal GEN (MW)": 4950,
+    "Capacidad zonal ALM (MW)": 6157,
+    "Margen zonal GEN (MW)": 3600,
+    "Margen zonal ALM (MW)": 4807
+   },
+   "E328_SEPE": {
+    "Capacidad zonal GEN (MW)": 1166,
+    "Capacidad zonal ALM (MW)": 1342,
+    "Margen zonal GEN (MW)": 618,
+    "Margen zonal ALM (MW)": 788
+   },
+   "E329_SEPE": {
+    "Capacidad zonal GEN (MW)": 1584,
+    "Capacidad zonal ALM (MW)": 1727,
+    "Margen zonal GEN (MW)": 1584,
+    "Margen zonal ALM (MW)": 1727
+   },
+   "E33_SEC_BIN": {
+    "Capacidad zonal GEN (MW)": 780,
+    "Capacidad zonal ALM (MW)": 780,
+    "Margen zonal GEN (MW)": 389,
+    "Margen zonal ALM (MW)": 389
+   },
+   "E330_SEPE": {
+    "Capacidad zonal GEN (MW)": 887,
+    "Capacidad zonal ALM (MW)": 935,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 0
+   },
+   "E331_SEPE": {
+    "Capacidad zonal GEN (MW)": 5393,
+    "Capacidad zonal ALM (MW)": 7160,
+    "Margen zonal GEN (MW)": 4358,
+    "Margen zonal ALM (MW)": 6125
+   },
+   "E333_SEPE": {
+    "Capacidad zonal GEN (MW)": 1215,
+    "Capacidad zonal ALM (MW)": 1241,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 0
+   },
+   "E335_SEPE": {
+    "Capacidad zonal GEN (MW)": 1059,
+    "Capacidad zonal ALM (MW)": 1206,
+    "Margen zonal GEN (MW)": 899,
+    "Margen zonal ALM (MW)": 1046
+   },
+   "E337_SEPE": {
+    "Capacidad zonal GEN (MW)": 3688,
+    "Capacidad zonal ALM (MW)": 4603,
+    "Margen zonal GEN (MW)": 2163,
+    "Margen zonal ALM (MW)": 2934
+   },
+   "E338_SEPE": {
+    "Capacidad zonal GEN (MW)": 998,
+    "Capacidad zonal ALM (MW)": 1091,
+    "Margen zonal GEN (MW)": 324,
+    "Margen zonal ALM (MW)": 417
+   },
+   "E339_SEPE": {
+    "Capacidad zonal GEN (MW)": 3921,
+    "Capacidad zonal ALM (MW)": 4472,
+    "Margen zonal GEN (MW)": 1208,
+    "Margen zonal ALM (MW)": 1208
+   },
+   "E34_SEC_BIN": {
+    "Capacidad zonal GEN (MW)": 428,
+    "Capacidad zonal ALM (MW)": 469,
+    "Margen zonal GEN (MW)": 428,
+    "Margen zonal ALM (MW)": 469
+   },
+   "E34_SEPE": {
+    "Capacidad zonal GEN (MW)": 1239,
+    "Capacidad zonal ALM (MW)": 1931,
+    "Margen zonal GEN (MW)": 547,
+    "Margen zonal ALM (MW)": 1225
+   },
+   "E340_SEPE": {
+    "Capacidad zonal GEN (MW)": 1447,
+    "Capacidad zonal ALM (MW)": 1857,
+    "Margen zonal GEN (MW)": 1131,
+    "Margen zonal ALM (MW)": 1223
+   },
+   "E341_SEPE": {
+    "Capacidad zonal GEN (MW)": 550,
+    "Capacidad zonal ALM (MW)": 607,
+    "Margen zonal GEN (MW)": 448,
+    "Margen zonal ALM (MW)": 448
+   },
+   "E344_SEPE": {
+    "Capacidad zonal GEN (MW)": 745,
+    "Capacidad zonal ALM (MW)": 771,
+    "Margen zonal GEN (MW)": 487,
+    "Margen zonal ALM (MW)": 493
+   },
+   "E345_SEPE": {
+    "Capacidad zonal GEN (MW)": 754,
+    "Capacidad zonal ALM (MW)": 874,
+    "Margen zonal GEN (MW)": 465,
+    "Margen zonal ALM (MW)": 584
+   },
+   "E346_SEPE": {
+    "Capacidad zonal GEN (MW)": 744,
+    "Capacidad zonal ALM (MW)": 833,
+    "Margen zonal GEN (MW)": 127,
+    "Margen zonal ALM (MW)": 216
+   },
+   "E347_SEPE": {
+    "Capacidad zonal GEN (MW)": 109,
+    "Capacidad zonal ALM (MW)": 999,
+    "Margen zonal GEN (MW)": 109,
+    "Margen zonal ALM (MW)": 999
+   },
+   "E348_SEPE": {
+    "Capacidad zonal GEN (MW)": 845,
+    "Capacidad zonal ALM (MW)": 889,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 4
+   },
+   "E349_SEPE": {
+    "Capacidad zonal GEN (MW)": 271,
+    "Capacidad zonal ALM (MW)": 271,
+    "Margen zonal GEN (MW)": 271,
+    "Margen zonal ALM (MW)": 271
+   },
+   "E35_SEC_BIN": {
+    "Capacidad zonal GEN (MW)": 304,
+    "Capacidad zonal ALM (MW)": 340,
+    "Margen zonal GEN (MW)": 288,
+    "Margen zonal ALM (MW)": 288
+   },
+   "E35_SEPE": {
+    "Capacidad zonal GEN (MW)": 627,
+    "Capacidad zonal ALM (MW)": 754,
+    "Margen zonal GEN (MW)": 382,
+    "Margen zonal ALM (MW)": 382
+   },
+   "E350_SEPE": {
+    "Capacidad zonal GEN (MW)": 1417,
+    "Capacidad zonal ALM (MW)": 1492,
+    "Margen zonal GEN (MW)": 442,
+    "Margen zonal ALM (MW)": 517
+   },
+   "E351_SEPE": {
+    "Capacidad zonal GEN (MW)": 1113,
+    "Capacidad zonal ALM (MW)": 1312,
+    "Margen zonal GEN (MW)": 612,
+    "Margen zonal ALM (MW)": 811
+   },
+   "E352_SEPE": {
+    "Capacidad zonal GEN (MW)": 1021,
+    "Capacidad zonal ALM (MW)": 1036,
+    "Margen zonal GEN (MW)": 1021,
+    "Margen zonal ALM (MW)": 1036
+   },
+   "E353_SEPE": {
+    "Capacidad zonal GEN (MW)": 1998,
+    "Capacidad zonal ALM (MW)": 2663,
+    "Margen zonal GEN (MW)": 1155,
+    "Margen zonal ALM (MW)": 1819
+   },
+   "E354_SEPE": {
+    "Capacidad zonal GEN (MW)": 1496,
+    "Capacidad zonal ALM (MW)": 1673,
+    "Margen zonal GEN (MW)": 1496,
+    "Margen zonal ALM (MW)": 1673
+   },
+   "E355_SEPE": {
+    "Capacidad zonal GEN (MW)": 1685,
+    "Capacidad zonal ALM (MW)": 1746,
+    "Margen zonal GEN (MW)": 1685,
+    "Margen zonal ALM (MW)": 1746
+   },
+   "E356_SEPE": {
+    "Capacidad zonal GEN (MW)": 2513,
+    "Capacidad zonal ALM (MW)": 3093,
+    "Margen zonal GEN (MW)": 2513,
+    "Margen zonal ALM (MW)": 3093
+   },
+   "E357_SEPE": {
+    "Capacidad zonal GEN (MW)": 2606,
+    "Capacidad zonal ALM (MW)": 2699,
+    "Margen zonal GEN (MW)": 2606,
+    "Margen zonal ALM (MW)": 2699
+   },
+   "E358_SEPE": {
+    "Capacidad zonal GEN (MW)": 1805,
+    "Capacidad zonal ALM (MW)": 2476,
+    "Margen zonal GEN (MW)": 1740,
+    "Margen zonal ALM (MW)": 2411
+   },
+   "E36_SEPE": {
+    "Capacidad zonal GEN (MW)": 1326,
+    "Capacidad zonal ALM (MW)": 1367,
+    "Margen zonal GEN (MW)": 1326,
+    "Margen zonal ALM (MW)": 1367
+   },
+   "E37_SEPE": {
+    "Capacidad zonal GEN (MW)": 1788,
+    "Capacidad zonal ALM (MW)": 2093,
+    "Margen zonal GEN (MW)": 1236,
+    "Margen zonal ALM (MW)": 1541
+   },
+   "E38_SEPE": {
+    "Capacidad zonal GEN (MW)": 1258,
+    "Capacidad zonal ALM (MW)": 1383,
+    "Margen zonal GEN (MW)": 1253,
+    "Margen zonal ALM (MW)": 1378
+   },
+   "E39_SEPE": {
+    "Capacidad zonal GEN (MW)": 2076,
+    "Capacidad zonal ALM (MW)": 2145,
+    "Margen zonal GEN (MW)": 1574,
+    "Margen zonal ALM (MW)": 1642
+   },
+   "E4_SEPE": {
+    "Capacidad zonal GEN (MW)": 282,
+    "Capacidad zonal ALM (MW)": 675,
+    "Margen zonal GEN (MW)": 227,
+    "Margen zonal ALM (MW)": 615
+   },
+   "E40_SEPE": {
+    "Capacidad zonal GEN (MW)": 1354,
+    "Capacidad zonal ALM (MW)": 1424,
+    "Margen zonal GEN (MW)": 1063,
+    "Margen zonal ALM (MW)": 1063
+   },
+   "E42_SEPE": {
+    "Capacidad zonal GEN (MW)": 935,
+    "Capacidad zonal ALM (MW)": 1042,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 0
+   },
+   "E43_SEPE": {
+    "Capacidad zonal GEN (MW)": 423,
+    "Capacidad zonal ALM (MW)": 504,
+    "Margen zonal GEN (MW)": 0,
+    "Margen zonal ALM (MW)": 79
+   },
+   "E44_SEPE": {
+    "Capacidad zonal GEN (MW)": 1100,
+    "Capacidad zonal ALM (MW)": 1310,
+    "Margen zonal GEN (MW)": 453,
+    "Margen zonal ALM (MW)": 454
+   },
+   "E45_SEPE": {
+    "Capacidad zonal GEN (MW)": 1688,
+    "Capacidad zonal ALM (MW)": 1833,
+    "Margen zonal GEN (MW)": 1245,
+    "Margen zonal ALM (MW)": 1389
+   },
+   "E46_SEPE": {
+    "Capacidad zonal GEN (MW)": 2059,
+    "Capacidad zonal ALM (MW)": 2355,
+    "Margen zonal GEN (MW)": 998,
+    "Margen zonal ALM (MW)": 1295
+   },
+   "E47_SEPE": {
+    "Capacidad zonal GEN (MW)": 3234,
+    "Capacidad zonal ALM (MW)": 3291,
+    "Margen zonal GEN (MW)": 1986,
+    "Margen zonal ALM (MW)": 1986
+   },
+   "E48_SEPE": {
+    "Capacidad zonal GEN (MW)": 2710,
+    "Capacidad zonal ALM (MW)": 2997,
+    "Margen zonal GEN (MW)": 722,
+    "Margen zonal ALM (MW)": 1009
+   },
+   "E49_SEPE": {
+    "Capacidad zonal GEN (MW)": 3230,
+    "Capacidad zonal ALM (MW)": 3392,
+    "Margen zonal GEN (MW)": 2583,
+    "Margen zonal ALM (MW)": 2583
+   },
+   "E5_SEPE": {
+    "Capacidad zonal GEN (MW)": 1788,
+    "Capacidad zonal ALM (MW)": 1833,
+    "Margen zonal GEN (MW)": 1285,
+    "Margen zonal ALM (MW)": 1285
+   },
+   "E50_SEPE": {
+    "Capacidad zonal GEN (MW)": 2396,
+    "Capacidad zonal ALM (MW)": 2575,
+    "Margen zonal GEN (MW)": 1349,
+    "Margen zonal ALM (MW)": 1528
+   },
+   "E51_SEPE": {
+    "Capacidad zonal GEN (MW)": 2200,
+    "Capacidad zonal ALM (MW)": 3002,
+    "Margen zonal GEN (MW)": 481,
+    "Margen zonal ALM (MW)": 1283
+   },
+   "E52_SEPE": {
+    "Capacidad zonal GEN (MW)": 3818,
+    "Capacidad zonal ALM (MW)": 4039,
+    "Margen zonal GEN (MW)": 2964,
+    "Margen zonal ALM (MW)": 3156
+   },
+   "E53_SEPE": {
+    "Capacidad zonal GEN (MW)": 3948,
+    "Capacidad zonal ALM (MW)": 4073,
+    "Margen zonal GEN (MW)": 3045,
+    "Margen zonal ALM (MW)": 3170
+   },
+   "E54_SEPE": {
+    "Capacidad zonal GEN (MW)": 2894,
+    "Capacidad zonal ALM (MW)": 3373,
+    "Margen zonal GEN (MW)": 2588,
+    "Margen zonal ALM (MW)": 3068
+   },
+   "E55_SEPE": {
+    "Capacidad zonal GEN (MW)": 3799,
+    "Capacidad zonal ALM (MW)": 3929,
+    "Margen zonal GEN (MW)": 3757,
+    "Margen zonal ALM (MW)": 3887
+   },
+   "E56_SEPE": {
+    "Capacidad zonal GEN (MW)": 2370,
+    "Capacidad zonal ALM (MW)": 2892,
+    "Margen zonal GEN (MW)": 997,
+    "Margen zonal ALM (MW)": 1081
+   },
+   "E57_SEPE": {
+    "Capacidad zonal GEN (MW)": 2446,
+    "Capacidad zonal ALM (MW)": 2522,
+    "Margen zonal GEN (MW)": 1498,
+    "Margen zonal ALM (MW)": 1574
+   },
+   "E58_SEPE": {
+    "Capacidad zonal GEN (MW)": 2656,
+    "Capacidad zonal ALM (MW)": 2788,
+    "Margen zonal GEN (MW)": 1273,
+    "Margen zonal ALM (MW)": 1405
+   },
+   "E59_SEPE": {
+    "Capacidad zonal GEN (MW)": 1121,
+    "Capacidad zonal ALM (MW)": 1524,
+    "Margen zonal GEN (MW)": 601,
+    "Margen zonal ALM (MW)": 1005
+   },
+   "E6_SEPE": {
+    "Capacidad zonal GEN (MW)": 3616,
+    "Capacidad zonal ALM (MW)": 4611,
+    "Margen zonal GEN (MW)": 3032,
+    "Margen zonal ALM (MW)": 4013
+   },
+   "E60_SEPE": {
+    "Capacidad zonal GEN (MW)": 2040,
+    "Capacidad zonal ALM (MW)": 2099,
+    "Margen zonal GEN (MW)": 851,
+    "Margen zonal ALM (MW)": 851
+   },
+   "E61_SEPE": {
+    "Capacidad zonal GEN (MW)": 2866,
+    "Capacidad zonal ALM (MW)": 3242,
+    "Margen zonal GEN (MW)": 2038,
+    "Margen zonal ALM (MW)": 2364
+   },
+   "E62_SEPE": {
+    "Capacidad zonal GEN (MW)": 2227,
+    "Capacidad zonal ALM (MW)": 3081,
+    "Margen zonal GEN (MW)": 31,
+    "Margen zonal ALM (MW)": 885
+   },
+   "E64_SEPE": {
+    "Capacidad zonal GEN (MW)": 3905,
+    "Capacidad zonal ALM (MW)": 4635,
+    "Margen zonal GEN (MW)": 2591,
+    "Margen zonal ALM (MW)": 3321
+   },
+   "E65_SEPE": {
+    "Capacidad zonal GEN (MW)": 1880,
+    "Capacidad zonal ALM (MW)": 2704,
+    "Margen zonal GEN (MW)": 446,
+    "Margen zonal ALM (MW)": 1270
+   },
+   "E66_SEPE": {
+    "Capacidad zonal GEN (MW)": 633,
+    "Capacidad zonal ALM (MW)": 821,
+    "Margen zonal GEN (MW)": 260,
+    "Margen zonal ALM (MW)": 448
+   },
+   "E67_SEPE": {
+    "Capacidad zonal GEN (MW)": 2900,
+    "Capacidad zonal ALM (MW)": 3182,
+    "Margen zonal GEN (MW)": 1785,
+    "Margen zonal ALM (MW)": 2066
+   },
+   "E68_SEPE": {
+    "Capacidad zonal GEN (MW)": 2474,
+    "Capacidad zonal ALM (MW)": 2591,
+    "Margen zonal GEN (MW)": 2474,
+    "Margen zonal ALM (MW)": 2591
+   },
+   "E7_SEPE": {
+    "Capacidad zonal GEN (MW)": 1770,
+    "Capacidad zonal ALM (MW)": 1834,
+    "Margen zonal GEN (MW)": 1048,
+    "Margen zonal ALM (MW)": 1048
+   },
+   "E70_SEPE": {
+    "Capacidad zonal GEN (MW)": 3191,
+    "Capacidad zonal ALM (MW)": 3550,
+    "Margen zonal GEN (MW)": 2085,
+    "Margen zonal ALM (MW)": 2421
+   },
+   "E71_SEPE": {
+    "Capacidad zonal GEN (MW)": 1873,
+    "Capacidad zonal ALM (MW)": 1980,
+    "Margen zonal GEN (MW)": 440,
+    "Margen zonal ALM (MW)": 440
+   },
+   "E72_SEPE": {
+    "Capacidad zonal GEN (MW)": 2642,
+    "Capacidad zonal ALM (MW)": 2919,
+    "Margen zonal GEN (MW)": 2642,
+    "Margen zonal ALM (MW)": 2919
+   },
+   "E73_SEPE": {
+    "Capacidad zonal GEN (MW)": 2999,
+    "Capacidad zonal ALM (MW)": 3032,
+    "Margen zonal GEN (MW)": 2969,
+    "Margen zonal ALM (MW)": 2969
+   },
+   "E74_SEPE": {
+    "Capacidad zonal GEN (MW)": 2226,
+    "Capacidad zonal ALM (MW)": 2590,
+    "Margen zonal GEN (MW)": 1631,
+    "Margen zonal ALM (MW)": 1995
+   },
+   "E75_SEPE": {
+    "Capacidad zonal GEN (MW)": 1741,
+    "Capacidad zonal ALM (MW)": 1984,
+    "Margen zonal GEN (MW)": 1741,
+    "Margen zonal ALM (MW)": 1984
+   },
+   "E76_SEPE": {
+    "Capacidad zonal GEN (MW)": 1933,
+    "Capacidad zonal ALM (MW)": 2320,
+    "Margen zonal GEN (MW)": 1184,
+    "Margen zonal ALM (MW)": 1184
+   },
+   "E77_SEPE": {
+    "Capacidad zonal GEN (MW)": 1481,
+    "Capacidad zonal ALM (MW)": 2255,
+    "Margen zonal GEN (MW)": 748,
+    "Margen zonal ALM (MW)": 1094
+   },
+   "E78_SEPE": {
+    "Capacidad zonal GEN (MW)": 2679,
+    "Capacidad zonal ALM (MW)": 3080,
+    "Margen zonal GEN (MW)": 1975,
+    "Margen zonal ALM (MW)": 1975
+   },
+   "E79_SEPE": {
+    "Capacidad zonal GEN (MW)": 2447,
+    "Capacidad zonal ALM (MW)": 2541,
+    "Margen zonal GEN (MW)": 672,
+    "Margen zonal ALM (MW)": 766
+   },
+   "E8_SEPE": {
+    "Capacidad zonal GEN (MW)": 615,
+    "Capacidad zonal ALM (MW)": 617,
+    "Margen zonal GEN (MW)": 419,
+    "Margen zonal ALM (MW)": 419
+   },
+   "E80_SEPE": {
+    "Capacidad zonal GEN (MW)": 2034,
+    "Capacidad zonal ALM (MW)": 2212,
+    "Margen zonal GEN (MW)": 1841,
+    "Margen zonal ALM (MW)": 2019
+   },
+   "E81_SEPE": {
+    "Capacidad zonal GEN (MW)": 3446,
+    "Capacidad zonal ALM (MW)": 3936,
+    "Margen zonal GEN (MW)": 2891,
+    "Margen zonal ALM (MW)": 3381
+   },
+   "E82_SEPE": {
+    "Capacidad zonal GEN (MW)": 2937,
+    "Capacidad zonal ALM (MW)": 3311,
+    "Margen zonal GEN (MW)": 2211,
+    "Margen zonal ALM (MW)": 2585
+   },
+   "E83_SEPE": {
+    "Capacidad zonal GEN (MW)": 2599,
+    "Capacidad zonal ALM (MW)": 2604,
+    "Margen zonal GEN (MW)": 1006,
+    "Margen zonal ALM (MW)": 1011
+   },
+   "E84_SEPE": {
+    "Capacidad zonal GEN (MW)": 1013,
+    "Capacidad zonal ALM (MW)": 1222,
+    "Margen zonal GEN (MW)": 613,
+    "Margen zonal ALM (MW)": 613
+   },
+   "E85_SEPE": {
+    "Capacidad zonal GEN (MW)": 2920,
+    "Capacidad zonal ALM (MW)": 3094,
+    "Margen zonal GEN (MW)": 2520,
+    "Margen zonal ALM (MW)": 2520
+   },
+   "E86_SEPE": {
+    "Capacidad zonal GEN (MW)": 1456,
+    "Capacidad zonal ALM (MW)": 1755,
+    "Margen zonal GEN (MW)": 1432,
+    "Margen zonal ALM (MW)": 1594
+   },
+   "E89_SEPE": {
+    "Capacidad zonal GEN (MW)": 1061,
+    "Capacidad zonal ALM (MW)": 1229,
+    "Margen zonal GEN (MW)": 695,
+    "Margen zonal ALM (MW)": 863
+   },
+   "E9_SEPE": {
+    "Capacidad zonal GEN (MW)": 2901,
+    "Capacidad zonal ALM (MW)": 3245,
+    "Margen zonal GEN (MW)": 2787,
+    "Margen zonal ALM (MW)": 3131
+   },
+   "E90_SEPE": {
+    "Capacidad zonal GEN (MW)": 2473,
+    "Capacidad zonal ALM (MW)": 2622,
+    "Margen zonal GEN (MW)": 2215,
+    "Margen zonal ALM (MW)": 2215
+   },
+   "E91_SEPE": {
+    "Capacidad zonal GEN (MW)": 2296,
+    "Capacidad zonal ALM (MW)": 2896,
+    "Margen zonal GEN (MW)": 2288,
+    "Margen zonal ALM (MW)": 2822
+   },
+   "E92_SEPE": {
+    "Capacidad zonal GEN (MW)": 1489,
+    "Capacidad zonal ALM (MW)": 1738,
+    "Margen zonal GEN (MW)": 1333,
+    "Margen zonal ALM (MW)": 1468
+   },
+   "E93_SEPE": {
+    "Capacidad zonal GEN (MW)": 598,
+    "Capacidad zonal ALM (MW)": 785,
+    "Margen zonal GEN (MW)": 598,
+    "Margen zonal ALM (MW)": 785
+   },
+   "E94_SEPE": {
+    "Capacidad zonal GEN (MW)": 2333,
+    "Capacidad zonal ALM (MW)": 2636,
+    "Margen zonal GEN (MW)": 2326,
+    "Margen zonal ALM (MW)": 2624
+   },
+   "E95_SEPE": {
+    "Capacidad zonal GEN (MW)": 2337,
+    "Capacidad zonal ALM (MW)": 3038,
+    "Margen zonal GEN (MW)": 2259,
+    "Margen zonal ALM (MW)": 2533
+   },
+   "E96_SEPE": {
+    "Capacidad zonal GEN (MW)": 1186,
+    "Capacidad zonal ALM (MW)": 1203,
+    "Margen zonal GEN (MW)": 1186,
+    "Margen zonal ALM (MW)": 1203
+   },
+   "E97_SEPE": {
+    "Capacidad zonal GEN (MW)": 1886,
+    "Capacidad zonal ALM (MW)": 2210,
+    "Margen zonal GEN (MW)": 1293,
+    "Margen zonal ALM (MW)": 1617
+   },
+   "E98_SEPE": {
+    "Capacidad zonal GEN (MW)": 3618,
+    "Capacidad zonal ALM (MW)": 3955,
+    "Margen zonal GEN (MW)": 2724,
+    "Margen zonal ALM (MW)": 3062
+   }
+  },
+  "Dinámico": {
+   "D02_SEC": {
+    "Capacidad zonal (MW)": 4,
+    "Margen zonal (MW)": 0
+   },
+   "D03_SEC_BIN": {
+    "Capacidad zonal (MW)": 0,
+    "Margen zonal (MW)": 0
+   },
+   "D04_SEC_BIN": {
+    "Capacidad zonal (MW)": 0,
+    "Margen zonal (MW)": 0
+   },
+   "D05_SEC": {
+    "Capacidad zonal (MW)": 35,
+    "Margen zonal (MW)": 0
+   },
+   "D06_SEC_BIN": {
+    "Capacidad zonal (MW)": 0,
+    "Margen zonal (MW)": 0
+   },
+   "D07_SEC": {
+    "Capacidad zonal (MW)": 74,
+    "Margen zonal (MW)": 0
+   },
+   "D08_SEC_BIN": {
+    "Capacidad zonal (MW)": 57,
+    "Margen zonal (MW)": 5
+   },
+   "D1_SEB": {
+    "Capacidad zonal (MW)": 219,
+    "Margen zonal (MW)": 116
+   },
+   "D10_SEPE": {
+    "Capacidad zonal (MW)": 811,
+    "Margen zonal (MW)": 0
+   },
+   "D11_SEPE": {
+    "Capacidad zonal (MW)": 1181,
+    "Margen zonal (MW)": 264
+   },
+   "D13_SEPE": {
+    "Capacidad zonal (MW)": 1120,
+    "Margen zonal (MW)": 455
+   },
+   "D15_SEPE": {
+    "Capacidad zonal (MW)": 1110,
+    "Margen zonal (MW)": 699
+   },
+   "D16_SEPE": {
+    "Capacidad zonal (MW)": 1280,
+    "Margen zonal (MW)": 1008
+   },
+   "D18_SEPE": {
+    "Capacidad zonal (MW)": 846,
+    "Margen zonal (MW)": 0
+   },
+   "D19_SEPE": {
+    "Capacidad zonal (MW)": 960,
+    "Margen zonal (MW)": 152
+   },
+   "D2_SEB": {
+    "Capacidad zonal (MW)": 221,
+    "Margen zonal (MW)": 191
+   },
+   "D20_SEPE": {
+    "Capacidad zonal (MW)": 1300,
+    "Margen zonal (MW)": 690
+   },
+   "D21_SEPE": {
+    "Capacidad zonal (MW)": 1283,
+    "Margen zonal (MW)": 1223
+   },
+   "D22_SEPE": {
+    "Capacidad zonal (MW)": 969,
+    "Margen zonal (MW)": 772
+   },
+   "D23_SEPE": {
+    "Capacidad zonal (MW)": 748,
+    "Margen zonal (MW)": 0
+   },
+   "D24_SEPE": {
+    "Capacidad zonal (MW)": 827,
+    "Margen zonal (MW)": 675
+   },
+   "D25_SEPE": {
+    "Capacidad zonal (MW)": 807,
+    "Margen zonal (MW)": 566
+   },
+   "D26_SEPE": {
+    "Capacidad zonal (MW)": 968,
+    "Margen zonal (MW)": 370
+   },
+   "D28_SEPE": {
+    "Capacidad zonal (MW)": 814,
+    "Margen zonal (MW)": 814
+   },
+   "D29_SEPE": {
+    "Capacidad zonal (MW)": 1002,
+    "Margen zonal (MW)": 0
+   },
+   "D3_SEB": {
+    "Capacidad zonal (MW)": 235,
+    "Margen zonal (MW)": 44
+   },
+   "D30_SEPE": {
+    "Capacidad zonal (MW)": 1060,
+    "Margen zonal (MW)": 0
+   },
+   "D31_SEPE": {
+    "Capacidad zonal (MW)": 1186,
+    "Margen zonal (MW)": 910
+   },
+   "D33_SEPE": {
+    "Capacidad zonal (MW)": 1188,
+    "Margen zonal (MW)": 671
+   },
+   "D34_SEPE": {
+    "Capacidad zonal (MW)": 1260,
+    "Margen zonal (MW)": 474
+   },
+   "D35_SEPE": {
+    "Capacidad zonal (MW)": 853,
+    "Margen zonal (MW)": 327
+   },
+   "D39_SEPE": {
+    "Capacidad zonal (MW)": 322,
+    "Margen zonal (MW)": 226
+   },
+   "D4_SEB": {
+    "Capacidad zonal (MW)": 232,
+    "Margen zonal (MW)": 20
+   },
+   "D42_SEPE": {
+    "Capacidad zonal (MW)": 760,
+    "Margen zonal (MW)": 317
+   },
+   "D43_SEPE": {
+    "Capacidad zonal (MW)": 1206,
+    "Margen zonal (MW)": 787
+   },
+   "D45_SEPE": {
+    "Capacidad zonal (MW)": 803,
+    "Margen zonal (MW)": 803
+   },
+   "D48_SEPE": {
+    "Capacidad zonal (MW)": 947,
+    "Margen zonal (MW)": 833
+   },
+   "D49_SEPE": {
+    "Capacidad zonal (MW)": 469,
+    "Margen zonal (MW)": 451
+   },
+   "D5_SEB_BIN": {
+    "Capacidad zonal (MW)": 235,
+    "Margen zonal (MW)": 235
+   },
+   "D5_SEPE": {
+    "Capacidad zonal (MW)": 1182,
+    "Margen zonal (MW)": 531
+   },
+   "D50_SEPE": {
+    "Capacidad zonal (MW)": 455,
+    "Margen zonal (MW)": 0
+   },
+   "D51_SEPE": {
+    "Capacidad zonal (MW)": 969,
+    "Margen zonal (MW)": 905
+   },
+   "D54_SEPE": {
+    "Capacidad zonal (MW)": 374,
+    "Margen zonal (MW)": 0
+   },
+   "D55_SEPE": {
+    "Capacidad zonal (MW)": 1201,
+    "Margen zonal (MW)": 463
+   },
+   "D56_SEPE": {
+    "Capacidad zonal (MW)": 1262,
+    "Margen zonal (MW)": 853
+   },
+   "D57_SEPE": {
+    "Capacidad zonal (MW)": 806,
+    "Margen zonal (MW)": 806
+   },
+   "D58_SEPE": {
+    "Capacidad zonal (MW)": 1200,
+    "Margen zonal (MW)": 972
+   },
+   "D59_SEPE": {
+    "Capacidad zonal (MW)": 906,
+    "Margen zonal (MW)": 549
+   },
+   "D6_SEB_BIN": {
+    "Capacidad zonal (MW)": 223,
+    "Margen zonal (MW)": 170
+   },
+   "D6_SEPE": {
+    "Capacidad zonal (MW)": 1294,
+    "Margen zonal (MW)": 931
+   },
+   "D60_SEPE": {
+    "Capacidad zonal (MW)": 1227,
+    "Margen zonal (MW)": 802
+   },
+   "D61_SEPE": {
+    "Capacidad zonal (MW)": 731,
+    "Margen zonal (MW)": 0
+   },
+   "D63_SEPE": {
+    "Capacidad zonal (MW)": 634,
+    "Margen zonal (MW)": 629
+   },
+   "D64_SEPE": {
+    "Capacidad zonal (MW)": 1225,
+    "Margen zonal (MW)": 275
+   },
+   "D65_SEPE": {
+    "Capacidad zonal (MW)": 1076,
+    "Margen zonal (MW)": 704
+   },
+   "D67_SEPE": {
+    "Capacidad zonal (MW)": 451,
+    "Margen zonal (MW)": 0
+   },
+   "D68_SEPE": {
+    "Capacidad zonal (MW)": 770,
+    "Margen zonal (MW)": 612
+   },
+   "D69_SEPE": {
+    "Capacidad zonal (MW)": 946,
+    "Margen zonal (MW)": 785
+   },
+   "D70_SEPE": {
+    "Capacidad zonal (MW)": 877,
+    "Margen zonal (MW)": 600
+   },
+   "D71_SEPE": {
+    "Capacidad zonal (MW)": 815,
+    "Margen zonal (MW)": 815
+   },
+   "D72_SEPE": {
+    "Capacidad zonal (MW)": 1049,
+    "Margen zonal (MW)": 671
+   },
+   "D73_SEPE": {
+    "Capacidad zonal (MW)": 1005,
+    "Margen zonal (MW)": 387
+   },
+   "D74_SEPE": {
+    "Capacidad zonal (MW)": 861,
+    "Margen zonal (MW)": 571
+   },
+   "D75_SEPE_Bin": {
+    "Capacidad zonal (MW)": 227,
+    "Margen zonal (MW)": 209
+   },
+   "D76_SEPE_Bin": {
+    "Capacidad zonal (MW)": 374,
+    "Margen zonal (MW)": 0
+   },
+   "D77_SEPE_Bin": {
+    "Capacidad zonal (MW)": 1989,
+    "Margen zonal (MW)": 1989
+   },
+   "D78_SEPE_Bin": {
+    "Capacidad zonal (MW)": 286,
+    "Margen zonal (MW)": 0
+   },
+   "D8_SEPE": {
+    "Capacidad zonal (MW)": 1300,
+    "Margen zonal (MW)": 672
+   },
+   "D80_SEPE_Bin": {
+    "Capacidad zonal (MW)": 604,
+    "Margen zonal (MW)": 604
+   },
+   "D81_SEPE_Bin": {
+    "Capacidad zonal (MW)": 367,
+    "Margen zonal (MW)": 0
+   },
+   "D82_SEPE_Bin": {
+    "Capacidad zonal (MW)": 300,
+    "Margen zonal (MW)": 160
+   },
+   "D83_SEPE_Bin": {
+    "Capacidad zonal (MW)": 469,
+    "Margen zonal (MW)": 451
+   },
+   "D84_SEPE_Bin": {
+    "Capacidad zonal (MW)": 544,
+    "Margen zonal (MW)": 0
+   },
+   "D85_SEPE_Bin": {
+    "Capacidad zonal (MW)": 1676,
+    "Margen zonal (MW)": 960
+   },
+   "D86_SEPE_Bin": {
+    "Capacidad zonal (MW)": 791,
+    "Margen zonal (MW)": 756
+   },
+   "D87_SEPE_Bin": {
+    "Capacidad zonal (MW)": 793,
+    "Margen zonal (MW)": 631
+   },
+   "D88_SEPE_Bin": {
+    "Capacidad zonal (MW)": 793,
+    "Margen zonal (MW)": 736
+   },
+   "D89_SEPE_Bin": {
+    "Capacidad zonal (MW)": 805,
+    "Margen zonal (MW)": 790
+   },
+   "D90_SEPE_Bin": {
+    "Capacidad zonal (MW)": 2754,
+    "Margen zonal (MW)": 1499
+   },
+   "D91_SEPE": {
+    "Capacidad zonal (MW)": 1185,
+    "Margen zonal (MW)": 210
+   },
+   "D92_SEPE": {
+    "Capacidad zonal (MW)": 867,
+    "Margen zonal (MW)": 867
+   }
+  }
+ },
+ "n_zonas": {
+  "WSCR": 21,
+  "Estático": 319,
+  "Dinámico": 81
+ }
+}

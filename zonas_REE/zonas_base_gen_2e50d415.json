@@ -1,0 +1,2454 @@
+{
+ "firma": "2e50d4150f4b1537",
+ "desde": "26_jun",
+ "hasta": "26_sep",
+ "perspectiva": "gen",
+ "formato": "los valores de composicion son indices de la tabla «nudos»",
+ "nudos": [
+  "SAN MIGUEL DE SALINAS 220",
+  "SAN MIGUEL DE SALINAS (SAN MIGUEL DE SALINAS B) 220",
+  "NUEVA ESCOMBRERAS 400",
+  "NUEVA ESCOMBRERAS (NUEVA ESCOMBRERAS B) 400",
+  "BEGUES 220",
+  "BEGUES (BEGUES B) 220",
+  "CAN JARDI 220",
+  "CAN JARDI (CAN JARDI B) 220",
+  "COSLADA 220",
+  "COSLADA (COSLADA B) 220",
+  "DON RODRIGO 220",
+  "DON RODRIGO (DON RODRIGO B) 220",
+  "GRAMANET 220",
+  "GRAMANET (GRAMANET B) 220",
+  "GUILLENA 220",
+  "GUILLENA (GUILLENA B) 220",
+  "ELIANA 220",
+  "ELIANA (ELIANA B) 220",
+  "LOECHES 220",
+  "LOECHES (LOECHES B) 220",
+  "PINAR DE REY 220",
+  "PINAR DE REY (PINAR DE REY B) 220",
+  "SS.REYES 220",
+  "SS.REYES (SS.REYES B) 220",
+  "VILADECANS 220",
+  "VILADECANS (VILADECANS B) 220",
+  "VILLAVERDE 220",
+  "VILLAVERDE BAJO (VILLAVERDE BAJO B) 220",
+  "VILLAVICIOSA 220",
+  "VILLAVICIOSA (VILLAVICIOSA B) 220",
+  "BARRANCO TIRAJANA 66",
+  "BARRANCO TIRAJANA (BARRANCO TIRAJANA B) 66",
+  "BARRANCO TIRAJANA 220",
+  "BARRANCO TIRAJANA (BARRANCO TIRAJANA B) 220",
+  "GRANADILLA 220",
+  "GRANADILLA (GRANADILLA B) 220",
+  "CANDELARIA 66",
+  "CANDELARIA (CANDELARIA B) 66",
+  "ES BESSONS 66",
+  "ES BESSONS (ES BESSONS B) 66",
+  "MARRATXI 66",
+  "MARRATXI (MARRATXI B) 66",
+  "CA'S TRESORER 220",
+  "CA'S TRESORER 66",
+  "ES BESSONS 220",
+  "ES BESSONS 132",
+  "SANTA AGUEDA 220",
+  "SANTA AGUEDA 66",
+  "LLUBI 220",
+  "LLUBI 66",
+  "SABINAL 220",
+  "SABINAL 66",
+  "SAN MARTIN BALEARES 220",
+  "SAN MARTIN BALEARES 66",
+  "ARGUINEGUIN 66",
+  "MOGAN 66",
+  "SANTA PONSA 220",
+  "SANTA PONSA 132",
+  "AGÜIMES 66",
+  "ALDEA BLANCA 66",
+  "ARINAGA 66",
+  "CARRIZAL 66",
+  "CINSA 66",
+  "ESCOBAR 66",
+  "SANTA PONSA 66",
+  "MARZAGAN 66",
+  "ALBARELLOS 220",
+  "CASTRELO 220",
+  "SON MOIX 220",
+  "SON MOIX 66",
+  "PORIS 66",
+  "ARICO2 66",
+  "TAGORO 66",
+  "ABONA 66",
+  "ARKALE 220",
+  "IRUN 220",
+  "LA PLANA 400",
+  "BENADRESA 220",
+  "INGENIO 220",
+  "LA PLANA 220",
+  "EL SERRALLO 220",
+  "CATADAU 400",
+  "CATADAU 220",
+  "ELIANA 400",
+  "GODELLETA 400",
+  "GODELLETA 220",
+  "MORVEDRE 400",
+  "MORVEDRE B 220",
+  "TORRENTE 400",
+  "TORRENTE 220",
+  "SAN SERVAN 400",
+  "SAN SERVAN 220",
+  "SON ORLANDIS 220",
+  "SON ORLANDIS 66",
+  "LAS ROSAS 220",
+  "LAS ROSAS 66",
+  "BALBOA 400",
+  "BALBOA 220",
+  "BROVALES 400",
+  "BROVALES 220",
+  "ALMARAZ CN 400",
+  "ALMARAZ CN 220",
+  "J.M.ORIOL 400",
+  "J.M.ORIOL 220",
+  "ABEGONDO 400",
+  "ABEGONDO 220",
+  "MESON D.V. 400",
+  "MESON D.V. 220",
+  "CARTELLE 400",
+  "CARTELLE 220",
+  "TRIVES 400",
+  "TRIVES 220",
+  "FONTEFRIA 400",
+  "FONTEFRIA 220",
+  "SON REUS 220",
+  "SON REUS 66",
+  "ABONA 220",
+  "EL CERRO 220",
+  "LAS MAZORRAS 220",
+  "POZA DE LA SAL 220",
+  "PARAMO DE POZA 220",
+  "SANTA ENGRACIA 400",
+  "SANTA ENGRACIA 220",
+  "ANCHUELO 400",
+  "ANCHUELO 220",
+  "FUENCARRAL 400",
+  "FUENCARRAL 220",
+  "GALAPAGAR 400",
+  "GALAPAGAR 220",
+  "LA CEREAL 400",
+  "LA CEREAL 220",
+  "LOECHES 400",
+  "MORALEJA 400",
+  "MORALEJA 220",
+  "MORATA 400",
+  "MORATA 220",
+  "SAN FERNANDO 400",
+  "SAN FERNANDO 220",
+  "VALLDURGENT 220",
+  "VALLDURGENT 66",
+  "EL ROSARIO 220",
+  "EL ROSARIO 66",
+  "MAGAÑA 220",
+  "ONCALA 220",
+  "SS.REYES 400",
+  "VILLAVICIOSA 400",
+  "FAUSITA 400",
+  "FAUSITA 220",
+  "EL PALMAR 400",
+  "EL PALMAR 220",
+  "SERNA 400",
+  "SERNA 220",
+  "MURUARTE 400",
+  "MURUARTE 220",
+  "BUNYOLA 66",
+  "SOLLER 66",
+  "GRANADILLA 66",
+  "VITORIA 400",
+  "VITORIA 220",
+  "HERNANI 400",
+  "HERNANI 220",
+  "ITXASO 400",
+  "ITXASO 220",
+  "GATICA 400",
+  "GATICA 220",
+  "GUEÑES 400",
+  "GUEÑES 220",
+  "SANTURCE 400",
+  "SANTURCE 220",
+  "LOS BARRIOS 220",
+  "CAÑUELO 220",
+  "ARTA 66",
+  "CAPDEPERA 66",
+  "PORIS 220",
+  "MEDINA DEL CAMPO 220",
+  "TORDESILLAS 220",
+  "LLATZER 66",
+  "CANDELARIA 220",
+  "CASATEJADA 220",
+  "ALMARAZ E.T. 220",
+  "PLASENCIA 220",
+  "nan",
+  "CARROYUELAS 220",
+  "MADRIDEJOS 220",
+  "AMOEIRO 220",
+  "CHANTADA 220",
+  "SAN PEDRO 220",
+  "VELLE 220",
+  "SANTIAGO 220",
+  "SOBRADELO 220",
+  "LUBIAN 220",
+  "PRADA 220",
+  "S.AGUSTIN 220",
+  "PUEBLA DE SANABRIA 220",
+  "LA PEREDA 220",
+  "TELLEDO 220",
+  "VILLABLINO 220",
+  "ALCOCERO DE MOLA 220",
+  "VILLIMAR 220",
+  "SANTIZ 220",
+  "VILLAMAYOR 220",
+  "CHIO 66",
+  "GUIA DE ISORA 66",
+  "LA PALOMA 220",
+  "MANZANARES 220",
+  "CILLAMAYOR 220",
+  "MATAPORQUERA 220",
+  "OLMEDO 400",
+  "LASTRAS 400",
+  "BECHI 220",
+  "SAGUNTO GIS 220",
+  "SAGUNTO 220",
+  "SEGORBE 220",
+  "VALL D'UXO 220",
+  "AQUA 220",
+  "PARQUE CENTRAL 220",
+  "ALDAIA 220",
+  "QUART DE POBLET 220",
+  "ELDA 220",
+  "EL PETREL 220",
+  "ELCHE 220",
+  "ROJALES 220",
+  "CAMPOAMOR 220",
+  "HOYA MORENA 220",
+  "SAN PEDRO DEL PINATAR 220",
+  "CHUCENA 220",
+  "ROCIO 220",
+  "POLIGONO GRANADILLA 66",
+  "LA SOLANA 220",
+  "LA NAVA 220",
+  "ARROYO VALLE 220",
+  "MONTECILLO BAJO 220",
+  "VENTA INES 220",
+  "ENTRENUCLEOS 220",
+  "QUINTOS 220",
+  "BENAHAVIS 220",
+  "COSTASOL 220",
+  "HARO 220",
+  "LAGUARDIA 220",
+  "LOGROÑO 220",
+  "MIRANDA DE EBRO 220",
+  "JUNDIZ 220",
+  "MERCEDES BENZ 220",
+  "OLITE 220",
+  "TAFALLA 220",
+  "HUELVES 220",
+  "VILLARES DEL SAZ 220",
+  "MEDIODIA 220",
+  "PUENTE PRINCESA 220",
+  "ANTONIO LEYVA 220",
+  "ARGANZUELA 220",
+  "SIDEGASA 220",
+  "MURTERAR 220",
+  "DRAGO 66",
+  "ICOD DE LOS VINOS 66",
+  "ELCOGAS 220",
+  "PUERTOLLANO 220",
+  "GRADO 220",
+  "MEDIANO 220",
+  "MEDINACELI 400",
+  "RUEDA DE JALON 400",
+  "ESCUCHA 220",
+  "HIJAR 220",
+  "ALBATARREC 220",
+  "TORRES DE SEGRE 220",
+  "ABRERA 220",
+  "PUJALT 220",
+  "FRANQUESES 220",
+  "LA ROCA 220",
+  "RIERA DE CALDES 220",
+  "SANT FOST 220",
+  "PUIGPELAT 220",
+  "PENEDES 220",
+  "ADRALL 220",
+  "CENTELLES 220",
+  "LLAVORSI 220",
+  "CERCS 220",
+  "TABESCAN 220",
+  "SANTA MARIA 66",
+  "SA VINYETA 66",
+  "EL PALMAR DE LA GOMERA 66",
+  "BIESCAS 220",
+  "SABIÑANIGO 220",
+  "ARENAS DE SAN JUAN 220",
+  "EL EMPERADOR 220",
+  "MORA 220",
+  "EBORA 220",
+  "TORRIJOS 220",
+  "AGUACATE 220",
+  "POLIGONO C 220",
+  "HORNILLO 220",
+  "PINTO AYUDEN 220",
+  "ARGANDA 220",
+  "VALDEMORO 220",
+  "AZCA 220",
+  "NORTE 220",
+  "BERJA 220",
+  "ORGIVA 220",
+  "GRAN TARAJAL 132",
+  "GRAN TARAJAL 66",
+  "LOS LEONES 220",
+  "VILLANUEVA DE GALLEGO 220",
+  "BOIMENTE 400",
+  "PESOZ 400",
+  "ASTILLERO 220",
+  "CACICEDO 220",
+  "PENAGOS 220",
+  "FORMENTERA 132",
+  "FORMENTERA 30",
+  "LA OLIVA 132",
+  "LA OLIVA 66",
+  "CALAMOCHA 220",
+  "MEZQUITA 220",
+  "MATAS BLANCAS 132",
+  "MATAS BLANCAS 66",
+  "ALCIRA 220",
+  "BERNAT 220",
+  "BENICULL 220",
+  "VALLDIGNA 220",
+  "VALLE DEL CARCER 220",
+  "EIRIS 220",
+  "LA GRELA 220",
+  "MEIRAMA 220",
+  "PUERTO 220",
+  "SABON 220",
+  "LOURIZAN 220",
+  "TIBO 220",
+  "TOMEZA 220",
+  "PUERTO DEL ROSARIO 132",
+  "PUERTO DEL ROSARIO 66",
+  "CORDOVILLA 220",
+  "TIERRA ESTELLA 220",
+  "ORCOYEN 220",
+  "SANGÜESA 220",
+  "ELGEA 220",
+  "BARRUNDIA 220",
+  "EL PALMERAL 220",
+  "SAN VICENTE 220",
+  "SANTA POLA 220",
+  "TORRELLANO 220",
+  "CORRALEJO 66",
+  "MORALETS 220",
+  "PONT DE SUERT 220",
+  "ALMAZAN 400",
+  "COSCURITA 220",
+  "PEÑALBA 400",
+  "PEÑALBA 220",
+  "LA SECUITA 400",
+  "LA SECUITA 220",
+  "DON RODRIGO 400",
+  "LA SAGRA 220",
+  "LA SAGRA 400",
+  "ELS AUBALS 220",
+  "ELS AUBALS 400",
+  "VILLANUEVA DEL REY 220",
+  "VILLANUEVA DEL REY 400",
+  "ABADES 400",
+  "ABADES 220",
+  "GUADIANA 400",
+  "RIOCAYA (CAMPO MAIOR) 400",
+  "SAN JORGE 66",
+  "SAN JORGE 30",
+  "PLAYA BLANCA 132",
+  "PLAYA BLANCA 66",
+  "TARRAGONA 220",
+  "LA CANONJA 220",
+  "SESUE 220",
+  "ERISTE 220",
+  "FORADADA 220",
+  "CASTELLON C.T. 400",
+  "FADRELL 400",
+  "TORREVIEJA 220",
+  "CAPARACENA 220",
+  "FARGUE 220",
+  "COMPLUTUM 220",
+  "SANCHINARRO 220",
+  "BEGOÑA 220",
+  "JUIA 220",
+  "LA FARGA 220",
+  "TORRENT 132",
+  "IBIZA 132",
+  "BOSSA 132",
+  "SAN JORGE 132",
+  "TORRENT 66",
+  "SANTA EULALIA 66",
+  "SAN ANTONIO 66",
+  "IBIZA 66",
+  "IBIZA 23 66",
+  "TIAS 132",
+  "TIAS 66",
+  "ATIOS 220",
+  "FRIEIRA 220",
+  "MONTOUTO 220",
+  "NUEVO VIGO (BATEAS) 220",
+  "POLA DE GORDON 400",
+  "LADA 400",
+  "LUMINABASO 220",
+  "SIDENOR 220",
+  "FUENTEBUREBA 400",
+  "COTORROS 400",
+  "CIUDAD RODRIGO 400",
+  "HINOJOSA 400",
+  "ALMODOVAR DEL RIO 220",
+  "CASILLAS 220",
+  "PATRAIX 220",
+  "NUEVO CAUCE 220",
+  "MATA 220",
+  "TANGER CATALUÑA 220",
+  "CALLEJONES 66",
+  "SAN BARTOLOME 66",
+  "RIBA-ROJA 220",
+  "VANDELLOS CN 220",
+  "AENA OESTE 220",
+  "AEROPUERTO BARCELONA 220",
+  "PRADILLOS 220",
+  "PINTO 220",
+  "PARLA 220",
+  "DAGANZO 220",
+  "CISNEROS 220",
+  "MECO 220",
+  "NUEVA MECO 220",
+  "CENTENARIO 220",
+  "ALCORES 220",
+  "GAZULES 220",
+  "SANTA ELVIRA 220",
+  "MANGRANERS 220",
+  "LOUSAME 220",
+  "TAMBRE 220",
+  "CIUDADELA 132",
+  "MERCADAL 132",
+  "DRAGONERA 132",
+  "MAHON 132",
+  "MANZANARES 400",
+  "BARATARIA 400",
+  "SILLEDA 400",
+  "EL SEQUERO 220",
+  "ARCHIDONA 400",
+  "CAPARACENA 400",
+  "LES CORTS 220",
+  "URGELL 220",
+  "CASAQUEMADA 220",
+  "COSTA DE LA LUZ 220",
+  "ONUBA 220",
+  "GUADAME 400",
+  "CABRA 400",
+  "ESCATRON 220",
+  "ESPARTAL 220",
+  "BADALONA 220",
+  "TRANSBADALONA 220",
+  "SIERO 220",
+  "ORTIGUERO 220",
+  "CARDOSO 220",
+  "TABIELLA 220",
+  "BELINCHON 400",
+  "MANCHEGA 400",
+  "MONTALBANEJO 400",
+  "BRAZATORTAS 220",
+  "CACERES 220",
+  "LOS ARENALES 220",
+  "FUENTE DEL MAESTRE 400",
+  "PAZOS DE BORBEN 220",
+  "SUIDO 220",
+  "LOMBA 220",
+  "O INCIO 220",
+  "MAZARICOS 220",
+  "ESQUEDAS 220",
+  "GURREA 220",
+  "ALI 220",
+  "GAMARRA 220",
+  "VELILLA 400",
+  "HERRERA 400",
+  "MONCAYO 220",
+  "TREVAGO 220",
+  "COFRENTES 400",
+  "MUELA 400",
+  "BENIFERRI 220",
+  "FUENTE SAN LUIS 220",
+  "PTE.SAN FERNANDO 220",
+  "TRES CANTOS GIS 220",
+  "TRES CANTOS 220",
+  "EL MORELL 220",
+  "FRANCOLI 220",
+  "ALVARADO 220",
+  "VAGUADAS 220",
+  "ALGECIRAS 132",
+  "VIRGEN DE AFRICA 132",
+  "ALGECIRAS 220",
+  "PLAZA 220",
+  "PLAZA II (MONCASI) 220",
+  "VERNEDA 220",
+  "LA SAGRERA 220",
+  "BUDIA (YELAMOS) 400",
+  "FUENTES DE LA ALCARRIA 400",
+  "MACIÑEIRA 400",
+  "NARAIO 400",
+  "CAMARENA 400",
+  "CAMARENA 220",
+  "FARNERS 400",
+  "FARNERS 220",
+  "RIUDARENES 220",
+  "SAGUNTUM 400",
+  "SAGUNTUM 220",
+  "EL CANTALAR 220",
+  "JIJONA 220",
+  "MONTEBELLO 220",
+  "MURCIA 220",
+  "ESPINARDO 220",
+  "VALLECAS 220",
+  "BOLARQUE 220",
+  "JOSE CABRERA 220",
+  "TRILLO 220",
+  "CIUDAD DEPORTIVA 220",
+  "EL PILAR 220",
+  "TABERNAS 400",
+  "TABERNAS 220",
+  "PINAR DE REY 400",
+  "PUERTO DE LA CRUZ 400",
+  "FACINAS 220",
+  "PUERTO DE LA CRUZ 220",
+  "CORNATEL 220",
+  "MONTEARENAS 220",
+  "QUEREÑO 220",
+  "PALOS 400",
+  "PALOS 220",
+  "PUEBLA DE GUZMAN 400",
+  "PUEBLA DE GUZMAN 220",
+  "GUADAME 220",
+  "CARTAMA 400",
+  "CARTAMA 220",
+  "JORDANA 400",
+  "JORDANA 220",
+  "TAJO ENCANTADA 400",
+  "TAJO ENCANTADA 220",
+  "CARMONA 400",
+  "CARMONA 220",
+  "GUILLENA 400",
+  "NARCEA 400",
+  "SALAS 400",
+  "MEZQUITA 400",
+  "ESCATRON 400",
+  "FUENDETODOS 400",
+  "FUENDETODOS 220",
+  "MAGALLON 400",
+  "MAGALLON 220",
+  "MEQUINENZA 400",
+  "MEQUINENZA 220",
+  "PEÑAFLOR 400",
+  "PEÑAFLOR 220",
+  "CARDOSO 400",
+  "CARRIO 220",
+  "UNINSA 220",
+  "SOTO DE RIBERA 400",
+  "SOTO DE RIBERA 220",
+  "AGUAYO 400",
+  "AGUAYO 220",
+  "PENAGOS 400",
+  "SOLORZANO 400",
+  "SOLORZANO 220",
+  "BARCINA 400",
+  "GAROÑA 220",
+  "LOMBA 400",
+  "MONTEARENAS 400",
+  "ALDEADAVILA 400",
+  "ALDEADAVILA 220",
+  "VILLARINO 400",
+  "VILLARINO 220",
+  "MUDARRA 400",
+  "MUDARRA 220",
+  "CICERO 220",
+  "ARBILLERA 400",
+  "ARBILLERA 220",
+  "BRAZATORTAS 400",
+  "OLMEDILLA 400",
+  "OLMEDILLA 220",
+  "BEGUES 400",
+  "CAN JARDI 400",
+  "PIEROLA 400",
+  "PIEROLA 220",
+  "AYALA (ALONSOTEGUI) 220",
+  "RUBI 400",
+  "RUBI 220",
+  "SENTMENAT 400",
+  "SENTMENAT 220",
+  "VIC 400",
+  "VIC 220",
+  "VILADECANS 400",
+  "BESCANO 400",
+  "BESCANO 220",
+  "LA FARGA 400",
+  "ISONA 400",
+  "ISONA 220",
+  "LA ESPLUGA 400",
+  "LA ESPLUGA 220",
+  "BENEJAMA 400",
+  "BENEJAMA 220",
+  "ONDINAS 220",
+  "PEÑADRADA 220",
+  "SANTA MARINA 220",
+  "ASCÓ 220",
+  "CAN BARBA 400",
+  "CALDERS 400",
+  "SALLENTE 400",
+  "MANACOR 66",
+  "CALA MILLOR 66",
+  "GANDIA 220",
+  "SANCHO LLOP 220",
+  "CALA MESQUIDA 132",
+  "SANT JUST 220",
+  "ORMAIZTEGUI 220",
+  "OTERO 220"
+ ],
+ "composicion": {
+  "WSCR": {
+   "W01_SEPE_BIN": [
+    0,
+    1
+   ],
+   "W02_SEPE_BIN": [
+    2,
+    3
+   ],
+   "W03_SEPE_BIN": [
+    4,
+    5
+   ],
+   "W04_SEPE_BIN": [
+    6,
+    7
+   ],
+   "W05_SEPE_BIN": [
+    8,
+    9
+   ],
+   "W06_SEPE_BIN": [
+    10,
+    11
+   ],
+   "W07_SEPE_BIN": [
+    12,
+    13
+   ],
+   "W08_SEPE_BIN": [
+    14,
+    15
+   ],
+   "W09_SEPE_BIN": [
+    16,
+    17
+   ],
+   "W11_SEPE_BIN": [
+    18,
+    19
+   ],
+   "W12_SEPE_BIN": [
+    20,
+    21
+   ],
+   "W13_SEPE_BIN": [
+    22,
+    23
+   ],
+   "W14_SEPE_BIN": [
+    24,
+    25
+   ],
+   "W15_SEPE_BIN": [
+    26,
+    27
+   ],
+   "W16_SEPE_BIN": [
+    28,
+    29
+   ],
+   "W01_SEC_BIN": [
+    30,
+    31
+   ],
+   "W02_SEC_BIN": [
+    32,
+    33
+   ],
+   "W03_SEC_BIN": [
+    34,
+    35
+   ],
+   "W04_SEC_BIN": [
+    36,
+    37
+   ],
+   "W01_SEB_BIN": [
+    38,
+    39
+   ],
+   "W02_SEB_BIN": [
+    40,
+    41
+   ]
+  },
+  "Estático": {
+   "E01_SEB": [
+    42,
+    43
+   ],
+   "E01_SEC": [
+    32,
+    31
+   ],
+   "E02_SEB": [
+    44,
+    45
+   ],
+   "E02_SEC": [
+    33,
+    30
+   ],
+   "E03_SEC": [
+    33,
+    31
+   ],
+   "E05_SEB": [
+    44,
+    38,
+    39
+   ],
+   "E05_SEC": [
+    46,
+    47
+   ],
+   "E06_SEB": [
+    48,
+    49
+   ],
+   "E06_SEC": [
+    50,
+    51
+   ],
+   "E07_SEB": [
+    52,
+    53
+   ],
+   "E07_SEC": [
+    47,
+    54,
+    55
+   ],
+   "E08_SEB": [
+    56,
+    57
+   ],
+   "E08_SEC": [
+    58,
+    59,
+    60,
+    61,
+    62,
+    63
+   ],
+   "E09_SEB": [
+    56,
+    64
+   ],
+   "E09_SEC": [
+    62,
+    65
+   ],
+   "E1_SEPE": [
+    66,
+    67
+   ],
+   "E10_SEB": [
+    68,
+    69
+   ],
+   "E10_SEC": [
+    70,
+    71,
+    72,
+    73
+   ],
+   "E10_SEPE": [
+    74,
+    75
+   ],
+   "E101_SEPE": [
+    76,
+    77,
+    78,
+    79,
+    80
+   ],
+   "E103_SEPE": [
+    81,
+    82
+   ],
+   "E104_SEPE": [
+    83,
+    16
+   ],
+   "E105_SEPE": [
+    83,
+    17
+   ],
+   "E106_SEPE": [
+    84,
+    85
+   ],
+   "E107_SEPE": [
+    86,
+    87
+   ],
+   "E108_SEPE": [
+    88,
+    89
+   ],
+   "E109_SEPE": [
+    90,
+    91
+   ],
+   "E11_SEB": [
+    92,
+    93
+   ],
+   "E11_SEC": [
+    94,
+    95
+   ],
+   "E110_SEPE": [
+    96,
+    97
+   ],
+   "E111_SEPE": [
+    98,
+    99
+   ],
+   "E112_SEPE": [
+    100,
+    101
+   ],
+   "E113_SEPE": [
+    102,
+    103
+   ],
+   "E115_SEPE": [
+    104,
+    105
+   ],
+   "E116_SEPE": [
+    106,
+    107
+   ],
+   "E117_SEPE": [
+    108,
+    109
+   ],
+   "E118_SEPE": [
+    110,
+    111
+   ],
+   "E119_SEPE": [
+    112,
+    113
+   ],
+   "E12_SEB": [
+    114,
+    115
+   ],
+   "E12_SEC": [
+    116,
+    73
+   ],
+   "E12_SEPE": [
+    117,
+    118,
+    119,
+    120
+   ],
+   "E120_SEPE": [
+    121,
+    122
+   ],
+   "E121_SEPE": [
+    123,
+    124
+   ],
+   "E122_SEPE": [
+    125,
+    126
+   ],
+   "E123_SEPE": [
+    127,
+    128
+   ],
+   "E124_SEPE": [
+    129,
+    130
+   ],
+   "E125_SEPE": [
+    131,
+    18
+   ],
+   "E126_SEPE": [
+    131,
+    19
+   ],
+   "E127_SEPE": [
+    132,
+    133
+   ],
+   "E128_SEPE": [
+    134,
+    135
+   ],
+   "E129_SEPE": [
+    136,
+    137
+   ],
+   "E13_SEB": [
+    138,
+    139
+   ],
+   "E13_SEC": [
+    140,
+    141
+   ],
+   "E13_SEPE": [
+    142,
+    143
+   ],
+   "E130_SEPE": [
+    144,
+    22
+   ],
+   "E131_SEPE": [
+    144,
+    23
+   ],
+   "E133_SEPE": [
+    145,
+    29
+   ],
+   "E134_SEPE": [
+    145,
+    28
+   ],
+   "E135_SEPE": [
+    146,
+    147
+   ],
+   "E136_SEPE": [
+    148,
+    149
+   ],
+   "E138_SEPE": [
+    150,
+    151
+   ],
+   "E139_SEPE": [
+    152,
+    153
+   ],
+   "E14_SEB": [
+    154,
+    155
+   ],
+   "E14_SEC": [
+    34,
+    156
+   ],
+   "E140_SEPE": [
+    157,
+    158
+   ],
+   "E141_SEPE": [
+    159,
+    160
+   ],
+   "E142_SEPE": [
+    161,
+    162
+   ],
+   "E143_SEPE": [
+    163,
+    164
+   ],
+   "E144_SEPE": [
+    165,
+    166
+   ],
+   "E145_SEPE": [
+    167,
+    168
+   ],
+   "E146_SEPE_Bin": [
+    169,
+    170,
+    20,
+    21
+   ],
+   "E148_SEPE_Bin": [
+    14,
+    15
+   ],
+   "E15_SEB": [
+    171,
+    172
+   ],
+   "E15_SEC": [
+    173,
+    70
+   ],
+   "E15_SEPE": [
+    174,
+    175
+   ],
+   "E150_SEPE_Bin": [
+    4,
+    5
+   ],
+   "E152_SEPE_Bin": [
+    6,
+    7
+   ],
+   "E154_SEPE_Bin": [
+    12,
+    13
+   ],
+   "E156_SEPE_Bin": [
+    24,
+    25
+   ],
+   "E158_SEPE_Bin": [
+    16,
+    17
+   ],
+   "E16_SEB": [
+    43,
+    176
+   ],
+   "E16_SEC": [
+    177,
+    36,
+    37
+   ],
+   "E16_SEPE": [
+    178,
+    179,
+    180
+   ],
+   "E160_SEPE_Bin": [
+    18,
+    19
+   ],
+   "E162_SEPE_Bin": [
+    22,
+    23
+   ],
+   "E164_SEPE_Bin": [
+    28,
+    29
+   ],
+   "E168_SEPE_Bin": [
+    26,
+    27
+   ],
+   "E169_SEPE_Bin": [
+    8,
+    9
+   ],
+   "E17_SEB_BIN": [
+    40,
+    41
+   ],
+   "E17_SEC": [
+    181
+   ],
+   "E17_SEPE": [
+    182,
+    183
+   ],
+   "E170_SEPE_Bin": [
+    2,
+    3
+   ],
+   "E173_SEPE": [
+    184,
+    185
+   ],
+   "E174_SEPE": [
+    186,
+    187
+   ],
+   "E175_SEPE": [
+    188,
+    189
+   ],
+   "E176_SEPE": [
+    190,
+    191,
+    192,
+    193
+   ],
+   "E177_SEPE": [
+    194,
+    195,
+    196
+   ],
+   "E178_SEPE": [
+    197,
+    198
+   ],
+   "E179_SEPE": [
+    199,
+    200
+   ],
+   "E18_SEB_BIN": [
+    38,
+    39
+   ],
+   "E18_SEC": [
+    201,
+    202
+   ],
+   "E18_SEPE": [
+    203,
+    204
+   ],
+   "E180_SEPE": [
+    205,
+    206
+   ],
+   "E182_SEPE": [
+    207,
+    208
+   ],
+   "E183_SEPE": [
+    209,
+    210,
+    211,
+    212,
+    213
+   ],
+   "E184_SEPE": [
+    214,
+    215
+   ],
+   "E185_SEPE": [
+    216,
+    217
+   ],
+   "E186_SEPE": [
+    218,
+    219
+   ],
+   "E187_SEPE": [
+    220,
+    221
+   ],
+   "E188_SEPE": [
+    222,
+    223,
+    224
+   ],
+   "E189_SEPE": [
+    225,
+    226
+   ],
+   "E19_SEC": [
+    156,
+    227
+   ],
+   "E19_SEPE": [
+    228,
+    229
+   ],
+   "E191_SEPE": [
+    230,
+    231,
+    232
+   ],
+   "E192_SEPE": [
+    233,
+    234
+   ],
+   "E193_SEPE": [
+    235,
+    236
+   ],
+   "E194_SEPE": [
+    237,
+    238,
+    239,
+    240
+   ],
+   "E195_SEPE": [
+    241,
+    242
+   ],
+   "E196_SEPE": [
+    243,
+    244
+   ],
+   "E197_SEPE": [
+    245,
+    246
+   ],
+   "E198_SEPE": [
+    247,
+    248
+   ],
+   "E199_SEPE": [
+    249,
+    250
+   ],
+   "E2_SEPE": [
+    107,
+    251
+   ],
+   "E20_SEB": [
+    252,
+    52,
+    53
+   ],
+   "E20_SEC": [
+    253,
+    254
+   ],
+   "E20_SEPE": [
+    255,
+    256
+   ],
+   "E200_SEPE": [
+    257,
+    258
+   ],
+   "E201_SEPE": [
+    259,
+    260
+   ],
+   "E202_SEPE": [
+    261,
+    262
+   ],
+   "E204_SEPE": [
+    263,
+    264
+   ],
+   "E205_SEPE": [
+    265,
+    266
+   ],
+   "E206_SEPE": [
+    267,
+    268
+   ],
+   "E207_SEPE": [
+    269,
+    270
+   ],
+   "E208_SEPE": [
+    271,
+    272
+   ],
+   "E209_SEPE": [
+    273,
+    274,
+    275,
+    276,
+    277
+   ],
+   "E21_SEB": [
+    278,
+    279
+   ],
+   "E21_SEC": [
+    201,
+    280
+   ],
+   "E21_SEPE": [
+    281,
+    282
+   ],
+   "E210_SEPE": [
+    182,
+    283,
+    183
+   ],
+   "E211_SEPE": [
+    284,
+    285
+   ],
+   "E212_SEPE": [
+    286,
+    287
+   ],
+   "E213_SEPE": [
+    288,
+    289
+   ],
+   "E214_SEPE": [
+    290,
+    291
+   ],
+   "E215_SEPE": [
+    292,
+    293
+   ],
+   "E216_SEPE": [
+    294,
+    295
+   ],
+   "E218_SEPE": [
+    296,
+    297
+   ],
+   "E22_SEC": [
+    298,
+    299
+   ],
+   "E22_SEPE": [
+    300,
+    301
+   ],
+   "E227_SEPE": [
+    302,
+    303
+   ],
+   "E228_SEPE": [
+    304,
+    305,
+    306
+   ],
+   "E23_SEB": [
+    307,
+    308
+   ],
+   "E23_SEC": [
+    309,
+    310
+   ],
+   "E23_SEPE": [
+    311,
+    312
+   ],
+   "E24_SEC": [
+    313,
+    314
+   ],
+   "E240_SEPE": [
+    315,
+    82,
+    316,
+    317,
+    318,
+    319
+   ],
+   "E244_SEPE": [
+    320,
+    321,
+    322,
+    323,
+    324
+   ],
+   "E245_SEPE": [
+    325,
+    326,
+    327
+   ],
+   "E25_SEC": [
+    328,
+    329
+   ],
+   "E251_SEPE": [
+    330,
+    331,
+    332,
+    243,
+    153,
+    333,
+    244
+   ],
+   "E256_SEPE": [
+    334,
+    335
+   ],
+   "E259_SEPE": [
+    336,
+    337,
+    338,
+    339
+   ],
+   "E26_SEC": [
+    310,
+    340
+   ],
+   "E26_SEPE": [
+    341,
+    342
+   ],
+   "E260_SEPE": [
+    343,
+    344
+   ],
+   "E261_SEPE": [
+    345,
+    346
+   ],
+   "E262_SEPE": [
+    347,
+    348
+   ],
+   "E263_SEPE": [
+    349,
+    11
+   ],
+   "E264_SEPE": [
+    350,
+    351
+   ],
+   "E266_SEPE": [
+    352,
+    353
+   ],
+   "E267_SEPE": [
+    354,
+    355
+   ],
+   "E268_SEPE": [
+    356,
+    357
+   ],
+   "E269_SEPE": [
+    90,
+    358,
+    359
+   ],
+   "E27_SEB": [
+    360,
+    361
+   ],
+   "E27_SEC": [
+    362,
+    363
+   ],
+   "E27_SEPE": [
+    364,
+    365
+   ],
+   "E270_SEPE": [
+    331,
+    153
+   ],
+   "E271_SEPE": [
+    366,
+    367,
+    368
+   ],
+   "E272_SEPE": [
+    369,
+    370
+   ],
+   "E273_SEPE": [
+    371,
+    1
+   ],
+   "E274_SEPE": [
+    372,
+    373
+   ],
+   "E275_SEPE": [
+    374,
+    124
+   ],
+   "E276_SEPE": [
+    126,
+    375,
+    376
+   ],
+   "E277_SEPE": [
+    377,
+    378
+   ],
+   "E279_SEPE": [
+    320,
+    321,
+    323
+   ],
+   "E28_SEB": [
+    379,
+    380,
+    381,
+    382,
+    307,
+    383,
+    384,
+    385,
+    386,
+    360,
+    387,
+    308,
+    361
+   ],
+   "E28_SEC": [
+    388,
+    389
+   ],
+   "E280_SEPE": [
+    390,
+    391,
+    392,
+    393
+   ],
+   "E281_SEPE": [
+    394,
+    395
+   ],
+   "E282_SEPE": [
+    396,
+    397
+   ],
+   "E283_SEPE": [
+    398,
+    399
+   ],
+   "E284_SEPE": [
+    400,
+    401
+   ],
+   "E285_SEPE": [
+    402,
+    403
+   ],
+   "E287_SEPE": [
+    404,
+    405
+   ],
+   "E289_SEPE": [
+    406,
+    407
+   ],
+   "E29_SEC": [
+    408,
+    409
+   ],
+   "E29_SEPE": [
+    410,
+    411
+   ],
+   "E290_SEPE": [
+    412,
+    413
+   ],
+   "E291_SEPE": [
+    414,
+    415,
+    416
+   ],
+   "E292_SEPE": [
+    417,
+    418,
+    419,
+    420
+   ],
+   "E293_SEPE_Bin": [
+    10,
+    11
+   ],
+   "E294_SEPE_Bin": [
+    349,
+    10,
+    11
+   ],
+   "E296_SEPE_Bin": [
+    0,
+    1
+   ],
+   "E297_SEPE": [
+    421,
+    15
+   ],
+   "E298_SEPE": [
+    422,
+    423,
+    424
+   ],
+   "E299_SEPE": [
+    425,
+    346
+   ],
+   "E3_SEPE": [
+    426,
+    427
+   ],
+   "E30_SEB": [
+    428,
+    429,
+    430,
+    431
+   ],
+   "E30_SEPE": [
+    275,
+    277
+   ],
+   "E304_SEPE": [
+    432,
+    433
+   ],
+   "E306_SEPE": [
+    108,
+    434
+   ],
+   "E307_SEPE": [
+    122,
+    435
+   ],
+   "E308_SEPE": [
+    436,
+    437
+   ],
+   "E31_SEPE": [
+    438,
+    439
+   ],
+   "E314_SEPE": [
+    440,
+    441,
+    442
+   ],
+   "E315_SEPE": [
+    443,
+    444
+   ],
+   "E318_SEPE": [
+    445,
+    446
+   ],
+   "E32_SEC_BIN": [
+    34,
+    35
+   ],
+   "E32_SEPE": [
+    447,
+    448
+   ],
+   "E320_SEPE": [
+    449,
+    450
+   ],
+   "E321_SEPE": [
+    451,
+    452
+   ],
+   "E322_SEPE": [
+    453,
+    454,
+    455
+   ],
+   "E323_SEPE": [
+    456,
+    255,
+    256
+   ],
+   "E326_SEPE": [
+    457,
+    458
+   ],
+   "E327_SEPE": [
+    98,
+    90,
+    358,
+    459,
+    359
+   ],
+   "E328_SEPE": [
+    113,
+    460,
+    461
+   ],
+   "E329_SEPE": [
+    462,
+    463
+   ],
+   "E33_SEC_BIN": [
+    32,
+    33
+   ],
+   "E330_SEPE": [
+    426,
+    427,
+    464
+   ],
+   "E331_SEPE": [
+    146,
+    3
+   ],
+   "E333_SEPE": [
+    333,
+    465,
+    466,
+    282
+   ],
+   "E335_SEPE": [
+    467,
+    468,
+    242,
+    158
+   ],
+   "E337_SEPE": [
+    469,
+    470
+   ],
+   "E338_SEPE": [
+    471,
+    472
+   ],
+   "E339_SEPE": [
+    473,
+    474
+   ],
+   "E34_SEC_BIN": [
+    30,
+    31
+   ],
+   "E34_SEPE": [
+    77,
+    78,
+    79,
+    80
+   ],
+   "E340_SEPE": [
+    475,
+    476,
+    214,
+    215,
+    404,
+    89,
+    405
+   ],
+   "E341_SEPE": [
+    137,
+    477
+   ],
+   "E344_SEPE": [
+    210,
+    211
+   ],
+   "E345_SEPE": [
+    478,
+    479
+   ],
+   "E346_SEPE": [
+    419,
+    420
+   ],
+   "E347_SEPE": [
+    480,
+    481
+   ],
+   "E348_SEPE": [
+    482,
+    483
+   ],
+   "E349_SEPE": [
+    484,
+    485
+   ],
+   "E35_SEC_BIN": [
+    36,
+    37
+   ],
+   "E35_SEPE": [
+    212,
+    213
+   ],
+   "E350_SEPE": [
+    486,
+    484,
+    485
+   ],
+   "E351_SEPE": [
+    487,
+    488
+   ],
+   "E352_SEPE": [
+    489,
+    490
+   ],
+   "E353_SEPE": [
+    491,
+    492
+   ],
+   "E354_SEPE": [
+    493,
+    494
+   ],
+   "E355_SEPE": [
+    495,
+    496
+   ],
+   "E356_SEPE": [
+    497,
+    498
+   ],
+   "E357_SEPE": [
+    499,
+    498
+   ],
+   "E358_SEPE": [
+    500,
+    501
+   ],
+   "E36_SEPE": [
+    316,
+    317
+   ],
+   "E37_SEPE": [
+    502,
+    503,
+    504
+   ],
+   "E38_SEPE": [
+    338,
+    339
+   ],
+   "E39_SEPE": [
+    505,
+    149,
+    506
+   ],
+   "E4_SEPE": [
+    325,
+    327
+   ],
+   "E40_SEPE": [
+    169,
+    170,
+    21
+   ],
+   "E42_SEPE": [
+    422,
+    424
+   ],
+   "E43_SEPE": [
+    18,
+    507
+   ],
+   "E44_SEPE": [
+    508,
+    509,
+    510,
+    19
+   ],
+   "E45_SEPE": [
+    511,
+    512,
+    126,
+    375
+   ],
+   "E46_SEPE": [
+    513,
+    514
+   ],
+   "E47_SEPE": [
+    515,
+    169,
+    170,
+    21
+   ],
+   "E48_SEPE": [
+    515,
+    20
+   ],
+   "E49_SEPE": [
+    516,
+    517,
+    518
+   ],
+   "E5_SEPE": [
+    519,
+    520,
+    521
+   ],
+   "E50_SEPE": [
+    437,
+    372
+   ],
+   "E51_SEPE": [
+    522,
+    523
+   ],
+   "E52_SEPE": [
+    524,
+    525
+   ],
+   "E53_SEPE": [
+    443,
+    526
+   ],
+   "E54_SEPE": [
+    527,
+    528
+   ],
+   "E55_SEPE": [
+    529,
+    530
+   ],
+   "E56_SEPE": [
+    531,
+    532
+   ],
+   "E57_SEPE": [
+    533,
+    534
+   ],
+   "E58_SEPE": [
+    349,
+    10
+   ],
+   "E59_SEPE": [
+    535,
+    15
+   ],
+   "E6_SEPE": [
+    536,
+    537
+   ],
+   "E60_SEPE": [
+    535,
+    14
+   ],
+   "E61_SEPE": [
+    538,
+    312
+   ],
+   "E62_SEPE": [
+    539,
+    445
+   ],
+   "E64_SEPE": [
+    540,
+    541
+   ],
+   "E65_SEPE": [
+    542,
+    543
+   ],
+   "E66_SEPE": [
+    544,
+    545
+   ],
+   "E67_SEPE": [
+    546,
+    547
+   ],
+   "E68_SEPE": [
+    548,
+    451
+   ],
+   "E7_SEPE": [
+    549,
+    550
+   ],
+   "E70_SEPE": [
+    551,
+    552
+   ],
+   "E71_SEPE": [
+    553,
+    554
+   ],
+   "E72_SEPE": [
+    555,
+    306
+   ],
+   "E73_SEPE": [
+    556,
+    557
+   ],
+   "E74_SEPE": [
+    558,
+    559
+   ],
+   "E75_SEPE": [
+    560,
+    462
+   ],
+   "E76_SEPE": [
+    561,
+    520
+   ],
+   "E77_SEPE": [
+    562,
+    563
+   ],
+   "E78_SEPE": [
+    564,
+    565
+   ],
+   "E79_SEPE": [
+    566,
+    567
+   ],
+   "E8_SEPE": [
+    557,
+    568
+   ],
+   "E80_SEPE": [
+    569,
+    570
+   ],
+   "E81_SEPE": [
+    571,
+    456
+   ],
+   "E82_SEPE": [
+    432,
+    204
+   ],
+   "E83_SEPE": [
+    572,
+    573
+   ],
+   "E84_SEPE": [
+    574,
+    4
+   ],
+   "E85_SEPE": [
+    574,
+    5
+   ],
+   "E86_SEPE": [
+    575,
+    6
+   ],
+   "E89_SEPE": [
+    576,
+    577
+   ],
+   "E9_SEPE": [
+    578,
+    166
+   ],
+   "E90_SEPE": [
+    579,
+    580
+   ],
+   "E91_SEPE": [
+    581,
+    582
+   ],
+   "E92_SEPE": [
+    583,
+    584
+   ],
+   "E93_SEPE": [
+    585,
+    25
+   ],
+   "E94_SEPE": [
+    586,
+    587
+   ],
+   "E95_SEPE": [
+    588,
+    378
+   ],
+   "E96_SEPE": [
+    589,
+    590
+   ],
+   "E97_SEPE": [
+    591,
+    592
+   ],
+   "E98_SEPE": [
+    593,
+    594
+   ]
+  },
+  "Dinámico": {
+   "D02_SEC": [
+    61,
+    63
+   ],
+   "D03_SEC_BIN": [
+    30,
+    31
+   ],
+   "D04_SEC_BIN": [
+    32,
+    33
+   ],
+   "D05_SEC": [
+    408,
+    409
+   ],
+   "D06_SEC_BIN": [
+    34,
+    35
+   ],
+   "D07_SEC": [
+    227,
+    156
+   ],
+   "D08_SEC_BIN": [
+    36,
+    37
+   ],
+   "D1_SEB": [
+    93,
+    40
+   ],
+   "D10_SEPE": [
+    107,
+    320,
+    321,
+    322,
+    323,
+    324,
+    251
+   ],
+   "D11_SEPE": [
+    275,
+    277
+   ],
+   "D13_SEPE": [
+    312,
+    311
+   ],
+   "D15_SEPE": [
+    342,
+    341
+   ],
+   "D16_SEPE": [
+    595,
+    596,
+    597
+   ],
+   "D18_SEPE": [
+    378,
+    377
+   ],
+   "D19_SEPE": [
+    516,
+    517,
+    518
+   ],
+   "D2_SEB": [
+    154,
+    155
+   ],
+   "D20_SEPE": [
+    410,
+    598,
+    411
+   ],
+   "D21_SEPE": [
+    327,
+    325
+   ],
+   "D22_SEPE": [
+    556,
+    557,
+    568
+   ],
+   "D23_SEPE": [
+    581,
+    599,
+    600,
+    589,
+    601,
+    590
+   ],
+   "D24_SEPE": [
+    104,
+    105
+   ],
+   "D25_SEPE": [
+    364,
+    365
+   ],
+   "D26_SEPE": [
+    537,
+    536
+   ],
+   "D28_SEPE": [
+    439,
+    438
+   ],
+   "D29_SEPE": [
+    301,
+    300
+   ],
+   "D3_SEB": [
+    38,
+    172,
+    171,
+    602,
+    603
+   ],
+   "D30_SEPE": [
+    179,
+    178,
+    180
+   ],
+   "D31_SEPE": [
+    368,
+    366,
+    367
+   ],
+   "D33_SEPE": [
+    182,
+    183
+   ],
+   "D34_SEPE": [
+    549,
+    550
+   ],
+   "D35_SEPE": [
+    67,
+    66
+   ],
+   "D39_SEPE": [
+    82,
+    315,
+    604,
+    316,
+    317,
+    605,
+    318,
+    319
+   ],
+   "D4_SEB": [
+    45,
+    606,
+    428,
+    429,
+    430,
+    431
+   ],
+   "D42_SEPE": [
+    126,
+    511,
+    512,
+    375,
+    376
+   ],
+   "D43_SEPE": [
+    228,
+    229
+   ],
+   "D45_SEPE": [
+    13,
+    607
+   ],
+   "D48_SEPE": [
+    166,
+    578
+   ],
+   "D49_SEPE": [
+    0,
+    371
+   ],
+   "D5_SEB_BIN": [
+    38,
+    39
+   ],
+   "D5_SEPE": [
+    256,
+    255
+   ],
+   "D50_SEPE": [
+    503,
+    502,
+    504
+   ],
+   "D51_SEPE": [
+    162,
+    608
+   ],
+   "D54_SEPE": [
+    18,
+    508,
+    509,
+    510,
+    507
+   ],
+   "D55_SEPE": [
+    204,
+    203
+   ],
+   "D56_SEPE": [
+    142,
+    143
+   ],
+   "D57_SEPE": [
+    481,
+    480
+   ],
+   "D58_SEPE": [
+    153,
+    331
+   ],
+   "D59_SEPE": [
+    356,
+    609,
+    357
+   ],
+   "D6_SEB_BIN": [
+    40,
+    41
+   ],
+   "D6_SEPE": [
+    519,
+    521
+   ],
+   "D60_SEPE": [
+    119,
+    117,
+    118,
+    120
+   ],
+   "D61_SEPE": [
+    123,
+    374,
+    124
+   ],
+   "D63_SEPE": [
+    339,
+    338
+   ],
+   "D64_SEPE": [
+    175,
+    174
+   ],
+   "D65_SEPE": [
+    213,
+    212
+   ],
+   "D67_SEPE": [
+    149,
+    505,
+    506
+   ],
+   "D68_SEPE": [
+    137,
+    477
+   ],
+   "D69_SEPE": [
+    158,
+    468
+   ],
+   "D70_SEPE": [
+    211,
+    210
+   ],
+   "D71_SEPE": [
+    447,
+    448
+   ],
+   "D72_SEPE": [
+    334,
+    335
+   ],
+   "D73_SEPE": [
+    419,
+    420
+   ],
+   "D74_SEPE": [
+    479,
+    478
+   ],
+   "D75_SEPE_Bin": [
+    26,
+    27
+   ],
+   "D76_SEPE_Bin": [
+    18,
+    19
+   ],
+   "D77_SEPE_Bin": [
+    23,
+    22
+   ],
+   "D78_SEPE_Bin": [
+    29,
+    28
+   ],
+   "D8_SEPE": [
+    426,
+    427
+   ],
+   "D80_SEPE_Bin": [
+    17,
+    16
+   ],
+   "D81_SEPE_Bin": [
+    3,
+    2
+   ],
+   "D82_SEPE_Bin": [
+    9,
+    8
+   ],
+   "D83_SEPE_Bin": [
+    1,
+    0
+   ],
+   "D84_SEPE_Bin": [
+    15,
+    14
+   ],
+   "D85_SEPE_Bin": [
+    11,
+    10
+   ],
+   "D86_SEPE_Bin": [
+    5,
+    4
+   ],
+   "D87_SEPE_Bin": [
+    7,
+    6
+   ],
+   "D88_SEPE_Bin": [
+    13,
+    12
+   ],
+   "D89_SEPE_Bin": [
+    25,
+    24
+   ],
+   "D90_SEPE_Bin": [
+    21,
+    20
+   ],
+   "D91_SEPE": [
+    486,
+    484,
+    485
+   ],
+   "D92_SEPE": [
+    498,
+    499
+   ]
+  }
+ }
+}

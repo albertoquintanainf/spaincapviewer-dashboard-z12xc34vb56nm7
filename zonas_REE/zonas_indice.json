@@ -1,0 +1,100 @@
+{
+ "periodos": [
+  "26_ene",
+  "26_feb",
+  "26_mar",
+  "26_abr",
+  "26_may",
+  "26_jun",
+  "26_jul",
+  "26_ago",
+  "26_sep"
+ ],
+ "bases": {
+  "400f3f6f642b19d9": {
+   "fichero": "zonas_base_gen_400f3f6f.json",
+   "perspectiva": "gen",
+   "desde": "26_feb",
+   "hasta": "26_mar",
+   "n_nudos": 613,
+   "n_zonas": {
+    "WSCR": 21,
+    "Estático": 319,
+    "Dinámico": 81
+   }
+  },
+  "fd877891300ba806": {
+   "fichero": "zonas_base_dem_fd877891.json",
+   "perspectiva": "dem",
+   "desde": "26_feb",
+   "hasta": "26_feb",
+   "n_nudos": 939,
+   "n_zonas": {
+    "WSCR": 21,
+    "Estático": 234,
+    "Dinámico": 1836
+   }
+  },
+  "25ec35254702ee3c": {
+   "fichero": "zonas_base_dem_25ec3525.json",
+   "perspectiva": "dem",
+   "desde": "26_mar",
+   "hasta": "26_mar",
+   "n_nudos": 939,
+   "n_zonas": {
+    "WSCR": 21,
+    "Estático": 234,
+    "Dinámico": 1836
+   }
+  },
+  "3feb00b85fc0f4f2": {
+   "fichero": "zonas_base_dem_3feb00b8.json",
+   "perspectiva": "dem",
+   "desde": "26_abr",
+   "hasta": "26_may",
+   "n_nudos": 936,
+   "n_zonas": {
+    "WSCR": 21,
+    "Estático": 234,
+    "Dinámico": 1836
+   }
+  },
+  "b3b2dc3be06b161a": {
+   "fichero": "zonas_base_gen_b3b2dc3b.json",
+   "perspectiva": "gen",
+   "desde": "26_may",
+   "hasta": "26_may",
+   "n_nudos": 610,
+   "n_zonas": {
+    "WSCR": 21,
+    "Estático": 319,
+    "Dinámico": 81
+   }
+  },
+  "2e50d4150f4b1537": {
+   "fichero": "zonas_base_gen_2e50d415.json",
+   "perspectiva": "gen",
+   "desde": "26_jun",
+   "hasta": "26_sep",
+   "n_nudos": 610,
+   "n_zonas": {
+    "WSCR": 21,
+    "Estático": 319,
+    "Dinámico": 81
+   }
+  },
+  "fa76b0a271454a32": {
+   "fichero": "zonas_base_dem_fa76b0a2.json",
+   "perspectiva": "dem",
+   "desde": "26_jun",
+   "hasta": "26_sep",
+   "n_nudos": 936,
+   "n_zonas": {
+    "WSCR": 21,
+    "Estático": 234,
+    "Dinámico": 1836
+   }
+  }
+ },
+ "republicaciones": {}
+}
