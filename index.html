@@ -417,10 +417,11 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 #bs-testbox { margin:10px 16px 0; padding:9px 13px; border-radius:8px; background:#FBEAE8;
   border-left:5px solid #B3261E; font-size:12px; line-height:1.45; color:#262626; }
 .bs-page { position:relative; }
-.bs-page::after { content:"FASE DE PRUEBAS"; position:absolute; top:46%; left:50%;
-  transform:translate(-50%,-50%) rotate(-22deg); font:bold 54px/1 Arial,Helvetica,sans-serif;
-  color:rgba(179,38,30,.10); letter-spacing:7px; white-space:nowrap; pointer-events:none; z-index:0; }
-.bs-card > * { position:relative; z-index:1; }
+.bs-wm-w { height:0; }
+@supports (position:absolute) { .bs-wm-w { overflow:visible; } }
+.bs-wm { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-22deg);
+  font:bold 54px/1 Arial,Helvetica,sans-serif; color:#B3261E; opacity:.13; letter-spacing:8px;
+  white-space:nowrap; pointer-events:none; z-index:50; }
 #bs-close { margin-left:auto; background:#F3721F; color:#fff; border:none; border-radius:6px; padding:6px 12px;
   font-size:13px; font-weight:bold; cursor:pointer; }
 #bs-controls { display:flex; gap:14px; align-items:center; flex-wrap:wrap; padding:10px 16px; background:#fff;
@@ -609,7 +610,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-foot { font-size:7.5px; margin-top:2px; }
   .bs-rep-foot { font-size:6.5px; padding-top:3px; margin-top:4px; }
   .bs-concl-b { width:15%; } .bs-concl-h { width:24%; }
-  .bs-page::after { font-size:46px; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .bs-wm { font-size:48px; opacity:.15; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   .bs-rep-head { font-size:8.5px; padding-bottom:2px; margin-bottom:4px; }
   .bs-tbl { font-size:8px; } .bs-tbl td, .bs-tbl th { padding:2px 4px; }
   .bs-page { page-break-after:always; break-after:page; border:none; box-shadow:none; }
@@ -646,10 +647,11 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 #bs-testbox { margin:10px 16px 0; padding:9px 13px; border-radius:8px; background:#FBEAE8;
   border-left:5px solid #B3261E; font-size:12px; line-height:1.45; color:#262626; }
 .bs-page { position:relative; }
-.bs-page::after { content:"FASE DE PRUEBAS"; position:absolute; top:46%; left:50%;
-  transform:translate(-50%,-50%) rotate(-22deg); font:bold 54px/1 Arial,Helvetica,sans-serif;
-  color:rgba(179,38,30,.10); letter-spacing:7px; white-space:nowrap; pointer-events:none; z-index:0; }
-.bs-card > * { position:relative; z-index:1; }
+.bs-wm-w { height:0; }
+@supports (position:absolute) { .bs-wm-w { overflow:visible; } }
+.bs-wm { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-22deg);
+  font:bold 54px/1 Arial,Helvetica,sans-serif; color:#B3261E; opacity:.13; letter-spacing:8px;
+  white-space:nowrap; pointer-events:none; z-index:50; }
 #bs-close { margin-left:auto; background:#F3721F; color:#fff; border:none; border-radius:6px; padding:6px 12px;
   font-size:13px; font-weight:bold; cursor:pointer; }
 #bs-controls { display:flex; gap:14px; align-items:center; flex-wrap:wrap; padding:10px 16px; background:#fff;
@@ -838,7 +840,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-foot { font-size:7.5px; margin-top:2px; }
   .bs-rep-foot { font-size:6.5px; padding-top:3px; margin-top:4px; }
   .bs-concl-b { width:15%; } .bs-concl-h { width:24%; }
-  .bs-page::after { font-size:46px; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .bs-wm { font-size:48px; opacity:.15; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   .bs-rep-head { font-size:8.5px; padding-bottom:2px; margin-bottom:4px; }
   .bs-tbl { font-size:8px; } .bs-tbl td, .bs-tbl th { padding:2px 4px; }
   .bs-page { page-break-after:always; break-after:page; border:none; box-shadow:none; }
@@ -5789,6 +5791,11 @@ function bsFichaHTML(m, paraInforme) {
         '<tr class="' + (r[2] ? 'bs-hl' : (/margen total/.test(r[0]) ? 'bs-mg' : '')) + '"><td>' + r[0] + '</td><td class="bs-num">' + r[1] + '</td></tr>').join('') + '</table>';
 
     return '<div class="bs-card' + (paraInforme ? ' bs-page' : '') + '">' +
+        // Marca de agua como elemento real y por DELANTE del contenido: como
+        // pseudoelemento quedaba detrás de las tablas, que tienen fondo opaco.
+        // El envoltorio de alto cero evita que la marca robe espacio en los
+        // motores que ignoran «position:absolute» (algunos conversores a PDF).
+        (paraInforme ? '<div class="bs-wm-w"><div class="bs-wm">FASE DE PRUEBAS</div></div>' : '') +
         '<h3>' + m.name + '</h3>' +
         '<div class="bs-sub2">' + (m.ccaa || '') + (m.prov ? ' · ' + m.prov : '') + (m.tens ? ' · ' + m.tens + ' kV' : '') +
         ' · red ' + m.grid + (m.oper ? ' · ' + m.oper : '') + '</div>' +
