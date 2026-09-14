@@ -447,6 +447,27 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   border-bottom:1px solid #e2e8f0; padding-bottom:8px; margin-bottom:10px; }
 .bs-ficha-bar button { margin-left:0; }
 .bs-ficha-bar b { margin-right:auto; }
+.bs-grp { display:flex; gap:10px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0;
+  border-radius:8px; padding:4px 8px; }
+.bs-in { width:64px; padding:3px 5px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px; }
+.bs-in-s { width:52px; }
+.bs-in:disabled { background:#eef2f6; color:#7a8495; }
+.bs-sim { width:100%; border-collapse:collapse; background:#fff; border:1px solid #94a3b8; border-radius:8px; margin-top:6px; }
+.bs-sim td { padding:6px 10px; font-size:10.5px; color:#262626; }
+.bs-sim td.bs-num { white-space:nowrap; }
+.bs-prev { width:100%; border-collapse:collapse; background:#fbfcfe; border:1px solid #94a3b8;
+  border-left:6px solid #7a8495; border-radius:8px; margin-top:10px; }
+.bs-prev td { padding:7px 10px; vertical-align:top; }
+.bs-prev-h { font-size:11.5px; color:#222; }
+.bs-prev-g { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
+.bs-prev-g > tr > td { width:33.33%; background:#fff; border:1px solid #e2e8f0; border-radius:6px; padding:6px 8px; }
+.bs-prev-t { font-size:10.5px; font-weight:bold; color:#1F4E79; margin-bottom:3px; }
+.bs-prev-l { margin:8px 0 0 16px; padding:0; font-size:10.5px; color:#262626; }
+.bs-prev-l li { margin-bottom:3px; }
+.bs-spark { border-collapse:separate; border-spacing:2px 0; margin:2px 0 4px; }
+.bs-spark td { vertical-align:bottom; height:30px; padding:0; }
+.bs-spark td span { display:block; width:7px; background:#A67C00; }
+.bs-spark-x { font-size:7px; color:#7a8495; text-align:center; height:auto; }
 .bs-count { font-size:11.5px; color:#5b6472; margin-bottom:6px; }
 .bs-diag { background:#f4f4f4; border-left:4px solid #7a8495; border-radius:6px; padding:7px 10px;
   font-size:11.5px; color:#262626; margin-bottom:10px; line-height:1.45; }
@@ -578,6 +599,27 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   border-bottom:1px solid #e2e8f0; padding-bottom:8px; margin-bottom:10px; }
 .bs-ficha-bar button { margin-left:0; }
 .bs-ficha-bar b { margin-right:auto; }
+.bs-grp { display:flex; gap:10px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0;
+  border-radius:8px; padding:4px 8px; }
+.bs-in { width:64px; padding:3px 5px; border:1px solid #cbd5e1; border-radius:6px; font-size:13px; }
+.bs-in-s { width:52px; }
+.bs-in:disabled { background:#eef2f6; color:#7a8495; }
+.bs-sim { width:100%; border-collapse:collapse; background:#fff; border:1px solid #94a3b8; border-radius:8px; margin-top:6px; }
+.bs-sim td { padding:6px 10px; font-size:10.5px; color:#262626; }
+.bs-sim td.bs-num { white-space:nowrap; }
+.bs-prev { width:100%; border-collapse:collapse; background:#fbfcfe; border:1px solid #94a3b8;
+  border-left:6px solid #7a8495; border-radius:8px; margin-top:10px; }
+.bs-prev td { padding:7px 10px; vertical-align:top; }
+.bs-prev-h { font-size:11.5px; color:#222; }
+.bs-prev-g { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
+.bs-prev-g > tr > td { width:33.33%; background:#fff; border:1px solid #e2e8f0; border-radius:6px; padding:6px 8px; }
+.bs-prev-t { font-size:10.5px; font-weight:bold; color:#1F4E79; margin-bottom:3px; }
+.bs-prev-l { margin:8px 0 0 16px; padding:0; font-size:10.5px; color:#262626; }
+.bs-prev-l li { margin-bottom:3px; }
+.bs-spark { border-collapse:separate; border-spacing:2px 0; margin:2px 0 4px; }
+.bs-spark td { vertical-align:bottom; height:30px; padding:0; }
+.bs-spark td span { display:block; width:7px; background:#A67C00; }
+.bs-spark-x { font-size:7px; color:#7a8495; text-align:center; height:auto; }
 .bs-count { font-size:11.5px; color:#5b6472; margin-bottom:6px; }
 .bs-diag { background:#f4f4f4; border-left:4px solid #7a8495; border-radius:6px; padding:7px 10px;
   font-size:11.5px; color:#262626; margin-bottom:10px; line-height:1.45; }
@@ -4579,13 +4621,14 @@ function renderOportunidades(){
       <option value="TSO" selected>TSO</option>
       <option value="DSO">DSO</option>
     </select></label>
-    <label>Perfil:<select id="bs-perfil" onchange="bsRefresh()">
-      <option value="sim" selected>Simétrico (carga = descarga)</option>
-      <option value="asim">Asimétrico</option>
-    </select></label>
-    <label>Objetivo (MW):<input id="bs-target" type="number" min="0" step="5" value="50" oninput="bsRefresh()" style="width:70px;padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:13px;"></label>
+    <span class="bs-grp">
+      <label title="Potencia de descarga que busca el proyecto (permiso de generación)">Descarga objetivo:<input id="bs-tdesc" type="number" min="0" step="5" value="50" oninput="bsSyncTargets()" class="bs-in"> MW</label>
+      <label title="Al vincular, la carga se calcula como descarga × ratio"><input id="bs-link" type="checkbox" checked onchange="bsSyncTargets()"> vincular ×<input id="bs-ratio" type="number" min="0.05" max="3" step="0.05" value="1" oninput="bsSyncTargets()" class="bs-in bs-in-s"></label>
+      <label title="Potencia de carga que busca el proyecto (permiso de demanda)">Carga objetivo:<input id="bs-tcarga" type="number" min="0" step="5" value="50" oninput="bsSyncTargets()" class="bs-in"> MW</label>
+    </span>
     <label>Ordenar por:<select id="bs-order" onchange="bsRender()">
-      <option value="efic" selected>MW eficaces con concurso</option>
+      <option value="cob" selected>Cobertura del objetivo</option>
+      <option value="efic">MW eficaces con concurso</option>
       <option value="hoy">MW eficaces hoy</option>
       <option value="carga">Carga solicitable</option>
       <option value="margen">Margen de descarga</option>
@@ -4666,7 +4709,42 @@ function bsKey() {
 function bsNum(v) { const n = Number(v); return isFinite(n) ? n : 0; }
 function bsMW(v) { return (v == null || !isFinite(Number(v))) ? '—' : Number(v).toLocaleString('es-ES') + ' MW'; }
 function bsMin(a, b) { return Math.min(bsNum(a), bsNum(b)); }
-function bsTarget() { return Math.max(0, bsNum(document.getElementById('bs-target').value)); }
+/* Objetivos del proyecto: carga y descarga son dos permisos distintos, así que
+   se fijan por separado. La casilla «vincular» los ata por un ratio
+   (carga = descarga × ratio) para el caso habitual de diseño simétrico.      */
+function bsSyncTargets() {
+    const link = document.getElementById('bs-link').checked;
+    const d = Math.max(0, bsNum(document.getElementById('bs-tdesc').value));
+    const rEl = document.getElementById('bs-ratio'), cEl = document.getElementById('bs-tcarga');
+    rEl.disabled = !link; cEl.disabled = link;
+    if (link) cEl.value = Math.round(d * Math.max(0.05, bsNum(rEl.value)) * 100) / 100;
+    bsRender();
+}
+function bsTargets() {
+    const d = Math.max(0, bsNum(document.getElementById('bs-tdesc').value));
+    const c = Math.max(0, bsNum(document.getElementById('bs-tcarga').value));
+    return { desc: d, carga: c, ratio: d > 0 ? c / d : 0 };
+}
+/* Cobertura de cada lado por separado, más la potencia simétrica máxima que
+   admitiría el nudo (el mínimo de los dos lados).                            */
+function bsCover(m) {
+    const t = bsTargets();
+    const cobCargaHoy = t.carga > 0 ? m.cargaDisp / t.carga : 1;
+    const cobDescHoy = t.desc > 0 ? m.descDisp / t.desc : 1;
+    const cobDescConc = t.desc > 0 ? m.potencial / t.desc : 1;
+    const okCargaHoy = m.cargaDisp >= t.carga, okDescHoy = m.descDisp >= t.desc, okDescConc = m.potencial >= t.desc;
+    return {
+        t: t,
+        cobCargaHoy: cobCargaHoy, cobDescHoy: cobDescHoy, cobDescConc: cobDescConc,
+        okCargaHoy: okCargaHoy, okDescHoy: okDescHoy, okDescConc: okDescConc,
+        simHoy: Math.min(m.cargaDisp, m.descDisp),      // mayor BESS simétrico solicitable hoy
+        simConc: Math.min(m.cargaDisp, m.potencial),    // ídem si se convoca el concurso
+        // porcentaje global: el lado peor, que es el que dimensiona el proyecto
+        peorHoy: Math.min(cobCargaHoy, cobDescHoy),
+        peorConc: Math.min(cobCargaHoy, cobDescConc),
+    };
+}
+function bsPct(v) { return (v >= 9.99 ? '>999' : Math.round(v * 100)) + ' %'; }
 
 /* ---------- métricas TSO ----------
    CARGA    · dem.disp.alm_cep      → almacenamiento en modo demanda solicitable
@@ -4762,6 +4840,198 @@ function bsMetricsDSO(entry, key) {
     };
 }
 
+
+/* =========================================================================
+   CAPA DE PREVISIÓN
+   El módulo no solo mira el mes activo: evalúa de dónde viene el margen y
+   qué puede pasarle. Tres piezas independientes:
+     · bsTecho  → techo alternativo si se levantara el criterio que hoy limita
+     · bsZona   → exposición al fondo común de la zona (margen compartido)
+     · bsTrend  → pendiente del margen y cambios de criterio en el histórico
+   ========================================================================= */
+
+/* Familia del criterio: lo que importa no es la etiqueta exacta sino si el
+   margen es PROPIO del nudo o COMPARTIDO con la zona.                      */
+function bsCritFam(c) {
+    if (!c) return { fam: 'sin criterio', ambito: '—' };
+    const p = String(c).split('/');
+    const hay = function (t) { return p.some(function (x) { return x.indexOf(t) >= 0; }); };
+    if (hay('D_Zona') || hay('Din1_Zona') || hay('Din2_Zona')) return { fam: 'dinámico', ambito: 'zona' };
+    if (hay('D_Nudo') || hay('Din1_Nudo')) return { fam: 'dinámico', ambito: 'nudo' };
+    if (hay('WSCR')) return { fam: 'WSCR', ambito: 'nudo' };
+    if (hay('Est') && hay('Zona')) return { fam: 'estático', ambito: 'zona' };
+    if (hay('Est')) return { fam: 'estático', ambito: 'nudo' };
+    return { fam: String(c), ambito: '—' };
+}
+
+/* Techo por criterio: los tres capítulos de margen que publica la ficha de
+   generación y cuál sería el techo si se levantase el que hoy manda.       */
+function bsTecho(entry, key) {
+    const r = richForMonth(key, entry);
+    if (!r || !r.gen || !r.gen.nodal) return null;
+    const nd = r.gen.nodal;
+    const cap = [
+        { id: 'WSCR', ambito: 'nudo', margen: bsNum(nd.wscr_margen), cap: bsNum(nd.wscr_cap), zona: null },
+        { id: 'estático almacenamiento', ambito: nd.estatico_alm_zona ? 'zona' : 'nudo', margen: bsNum(nd.estatico_alm_margen), cap: bsNum(nd.estatico_alm_cap), zona: nd.estatico_alm_zona || null },
+        { id: 'dinámico', ambito: nd.dinamico_zona ? 'zona' : 'nudo', margen: bsNum(nd.dinamico_margen), cap: bsNum(nd.dinamico_cap), zona: nd.dinamico_zona || null },
+    ];
+    const ordenado = cap.slice().sort(function (a, b) { return a.margen - b.margen; });
+    const limita = ordenado[0];                 // el que hoy manda
+    const siguiente = ordenado[1] || limita;    // techo si se levantara
+    return { detalle: cap, limita: limita, techo: siguiente.margen, techoPor: siguiente.id, gana: siguiente.margen - limita.margen };
+}
+
+/* Fondo común de la zona. Se calcula una vez por mes y se cachea: hay que
+   recorrer todos los nudos para sumar la cola de la zona.                  */
+let bsZonaCache = {};
+function bsZonasDelMes(key) {
+    if (bsZonaCache[key]) return bsZonaCache[key];
+    const z = {};
+    for (const e of allEntries) {
+        if ((e.grid || 'TSO') !== 'TSO') continue;
+        const r = richForMonth(key, e);
+        if (!r || !r.gen || !r.gen.nodal) continue;
+        const id = r.gen.nodal.dinamico_zona;
+        if (!id) continue;
+        if (!z[id]) z[id] = { id: id, pool: 0, nudos: 0, cola: 0, otorgada: 0, miembros: [] };
+        z[id].pool = bsNum(r.gen.nodal.dinamico_margen);   // compartido: mismo valor en todos
+        z[id].nudos += 1;
+        z[id].cola += bsNum((r.gen.en_curso || {}).total);
+        z[id].otorgada += bsNum((r.gen.otorgada || {}).gen);
+        z[id].miembros.push(e.name);
+    }
+    bsZonaCache[key] = z;
+    return z;
+}
+function bsZona(entry, key) {
+    const r = richForMonth(key, entry);
+    if (!r || !r.gen || !r.gen.nodal || !r.gen.nodal.dinamico_zona) return null;
+    const z = bsZonasDelMes(key)[r.gen.nodal.dinamico_zona];
+    if (!z) return null;
+    const ratio = z.pool > 0 ? z.cola / z.pool : (z.cola > 0 ? Infinity : 0);
+    let riesgo = 'bajo';
+    if (!isFinite(ratio) || ratio >= 1) riesgo = 'agotado';
+    else if (ratio >= 0.8) riesgo = 'alto';
+    else if (ratio >= 0.4) riesgo = 'medio';
+    return { zona: z.id, pool: z.pool, nudos: z.nudos, cola: z.cola, otorgada: z.otorgada, ratio: ratio, riesgo: riesgo };
+}
+
+/* Serie histórica del nudo y tendencia. La demanda arranca un mes más tarde
+   que la generación en los ficheros publicados, así que cada lado se cuenta
+   con los meses que realmente tiene.                                       */
+function bsSerie(entry) {
+    // Defensivo: si el visor cambiara de API, la serie se limita al mes activo
+    // en lugar de romper el módulo.
+    let keys;
+    if (typeof naMonthKeysSorted === 'function') keys = naMonthKeysSorted();
+    else if (typeof MONTHS_DATA !== 'undefined') keys = Object.keys(MONTHS_DATA);
+    else keys = [bsKey()];
+    const out = [];
+    for (const k of keys) {
+        const r = richForMonth(k, entry);
+        if (!r) continue;
+        const g = r.gen || {}, d = r.dem || {};
+        const pos = (g.lim_posicion || {}).margen_mpe;
+        const mpe = bsNum((g.margen || {}).alm_mpe);
+        out.push({
+            key: k,
+            carga: (d.disp && d.disp.alm_cep != null) ? bsNum(d.disp.alm_cep) : null,
+            descDisp: bsNum((g.disp || {}).alm_mpe_rdt),
+            margenMPE: mpe,
+            potencial: (pos == null) ? mpe : Math.min(mpe, bsNum(pos)),
+            critDesc: (g.crit_lim || {}).alm_mpe || null,
+            critCarga: (d.crit_lim || {}).alm_cep || null,
+        });
+    }
+    return out;
+}
+/* Pendiente por mínimos cuadrados sobre el potencial de descarga y la carga.
+   Con menos de 4 meses no se extrapola: se informa y se deja en «insuficiente». */
+function bsTrend(entry) {
+    const s = bsSerie(entry);
+    const nm = s.length;
+    const res = { n: nm, serie: s, suficiente: nm >= 4, pendDesc: null, pendCarga: null, proy3: null, cambios: [], estado: 'sin datos' };
+    if (!nm) return res;
+    const reg = function (vals) {
+        const pts = vals.map(function (v, i) { return { x: i, y: v }; }).filter(function (p) { return p.y != null; });
+        if (pts.length < 2) return null;
+        const n = pts.length;
+        const sx = pts.reduce(function (a, p) { return a + p.x; }, 0), sy = pts.reduce(function (a, p) { return a + p.y; }, 0);
+        const sxy = pts.reduce(function (a, p) { return a + p.x * p.y; }, 0), sxx = pts.reduce(function (a, p) { return a + p.x * p.x; }, 0);
+        const den = n * sxx - sx * sx;
+        return den === 0 ? null : (n * sxy - sx * sy) / den;   // MW por mes
+    };
+    res.pendDesc = reg(s.map(function (x) { return x.potencial; }));
+    res.pendCarga = reg(s.map(function (x) { return x.carga; }));
+    // cambios de familia de criterio en la descarga
+    for (let i = 1; i < s.length; i++) {
+        const a = bsCritFam(s[i - 1].critDesc), b = bsCritFam(s[i].critDesc);
+        if (a.fam + a.ambito !== b.fam + b.ambito) {
+            res.cambios.push({ mes: s[i].key, de: a, a: b, dMargen: s[i].potencial - s[i - 1].potencial });
+        }
+    }
+    const ult = s[s.length - 1];
+    if (res.suficiente && res.pendDesc != null) {
+        res.proy3 = Math.max(0, Math.round(ult.potencial + 3 * res.pendDesc));
+        if (res.pendDesc > 1) res.estado = 'mejora';
+        else if (res.pendDesc < -1) res.estado = 'erosión';
+        else res.estado = 'estable';
+    } else res.estado = 'insuficiente';
+    return res;
+}
+
+/* Aviso de previsión: combina las tres piezas en una sola señal.            */
+function bsForecast(m, entry, key) {
+    const t = bsTecho(entry, key), z = bsZona(entry, key), tr = bsTrend(entry);
+    const avisos = [];
+    let nivel = 'neutro';
+    if (z && (z.riesgo === 'agotado' || z.riesgo === 'alto')) {
+        nivel = 'riesgo';
+        avisos.push('El margen de este nudo depende del fondo común de la zona ' + z.zona + ', que comparte con ' +
+            z.nudos + ' nudos: ' + bsMW(z.pool) + ' de margen frente a ' + bsMW(z.cola) + ' en cola' +
+            (isFinite(z.ratio) ? ' (' + Math.round(z.ratio * 100) + ' %)' : '') + '. Puede caer a cero sin que ocurra nada en tu nudo.');
+    } else if (z) {
+        avisos.push('Zona ' + z.zona + ': fondo común de ' + bsMW(z.pool) + ' compartido con ' + z.nudos + ' nudos, con ' + bsMW(z.cola) + ' en cola.');
+    }
+    if (t && t.gana > 0) {
+        if (nivel === 'neutro') nivel = 'oportunidad';
+        avisos.push('Hoy limita el criterio ' + t.limita.id + ' (' + t.limita.ambito + ') en ' + bsMW(t.limita.margen) +
+            '. Si se levantara, el techo pasaría a ' + bsMW(t.techo) + ' por ' + t.techoPor + ': ' + bsMW(t.gana) + ' adicionales.');
+    }
+    if (tr.estado === 'erosión') { nivel = 'riesgo'; avisos.push('El potencial de descarga cae ' + Math.abs(tr.pendDesc).toFixed(1) + ' MW al mes en los últimos ' + tr.n + ' meses; proyección a 3 meses: ' + bsMW(tr.proy3) + '.'); }
+    else if (tr.estado === 'mejora') { if (nivel !== 'riesgo') nivel = 'oportunidad'; avisos.push('El potencial de descarga sube ' + tr.pendDesc.toFixed(1) + ' MW al mes; proyección a 3 meses: ' + bsMW(tr.proy3) + '.'); }
+    else if (tr.estado === 'estable') avisos.push('Potencial estable en los últimos ' + tr.n + ' meses.');
+    else avisos.push('Histórico insuficiente para calcular tendencia (' + tr.n + ' mes(es); hacen falta 4).');
+    for (const c of tr.cambios) {
+        const paso = c.de.fam + ' de ' + c.de.ambito + ' → ' + c.a.fam + ' de ' + c.a.ambito;
+        if (c.de.ambito === 'nudo' && c.a.ambito === 'zona') {
+            nivel = 'riesgo';
+            avisos.push('⚠ En ' + c.mes + ' el criterio pasó de ' + paso + ': el margen deja de ser propio y pasa a compartirse con la zona (' + (c.dMargen >= 0 ? '+' : '') + c.dMargen + ' MW).');
+        } else if (c.de.ambito === 'zona' && c.a.ambito === 'nudo') {
+            avisos.push('En ' + c.mes + ' el criterio pasó de ' + paso + ': el margen vuelve a depender solo de este nudo (' + (c.dMargen >= 0 ? '+' : '') + c.dMargen + ' MW).');
+        } else {
+            avisos.push('En ' + c.mes + ' cambió el criterio limitante: ' + paso + ' (' + (c.dMargen >= 0 ? '+' : '') + c.dMargen + ' MW).');
+        }
+    }
+    return { nivel: nivel, avisos: avisos, techo: t, zona: z, trend: tr };
+}
+function bsForecastPill(f) {
+    const c = { 'riesgo': '#B3261E', 'oportunidad': '#1B7F4B', 'neutro': '#7a8495' }[f.nivel];
+    const txt = { 'riesgo': 'RIESGO', 'oportunidad': 'AL ALZA', 'neutro': 'ESTABLE' }[f.nivel];
+    return '<span class="bs-pill" style="background:' + c + '">' + txt + '</span>';
+}
+/* Mini gráfico de la serie, en HTML puro para que imprima en el PDF.        */
+function bsSpark(tr, campo) {
+    const s = tr.serie.filter(function (x) { return x[campo] != null; });
+    if (s.length < 2) return '<span class="bs-sub">sin serie suficiente</span>';
+    const mx = Math.max.apply(null, s.map(function (x) { return x[campo]; })) || 1;
+    let h = '<table class="bs-spark"><tr>';
+    for (const p of s) h += '<td title="' + p.key + ': ' + bsMW(p[campo]) + '"><span style="height:' + Math.max(2, Math.round(p[campo] / mx * 28)) + 'px"></span></td>';
+    h += '</tr><tr>';
+    for (const p of s) h += '<td class="bs-spark-x">' + p.key.split('_')[1] + '</td>';
+    return h + '</tr></table>';
+}
+
 /* ---------- diagnóstico: por qué un nudo está como está ----------
    Se evalúa siempre, también para los nudos a cero, que son la mayoría.     */
 function bsDiag(m) {
@@ -4804,14 +5074,25 @@ function bsDiagPill(d) {
 
 /* ---------- semáforo de acción ---------- */
 function bsSem(m) {
-    const t = bsTarget();
     if (m.sinDatos) return { col: '#B3261E', txt: 'SIN DATOS', num: '–', acc: 'El nudo no aparece en el fichero de este periodo: prueba otro mes' };
-    if (m.eficazHoy >= t && t > 0) return { col: '#1B7F4B', txt: 'SOLICITAR YA', num: '1', acc: 'Hay capacidad solicitable hoy en ambos lados para el objetivo de ' + t + ' MW' };
-    if (m.eficazConc >= t && t > 0 && m.bloqueoConcurso) return { col: '#1B7F4B', txt: 'PERSEGUIR', num: '2', acc: 'Preparar candidatura al CONCURSO: el potencial cubre el objetivo de ' + t + ' MW' };
-    if (m.eficazConc > 0 && m.limitaPosicion) return { col: '#F06818', txt: 'CONSULTAR TSO', num: '3', acc: 'Consultar la ampliación de posición: el margen de red es mayor que el de posición' };
-    if (m.eficazConc > 0 && m.sinPosicion) return { col: '#F06818', txt: 'CONSULTAR TSO', num: '3', acc: 'Consultar la viabilidad de una posición: no hay posición existente ni prevista' };
-    if (m.eficazConc > 0) return { col: '#F06818', txt: 'VIGILAR', num: '4', acc: 'Potencial por debajo del objetivo: seguimiento mensual' };
-    return { col: '#B3261E', txt: 'SIN POTENCIAL', num: '5', acc: 'Sin margen de descarga publicado en este mes' };
+    const c = bsCover(m), t = c.t;
+    const falta = function (lado, disp, obj) { return lado + ' se queda en ' + bsMW(disp) + ' frente a ' + bsMW(obj) + ' de objetivo'; };
+    // 1) los dos lados cubren hoy
+    if (c.okCargaHoy && c.okDescHoy) return { col: '#1B7F4B', txt: 'SOLICITAR YA', num: '1',
+        acc: 'Carga y descarga cubren el objetivo hoy (' + bsMW(t.carga) + ' / ' + bsMW(t.desc) + ')' };
+    // 2) los dos cubrirían con el concurso
+    if (c.okCargaHoy && c.okDescConc) return { col: '#1B7F4B', txt: 'PERSEGUIR', num: '2',
+        acc: 'La carga ya cubre el objetivo y la descarga lo cubriría con el CONCURSO' };
+    // 3) solo descarga: la carga es el cuello de botella
+    if ((c.okDescHoy || c.okDescConc) && !c.okCargaHoy) return { col: '#F06818', txt: 'SOLO DESCARGA', num: '3',
+        acc: 'La CARGA limita: ' + falta('la carga', m.cargaDisp, t.carga) + ' · simétrico máximo ' + bsMW(c.simConc) };
+    // 4) solo carga: falta evacuación
+    if (c.okCargaHoy && !c.okDescConc) return { col: '#F06818', txt: 'SOLO CARGA', num: '4',
+        acc: 'Falta EVACUACIÓN: ' + falta('la descarga', m.potencial, t.desc) + ' · simétrico máximo ' + bsMW(c.simConc) };
+    // 5) ninguno
+    if (c.simConc > 0) return { col: '#F06818', txt: 'POR DEBAJO', num: '5',
+        acc: 'Ningún lado cubre el objetivo · lo mayor que cabría es ' + bsMW(c.simConc) + ' simétricos' };
+    return { col: '#B3261E', txt: 'SIN CAPACIDAD', num: '6', acc: 'Sin capacidad utilizable en este nudo y periodo' };
 }
 
 /* ---------- banner regulatorio (diferencia TSO / DSO) ---------- */
@@ -4841,9 +5122,10 @@ function closeBess() { document.getElementById('bess-analysis').classList.remove
 function bsToggleNota() { const n = document.getElementById('bs-nota'); n.style.display = (n.style.display === 'block') ? 'none' : 'block'; }
 
 function bsRefresh() {
+    bsZonaCache = {};   // el fondo zonal se recalcula al cambiar de mes o de red
     const scope = document.getElementById('bs-scope').value;
     const y = document.getElementById('bs-year').value, m = document.getElementById('bs-month').value;
-    document.getElementById('bs-period').textContent = 'Periodo: ' + m + ' ' + y + ' · perfil ' + (document.getElementById('bs-perfil').value === 'sim' ? 'simétrico' : 'asimétrico');
+    document.getElementById('bs-period').textContent = 'Periodo: ' + m + ' ' + y + ' · objetivo ' + bsMW(bsTargets().carga) + ' carga / ' + bsMW(bsTargets().desc) + ' descarga';
     document.getElementById('bs-banner').innerHTML = bsBanner(scope);
     document.getElementById('bs-nota').innerHTML = bsNotaHTML();
     bsRender();
@@ -4871,7 +5153,15 @@ function bsRender() {
     // que cualquier nudo sea localizable y se pueda ver su casuística.
     if (q) rows = rows.filter(r => (r.name + ' ' + r.prov + ' ' + r.ccaa + ' ' + (r.oper || '')).toUpperCase().indexOf(q) >= 0);
     else if (only) rows = rows.filter(r => r.eficazConc > 0);
+    if (document.getElementById('bs-risk').checked) {
+        rows = rows.filter(function (r) {
+            if (r.sinDatos) return false;
+            const f = bsForecast(r, naEntryByName(r.name) || { name: r.name, grid: r.grid }, bsKey());
+            return f.nivel !== 'neutro';
+        });
+    }
     const cmp = {
+        cob: (a, b) => (bsCover(b).peorConc - bsCover(a).peorConc) || (b.eficazConc - a.eficazConc),
         efic: (a, b) => b.eficazConc - a.eficazConc,
         hoy: (a, b) => b.eficazHoy - a.eficazHoy,
         carga: (a, b) => b.cargaDisp - a.cargaDisp,
@@ -4882,18 +5172,19 @@ function bsRender() {
     bsRows = rows;
 
     // KPIs
-    const nHoy = rows.filter(r => r.eficazHoy > 0).length;
-    const nConc = rows.filter(r => r.eficazConc > 0).length;
-    const sumConc = rows.reduce((a, r) => a + r.eficazConc, 0);
-    const nBloq = rows.filter(r => r.bloqueoConcurso).length;
+    const t = bsTargets();
+    const nHoy = rows.filter(r => { const c = bsCover(r); return c.okCargaHoy && c.okDescHoy; }).length;
+    const nConc = rows.filter(r => { const c = bsCover(r); return c.okCargaHoy && c.okDescConc; }).length;
+    const nSoloDesc = rows.filter(r => { const c = bsCover(r); return (c.okDescHoy || c.okDescConc) && !c.okCargaHoy; }).length;
+    const nSoloCarga = rows.filter(r => { const c = bsCover(r); return c.okCargaHoy && !c.okDescConc; }).length;
     const conDatos = todos.filter(r => !r.sinDatos).length;
     document.getElementById('bs-kpis').innerHTML =
         '<div class="bs-kpis">' +
         bsKpi(conDatos + ' / ' + todos.length, 'nudos con ficha en el mes / totales de la red', '#222') +
-        bsKpi(nHoy, 'con capacidad solicitable HOY en ambos lados', nHoy ? '#1B7F4B' : '#B3261E') +
-        bsKpi(nConc, 'con potencial si se convoca el CONCURSO', '#F06818') +
-        bsKpi(sumConc.toLocaleString('es-ES'), 'MW eficaces potenciales sumados', '#1F4E79') +
-        bsKpi(nBloq, 'nudos con la descarga reservada a CONCURSO', '#B3261E') +
+        bsKpi(nHoy, 'cubren el objetivo HOY en ambos lados (' + bsMW(t.carga) + ' carga / ' + bsMW(t.desc) + ' descarga)', nHoy ? '#1B7F4B' : '#B3261E') +
+        bsKpi(nConc, 'lo cubrirían si se convoca el CONCURSO', '#1B7F4B') +
+        bsKpi(nSoloDesc, 'solo cubren DESCARGA: la carga es el cuello de botella', '#F06818') +
+        bsKpi(nSoloCarga, 'solo cubren CARGA: falta evacuación', '#F06818') +
         '</div>';
 
     // tabla
@@ -4901,7 +5192,9 @@ function bsRender() {
         '<th style="width:28px;"></th><th>Nudo</th><th>CCAA</th>' +
         '<th>CARGA<br><span>solicitable</span></th><th>CARGA<br><span>otorg. / cola</span></th>' +
         '<th>DESCARGA<br><span>solicitable</span></th><th>DESCARGA<br><span>margen / posición</span></th><th>DESCARGA<br><span>otorg. / cola</span></th>' +
-        '<th>BESS eficaz<br><span>hoy / con CONCURSO</span></th><th>Caso</th><th>Acción</th><th>Ver</th></tr></thead><tbody>';
+        '<th>Previsión<br><span>zona · techo · tendencia</span></th>' +
+        '<th>Cobertura objetivo<br><span>carga / descarga</span></th>' +
+        '<th>Simétrico máximo<br><span>hoy / con CONCURSO</span></th><th>Caso</th><th>Acción</th><th>Ver</th></tr></thead><tbody>';
     for (const r of bsRows) {
         const s = bsSem(r);
         h += '<tr>' +
@@ -4913,6 +5206,10 @@ function bsRender() {
             '<td class="bs-num ' + (r.descDisp > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(r.descDisp) + (r.bloqueoConcurso ? '<div class="bs-sub bs-red">reservado a CONCURSO</div>' : '') + '</td>' +
             '<td class="bs-num">' + (r.margenMPE == null ? 'no publicado' : bsMW(r.margenMPE) + ' / ' + (r.posMPE == null ? '—' : bsMW(r.posMPE))) + '</td>' +
             '<td class="bs-num">' + bsMW(r.descOtorg) + ' / ' + bsMW(r.descCola) + '</td>' +
+            '<td>' + (r.sinDatos ? '<span class="bs-sub">—</span>' : bsForecastPill(bsForecast(r, naEntryByName(r.name) || { name: r.name, grid: r.grid }, bsKey()))) + '</td>' +
+            '<td class="bs-num"><span class="' + (bsCover(r).okCargaHoy ? 'bs-green' : 'bs-red') + '">' + bsPct(bsCover(r).cobCargaHoy) + '</span> / ' +
+            '<span class="' + (bsCover(r).okDescConc ? 'bs-green' : 'bs-red') + '">' + bsPct(bsCover(r).cobDescConc) + '</span>' +
+            (bsCover(r).okDescHoy ? '' : '<div class="bs-sub">descarga hoy ' + bsPct(bsCover(r).cobDescHoy) + '</div>') + '</td>' +
             '<td class="bs-num"><span class="' + (r.eficazHoy > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(r.eficazHoy) + '</span> / <b class="bs-must">' + bsMW(r.eficazConc) + '</b></td>' +
             '<td>' + bsDiagPill(bsDiag(r)) + '</td>' +
             '<td><span class="bs-pill" style="background:' + s.col + '">' + s.txt + '</span></td>' +
@@ -4980,7 +5277,7 @@ function bsMetricsByName(name) {
 }
 
 function bsFichaHTML(m, paraInforme) {
-    const s = bsSem(m), t = bsTarget();
+    const s = bsSem(m), cv = bsCover(m);
     const filaC = [
         ['SOLICITABLE AHORA', bsMW(m.cargaDisp), true],
         ['Margen técnico para almacenamiento', m.cargaMargen == null ? 'no publicado' : bsMW(m.cargaMargen), false],
@@ -5025,13 +5322,22 @@ function bsFichaHTML(m, paraInforme) {
         (m.sinPosicion ? '<div class="bs-it">Sin posición existente ni prevista: su viabilidad se consulta al TSO.</div>' : '') +
         '</td></tr></table>' +
         '<table class="bs-concl"><tr>' +
-        '<td class="bs-concl-h"><b>BESS STAND ALONE · PERFIL SIMÉTRICO</b><div>carga y descarga por la misma potencia: necesita ambos permisos y manda el menor</div></td>' +
-        '<td class="bs-concl-b"><div class="bs-concl-t">SOLICITABLE HOY</div><div class="bs-concl-s">mín(carga ' + m.cargaDisp + ' · descarga ' + m.descDisp + ')</div></td>' +
-        '<td class="bs-concl-v bs-red">' + bsMW(m.eficazHoy) + '</td>' +
-        '<td class="bs-concl-b"><div class="bs-concl-t">MW EFICACES CON CONCURSO</div><div class="bs-concl-s">mín(carga ' + m.cargaDisp + ' · potencial ' + m.potencial + ')</div></td>' +
-        '<td class="bs-concl-v bs-green">' + bsMW(m.eficazConc) + '</td></tr></table>' +
+        '<td class="bs-concl-h"><b>OBJETIVO DEL PROYECTO</b><div>carga ' + bsMW(cv.t.carga) + ' · descarga ' + bsMW(cv.t.desc) +
+        (cv.t.desc > 0 ? ' (ratio ' + cv.t.ratio.toFixed(2) + ')' : '') + '<br>carga y descarga son dos permisos distintos: cada lado se evalúa por separado</div></td>' +
+        '<td class="bs-concl-b"><div class="bs-concl-t">COBERTURA CARGA</div><div class="bs-concl-s">' + bsMW(m.cargaDisp) + ' de ' + bsMW(cv.t.carga) + '</div></td>' +
+        '<td class="bs-concl-v ' + (cv.okCargaHoy ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobCargaHoy) + '</td>' +
+        '<td class="bs-concl-b"><div class="bs-concl-t">COBERTURA DESCARGA</div><div class="bs-concl-s">' + bsMW(m.potencial) + ' de ' + bsMW(cv.t.desc) +
+        (m.bloqueoConcurso ? ' · hoy 0 MW' : '') + '</div></td>' +
+        '<td class="bs-concl-v ' + (cv.okDescConc ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobDescConc) + '</td></tr></table>' +
+        bsPrevHTML(m) +
+        '<table class="bs-sim"><tr>' +
+        '<td><b>BESS SIMÉTRICO MÁXIMO que admitiría el nudo</b> · mín(carga, descarga)</td>' +
+        '<td class="bs-num">hoy <b class="' + (cv.simHoy > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(cv.simHoy) + '</b></td>' +
+        '<td class="bs-num">con CONCURSO <b class="bs-must">' + bsMW(cv.simConc) + '</b></td>' +
+        '<td class="bs-num">asimétrico máximo: carga <b>' + bsMW(m.cargaDisp) + '</b> · descarga <b>' + bsMW(m.potencial) + '</b></td>' +
+        '</tr></table>' +
         '<table class="bs-acc" style="background:' + s.col + '"><tr><td class="bs-acc-n"><span>' + s.num + '</span></td><td class="bs-acc-t">' + s.txt + '</td><td class="bs-acc-d">' + s.acc + '</td></tr></table>' +
-        '<div class="bs-foot">Objetivo de proyecto: ' + t + ' MW · módulo en fase de pruebas · ' + bsFuente(m) + '</div>' +
+        '<div class="bs-foot">Objetivo: ' + bsMW(cv.t.carga) + ' de carga y ' + bsMW(cv.t.desc) + ' de descarga · módulo en fase de pruebas · ' + bsFuente(m) + '</div>' +
         '</div>';
 }
 function bsFuente(m) {
@@ -5040,27 +5346,74 @@ function bsFuente(m) {
         : 'Fuente: publicación conjunta de los gestores de red de distribución del periodo seleccionado. Almacenamiento en DSO: flexible obligatorio, tipos 0, 1 o 2 (anexos I a III); conversión en 3 meses (ap. quinto.1).';
 }
 
+
+/* Bloque «qué esperar» de la ficha y del informe */
+function bsPrevHTML(m) {
+    if (m.sinDatos || m.grid !== 'TSO') return '';
+    const e = naEntryByName(m.name) || { name: m.name, grid: m.grid };
+    const f = bsForecast(m, e, bsKey());
+    const t = f.techo, z = f.zona, tr = f.trend;
+    let h = '<table class="bs-prev"><tr><td class="bs-prev-h">' + bsForecastPill(f) +
+        ' <b>QUÉ ESPERAR EN LOS PRÓXIMOS MESES</b></td></tr><tr><td>';
+    h += '<table class="bs-prev-g"><tr>';
+    // techo por criterio
+    h += '<td><div class="bs-prev-t">Techo por criterio</div>';
+    if (t) {
+        h += '<table class="bs-mini-tbl">';
+        for (const c of t.detalle) h += '<tr' + (c.id === t.limita.id ? ' class="bs-hl"' : '') + '><td>' + c.id + ' <span class="bs-sub">(' + c.ambito + (c.zona ? ' ' + c.zona : '') + ')</span></td><td class="bs-num">' + bsMW(c.margen) + '</td></tr>';
+        h += '</table><div class="bs-sub">Limita <b>' + t.limita.id + '</b>. Si se levantara: <b>' + bsMW(t.techo) + '</b> por ' + t.techoPor + ' (' + (t.gana > 0 ? '+' + bsMW(t.gana) : 'sin margen adicional') + ').</div>';
+    } else h += '<div class="bs-sub">sin datos de criterios</div>';
+    h += '</td>';
+    // exposición zonal
+    h += '<td><div class="bs-prev-t">Exposición zonal</div>';
+    if (z) {
+        const col = { 'agotado': 'bs-red', 'alto': 'bs-red', 'medio': 'bs-must', 'bajo': 'bs-green' }[z.riesgo];
+        h += '<table class="bs-mini-tbl">' +
+            '<tr><td>Zona dinámica</td><td class="bs-num">' + z.zona + '</td></tr>' +
+            '<tr><td>Fondo común (compartido)</td><td class="bs-num">' + bsMW(z.pool) + '</td></tr>' +
+            '<tr><td>Nudos que lo comparten</td><td class="bs-num">' + z.nudos + '</td></tr>' +
+            '<tr><td>Cola en la zona</td><td class="bs-num">' + bsMW(z.cola) + '</td></tr>' +
+            '<tr class="bs-hl"><td>Cola sobre fondo</td><td class="bs-num ' + col + '">' + (isFinite(z.ratio) ? Math.round(z.ratio * 100) + ' %' : 'sin fondo') + '</td></tr>' +
+            '</table><div class="bs-sub">El margen zonal es un <b>fondo común</b>: cualquier proyecto de la zona lo consume.</div>';
+    } else h += '<div class="bs-sub">el nudo no está sujeto a criterio dinámico de zona: su margen es propio</div>';
+    h += '</td>';
+    // tendencia
+    h += '<td><div class="bs-prev-t">Tendencia (' + tr.n + ' meses)</div>';
+    h += '<div class="bs-sub">Potencial de descarga</div>' + bsSpark(tr, 'potencial');
+    h += '<div class="bs-sub">Carga disponible</div>' + bsSpark(tr, 'carga');
+    if (tr.suficiente) h += '<div class="bs-sub">Pendiente: <b>' + (tr.pendDesc >= 0 ? '+' : '') + tr.pendDesc.toFixed(1) + ' MW/mes</b> · proyección a 3 meses <b>' + bsMW(tr.proy3) + '</b></div>';
+    else h += '<div class="bs-sub">Histórico insuficiente para proyectar (' + tr.n + ' de 4 meses).</div>';
+    h += '</td></tr></table>';
+    h += '<ul class="bs-prev-l">' + f.avisos.map(function (a) { return '<li>' + a + '</li>'; }).join('') + '</ul>';
+    return h + '</td></tr></table>';
+}
+
 /* ---------- informe descargable ---------- */
 function bsNotaHTML() {
     return '<div class="bs-metod"><b>Metodología</b>' +
         '<ul>' +
         '<li><b>CARGA solicitable</b> = disponible de almacenamiento en la perspectiva de demanda. <b>DESCARGA solicitable</b> = disponible de almacenamiento MPE en generación (una batería conecta por convertidores, por eso se usa MPE y no MGES).</li>' +
         '<li><b>Potencial de descarga</b> = mín(margen técnico MPE, margen por posición). No es capacidad adjudicada ni comprometida: es el techo que podría salir a concurso si se convoca.</li>' +
-        '<li><b>MW eficaces</b> = mín(carga, descarga) en perfil simétrico. Un BESS stand alone necesita los dos permisos, así que manda el menor.</li>' +
+        '<li><b>Cobertura</b> = disponible de cada lado sobre el objetivo correspondiente. Carga y descarga son <b>dos permisos distintos</b>, así que se evalúan por separado y no se promedian.</li>' +
+        '<li><b>BESS simétrico máximo</b> = mín(carga, descarga): la mayor batería con la misma potencia en ambos sentidos que admitiría el nudo. Si se acepta asimetría, el techo de cada lado es su propio disponible.</li>' +
+        '<li><b>Previsión.</b> Tres piezas: <i>techo por criterio</i> (qué margen habría si se levantara el criterio que hoy limita), <i>exposición zonal</i> (los criterios de zona son un fondo común: 85 de las 86 zonas dinámicas comparten el mismo margen entre todos sus nudos, así que la cola de la zona erosiona el margen de todos) y <i>tendencia</i> (pendiente por mínimos cuadrados sobre el histórico; no se proyecta con menos de 4 meses).</li>' +
+        '<li>Un cambio de criterio <b>de nudo a zona</b> es un cambio de naturaleza del riesgo: el margen deja de ser propio y pasa a compartirse, puede caer a cero sin que ocurra nada en el nudo, y su liberación deja de depender de una actuación local.</li>' +
+        '<li>No se aplica ninguna tolerancia de asimetría: la normativa no establece ninguna, y un desajuste del 2 % o del 60 % se muestran como lo que son, no como «pasa» o «no pasa».</li>' +
         '<li>La capacidad del bloque <i>liberada</i> está afecta al <b>autoconsumo</b> del RDL 7/2026 (10 % de su disposición adicional décima): no la puede usar un proyecto sin consumidor asociado.</li>' +
         '<li>Cálculo propio sobre los campos publicados. La lectura de algunas etiquetas no está confirmada con la leyenda oficial de REE; verificar antes de decidir una inversión.</li>' +
         '</ul></div>';
 }
 function bsResumenHTML(rows) {
     let h = '<div class="bs-card bs-page"><h3>Resumen · capacidad para BESS stand alone</h3>' +
-        '<div class="bs-sub2">' + rows.length + ' nudos seleccionados · red ' + rows[0].grid + ' · objetivo de proyecto ' + bsTarget() + ' MW</div>' +
-        '<table class="bs-tbl"><thead><tr><th>Nudo</th><th>CCAA</th><th>CARGA solicitable</th><th>DESCARGA solicitable</th><th>Potencial descarga</th><th>BESS eficaz hoy / con CONCURSO</th><th>Acción</th></tr></thead><tbody>';
+        '<div class="bs-sub2">' + rows.length + ' nudos seleccionados · red ' + rows[0].grid + ' · objetivo: ' + bsMW(bsTargets().carga) + ' de carga y ' + bsMW(bsTargets().desc) + ' de descarga (ratio ' + bsTargets().ratio.toFixed(2) + ')</div>' +
+        '<table class="bs-tbl"><thead><tr><th>Nudo</th><th>CCAA</th><th>CARGA solicitable</th><th>DESCARGA solicitable</th><th>Potencial descarga</th><th>Cobertura carga / descarga</th><th>Simétrico máx. hoy / con CONCURSO</th><th>Acción</th></tr></thead><tbody>';
     for (const r of rows) {
         const s = bsSem(r);
         h += '<tr><td><b>' + r.name + '</b></td><td>' + (r.ccaa || '—') + '</td>' +
             '<td class="bs-num bs-blue">' + bsMW(r.cargaDisp) + '</td>' +
             '<td class="bs-num ' + (r.descDisp > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(r.descDisp) + (r.bloqueoConcurso ? ' (CONCURSO)' : '') + '</td>' +
             '<td class="bs-num bs-must">' + bsMW(r.potencial) + '</td>' +
+            '<td class="bs-num"><span class="' + (bsCover(r).okCargaHoy ? 'bs-green' : 'bs-red') + '">' + bsPct(bsCover(r).cobCargaHoy) + '</span> / <span class="' + (bsCover(r).okDescConc ? 'bs-green' : 'bs-red') + '">' + bsPct(bsCover(r).cobDescConc) + '</span></td>' +
             '<td class="bs-num">' + bsMW(r.eficazHoy) + ' / <b>' + bsMW(r.eficazConc) + '</b></td>' +
             '<td><span class="bs-pill" style="background:' + s.col + '">' + s.txt + '</span></td></tr>';
     }
