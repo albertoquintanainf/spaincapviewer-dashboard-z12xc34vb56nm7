@@ -4740,7 +4740,7 @@ function renderOportunidades(){
       <option value="nombre">Nombre</option>
     </select></label>
     <label title="Al escribir en el buscador este filtro se ignora, para que puedas encontrar cualquier nudo"><input id="bs-only" type="checkbox" onchange="bsRender()"> Solo nudos con potencial &gt; 0</label>
-      <label title="Nudos con margen expuesto a un fondo zonal con más cola que margen, o con tendencia a la baja"><input id="bs-risk" type="checkbox" onchange="bsRender()"> Solo con aviso de previsión</label>
+      <label title="Nudos con tendencia del margen a la baja o con el fondo zonal comprometido"><input id="bs-risk" type="checkbox" onchange="bsRender()"> Solo con tendencia a la baja o presión zonal</label>
     <button type="button" onclick="bsToggleNota()" style="margin-left:auto;background:#e2e8f0;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:#F3721F;font-weight:bold;">&#9432; Metodología</button>
   </div>
 
@@ -5189,14 +5189,29 @@ function bsForecast(m, entry, key) {
         avisos.push('Zona ' + z.zona + ': fondo común de ' + bsMW(z.pool) + ' compartido con ' + z.nudos + ' nudos, con ' + bsMW(z.cola) + ' en cola.');
     }
     if (t && t.gana > 0) {
-        if (nivel === 'neutro') nivel = 'oportunidad';
-        avisos.push('Hoy limita el criterio ' + t.limita.id + ' (' + t.limita.ambito + ') en ' + bsMW(t.limita.margen) +
-            '. Si se levantara, el techo pasaría a ' + bsMW(t.techo) + ' por ' + t.techoPor + ': ' + bsMW(t.gana) + ' adicionales.');
+        const famLim = bsCritFam(t.limita.id === 'WSCR' ? 'WSCR_Nudo' : (t.limita.id === 'dinámico' ? 'D_Nudo' : 'Est_Alm_Nudo'));
+        const tas = (bsTasas().fam || {})[famLim.fam] || null;
+        const pC = tas ? tas.pCambio : null, pS = tas ? tas.pSube : null;
+        // el techo solo es una oportunidad si ese criterio se mueve de verdad
+        if (nivel === 'neutro' && pS != null && pS >= 0.03) nivel = 'oportunidad';
+        avisos.push('Hoy limita ' + t.limita.id + ' (' + t.limita.ambito + ') en ' + bsMW(t.limita.margen) +
+            '. Techo teórico si se levantara: ' + bsMW(t.techo) + ' por ' + t.techoPor + ' (+' + t.gana + ' MW). ' +
+            (tas ? 'En el histórico, los nudos limitados por ' + famLim.fam + ' dejan de estarlo el ' + bsPct1(pC) +
+                   ' de los meses y ven subir su margen más de ' + BS_UMBRAL_MW + ' MW el ' + bsPct1(pS) + '.'
+                 : 'Sin histórico suficiente para estimar su probabilidad de cambio.'));
     }
     if (tr.estado === 'erosión') { nivel = 'riesgo'; avisos.push('El potencial de descarga cae ' + Math.abs(tr.pendDesc).toFixed(1) + ' MW al mes en los últimos ' + tr.n + ' meses; proyección a 3 meses: ' + bsMW(tr.proy3) + '.'); }
     else if (tr.estado === 'mejora') { if (nivel !== 'riesgo') nivel = 'oportunidad'; avisos.push('El potencial de descarga sube ' + tr.pendDesc.toFixed(1) + ' MW al mes; proyección a 3 meses: ' + bsMW(tr.proy3) + '.'); }
     else if (tr.estado === 'estable') avisos.push('Potencial estable en los últimos ' + tr.n + ' meses.');
     else avisos.push('Histórico insuficiente para calcular tendencia (' + tr.n + ' mes(es); hacen falta 4).');
+    const est = bsEstab(m);
+    if (est.derivaWscr) {
+        nivel = 'riesgo';
+        avisos.push('⚠ Este nudo ha DERIVADO a WSCR durante la serie. Es el estado del que casi no se vuelve: en el histórico solo el ' +
+            bsPct1(((bsTasas().fam || {}).WSCR || {}).pCambio) + ' de los nudos-mes limitados por WSCR cambia de criterio.');
+    }
+    if (est.suficiente) avisos.push('Estabilidad del nudo: ' + est.clase + ' · ' + est.cambios + ' cambio(s) de criterio y ' +
+        est.sube + ' subida(s) / ' + est.baja + ' bajada(s) de margen apreciables en ' + est.n + ' meses.');
     for (const c of tr.cambios) {
         const paso = c.de.fam + ' de ' + c.de.ambito + ' → ' + c.a.fam + ' de ' + c.a.ambito;
         if (c.de.ambito === 'nudo' && c.a.ambito === 'zona') {
@@ -5216,8 +5231,11 @@ function bsForecast(m, entry, key) {
    buscarla con naEntryByName, que recorre linealmente los ~6.900 nudos.    */
 function bsFc(r) { return bsForecast(r, r._e || { name: r.name, grid: r.grid }, bsKey()); }
 function bsForecastPill(f) {
+    // Rótulos puramente direccionales: esta señal indica hacia dónde va el
+    // margen, no si el nudo merece la pena. El juicio de valor vive en la
+    // banda de acción, que es la que dice perseguir, con cautela o descartar.
     const c = { 'riesgo': '#B3261E', 'oportunidad': '#1B7F4B', 'neutro': '#7a8495' }[f.nivel];
-    const txt = { 'riesgo': 'RIESGO', 'oportunidad': 'AL ALZA', 'neutro': 'ESTABLE' }[f.nivel];
+    const txt = { 'riesgo': 'A LA BAJA', 'oportunidad': 'AL ALZA', 'neutro': 'ESTABLE' }[f.nivel];
     return '<span class="bs-pill" style="background:' + c + '">' + txt + '</span>';
 }
 /* Mini gráfico de la serie, en HTML puro para que imprima en el PDF.        */
@@ -5243,6 +5261,85 @@ function bsSpark(tr, campo, etiqueta) {
     for (let i = 0; i < s.length; i++)
         h += '<td class="bs-spark-v">' + (i === 0 || i === s.length - 1 || vals[i] === mx ? vals[i] : '') + '</td>';
     return h + '</tr></table>';
+}
+
+
+/* =========================================================================
+   ESTABILIDAD Y PROBABILIDAD DE CAMBIO
+   Sobre la serie mensual cargada se calcula, para cada familia de criterio:
+     · con qué frecuencia deja de ser el criterio limitante
+     · con qué frecuencia el margen total del nudo sube o baja de forma
+       apreciable (> 10 MW)
+   Se excluyen los pasos «anómalos»: meses en los que más del 10 % de los
+   nudos cambian de criterio a la vez, que son revisiones metodológicas de REE
+   y no evolución del sistema (ocurrió entre enero y febrero de 2026, con 208
+   nudos de 937 cambiando en un solo mes).
+   ========================================================================= */
+let bsTasasCache = null;
+const BS_UMBRAL_MW = 10;          // cambio de margen que se considera apreciable
+const BS_UMBRAL_ANOM = 0.10;      // fracción de nudos que delata una revisión
+
+function bsTasas() {
+    if (bsTasasCache) return bsTasasCache;
+    const keys = (typeof naMonthKeysSorted === 'function') ? naMonthKeysSorted() : [];
+    const tso = allEntries.filter(function (e) { return (e.grid || 'TSO') === 'TSO'; });
+    const fam = {}, anom = [];
+    const inicial = function (f) { return { n: 0, cambia: 0, sube: 0, baja: 0, destino: {} }; };
+    for (let i = 1; i < keys.length; i++) {
+        const ka = keys[i - 1], kb = keys[i];
+        let vistos = 0, cambios = 0;
+        const paso = [];
+        for (const e of tso) {
+            const ra = richForMonth(ka, e), rb = richForMonth(kb, e);
+            if (!ra || !rb || !ra.gen || !rb.gen) continue;
+            const fa = bsCritFam((ra.gen.crit_lim || {}).alm_mpe), fb = bsCritFam((rb.gen.crit_lim || {}).alm_mpe);
+            const ma = bsNum((ra.gen.margen || {}).alm_mpe), mb = bsNum((rb.gen.margen || {}).alm_mpe);
+            vistos++;
+            if (fa.fam !== fb.fam) cambios++;
+            paso.push([fa.fam, fb.fam, mb - ma]);
+        }
+        if (!vistos) continue;
+        if (cambios / vistos > BS_UMBRAL_ANOM) { anom.push({ de: ka, a: kb, frac: cambios / vistos }); continue; }
+        for (const p of paso) {
+            const f = p[0];
+            if (!fam[f]) fam[f] = inicial(f);
+            fam[f].n++;
+            if (p[0] !== p[1]) { fam[f].cambia++; fam[f].destino[p[1]] = (fam[f].destino[p[1]] || 0) + 1; }
+            if (p[2] > BS_UMBRAL_MW) fam[f].sube++;
+            else if (p[2] < -BS_UMBRAL_MW) fam[f].baja++;
+        }
+    }
+    for (const f in fam) {
+        const x = fam[f];
+        x.pCambio = x.n ? x.cambia / x.n : null;
+        x.pSube = x.n ? x.sube / x.n : null;
+        x.pBaja = x.n ? x.baja / x.n : null;
+    }
+    bsTasasCache = { fam: fam, anomalos: anom, meses: keys.length };
+    return bsTasasCache;
+}
+function bsPct1(v) { return v == null ? '—' : (v * 100).toFixed(v < 0.01 ? 2 : 1) + ' %'; }
+
+/* Estabilidad del nudo concreto: qué le ha pasado a ÉL, no a la media. */
+function bsEstab(m) {
+    const tr = bsTrend(m._e || { name: m.name, grid: m.grid });
+    const s = tr.serie;
+    if (s.length < 2) return { n: s.length, suficiente: false, cambios: 0, sube: 0, baja: 0, clase: 'sin histórico' };
+    let cambios = 0, sube = 0, baja = 0;
+    for (let i = 1; i < s.length; i++) {
+        const a = bsCritFam(s[i - 1].critDesc), b = bsCritFam(s[i].critDesc);
+        if (a.fam !== b.fam) cambios++;
+        const d = bsNum(s[i].margenMPE) - bsNum(s[i - 1].margenMPE);
+        if (d > BS_UMBRAL_MW) sube++; else if (d < -BS_UMBRAL_MW) baja++;
+    }
+    let clase = 'estable';
+    if (cambios >= 2 || (sube + baja) >= Math.max(3, s.length / 2)) clase = 'volátil';
+    else if (sube > baja) clase = 'móvil al alza';
+    else if (baja > sube) clase = 'móvil a la baja';
+    const famAct = bsCritFam(s[s.length - 1].critDesc);
+    const derivaWscr = famAct.fam === 'WSCR' && s.some(function (x) { return bsCritFam(x.critDesc).fam !== 'WSCR'; });
+    return { n: s.length, suficiente: s.length >= 4, cambios: cambios, sube: sube, baja: baja,
+             clase: clase, famActual: famAct.fam, derivaWscr: derivaWscr };
 }
 
 /* ---------- diagnóstico: por qué un nudo está como está ----------
@@ -5296,11 +5393,22 @@ function bsSem(m) {
     const c = bsCover(m), t = c.t;
     const falta = function (lado, disp, obj) { return lado + ' se queda en ' + bsMW(disp) + ' frente a ' + bsMW(obj) + ' de objetivo'; };
     // 1) los dos lados cubren hoy
-    if (c.okCargaHoy && c.okDescHoy) return { col: '#1B7F4B', txt: 'SOLICITAR YA', num: '1',
-        acc: 'Carga y descarga cubren el objetivo hoy (' + bsMW(t.carga) + ' / ' + bsMW(t.desc) + ')' };
-    // 2) los dos cubrirían con el concurso
-    if (c.okCargaHoy && c.okDescConc) return { col: '#1B7F4B', txt: 'PERSEGUIR', num: '2',
-        acc: 'La carga ya cubre el objetivo y la descarga lo cubriría con el CONCURSO' };
+    if (c.okCargaHoy && c.okDescHoy) {
+        const f1 = bsFc(m);
+        return { col: f1.nivel === 'riesgo' ? '#F06818' : '#1B7F4B',
+            txt: f1.nivel === 'riesgo' ? 'SOLICITAR YA · CON CAUTELA' : 'SOLICITAR YA', num: '1',
+            acc: 'Carga y descarga cubren el objetivo hoy (' + bsMW(t.carga) + ' / ' + bsMW(t.desc) + ')' +
+                 (f1.nivel === 'riesgo' ? ' · pero con previsión a la baja: ' + (f1.avisos[0] || '').slice(0, 120) : '') };
+    }
+    // 2) los dos cubrirían con el concurso. Si la previsión avisa de erosión,
+    //    la acción se matiza en lugar de contradecirla.
+    if (c.okCargaHoy && c.okDescConc) {
+        const f = bsFc(m);
+        if (f.nivel === 'riesgo') return { col: '#F06818', txt: 'PERSEGUIR CON CAUTELA', num: '2',
+            acc: 'El potencial cubre el objetivo, pero la previsión va a la baja: ' + (f.avisos[0] || '').slice(0, 150) };
+        return { col: '#1F4E79', txt: 'PERSEGUIR', num: '2',
+            acc: 'La carga ya cubre el objetivo y la descarga lo cubriría con el CONCURSO' };
+    }
     // 3) solo descarga: la carga es el cuello de botella
     if ((c.okDescHoy || c.okDescConc) && !c.okCargaHoy) return { col: '#F06818', txt: 'SOLO DESCARGA', num: '3',
         acc: 'La CARGA limita: ' + falta('la carga', m.cargaDisp, t.carga) + ' · simétrico máximo ' + bsMW(c.simConc) };
@@ -5345,7 +5453,7 @@ function bsTitulo() {
         bsMW(bsTargets().carga) + ' carga / ' + bsMW(bsTargets().desc) + ' descarga';
 }
 function bsRefresh() {
-    bsZonaCache = {}; bsFcCache = {}; bsCovCache = null;   // se recalcula al cambiar de mes o de red
+    bsZonaCache = {}; bsFcCache = {}; bsCovCache = null; bsTasasCache = null;   // se recalcula al cambiar de mes o de red
     bsCargarZonas(bsKey());
     const scope = bsVal('bs-scope', 'TSO');
     bsTitulo();
@@ -5425,6 +5533,7 @@ function bsRenderInterno() {
         '<th>CARGA<br><span>solicitable</span></th><th>CARGA<br><span>otorg. / cola</span></th>' +
         '<th>DESCARGA<br><span>solicitable</span></th><th>DESCARGA<br><span>margen / posición</span></th><th>DESCARGA<br><span>otorg. / cola</span></th>' +
         '<th>Previsión<br><span>zona · techo · tendencia</span></th>' +
+        '<th>Estabilidad<br><span>criterio · histórico</span></th>' +
         '<th>Cobertura objetivo<br><span>carga / descarga</span></th>' +
         '<th>Simétrico máximo<br><span>hoy / con CONCURSO</span></th><th>Caso</th><th>Acción</th><th>Ver</th></tr></thead><tbody>';
     for (const r of bsRows) {
@@ -5440,6 +5549,12 @@ function bsRenderInterno() {
             '<td class="bs-num">' + (r.margenMPE == null ? 'no publicado' : bsMW(r.margenMPE) + ' / ' + (r.posMPE == null ? '—' : bsMW(r.posMPE))) + '</td>' +
             '<td class="bs-num">' + bsMW(r.descOtorg) + ' / ' + bsMW(r.descCola) + '</td>' +
             '<td>' + (r.sinDatos ? '<span class="bs-sub">—</span>' : bsForecastPill(bsFc(r))) + '</td>' +
+            '<td>' + (r.sinDatos ? '<span class="bs-sub">—</span>' : (function () {
+                const e2 = bsEstab(r);
+                const c2 = { 'estable': '#7a8495', 'móvil al alza': '#1B7F4B', 'móvil a la baja': '#B3261E', 'volátil': '#A67C00' }[e2.clase] || '#7a8495';
+                return '<span class="bs-pill" style="background:' + c2 + '">' + e2.clase.toUpperCase() + '</span>' +
+                    '<div class="bs-sub">' + (e2.famActual || '—') + (e2.derivaWscr ? ' · derivó' : '') + '</div>';
+            })()) + '</td>' +
             '<td class="bs-num"><span class="' + (cv.okCargaHoy ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobCargaHoy) + '</span> / ' +
             '<span class="' + (cv.okDescConc ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobDescConc) + '</span>' +
             (cv.okDescHoy ? '' : '<div class="bs-sub">descarga hoy ' + bsPct(cv.cobDescHoy) + '</div>') + '</td>' +
@@ -5665,8 +5780,9 @@ function bsPrevHTML(m, compacto) {
     } else h += '<div class="bs-sub">sin criterio dinámico de zona: el margen es propio del nudo</div>';
     h += '</td>';
 
-    // ── tendencia ──
-    h += '<td><div class="bs-prev-t">Tendencia · ' + tr.n + ' meses</div>';
+    // ── tendencia y estabilidad ──
+    const est = bsEstab(m), tas = bsTasas();
+    h += '<td><div class="bs-prev-t">Tendencia y estabilidad · ' + tr.n + ' meses</div>';
     h += bsSpark(tr, 'potencial', 'Potencial de descarga');
     if (compacto) {
         const sc = tr.serie.filter(function (x) { return x.carga != null; }).map(function (x) { return x.carga; });
@@ -5680,8 +5796,29 @@ function bsPrevHTML(m, compacto) {
     h += '<div class="bs-sub">' + (tr.suficiente
         ? 'Pendiente <b>' + (tr.pendDesc >= 0 ? '+' : '') + tr.pendDesc.toFixed(1) + ' MW/mes</b> · proyección a 3 meses <b>' + bsMW(tr.proy3) + '</b>'
         : 'Histórico insuficiente para proyectar (' + tr.n + ' de 4 meses)') + '</div>';
+    // estabilidad del propio nudo y tasas observadas de su criterio
+    const famA = est.famActual || '—';
+    const tf = (tas.fam || {})[famA] || null;
+    h += '<div class="bs-lin">' +
+        '<div class="bs-lin-b"><span>estabilidad del nudo</span><b class="' +
+        ({ 'estable': 'bs-green', 'móvil al alza': 'bs-green', 'móvil a la baja': 'bs-red', 'volátil': 'bs-must' }[est.clase] || '') +
+        '">' + est.clase + '</b></div>' +
+        '<div><span>cambios de criterio</span><b>' + est.cambios + '</b></div>' +
+        '<div><span>subidas / bajadas de margen</span><b>' + est.sube + ' / ' + est.baja + '</b></div>' +
+        (tf ? '<div><span>los nudos en ' + famA + ' cambian de criterio</span><b>' + bsPct1(tf.pCambio) + '/mes</b></div>' +
+              '<div><span>… y suben margen &gt;' + BS_UMBRAL_MW + ' MW</span><b class="' + (tf.pSube >= 0.03 ? 'bs-green' : '') + '">' + bsPct1(tf.pSube) + '/mes</b></div>'
+            : '') +
+        '</div>';
+    if (est.derivaWscr) h += '<div class="bs-sub bs-red"><b>Ha derivado a WSCR:</b> estado del que casi no se vuelve.</div>';
     h += '</td></tr></table>';
 
+    if (!compacto) {
+        const an = tas.anomalos || [];
+        h += '<div class="bs-sub">Tasas calculadas sobre ' + tas.meses + ' meses de serie' +
+            (an.length ? ', excluyendo ' + an.length + ' paso(s) de revisión metodológica (' +
+                an.map(function (x) { return x.de + '→' + x.a + ': ' + Math.round(x.frac * 100) + ' % de nudos cambian a la vez'; }).join('; ') + ')'
+                : ', sin revisiones metodológicas detectadas') + '.</div>';
+    }
     const avisos = compacto ? f.avisos.slice(0, 2) : f.avisos;
     h += '<ul class="bs-prev-l">' + avisos.map(function (a) { return '<li>' + a + '</li>'; }).join('') +
          (compacto && f.avisos.length > 2 ? '<li class="bs-sub">… y ' + (f.avisos.length - 2) + ' aviso(s) más, visibles en el visor</li>' : '') + '</ul>';
@@ -5699,6 +5836,8 @@ function bsNotaHTML() {
         '<li><b>Previsión.</b> Tres piezas: <i>techo por criterio</i> (qué margen habría si se levantara el criterio que hoy limita), <i>exposición zonal</i> (los criterios de zona son un fondo común, así que la cola de la zona erosiona el margen de todos sus nudos) y <i>tendencia</i> (pendiente por mínimos cuadrados sobre el histórico; no se proyecta con menos de 4 meses).</li>' +
         '<li>La red de transporte tiene <b>81 zonas dinámicas</b> en generación y 1.836 en demanda, con <b>identificadores que se solapan</b>: el mismo código significa cosas distintas en cada perspectiva. El módulo solo usa las de generación, que son las que gobiernan la evacuación.</li>' +
         '<li>Un nudo puede pertenecer a <b>varias zonas del mismo criterio</b>; en ese caso manda la más restrictiva. Y su margen utilizable puede ser <b>menor que el fondo de su zona</b> si tiene limitación interna por configuración, así que el cálculo usa siempre el valor del nudo.</li>' +
+        '<li><b>Dónde están las oportunidades.</b> En la serie de febrero a septiembre de 2026 los cambios de familia de criterio son casi inexistentes: 0,14 % mensual desde WSCR, 0,10 % desde dinámico y 0,09 % desde estático, y <b>un solo caso</b> de dinámico a estático en ocho meses. Lo que sí se mueve es el <b>margen dentro del mismo criterio</b>: sube más de 10 MW en el 3,98 % de los nudos-mes limitados por estático, frente al 1,47 % en WSCR y el 1,16 % en dinámico. Por eso el módulo pondera el techo por la probabilidad observada en lugar de presentarlo como alcanzable.</li>' +
+        '<li>Cuando un nudo <b>sí</b> cambia de criterio, en el histórico lo hace casi siempre <b>hacia WSCR</b>, es decir, a peor: es el estado del que apenas se sale. El módulo lo marca como deriva.</li>' +
         '<li>Un cambio de criterio <b>de nudo a zona</b> es un cambio de naturaleza del riesgo: el margen deja de ser propio y pasa a compartirse, puede caer a cero sin que ocurra nada en el nudo, y su liberación deja de depender de una actuación local.</li>' +
         '<li>No se aplica ninguna tolerancia de asimetría: la normativa no establece ninguna, y un desajuste del 2 % o del 60 % se muestran como lo que son, no como «pasa» o «no pasa».</li>' +
         '<li>La capacidad del bloque <i>liberada</i> está afecta al <b>autoconsumo</b> del RDL 7/2026 (10 % de su disposición adicional décima): no la puede usar un proyecto sin consumidor asociado.</li>' +
