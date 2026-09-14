@@ -443,7 +443,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-kpi-v { font-size:24px; font-weight:bold; line-height:1.1; }
 .bs-kpi-t { font-size:11px; color:#5b6472; margin-top:2px; }
 
-#bs-table { max-height:46vh; overflow:auto; border:1px solid #e2e8f0; border-radius:8px; }
+#bs-table { max-height:46vh; overflow:auto; border:1px solid #e2e8f0; border-radius:0 0 8px 8px; border-top:none; }
 #bs-table .bs-tbl th { position:sticky; top:0; z-index:2; }
 .bs-clic { cursor:pointer; }
 .bs-clic:hover b { color:#F3721F; text-decoration:underline; }
@@ -468,6 +468,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-prev-t2 { font-size:10.5px; font-weight:bold; color:#1F4E79; margin:6px 0 3px; padding-top:5px;
   border-top:1px solid #e2e8f0; }
 .bs-prev-t { font-size:10.5px; font-weight:bold; color:#1F4E79; margin-bottom:3px; }
+.bs-acl { border-left:3px solid #cbd5e1; padding-left:6px; margin-top:3px; font-style:italic; }
 .bs-prev-l { margin:8px 0 0 16px; padding:0; font-size:10.5px; color:#262626; }
 .bs-prev-l2 { column-count:2; column-gap:14px; }
 .bs-prev-l2 li { break-inside:avoid; }
@@ -516,28 +517,34 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:14px 16px; margin-bottom:14px; }
 .bs-card h3 { margin:0 0 2px; font-size:20px; color:#222; }
 .bs-sub2 { font-size:11.5px; color:#5b6472; margin-bottom:10px; }
-/* Ficha con una sola tabla: la alineación entre carga y descarga es
-   estructural, no depende de que los textos ocupen lo mismo. */
-.bs-par2 { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
-.bs-par2 > tr > td { width:50%; vertical-align:top; }
-.bs-hd { padding:0 0 4px !important; border:1px solid #cbd5e1; border-radius:8px 8px 0 0; border-bottom:none; }
-.bs-hd-c { border-color:#1F4E79; } .bs-hd-c .bs-col-h { background:#1F4E79; }
-.bs-hd-d { border-color:#A67C00; } .bs-hd-d .bs-col-h { background:#A67C00; }
-.bs-par4 { width:100%; border-collapse:collapse; table-layout:fixed; font-size:10.5px; margin-bottom:2px; }
-.bs-par4 td { padding:2px 8px; vertical-align:middle; }
-.bs-par4 td.bs-num { text-align:right; font-weight:bold; color:#222; white-space:nowrap; }
-.bs-cC { background:#EAF1F8; border-left:1px solid #1F4E79; }
-.bs-cC.bs-num { border-left:none; border-right:1px solid #1F4E79; }
-.bs-cD { background:#FBF3DC; border-left:1px solid #A67C00; }
-.bs-cD.bs-num { border-left:none; border-right:1px solid #A67C00; }
-.bs-par4 tr.bs-par td { filter:brightness(1.02); }
-.bs-par4 tr.bs-hl td { font-weight:bold; border-top:1px solid #94a3b8; border-bottom:1px solid #94a3b8; }
-.bs-par4 tr.bs-hl td.bs-cC { background:#dce9f6; color:#1F4E79; }
-.bs-par4 tr.bs-hl td.bs-cD { background:#f6eccd; color:#B3261E; }
-.bs-par4 tr.bs-mg td { font-style:italic; }
-.bs-par4 tr:last-child td.bs-cC { border-bottom:1px solid #1F4E79; border-radius:0 0 0 8px; }
-.bs-par4 tr:last-child td.bs-cD { border-bottom:1px solid #A67C00; }
-.bs-nt { font-size:10px; color:#5b6472; font-style:italic; padding:3px 4px 0; }
+/* Ficha: una sola tabla dibuja los DOS bloques. Cinco columnas (etiqueta y
+   valor de carga, separador, etiqueta y valor de descarga). La alineación es
+   estructural y, al compartir geometría, los bordes encuadran cada bloque. */
+.bs-ficha-t { width:100%; border-collapse:collapse; table-layout:fixed; font-size:10.5px; }
+.bs-ficha-t col, .bs-ficha-t td { box-sizing:border-box; }
+.bs-sep { width:12px; border:none !important; background:none !important; }
+.bs-bh { color:#fff; font-size:12px; font-weight:bold; padding:5px 9px;
+  border-radius:8px 8px 0 0; }
+.bs-bh-c { background:#1F4E79; } .bs-bh-d { background:#A67C00; }
+.bs-kpi2 { background:#fff; padding:0 0 4px; }
+.bs-cC2 { border-left:1px solid #1F4E79; border-right:1px solid #1F4E79; }
+.bs-cD2 { border-left:1px solid #A67C00; border-right:1px solid #A67C00; }
+.bs-ficha-t td.bs-cC { background:#EAF1F8; }
+.bs-ficha-t td.bs-cD { background:#FBF3DC; }
+.bs-ficha-t td.bs-cC.bs-cL { border-left:1px solid #1F4E79; width:31%; }
+.bs-ficha-t td.bs-cC.bs-cR { border-right:1px solid #1F4E79; width:17%; }
+.bs-ficha-t td.bs-cD.bs-cL { border-left:1px solid #A67C00; width:31%; }
+.bs-ficha-t td.bs-cD.bs-cR { border-right:1px solid #A67C00; width:17%; }
+.bs-fr td { padding:2px 9px; vertical-align:middle; overflow:hidden;
+  text-overflow:ellipsis; white-space:nowrap; }
+.bs-fr td.bs-num { text-align:right; font-weight:bold; color:#222; }
+.bs-fr.bs-hl td { font-weight:bold; border-top:1px solid #94a3b8; border-bottom:1px solid #94a3b8; }
+.bs-fr.bs-hl td.bs-cC { background:#dce9f6; color:#1F4E79; }
+.bs-fr.bs-hl td.bs-cD { background:#f6eccd; color:#B3261E; }
+.bs-fr.bs-mg td { font-style:italic; }
+.bs-frL td.bs-cC { border-bottom:1px solid #1F4E79; border-radius:0 0 8px 8px; }
+.bs-frL td.bs-cD { border-bottom:1px solid #A67C00; border-radius:0 0 8px 8px; }
+.bs-nt { font-size:9.5px; color:#5b6472; font-style:italic; white-space:normal !important; padding:3px 9px !important; }
 .bs-cols { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
 .bs-col { width:50%; border:1px solid #cbd5e1; border-radius:8px; vertical-align:top; padding:0 0 6px; }
 .bs-col-h { padding:6px 10px; color:#fff; font-size:12px; font-weight:bold; }
@@ -607,7 +614,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 /* ---- informe descargable ---- */
 #bs-obj-wrap { margin:10px 16px 0; }
-#bs-filtros { margin:10px 16px 0; }
+/* La barra va pegada a la cabecera de la tabla: mismo ancho, sin hueco y con
+   los bordes redondeados solo arriba, para que se lea como una sola pieza. */
+#bs-filtros { margin:0; }
+#bs-filtros .bs-flt { border-radius:8px 8px 0 0; border-bottom:none; background:#f8fafc; }
 .bs-flt { width:100%; border-collapse:collapse; background:#fff; border:1px solid #e2e8f0; border-radius:8px; }
 .bs-flt th { font-size:9px; color:#5b6472; font-weight:bold; text-align:left; padding:4px 5px 0; }
 .bs-flt td { padding:2px 5px 5px; font-size:10px; color:#5b6472; white-space:nowrap; }
@@ -653,9 +663,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-portada .bs-obj td b { font-size:11px; }
   .bs-it { font-size:8px; padding:2px 8px; }
   .bs-col-h { font-size:10.5px; padding:4px 8px; }
-  .bs-mini-tbl, .bs-par4 { font-size:9.5px; }
-  .bs-par4 td { padding:1px 7px; }
-  .bs-nt { font-size:8px; }
+  .bs-mini-tbl, .bs-ficha-t { font-size:9.5px; }
+  .bs-fr td { padding:1px 8px; }
+  .bs-nt { font-size:8px; padding:2px 8px !important; }
+  .bs-bh { font-size:10.5px; padding:3px 8px; }
   .bs-mini-tbl td { padding:1px 8px; line-height:1.3; }
   .bs-col { padding:0 0 3px; }
   .bs-concl td, .bs-sim td { padding:2px 6px; }
@@ -747,7 +758,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-kpi-v { font-size:24px; font-weight:bold; line-height:1.1; }
 .bs-kpi-t { font-size:11px; color:#5b6472; margin-top:2px; }
 
-#bs-table { max-height:46vh; overflow:auto; border:1px solid #e2e8f0; border-radius:8px; }
+#bs-table { max-height:46vh; overflow:auto; border:1px solid #e2e8f0; border-radius:0 0 8px 8px; border-top:none; }
 #bs-table .bs-tbl th { position:sticky; top:0; z-index:2; }
 .bs-clic { cursor:pointer; }
 .bs-clic:hover b { color:#F3721F; text-decoration:underline; }
@@ -772,6 +783,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-prev-t2 { font-size:10.5px; font-weight:bold; color:#1F4E79; margin:6px 0 3px; padding-top:5px;
   border-top:1px solid #e2e8f0; }
 .bs-prev-t { font-size:10.5px; font-weight:bold; color:#1F4E79; margin-bottom:3px; }
+.bs-acl { border-left:3px solid #cbd5e1; padding-left:6px; margin-top:3px; font-style:italic; }
 .bs-prev-l { margin:8px 0 0 16px; padding:0; font-size:10.5px; color:#262626; }
 .bs-prev-l2 { column-count:2; column-gap:14px; }
 .bs-prev-l2 li { break-inside:avoid; }
@@ -820,28 +832,34 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:14px 16px; margin-bottom:14px; }
 .bs-card h3 { margin:0 0 2px; font-size:20px; color:#222; }
 .bs-sub2 { font-size:11.5px; color:#5b6472; margin-bottom:10px; }
-/* Ficha con una sola tabla: la alineación entre carga y descarga es
-   estructural, no depende de que los textos ocupen lo mismo. */
-.bs-par2 { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
-.bs-par2 > tr > td { width:50%; vertical-align:top; }
-.bs-hd { padding:0 0 4px !important; border:1px solid #cbd5e1; border-radius:8px 8px 0 0; border-bottom:none; }
-.bs-hd-c { border-color:#1F4E79; } .bs-hd-c .bs-col-h { background:#1F4E79; }
-.bs-hd-d { border-color:#A67C00; } .bs-hd-d .bs-col-h { background:#A67C00; }
-.bs-par4 { width:100%; border-collapse:collapse; table-layout:fixed; font-size:10.5px; margin-bottom:2px; }
-.bs-par4 td { padding:2px 8px; vertical-align:middle; }
-.bs-par4 td.bs-num { text-align:right; font-weight:bold; color:#222; white-space:nowrap; }
-.bs-cC { background:#EAF1F8; border-left:1px solid #1F4E79; }
-.bs-cC.bs-num { border-left:none; border-right:1px solid #1F4E79; }
-.bs-cD { background:#FBF3DC; border-left:1px solid #A67C00; }
-.bs-cD.bs-num { border-left:none; border-right:1px solid #A67C00; }
-.bs-par4 tr.bs-par td { filter:brightness(1.02); }
-.bs-par4 tr.bs-hl td { font-weight:bold; border-top:1px solid #94a3b8; border-bottom:1px solid #94a3b8; }
-.bs-par4 tr.bs-hl td.bs-cC { background:#dce9f6; color:#1F4E79; }
-.bs-par4 tr.bs-hl td.bs-cD { background:#f6eccd; color:#B3261E; }
-.bs-par4 tr.bs-mg td { font-style:italic; }
-.bs-par4 tr:last-child td.bs-cC { border-bottom:1px solid #1F4E79; border-radius:0 0 0 8px; }
-.bs-par4 tr:last-child td.bs-cD { border-bottom:1px solid #A67C00; }
-.bs-nt { font-size:10px; color:#5b6472; font-style:italic; padding:3px 4px 0; }
+/* Ficha: una sola tabla dibuja los DOS bloques. Cinco columnas (etiqueta y
+   valor de carga, separador, etiqueta y valor de descarga). La alineación es
+   estructural y, al compartir geometría, los bordes encuadran cada bloque. */
+.bs-ficha-t { width:100%; border-collapse:collapse; table-layout:fixed; font-size:10.5px; }
+.bs-ficha-t col, .bs-ficha-t td { box-sizing:border-box; }
+.bs-sep { width:12px; border:none !important; background:none !important; }
+.bs-bh { color:#fff; font-size:12px; font-weight:bold; padding:5px 9px;
+  border-radius:8px 8px 0 0; }
+.bs-bh-c { background:#1F4E79; } .bs-bh-d { background:#A67C00; }
+.bs-kpi2 { background:#fff; padding:0 0 4px; }
+.bs-cC2 { border-left:1px solid #1F4E79; border-right:1px solid #1F4E79; }
+.bs-cD2 { border-left:1px solid #A67C00; border-right:1px solid #A67C00; }
+.bs-ficha-t td.bs-cC { background:#EAF1F8; }
+.bs-ficha-t td.bs-cD { background:#FBF3DC; }
+.bs-ficha-t td.bs-cC.bs-cL { border-left:1px solid #1F4E79; width:31%; }
+.bs-ficha-t td.bs-cC.bs-cR { border-right:1px solid #1F4E79; width:17%; }
+.bs-ficha-t td.bs-cD.bs-cL { border-left:1px solid #A67C00; width:31%; }
+.bs-ficha-t td.bs-cD.bs-cR { border-right:1px solid #A67C00; width:17%; }
+.bs-fr td { padding:2px 9px; vertical-align:middle; overflow:hidden;
+  text-overflow:ellipsis; white-space:nowrap; }
+.bs-fr td.bs-num { text-align:right; font-weight:bold; color:#222; }
+.bs-fr.bs-hl td { font-weight:bold; border-top:1px solid #94a3b8; border-bottom:1px solid #94a3b8; }
+.bs-fr.bs-hl td.bs-cC { background:#dce9f6; color:#1F4E79; }
+.bs-fr.bs-hl td.bs-cD { background:#f6eccd; color:#B3261E; }
+.bs-fr.bs-mg td { font-style:italic; }
+.bs-frL td.bs-cC { border-bottom:1px solid #1F4E79; border-radius:0 0 8px 8px; }
+.bs-frL td.bs-cD { border-bottom:1px solid #A67C00; border-radius:0 0 8px 8px; }
+.bs-nt { font-size:9.5px; color:#5b6472; font-style:italic; white-space:normal !important; padding:3px 9px !important; }
 .bs-cols { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
 .bs-col { width:50%; border:1px solid #cbd5e1; border-radius:8px; vertical-align:top; padding:0 0 6px; }
 .bs-col-h { padding:6px 10px; color:#fff; font-size:12px; font-weight:bold; }
@@ -911,7 +929,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 /* ---- informe descargable ---- */
 #bs-obj-wrap { margin:10px 16px 0; }
-#bs-filtros { margin:10px 16px 0; }
+/* La barra va pegada a la cabecera de la tabla: mismo ancho, sin hueco y con
+   los bordes redondeados solo arriba, para que se lea como una sola pieza. */
+#bs-filtros { margin:0; }
+#bs-filtros .bs-flt { border-radius:8px 8px 0 0; border-bottom:none; background:#f8fafc; }
 .bs-flt { width:100%; border-collapse:collapse; background:#fff; border:1px solid #e2e8f0; border-radius:8px; }
 .bs-flt th { font-size:9px; color:#5b6472; font-weight:bold; text-align:left; padding:4px 5px 0; }
 .bs-flt td { padding:2px 5px 5px; font-size:10px; color:#5b6472; white-space:nowrap; }
@@ -957,9 +978,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-portada .bs-obj td b { font-size:11px; }
   .bs-it { font-size:8px; padding:2px 8px; }
   .bs-col-h { font-size:10.5px; padding:4px 8px; }
-  .bs-mini-tbl, .bs-par4 { font-size:9.5px; }
-  .bs-par4 td { padding:1px 7px; }
-  .bs-nt { font-size:8px; }
+  .bs-mini-tbl, .bs-ficha-t { font-size:9.5px; }
+  .bs-fr td { padding:1px 8px; }
+  .bs-nt { font-size:8px; padding:2px 8px !important; }
+  .bs-bh { font-size:10.5px; padding:3px 8px; }
   .bs-mini-tbl td { padding:1px 8px; line-height:1.3; }
   .bs-col { padding:0 0 3px; }
   .bs-concl td, .bs-sim td { padding:2px 6px; }
@@ -4953,7 +4975,6 @@ function renderOportunidades(){
   </div>
   <div id="bs-nota"></div>
   <div id="bs-banner"></div>
-  <div id="bs-filtros"></div>
   <div id="bs-obj-wrap"></div>
   <div class="na-sec" id="bs-kpis"></div>
 
@@ -4966,6 +4987,7 @@ function renderOportunidades(){
       <button type="button" onclick="bsPrint()" class="bs-dl">🖨 Descargar PDF de los seleccionados</button>
       <button type="button" onclick="bsDownload()" class="bs-mini" title="Descarga el mismo informe como HTML autónomo, editable y sin depender del navegador">⬇ HTML</button>
     </div>
+    <div id="bs-filtros"></div>
     <div id="bs-table"></div>
   </div>
 
@@ -5080,7 +5102,7 @@ function bsPintaFiltros(forzar) {
     cont.innerHTML =
         '<table class="bs-flt"><tr>' +
         '<th>Nudo</th><th>CCAA</th><th>CARGA solicitable</th><th>DESCARGA margen</th>' +
-        '<th>BESS con concurso</th><th>Cola sobre capacidad</th><th>Previsión</th><th>Estabilidad</th>' +
+        '<th>BESS con concurso</th><th>Cola sobre capacidad</th><th>Pronóstico</th><th>Serie del nudo</th>' +
         '<th>Caso</th><th>Acción</th><th></th></tr><tr>' +
         '<td><input type="text" value="' + bsF.nudo + '" placeholder="nombre, prov." oninput="bsSetF(\'nudo\',this.value)"></td>' +
         '<td><select onchange="bsSetF(\'ccaa\',this.value)">' + opt(Object.keys(ccaas), bsF.ccaa) + '</select></td>' +
@@ -5088,8 +5110,8 @@ function bsPintaFiltros(forzar) {
         '<td>≥ <input type="number" min="0" step="10" value="' + bsF.minDesc + '" oninput="bsSetF(\'minDesc\',this.value)"> MW</td>' +
         '<td>≥ <input type="number" min="0" step="10" value="' + bsF.minEfic + '" oninput="bsSetF(\'minEfic\',this.value)"> MW</td>' +
         '<td>≤ <input type="number" min="0" step="10" value="' + bsF.colaMax + '" oninput="bsSetF(\'colaMax\',this.value)"> %</td>' +
-        '<td><select onchange="bsSetF(\'prev\',this.value)">' + opt(['AL ALZA', 'ESTABLE', 'A LA BAJA'], bsF.prev) + '</select></td>' +
-        '<td><select onchange="bsSetF(\'estab\',this.value)">' + opt(['quieto', 'al alza', 'a la baja', 'oscilante', 'sin histórico'], bsF.estab) + '</select></td>' +
+        '<td><select onchange="bsSetF(\'prev\',this.value)">' + opt(['FAVORABLE', 'NEUTRO', 'DESFAVORABLE'], bsF.prev) + '</select></td>' +
+        '<td><select onchange="bsSetF(\'estab\',this.value)">' + opt(['estacionario', 'tendencia positiva', 'tendencia negativa', 'alta variabilidad', 'sin serie'], bsF.estab) + '</select></td>' +
         '<td><select onchange="bsSetF(\'caso\',this.value)">' + opt(['abierto', 'concurso', 'condicionado', 'sin potencial', 'sin datos'], bsF.caso) + '</select></td>' +
         '<td><select onchange="bsSetF(\'accion\',this.value)">' + opt(['SOLICITAR', 'SOLICITAR SIN DEMORA', 'COLA POR DELANTE', 'PERSEGUIR', 'PERSEGUIR CON CAUTELA', 'SOLO DESCARGA', 'SOLO CARGA', 'POR DEBAJO', 'POR DEBAJO · AL ALZA', 'SIN CAPACIDAD', 'SIN DATOS'], bsF.accion) + '</select></td>' +
         '<td><button type="button" class="bs-mini" onclick="bsLimpiarF()">Limpiar</button></td>' +
@@ -5508,8 +5530,8 @@ function bsForecast(m, entry, key) {
             bsPct1(((bsTasas().fam || {}).WSCR || {}).pCambio) + ' de las observaciones nudo-mes con WSCR cambia de criterio (' +
             bsFrec(((bsTasas().fam || {}).WSCR || {}).pCambio) + ').');
     }
-    if (est.suficiente) avisos.push('Este nudo: criterio ' + est.critClase + ' (' + est.cambios + ' cambio(s)) y margen ' +
-        est.margenClase + ' (' + est.sube + ' subida(s) / ' + est.baja + ' bajada(s) de más de ' + BS_UMBRAL_MW + ' MW en ' + est.n + ' meses).');
+    if (est.suficiente) avisos.push('Serie del nudo: margen ' + est.margenClase + ' con ' + est.sube + ' incremento(s) y ' +
+        est.baja + ' decremento(s) de más de ' + BS_UMBRAL_MW + ' MW en ' + est.n + ' meses · criterio ' + est.critClase + '.');
     for (const c of tr.cambios) {
         const paso = c.de.fam + ' de ' + c.de.ambito + ' → ' + c.a.fam + ' de ' + c.a.ambito;
         if (c.de.ambito === 'nudo' && c.a.ambito === 'zona') {
@@ -5529,11 +5551,11 @@ function bsForecast(m, entry, key) {
    buscarla con naEntryByName, que recorre linealmente los ~6.900 nudos.    */
 function bsFc(r) { return bsForecast(r, r._e || { name: r.name, grid: r.grid }, bsKey()); }
 function bsForecastPill(f) {
-    // Rótulos puramente direccionales: esta señal indica hacia dónde va el
-    // margen, no si el nudo merece la pena. El juicio de valor vive en la
-    // banda de acción, que es la que dice perseguir, con cautela o descartar.
+    // El pronóstico es una VALORACIÓN, no una dirección: combina la exposición
+    // al fondo zonal, el techo por criterio y la pendiente del margen. Usa
+    // vocabulario propio para no confundirse con la serie histórica.
     const c = { 'riesgo': '#B3261E', 'oportunidad': '#1B7F4B', 'neutro': '#7a8495' }[f.nivel];
-    const txt = { 'riesgo': 'A LA BAJA', 'oportunidad': 'AL ALZA', 'neutro': 'ESTABLE' }[f.nivel];
+    const txt = { 'riesgo': 'DESFAVORABLE', 'oportunidad': 'FAVORABLE', 'neutro': 'NEUTRO' }[f.nivel];
     return '<span class="bs-pill" style="background:' + c + '">' + txt + '</span>';
 }
 /* Mini gráfico de la serie, en HTML puro para que imprima en el PDF.        */
@@ -5636,7 +5658,7 @@ function bsEstab(m) {
     const tr = bsTrend(m._e || { name: m.name, grid: m.grid });
     const s = tr.serie;
     if (s.length < 2) return { n: s.length, suficiente: false, cambios: 0, sube: 0, baja: 0,
-        clase: 'sin histórico', critClase: 'sin histórico', margenClase: 'sin histórico',
+        clase: 'sin serie', critClase: 'sin serie', margenClase: 'sin serie',
         famActual: s.length ? bsCritFam(s[0].critDesc).fam : null, derivaWscr: false };
     let cambios = 0, sube = 0, baja = 0;
     for (let i = 1; i < s.length; i++) {
@@ -5649,16 +5671,19 @@ function bsEstab(m) {
     // un nudo con 0 cambios de criterio y 4 movimientos de margen salía
     // «volátil» cuando en realidad es estructuralmente estable y su margen
     // simplemente se mueve.
-    const critClase = cambios === 0 ? 'estable' : (cambios === 1 ? 'cambiante' : 'inestable');
-    let margenClase = 'quieto';
-    if (sube >= 2 && baja >= 2) margenClase = 'oscilante';
-    else if (sube > baja) margenClase = 'al alza';
-    else if (baja > sube) margenClase = 'a la baja';
-    else if (sube + baja > 0) margenClase = 'oscilante';
+    // Vocabulario de series temporales, y distinto del que usa el pronóstico,
+    // para que las dos señales no puedan leerse como contradictorias:
+    //   · la serie describe el comportamiento OBSERVADO del margen del nudo
+    //   · el pronóstico valora lo que cabe esperar cruzando zona, techo y pendiente
+    const critClase = cambios === 0 ? 'sin reclasificar' : (cambios === 1 ? '1 reclasificación' : cambios + ' reclasificaciones');
+    let margenClase = 'estacionario';
+    if (sube >= 2 && baja >= 2) margenClase = 'alta variabilidad';
+    else if (sube > baja) margenClase = 'tendencia positiva';
+    else if (baja > sube) margenClase = 'tendencia negativa';
+    else if (sube + baja > 0) margenClase = 'alta variabilidad';
     // «volátil» se reserva a lo que de verdad lo es
-    const clase = (cambios >= 2 || margenClase === 'oscilante') ? 'volátil'
-                : (critClase !== 'estable' ? 'cambiante'
-                : (margenClase === 'quieto' ? 'estable' : 'móvil ' + margenClase));
+    const clase = (cambios >= 2 || margenClase === 'alta variabilidad') ? 'alta variabilidad'
+                : (cambios > 0 ? 'reclasificado' : margenClase);
     const famAct = bsCritFam(s[s.length - 1].critDesc);
     // deriva: acabó en WSCR habiendo estado antes en otra familia
     const derivaWscr = famAct.fam === 'WSCR' && s.some(function (x) { return bsCritFam(x.critDesc).fam !== 'WSCR'; });
@@ -5780,7 +5805,7 @@ function bsSem(m) {
     if (c.okCargaHoy && c.okDescConc) {
         const f = bsFc(m);
         if (f.nivel === 'riesgo') return { col: '#F06818', txt: 'PERSEGUIR CON CAUTELA', num: '2',
-            acc: 'El potencial cubre el objetivo, pero hay que esperar al CONCURSO y el margen se está reduciendo mientras tanto: ' +
+            acc: 'El potencial cubre el objetivo, pero el pronóstico es DESFAVORABLE y hay que esperar al CONCURSO: ' +
                  (f.avisos[0] || '').slice(0, 130) };
         return { col: '#1F4E79', txt: 'PERSEGUIR', num: '2',
             acc: 'La carga ya cubre el objetivo y la descarga lo cubriría con el CONCURSO' };
@@ -5794,7 +5819,7 @@ function bsSem(m) {
     // 5) ninguno
     if (c.simConc > 0) {
         const f5 = bsFc(m);
-        if (f5.nivel === 'oportunidad') return { col: '#F06818', txt: 'POR DEBAJO · AL ALZA', num: '5',
+        if (f5.nivel === 'oportunidad') return { col: '#F06818', txt: 'POR DEBAJO · PRONÓSTICO FAVORABLE', num: '5',
             acc: 'Hoy solo caben ' + bsMW(c.simConc) + ' simétricos, pero el margen crece: ' + (f5.avisos[0] || '').slice(0, 120) };
         return { col: '#F06818', txt: 'POR DEBAJO', num: '5',
             acc: 'Ningún lado cubre el objetivo · lo mayor que cabría es ' + bsMW(c.simConc) + ' simétricos' };
@@ -5887,7 +5912,7 @@ function bsRenderInterno() {
     }
     if (bsF.prev) rows = rows.filter(function (r) {
         if (r.sinDatos) return false;
-        const t = { 'riesgo': 'A LA BAJA', 'oportunidad': 'AL ALZA', 'neutro': 'ESTABLE' }[bsFc(r).nivel];
+        const t = { 'riesgo': 'DESFAVORABLE', 'oportunidad': 'FAVORABLE', 'neutro': 'NEUTRO' }[bsFc(r).nivel];
         return t === bsF.prev;
     });
     if (bsF.estab) rows = rows.filter(r => !r.sinDatos && bsEstab(r).margenClase === bsF.estab);
@@ -5928,8 +5953,8 @@ function bsRenderInterno() {
         '<th style="width:28px;"></th><th>Nudo</th><th>CCAA</th>' +
         '<th>CARGA<br><span>solicitable</span></th><th>CARGA<br><span>otorg. / cola</span></th>' +
         '<th>DESCARGA<br><span>solicitable</span></th><th>DESCARGA<br><span>margen / posición</span></th><th>DESCARGA<br><span>otorg. / cola</span></th>' +
-        '<th>Previsión<br><span>zona · techo · tendencia</span></th>' +
-        '<th>Estabilidad<br><span>criterio · histórico</span></th>' +
+        '<th>Pronóstico<br><span>zona · techo · pendiente</span></th>' +
+        '<th>Serie del nudo<br><span>margen · criterio</span></th>' +
         '<th>Cobertura objetivo<br><span>carga / descarga</span></th>' +
         '<th>Simétrico máximo<br><span>hoy / con CONCURSO</span></th><th>Caso</th><th>Acción</th><th>Ver</th></tr></thead><tbody>';
     for (const r of bsRows) {
@@ -5951,10 +5976,14 @@ function bsRenderInterno() {
             '<td>' + (r.sinDatos ? '<span class="bs-sub">—</span>' : bsForecastPill(bsFc(r))) + '</td>' +
             '<td>' + (r.sinDatos ? '<span class="bs-sub">—</span>' : (function () {
                 const e2 = bsEstab(r);
-                const c2 = { 'quieto': '#7a8495', 'al alza': '#1B7F4B', 'a la baja': '#B3261E', 'oscilante': '#A67C00' }[e2.margenClase] || '#7a8495';
-                return '<span class="bs-pill" style="background:' + c2 + '">' + e2.margenClase.toUpperCase() + '</span>' +
-                    '<div class="bs-sub">' + (e2.famActual || '—') + ' · criterio ' + e2.critClase +
-                    (e2.derivaWscr ? ' · derivó' : '') + '</div>';
+                const c2 = { 'estacionario': '#7a8495', 'tendencia positiva': '#1B7F4B',
+                             'tendencia negativa': '#B3261E', 'alta variabilidad': '#A67C00' }[e2.margenClase] || '#7a8495';
+                const ab = { 'estacionario': 'ESTACIONARIO', 'tendencia positiva': 'TEND. POSITIVA',
+                             'tendencia negativa': 'TEND. NEGATIVA', 'alta variabilidad': 'VARIABILIDAD ALTA',
+                             'sin serie': 'SIN SERIE' }[e2.margenClase] || e2.margenClase.toUpperCase();
+                return '<span class="bs-pill" style="background:' + c2 + '">' + ab + '</span>' +
+                    '<div class="bs-sub">' + (e2.famActual || '—') + ' · ' + e2.critClase +
+                    (e2.derivaWscr ? ' · reclasificado a WSCR' : '') + '</div>';
             })()) + '</td>' +
             '<td class="bs-num"><span class="' + (cv.okCargaHoy ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobCargaHoy) + '</span> / ' +
             '<span class="' + (cv.okDescConc ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobDescConc) + '</span>' +
@@ -6073,25 +6102,32 @@ function bsFichaHTML(m, paraInforme) {
         ['En cola: solicitudes en curso', bsMW(m.descCola), false],
         ['Reservado a autoconsumo (no aplicable)', m.liberada == null ? 'no publicado' : bsMW(m.liberada), false],
     ];
-    // UNA SOLA TABLA de cuatro columnas para las dos perspectivas. Antes eran
-    // dos tablas anidadas en celdas distintas, y sus filas no podían alinearse
-    // entre sí: cualquier texto que ocupara dos líneas en un lado descuadraba
-    // todo lo de abajo. Con una tabla común, cada concepto comparte fila por
-    // construcción.
+    // UNA SOLA TABLA para las dos perspectivas, con cinco columnas:
+    //   etiqueta carga · valor carga · separador · etiqueta descarga · valor
+    // Así cada concepto comparte fila por construcción (dos tablas
+    // independientes no pueden alinearse) y, al compartir geometría, los
+    // bordes de cada lado encuadran correctamente su bloque.
     const filas = [];
     for (let i = 0; i < Math.max(filaC.length, filaD.length); i++) {
         const a = filaC[i] || ['', '', false], b = filaD[i] || ['', '', false];
-        const cls = (a[2] || b[2]) ? ' bs-hl' : (/margen total/.test(a[0] + b[0]) ? ' bs-mg' : '');
-        filas.push('<tr class="' + (i % 2 ? 'bs-par' : '') + cls + '">' +
-            '<td class="bs-cC">' + a[0] + '</td><td class="bs-cC bs-num">' + a[1] + '</td>' +
-            '<td class="bs-cD">' + b[0] + '</td><td class="bs-cD bs-num">' + b[1] + '</td></tr>');
+        const hl = (a[2] || b[2]) ? ' bs-hl' : (/margen total/.test(a[0] + b[0]) ? ' bs-mg' : '');
+        filas.push('<tr class="bs-fr' + hl + '">' +
+            '<td class="bs-cC bs-cL" title="' + a[0].replace(/"/g, '') + '">' + a[0] + '</td>' +
+            '<td class="bs-cC bs-cR bs-num">' + a[1] + '</td>' +
+            '<td class="bs-sep"></td>' +
+            '<td class="bs-cD bs-cL" title="' + b[0].replace(/"/g, '') + '">' + b[0] + '</td>' +
+            '<td class="bs-cD bs-cR bs-num">' + b[1] + '</td></tr>');
     }
-    const cab = function (col, titulo, big, colBig, lbl, sub, crit) {
-        return '<td class="bs-hd bs-hd-' + col + '"><div class="bs-col-h">' + titulo + '</div>' +
-            '<div class="bs-big ' + colBig + '">' + big + '</div>' +
-            '<div class="bs-lbl">' + lbl + '</div>' + sub +
-            '<div class="bs-it">' + crit + '</div></td>';
+    const blq = function (lado, titulo, big, colBig, lbl, sub, pie) {
+        return '<td class="bs-kpi2 bs-cL bs-' + lado + '" colspan="1"><div class="bs-big ' + colBig + '">' + big + '</div>' +
+            '<div class="bs-lbl">' + lbl + '</div>' + sub + '<div class="bs-it">' + pie + '</div></td>';
     };
+    const critC = 'Criterio limitante: ' + (m.cargaCrit || '—') +
+        (m.cargaConcEstado && !/^\s*no tender/i.test(m.cargaConcEstado) ? ' · concurso de demanda: ' + m.cargaConcEstado : '') +
+        (m.cargaConcResuelto ? ' · concurso ya resuelto' : '');
+    const hayReserva = m.reserva && !/^\s*no tender/i.test(m.reserva);
+    const critD = ((m.motivo ? 'Motivo: ' + m.motivo : '') +
+        (hayReserva ? (m.motivo ? ' · ' : '') + 'reserva: ' + m.reserva : '')) || '&nbsp;';
 
     return '<div class="bs-card' + (paraInforme ? ' bs-page' : '') + '">' +
         (paraInforme ? '<div class="bs-wm-w"><div class="bs-wm">FASE DE PRUEBAS</div></div>' : '') +
@@ -6107,51 +6143,40 @@ function bsFichaHTML(m, paraInforme) {
                 '. El acceso se otorga por <b>prelación temporal</b>: las solicitudes anteriores se resuelven primero, ' +
                 'así que la capacidad que ves puede estar ya comprometida.</div>';
         })() +
-        '<table class="bs-par2"><tr>' +
-        cab('c', 'CARGA · permiso de demanda' + (m.cargaConcurso ? ' · reservado a CONCURSO' : ''),
-            bsMW(m.cargaDisp), m.cargaDisp > 0 ? 'bs-green' : 'bs-red',
-            'SOLICITABLE hoy para almacenamiento (ALM CEP)',
-            (m.cargaConcurso
-                ? '<div class="bs-warn"><b>reservado a CONCURSO de demanda:</b> ' +
-                  (m.cargaNoOtorg > 0 ? bsMW(m.cargaNoOtorg) + ' retenidos' : 'nudo de concurso') + '</div>'
-                : '<div class="bs-lbl2">margen total ' + (m.cargaMargenCep == null ? '—' : bsMW(m.cargaMargenCep)) +
-                  ' · sin capacidad no otorgable</div>'),
-            'Criterio limitante: ' + (m.cargaCrit || '—') +
-            (m.cargaConcEstado && !/^\s*no tender/i.test(m.cargaConcEstado) ? ' · concurso de demanda: ' + m.cargaConcEstado : '') +
-            (m.cargaConcResuelto ? ' · concurso ya resuelto (ver normativa en la ficha de REE)' : '')) +
-        cab('d', 'DESCARGA · permiso de generación' + (m.bloqueoConcurso ? ' · reservado a CONCURSO' : ''),
-            bsMW(m.descDisp), m.descDisp > 0 ? 'bs-green' : 'bs-red',
-            'SOLICITABLE hoy para almacenamiento (ALM MPE)',
-            (m.bloqueoConcurso
-                ? '<div class="bs-warn">reservado a <b>CONCURSO</b> · potencial si se convoca: <b>' + bsMW(m.potencial) + '</b></div>'
-                : '<div class="bs-lbl2">potencial máximo ' + bsMW(m.potencial) + ' · mín(margen MPE, posición)</div>'),
-            (function () {
-                const hayReserva = m.reserva && !/^\s*no tender/i.test(m.reserva);
-                return (m.motivo ? 'Motivo: ' + m.motivo : '') + (hayReserva ? (m.motivo ? ' · ' : '') + 'reserva: ' + m.reserva : '') || '&nbsp;';
-            })()) +
-        '</tr></table>' +
-        '<table class="bs-par4">' + filas.join('') + '</table>' +
-        '<table class="bs-par2"><tr><td class="bs-nt">' + (m.cargaNota || '') +
+        '<table class="bs-ficha-t">' +
+        // cabeceras de bloque, cada una sobre sus dos columnas
+        '<tr><td class="bs-bh bs-bh-c" colspan="2">CARGA · permiso de demanda' +
+        (m.cargaConcurso ? ' · reservado a CONCURSO' : '') + '</td>' +
+        '<td class="bs-sep"></td>' +
+        '<td class="bs-bh bs-bh-d" colspan="2">DESCARGA · permiso de generación' +
+        (m.bloqueoConcurso ? ' · reservado a CONCURSO' : '') + '</td></tr>' +
+        // cifras y etiquetas, también sobre dos columnas
+        '<tr><td class="bs-kpi2 bs-cC2" colspan="2">' +
+        '<div class="bs-big ' + (m.cargaDisp > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(m.cargaDisp) + '</div>' +
+        '<div class="bs-lbl">SOLICITABLE hoy para almacenamiento (ALM CEP)</div>' +
+        (m.cargaConcurso
+            ? '<div class="bs-warn"><b>reservado a CONCURSO de demanda:</b> ' +
+              (m.cargaNoOtorg > 0 ? bsMW(m.cargaNoOtorg) + ' retenidos' : 'nudo de concurso') + '</div>'
+            : '<div class="bs-lbl2">margen total ' + (m.cargaMargenCep == null ? '—' : bsMW(m.cargaMargenCep)) +
+              ' · sin capacidad no otorgable</div>') +
+        '<div class="bs-it">' + critC + '</div></td>' +
+        '<td class="bs-sep"></td>' +
+        '<td class="bs-kpi2 bs-cD2" colspan="2">' +
+        '<div class="bs-big ' + (m.descDisp > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(m.descDisp) + '</div>' +
+        '<div class="bs-lbl">SOLICITABLE hoy para almacenamiento (ALM MPE)</div>' +
+        (m.bloqueoConcurso
+            ? '<div class="bs-warn">reservado a <b>CONCURSO</b> · potencial si se convoca: <b>' + bsMW(m.potencial) + '</b></div>'
+            : '<div class="bs-lbl2">potencial máximo ' + bsMW(m.potencial) + ' · mín(margen MPE, posición)</div>') +
+        '<div class="bs-it">' + critD + '</div></td></tr>' +
+        filas.join('') +
+        // notas al pie de cada bloque
+        '<tr class="bs-fr bs-frL"><td class="bs-cC bs-nt" colspan="2">' + (m.cargaNota || '&nbsp;') +
         (m.cargaRefRdd ? ' Además, ' + bsMW(m.cargaRefRdd) + ' de consumo de referencia acordados con el DSO' +
             (m.cargaAcuerdo ? ' (acuerdo cerrado)' : '') + '.' : '') + '</td>' +
-        '<td class="bs-nt">' + (m.descNota || '') +
-        (m.sinPosicion ? ' Sin posición existente ni prevista: su viabilidad se consulta al TSO.' : '') + '</td></tr></table>' +
-        '<table class="bs-concl"><tr>' +
-        '<td class="bs-concl-h"><b>COBERTURA DEL OBJETIVO</b><div>sobre ' + bsMW(cv.t.carga) + ' de carga y ' +
-        bsMW(cv.t.desc) + ' de descarga' + (cv.t.desc > 0 ? ' · ratio ' + cv.t.ratio.toFixed(2) : '') + '</div></td>' +
-        '<td class="bs-concl-b"><div class="bs-concl-t">COBERTURA CARGA</div><div class="bs-concl-s">' + bsMW(m.cargaDisp) + ' de ' + bsMW(cv.t.carga) + '</div></td>' +
-        '<td class="bs-concl-v ' + (cv.okCargaHoy ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobCargaHoy) + '</td>' +
-        '<td class="bs-concl-b"><div class="bs-concl-t">COBERTURA DESCARGA</div><div class="bs-concl-s">' + bsMW(m.potencial) + ' de ' + bsMW(cv.t.desc) +
-        (m.bloqueoConcurso ? ' · hoy 0 MW' : '') + '</div></td>' +
-        '<td class="bs-concl-v ' + (cv.okDescConc ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobDescConc) + '</td>' +
-        // en el informe, el simétrico máximo se integra en esta misma fila para
-        // ahorrar una tabla y que la ficha entre en una hoja
-        (paraInforme
-            ? '<td class="bs-concl-b"><div class="bs-concl-t">SIMÉTRICO MÁX.</div><div class="bs-concl-s">hoy ' +
-              bsMW(cv.simHoy) + ' · asimétrico ' + bsMW(m.cargaDisp) + ' / ' + bsMW(m.potencial) + '</div></td>' +
-              '<td class="bs-concl-v bs-must">' + bsMW(cv.simConc) + '</td>'
-            : '') +
-        '</tr></table>' +
+        '<td class="bs-sep"></td>' +
+        '<td class="bs-cD bs-nt" colspan="2">' + (m.descNota || '&nbsp;') +
+        (m.sinPosicion ? ' Sin posición existente ni prevista: su viabilidad se consulta al TSO.' : '') + '</td></tr>' +
+        '</table>' +
         bsPrevHTML(m, paraInforme) +
         (paraInforme ? '' :
             '<table class="bs-sim"><tr>' +
@@ -6254,7 +6279,8 @@ function bsPrevHTML(m, compacto) {
     // estabilidad del propio nudo y tasas observadas de su criterio
     const famA = est.famActual || '—';
     const tf = (tas.fam || {})[famA] || null;
-    const colEst = { 'quieto': '', 'al alza': 'bs-green', 'a la baja': 'bs-red', 'oscilante': 'bs-must' }[est.margenClase] || '';
+    const colEst = { 'estacionario': '', 'tendencia positiva': 'bs-green',
+                     'tendencia negativa': 'bs-red', 'alta variabilidad': 'bs-must' }[est.margenClase] || '';
     h += '<div class="bs-sub"><b>Criterio:</b> ' + est.critClase + ' (' + est.cambios + ' cambio(s) en ' + est.n + ' meses)' +
         ' · <b>Margen:</b> <b class="' + colEst + '">' + est.margenClase + '</b> (' + est.sube + ' subida(s) / ' + est.baja + ' bajada(s) &gt;' + BS_UMBRAL_MW + ' MW)</div>' +
         (tf ? '<div class="bs-sub">Referencia del histórico, sobre observaciones nudo-mes: los nudos limitados por ' + famA +
@@ -6348,7 +6374,8 @@ function bsNotaHTML() {
         '<li><b>Qué dibujan los gráficos.</b> Los dos muestran el <b>margen mensual</b> de su lado, que es la magnitud comparable: en descarga el margen técnico MPE acotado por el límite de posición, y en carga el margen de almacenamiento ALM CEP. No dibujan lo solicitable, que en descarga sería una línea plana a cero mientras haya reserva a concurso; ese valor se indica bajo cada título.</li>' +
         '<li><b>Cobertura</b> = disponible de cada lado sobre el objetivo correspondiente. Carga y descarga son <b>dos permisos distintos</b>, así que se evalúan por separado y no se promedian.</li>' +
         '<li><b>BESS simétrico máximo</b> = mín(carga, descarga): la mayor batería con la misma potencia en ambos sentidos que admitiría el nudo. Si se acepta asimetría, el techo de cada lado es su propio disponible.</li>' +
-        '<li><b>Previsión.</b> Tres piezas: <i>techo por criterio</i> (qué margen habría si se levantara el criterio que hoy limita), <i>exposición zonal</i> (los criterios de zona son un fondo común, así que la cola de la zona erosiona el margen de todos sus nudos) y <i>tendencia</i> (pendiente por mínimos cuadrados sobre el histórico; no se proyecta con menos de 4 meses).</li>' +
+        '<li><b>Dos señales distintas, y conviene no confundirlas.</b> La <b>serie del nudo</b> describe lo observado en su histórico: cuántos incrementos y decrementos de más de 10 MW ha tenido su margen (estacionario, tendencia positiva, tendencia negativa o alta variabilidad) y cuántas veces se ha reclasificado su criterio limitante. El <b>pronóstico</b> es una valoración de lo que cabe esperar, y cruza tres cosas: exposición al fondo zonal, techo por criterio y pendiente del margen. Que la serie sea de tendencia positiva y el pronóstico desfavorable no es una contradicción: significa que el margen propio del nudo ha crecido pero su entorno lo compromete.</li>' +
+        '<li><b>Pronóstico.</b> Tres piezas: <i>techo por criterio</i> (qué margen habría si se levantara el criterio que hoy limita), <i>exposición zonal</i> (los criterios de zona son un fondo común, así que la cola de la zona erosiona el margen de todos sus nudos) y <i>tendencia</i> (pendiente por mínimos cuadrados sobre el histórico; no se proyecta con menos de 4 meses).</li>' +
         '<li>La red de transporte tiene <b>81 zonas dinámicas</b> en generación y 1.836 en demanda, con <b>identificadores que se solapan</b>: el mismo código significa cosas distintas en cada perspectiva. El módulo solo usa las de generación, que son las que gobiernan la evacuación.</li>' +
         '<li>Un nudo puede pertenecer a <b>varias zonas del mismo criterio</b>; en ese caso manda la más restrictiva. Y su margen utilizable puede ser <b>menor que el fondo de su zona</b> si tiene limitación interna por configuración, así que el cálculo usa siempre el valor del nudo.</li>' +
         '<li><b>Dónde están las oportunidades.</b> En la serie de febrero a septiembre de 2026 los cambios de familia de criterio son casi inexistentes: 0,14 % mensual desde WSCR, 0,10 % desde dinámico y 0,09 % desde estático, y <b>un solo caso</b> de dinámico a estático en ocho meses. Lo que sí se mueve es el <b>margen dentro del mismo criterio</b>: sube más de 10 MW en el 3,98 % de los nudos-mes limitados por estático, frente al 1,47 % en WSCR y el 1,16 % en dinámico. Por eso el módulo pondera el techo por la probabilidad observada en lugar de presentarlo como alcanzable.</li>' +
