@@ -4635,6 +4635,7 @@ function renderOportunidades(){
       <option value="nombre">Nombre</option>
     </select></label>
     <label title="Al escribir en el buscador este filtro se ignora, para que puedas encontrar cualquier nudo"><input id="bs-only" type="checkbox" onchange="bsRender()"> Solo nudos con potencial &gt; 0</label>
+      <label title="Nudos con margen expuesto a un fondo zonal con más cola que margen, o con tendencia a la baja"><input id="bs-risk" type="checkbox" onchange="bsRender()"> Solo con aviso de previsión</label>
     <button type="button" onclick="bsToggleNota()" style="margin-left:auto;background:#e2e8f0;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:#F3721F;font-weight:bold;">&#9432; Metodología</button>
   </div>
 
@@ -4701,21 +4702,24 @@ function bsTestAlert(modulo) {
 /* ---------- utilidades ---------- */
 /* Clave de mes con el MISMO formato que el resto del visor: '26_sep'
    (los selectores ya traen value='26' y value='sep'). */
-function bsKey() {
-    const y = document.getElementById('bs-year').value;
-    const m = document.getElementById('bs-month').value;
-    return y + '_' + m;
-}
+function bsKey() { return bsVal('bs-year') + '_' + bsVal('bs-month'); }
 function bsNum(v) { const n = Number(v); return isFinite(n) ? n : 0; }
+/* Lectura defensiva de los controles: si un control no existe (por ejemplo
+   tras un cambio de maquetación), se devuelve un valor neutro en lugar de
+   lanzar una excepción que abortaría el render completo.                   */
+function bsEl(id) { return document.getElementById(id); }
+function bsChk(id) { const e = bsEl(id); return !!(e && e.checked); }
+function bsVal(id, def) { const e = bsEl(id); return (e && e.value !== undefined && e.value !== '') ? e.value : (def === undefined ? '' : def); }
 function bsMW(v) { return (v == null || !isFinite(Number(v))) ? '—' : Number(v).toLocaleString('es-ES') + ' MW'; }
 function bsMin(a, b) { return Math.min(bsNum(a), bsNum(b)); }
 /* Objetivos del proyecto: carga y descarga son dos permisos distintos, así que
    se fijan por separado. La casilla «vincular» los ata por un ratio
    (carga = descarga × ratio) para el caso habitual de diseño simétrico.      */
 function bsSyncTargets() {
-    const link = document.getElementById('bs-link').checked;
+    const link = bsChk('bs-link');
     const d = Math.max(0, bsNum(document.getElementById('bs-tdesc').value));
-    const rEl = document.getElementById('bs-ratio'), cEl = document.getElementById('bs-tcarga');
+    const rEl = bsEl('bs-ratio'), cEl = bsEl('bs-tcarga');
+    if (!rEl || !cEl) return;
     rEl.disabled = !link; cEl.disabled = link;
     if (link) cEl.value = Math.round(d * Math.max(0.05, bsNum(rEl.value)) * 100) / 100;
     bsCovCache = null;   // los objetivos han cambiado: la cobertura se recalcula
@@ -4723,8 +4727,8 @@ function bsSyncTargets() {
     bsRender();
 }
 function bsTargets() {
-    const d = Math.max(0, bsNum(document.getElementById('bs-tdesc').value));
-    const c = Math.max(0, bsNum(document.getElementById('bs-tcarga').value));
+    const d = Math.max(0, bsNum(bsVal('bs-tdesc', '0')));
+    const c = Math.max(0, bsNum(bsVal('bs-tcarga', '0')));
     return { desc: d, carga: c, ratio: d > 0 ? c / d : 0 };
 }
 /* Cobertura de cada lado por separado, más la potencia simétrica máxima que
@@ -5143,7 +5147,7 @@ function bsTitulo() {
 }
 function bsRefresh() {
     bsZonaCache = {}; bsFcCache = {}; bsCovCache = null;   // se recalcula al cambiar de mes o de red
-    const scope = document.getElementById('bs-scope').value;
+    const scope = bsVal('bs-scope', 'TSO');
     bsTitulo();
     document.getElementById('bs-banner').innerHTML = bsBanner(scope);
     document.getElementById('bs-nota').innerHTML = bsNotaHTML();
@@ -5152,7 +5156,7 @@ function bsRefresh() {
 
 /* ---------- cálculo del conjunto ---------- */
 function bsCollect() {
-    const key = bsKey(), scope = document.getElementById('bs-scope').value;
+    const key = bsKey(), scope = bsVal('bs-scope', 'TSO');
     const out = [];
     for (const e of allEntries) {
         if ((e.grid || 'TSO') !== scope) continue;
@@ -5163,16 +5167,26 @@ function bsCollect() {
 }
 
 function bsRender() {
-    const q = (document.getElementById('bs-search').value || '').trim().toUpperCase();
-    const only = document.getElementById('bs-only').checked;
-    const ord = document.getElementById('bs-order').value;
+    try { bsRenderInterno(); }
+    catch (err) {
+        console.error('[BESS] error al renderizar', err);
+        const t = bsEl('bs-table');
+        if (t) t.innerHTML = '<div class="bs-count" style="color:#B3261E">' +
+            '<b>Error al calcular el listado:</b> ' + (err && err.message ? err.message : err) +
+            '. Revisa la consola del navegador y avisa con este mensaje.</div>';
+    }
+}
+function bsRenderInterno() {
+    const q = (bsVal('bs-search') || '').trim().toUpperCase();
+    const only = bsChk('bs-only');
+    const ord = bsVal('bs-order', 'cob');
     const todos = bsCollect();
     let rows = todos;
     // El buscador manda: si hay texto, se ignora el filtro de potencial para
     // que cualquier nudo sea localizable y se pueda ver su casuística.
     if (q) rows = rows.filter(r => (r.name + ' ' + r.prov + ' ' + r.ccaa + ' ' + (r.oper || '')).toUpperCase().indexOf(q) >= 0);
     else if (only) rows = rows.filter(r => r.eficazConc > 0);
-    if (document.getElementById('bs-risk').checked) {
+    if (bsChk('bs-risk')) {
         rows = rows.filter(function (r) {
             if (r.sinDatos) return false;
             return bsFc(r).nivel !== 'neutro';
