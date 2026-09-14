@@ -474,6 +474,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-spark-h span { color:#5b6472; font-size:9px; }
 .bs-mini-tbl tr.bs-mg td { background:#e8eef5; font-style:italic; }
 .bs-t-desc tr.bs-mg td { background:#f3ecd9; }
+.bs-lin { font-size:9.5px; color:#262626; margin:1px 0 2px; }
+.bs-lin > div { display:flex; justify-content:space-between; gap:6px; padding:1px 0; border-bottom:1px dotted #e2e8f0; }
+.bs-lin > div.bs-lin-b { font-weight:bold; border-bottom:1px solid #94a3b8; }
+.bs-lin span i { color:#7a8495; font-style:italic; }
 .bs-count { font-size:11.5px; color:#5b6472; margin-bottom:6px; }
 .bs-diag { background:#f4f4f4; border-left:4px solid #7a8495; border-radius:6px; padding:7px 10px;
   font-size:11.5px; color:#262626; margin-bottom:10px; line-height:1.45; }
@@ -541,6 +545,47 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-rep-foot { font-size:10px; color:#7a8495; border-top:1px solid #e2e8f0; padding-top:6px; margin-top:10px; font-style:italic; }
 @page { size:A4 landscape; margin:10mm; }
 @media print {
+  /* ── El informe debe caber en una hoja A4 horizontal por nudo ──
+     Además de compactar todo, se aplica un zoom del 92 %: los navegadores lo
+     respetan al imprimir y así la ficha entra aunque el motor de render
+     calcule las alturas con pequeñas diferencias. Solo afecta a la impresión. */
+  .bs-page { zoom: 0.92; }
+  .bs-card { padding:4px 8px; margin-bottom:0; }
+  .bs-card h3 { font-size:14px; margin-bottom:0; }
+  .bs-sub2 { font-size:8.5px; margin-bottom:4px; }
+  .bs-diag { font-size:8px; padding:3px 6px; margin-bottom:4px; line-height:1.25; }
+  .bs-big { font-size:18px; padding:2px 8px 0; }
+  .bs-lbl, .bs-warn { font-size:9px; padding:1px 8px 0; }
+  .bs-it { font-size:8px; padding:2px 8px; }
+  .bs-col-h { font-size:9.5px; padding:3px 8px; }
+  .bs-mini-tbl { font-size:8.5px; }
+  .bs-mini-tbl td { padding:0 8px; line-height:1.25; }
+  .bs-col { padding:0 0 3px; }
+  .bs-concl td, .bs-sim td { padding:2px 6px; }
+  .bs-concl-h { font-size:8.5px; } .bs-concl-h b { font-size:9.5px; }
+  .bs-concl-t { font-size:9px; } .bs-concl-s { font-size:8px; }
+  .bs-concl-v { font-size:15px; }
+  .bs-sim td { font-size:8.5px; }
+  .bs-acc td { padding:3px 8px; }
+  .bs-acc-t { font-size:11px; width:130px; } .bs-acc-d { font-size:9px; }
+  .bs-prev td { padding:2px 5px; }
+  .bs-prev-h { font-size:9.5px; }
+  .bs-prev-t { font-size:9px; }
+  .bs-lin { font-size:8px; }
+  .bs-prev-l { font-size:8px; margin:3px 0 0 12px; }
+  .bs-spark { margin:1px 0 2px; }
+  .bs-spark td { height:22px; }
+  .bs-spark td span { width:8px; }
+  .bs-prev-g > tr > td { padding:3px 5px; }
+  .bs-prev-l li { margin-bottom:1px; }
+  .bs-spark-h { font-size:8px; margin-top:2px; }
+  .bs-spark-x, .bs-spark-v { font-size:6.5px; }
+  .bs-foot { font-size:6.5px; margin-top:1px; }
+  .bs-rep-foot { font-size:6.5px; padding-top:3px; margin-top:4px; }
+  .bs-concl-b { width:15%; } .bs-concl-h { width:24%; }
+  .bs-rep-test { font-size:7.5px; padding:3px 6px; margin-bottom:4px; }
+  .bs-rep-head { font-size:8.5px; padding-bottom:2px; margin-bottom:4px; }
+  .bs-tbl { font-size:8px; } .bs-tbl td, .bs-tbl th { padding:2px 4px; }
   .bs-page { page-break-after:always; break-after:page; border:none; box-shadow:none; }
   .bs-page-last { page-break-after:auto !important; break-after:auto !important; }
   .bs-rep-foot { page-break-before:avoid; break-before:avoid; }
@@ -632,6 +677,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-spark-h span { color:#5b6472; font-size:9px; }
 .bs-mini-tbl tr.bs-mg td { background:#e8eef5; font-style:italic; }
 .bs-t-desc tr.bs-mg td { background:#f3ecd9; }
+.bs-lin { font-size:9.5px; color:#262626; margin:1px 0 2px; }
+.bs-lin > div { display:flex; justify-content:space-between; gap:6px; padding:1px 0; border-bottom:1px dotted #e2e8f0; }
+.bs-lin > div.bs-lin-b { font-weight:bold; border-bottom:1px solid #94a3b8; }
+.bs-lin span i { color:#7a8495; font-style:italic; }
 .bs-count { font-size:11.5px; color:#5b6472; margin-bottom:6px; }
 .bs-diag { background:#f4f4f4; border-left:4px solid #7a8495; border-radius:6px; padding:7px 10px;
   font-size:11.5px; color:#262626; margin-bottom:10px; line-height:1.45; }
@@ -699,6 +748,47 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-rep-foot { font-size:10px; color:#7a8495; border-top:1px solid #e2e8f0; padding-top:6px; margin-top:10px; font-style:italic; }
 @page { size:A4 landscape; margin:10mm; }
 @media print {
+  /* ── El informe debe caber en una hoja A4 horizontal por nudo ──
+     Además de compactar todo, se aplica un zoom del 92 %: los navegadores lo
+     respetan al imprimir y así la ficha entra aunque el motor de render
+     calcule las alturas con pequeñas diferencias. Solo afecta a la impresión. */
+  .bs-page { zoom: 0.92; }
+  .bs-card { padding:4px 8px; margin-bottom:0; }
+  .bs-card h3 { font-size:14px; margin-bottom:0; }
+  .bs-sub2 { font-size:8.5px; margin-bottom:4px; }
+  .bs-diag { font-size:8px; padding:3px 6px; margin-bottom:4px; line-height:1.25; }
+  .bs-big { font-size:18px; padding:2px 8px 0; }
+  .bs-lbl, .bs-warn { font-size:9px; padding:1px 8px 0; }
+  .bs-it { font-size:8px; padding:2px 8px; }
+  .bs-col-h { font-size:9.5px; padding:3px 8px; }
+  .bs-mini-tbl { font-size:8.5px; }
+  .bs-mini-tbl td { padding:0 8px; line-height:1.25; }
+  .bs-col { padding:0 0 3px; }
+  .bs-concl td, .bs-sim td { padding:2px 6px; }
+  .bs-concl-h { font-size:8.5px; } .bs-concl-h b { font-size:9.5px; }
+  .bs-concl-t { font-size:9px; } .bs-concl-s { font-size:8px; }
+  .bs-concl-v { font-size:15px; }
+  .bs-sim td { font-size:8.5px; }
+  .bs-acc td { padding:3px 8px; }
+  .bs-acc-t { font-size:11px; width:130px; } .bs-acc-d { font-size:9px; }
+  .bs-prev td { padding:2px 5px; }
+  .bs-prev-h { font-size:9.5px; }
+  .bs-prev-t { font-size:9px; }
+  .bs-lin { font-size:8px; }
+  .bs-prev-l { font-size:8px; margin:3px 0 0 12px; }
+  .bs-spark { margin:1px 0 2px; }
+  .bs-spark td { height:22px; }
+  .bs-spark td span { width:8px; }
+  .bs-prev-g > tr > td { padding:3px 5px; }
+  .bs-prev-l li { margin-bottom:1px; }
+  .bs-spark-h { font-size:8px; margin-top:2px; }
+  .bs-spark-x, .bs-spark-v { font-size:6.5px; }
+  .bs-foot { font-size:6.5px; margin-top:1px; }
+  .bs-rep-foot { font-size:6.5px; padding-top:3px; margin-top:4px; }
+  .bs-concl-b { width:15%; } .bs-concl-h { width:24%; }
+  .bs-rep-test { font-size:7.5px; padding:3px 6px; margin-bottom:4px; }
+  .bs-rep-head { font-size:8.5px; padding-bottom:2px; margin-bottom:4px; }
+  .bs-tbl { font-size:8px; } .bs-tbl td, .bs-tbl th { padding:2px 4px; }
   .bs-page { page-break-after:always; break-after:page; border:none; box-shadow:none; }
   .bs-page-last { page-break-after:auto !important; break-after:auto !important; }
   .bs-rep-foot { page-break-before:avoid; break-before:avoid; }
@@ -4642,9 +4732,9 @@ function renderOportunidades(){
       <label title="Potencia de carga que busca el proyecto (permiso de demanda)">Carga objetivo:<input id="bs-tcarga" type="number" min="0" step="5" value="50" oninput="bsSyncTargets()" class="bs-in"> MW</label>
     </span>
     <label>Ordenar por:<select id="bs-order" onchange="bsRender()">
-      <option value="cob" selected>Cobertura del objetivo</option>
+      <option value="hoy" selected>MW solicitables hoy</option>
+      <option value="cob">Cobertura del objetivo</option>
       <option value="efic">MW eficaces con concurso</option>
-      <option value="hoy">MW eficaces hoy</option>
       <option value="carga">Carga solicitable</option>
       <option value="margen">Margen de descarga</option>
       <option value="nombre">Nombre</option>
@@ -5289,7 +5379,7 @@ function bsRender() {
 function bsRenderInterno() {
     const q = (bsVal('bs-search') || '').trim().toUpperCase();
     const only = bsChk('bs-only');
-    const ord = bsVal('bs-order', 'cob');
+    const ord = bsVal('bs-order', 'hoy');
     const todos = bsCollect();
     let rows = todos;
     // El buscador manda: si hay texto, se ignora el filtro de potencial para
@@ -5427,7 +5517,20 @@ function bsFichaHTML(m, paraInforme) {
     // batería conecta por convertidores, así que la variante que le aplica es
     // la CEP. Y «solicitable = margen total − no otorgable», comprobado en los
     // 937 nudos del fichero de septiembre.
-    const filaC = [
+    // En el informe la cadena margen → no otorgable → solicitable se muestra en
+    // una sola fila, para que la ficha entre en una hoja A4 horizontal. En el
+    // visor se despliega en tres filas, que se leen mejor en pantalla.
+    const cad = function (tot, resta, disp, etiqueta, marca) {
+        return [etiqueta + ' · margen − ' + (marca || 'no otorgable') + ' = SOLICITABLE',
+                bsMW(tot) + ' − ' + bsMW(resta) + ' = ' + bsMW(disp), true];
+    };
+    const filaC = paraInforme ? [
+        cad(m.cargaMargenCep, m.cargaNoOtorgCep || 0, m.cargaDisp, 'ALM CEP') ,
+        ['ALM no CEP · margen / solicitable', (m.cargaMargenNoCep == null ? '—' : bsMW(m.cargaMargenNoCep)) + ' / ' + bsMW(m.cargaDispNoCep || 0), false],
+        ['Límite por posición', m.grid === 'TSO' ? 'no se publica en demanda' : (m.posPrev ? bsMW(m.posPrev) + ' libres' : 'no publicado'), false],
+        ['Otorgado / en cola', bsMW(m.cargaOtorg) + ' / ' + bsMW(m.cargaCola), false],
+        ['Demanda convencional «no CEP»', m.cargaNoCep == null ? 'no publicado' : bsMW(m.cargaNoCep), false],
+    ] : [
         ['ALM CEP · margen total', m.cargaMargenCep == null ? 'no publicado' : bsMW(m.cargaMargenCep), false],
         ['ALM CEP · no otorgable', bsMW(m.cargaNoOtorgCep || 0) + (m.cargaConcurso ? ' · CONCURSO' : ''), false],
         ['ALM CEP · SOLICITABLE' + (m.cargaConcurso ? ' (reservado)' : ''), bsMW(m.cargaDisp), true],
@@ -5437,7 +5540,13 @@ function bsFichaHTML(m, paraInforme) {
         ['En cola: solicitudes en curso', bsMW(m.cargaCola), false],
         ['Demanda convencional «no CEP»', m.cargaNoCep == null ? 'no publicado' : bsMW(m.cargaNoCep), false],
     ];
-    const filaD = [
+    const filaD = paraInforme ? [
+        cad(m.margenMPE, m.noDisp || 0, m.descDisp, 'ALM MPE', 'no disponible'),
+        ['ALM MGES · margen / solicitable', (m.margenMGES == null ? '—' : bsMW(m.margenMGES)) + ' / ' + bsMW(m.descDispMges || 0), false],
+        ['Límite por posición (MPE)', m.posMPE == null ? 'no publicado' : bsMW(m.posMPE) + (m.capMax ? ' · máx. ' + bsMW(m.capMax) : ''), false],
+        ['Otorgado / en cola', bsMW(m.descOtorg) + ' / ' + bsMW(m.descCola), false],
+        ['Reservado a autoconsumo (no aplicable)', m.liberada == null ? 'no publicado' : bsMW(m.liberada), false],
+    ] : [
         ['ALM MPE · margen total', m.margenMPE == null ? 'no publicado' : bsMW(m.margenMPE), false],
         ['ALM MPE · no disponible', bsMW(m.noDisp || 0) + (m.bloqueoConcurso ? ' · CONCURSO' : ''), false],
         ['ALM MPE · SOLICITABLE' + (m.bloqueoConcurso ? ' (reservado)' : ''), bsMW(m.descDisp), true],
@@ -5486,16 +5595,27 @@ function bsFichaHTML(m, paraInforme) {
         '<td class="bs-concl-v ' + (cv.okCargaHoy ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobCargaHoy) + '</td>' +
         '<td class="bs-concl-b"><div class="bs-concl-t">COBERTURA DESCARGA</div><div class="bs-concl-s">' + bsMW(m.potencial) + ' de ' + bsMW(cv.t.desc) +
         (m.bloqueoConcurso ? ' · hoy 0 MW' : '') + '</div></td>' +
-        '<td class="bs-concl-v ' + (cv.okDescConc ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobDescConc) + '</td></tr></table>' +
-        bsPrevHTML(m) +
-        '<table class="bs-sim"><tr>' +
-        '<td><b>BESS SIMÉTRICO MÁXIMO que admitiría el nudo</b> · mín(carga, descarga)</td>' +
-        '<td class="bs-num">hoy <b class="' + (cv.simHoy > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(cv.simHoy) + '</b></td>' +
-        '<td class="bs-num">con CONCURSO <b class="bs-must">' + bsMW(cv.simConc) + '</b></td>' +
-        '<td class="bs-num">asimétrico máximo: carga <b>' + bsMW(m.cargaDisp) + '</b> · descarga <b>' + bsMW(m.potencial) + '</b></td>' +
+        '<td class="bs-concl-v ' + (cv.okDescConc ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobDescConc) + '</td>' +
+        // en el informe, el simétrico máximo se integra en esta misma fila para
+        // ahorrar una tabla y que la ficha entre en una hoja
+        (paraInforme
+            ? '<td class="bs-concl-b"><div class="bs-concl-t">SIMÉTRICO MÁX.</div><div class="bs-concl-s">hoy ' +
+              bsMW(cv.simHoy) + ' · asimétrico ' + bsMW(m.cargaDisp) + ' / ' + bsMW(m.potencial) + '</div></td>' +
+              '<td class="bs-concl-v bs-must">' + bsMW(cv.simConc) + '</td>'
+            : '') +
         '</tr></table>' +
+        bsPrevHTML(m, paraInforme) +
+        (paraInforme ? '' :
+            '<table class="bs-sim"><tr>' +
+            '<td><b>BESS SIMÉTRICO MÁXIMO que admitiría el nudo</b> · mín(carga, descarga)</td>' +
+            '<td class="bs-num">hoy <b class="' + (cv.simHoy > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(cv.simHoy) + '</b></td>' +
+            '<td class="bs-num">con CONCURSO <b class="bs-must">' + bsMW(cv.simConc) + '</b></td>' +
+            '<td class="bs-num">asimétrico máximo: carga <b>' + bsMW(m.cargaDisp) + '</b> · descarga <b>' + bsMW(m.potencial) + '</b></td>' +
+            '</tr></table>') +
         '<table class="bs-acc" style="background:' + s.col + '"><tr><td class="bs-acc-n"><span>' + s.num + '</span></td><td class="bs-acc-t">' + s.txt + '</td><td class="bs-acc-d">' + s.acc + '</td></tr></table>' +
-        '<div class="bs-foot">Objetivo: ' + bsMW(cv.t.carga) + ' de carga y ' + bsMW(cv.t.desc) + ' de descarga · módulo en fase de pruebas · ' + bsFuente(m) + '</div>' +
+        (paraInforme
+            ? '<div class="bs-foot">Objetivo ' + bsMW(cv.t.carga) + ' / ' + bsMW(cv.t.desc) + ' · ' + bsFuente(m) + '</div>'
+            : '<div class="bs-foot">Objetivo: ' + bsMW(cv.t.carga) + ' de carga y ' + bsMW(cv.t.desc) + ' de descarga · módulo en fase de pruebas · ' + bsFuente(m) + '</div>') +
         '</div>';
 }
 function bsFuente(m) {
@@ -5506,44 +5626,65 @@ function bsFuente(m) {
 
 
 /* Bloque «qué esperar» de la ficha y del informe */
-function bsPrevHTML(m) {
+function bsPrevHTML(m, compacto) {
     if (m.sinDatos || m.grid !== 'TSO') return '';
+    const e = m._e || { name: m.name, grid: m.grid };
     const f = bsFc(m);
     const t = f.techo, z = f.zona, tr = f.trend;
-    let h = '<table class="bs-prev"><tr><td class="bs-prev-h">' + bsForecastPill(f) +
-        ' <b>QUÉ ESPERAR EN LOS PRÓXIMOS MESES</b></td></tr><tr><td>';
+    let h = '<table class="bs-prev' + (compacto ? ' bs-prev-c' : '') + '"><tr><td class="bs-prev-h">' +
+        bsForecastPill(f) + ' <b>QUÉ ESPERAR EN LOS PRÓXIMOS MESES</b></td></tr><tr><td>';
     h += '<table class="bs-prev-g"><tr>';
-    // techo por criterio
+
+    // ── techo por criterio, en líneas compactas ──
     h += '<td><div class="bs-prev-t">Techo por criterio</div>';
     if (t) {
-        h += '<table class="bs-mini-tbl">';
-        for (const c of t.detalle) h += '<tr' + (c.id === t.limita.id ? ' class="bs-hl"' : '') + '><td>' + c.id + ' <span class="bs-sub">(' + c.ambito + (c.zona ? ' ' + c.zona : '') + ')</span></td><td class="bs-num">' + bsMW(c.margen) + '</td></tr>';
-        h += '</table><div class="bs-sub">Limita <b>' + t.limita.id + '</b>. Si se levantara: <b>' + bsMW(t.techo) + '</b> por ' + t.techoPor + ' (' + (t.gana > 0 ? '+' + bsMW(t.gana) : 'sin margen adicional') + ').</div>';
+        h += '<div class="bs-lin">';
+        for (const c of t.detalle) {
+            const manda = (c.id === t.limita.id);
+            h += '<div' + (manda ? ' class="bs-lin-b"' : '') + '><span>' + c.id +
+                 (c.ambito === 'zona' ? ' <i>zona</i>' : '') + '</span><b>' + bsMW(c.margen) + '</b></div>';
+        }
+        h += '</div><div class="bs-sub">Limita <b>' + t.limita.id + '</b> → si se levantara, <b>' + bsMW(t.techo) +
+             '</b> por ' + t.techoPor + (t.gana > 0 ? ' (+' + t.gana + ' MW)' : '') + '</div>';
     } else h += '<div class="bs-sub">sin datos de criterios</div>';
     h += '</td>';
-    // exposición zonal
+
+    // ── exposición zonal, en líneas compactas ──
     h += '<td><div class="bs-prev-t">Exposición zonal</div>';
     if (z) {
         const col = { 'agotado': 'bs-red', 'alto': 'bs-red', 'medio': 'bs-must', 'bajo': 'bs-green' }[z.riesgo];
-        h += '<table class="bs-mini-tbl">' +
-            '<tr><td>Zona dinámica</td><td class="bs-num">' + (z.multizona ? z.zonas.join(' + ') + ' <span class="bs-sub">(manda la más restrictiva)</span>' : z.zona) + '</td></tr>' +
-            '<tr><td>Fondo común (compartido)</td><td class="bs-num">' + bsMW(z.pool) +
-            ' <span class="bs-sub">' + (z.oficial ? 'dato oficial de REE' : 'estimado de los nudos') + '</span></td></tr>' +
-            (z.margenNudo < z.pool ? '<tr><td>Margen utilizable en este nudo</td><td class="bs-num">' + bsMW(z.margenNudo) + ' <span class="bs-sub">limitación interna</span></td></tr>' : '') +
-            '<tr><td>Nudos que lo comparten</td><td class="bs-num">' + z.nudos + '</td></tr>' +
-            '<tr><td>Cola en la zona</td><td class="bs-num">' + bsMW(z.cola) + '</td></tr>' +
-            '<tr class="bs-hl"><td>Cola sobre fondo</td><td class="bs-num ' + col + '">' + (isFinite(z.ratio) ? Math.round(z.ratio * 100) + ' %' : 'sin fondo') + '</td></tr>' +
-            '</table><div class="bs-sub">El margen zonal es un <b>fondo común</b>: cualquier proyecto de la zona lo consume.</div>';
-    } else h += '<div class="bs-sub">el nudo no está sujeto a criterio dinámico de zona: su margen es propio</div>';
+        h += '<div class="bs-lin">' +
+            '<div><span>zona' + (z.multizona ? ' (' + z.zonas.length + ')' : '') + '</span><b>' + z.zona + '</b></div>' +
+            '<div><span>fondo común · ' + z.nudos + ' nudos</span><b>' + bsMW(z.pool) + '</b></div>' +
+            '<div><span>cola en la zona</span><b>' + bsMW(z.cola) + '</b></div>' +
+            '<div class="bs-lin-b"><span>cola sobre fondo</span><b class="' + col + '">' +
+            (isFinite(z.ratio) ? Math.round(z.ratio * 100) + ' %' : 'sin fondo') + '</b></div>' +
+            (z.margenNudo < z.pool ? '<div><span>utilizable en el nudo</span><b>' + bsMW(z.margenNudo) + '</b></div>' : '') +
+            '</div><div class="bs-sub">' + (z.oficial ? 'margen zonal oficial de REE' : 'fondo estimado de los nudos') +
+            ' · lo consume cualquier proyecto de la zona</div>';
+    } else h += '<div class="bs-sub">sin criterio dinámico de zona: el margen es propio del nudo</div>';
     h += '</td>';
-    // tendencia
-    h += '<td><div class="bs-prev-t">Tendencia (' + tr.n + ' meses)</div>';
+
+    // ── tendencia ──
+    h += '<td><div class="bs-prev-t">Tendencia · ' + tr.n + ' meses</div>';
     h += bsSpark(tr, 'potencial', 'Potencial de descarga');
-    h += bsSpark(tr, 'carga', 'Carga solicitable');
-    if (tr.suficiente) h += '<div class="bs-sub">Pendiente: <b>' + (tr.pendDesc >= 0 ? '+' : '') + tr.pendDesc.toFixed(1) + ' MW/mes</b> · proyección a 3 meses <b>' + bsMW(tr.proy3) + '</b></div>';
-    else h += '<div class="bs-sub">Histórico insuficiente para proyectar (' + tr.n + ' de 4 meses).</div>';
+    if (compacto) {
+        const sc = tr.serie.filter(function (x) { return x.carga != null; }).map(function (x) { return x.carga; });
+        if (sc.length > 1) {
+            const dc = sc[sc.length - 1] - sc[0];
+            h += '<div class="bs-lin"><div class="bs-lin-b"><span>Carga solicitable</span><b>' + bsMW(sc[sc.length - 1]) +
+                 '</b></div><div><span>máx. ' + bsMW(Math.max.apply(null, sc)) + ' · mín. ' + bsMW(Math.min.apply(null, sc)) +
+                 '</span><b>' + (dc >= 0 ? '+' : '') + dc + ' MW</b></div></div>';
+        }
+    } else h += bsSpark(tr, 'carga', 'Carga solicitable');
+    h += '<div class="bs-sub">' + (tr.suficiente
+        ? 'Pendiente <b>' + (tr.pendDesc >= 0 ? '+' : '') + tr.pendDesc.toFixed(1) + ' MW/mes</b> · proyección a 3 meses <b>' + bsMW(tr.proy3) + '</b>'
+        : 'Histórico insuficiente para proyectar (' + tr.n + ' de 4 meses)') + '</div>';
     h += '</td></tr></table>';
-    h += '<ul class="bs-prev-l">' + f.avisos.map(function (a) { return '<li>' + a + '</li>'; }).join('') + '</ul>';
+
+    const avisos = compacto ? f.avisos.slice(0, 2) : f.avisos;
+    h += '<ul class="bs-prev-l">' + avisos.map(function (a) { return '<li>' + a + '</li>'; }).join('') +
+         (compacto && f.avisos.length > 2 ? '<li class="bs-sub">… y ' + (f.avisos.length - 2) + ' aviso(s) más, visibles en el visor</li>' : '') + '</ul>';
     return h + '</td></tr></table>';
 }
 
