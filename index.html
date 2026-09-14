@@ -491,6 +491,9 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-lin > div.bs-lin-b { font-weight:bold; border-bottom:1px solid #94a3b8; }
 .bs-lin span i { color:#7a8495; font-style:italic; }
 .bs-count { font-size:11.5px; color:#5b6472; margin-bottom:6px; }
+.bs-cola { background:#FBF3DC; border-left:4px solid #A67C00; border-radius:6px; padding:6px 9px;
+  font-size:11px; color:#262626; margin-bottom:8px; line-height:1.4; }
+.bs-cola-g { background:#FBEAE8; border-left-color:#B3261E; }
 .bs-diag { background:#f4f4f4; border-left:4px solid #7a8495; border-radius:6px; padding:7px 10px;
   font-size:11.5px; color:#262626; margin-bottom:10px; line-height:1.45; }
 .bs-tbl { width:100%; border-collapse:collapse; font-size:12px; background:#fff; }
@@ -513,6 +516,28 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:14px 16px; margin-bottom:14px; }
 .bs-card h3 { margin:0 0 2px; font-size:20px; color:#222; }
 .bs-sub2 { font-size:11.5px; color:#5b6472; margin-bottom:10px; }
+/* Ficha con una sola tabla: la alineación entre carga y descarga es
+   estructural, no depende de que los textos ocupen lo mismo. */
+.bs-par2 { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
+.bs-par2 > tr > td { width:50%; vertical-align:top; }
+.bs-hd { padding:0 0 4px !important; border:1px solid #cbd5e1; border-radius:8px 8px 0 0; border-bottom:none; }
+.bs-hd-c { border-color:#1F4E79; } .bs-hd-c .bs-col-h { background:#1F4E79; }
+.bs-hd-d { border-color:#A67C00; } .bs-hd-d .bs-col-h { background:#A67C00; }
+.bs-par4 { width:100%; border-collapse:collapse; table-layout:fixed; font-size:10.5px; margin-bottom:2px; }
+.bs-par4 td { padding:2px 8px; vertical-align:middle; }
+.bs-par4 td.bs-num { text-align:right; font-weight:bold; color:#222; white-space:nowrap; }
+.bs-cC { background:#EAF1F8; border-left:1px solid #1F4E79; }
+.bs-cC.bs-num { border-left:none; border-right:1px solid #1F4E79; }
+.bs-cD { background:#FBF3DC; border-left:1px solid #A67C00; }
+.bs-cD.bs-num { border-left:none; border-right:1px solid #A67C00; }
+.bs-par4 tr.bs-par td { filter:brightness(1.02); }
+.bs-par4 tr.bs-hl td { font-weight:bold; border-top:1px solid #94a3b8; border-bottom:1px solid #94a3b8; }
+.bs-par4 tr.bs-hl td.bs-cC { background:#dce9f6; color:#1F4E79; }
+.bs-par4 tr.bs-hl td.bs-cD { background:#f6eccd; color:#B3261E; }
+.bs-par4 tr.bs-mg td { font-style:italic; }
+.bs-par4 tr:last-child td.bs-cC { border-bottom:1px solid #1F4E79; border-radius:0 0 0 8px; }
+.bs-par4 tr:last-child td.bs-cD { border-bottom:1px solid #A67C00; }
+.bs-nt { font-size:10px; color:#5b6472; font-style:italic; padding:3px 4px 0; }
 .bs-cols { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
 .bs-col { width:50%; border:1px solid #cbd5e1; border-radius:8px; vertical-align:top; padding:0 0 6px; }
 .bs-col-h { padding:6px 10px; color:#fff; font-size:12px; font-weight:bold; }
@@ -582,6 +607,14 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 /* ---- informe descargable ---- */
 #bs-obj-wrap { margin:10px 16px 0; }
+#bs-filtros { margin:10px 16px 0; }
+.bs-flt { width:100%; border-collapse:collapse; background:#fff; border:1px solid #e2e8f0; border-radius:8px; }
+.bs-flt th { font-size:9px; color:#5b6472; font-weight:bold; text-align:left; padding:4px 5px 0; }
+.bs-flt td { padding:2px 5px 5px; font-size:10px; color:#5b6472; white-space:nowrap; }
+.bs-flt input[type=text] { width:100%; min-width:90px; }
+.bs-flt input[type=number] { width:56px; }
+.bs-flt input, .bs-flt select { padding:2px 4px; border:1px solid #cbd5e1; border-radius:5px; font-size:11px; }
+.bs-flt select { max-width:118px; }
 .bs-obj { width:100%; border-collapse:collapse; background:#EAF1F8; border:1px solid #1F4E79;
   border-left:6px solid #1F4E79; border-radius:8px; margin-bottom:10px; }
 .bs-obj td { padding:6px 10px; vertical-align:middle; font-size:11px; color:#262626; }
@@ -603,6 +636,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-card h3 { font-size:16px; margin-bottom:0; }
   .bs-sub2 { font-size:9.5px; margin-bottom:4px; }
   .bs-diag { font-size:9px; padding:4px 7px; margin-bottom:5px; line-height:1.3; }
+  .bs-cola { font-size:9px; padding:4px 7px; margin-bottom:5px; line-height:1.3; }
   .bs-big { font-size:21px; padding:3px 8px 0; }
   .bs-lbl, .bs-warn { font-size:9px; padding:1px 8px 0; }
   .bs-lbl2 { font-size:8.5px; padding:1px 8px 0; }
@@ -619,7 +653,9 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-portada .bs-obj td b { font-size:11px; }
   .bs-it { font-size:8px; padding:2px 8px; }
   .bs-col-h { font-size:10.5px; padding:4px 8px; }
-  .bs-mini-tbl { font-size:9.5px; }
+  .bs-mini-tbl, .bs-par4 { font-size:9.5px; }
+  .bs-par4 td { padding:1px 7px; }
+  .bs-nt { font-size:8px; }
   .bs-mini-tbl td { padding:1px 8px; line-height:1.3; }
   .bs-col { padding:0 0 3px; }
   .bs-concl td, .bs-sim td { padding:2px 6px; }
@@ -759,6 +795,9 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-lin > div.bs-lin-b { font-weight:bold; border-bottom:1px solid #94a3b8; }
 .bs-lin span i { color:#7a8495; font-style:italic; }
 .bs-count { font-size:11.5px; color:#5b6472; margin-bottom:6px; }
+.bs-cola { background:#FBF3DC; border-left:4px solid #A67C00; border-radius:6px; padding:6px 9px;
+  font-size:11px; color:#262626; margin-bottom:8px; line-height:1.4; }
+.bs-cola-g { background:#FBEAE8; border-left-color:#B3261E; }
 .bs-diag { background:#f4f4f4; border-left:4px solid #7a8495; border-radius:6px; padding:7px 10px;
   font-size:11.5px; color:#262626; margin-bottom:10px; line-height:1.45; }
 .bs-tbl { width:100%; border-collapse:collapse; font-size:12px; background:#fff; }
@@ -781,6 +820,28 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:14px 16px; margin-bottom:14px; }
 .bs-card h3 { margin:0 0 2px; font-size:20px; color:#222; }
 .bs-sub2 { font-size:11.5px; color:#5b6472; margin-bottom:10px; }
+/* Ficha con una sola tabla: la alineación entre carga y descarga es
+   estructural, no depende de que los textos ocupen lo mismo. */
+.bs-par2 { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
+.bs-par2 > tr > td { width:50%; vertical-align:top; }
+.bs-hd { padding:0 0 4px !important; border:1px solid #cbd5e1; border-radius:8px 8px 0 0; border-bottom:none; }
+.bs-hd-c { border-color:#1F4E79; } .bs-hd-c .bs-col-h { background:#1F4E79; }
+.bs-hd-d { border-color:#A67C00; } .bs-hd-d .bs-col-h { background:#A67C00; }
+.bs-par4 { width:100%; border-collapse:collapse; table-layout:fixed; font-size:10.5px; margin-bottom:2px; }
+.bs-par4 td { padding:2px 8px; vertical-align:middle; }
+.bs-par4 td.bs-num { text-align:right; font-weight:bold; color:#222; white-space:nowrap; }
+.bs-cC { background:#EAF1F8; border-left:1px solid #1F4E79; }
+.bs-cC.bs-num { border-left:none; border-right:1px solid #1F4E79; }
+.bs-cD { background:#FBF3DC; border-left:1px solid #A67C00; }
+.bs-cD.bs-num { border-left:none; border-right:1px solid #A67C00; }
+.bs-par4 tr.bs-par td { filter:brightness(1.02); }
+.bs-par4 tr.bs-hl td { font-weight:bold; border-top:1px solid #94a3b8; border-bottom:1px solid #94a3b8; }
+.bs-par4 tr.bs-hl td.bs-cC { background:#dce9f6; color:#1F4E79; }
+.bs-par4 tr.bs-hl td.bs-cD { background:#f6eccd; color:#B3261E; }
+.bs-par4 tr.bs-mg td { font-style:italic; }
+.bs-par4 tr:last-child td.bs-cC { border-bottom:1px solid #1F4E79; border-radius:0 0 0 8px; }
+.bs-par4 tr:last-child td.bs-cD { border-bottom:1px solid #A67C00; }
+.bs-nt { font-size:10px; color:#5b6472; font-style:italic; padding:3px 4px 0; }
 .bs-cols { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
 .bs-col { width:50%; border:1px solid #cbd5e1; border-radius:8px; vertical-align:top; padding:0 0 6px; }
 .bs-col-h { padding:6px 10px; color:#fff; font-size:12px; font-weight:bold; }
@@ -850,6 +911,14 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 
 /* ---- informe descargable ---- */
 #bs-obj-wrap { margin:10px 16px 0; }
+#bs-filtros { margin:10px 16px 0; }
+.bs-flt { width:100%; border-collapse:collapse; background:#fff; border:1px solid #e2e8f0; border-radius:8px; }
+.bs-flt th { font-size:9px; color:#5b6472; font-weight:bold; text-align:left; padding:4px 5px 0; }
+.bs-flt td { padding:2px 5px 5px; font-size:10px; color:#5b6472; white-space:nowrap; }
+.bs-flt input[type=text] { width:100%; min-width:90px; }
+.bs-flt input[type=number] { width:56px; }
+.bs-flt input, .bs-flt select { padding:2px 4px; border:1px solid #cbd5e1; border-radius:5px; font-size:11px; }
+.bs-flt select { max-width:118px; }
 .bs-obj { width:100%; border-collapse:collapse; background:#EAF1F8; border:1px solid #1F4E79;
   border-left:6px solid #1F4E79; border-radius:8px; margin-bottom:10px; }
 .bs-obj td { padding:6px 10px; vertical-align:middle; font-size:11px; color:#262626; }
@@ -871,6 +940,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-card h3 { font-size:16px; margin-bottom:0; }
   .bs-sub2 { font-size:9.5px; margin-bottom:4px; }
   .bs-diag { font-size:9px; padding:4px 7px; margin-bottom:5px; line-height:1.3; }
+  .bs-cola { font-size:9px; padding:4px 7px; margin-bottom:5px; line-height:1.3; }
   .bs-big { font-size:21px; padding:3px 8px 0; }
   .bs-lbl, .bs-warn { font-size:9px; padding:1px 8px 0; }
   .bs-lbl2 { font-size:8.5px; padding:1px 8px 0; }
@@ -887,7 +957,9 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-portada .bs-obj td b { font-size:11px; }
   .bs-it { font-size:8px; padding:2px 8px; }
   .bs-col-h { font-size:10.5px; padding:4px 8px; }
-  .bs-mini-tbl { font-size:9.5px; }
+  .bs-mini-tbl, .bs-par4 { font-size:9.5px; }
+  .bs-par4 td { padding:1px 7px; }
+  .bs-nt { font-size:8px; }
   .bs-mini-tbl td { padding:1px 8px; line-height:1.3; }
   .bs-col { padding:0 0 3px; }
   .bs-concl td, .bs-sim td { padding:2px 6px; }
@@ -4869,8 +4941,6 @@ function renderOportunidades(){
       <option value="margen">Margen de descarga</option>
       <option value="nombre">Nombre</option>
     </select></label>
-    <label title="Al escribir en el buscador este filtro se ignora, para que puedas encontrar cualquier nudo"><input id="bs-only" type="checkbox" onchange="bsRender()"> Solo nudos con potencial &gt; 0</label>
-      <label title="Nudos con tendencia del margen a la baja o con el fondo zonal comprometido"><input id="bs-risk" type="checkbox" onchange="bsRender()"> Solo con tendencia a la baja o presión zonal</label>
     <button type="button" onclick="bsToggleNota()" style="margin-left:auto;background:#e2e8f0;border:none;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:#F3721F;font-weight:bold;">&#9432; Metodología</button>
   </div>
 
@@ -4883,6 +4953,7 @@ function renderOportunidades(){
   </div>
   <div id="bs-nota"></div>
   <div id="bs-banner"></div>
+  <div id="bs-filtros"></div>
   <div id="bs-obj-wrap"></div>
   <div class="na-sec" id="bs-kpis"></div>
 
@@ -4971,6 +5042,58 @@ function bsObjHTML() {
         '<td><span>ratio carga/descarga</span><b>' + (t.desc > 0 ? t.ratio.toFixed(2) : '—') + '</b></td>' +
         '<td class="bs-obj-n">Carga y descarga son dos permisos distintos: cada lado se evalúa por separado, ' +
         'y para un perfil simétrico manda el menor de los dos.</td></tr></table>';
+}
+
+/* =========================================================================
+   FILTROS POR COLUMNA
+   Se pintan una sola vez, fuera de la tabla: si vivieran dentro, cada
+   repintado destruiría el control y se perdería el foco al escribir.
+   ========================================================================= */
+let bsF = { nudo: '', ccaa: '', minCarga: '', minDesc: '', minEfic: '', colaMax: '',
+            prev: '', estab: '', caso: '', accion: '' };
+let bsFTimer = null;
+let bsFClave = null;      // mes+red con el que se pintó la barra por última vez
+function bsSetF(k, v) {
+    bsF[k] = v;
+    clearTimeout(bsFTimer);
+    bsFTimer = setTimeout(function () { try { bsRender(); } catch (e) { } }, 200);
+}
+function bsLimpiarF() {
+    for (const k in bsF) bsF[k] = '';
+    bsFClave = null;
+    bsPintaFiltros(true);
+    bsRender();
+}
+function bsPintaFiltros(forzar) {
+    const cont = bsEl('bs-filtros');
+    if (!cont) return;
+    const clave = bsKey() + '|' + bsVal('bs-scope', 'TSO');
+    if (bsFClave === clave && !forzar) return;   // solo se repinta si cambia el contexto
+    const ccaas = {};
+    for (const e of allEntries) if ((e.grid || 'TSO') === bsVal('bs-scope', 'TSO') && e.ccaa) ccaas[e.ccaa] = 1;
+    const opt = function (arr, sel) {
+        return '<option value="">(todas)</option>' + arr.sort().map(function (x) {
+            return '<option value="' + x + '"' + (x === sel ? ' selected' : '') + '>' + x + '</option>';
+        }).join('');
+    };
+    bsFClave = clave;
+    cont.innerHTML =
+        '<table class="bs-flt"><tr>' +
+        '<th>Nudo</th><th>CCAA</th><th>CARGA solicitable</th><th>DESCARGA margen</th>' +
+        '<th>BESS con concurso</th><th>Cola sobre capacidad</th><th>Previsión</th><th>Estabilidad</th>' +
+        '<th>Caso</th><th>Acción</th><th></th></tr><tr>' +
+        '<td><input type="text" value="' + bsF.nudo + '" placeholder="nombre, prov." oninput="bsSetF(\'nudo\',this.value)"></td>' +
+        '<td><select onchange="bsSetF(\'ccaa\',this.value)">' + opt(Object.keys(ccaas), bsF.ccaa) + '</select></td>' +
+        '<td>≥ <input type="number" min="0" step="10" value="' + bsF.minCarga + '" oninput="bsSetF(\'minCarga\',this.value)"> MW</td>' +
+        '<td>≥ <input type="number" min="0" step="10" value="' + bsF.minDesc + '" oninput="bsSetF(\'minDesc\',this.value)"> MW</td>' +
+        '<td>≥ <input type="number" min="0" step="10" value="' + bsF.minEfic + '" oninput="bsSetF(\'minEfic\',this.value)"> MW</td>' +
+        '<td>≤ <input type="number" min="0" step="10" value="' + bsF.colaMax + '" oninput="bsSetF(\'colaMax\',this.value)"> %</td>' +
+        '<td><select onchange="bsSetF(\'prev\',this.value)">' + opt(['AL ALZA', 'ESTABLE', 'A LA BAJA'], bsF.prev) + '</select></td>' +
+        '<td><select onchange="bsSetF(\'estab\',this.value)">' + opt(['quieto', 'al alza', 'a la baja', 'oscilante', 'sin histórico'], bsF.estab) + '</select></td>' +
+        '<td><select onchange="bsSetF(\'caso\',this.value)">' + opt(['abierto', 'concurso', 'condicionado', 'sin potencial', 'sin datos'], bsF.caso) + '</select></td>' +
+        '<td><select onchange="bsSetF(\'accion\',this.value)">' + opt(['SOLICITAR', 'SOLICITAR SIN DEMORA', 'COLA POR DELANTE', 'PERSEGUIR', 'PERSEGUIR CON CAUTELA', 'SOLO DESCARGA', 'SOLO CARGA', 'POR DEBAJO', 'POR DEBAJO · AL ALZA', 'SIN CAPACIDAD', 'SIN DATOS'], bsF.accion) + '</select></td>' +
+        '<td><button type="button" class="bs-mini" onclick="bsLimpiarF()">Limpiar</button></td>' +
+        '</tr></table>';
 }
 
 /* ---------- utilidades ---------- */
@@ -5371,6 +5494,13 @@ function bsForecast(m, entry, key) {
     else if (tr.estado === 'mejora') { if (nivel !== 'riesgo') nivel = 'oportunidad'; avisos.push('El potencial de descarga sube ' + tr.pendDesc.toFixed(1) + ' MW al mes; proyección a 3 meses: ' + bsMW(tr.proy3) + '.'); }
     else if (tr.estado === 'estable') avisos.push('Potencial estable en los últimos ' + tr.n + ' meses.');
     else avisos.push('Histórico insuficiente para calcular tendencia (' + tr.n + ' mes(es); hacen falta 4).');
+    const cl = bsCola(m);
+    if (cl.aviso) {
+        if (cl.grave) nivel = 'riesgo';
+        const t1 = bsColaTxt(cl.carga, 'CARGA'), t2 = bsColaTxt(cl.desc, 'DESCARGA');
+        avisos.push('⚠ ' + [t1, t2].filter(Boolean).join(' · ') +
+            '. El acceso se otorga por prelación temporal, así que esas solicitudes anteriores se resuelven primero.');
+    }
     const est = bsEstab(m);
     if (est.derivaWscr) {
         nivel = 'riesgo';
@@ -5505,7 +5635,9 @@ function bsFrec(p) {
 function bsEstab(m) {
     const tr = bsTrend(m._e || { name: m.name, grid: m.grid });
     const s = tr.serie;
-    if (s.length < 2) return { n: s.length, suficiente: false, cambios: 0, sube: 0, baja: 0, clase: 'sin histórico' };
+    if (s.length < 2) return { n: s.length, suficiente: false, cambios: 0, sube: 0, baja: 0,
+        clase: 'sin histórico', critClase: 'sin histórico', margenClase: 'sin histórico',
+        famActual: s.length ? bsCritFam(s[0].critDesc).fam : null, derivaWscr: false };
     let cambios = 0, sube = 0, baja = 0;
     for (let i = 1; i < s.length; i++) {
         const a = bsCritFam(s[i - 1].critDesc), b = bsCritFam(s[i].critDesc);
@@ -5581,12 +5713,53 @@ function bsDiagPill(d) {
     return '<span class="bs-pill" style="background:' + c + '">' + d.tipo.toUpperCase() + '</span>';
 }
 
+/* Cola de solicitudes pendientes frente a lo solicitable. Importa porque el
+   acceso se otorga por PRELACIÓN TEMPORAL: quien pidió antes se resuelve
+   antes, así que una cola mayor que la capacidad significa que lo disponible
+   está, en la práctica, ya comprometido con solicitudes anteriores.
+   En septiembre de 2026, de los 41 nudos TSO con descarga solicitable, 26
+   tenían la cola por encima de la capacidad.                               */
+function bsCola(m) {
+    const lado = function (disp, cola) {
+        const r = disp > 0 ? cola / disp : (cola > 0 ? Infinity : 0);
+        let nivel = 'baja';
+        if (disp <= 0) nivel = cola > 0 ? 'sin capacidad' : 'ninguna';
+        else if (!isFinite(r) || r >= 1) nivel = 'supera';
+        else if (r >= 0.5) nivel = 'amplia';
+        else if (r > 0) nivel = 'moderada';
+        else nivel = 'ninguna';
+        return { disp: disp, cola: cola, ratio: r, nivel: nivel };
+    };
+    const c = lado(bsNum(m.cargaDisp), bsNum(m.cargaCola));
+    const d = lado(bsNum(m.descDisp), bsNum(m.descCola));
+    const grave = (c.nivel === 'supera') || (d.nivel === 'supera');
+    const aviso = grave || c.nivel === 'amplia' || d.nivel === 'amplia';
+    return { carga: c, desc: d, grave: grave, aviso: aviso };
+}
+function bsColaTxt(x, etq) {
+    if (x.nivel === 'supera') return '<b>' + etq + ': la cola supera la capacidad</b> · ' + bsMW(x.cola) +
+        ' pendientes frente a ' + bsMW(x.disp) + ' solicitables' + (isFinite(x.ratio) ? ' (' + Math.round(x.ratio * 100) + ' %)' : '');
+    if (x.nivel === 'amplia') return etq + ': cola amplia · ' + bsMW(x.cola) + ' pendientes frente a ' +
+        bsMW(x.disp) + ' solicitables (' + Math.round(x.ratio * 100) + ' %)';
+    return '';
+}
+
 /* ---------- semáforo de acción ---------- */
 function bsSem(m) {
     if (m.sinDatos) return { col: '#B3261E', txt: 'SIN DATOS', num: '–', acc: 'El nudo no aparece en el fichero de este periodo: prueba otro mes' };
     const c = bsCover(m), t = c.t;
     const falta = function (lado, disp, obj) { return lado + ' se queda en ' + bsMW(disp) + ' frente a ' + bsMW(obj) + ' de objetivo'; };
     // 1) los dos lados cubren hoy
+    // Si lo solicitable está por detrás de una cola mayor que él, avisar de
+    // que la capacidad está comprometida es más útil que decir «solicitar».
+    const cl0 = bsCola(m);
+    if (c.okCargaHoy && c.okDescHoy && cl0.grave) {
+        const cual = cl0.desc.nivel === 'supera' ? cl0.desc : cl0.carga;
+        const etq = cl0.desc.nivel === 'supera' ? 'descarga' : 'carga';
+        return { col: '#F06818', txt: 'COLA POR DELANTE', num: '1',
+            acc: 'Cubre el objetivo hoy, pero en ' + etq + ' hay ' + bsMW(cual.cola) +
+                 ' en cola frente a ' + bsMW(cual.disp) + ' solicitables: por prelación temporal esas solicitudes van primero' };
+    }
     if (c.okCargaHoy && c.okDescHoy) {
         const f1 = bsFc(m);
         const base = 'Carga y descarga cubren el objetivo hoy (' + bsMW(t.carga) + ' / ' + bsMW(t.desc) + ')';
@@ -5694,20 +5867,32 @@ function bsRender() {
 }
 function bsRenderInterno() {
     const q = (bsVal('bs-search') || '').trim().toUpperCase();
-    const only = bsChk('bs-only');
     const ord = bsVal('bs-order', 'hoy');
     const todos = bsCollect();
     let rows = todos;
-    // El buscador manda: si hay texto, se ignora el filtro de potencial para
-    // que cualquier nudo sea localizable y se pueda ver su casuística.
-    if (q) rows = rows.filter(r => (r.name + ' ' + r.prov + ' ' + r.ccaa + ' ' + (r.oper || '')).toUpperCase().indexOf(q) >= 0);
-    else if (only) rows = rows.filter(r => r.eficazConc > 0);
-    if (bsChk('bs-risk')) {
+    const txt = (bsF.nudo || '').trim().toUpperCase();
+    const busq = q || txt;
+    if (busq) rows = rows.filter(r => (r.name + ' ' + r.prov + ' ' + r.ccaa + ' ' + (r.oper || '')).toUpperCase().indexOf(busq) >= 0);
+    if (bsF.ccaa) rows = rows.filter(r => (r.ccaa || '') === bsF.ccaa);
+    if (bsF.minCarga !== '') rows = rows.filter(r => bsNum(r.cargaDisp) >= bsNum(bsF.minCarga));
+    if (bsF.minDesc !== '') rows = rows.filter(r => bsNum(r.margenMPE) >= bsNum(bsF.minDesc));
+    if (bsF.minEfic !== '') rows = rows.filter(r => bsNum(r.eficazConc) >= bsNum(bsF.minEfic));
+    if (bsF.colaMax !== '') {
+        const lim = bsNum(bsF.colaMax) / 100;
         rows = rows.filter(function (r) {
-            if (r.sinDatos) return false;
-            return bsFc(r).nivel !== 'neutro';
+            const c = bsCola(r);
+            const peor = Math.max(isFinite(c.carga.ratio) ? c.carga.ratio : 99, isFinite(c.desc.ratio) ? c.desc.ratio : 99);
+            return peor <= lim;
         });
     }
+    if (bsF.prev) rows = rows.filter(function (r) {
+        if (r.sinDatos) return false;
+        const t = { 'riesgo': 'A LA BAJA', 'oportunidad': 'AL ALZA', 'neutro': 'ESTABLE' }[bsFc(r).nivel];
+        return t === bsF.prev;
+    });
+    if (bsF.estab) rows = rows.filter(r => !r.sinDatos && bsEstab(r).margenClase === bsF.estab);
+    if (bsF.caso) rows = rows.filter(r => bsDiag(r).tipo === bsF.caso);
+    if (bsF.accion) rows = rows.filter(r => bsSem(r).txt === bsF.accion);
     const cmp = {
         cob: (a, b) => (bsCover(b).peorConc - bsCover(a).peorConc) || (b.eficazConc - a.eficazConc),
         efic: (a, b) => b.eficazConc - a.eficazConc,
@@ -5725,6 +5910,7 @@ function bsRenderInterno() {
     const nConc = rows.filter(r => { const c = bsCover(r); return c.okCargaHoy && c.okDescConc; }).length;
     const nSoloDesc = rows.filter(r => { const c = bsCover(r); return (c.okDescHoy || c.okDescConc) && !c.okCargaHoy; }).length;
     const nSoloCarga = rows.filter(r => { const c = bsCover(r); return c.okCargaHoy && !c.okDescConc; }).length;
+    bsPintaFiltros(false);
     const objEl = bsEl('bs-obj-wrap');
     if (objEl) objEl.innerHTML = bsObjHTML();
     const conDatos = todos.filter(r => !r.sinDatos).length;
@@ -5754,10 +5940,14 @@ function bsRenderInterno() {
             '<td>' + (r.ccaa || '—') + '</td>' +
             '<td class="bs-num bs-blue">' + bsMW(r.cargaDisp) +
             (r.cargaConcurso ? '<div class="bs-sub bs-red">reservado a CONCURSO</div>' : '') + '</td>' +
-            '<td class="bs-num">' + bsMW(r.cargaOtorg) + ' / ' + bsMW(r.cargaCola) + '</td>' +
+            '<td class="bs-num">' + bsMW(r.cargaOtorg) + ' / <span class="' +
+            (bsCola(r).carga.nivel === 'supera' ? 'bs-red' : (bsCola(r).carga.nivel === 'amplia' ? 'bs-must' : '')) + '">' +
+            bsMW(r.cargaCola) + '</span></td>' +
             '<td class="bs-num ' + (r.descDisp > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(r.descDisp) + (r.bloqueoConcurso ? '<div class="bs-sub bs-red">reservado a CONCURSO</div>' : '') + '</td>' +
             '<td class="bs-num">' + (r.margenMPE == null ? 'no publicado' : bsMW(r.margenMPE) + ' / ' + (r.posMPE == null ? '—' : bsMW(r.posMPE))) + '</td>' +
-            '<td class="bs-num">' + bsMW(r.descOtorg) + ' / ' + bsMW(r.descCola) + '</td>' +
+            '<td class="bs-num">' + bsMW(r.descOtorg) + ' / <span class="' +
+            (bsCola(r).desc.nivel === 'supera' ? 'bs-red' : (bsCola(r).desc.nivel === 'amplia' ? 'bs-must' : '')) + '">' +
+            bsMW(r.descCola) + '</span></td>' +
             '<td>' + (r.sinDatos ? '<span class="bs-sub">—</span>' : bsForecastPill(bsFc(r))) + '</td>' +
             '<td>' + (r.sinDatos ? '<span class="bs-sub">—</span>' : (function () {
                 const e2 = bsEstab(r);
@@ -5778,10 +5968,11 @@ function bsRenderInterno() {
             '</tr>';
     }
     h += '</tbody></table>';
-    h = '<div class="bs-count">Mostrando <b>' + bsRows.length + '</b> de ' + todos.length + ' nudos ' +
-        (q ? '· búsqueda «' + q + '» (el filtro de potencial se ignora al buscar)' : (only ? '· filtro: solo potencial > 0' : '· sin filtros')) +
-        ' · mes ' + bsKey() + '</div>' + h;
-    if (!bsRows.length) h = '<div class="bs-count">Ningún nudo coincide. Revisa el mes seleccionado (clave usada: <b>' + bsKey() + '</b>), la red (TSO/DSO) o limpia el buscador.</div>';
+    const activos = Object.keys(bsF).filter(function (k) { return bsF[k] !== ''; });
+    h = '<div class="bs-count">Mostrando <b>' + bsRows.length + '</b> de ' + todos.length + ' nudos · mes ' + bsKey() +
+        (activos.length ? ' · ' + activos.length + ' filtro(s) activo(s): ' + activos.join(', ') : ' · sin filtros') + '</div>' + h;
+    if (!bsRows.length) h = '<div class="bs-count">Ningún nudo coincide con los filtros. Revisa el mes (clave usada: <b>' +
+        bsKey() + '</b>), la red (TSO/DSO) o pulsa <b>Limpiar</b> en la barra de filtros.</div>';
     document.getElementById('bs-table').innerHTML = h;
     bsSelCount();
     if (bsFichaNode) bsFicha(bsFichaNode);
@@ -5882,54 +6073,69 @@ function bsFichaHTML(m, paraInforme) {
         ['En cola: solicitudes en curso', bsMW(m.descCola), false],
         ['Reservado a autoconsumo (no aplicable)', m.liberada == null ? 'no publicado' : bsMW(m.liberada), false],
     ];
-    const tabla = (rows, cls) => '<table class="bs-mini-tbl ' + cls + '">' + rows.map(r =>
-        '<tr class="' + (r[2] ? 'bs-hl' : (/margen total/.test(r[0]) ? 'bs-mg' : '')) + '"><td>' + r[0] + '</td><td class="bs-num">' + r[1] + '</td></tr>').join('') + '</table>';
+    // UNA SOLA TABLA de cuatro columnas para las dos perspectivas. Antes eran
+    // dos tablas anidadas en celdas distintas, y sus filas no podían alinearse
+    // entre sí: cualquier texto que ocupara dos líneas en un lado descuadraba
+    // todo lo de abajo. Con una tabla común, cada concepto comparte fila por
+    // construcción.
+    const filas = [];
+    for (let i = 0; i < Math.max(filaC.length, filaD.length); i++) {
+        const a = filaC[i] || ['', '', false], b = filaD[i] || ['', '', false];
+        const cls = (a[2] || b[2]) ? ' bs-hl' : (/margen total/.test(a[0] + b[0]) ? ' bs-mg' : '');
+        filas.push('<tr class="' + (i % 2 ? 'bs-par' : '') + cls + '">' +
+            '<td class="bs-cC">' + a[0] + '</td><td class="bs-cC bs-num">' + a[1] + '</td>' +
+            '<td class="bs-cD">' + b[0] + '</td><td class="bs-cD bs-num">' + b[1] + '</td></tr>');
+    }
+    const cab = function (col, titulo, big, colBig, lbl, sub, crit) {
+        return '<td class="bs-hd bs-hd-' + col + '"><div class="bs-col-h">' + titulo + '</div>' +
+            '<div class="bs-big ' + colBig + '">' + big + '</div>' +
+            '<div class="bs-lbl">' + lbl + '</div>' + sub +
+            '<div class="bs-it">' + crit + '</div></td>';
+    };
 
     return '<div class="bs-card' + (paraInforme ? ' bs-page' : '') + '">' +
-        // Marca de agua como elemento real y por DELANTE del contenido: como
-        // pseudoelemento quedaba detrás de las tablas, que tienen fondo opaco.
-        // El envoltorio de alto cero evita que la marca robe espacio en los
-        // motores que ignoran «position:absolute» (algunos conversores a PDF).
         (paraInforme ? '<div class="bs-wm-w"><div class="bs-wm">FASE DE PRUEBAS</div></div>' : '') +
         '<h3>' + m.name + '</h3>' +
         '<div class="bs-sub2">' + (m.ccaa || '') + (m.prov ? ' · ' + m.prov : '') + (m.tens ? ' · ' + m.tens + ' kV' : '') +
         ' · red ' + m.grid + (m.oper ? ' · ' + m.oper : '') + '</div>' +
         '<div class="bs-diag">' + bsDiagPill(bsDiag(m)) + ' <b>Diagnóstico:</b> ' + bsDiag(m).txt + '</div>' +
-        '<table class="bs-cols"><tr>' +
-        '<td class="bs-col bs-col-carga"><div class="bs-col-h">CARGA · permiso de demanda' + (m.cargaConcurso ? ' · reservado a CONCURSO' : '') + '</div>' +
-        '<div class="bs-head3">' +
-        '<div class="bs-big ' + (m.cargaDisp > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(m.cargaDisp) + '</div>' +
-        '<div class="bs-lbl">SOLICITABLE hoy para almacenamiento (ALM CEP)</div>' +
-        (m.cargaConcurso
-            ? '<div class="bs-warn"><b>reservado a CONCURSO de demanda:</b> ' +
-              (m.cargaNoOtorg > 0 ? bsMW(m.cargaNoOtorg) + ' retenidos' : 'nudo de concurso') + '</div>'
-            : '<div class="bs-lbl2">margen total ' + (m.cargaMargenCep == null ? '—' : bsMW(m.cargaMargenCep)) +
-              ' · sin capacidad no otorgable</div>') +
-        '</div>' +
-        '<div class="bs-it">Criterio limitante: ' + (m.cargaCrit || '—') +
-        (m.cargaConcEstado && !/^\s*no tender/i.test(m.cargaConcEstado) ? ' · concurso de demanda: ' + m.cargaConcEstado : '') +
-        (m.cargaConcResuelto ? ' · concurso ya resuelto (ver normativa en la ficha de REE)' : '') +
-        (!m.cargaConcurso && m.cargaMotivo ? ' · ' + m.cargaMotivo : '') + '</div>' +
-        tabla(filaC, 'bs-t-carga') +
-        (m.cargaRefRdd ? '<div class="bs-it">Además, ' + bsMW(m.cargaRefRdd) + ' de consumo de referencia acordados con el DSO' + (m.cargaAcuerdo ? ' (acuerdo cerrado)' : '') + '.</div>' : '') +
-        (m.cargaComent ? '<div class="bs-it">' + m.cargaComent + '</div>' : '') +
-        '</td>' +
-        '<td class="bs-col bs-col-desc"><div class="bs-col-h">DESCARGA · permiso de generación' + (m.bloqueoConcurso ? ' · reservado a CONCURSO' : '') + '</div>' +
-        '<div class="bs-head3">' +
-        '<div class="bs-big ' + (m.descDisp > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(m.descDisp) + '</div>' +
-        '<div class="bs-lbl">SOLICITABLE hoy para almacenamiento (ALM MPE)</div>' +
-        (m.bloqueoConcurso
-            ? '<div class="bs-warn">reservado a <b>CONCURSO</b> · potencial si se convoca: <b>' + bsMW(m.potencial) + '</b></div>'
-            : '<div class="bs-lbl2">potencial máximo ' + bsMW(m.potencial) + ' · mín(margen MPE, posición)</div>') +
-        '</div>' +
         (function () {
-            const hayReserva = m.reserva && !/^\s*no tender/i.test(m.reserva);
-            const txt = (m.motivo ? 'Motivo: ' + m.motivo : '') + (hayReserva ? (m.motivo ? ' · ' : '') + 'reserva: ' + m.reserva : '');
-            return txt ? '<div class="bs-it">' + txt + '</div>' : '';
+            const cl = bsCola(m);
+            if (!cl.aviso) return '';
+            const t = [bsColaTxt(cl.carga, 'CARGA'), bsColaTxt(cl.desc, 'DESCARGA')].filter(Boolean).join(' · ');
+            return '<div class="bs-cola' + (cl.grave ? ' bs-cola-g' : '') + '">⚠ ' + t +
+                '. El acceso se otorga por <b>prelación temporal</b>: las solicitudes anteriores se resuelven primero, ' +
+                'así que la capacidad que ves puede estar ya comprometida.</div>';
         })() +
-        tabla(filaD, 'bs-t-desc') +
-        (m.sinPosicion ? '<div class="bs-it">Sin posición existente ni prevista: su viabilidad se consulta al TSO.</div>' : '') +
-        '</td></tr></table>' +
+        '<table class="bs-par2"><tr>' +
+        cab('c', 'CARGA · permiso de demanda' + (m.cargaConcurso ? ' · reservado a CONCURSO' : ''),
+            bsMW(m.cargaDisp), m.cargaDisp > 0 ? 'bs-green' : 'bs-red',
+            'SOLICITABLE hoy para almacenamiento (ALM CEP)',
+            (m.cargaConcurso
+                ? '<div class="bs-warn"><b>reservado a CONCURSO de demanda:</b> ' +
+                  (m.cargaNoOtorg > 0 ? bsMW(m.cargaNoOtorg) + ' retenidos' : 'nudo de concurso') + '</div>'
+                : '<div class="bs-lbl2">margen total ' + (m.cargaMargenCep == null ? '—' : bsMW(m.cargaMargenCep)) +
+                  ' · sin capacidad no otorgable</div>'),
+            'Criterio limitante: ' + (m.cargaCrit || '—') +
+            (m.cargaConcEstado && !/^\s*no tender/i.test(m.cargaConcEstado) ? ' · concurso de demanda: ' + m.cargaConcEstado : '') +
+            (m.cargaConcResuelto ? ' · concurso ya resuelto (ver normativa en la ficha de REE)' : '')) +
+        cab('d', 'DESCARGA · permiso de generación' + (m.bloqueoConcurso ? ' · reservado a CONCURSO' : ''),
+            bsMW(m.descDisp), m.descDisp > 0 ? 'bs-green' : 'bs-red',
+            'SOLICITABLE hoy para almacenamiento (ALM MPE)',
+            (m.bloqueoConcurso
+                ? '<div class="bs-warn">reservado a <b>CONCURSO</b> · potencial si se convoca: <b>' + bsMW(m.potencial) + '</b></div>'
+                : '<div class="bs-lbl2">potencial máximo ' + bsMW(m.potencial) + ' · mín(margen MPE, posición)</div>'),
+            (function () {
+                const hayReserva = m.reserva && !/^\s*no tender/i.test(m.reserva);
+                return (m.motivo ? 'Motivo: ' + m.motivo : '') + (hayReserva ? (m.motivo ? ' · ' : '') + 'reserva: ' + m.reserva : '') || '&nbsp;';
+            })()) +
+        '</tr></table>' +
+        '<table class="bs-par4">' + filas.join('') + '</table>' +
+        '<table class="bs-par2"><tr><td class="bs-nt">' + (m.cargaNota || '') +
+        (m.cargaRefRdd ? ' Además, ' + bsMW(m.cargaRefRdd) + ' de consumo de referencia acordados con el DSO' +
+            (m.cargaAcuerdo ? ' (acuerdo cerrado)' : '') + '.' : '') + '</td>' +
+        '<td class="bs-nt">' + (m.descNota || '') +
+        (m.sinPosicion ? ' Sin posición existente ni prevista: su viabilidad se consulta al TSO.' : '') + '</td></tr></table>' +
         '<table class="bs-concl"><tr>' +
         '<td class="bs-concl-h"><b>COBERTURA DEL OBJETIVO</b><div>sobre ' + bsMW(cv.t.carga) + ' de carga y ' +
         bsMW(cv.t.desc) + ' de descarga' + (cv.t.desc > 0 ? ' · ratio ' + cv.t.ratio.toFixed(2) : '') + '</div></td>' +
@@ -6091,6 +6297,9 @@ function bsNotaPortada() {
         'que es lo que ese margen deja realmente pedir.</li>' +
         '<li><b>Previsión:</b> techo por criterio, exposición al fondo zonal compartido y tendencia por mínimos cuadrados. ' +
         'No se proyecta con menos de 4 meses y se excluyen los meses de revisión metodológica de REE.</li>' +
+        '<li><b>Cola de solicitudes.</b> El acceso se otorga por prelación temporal, así que una cola pendiente mayor que ' +
+        'lo solicitable significa que la capacidad está en la práctica comprometida con solicitudes anteriores. ' +
+        'Se avisa cuando la cola llega al 50 % de lo solicitable y se marca en rojo cuando lo iguala o supera.</li>' +
         '<li><b>Probabilidades</b> calculadas sobre observaciones nudo-mes. Los cambios de criterio son casi inexistentes ' +
         'y, cuando ocurren, casi siempre van <b>hacia WSCR</b>, es decir a peor: el módulo lo marca como deriva.</li>' +
         '<li>La capacidad del bloque <i>liberada</i> está afecta al <b>autoconsumo</b> del RDL 7/2026: no la puede usar ' +
