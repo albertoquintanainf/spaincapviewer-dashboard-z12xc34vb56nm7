@@ -439,6 +439,14 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-kpi-v { font-size:24px; font-weight:bold; line-height:1.1; }
 .bs-kpi-t { font-size:11px; color:#5b6472; margin-top:2px; }
 
+#bs-table { max-height:46vh; overflow:auto; border:1px solid #e2e8f0; border-radius:8px; }
+#bs-table .bs-tbl th { position:sticky; top:0; z-index:2; }
+.bs-clic { cursor:pointer; }
+.bs-clic:hover b { color:#F3721F; text-decoration:underline; }
+.bs-ficha-bar { display:flex; gap:8px; align-items:center; font-size:13px; color:#222;
+  border-bottom:1px solid #e2e8f0; padding-bottom:8px; margin-bottom:10px; }
+.bs-ficha-bar button { margin-left:0; }
+.bs-ficha-bar b { margin-right:auto; }
 .bs-count { font-size:11.5px; color:#5b6472; margin-bottom:6px; }
 .bs-diag { background:#f4f4f4; border-left:4px solid #7a8495; border-radius:6px; padding:7px 10px;
   font-size:11.5px; color:#262626; margin-bottom:10px; line-height:1.45; }
@@ -561,6 +569,14 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-kpi-v { font-size:24px; font-weight:bold; line-height:1.1; }
 .bs-kpi-t { font-size:11px; color:#5b6472; margin-top:2px; }
 
+#bs-table { max-height:46vh; overflow:auto; border:1px solid #e2e8f0; border-radius:8px; }
+#bs-table .bs-tbl th { position:sticky; top:0; z-index:2; }
+.bs-clic { cursor:pointer; }
+.bs-clic:hover b { color:#F3721F; text-decoration:underline; }
+.bs-ficha-bar { display:flex; gap:8px; align-items:center; font-size:13px; color:#222;
+  border-bottom:1px solid #e2e8f0; padding-bottom:8px; margin-bottom:10px; }
+.bs-ficha-bar button { margin-left:0; }
+.bs-ficha-bar b { margin-right:auto; }
 .bs-count { font-size:11.5px; color:#5b6472; margin-bottom:6px; }
 .bs-diag { background:#f4f4f4; border-left:4px solid #7a8495; border-radius:6px; padding:7px 10px;
   font-size:11.5px; color:#262626; margin-bottom:10px; line-height:1.45; }
@@ -4531,17 +4547,14 @@ function renderOportunidades(){
     <div class="bs-al-h">⚠ <span id="bs-al-mod">MÓDULO</span> · FASE DE PRUEBAS / TEST PHASE</div>
     <div class="bs-al-lang">🇪🇸 Español</div>
     <p>Este módulo está <b>en fase de pruebas</b>. Los cálculos se apoyan en una lectura propia de los ficheros
-    mensuales publicados que <b>no está confirmada con la leyenda oficial de REE</b>, y la parte de redes de
-    distribución (DSO) está incompleta porque el fichero de las distribuidoras no desglosa el almacenamiento ni
-    publica el criterio limitante.</p>
-    <p>Úsalo para <b>explorar y contrastar</b>, no como base única de una decisión de inversión. Verifica siempre
-    con el estudio de red del gestor antes de comprometer nada.</p>
+    mensuales publicados por REE (TSO) y las distribuidoras (DSO).</p>
+    <p>Úsalo para <b>explorar y contrastar</b>, no como base única de una decisión estratégica o de inversión.
+    Verifica siempre con el estudio de red del gestor antes de comprometer nada.</p>
     <div class="bs-al-lang">🇬🇧 English</div>
-    <p>This module is <b>in test phase</b>. Figures rely on our own reading of the published monthly files, which is
-    <b>not confirmed against REE's official legend</b>, and the distribution-grid (DSO) side is incomplete because the
-    DSO file neither breaks out storage nor publishes the limiting criterion.</p>
-    <p>Use it to <b>explore and cross-check</b>, not as the sole basis for an investment decision. Always verify
-    against the network operator's grid study before committing.</p>
+    <p>This module is <b>in test phase</b>. Figures rely on our own reading of the monthly files published by
+    REE (TSO) and the distribution companies (DSO).</p>
+    <p>Use it to <b>explore and cross-check</b>, not as the sole basis for a strategic or investment decision.
+    Always verify against the network operator&#39;s grid study before committing.</p>
     <label class="bs-al-chk"><input type="checkbox" id="bs-al-dont"> No volver a mostrar en esta sesión / Don&#39;t show again this session</label>
     <button class="bs-al-btn" onclick="bsAlertClose()">Entendido / Got it</button>
   </div>
@@ -4603,7 +4616,7 @@ function renderOportunidades(){
     <div id="bs-table"></div>
   </div>
 
-  <div class="na-sec" id="bs-ficha"></div>
+  <div class="na-sec" id="bs-ficha" style="display:none;"></div>
 </div>
 
 <script>
@@ -4886,12 +4899,12 @@ function bsRender() {
         '<th style="width:28px;"></th><th>Nudo</th><th>CCAA</th>' +
         '<th>CARGA<br><span>solicitable</span></th><th>CARGA<br><span>otorg. / cola</span></th>' +
         '<th>DESCARGA<br><span>solicitable</span></th><th>DESCARGA<br><span>margen / posición</span></th><th>DESCARGA<br><span>otorg. / cola</span></th>' +
-        '<th>BESS eficaz<br><span>hoy / con CONCURSO</span></th><th>Caso</th><th>Acción</th><th></th></tr></thead><tbody>';
+        '<th>BESS eficaz<br><span>hoy / con CONCURSO</span></th><th>Caso</th><th>Acción</th><th>Ver</th></tr></thead><tbody>';
     for (const r of bsRows) {
         const s = bsSem(r);
         h += '<tr>' +
             '<td><input type="checkbox" ' + (bsSel[r.name] ? 'checked' : '') + ' onchange="bsToggleSel(\'' + r.name.replace(/'/g, "\\'") + '\')"></td>' +
-            '<td><b>' + r.name + '</b><div class="bs-sub">' + (r.tens ? r.tens + ' kV' : '') + (r.oper ? ' · ' + r.oper : '') + '</div></td>' +
+            '<td class="bs-clic" onclick="bsFicha(\'' + r.name.replace(/'/g, "\\'") + '\')" title="Ver ficha del nudo"><b>' + r.name + '</b><div class="bs-sub">' + (r.tens ? r.tens + ' kV' : '') + (r.oper ? ' · ' + r.oper : '') + '</div></td>' +
             '<td>' + (r.ccaa || '—') + '</td>' +
             '<td class="bs-num bs-blue">' + bsMW(r.cargaDisp) + '</td>' +
             '<td class="bs-num">' + bsMW(r.cargaOtorg) + ' / ' + bsMW(r.cargaCola) + '</td>' +
@@ -4901,7 +4914,9 @@ function bsRender() {
             '<td class="bs-num"><span class="' + (r.eficazHoy > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(r.eficazHoy) + '</span> / <b class="bs-must">' + bsMW(r.eficazConc) + '</b></td>' +
             '<td>' + bsDiagPill(bsDiag(r)) + '</td>' +
             '<td><span class="bs-pill" style="background:' + s.col + '">' + s.txt + '</span></td>' +
-            '<td><button class="bs-mini" onclick="bsFicha(\'' + r.name.replace(/'/g, "\\'") + '\')">🔬</button></td>' +
+            '<td style="white-space:nowrap;">' +
+            '<button class="bs-mini" title="Ficha BESS de este nudo (carga y descarga)" onclick="bsFicha(\'' + r.name.replace(/'/g, "\\'") + '\')">🔬</button> ' +
+            '<button class="bs-mini" title="Abrir el Análisis Nodal del visor para investigar este nudo" onclick="openNodalAnalysis(\'' + r.name.replace(/'/g, "\\'") + '\')">🔎</button></td>' +
             '</tr>';
     }
     h += '</tbody></table>';
@@ -4924,9 +4939,37 @@ function bsSelCount() {
 /* ---------- ficha de nudo (mismo contenido que el informe) ---------- */
 function bsFicha(name) {
     bsFichaNode = name;
+    const cont = document.getElementById('bs-ficha');
     const m = bsRows.filter(r => r.name === name)[0] || bsMetricsByName(name);
-    if (!m) { document.getElementById('bs-ficha').innerHTML = ''; return; }
-    document.getElementById('bs-ficha').innerHTML = bsFichaHTML(m, false);
+    if (!m) {
+        cont.innerHTML = '<div class="bs-count">No hay datos de <b>' + name + '</b> en el mes seleccionado (' + bsKey() + ').</div>';
+        cont.style.display = 'block'; bsScrollFicha(); return;
+    }
+    cont.innerHTML =
+        '<div class="bs-ficha-bar"><b>🔬 Ficha del nudo · ' + m.name + '</b>' +
+        '<button class="bs-mini" onclick="openNodalAnalysis(\'' + m.name.replace(/'/g, "\\'") + '\')">🔎 Investigar en Análisis Nodal</button>' +
+        '<button class="bs-mini" onclick="bsPrintOne(\'' + m.name.replace(/'/g, "\\'") + '\')">🖨 PDF de este nudo</button>' +
+        '<button class="bs-mini" onclick="bsCerrarFicha()">✕ Cerrar ficha</button></div>' +
+        bsFichaHTML(m, false);
+    cont.style.display = 'block';
+    bsScrollFicha();
+}
+/* La tabla puede tener cientos de filas: sin esto la ficha se dibuja fuera de
+   la pantalla y parece que el botón no hace nada.                           */
+function bsScrollFicha() {
+    const cont = document.getElementById('bs-ficha');
+    if (cont && cont.scrollIntoView) { try { cont.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { cont.scrollIntoView(); } }
+}
+function bsCerrarFicha() {
+    bsFichaNode = null;
+    const c = document.getElementById('bs-ficha'); c.innerHTML = ''; c.style.display = 'none';
+    const t = document.getElementById('bs-table-wrap');
+    if (t && t.scrollIntoView) { try { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { } }
+}
+/* PDF de un solo nudo sin tocar la selección de la tabla */
+function bsPrintOne(name) {
+    const prev = bsSel; bsSel = {}; bsSel[name] = true;
+    try { bsPrint(); } finally { bsSel = prev; bsSelCount(); }
 }
 function bsMetricsByName(name) {
     const key = bsKey(), scope = document.getElementById('bs-scope').value;
@@ -5082,8 +5125,25 @@ function bsDownload() {
             return r;
         };
     };
-    wrap('openGridStatus', 'GRID STATUS');
-    wrap('openNodalAnalysis', 'ANÁLISIS NODAL');
+    // Grid Status, Análisis Nodal y BESS comparten z-index 300000, y el módulo
+    // BESS va último en el DOM, así que taparía a los otros dos si se abriesen
+    // teniéndolo abierto. Antes de abrirlos, se cierra.
+    const cerrarBess = function () {
+        const el = document.getElementById('bess-analysis');
+        if (el && el.classList.contains('open')) el.classList.remove('open');
+    };
+    const wrapCerrando = function (nombre, etiqueta) {
+        const orig = window[nombre];
+        if (typeof orig !== 'function') { console.warn('[BESS] no se pudo enganchar el aviso a', nombre); return; }
+        window[nombre] = function () {
+            cerrarBess();
+            const r = orig.apply(this, arguments);
+            try { bsTestAlert(etiqueta); } catch (e) { }
+            return r;
+        };
+    };
+    wrapCerrando('openGridStatus', 'GRID STATUS');
+    wrapCerrando('openNodalAnalysis', 'ANÁLISIS NODAL');
     wrap('openBess', 'BESS STAND ALONE');
 })();
 </script>
