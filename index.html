@@ -622,9 +622,20 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
    construcción. Solo se repinta el <tbody> al filtrar, de modo que los
    controles no se destruyen y no se pierde el foco al escribir. */
 #bs-filtros { margin:0; }
+/* En pantallas estrechas la tabla NO se comprime: mantiene un ancho mínimo y
+   el contenedor se desplaza en horizontal. Antes las columnas se estrujaban y
+   los textos se solapaban. */
 #bs-scroll { max-height:46vh; overflow:auto; border:1px solid #e2e8f0; border-radius:8px; }
+#bs-scroll .bs-tbl { min-width:1180px; }
 #bs-count { font-size:11.5px; color:#5b6472; margin:0 0 6px; }
 .bs-tbl { table-layout:fixed; }
+/* Ninguna celda puede desbordar sobre la de al lado: se recorta con puntos
+   suspensivos y el valor completo queda en el tooltip de la fila. */
+.bs-tbl tbody td { overflow:hidden; text-overflow:ellipsis; }
+.bs-tbl tbody td > div { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.bs-tbl tbody td.bs-clic b { display:inline-block; max-width:100%; overflow:hidden;
+  text-overflow:ellipsis; white-space:nowrap; vertical-align:bottom; }
+.bs-tbl th, .bs-tbl th span { overflow:hidden; text-overflow:ellipsis; }
 .bs-tbl thead th { position:sticky; top:0; z-index:3; }
 .bs-tbl tr.bs-flt td { position:sticky; top:34px; z-index:2; background:#f8fafc;
   border-bottom:1px solid #cbd5e1; padding:3px 4px; white-space:nowrap; }
@@ -948,9 +959,20 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
    construcción. Solo se repinta el <tbody> al filtrar, de modo que los
    controles no se destruyen y no se pierde el foco al escribir. */
 #bs-filtros { margin:0; }
+/* En pantallas estrechas la tabla NO se comprime: mantiene un ancho mínimo y
+   el contenedor se desplaza en horizontal. Antes las columnas se estrujaban y
+   los textos se solapaban. */
 #bs-scroll { max-height:46vh; overflow:auto; border:1px solid #e2e8f0; border-radius:8px; }
+#bs-scroll .bs-tbl { min-width:1180px; }
 #bs-count { font-size:11.5px; color:#5b6472; margin:0 0 6px; }
 .bs-tbl { table-layout:fixed; }
+/* Ninguna celda puede desbordar sobre la de al lado: se recorta con puntos
+   suspensivos y el valor completo queda en el tooltip de la fila. */
+.bs-tbl tbody td { overflow:hidden; text-overflow:ellipsis; }
+.bs-tbl tbody td > div { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.bs-tbl tbody td.bs-clic b { display:inline-block; max-width:100%; overflow:hidden;
+  text-overflow:ellipsis; white-space:nowrap; vertical-align:bottom; }
+.bs-tbl th, .bs-tbl th span { overflow:hidden; text-overflow:ellipsis; }
 .bs-tbl thead th { position:sticky; top:0; z-index:3; }
 .bs-tbl tr.bs-flt td { position:sticky; top:34px; z-index:2; background:#f8fafc;
   border-bottom:1px solid #cbd5e1; padding:3px 4px; white-space:nowrap; }
@@ -6472,7 +6494,8 @@ function bsResumenHTML(rows) {
             '<td class="bs-num">' + bsMW(r.eficazHoy) + ' / <b>' + bsMW(r.eficazConc) + '</b></td>' +
             '<td><span class="bs-pill" style="background:' + s.col + '">' + s.txt + '</span></td></tr>';
     }
-    h += '</tbody></table>' + bsNotaHTML() + '</div>';
+    // La metodología va una sola vez, en la portada: aquí se repetía.
+    h += '</tbody></table></div>';
     return h;
 }
 /* Construye el documento del informe (se usa tanto para el PDF como para el HTML) */
