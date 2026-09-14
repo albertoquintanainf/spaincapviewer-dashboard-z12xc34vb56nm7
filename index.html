@@ -4651,7 +4651,7 @@ function renderOportunidades(){
 
   <div class="na-sec" id="bs-table-wrap">
     <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px;font-size:13px;">
-      <input id="bs-search" type="text" placeholder="Buscar nudo, provincia o CCAA…" oninput="bsRender()" style="padding:4px 8px;border:1px solid #cbd5e1;border-radius:6px;font-size:13px;min-width:200px;">
+      <input id="bs-search" type="text" placeholder="Buscar nudo, provincia o CCAA…" oninput="bsSearchLater()" style="padding:4px 8px;border:1px solid #cbd5e1;border-radius:6px;font-size:13px;min-width:200px;">
       <button type="button" onclick="bsSelAll(true)" class="bs-mini">Seleccionar todos</button>
       <button type="button" onclick="bsSelAll(false)" class="bs-mini">Limpiar</button>
       <span id="bs-selcount" style="color:#64748b;"></span>
@@ -4718,6 +4718,8 @@ function bsSyncTargets() {
     const rEl = document.getElementById('bs-ratio'), cEl = document.getElementById('bs-tcarga');
     rEl.disabled = !link; cEl.disabled = link;
     if (link) cEl.value = Math.round(d * Math.max(0.05, bsNum(rEl.value)) * 100) / 100;
+    bsCovCache = null;   // los objetivos han cambiado: la cobertura se recalcula
+    bsTitulo();
     bsRender();
 }
 function bsTargets() {
@@ -4728,12 +4730,13 @@ function bsTargets() {
 /* Cobertura de cada lado por separado, más la potencia simétrica máxima que
    admitiría el nudo (el mínimo de los dos lados).                            */
 function bsCover(m) {
+    if (bsCovCache && bsCovCache.map[m.name]) return bsCovCache.map[m.name];
     const t = bsTargets();
     const cobCargaHoy = t.carga > 0 ? m.cargaDisp / t.carga : 1;
     const cobDescHoy = t.desc > 0 ? m.descDisp / t.desc : 1;
     const cobDescConc = t.desc > 0 ? m.potencial / t.desc : 1;
     const okCargaHoy = m.cargaDisp >= t.carga, okDescHoy = m.descDisp >= t.desc, okDescConc = m.potencial >= t.desc;
-    return {
+    const out = {
         t: t,
         cobCargaHoy: cobCargaHoy, cobDescHoy: cobDescHoy, cobDescConc: cobDescConc,
         okCargaHoy: okCargaHoy, okDescHoy: okDescHoy, okDescConc: okDescConc,
@@ -4743,6 +4746,9 @@ function bsCover(m) {
         peorHoy: Math.min(cobCargaHoy, cobDescHoy),
         peorConc: Math.min(cobCargaHoy, cobDescConc),
     };
+    if (!bsCovCache) bsCovCache = { map: {} };
+    bsCovCache.map[m.name] = out;
+    return out;
 }
 function bsPct(v) { return (v >= 9.99 ? '>999' : Math.round(v * 100)) + ' %'; }
 
@@ -4774,7 +4780,7 @@ function bsMetricsTSO(entry, key) {
     const potencial = (posMPE == null) ? margenMPE : Math.min(margenMPE, posMPE);
 
     const m = {
-        name: entry.name, grid: 'TSO', prov: entry.prov || '', ccaa: entry.ccaa || '', tens: entry.tens || '',
+        _e: entry, name: entry.name, grid: 'TSO', prov: entry.prov || '', ccaa: entry.ccaa || '', tens: entry.tens || '',
         // carga
         cargaDisp: cargaDisp,
         cargaMargen: bsNum(dm.alm_cep_mpe != null ? dm.alm_cep_mpe : dd.alm_cep),
@@ -4884,6 +4890,8 @@ function bsTecho(entry, key) {
 /* Fondo común de la zona. Se calcula una vez por mes y se cachea: hay que
    recorrer todos los nudos para sumar la cola de la zona.                  */
 let bsZonaCache = {};
+let bsFcCache = {};     // previsión por nudo y mes: bsForecast es costoso
+let bsCovCache = null;  // cobertura por nudo: se recalcula al cambiar objetivos
 function bsZonasDelMes(key) {
     if (bsZonaCache[key]) return bsZonaCache[key];
     const z = {};
@@ -4982,6 +4990,8 @@ function bsTrend(entry) {
 
 /* Aviso de previsión: combina las tres piezas en una sola señal.            */
 function bsForecast(m, entry, key) {
+    const ck = key + '|' + m.name;
+    if (bsFcCache[ck]) return bsFcCache[ck];
     const t = bsTecho(entry, key), z = bsZona(entry, key), tr = bsTrend(entry);
     const avisos = [];
     let nivel = 'neutro';
@@ -5013,8 +5023,13 @@ function bsForecast(m, entry, key) {
             avisos.push('En ' + c.mes + ' cambió el criterio limitante: ' + paso + ' (' + (c.dMargen >= 0 ? '+' : '') + c.dMargen + ' MW).');
         }
     }
-    return { nivel: nivel, avisos: avisos, techo: t, zona: z, trend: tr };
+    const out = { nivel: nivel, avisos: avisos, techo: t, zona: z, trend: tr };
+    bsFcCache[ck] = out;
+    return out;
 }
+/* Atajo: usa la referencia al entry guardada en las métricas, en lugar de
+   buscarla con naEntryByName, que recorre linealmente los ~6.900 nudos.    */
+function bsFc(r) { return bsForecast(r, r._e || { name: r.name, grid: r.grid }, bsKey()); }
 function bsForecastPill(f) {
     const c = { 'riesgo': '#B3261E', 'oportunidad': '#1B7F4B', 'neutro': '#7a8495' }[f.nivel];
     const txt = { 'riesgo': 'RIESGO', 'oportunidad': 'AL ALZA', 'neutro': 'ESTABLE' }[f.nivel];
@@ -5121,11 +5136,15 @@ function openBess(nodeName) {
 function closeBess() { document.getElementById('bess-analysis').classList.remove('open'); }
 function bsToggleNota() { const n = document.getElementById('bs-nota'); n.style.display = (n.style.display === 'block') ? 'none' : 'block'; }
 
+function bsTitulo() {
+    const y = document.getElementById('bs-year').value, mm = document.getElementById('bs-month').value;
+    document.getElementById('bs-period').textContent = 'Periodo: ' + mm + ' ' + y + ' · objetivo ' +
+        bsMW(bsTargets().carga) + ' carga / ' + bsMW(bsTargets().desc) + ' descarga';
+}
 function bsRefresh() {
-    bsZonaCache = {};   // el fondo zonal se recalcula al cambiar de mes o de red
+    bsZonaCache = {}; bsFcCache = {}; bsCovCache = null;   // se recalcula al cambiar de mes o de red
     const scope = document.getElementById('bs-scope').value;
-    const y = document.getElementById('bs-year').value, m = document.getElementById('bs-month').value;
-    document.getElementById('bs-period').textContent = 'Periodo: ' + m + ' ' + y + ' · objetivo ' + bsMW(bsTargets().carga) + ' carga / ' + bsMW(bsTargets().desc) + ' descarga';
+    bsTitulo();
     document.getElementById('bs-banner').innerHTML = bsBanner(scope);
     document.getElementById('bs-nota').innerHTML = bsNotaHTML();
     bsRender();
@@ -5138,7 +5157,7 @@ function bsCollect() {
     for (const e of allEntries) {
         if ((e.grid || 'TSO') !== scope) continue;
         const m = (scope === 'TSO') ? bsMetricsTSO(e, key) : bsMetricsDSO(e, key);
-        if (m) { m.oper = m.oper || e.oper || ''; out.push(m); }
+        if (m) { m.oper = m.oper || e.oper || ''; m._e = e; out.push(m); }
     }
     return out;
 }
@@ -5156,8 +5175,7 @@ function bsRender() {
     if (document.getElementById('bs-risk').checked) {
         rows = rows.filter(function (r) {
             if (r.sinDatos) return false;
-            const f = bsForecast(r, naEntryByName(r.name) || { name: r.name, grid: r.grid }, bsKey());
-            return f.nivel !== 'neutro';
+            return bsFc(r).nivel !== 'neutro';
         });
     }
     const cmp = {
@@ -5196,7 +5214,7 @@ function bsRender() {
         '<th>Cobertura objetivo<br><span>carga / descarga</span></th>' +
         '<th>Simétrico máximo<br><span>hoy / con CONCURSO</span></th><th>Caso</th><th>Acción</th><th>Ver</th></tr></thead><tbody>';
     for (const r of bsRows) {
-        const s = bsSem(r);
+        const s = bsSem(r), cv = bsCover(r);
         h += '<tr>' +
             '<td><input type="checkbox" ' + (bsSel[r.name] ? 'checked' : '') + ' onchange="bsToggleSel(\'' + r.name.replace(/'/g, "\\'") + '\')"></td>' +
             '<td class="bs-clic" onclick="bsFicha(\'' + r.name.replace(/'/g, "\\'") + '\')" title="Ver ficha del nudo"><b>' + r.name + '</b><div class="bs-sub">' + (r.tens ? r.tens + ' kV' : '') + (r.oper ? ' · ' + r.oper : '') + '</div></td>' +
@@ -5206,10 +5224,10 @@ function bsRender() {
             '<td class="bs-num ' + (r.descDisp > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(r.descDisp) + (r.bloqueoConcurso ? '<div class="bs-sub bs-red">reservado a CONCURSO</div>' : '') + '</td>' +
             '<td class="bs-num">' + (r.margenMPE == null ? 'no publicado' : bsMW(r.margenMPE) + ' / ' + (r.posMPE == null ? '—' : bsMW(r.posMPE))) + '</td>' +
             '<td class="bs-num">' + bsMW(r.descOtorg) + ' / ' + bsMW(r.descCola) + '</td>' +
-            '<td>' + (r.sinDatos ? '<span class="bs-sub">—</span>' : bsForecastPill(bsForecast(r, naEntryByName(r.name) || { name: r.name, grid: r.grid }, bsKey()))) + '</td>' +
-            '<td class="bs-num"><span class="' + (bsCover(r).okCargaHoy ? 'bs-green' : 'bs-red') + '">' + bsPct(bsCover(r).cobCargaHoy) + '</span> / ' +
-            '<span class="' + (bsCover(r).okDescConc ? 'bs-green' : 'bs-red') + '">' + bsPct(bsCover(r).cobDescConc) + '</span>' +
-            (bsCover(r).okDescHoy ? '' : '<div class="bs-sub">descarga hoy ' + bsPct(bsCover(r).cobDescHoy) + '</div>') + '</td>' +
+            '<td>' + (r.sinDatos ? '<span class="bs-sub">—</span>' : bsForecastPill(bsFc(r))) + '</td>' +
+            '<td class="bs-num"><span class="' + (cv.okCargaHoy ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobCargaHoy) + '</span> / ' +
+            '<span class="' + (cv.okDescConc ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobDescConc) + '</span>' +
+            (cv.okDescHoy ? '' : '<div class="bs-sub">descarga hoy ' + bsPct(cv.cobDescHoy) + '</div>') + '</td>' +
             '<td class="bs-num"><span class="' + (r.eficazHoy > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(r.eficazHoy) + '</span> / <b class="bs-must">' + bsMW(r.eficazConc) + '</b></td>' +
             '<td>' + bsDiagPill(bsDiag(r)) + '</td>' +
             '<td><span class="bs-pill" style="background:' + s.col + '">' + s.txt + '</span></td>' +
@@ -5228,6 +5246,8 @@ function bsRender() {
     if (bsFichaNode) bsFicha(bsFichaNode);
 }
 function bsKpi(v, t, c) { return '<div class="bs-kpi"><div class="bs-kpi-v" style="color:' + c + '">' + v + '</div><div class="bs-kpi-t">' + t + '</div></div>'; }
+let bsSearchTimer = null;
+function bsSearchLater() { clearTimeout(bsSearchTimer); bsSearchTimer = setTimeout(bsRender, 220); }
 function bsToggleSel(n) { bsSel[n] = !bsSel[n]; bsSelCount(); }
 function bsSelAll(v) { for (const r of bsRows) bsSel[r.name] = v; bsRender(); }
 function bsSelCount() {
@@ -5350,8 +5370,7 @@ function bsFuente(m) {
 /* Bloque «qué esperar» de la ficha y del informe */
 function bsPrevHTML(m) {
     if (m.sinDatos || m.grid !== 'TSO') return '';
-    const e = naEntryByName(m.name) || { name: m.name, grid: m.grid };
-    const f = bsForecast(m, e, bsKey());
+    const f = bsFc(m);
     const t = f.techo, z = f.zona, tr = f.trend;
     let h = '<table class="bs-prev"><tr><td class="bs-prev-h">' + bsForecastPill(f) +
         ' <b>QUÉ ESPERAR EN LOS PRÓXIMOS MESES</b></td></tr><tr><td>';
@@ -5408,12 +5427,12 @@ function bsResumenHTML(rows) {
         '<div class="bs-sub2">' + rows.length + ' nudos seleccionados · red ' + rows[0].grid + ' · objetivo: ' + bsMW(bsTargets().carga) + ' de carga y ' + bsMW(bsTargets().desc) + ' de descarga (ratio ' + bsTargets().ratio.toFixed(2) + ')</div>' +
         '<table class="bs-tbl"><thead><tr><th>Nudo</th><th>CCAA</th><th>CARGA solicitable</th><th>DESCARGA solicitable</th><th>Potencial descarga</th><th>Cobertura carga / descarga</th><th>Simétrico máx. hoy / con CONCURSO</th><th>Acción</th></tr></thead><tbody>';
     for (const r of rows) {
-        const s = bsSem(r);
+        const s = bsSem(r), cv = bsCover(r);
         h += '<tr><td><b>' + r.name + '</b></td><td>' + (r.ccaa || '—') + '</td>' +
             '<td class="bs-num bs-blue">' + bsMW(r.cargaDisp) + '</td>' +
             '<td class="bs-num ' + (r.descDisp > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(r.descDisp) + (r.bloqueoConcurso ? ' (CONCURSO)' : '') + '</td>' +
             '<td class="bs-num bs-must">' + bsMW(r.potencial) + '</td>' +
-            '<td class="bs-num"><span class="' + (bsCover(r).okCargaHoy ? 'bs-green' : 'bs-red') + '">' + bsPct(bsCover(r).cobCargaHoy) + '</span> / <span class="' + (bsCover(r).okDescConc ? 'bs-green' : 'bs-red') + '">' + bsPct(bsCover(r).cobDescConc) + '</span></td>' +
+            '<td class="bs-num"><span class="' + (cv.okCargaHoy ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobCargaHoy) + '</span> / <span class="' + (cv.okDescConc ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobDescConc) + '</span></td>' +
             '<td class="bs-num">' + bsMW(r.eficazHoy) + ' / <b>' + bsMW(r.eficazConc) + '</b></td>' +
             '<td><span class="bs-pill" style="background:' + s.col + '">' + s.txt + '</span></td></tr>';
     }
