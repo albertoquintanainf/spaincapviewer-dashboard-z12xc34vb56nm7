@@ -465,9 +465,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-prev-l { margin:8px 0 0 16px; padding:0; font-size:10.5px; color:#262626; }
 .bs-prev-l li { margin-bottom:3px; }
 .bs-spark { border-collapse:separate; border-spacing:3px 0; margin:2px 0 8px; }
-.bs-spark td { vertical-align:bottom; height:56px; padding:0; text-align:center; }
-.bs-spark td span { display:inline-block; width:14px; background:#A67C00; border-radius:2px 2px 0 0; }
-.bs-spark td span.bs-spark-last { background:#1F4E79; }
+.bs-spark td { padding:0; text-align:center; vertical-align:bottom; }
+.bs-bar { width:14px; }
+.bs-bar-t { width:100%; border-collapse:collapse; }
+.bs-bar-t td { padding:0; font-size:0; line-height:0; }
 .bs-spark-x { font-size:9px; color:#5b6472; text-align:center; height:auto; padding-top:2px; }
 .bs-spark-v { font-size:8.5px; color:#7a8495; text-align:center; height:auto; }
 .bs-spark-h { display:flex; gap:6px; align-items:baseline; font-size:10px; color:#1F4E79; margin-top:4px; }
@@ -573,9 +574,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-prev-t { font-size:9px; }
   .bs-lin { font-size:8px; }
   .bs-prev-l { font-size:8px; margin:3px 0 0 12px; }
-  .bs-spark { margin:1px 0 2px; }
-  .bs-spark td { height:22px; }
-  .bs-spark td span { width:8px; }
+  .bs-bar { width:9px; }
   .bs-prev-g > tr > td { padding:3px 5px; }
   .bs-prev-l li { margin-bottom:1px; }
   .bs-spark-h { font-size:8px; margin-top:2px; }
@@ -591,7 +590,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-rep-foot { page-break-before:avoid; break-before:avoid; }
   .bs-cols, .bs-concl, .bs-acc, .bs-tbl { page-break-inside:avoid; break-inside:avoid; }
   .bs-rep-head { margin-bottom:8px; }
-  .bs-acc { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .bs-acc, .bs-pill, .bs-col-h, .bs-bar-t td { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   .bs-col-h, .bs-pill, .bs-mini-tbl tr.bs-hl td { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
 }
 </style>
@@ -668,9 +667,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-prev-l { margin:8px 0 0 16px; padding:0; font-size:10.5px; color:#262626; }
 .bs-prev-l li { margin-bottom:3px; }
 .bs-spark { border-collapse:separate; border-spacing:3px 0; margin:2px 0 8px; }
-.bs-spark td { vertical-align:bottom; height:56px; padding:0; text-align:center; }
-.bs-spark td span { display:inline-block; width:14px; background:#A67C00; border-radius:2px 2px 0 0; }
-.bs-spark td span.bs-spark-last { background:#1F4E79; }
+.bs-spark td { padding:0; text-align:center; vertical-align:bottom; }
+.bs-bar { width:14px; }
+.bs-bar-t { width:100%; border-collapse:collapse; }
+.bs-bar-t td { padding:0; font-size:0; line-height:0; }
 .bs-spark-x { font-size:9px; color:#5b6472; text-align:center; height:auto; padding-top:2px; }
 .bs-spark-v { font-size:8.5px; color:#7a8495; text-align:center; height:auto; }
 .bs-spark-h { display:flex; gap:6px; align-items:baseline; font-size:10px; color:#1F4E79; margin-top:4px; }
@@ -776,9 +776,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-prev-t { font-size:9px; }
   .bs-lin { font-size:8px; }
   .bs-prev-l { font-size:8px; margin:3px 0 0 12px; }
-  .bs-spark { margin:1px 0 2px; }
-  .bs-spark td { height:22px; }
-  .bs-spark td span { width:8px; }
+  .bs-bar { width:9px; }
   .bs-prev-g > tr > td { padding:3px 5px; }
   .bs-prev-l li { margin-bottom:1px; }
   .bs-spark-h { font-size:8px; margin-top:2px; }
@@ -794,7 +792,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-rep-foot { page-break-before:avoid; break-before:avoid; }
   .bs-cols, .bs-concl, .bs-acc, .bs-tbl { page-break-inside:avoid; break-inside:avoid; }
   .bs-rep-head { margin-bottom:8px; }
-  .bs-acc { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .bs-acc, .bs-pill, .bs-col-h, .bs-bar-t td { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   .bs-col-h, .bs-pill, .bs-mini-tbl tr.bs-hl td { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
 }
 
@@ -5113,12 +5111,16 @@ function bsZona(entry, key) {
    que la generación en los ficheros publicados, así que cada lado se cuenta
    con los meses que realmente tiene.                                       */
 function bsSerie(entry) {
-    // Defensivo: si el visor cambiara de API, la serie se limita al mes activo
-    // en lugar de romper el módulo.
+    // Defensivo: si el visor cambiara de API, la serie se limita al mes activo.
     let keys;
     if (typeof naMonthKeysSorted === 'function') keys = naMonthKeysSorted();
     else if (typeof MONTHS_DATA !== 'undefined') keys = Object.keys(MONTHS_DATA);
     else keys = [bsKey()];
+    // Se descartan las claves cuyo mes no reconoce GS_MONTHS: no se pueden
+    // ordenar cronológicamente y colarían una pendiente sin sentido.
+    if (typeof GS_MONTHS !== 'undefined') {
+        keys = keys.filter(function (k) { return GS_MONTHS.indexOf(String(k).split('_')[1]) >= 0; });
+    }
     const out = [];
     for (const k of keys) {
         const r = richForMonth(k, entry);
@@ -5141,9 +5143,23 @@ function bsSerie(entry) {
 /* Pendiente por mínimos cuadrados sobre el potencial de descarga y la carga.
    Con menos de 4 meses no se extrapola: se informa y se deja en «insuficiente». */
 function bsTrend(entry) {
-    const s = bsSerie(entry);
+    const todaLaSerie = bsSerie(entry);
+    // La regresión se calcula SOLO desde la última revisión metodológica: un
+    // salto como el de enero a febrero de 2026 (870 nudos con el margen WSCR
+    // cayendo de golpe) invierte el signo de la pendiente y hace que la
+    // proyección no cuadre con lo que se ve en el gráfico.
+    const anom = (bsTasas().anomalos || []);
+    let desde = 0;
+    if (anom.length) {
+        const corte = anom[anom.length - 1].a;
+        const i = todaLaSerie.map(function (x) { return x.key; }).indexOf(corte);
+        if (i > 0) desde = i;
+    }
+    const s = todaLaSerie.slice(desde);
     const nm = s.length;
-    const res = { n: nm, serie: s, suficiente: nm >= 4, pendDesc: null, pendCarga: null, proy3: null, cambios: [], estado: 'sin datos' };
+    const res = { n: nm, serie: s, serieCompleta: todaLaSerie, recortada: desde > 0,
+        desde: desde > 0 ? s[0].key : null, suficiente: nm >= 4,
+        pendDesc: null, pendCarga: null, proy3: null, cambios: [], estado: 'sin datos' };
     if (!nm) return res;
     const reg = function (vals) {
         const pts = vals.map(function (v, i) { return { x: i, y: v }; }).filter(function (p) { return p.y != null; });
@@ -5164,6 +5180,8 @@ function bsTrend(entry) {
         }
     }
     const ult = s[s.length - 1];
+    res.ultimo = ult.potencial;
+    res.mesUltimo = ult.key;
     if (res.suficiente && res.pendDesc != null) {
         res.proy3 = Math.max(0, Math.round(ult.potencial + 3 * res.pendDesc));
         if (res.pendDesc > 1) res.estado = 'mejora';
@@ -5241,27 +5259,31 @@ function bsForecastPill(f) {
 /* Mini gráfico de la serie, en HTML puro para que imprima en el PDF.        */
 function bsSpark(tr, campo, etiqueta) {
     const s = tr.serie.filter(function (x) { return x[campo] != null; });
-    if (s.length < 2) return '<div class="bs-sub">sin serie suficiente</div>';
+    if (s.length < 2) return '<div class="bs-sub">' + (etiqueta || '') + ': sin serie suficiente</div>';
     const vals = s.map(function (x) { return x[campo]; });
     const mx = Math.max.apply(null, vals) || 1, mn = Math.min.apply(null, vals);
-    const ult = vals[vals.length - 1], pri = vals[0];
-    const dif = ult - pri;
-    let h = '<div class="bs-spark-h"><b>' + (etiqueta || '') + '</b>' +
-        '<span>máx. ' + bsMW(mx) + ' · mín. ' + bsMW(mn) + ' · ' + (dif >= 0 ? '+' : '') + dif + ' MW en ' + s.length + ' meses</span></div>';
-    h += '<table class="bs-spark"><tr>';
+    const dif = vals[vals.length - 1] - vals[0];
+    // Las barras se dibujan como CELDAS con fondo en línea, no como <span> con
+    // alto por CSS ni como SVG: el fondo de celda es lo único que imprimen por
+    // igual el navegador y los conversores a PDF. Antes desaparecían al
+    // imprimir.
+    const ALTO = 40;
+    let fila = '', ejes = '', nums = '';
     for (let i = 0; i < s.length; i++) {
-        const alto = Math.max(3, Math.round(vals[i] / mx * 54));
-        const ultima = (i === s.length - 1);
-        h += '<td><span class="' + (ultima ? 'bs-spark-last' : '') + '" style="height:' + alto + 'px" title="' +
-             s[i].key + ': ' + bsMW(vals[i]) + '"></span></td>';
+        const alto = Math.max(2, Math.round(vals[i] / mx * ALTO));
+        const col = (i === s.length - 1) ? '#1F4E79' : '#A67C00';
+        fila += '<td class="bs-bar" title="' + s[i].key + ': ' + vals[i] + ' MW">' +
+                '<table class="bs-bar-t"><tr><td style="height:' + (ALTO - alto) + 'px"></td></tr>' +
+                '<tr><td style="height:' + alto + 'px;background:' + col + '"></td></tr></table></td>';
+        ejes += '<td class="bs-spark-x">' + String(s[i].key).split('_')[1] + '</td>';
+        nums += '<td class="bs-spark-v">' + (i === 0 || i === s.length - 1 || vals[i] === mx ? vals[i] : '') + '</td>';
     }
-    h += '</tr><tr>';
-    for (const p of s) h += '<td class="bs-spark-x">' + p.key.split('_')[1] + '</td>';
-    h += '</tr><tr>';
-    for (let i = 0; i < s.length; i++)
-        h += '<td class="bs-spark-v">' + (i === 0 || i === s.length - 1 || vals[i] === mx ? vals[i] : '') + '</td>';
-    return h + '</tr></table>';
+    return '<div class="bs-spark-h"><b>' + (etiqueta || '') + '</b><span>máx. ' + bsMW(mx) + ' · mín. ' + bsMW(mn) +
+        ' · ' + (dif >= 0 ? '+' : '') + dif + ' MW en ' + s.length + ' meses</span></div>' +
+        '<table class="bs-spark"><tr>' + fila + '</tr><tr>' + ejes + '</tr><tr>' + nums + '</tr></table>';
 }
+
+
 
 
 /* =========================================================================
@@ -5794,8 +5816,15 @@ function bsPrevHTML(m, compacto) {
         }
     } else h += bsSpark(tr, 'carga', 'Carga solicitable');
     h += '<div class="bs-sub">' + (tr.suficiente
-        ? 'Pendiente <b>' + (tr.pendDesc >= 0 ? '+' : '') + tr.pendDesc.toFixed(1) + ' MW/mes</b> · proyección a 3 meses <b>' + bsMW(tr.proy3) + '</b>'
-        : 'Histórico insuficiente para proyectar (' + tr.n + ' de 4 meses)') + '</div>';
+        ? 'Pendiente <b>' + (tr.pendDesc >= 0 ? '+' : '') + tr.pendDesc.toFixed(1) + ' MW/mes</b> · proyección: ' +
+          bsMW(tr.ultimo) + ' (' + tr.mesUltimo + ') ' + (tr.pendDesc >= 0 ? '+' : '−') + ' 3 × ' +
+          Math.abs(tr.pendDesc).toFixed(1) + ' = <b>' + bsMW(tr.proy3) + '</b>'
+        : 'Histórico insuficiente para proyectar (' + tr.n + ' de 4 meses)') +
+        (tr.recortada ? ' · serie desde ' + tr.desde + ', se descartan los meses previos a la última revisión metodológica' : '') +
+        (Math.abs(bsNum(tr.ultimo) - bsNum(m.potencial)) > 0.5
+            ? ' · <span class="bs-red">atención: el último valor de la serie (' + bsMW(tr.ultimo) +
+              ') no coincide con el potencial del mes activo (' + bsMW(m.potencial) + ')</span>' : '') +
+        '</div>';
     // estabilidad del propio nudo y tasas observadas de su criterio
     const famA = est.famActual || '—';
     const tf = (tas.fam || {})[famA] || null;
