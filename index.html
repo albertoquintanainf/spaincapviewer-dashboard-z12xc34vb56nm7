@@ -467,6 +467,8 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-spark { border-collapse:separate; border-spacing:3px 0; margin:2px 0 8px; }
 .bs-spark td { padding:0; text-align:center; vertical-align:bottom; }
 .bs-bar { width:14px; }
+.bs-duo { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
+.bs-duo > tr > td { width:50%; vertical-align:top; padding:0; }
 .bs-bar-t { width:100%; border-collapse:collapse; }
 .bs-bar-t td { padding:0; font-size:0; line-height:0; }
 .bs-spark-x { font-size:9px; color:#5b6472; text-align:center; height:auto; padding-top:2px; }
@@ -574,7 +576,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-prev-t { font-size:9px; }
   .bs-lin { font-size:8px; }
   .bs-prev-l { font-size:8px; margin:3px 0 0 12px; }
-  .bs-bar { width:9px; }
+  .bs-bar { width:7px; }
+  .bs-duo { border-spacing:4px 0; }
+  .bs-spark-h { display:block; }
+  .bs-spark-h span { display:block; }
   .bs-prev-g > tr > td { padding:3px 5px; }
   .bs-prev-l li { margin-bottom:1px; }
   .bs-spark-h { font-size:8px; margin-top:2px; }
@@ -669,6 +674,8 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-spark { border-collapse:separate; border-spacing:3px 0; margin:2px 0 8px; }
 .bs-spark td { padding:0; text-align:center; vertical-align:bottom; }
 .bs-bar { width:14px; }
+.bs-duo { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
+.bs-duo > tr > td { width:50%; vertical-align:top; padding:0; }
 .bs-bar-t { width:100%; border-collapse:collapse; }
 .bs-bar-t td { padding:0; font-size:0; line-height:0; }
 .bs-spark-x { font-size:9px; color:#5b6472; text-align:center; height:auto; padding-top:2px; }
@@ -776,7 +783,10 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-prev-t { font-size:9px; }
   .bs-lin { font-size:8px; }
   .bs-prev-l { font-size:8px; margin:3px 0 0 12px; }
-  .bs-bar { width:9px; }
+  .bs-bar { width:7px; }
+  .bs-duo { border-spacing:4px 0; }
+  .bs-spark-h { display:block; }
+  .bs-spark-h span { display:block; }
   .bs-prev-g > tr > td { padding:3px 5px; }
   .bs-prev-l li { margin-bottom:1px; }
   .bs-spark-h { font-size:8px; margin-top:2px; }
@@ -5805,16 +5815,16 @@ function bsPrevHTML(m, compacto) {
     // ── tendencia y estabilidad ──
     const est = bsEstab(m), tas = bsTasas();
     h += '<td><div class="bs-prev-t">Tendencia y estabilidad · ' + tr.n + ' meses</div>';
-    h += bsSpark(tr, 'potencial', 'Potencial de descarga');
+    // En el informe los dos gráficos van uno al lado del otro: así se ven
+    // ambas series sin gastar el doble de alto, que es lo que obligaba a pasar
+    // de hoja.
     if (compacto) {
-        const sc = tr.serie.filter(function (x) { return x.carga != null; }).map(function (x) { return x.carga; });
-        if (sc.length > 1) {
-            const dc = sc[sc.length - 1] - sc[0];
-            h += '<div class="bs-lin"><div class="bs-lin-b"><span>Carga solicitable</span><b>' + bsMW(sc[sc.length - 1]) +
-                 '</b></div><div><span>máx. ' + bsMW(Math.max.apply(null, sc)) + ' · mín. ' + bsMW(Math.min.apply(null, sc)) +
-                 '</span><b>' + (dc >= 0 ? '+' : '') + dc + ' MW</b></div></div>';
-        }
-    } else h += bsSpark(tr, 'carga', 'Carga solicitable');
+        h += '<table class="bs-duo"><tr><td>' + bsSpark(tr, 'potencial', 'Potencial de descarga') +
+             '</td><td>' + bsSpark(tr, 'carga', 'Carga solicitable') + '</td></tr></table>';
+    } else {
+        h += bsSpark(tr, 'potencial', 'Potencial de descarga');
+        h += bsSpark(tr, 'carga', 'Carga solicitable');
+    }
     h += '<div class="bs-sub">' + (tr.suficiente
         ? 'Pendiente <b>' + (tr.pendDesc >= 0 ? '+' : '') + tr.pendDesc.toFixed(1) + ' MW/mes</b> · proyección: ' +
           bsMW(tr.ultimo) + ' (' + tr.mesUltimo + ') ' + (tr.pendDesc >= 0 ? '+' : '−') + ' 3 × ' +
