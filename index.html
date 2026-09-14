@@ -464,10 +464,16 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-prev-t { font-size:10.5px; font-weight:bold; color:#1F4E79; margin-bottom:3px; }
 .bs-prev-l { margin:8px 0 0 16px; padding:0; font-size:10.5px; color:#262626; }
 .bs-prev-l li { margin-bottom:3px; }
-.bs-spark { border-collapse:separate; border-spacing:2px 0; margin:2px 0 4px; }
-.bs-spark td { vertical-align:bottom; height:30px; padding:0; }
-.bs-spark td span { display:block; width:7px; background:#A67C00; }
-.bs-spark-x { font-size:7px; color:#7a8495; text-align:center; height:auto; }
+.bs-spark { border-collapse:separate; border-spacing:3px 0; margin:2px 0 8px; }
+.bs-spark td { vertical-align:bottom; height:56px; padding:0; text-align:center; }
+.bs-spark td span { display:inline-block; width:14px; background:#A67C00; border-radius:2px 2px 0 0; }
+.bs-spark td span.bs-spark-last { background:#1F4E79; }
+.bs-spark-x { font-size:9px; color:#5b6472; text-align:center; height:auto; padding-top:2px; }
+.bs-spark-v { font-size:8.5px; color:#7a8495; text-align:center; height:auto; }
+.bs-spark-h { display:flex; gap:6px; align-items:baseline; font-size:10px; color:#1F4E79; margin-top:4px; }
+.bs-spark-h span { color:#5b6472; font-size:9px; }
+.bs-mini-tbl tr.bs-mg td { background:#e8eef5; font-style:italic; }
+.bs-t-desc tr.bs-mg td { background:#f3ecd9; }
 .bs-count { font-size:11.5px; color:#5b6472; margin-bottom:6px; }
 .bs-diag { background:#f4f4f4; border-left:4px solid #7a8495; border-radius:6px; padding:7px 10px;
   font-size:11.5px; color:#262626; margin-bottom:10px; line-height:1.45; }
@@ -616,10 +622,16 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-prev-t { font-size:10.5px; font-weight:bold; color:#1F4E79; margin-bottom:3px; }
 .bs-prev-l { margin:8px 0 0 16px; padding:0; font-size:10.5px; color:#262626; }
 .bs-prev-l li { margin-bottom:3px; }
-.bs-spark { border-collapse:separate; border-spacing:2px 0; margin:2px 0 4px; }
-.bs-spark td { vertical-align:bottom; height:30px; padding:0; }
-.bs-spark td span { display:block; width:7px; background:#A67C00; }
-.bs-spark-x { font-size:7px; color:#7a8495; text-align:center; height:auto; }
+.bs-spark { border-collapse:separate; border-spacing:3px 0; margin:2px 0 8px; }
+.bs-spark td { vertical-align:bottom; height:56px; padding:0; text-align:center; }
+.bs-spark td span { display:inline-block; width:14px; background:#A67C00; border-radius:2px 2px 0 0; }
+.bs-spark td span.bs-spark-last { background:#1F4E79; }
+.bs-spark-x { font-size:9px; color:#5b6472; text-align:center; height:auto; padding-top:2px; }
+.bs-spark-v { font-size:8.5px; color:#7a8495; text-align:center; height:auto; }
+.bs-spark-h { display:flex; gap:6px; align-items:baseline; font-size:10px; color:#1F4E79; margin-top:4px; }
+.bs-spark-h span { color:#5b6472; font-size:9px; }
+.bs-mini-tbl tr.bs-mg td { background:#e8eef5; font-style:italic; }
+.bs-t-desc tr.bs-mg td { background:#f3ecd9; }
 .bs-count { font-size:11.5px; color:#5b6472; margin-bottom:6px; }
 .bs-diag { background:#f4f4f4; border-left:4px solid #7a8495; border-radius:6px; padding:7px 10px;
   font-size:11.5px; color:#262626; margin-bottom:10px; line-height:1.45; }
@@ -4816,6 +4828,13 @@ function bsMetricsTSO(entry, key) {
         // carga
         cargaDisp: cargaDisp,
         cargaMargen: bsNum(dm.alm_cep_mpe != null ? dm.alm_cep_mpe : dd.alm_cep),
+        // CEP = interfaz de electrónica de potencia (leyenda oficial de REE).
+        // Una batería conecta por convertidores, así que la variante que le
+        // aplica es la CEP. «Disponible = margen total − no otorgable»,
+        // comprobado en los 937 nudos del fichero de septiembre.
+        cargaMargenCep: bsNum(dm.alm_cep_mpe), cargaNoOtorgCep: bsNum(dno.alm_cep),
+        cargaDispNoCep: bsNum(dd.alm_no_cep), cargaMargenNoCep: bsNum(dm.alm_no_cep_mges),
+        cargaNoOtorgNoCep: bsNum(dno.alm_no_cep),
         cargaNoCep: bsNum(dd.dem_no_cep),
         cargaCrit: dcl.alm_cep || dcl.dem_no_cep || '—',
         descCrit: (g.crit_lim || {}).alm_mpe || (g.crit_lim || {}).alm_mges || '—',
@@ -4837,7 +4856,8 @@ function bsMetricsTSO(entry, key) {
         descOtorg: bsNum(ot.gen) + bsNum(ot.alm),
         descCola: bsNum(ec.total),
         liberada: bsNum(lb.lib_mpe),
-        noDisp: bsNum(nd.alm_mpe), motivo: nd.motivo || null,
+        noDisp: bsNum(nd.alm_mpe), noDispMges: bsNum(nd.alm_mges), motivo: nd.motivo || null,
+        descDispMges: bsNum(gd.alm_mges_rdt),
         reserva: (rs.estado || '') + (rs.fecha ? ' · ' + rs.fecha : ''),
         posExist: bsNum(pos.transporte_E), posPrev: bsNum(pos.transporte_P),
         // resultado
@@ -5111,14 +5131,27 @@ function bsForecastPill(f) {
     return '<span class="bs-pill" style="background:' + c + '">' + txt + '</span>';
 }
 /* Mini gráfico de la serie, en HTML puro para que imprima en el PDF.        */
-function bsSpark(tr, campo) {
+function bsSpark(tr, campo, etiqueta) {
     const s = tr.serie.filter(function (x) { return x[campo] != null; });
-    if (s.length < 2) return '<span class="bs-sub">sin serie suficiente</span>';
-    const mx = Math.max.apply(null, s.map(function (x) { return x[campo]; })) || 1;
-    let h = '<table class="bs-spark"><tr>';
-    for (const p of s) h += '<td title="' + p.key + ': ' + bsMW(p[campo]) + '"><span style="height:' + Math.max(2, Math.round(p[campo] / mx * 28)) + 'px"></span></td>';
+    if (s.length < 2) return '<div class="bs-sub">sin serie suficiente</div>';
+    const vals = s.map(function (x) { return x[campo]; });
+    const mx = Math.max.apply(null, vals) || 1, mn = Math.min.apply(null, vals);
+    const ult = vals[vals.length - 1], pri = vals[0];
+    const dif = ult - pri;
+    let h = '<div class="bs-spark-h"><b>' + (etiqueta || '') + '</b>' +
+        '<span>máx. ' + bsMW(mx) + ' · mín. ' + bsMW(mn) + ' · ' + (dif >= 0 ? '+' : '') + dif + ' MW en ' + s.length + ' meses</span></div>';
+    h += '<table class="bs-spark"><tr>';
+    for (let i = 0; i < s.length; i++) {
+        const alto = Math.max(3, Math.round(vals[i] / mx * 54));
+        const ultima = (i === s.length - 1);
+        h += '<td><span class="' + (ultima ? 'bs-spark-last' : '') + '" style="height:' + alto + 'px" title="' +
+             s[i].key + ': ' + bsMW(vals[i]) + '"></span></td>';
+    }
     h += '</tr><tr>';
     for (const p of s) h += '<td class="bs-spark-x">' + p.key.split('_')[1] + '</td>';
+    h += '</tr><tr>';
+    for (let i = 0; i < s.length; i++)
+        h += '<td class="bs-spark-v">' + (i === 0 || i === s.length - 1 || vals[i] === mx ? vals[i] : '') + '</td>';
     return h + '</tr></table>';
 }
 
@@ -5390,26 +5423,32 @@ function bsMetricsByName(name) {
 
 function bsFichaHTML(m, paraInforme) {
     const s = bsSem(m), cv = bsCover(m);
+    // CEP = interfaz de electrónica de potencia (leyenda oficial de REE). Una
+    // batería conecta por convertidores, así que la variante que le aplica es
+    // la CEP. Y «solicitable = margen total − no otorgable», comprobado en los
+    // 937 nudos del fichero de septiembre.
     const filaC = [
-        ['SOLICITABLE AHORA', bsMW(m.cargaDisp), true],
-        ['Margen técnico para almacenamiento', m.cargaMargen == null ? 'no publicado' : bsMW(m.cargaMargen), false],
-        ['Margen alternativo: demanda «no CEP»', m.cargaNoCep == null ? 'no publicado' : bsMW(m.cargaNoCep), false],
+        ['ALM CEP · margen total', m.cargaMargenCep == null ? 'no publicado' : bsMW(m.cargaMargenCep), false],
+        ['ALM CEP · no otorgable', bsMW(m.cargaNoOtorgCep || 0) + (m.cargaConcurso ? ' · CONCURSO' : ''), false],
+        ['ALM CEP · SOLICITABLE' + (m.cargaConcurso ? ' (reservado)' : ''), bsMW(m.cargaDisp), true],
+        ['ALM no CEP · margen / solicitable', (m.cargaMargenNoCep == null ? '—' : bsMW(m.cargaMargenNoCep)) + ' / ' + bsMW(m.cargaDispNoCep || 0), false],
         ['Límite por posición', m.grid === 'TSO' ? 'no se publica en demanda' : (m.posPrev ? bsMW(m.posPrev) + ' libres' : 'no publicado'), false],
         ['Ya otorgado en el nudo', bsMW(m.cargaOtorg), false],
         ['En cola: solicitudes en curso', bsMW(m.cargaCola), false],
-        ['Reservado a otra finalidad', m.cargaNoOtorg == null ? 'no publicado' : bsMW(m.cargaNoOtorg), false],
+        ['Demanda convencional «no CEP»', m.cargaNoCep == null ? 'no publicado' : bsMW(m.cargaNoCep), false],
     ];
     const filaD = [
-        ['SOLICITABLE AHORA' + (m.bloqueoConcurso ? ' · reservado a CONCURSO' : ''), bsMW(m.descDisp), true],
-        ['Margen técnico para almacenamiento (MPE)', m.margenMPE == null ? 'no publicado' : bsMW(m.margenMPE), false],
-        ['Margen alternativo: MGES (síncrono)', m.margenMGES == null ? 'no publicado' : bsMW(m.margenMGES), false],
+        ['ALM MPE · margen total', m.margenMPE == null ? 'no publicado' : bsMW(m.margenMPE), false],
+        ['ALM MPE · no disponible', bsMW(m.noDisp || 0) + (m.bloqueoConcurso ? ' · CONCURSO' : ''), false],
+        ['ALM MPE · SOLICITABLE' + (m.bloqueoConcurso ? ' (reservado)' : ''), bsMW(m.descDisp), true],
+        ['ALM MGES · margen / solicitable', (m.margenMGES == null ? '—' : bsMW(m.margenMGES)) + ' / ' + bsMW(m.descDispMges || 0), false],
         ['Límite por posición (MPE)', m.posMPE == null ? 'no publicado' : bsMW(m.posMPE) + (m.capMax ? ' · máx. ' + bsMW(m.capMax) : ''), false],
         ['Ya otorgado en el nudo', bsMW(m.descOtorg), false],
         ['En cola: solicitudes en curso', bsMW(m.descCola), false],
-        ['Reservado a otra finalidad', m.liberada == null ? 'no publicado' : bsMW(m.liberada) + ' · autoconsumo', false],
+        ['Reservado a autoconsumo (no aplicable)', m.liberada == null ? 'no publicado' : bsMW(m.liberada), false],
     ];
     const tabla = (rows, cls) => '<table class="bs-mini-tbl ' + cls + '">' + rows.map(r =>
-        '<tr class="' + (r[2] ? 'bs-hl' : '') + '"><td>' + r[0] + '</td><td class="bs-num">' + r[1] + '</td></tr>').join('') + '</table>';
+        '<tr class="' + (r[2] ? 'bs-hl' : (/margen total/.test(r[0]) ? 'bs-mg' : '')) + '"><td>' + r[0] + '</td><td class="bs-num">' + r[1] + '</td></tr>').join('') + '</table>';
 
     return '<div class="bs-card' + (paraInforme ? ' bs-page' : '') + '">' +
         '<h3>' + m.name + '</h3>' +
@@ -5499,8 +5538,8 @@ function bsPrevHTML(m) {
     h += '</td>';
     // tendencia
     h += '<td><div class="bs-prev-t">Tendencia (' + tr.n + ' meses)</div>';
-    h += '<div class="bs-sub">Potencial de descarga</div>' + bsSpark(tr, 'potencial');
-    h += '<div class="bs-sub">Carga disponible</div>' + bsSpark(tr, 'carga');
+    h += bsSpark(tr, 'potencial', 'Potencial de descarga');
+    h += bsSpark(tr, 'carga', 'Carga solicitable');
     if (tr.suficiente) h += '<div class="bs-sub">Pendiente: <b>' + (tr.pendDesc >= 0 ? '+' : '') + tr.pendDesc.toFixed(1) + ' MW/mes</b> · proyección a 3 meses <b>' + bsMW(tr.proy3) + '</b></div>';
     else h += '<div class="bs-sub">Histórico insuficiente para proyectar (' + tr.n + ' de 4 meses).</div>';
     h += '</td></tr></table>';
