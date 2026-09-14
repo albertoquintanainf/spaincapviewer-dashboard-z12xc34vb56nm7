@@ -5088,7 +5088,7 @@ function bsBuildReport() {
         '<title>' + titulo + '</title><style>' + css + '</style></head><body>' +
         '<div class="bs-rep-head"><b>Hanwha Energy Europe</b> · BESS stand alone · capacidad solicitable por nudo · ' + mm + ' ' + y +
         '<span>Internal use only</span></div>' +
-        '<div class="bs-rep-test"><b>⚠ FASE DE PRUEBAS.</b> Informe generado por un módulo en validación: la lectura de los campos publicados no está confirmada con la leyenda oficial de REE y la parte de DSO está incompleta. No usar como base única de una decisión de inversión.</div>' + body +
+        '<div class="bs-rep-test"><b>⚠ FASE DE PRUEBAS.</b> Los cálculos se apoyan en una lectura propia de los ficheros mensuales publicados por REE (TSO) y las distribuidoras (DSO). Úsalo para explorar y contrastar, no como base única de una decisión estratégica o de inversión. Verifica siempre con el estudio de red del gestor antes de comprometer nada.</div>' + body +
         '<div class="bs-rep-foot">Generado por SPAIN CAP VIEWER (módulo BESS stand alone, fase de pruebas) a partir de los ficheros mensuales de capacidad de acceso. Documento de uso interno; no constituye asesoramiento jurídico.</div>' +
         '</body></html>';
     const fname = 'BESS_stand_alone_' + mm + '_' + y + (metr.length > 1 ? '_' + metr.length + 'nudos' : '_' + metr[0].name.replace(/\s+/g, '_'));
