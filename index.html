@@ -528,8 +528,25 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-port-g { display:table; width:100%; border-spacing:10px 0; margin-top:10px; }
 .bs-port-g > div { display:table-cell; width:50%; vertical-align:top; background:#fff;
   border:1px solid #e2e8f0; border-radius:8px; padding:8px 10px; }
-.bs-port-t { font-size:12px; font-weight:bold; color:#1F4E79; margin-bottom:4px; }
-.bs-port-av p { margin:0 0 6px; font-size:10.5px; line-height:1.45; color:#262626; }
+.bs-port-t { font-size:10.5px; font-weight:bold; color:#1F4E79; margin-bottom:3px; }
+.bs-port-av p { margin:0 0 4px; font-size:8.5px; line-height:1.35; color:#262626; }
+/* La portada lleva mucho texto: se compacta para que entre siempre en la
+   primera hoja sin que el autoajuste tenga que reducirla tanto que no se lea. */
+.bs-portada { padding:10px 12px; }
+.bs-portada .bs-port-h { font-size:17px; }
+.bs-portada .bs-port-s { font-size:9.5px; margin-bottom:7px; }
+.bs-portada .bs-obj td { padding:4px 8px; font-size:9.5px; }
+.bs-portada .bs-obj-h { width:160px; font-size:10px; }
+.bs-portada .bs-obj td b { font-size:12px; }
+.bs-portada .bs-obj-n { font-size:8px; }
+.bs-portada .bs-metod { border:none; padding:0; font-size:8.5px; }
+.bs-port-l { margin:0 0 0 13px; padding:0; font-size:8.5px; line-height:1.35; color:#262626; }
+.bs-port-l li { margin-bottom:4px; }
+.bs-port-cr { color:#7a8495; font-style:italic; }
+.bs-portada .bs-metod ul { margin:0 0 0 13px; }
+.bs-portada .bs-metod li { margin-bottom:3px; line-height:1.35; }
+.bs-portada .bs-port-g { border-spacing:8px 0; margin-top:7px; }
+.bs-portada .bs-port-g > div { padding:6px 8px; }
 .bs-warn { font-size:11.5px; color:#B3261E; padding:2px 10px 0; }
 .bs-it { font-size:10.5px; color:#5b6472; font-style:italic; padding:4px 10px; }
 .bs-mini-tbl { width:100%; border-collapse:collapse; font-size:10.5px; margin:4px 0 2px; }
@@ -590,9 +607,16 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-lbl, .bs-warn { font-size:9px; padding:1px 8px 0; }
   .bs-lbl2 { font-size:8.5px; padding:1px 8px 0; }
   .bs-head3 { min-height:62px; }
-  .bs-port-av p { font-size:9px; margin:0 0 5px; }
-  .bs-port-t { font-size:11px; }
-  .bs-portada .bs-port-h { font-size:18px; }
+  .bs-portada .bs-port-h { font-size:16px; }
+  .bs-portada .bs-port-s { font-size:8.5px; }
+  .bs-portada .bs-port-t { font-size:10px; }
+  .bs-portada .bs-port-av p { font-size:8px; line-height:1.3; margin:0 0 4px; }
+  .bs-portada .bs-metod { font-size:8px; }
+  .bs-port-l { font-size:8px; line-height:1.3; }
+  .bs-port-l li { margin-bottom:3px; }
+  .bs-portada .bs-metod li { margin-bottom:2px; line-height:1.3; }
+  .bs-portada .bs-obj td { padding:3px 7px; font-size:9px; }
+  .bs-portada .bs-obj td b { font-size:11px; }
   .bs-it { font-size:8px; padding:2px 8px; }
   .bs-col-h { font-size:10.5px; padding:4px 8px; }
   .bs-mini-tbl { font-size:9.5px; }
@@ -772,8 +796,25 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-port-g { display:table; width:100%; border-spacing:10px 0; margin-top:10px; }
 .bs-port-g > div { display:table-cell; width:50%; vertical-align:top; background:#fff;
   border:1px solid #e2e8f0; border-radius:8px; padding:8px 10px; }
-.bs-port-t { font-size:12px; font-weight:bold; color:#1F4E79; margin-bottom:4px; }
-.bs-port-av p { margin:0 0 6px; font-size:10.5px; line-height:1.45; color:#262626; }
+.bs-port-t { font-size:10.5px; font-weight:bold; color:#1F4E79; margin-bottom:3px; }
+.bs-port-av p { margin:0 0 4px; font-size:8.5px; line-height:1.35; color:#262626; }
+/* La portada lleva mucho texto: se compacta para que entre siempre en la
+   primera hoja sin que el autoajuste tenga que reducirla tanto que no se lea. */
+.bs-portada { padding:10px 12px; }
+.bs-portada .bs-port-h { font-size:17px; }
+.bs-portada .bs-port-s { font-size:9.5px; margin-bottom:7px; }
+.bs-portada .bs-obj td { padding:4px 8px; font-size:9.5px; }
+.bs-portada .bs-obj-h { width:160px; font-size:10px; }
+.bs-portada .bs-obj td b { font-size:12px; }
+.bs-portada .bs-obj-n { font-size:8px; }
+.bs-portada .bs-metod { border:none; padding:0; font-size:8.5px; }
+.bs-port-l { margin:0 0 0 13px; padding:0; font-size:8.5px; line-height:1.35; color:#262626; }
+.bs-port-l li { margin-bottom:4px; }
+.bs-port-cr { color:#7a8495; font-style:italic; }
+.bs-portada .bs-metod ul { margin:0 0 0 13px; }
+.bs-portada .bs-metod li { margin-bottom:3px; line-height:1.35; }
+.bs-portada .bs-port-g { border-spacing:8px 0; margin-top:7px; }
+.bs-portada .bs-port-g > div { padding:6px 8px; }
 .bs-warn { font-size:11.5px; color:#B3261E; padding:2px 10px 0; }
 .bs-it { font-size:10.5px; color:#5b6472; font-style:italic; padding:4px 10px; }
 .bs-mini-tbl { width:100%; border-collapse:collapse; font-size:10.5px; margin:4px 0 2px; }
@@ -834,9 +875,16 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-lbl, .bs-warn { font-size:9px; padding:1px 8px 0; }
   .bs-lbl2 { font-size:8.5px; padding:1px 8px 0; }
   .bs-head3 { min-height:62px; }
-  .bs-port-av p { font-size:9px; margin:0 0 5px; }
-  .bs-port-t { font-size:11px; }
-  .bs-portada .bs-port-h { font-size:18px; }
+  .bs-portada .bs-port-h { font-size:16px; }
+  .bs-portada .bs-port-s { font-size:8.5px; }
+  .bs-portada .bs-port-t { font-size:10px; }
+  .bs-portada .bs-port-av p { font-size:8px; line-height:1.3; margin:0 0 4px; }
+  .bs-portada .bs-metod { font-size:8px; }
+  .bs-port-l { font-size:8px; line-height:1.3; }
+  .bs-port-l li { margin-bottom:3px; }
+  .bs-portada .bs-metod li { margin-bottom:2px; line-height:1.3; }
+  .bs-portada .bs-obj td { padding:3px 7px; font-size:9px; }
+  .bs-portada .bs-obj td b { font-size:11px; }
   .bs-it { font-size:8px; padding:2px 8px; }
   .bs-col-h { font-size:10.5px; padding:4px 8px; }
   .bs-mini-tbl { font-size:9.5px; }
@@ -5230,6 +5278,7 @@ function bsSerie(entry) {
         out.push({
             key: k,
             carga: (d.disp && d.disp.alm_cep != null) ? bsNum(d.disp.alm_cep) : null,
+            cargaMargen: (d.margen && d.margen.alm_cep_mpe != null) ? bsNum(d.margen.alm_cep_mpe) : null,
             descDisp: bsNum((g.disp || {}).alm_mpe_rdt),
             margenMPE: mpe,
             potencial: (pos == null) ? mpe : Math.min(mpe, bsNum(pos)),
@@ -5849,7 +5898,7 @@ function bsFichaHTML(m, paraInforme) {
         '<table class="bs-cols"><tr>' +
         '<td class="bs-col bs-col-carga"><div class="bs-col-h">CARGA · permiso de demanda' + (m.cargaConcurso ? ' · reservado a CONCURSO' : '') + '</div>' +
         '<div class="bs-head3">' +
-        '<div class="bs-big bs-blue">' + bsMW(m.cargaDisp) + '</div>' +
+        '<div class="bs-big ' + (m.cargaDisp > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(m.cargaDisp) + '</div>' +
         '<div class="bs-lbl">SOLICITABLE hoy para almacenamiento (ALM CEP)</div>' +
         (m.cargaConcurso
             ? '<div class="bs-warn"><b>reservado a CONCURSO de demanda:</b> ' +
@@ -5974,14 +6023,20 @@ function bsPrevHTML(m, compacto) {
     // descarga es POTENCIAL (margen acotado por la posición), porque lo
     // solicitable está a cero mientras haya reserva a concurso; la de carga
     // es directamente lo SOLICITABLE.
-    const gD = bsSpark(tr, 'potencial', 'DESCARGA · potencial',
-        'mín(margen MPE, límite de posición) · <b>no</b> es lo solicitable: hoy ' + bsMW(m.descDisp) +
-        (m.bloqueoConcurso ? ' por la reserva a CONCURSO' : ''));
-    const gC = bsSpark(tr, 'carga', 'CARGA · solicitable',
-        'disponible de almacenamiento en demanda · margen total hoy ' + (m.cargaMargenCep == null ? '—' : bsMW(m.cargaMargenCep)));
+    // Las dos series dibujan la MISMA magnitud, el margen mensual, para que
+    // sean comparables. Debajo de cada título se indica lo solicitable hoy,
+    // que es lo que ese margen deja realmente pedir.
+    const gD = bsSpark(tr, 'potencial', 'DESCARGA · margen mensual (ALM MPE)',
+        'margen técnico acotado por el límite de posición · <b>solicitable hoy ' + bsMW(m.descDisp) + '</b>' +
+        (m.bloqueoConcurso ? ', el resto está reservado a CONCURSO' : ''));
+    // si el margen no está publicado en toda la serie, se cae al disponible
+    const campoC = tr.serie.filter(function (x) { return x.cargaMargen != null; }).length >= 2 ? 'cargaMargen' : 'carga';
+    const gC = bsSpark(tr, campoC, 'CARGA · margen mensual (ALM CEP)' + (campoC === 'carga' ? ' — serie de disponible' : ''),
+        'margen de almacenamiento en demanda · <b>solicitable hoy ' + bsMW(m.cargaDisp) + '</b>' +
+        (m.cargaNoOtorgCep > 0 ? ', ' + bsMW(m.cargaNoOtorgCep) + ' no otorgables' : ''));
     h += compacto ? '<table class="bs-duo"><tr><td>' + gD + '</td><td>' + gC + '</td></tr></table>' : gD + gC;
     h += '<div class="bs-sub">' + (tr.suficiente
-        ? 'Pendiente del <b>potencial de descarga</b>: <b>' + (tr.pendDesc >= 0 ? '+' : '') + tr.pendDesc.toFixed(1) + ' MW/mes</b> · proyección: ' +
+        ? 'Pendiente del <b>margen de descarga</b>: <b>' + (tr.pendDesc >= 0 ? '+' : '') + tr.pendDesc.toFixed(1) + ' MW/mes</b> · proyección: ' +
           bsMW(tr.ultimo) + ' (' + tr.mesUltimo + ') ' + (tr.pendDesc >= 0 ? '+' : '−') + ' 3 × ' +
           Math.abs(tr.pendDesc).toFixed(1) + ' = <b>' + bsMW(tr.proy3) + '</b>'
         : 'Histórico insuficiente para proyectar (' + tr.n + ' de 4 meses)') +
@@ -6017,6 +6072,32 @@ function bsPrevHTML(m, compacto) {
     return h + '</td></tr></table>';
 }
 
+/* Versión condensada de la metodología para la portada: la del visor tiene
+   trece puntos y, por muy pequeña que se ponga la letra, no cabe con holgura
+   junto a los avisos. Aquí se resume en siete, sin perder ninguna definición
+   que haga falta para leer las cifras.                                      */
+function bsNotaPortada() {
+    return '<ul class="bs-port-l">' +
+        '<li><b>Solicitable = margen total − no otorgable</b> (comprobado en los 937 nudos). ' +
+        'CARGA es el almacenamiento <b>ALM CEP</b> en la perspectiva de demanda; DESCARGA es <b>ALM MPE</b> en generación. ' +
+        'Una batería conecta por convertidores, así que le aplican las variantes CEP y MPE, no las síncronas.</li>' +
+        '<li><b>Potencial de descarga</b> = mín(margen técnico MPE, límite por posición). No es capacidad adjudicada ' +
+        'ni comprometida: es el techo que podría salir a concurso si se convoca.</li>' +
+        '<li><b>Cobertura</b> de cada lado sobre su objetivo, y <b>simétrico máximo</b> = mín(carga, descarga). ' +
+        'Carga y descarga son dos permisos distintos: se evalúan por separado y no se promedian. ' +
+        'No se aplica ninguna tolerancia de asimetría porque la normativa no establece ninguna.</li>' +
+        '<li><b>Gráficos:</b> los dos dibujan la misma magnitud, el <i>margen mensual</i> de cada lado, para que sean ' +
+        'comparables. El de descarga va acotado por el límite de posición. Bajo cada título se indica lo solicitable hoy, ' +
+        'que es lo que ese margen deja realmente pedir.</li>' +
+        '<li><b>Previsión:</b> techo por criterio, exposición al fondo zonal compartido y tendencia por mínimos cuadrados. ' +
+        'No se proyecta con menos de 4 meses y se excluyen los meses de revisión metodológica de REE.</li>' +
+        '<li><b>Probabilidades</b> calculadas sobre observaciones nudo-mes. Los cambios de criterio son casi inexistentes ' +
+        'y, cuando ocurren, casi siempre van <b>hacia WSCR</b>, es decir a peor: el módulo lo marca como deriva.</li>' +
+        '<li>La capacidad del bloque <i>liberada</i> está afecta al <b>autoconsumo</b> del RDL 7/2026: no la puede usar ' +
+        'un proyecto sin consumidor asociado.</li>' +
+        '</ul>';
+}
+
 /* Portada: recoge una sola vez el objetivo, la metodología y todos los
    avisos, de modo que las fichas quedan limpias de textos legales.        */
 function bsPortadaHTML(metr, mes, anio) {
@@ -6028,7 +6109,7 @@ function bsPortadaHTML(metr, mes, anio) {
         ' · ' + metr.length + ' nudo(s): ' + nudos + '</div>' +
         bsObjHTML() +
         '<div class="bs-port-g"><div>' +
-        '<div class="bs-port-t">Metodología</div>' + bsNotaHTML() +
+        '<div class="bs-port-t">Metodología</div>' + bsNotaPortada() +
         '</div><div>' +
         '<div class="bs-port-t">Avisos y alcance</div>' +
         '<div class="bs-port-av">' +
@@ -6044,8 +6125,8 @@ function bsPortadaHTML(metr, mes, anio) {
         'oficial para publicar la capacidad flexible por nudo sigue pendiente de resolución (ap. sexto.3), así que ' +
         'los cupos de 300 MW, 20 % y 3 instalaciones solo pueden estimarse. Los identificadores de zona no son ' +
         'globales: el mismo código significa cosas distintas en generación y en demanda.</p>' +
-        '<p>Generado por SPAIN CAP VIEWER a partir de los ficheros mensuales de capacidad de acceso. ' +
-        'Documento de uso interno; no constituye asesoramiento jurídico.</p>' +
+        '<p class="bs-port-cr">Generado por SPAIN CAP VIEWER a partir de los ficheros mensuales de capacidad de acceso. ' +
+        'Uso interno; no constituye asesoramiento jurídico.</p>' +
         '</div></div></div></div>';
 }
 
@@ -6055,7 +6136,7 @@ function bsNotaHTML() {
         '<ul>' +
         '<li><b>CARGA solicitable</b> = disponible de almacenamiento en la perspectiva de demanda. <b>DESCARGA solicitable</b> = disponible de almacenamiento MPE en generación (una batería conecta por convertidores, por eso se usa MPE y no MGES).</li>' +
         '<li><b>Potencial de descarga</b> = mín(margen técnico MPE, margen por posición). No es capacidad adjudicada ni comprometida: es el techo que podría salir a concurso si se convoca.</li>' +
-        '<li><b>Qué dibujan los gráficos.</b> El de descarga muestra el <b>potencial</b>, es decir mín(margen técnico MPE, límite por posición), no lo solicitable: mientras haya reserva a concurso lo solicitable es cero y la serie sería una línea plana sin información. El de carga muestra directamente lo <b>solicitable</b> en demanda. Cada gráfico lo indica bajo su título, junto al valor del mes activo del otro concepto.</li>' +
+        '<li><b>Qué dibujan los gráficos.</b> Los dos muestran el <b>margen mensual</b> de su lado, que es la magnitud comparable: en descarga el margen técnico MPE acotado por el límite de posición, y en carga el margen de almacenamiento ALM CEP. No dibujan lo solicitable, que en descarga sería una línea plana a cero mientras haya reserva a concurso; ese valor se indica bajo cada título.</li>' +
         '<li><b>Cobertura</b> = disponible de cada lado sobre el objetivo correspondiente. Carga y descarga son <b>dos permisos distintos</b>, así que se evalúan por separado y no se promedian.</li>' +
         '<li><b>BESS simétrico máximo</b> = mín(carga, descarga): la mayor batería con la misma potencia en ambos sentidos que admitiría el nudo. Si se acepta asimetría, el techo de cada lado es su propio disponible.</li>' +
         '<li><b>Previsión.</b> Tres piezas: <i>techo por criterio</i> (qué margen habría si se levantara el criterio que hoy limita), <i>exposición zonal</i> (los criterios de zona son un fondo común, así que la cola de la zona erosiona el margen de todos sus nudos) y <i>tendencia</i> (pendiente por mínimos cuadrados sobre el histórico; no se proyecta con menos de 4 meses).</li>' +
