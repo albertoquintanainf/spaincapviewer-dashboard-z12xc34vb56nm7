@@ -460,7 +460,9 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-prev td { padding:7px 10px; vertical-align:top; }
 .bs-prev-h { font-size:11.5px; color:#222; }
 .bs-prev-g { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
-.bs-prev-g > tr > td { width:33.33%; background:#fff; border:1px solid #e2e8f0; border-radius:6px; padding:6px 8px; }
+.bs-prev-g > tr > td { width:50%; background:#fff; border:1px solid #e2e8f0; border-radius:6px; padding:6px 8px; }
+.bs-prev-t2 { font-size:10.5px; font-weight:bold; color:#1F4E79; margin:6px 0 3px; padding-top:5px;
+  border-top:1px solid #e2e8f0; }
 .bs-prev-t { font-size:10.5px; font-weight:bold; color:#1F4E79; margin-bottom:3px; }
 .bs-prev-l { margin:8px 0 0 16px; padding:0; font-size:10.5px; color:#262626; }
 .bs-prev-l li { margin-bottom:3px; }
@@ -573,7 +575,8 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-acc-t { font-size:11px; width:130px; } .bs-acc-d { font-size:9px; }
   .bs-prev td { padding:2px 5px; }
   .bs-prev-h { font-size:9.5px; }
-  .bs-prev-t { font-size:9px; }
+  .bs-prev-t, .bs-prev-t2 { font-size:9px; }
+  .bs-prev-t2 { margin:4px 0 2px; padding-top:3px; }
   .bs-lin { font-size:8px; }
   .bs-prev-l { font-size:8px; margin:3px 0 0 12px; }
   .bs-bar { width:7px; }
@@ -667,7 +670,9 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-prev td { padding:7px 10px; vertical-align:top; }
 .bs-prev-h { font-size:11.5px; color:#222; }
 .bs-prev-g { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
-.bs-prev-g > tr > td { width:33.33%; background:#fff; border:1px solid #e2e8f0; border-radius:6px; padding:6px 8px; }
+.bs-prev-g > tr > td { width:50%; background:#fff; border:1px solid #e2e8f0; border-radius:6px; padding:6px 8px; }
+.bs-prev-t2 { font-size:10.5px; font-weight:bold; color:#1F4E79; margin:6px 0 3px; padding-top:5px;
+  border-top:1px solid #e2e8f0; }
 .bs-prev-t { font-size:10.5px; font-weight:bold; color:#1F4E79; margin-bottom:3px; }
 .bs-prev-l { margin:8px 0 0 16px; padding:0; font-size:10.5px; color:#262626; }
 .bs-prev-l li { margin-bottom:3px; }
@@ -780,7 +785,8 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-acc-t { font-size:11px; width:130px; } .bs-acc-d { font-size:9px; }
   .bs-prev td { padding:2px 5px; }
   .bs-prev-h { font-size:9.5px; }
-  .bs-prev-t { font-size:9px; }
+  .bs-prev-t, .bs-prev-t2 { font-size:9px; }
+  .bs-prev-t2 { margin:4px 0 2px; padding-top:3px; }
   .bs-lin { font-size:8px; }
   .bs-prev-l { font-size:8px; margin:3px 0 0 12px; }
   .bs-bar { width:7px; }
@@ -5779,11 +5785,13 @@ function bsPrevHTML(m, compacto) {
     const f = bsFc(m);
     const t = f.techo, z = f.zona, tr = f.trend;
     let h = '<table class="bs-prev' + (compacto ? ' bs-prev-c' : '') + '"><tr><td class="bs-prev-h">' +
-        bsForecastPill(f) + ' <b>QUÉ ESPERAR EN LOS PRÓXIMOS MESES</b></td></tr><tr><td>';
-    h += '<table class="bs-prev-g"><tr>';
+        bsForecastPill(f) + ' <b>¿QUÉ ESPERAR EN LOS PRÓXIMOS MESES?</b></td></tr><tr><td>';
+    // Dos columnas en lugar de tres: con tres, la de tendencia se quedaba
+    // demasiado estrecha y los dos gráficos se solapaban.
+    h += '<table class="bs-prev-g"><tr><td>';
 
     // ── techo por criterio, en líneas compactas ──
-    h += '<td><div class="bs-prev-t">Techo por criterio</div>';
+    h += '<div class="bs-prev-t">Techo por criterio</div>';
     if (t) {
         h += '<div class="bs-lin">';
         for (const c of t.detalle) {
@@ -5794,10 +5802,9 @@ function bsPrevHTML(m, compacto) {
         h += '</div><div class="bs-sub">Limita <b>' + t.limita.id + '</b> → si se levantara, <b>' + bsMW(t.techo) +
              '</b> por ' + t.techoPor + (t.gana > 0 ? ' (+' + t.gana + ' MW)' : '') + '</div>';
     } else h += '<div class="bs-sub">sin datos de criterios</div>';
-    h += '</td>';
 
-    // ── exposición zonal, en líneas compactas ──
-    h += '<td><div class="bs-prev-t">Exposición zonal</div>';
+    // ── exposición zonal, debajo, en la misma columna ──
+    h += '<div class="bs-prev-t2">Exposición zonal</div>';
     if (z) {
         const col = { 'agotado': 'bs-red', 'alto': 'bs-red', 'medio': 'bs-must', 'bajo': 'bs-green' }[z.riesgo];
         h += '<div class="bs-lin">' +
@@ -5812,7 +5819,7 @@ function bsPrevHTML(m, compacto) {
     } else h += '<div class="bs-sub">sin criterio dinámico de zona: el margen es propio del nudo</div>';
     h += '</td>';
 
-    // ── tendencia y estabilidad ──
+    // ── tendencia y estabilidad, columna derecha ──
     const est = bsEstab(m), tas = bsTasas();
     h += '<td><div class="bs-prev-t">Tendencia y estabilidad · ' + tr.n + ' meses</div>';
     // En el informe los dos gráficos van uno al lado del otro: así se ven
