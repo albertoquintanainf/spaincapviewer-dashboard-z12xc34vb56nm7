@@ -515,7 +515,8 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 @page { size:A4 landscape; margin:10mm; }
 @media print {
   .bs-page { page-break-after:always; break-after:page; border:none; box-shadow:none; }
-  .bs-page:last-of-type { page-break-after:auto; break-after:auto; }
+  .bs-page-last { page-break-after:auto !important; break-after:auto !important; }
+  .bs-rep-foot { page-break-before:avoid; break-before:avoid; }
   .bs-cols, .bs-concl, .bs-acc, .bs-tbl { page-break-inside:avoid; break-inside:avoid; }
   .bs-rep-head { margin-bottom:8px; }
   .bs-acc { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
@@ -645,7 +646,8 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 @page { size:A4 landscape; margin:10mm; }
 @media print {
   .bs-page { page-break-after:always; break-after:page; border:none; box-shadow:none; }
-  .bs-page:last-of-type { page-break-after:auto; break-after:auto; }
+  .bs-page-last { page-break-after:auto !important; break-after:auto !important; }
+  .bs-rep-foot { page-break-before:avoid; break-before:avoid; }
   .bs-cols, .bs-concl, .bs-acc, .bs-tbl { page-break-inside:avoid; break-inside:avoid; }
   .bs-rep-head { margin-bottom:8px; }
   .bs-acc { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
@@ -5075,6 +5077,11 @@ function bsBuildReport() {
     let body = '';
     if (metr.length > 1) body += bsResumenHTML(metr);
     body += metr.map(x => bsFichaHTML(x, true)).join('');
+    // La última página NO debe forzar salto: si lo hace, el navegador añade una
+    // hoja en blanco al final. Se marca con una clase propia porque :last-of-type
+    // no sirve aquí (el último div hermano es el pie del informe).
+    const ultima = body.lastIndexOf('class="bs-card bs-page"');
+    if (ultima >= 0) body = body.slice(0, ultima) + 'class="bs-card bs-page bs-page-last"' + body.slice(ultima + 'class="bs-card bs-page"'.length);
     const css = document.getElementById('bs-report-css').textContent;
     const titulo = 'BESS stand alone · ' + mm + ' ' + y;
     const doc = '<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">' +
