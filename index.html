@@ -419,8 +419,8 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-page { position:relative; }
 .bs-wm-w { height:0; }
 @supports (position:absolute) { .bs-wm-w { overflow:visible; } }
-.bs-wm { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-22deg);
-  font:bold 54px/1 Arial,Helvetica,sans-serif; color:#B3261E; opacity:.13; letter-spacing:8px;
+.bs-wm { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-24deg);
+  font:bold 92px/1 Arial,Helvetica,sans-serif; color:#B3261E; opacity:.13; letter-spacing:8px;
   white-space:nowrap; pointer-events:none; z-index:50; }
 #bs-close { margin-left:auto; background:#F3721F; color:#fff; border:none; border-radius:6px; padding:6px 12px;
   font-size:13px; font-weight:bold; cursor:pointer; }
@@ -483,6 +483,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-spark-v { font-size:8.5px; color:#7a8495; text-align:center; height:auto; }
 .bs-spark-h { display:flex; gap:6px; align-items:baseline; font-size:10px; color:#1F4E79; margin-top:4px; }
 .bs-spark-h span { color:#5b6472; font-size:9px; }
+.bs-spark-q { font-size:8.5px; color:#7a8495; font-style:italic; line-height:1.3; margin-bottom:2px; }
 .bs-mini-tbl tr.bs-mg td { background:#e8eef5; font-style:italic; }
 .bs-t-desc tr.bs-mg td { background:#f3ecd9; }
 .bs-lin { font-size:9.5px; color:#262626; margin:1px 0 2px; }
@@ -520,6 +521,15 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-big { font-size:30px; font-weight:bold; padding:8px 10px 0; line-height:1.1; }
 .bs-pot { font-size:12px; }
 .bs-lbl { font-size:11.5px; font-weight:bold; color:#262626; padding:2px 10px 0; }
+.bs-lbl2 { font-size:10px; color:#5b6472; padding:1px 10px 0; }
+.bs-head3 { min-height:78px; }
+.bs-portada .bs-port-h { margin:0 0 2px; font-size:20px; color:#222; }
+.bs-port-s { font-size:11px; color:#5b6472; margin-bottom:10px; }
+.bs-port-g { display:table; width:100%; border-spacing:10px 0; margin-top:10px; }
+.bs-port-g > div { display:table-cell; width:50%; vertical-align:top; background:#fff;
+  border:1px solid #e2e8f0; border-radius:8px; padding:8px 10px; }
+.bs-port-t { font-size:12px; font-weight:bold; color:#1F4E79; margin-bottom:4px; }
+.bs-port-av p { margin:0 0 6px; font-size:10.5px; line-height:1.45; color:#262626; }
 .bs-warn { font-size:11.5px; color:#B3261E; padding:2px 10px 0; }
 .bs-it { font-size:10.5px; color:#5b6472; font-style:italic; padding:4px 10px; }
 .bs-mini-tbl { width:100%; border-collapse:collapse; font-size:10.5px; margin:4px 0 2px; }
@@ -569,17 +579,20 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 @page { size:A4 landscape; margin:10mm; }
 @media print {
   /* ── El informe debe caber en una hoja A4 horizontal por nudo ──
-     Todo va compactado y, además, la ficha se escala con «zoom». Los
-     navegadores lo respetan al imprimir. Si en algún equipo la ficha aún se
-     saliera de la hoja, este es el único valor que hay que bajar (0.80 deja
-     bastante margen; 0.90 apura más el tamaño de letra). */
-  .bs-page { zoom: 0.85; }
+     El informe generado se autoajusta: mide cada ficha y le aplica la mayor
+     escala que quepa en una hoja, con tope en el 100 %. Aquí no se fija
+     ningún zoom para no interferir con esa medida. */
   .bs-card { padding:4px 8px; margin-bottom:0; }
   .bs-card h3 { font-size:16px; margin-bottom:0; }
   .bs-sub2 { font-size:9.5px; margin-bottom:4px; }
   .bs-diag { font-size:9px; padding:4px 7px; margin-bottom:5px; line-height:1.3; }
   .bs-big { font-size:21px; padding:3px 8px 0; }
   .bs-lbl, .bs-warn { font-size:9px; padding:1px 8px 0; }
+  .bs-lbl2 { font-size:8.5px; padding:1px 8px 0; }
+  .bs-head3 { min-height:62px; }
+  .bs-port-av p { font-size:9px; margin:0 0 5px; }
+  .bs-port-t { font-size:11px; }
+  .bs-portada .bs-port-h { font-size:18px; }
   .bs-it { font-size:8px; padding:2px 8px; }
   .bs-col-h { font-size:10.5px; padding:4px 8px; }
   .bs-mini-tbl { font-size:9.5px; }
@@ -606,11 +619,12 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-prev-g > tr > td { padding:3px 5px; }
   .bs-prev-l li { margin-bottom:1px; }
   .bs-spark-h { font-size:9px; margin-top:3px; }
+  .bs-spark-q { font-size:7.5px; }
   .bs-spark-x, .bs-spark-v { font-size:7.5px; }
   .bs-foot { font-size:7.5px; margin-top:2px; }
   .bs-rep-foot { font-size:6.5px; padding-top:3px; margin-top:4px; }
   .bs-concl-b { width:15%; } .bs-concl-h { width:24%; }
-  .bs-wm { font-size:48px; opacity:.15; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .bs-wm { font-size:104px; opacity:.13; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   .bs-rep-head { font-size:8.5px; padding-bottom:2px; margin-bottom:4px; }
   .bs-tbl { font-size:8px; } .bs-tbl td, .bs-tbl th { padding:2px 4px; }
   .bs-page { page-break-after:always; break-after:page; border:none; box-shadow:none; }
@@ -649,8 +663,8 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-page { position:relative; }
 .bs-wm-w { height:0; }
 @supports (position:absolute) { .bs-wm-w { overflow:visible; } }
-.bs-wm { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-22deg);
-  font:bold 54px/1 Arial,Helvetica,sans-serif; color:#B3261E; opacity:.13; letter-spacing:8px;
+.bs-wm { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-24deg);
+  font:bold 92px/1 Arial,Helvetica,sans-serif; color:#B3261E; opacity:.13; letter-spacing:8px;
   white-space:nowrap; pointer-events:none; z-index:50; }
 #bs-close { margin-left:auto; background:#F3721F; color:#fff; border:none; border-radius:6px; padding:6px 12px;
   font-size:13px; font-weight:bold; cursor:pointer; }
@@ -713,6 +727,7 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-spark-v { font-size:8.5px; color:#7a8495; text-align:center; height:auto; }
 .bs-spark-h { display:flex; gap:6px; align-items:baseline; font-size:10px; color:#1F4E79; margin-top:4px; }
 .bs-spark-h span { color:#5b6472; font-size:9px; }
+.bs-spark-q { font-size:8.5px; color:#7a8495; font-style:italic; line-height:1.3; margin-bottom:2px; }
 .bs-mini-tbl tr.bs-mg td { background:#e8eef5; font-style:italic; }
 .bs-t-desc tr.bs-mg td { background:#f3ecd9; }
 .bs-lin { font-size:9.5px; color:#262626; margin:1px 0 2px; }
@@ -750,6 +765,15 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-big { font-size:30px; font-weight:bold; padding:8px 10px 0; line-height:1.1; }
 .bs-pot { font-size:12px; }
 .bs-lbl { font-size:11.5px; font-weight:bold; color:#262626; padding:2px 10px 0; }
+.bs-lbl2 { font-size:10px; color:#5b6472; padding:1px 10px 0; }
+.bs-head3 { min-height:78px; }
+.bs-portada .bs-port-h { margin:0 0 2px; font-size:20px; color:#222; }
+.bs-port-s { font-size:11px; color:#5b6472; margin-bottom:10px; }
+.bs-port-g { display:table; width:100%; border-spacing:10px 0; margin-top:10px; }
+.bs-port-g > div { display:table-cell; width:50%; vertical-align:top; background:#fff;
+  border:1px solid #e2e8f0; border-radius:8px; padding:8px 10px; }
+.bs-port-t { font-size:12px; font-weight:bold; color:#1F4E79; margin-bottom:4px; }
+.bs-port-av p { margin:0 0 6px; font-size:10.5px; line-height:1.45; color:#262626; }
 .bs-warn { font-size:11.5px; color:#B3261E; padding:2px 10px 0; }
 .bs-it { font-size:10.5px; color:#5b6472; font-style:italic; padding:4px 10px; }
 .bs-mini-tbl { width:100%; border-collapse:collapse; font-size:10.5px; margin:4px 0 2px; }
@@ -799,17 +823,20 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 @page { size:A4 landscape; margin:10mm; }
 @media print {
   /* ── El informe debe caber en una hoja A4 horizontal por nudo ──
-     Todo va compactado y, además, la ficha se escala con «zoom». Los
-     navegadores lo respetan al imprimir. Si en algún equipo la ficha aún se
-     saliera de la hoja, este es el único valor que hay que bajar (0.80 deja
-     bastante margen; 0.90 apura más el tamaño de letra). */
-  .bs-page { zoom: 0.85; }
+     El informe generado se autoajusta: mide cada ficha y le aplica la mayor
+     escala que quepa en una hoja, con tope en el 100 %. Aquí no se fija
+     ningún zoom para no interferir con esa medida. */
   .bs-card { padding:4px 8px; margin-bottom:0; }
   .bs-card h3 { font-size:16px; margin-bottom:0; }
   .bs-sub2 { font-size:9.5px; margin-bottom:4px; }
   .bs-diag { font-size:9px; padding:4px 7px; margin-bottom:5px; line-height:1.3; }
   .bs-big { font-size:21px; padding:3px 8px 0; }
   .bs-lbl, .bs-warn { font-size:9px; padding:1px 8px 0; }
+  .bs-lbl2 { font-size:8.5px; padding:1px 8px 0; }
+  .bs-head3 { min-height:62px; }
+  .bs-port-av p { font-size:9px; margin:0 0 5px; }
+  .bs-port-t { font-size:11px; }
+  .bs-portada .bs-port-h { font-size:18px; }
   .bs-it { font-size:8px; padding:2px 8px; }
   .bs-col-h { font-size:10.5px; padding:4px 8px; }
   .bs-mini-tbl { font-size:9.5px; }
@@ -836,11 +863,12 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-prev-g > tr > td { padding:3px 5px; }
   .bs-prev-l li { margin-bottom:1px; }
   .bs-spark-h { font-size:9px; margin-top:3px; }
+  .bs-spark-q { font-size:7.5px; }
   .bs-spark-x, .bs-spark-v { font-size:7.5px; }
   .bs-foot { font-size:7.5px; margin-top:2px; }
   .bs-rep-foot { font-size:6.5px; padding-top:3px; margin-top:4px; }
   .bs-concl-b { width:15%; } .bs-concl-h { width:24%; }
-  .bs-wm { font-size:48px; opacity:.15; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .bs-wm { font-size:104px; opacity:.13; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   .bs-rep-head { font-size:8.5px; padding-bottom:2px; margin-bottom:4px; }
   .bs-tbl { font-size:8px; } .bs-tbl td, .bs-tbl th { padding:2px 4px; }
   .bs-page { page-break-after:always; break-after:page; border:none; box-shadow:none; }
@@ -4785,12 +4813,6 @@ function renderOportunidades(){
       <label title="Al vincular, la carga se calcula como descarga × ratio"><input id="bs-link" type="checkbox" checked onchange="bsSyncTargets()"> vincular ×<input id="bs-ratio" type="number" min="0.05" max="3" step="0.05" value="1" oninput="bsSyncTargets()" class="bs-in bs-in-s"></label>
       <label title="Potencia de carga que busca el proyecto (permiso de demanda)">Carga objetivo:<input id="bs-tcarga" type="number" min="0" step="5" value="50" oninput="bsSyncTargets()" class="bs-in"> MW</label>
     </span>
-    <label title="Escala con la que se imprime cada ficha. Si una ficha se sale de la hoja, baja un paso; si sobra espacio, súbelo.">Informe:<select id="bs-zoom">
-      <option value="0.78">muy compacto (78 %)</option>
-      <option value="0.85" selected>compacto (85 %)</option>
-      <option value="0.92">normal (92 %)</option>
-      <option value="1">amplio (100 %)</option>
-    </select></label>
     <label>Ordenar por:<select id="bs-order" onchange="bsRender()">
       <option value="hoy" selected>MW solicitables hoy</option>
       <option value="cob">Cobertura del objetivo</option>
@@ -5291,8 +5313,9 @@ function bsForecast(m, entry, key) {
         if (nivel === 'neutro' && pS != null && pS >= 0.03) nivel = 'oportunidad';
         avisos.push('Hoy limita ' + t.limita.id + ' (' + t.limita.ambito + ') en ' + bsMW(t.limita.margen) +
             '. Techo teórico si se levantara: ' + bsMW(t.techo) + ' por ' + t.techoPor + ' (+' + t.gana + ' MW). ' +
-            (tas ? 'En el histórico, los nudos limitados por ' + famLim.fam + ' dejan de estarlo el ' + bsPct1(pC) +
-                   ' de los meses y ven subir su margen más de ' + BS_UMBRAL_MW + ' MW el ' + bsPct1(pS) + '.'
+            (tas ? 'En el histórico, y sobre observaciones nudo-mes, los nudos limitados por ' + famLim.fam +
+                   ' dejan de estarlo en el ' + bsPct1(pC) + ' de los casos (' + bsFrec(pC) +
+                   ') y ven subir su margen más de ' + BS_UMBRAL_MW + ' MW en el ' + bsPct1(pS) + ' (' + bsFrec(pS) + ').'
                  : 'Sin histórico suficiente para estimar su probabilidad de cambio.'));
     }
     if (tr.estado === 'erosión') { nivel = 'riesgo'; avisos.push('El potencial de descarga cae ' + Math.abs(tr.pendDesc).toFixed(1) + ' MW al mes en los últimos ' + tr.n + ' meses; proyección a 3 meses: ' + bsMW(tr.proy3) + '.'); }
@@ -5302,11 +5325,12 @@ function bsForecast(m, entry, key) {
     const est = bsEstab(m);
     if (est.derivaWscr) {
         nivel = 'riesgo';
-        avisos.push('⚠ Este nudo ha DERIVADO a WSCR durante la serie. Es el estado del que casi no se vuelve: en el histórico solo el ' +
-            bsPct1(((bsTasas().fam || {}).WSCR || {}).pCambio) + ' de los nudos-mes limitados por WSCR cambia de criterio.');
+        avisos.push('⚠ Este nudo ha DERIVADO a WSCR durante la serie. Es el estado del que casi no se vuelve: solo el ' +
+            bsPct1(((bsTasas().fam || {}).WSCR || {}).pCambio) + ' de las observaciones nudo-mes con WSCR cambia de criterio (' +
+            bsFrec(((bsTasas().fam || {}).WSCR || {}).pCambio) + ').');
     }
-    if (est.suficiente) avisos.push('Estabilidad del nudo: ' + est.clase + ' · ' + est.cambios + ' cambio(s) de criterio y ' +
-        est.sube + ' subida(s) / ' + est.baja + ' bajada(s) de margen apreciables en ' + est.n + ' meses.');
+    if (est.suficiente) avisos.push('Este nudo: criterio ' + est.critClase + ' (' + est.cambios + ' cambio(s)) y margen ' +
+        est.margenClase + ' (' + est.sube + ' subida(s) / ' + est.baja + ' bajada(s) de más de ' + BS_UMBRAL_MW + ' MW en ' + est.n + ' meses).');
     for (const c of tr.cambios) {
         const paso = c.de.fam + ' de ' + c.de.ambito + ' → ' + c.a.fam + ' de ' + c.a.ambito;
         if (c.de.ambito === 'nudo' && c.a.ambito === 'zona') {
@@ -5334,7 +5358,7 @@ function bsForecastPill(f) {
     return '<span class="bs-pill" style="background:' + c + '">' + txt + '</span>';
 }
 /* Mini gráfico de la serie, en HTML puro para que imprima en el PDF.        */
-function bsSpark(tr, campo, etiqueta) {
+function bsSpark(tr, campo, etiqueta, aclara) {
     const s = tr.serie.filter(function (x) { return x[campo] != null; });
     if (s.length < 2) return '<div class="bs-sub">' + (etiqueta || '') + ': sin serie suficiente</div>';
     const vals = s.map(function (x) { return x[campo]; });
@@ -5357,6 +5381,7 @@ function bsSpark(tr, campo, etiqueta) {
     }
     return '<div class="bs-spark-h"><b>' + (etiqueta || '') + '</b><span>máx. ' + bsMW(mx) + ' · mín. ' + bsMW(mn) +
         ' · ' + (dif >= 0 ? '+' : '') + dif + ' MW en ' + s.length + ' meses</span></div>' +
+        (aclara ? '<div class="bs-spark-q">' + aclara + '</div>' : '') +
         '<table class="bs-spark"><tr>' + fila + '</tr><tr>' + ejes + '</tr><tr>' + nums + '</tr></table>';
 }
 
@@ -5418,6 +5443,14 @@ function bsTasas() {
     return bsTasasCache;
 }
 function bsPct1(v) { return v == null ? '—' : (v * 100).toFixed(v < 0.01 ? 2 : 1) + ' %'; }
+/* Las tasas se calculan sobre observaciones NUDO-MES (cada nudo en cada paso
+   entre dos meses), no sobre meses ni sobre nudos. Se acompaña de una
+   frecuencia del tipo «1 de cada N al mes», que es como se lee de verdad.   */
+function bsFrec(p) {
+    if (p == null || p <= 0) return 'ningún caso en la serie';
+    const n = Math.round(1 / p);
+    return '≈1 de cada ' + n.toLocaleString('es-ES') + ' al mes';
+}
 
 /* Estabilidad del nudo concreto: qué le ha pasado a ÉL, no a la media. */
 function bsEstab(m) {
@@ -5431,14 +5464,26 @@ function bsEstab(m) {
         const d = bsNum(s[i].margenMPE) - bsNum(s[i - 1].margenMPE);
         if (d > BS_UMBRAL_MW) sube++; else if (d < -BS_UMBRAL_MW) baja++;
     }
-    let clase = 'estable';
-    if (cambios >= 2 || (sube + baja) >= Math.max(3, s.length / 2)) clase = 'volátil';
-    else if (sube > baja) clase = 'móvil al alza';
-    else if (baja > sube) clase = 'móvil a la baja';
+    // Dos ejes distintos, porque mezclarlos daba resultados contradictorios:
+    // un nudo con 0 cambios de criterio y 4 movimientos de margen salía
+    // «volátil» cuando en realidad es estructuralmente estable y su margen
+    // simplemente se mueve.
+    const critClase = cambios === 0 ? 'estable' : (cambios === 1 ? 'cambiante' : 'inestable');
+    let margenClase = 'quieto';
+    if (sube >= 2 && baja >= 2) margenClase = 'oscilante';
+    else if (sube > baja) margenClase = 'al alza';
+    else if (baja > sube) margenClase = 'a la baja';
+    else if (sube + baja > 0) margenClase = 'oscilante';
+    // «volátil» se reserva a lo que de verdad lo es
+    const clase = (cambios >= 2 || margenClase === 'oscilante') ? 'volátil'
+                : (critClase !== 'estable' ? 'cambiante'
+                : (margenClase === 'quieto' ? 'estable' : 'móvil ' + margenClase));
     const famAct = bsCritFam(s[s.length - 1].critDesc);
+    // deriva: acabó en WSCR habiendo estado antes en otra familia
     const derivaWscr = famAct.fam === 'WSCR' && s.some(function (x) { return bsCritFam(x.critDesc).fam !== 'WSCR'; });
     return { n: s.length, suficiente: s.length >= 4, cambios: cambios, sube: sube, baja: baja,
-             clase: clase, famActual: famAct.fam, derivaWscr: derivaWscr };
+             clase: clase, critClase: critClase, margenClase: margenClase,
+             famActual: famAct.fam, derivaWscr: derivaWscr };
 }
 
 /* ---------- diagnóstico: por qué un nudo está como está ----------
@@ -5667,9 +5712,10 @@ function bsRenderInterno() {
             '<td>' + (r.sinDatos ? '<span class="bs-sub">—</span>' : bsForecastPill(bsFc(r))) + '</td>' +
             '<td>' + (r.sinDatos ? '<span class="bs-sub">—</span>' : (function () {
                 const e2 = bsEstab(r);
-                const c2 = { 'estable': '#7a8495', 'móvil al alza': '#1B7F4B', 'móvil a la baja': '#B3261E', 'volátil': '#A67C00' }[e2.clase] || '#7a8495';
-                return '<span class="bs-pill" style="background:' + c2 + '">' + e2.clase.toUpperCase() + '</span>' +
-                    '<div class="bs-sub">' + (e2.famActual || '—') + (e2.derivaWscr ? ' · derivó' : '') + '</div>';
+                const c2 = { 'quieto': '#7a8495', 'al alza': '#1B7F4B', 'a la baja': '#B3261E', 'oscilante': '#A67C00' }[e2.margenClase] || '#7a8495';
+                return '<span class="bs-pill" style="background:' + c2 + '">' + e2.margenClase.toUpperCase() + '</span>' +
+                    '<div class="bs-sub">' + (e2.famActual || '—') + ' · criterio ' + e2.critClase +
+                    (e2.derivaWscr ? ' · derivó' : '') + '</div>';
             })()) + '</td>' +
             '<td class="bs-num"><span class="' + (cv.okCargaHoy ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobCargaHoy) + '</span> / ' +
             '<span class="' + (cv.okDescConc ? 'bs-green' : 'bs-red') + '">' + bsPct(cv.cobDescConc) + '</span>' +
@@ -5802,12 +5848,15 @@ function bsFichaHTML(m, paraInforme) {
         '<div class="bs-diag">' + bsDiagPill(bsDiag(m)) + ' <b>Diagnóstico:</b> ' + bsDiag(m).txt + '</div>' +
         '<table class="bs-cols"><tr>' +
         '<td class="bs-col bs-col-carga"><div class="bs-col-h">CARGA · permiso de demanda' + (m.cargaConcurso ? ' · reservado a CONCURSO' : '') + '</div>' +
+        '<div class="bs-head3">' +
         '<div class="bs-big bs-blue">' + bsMW(m.cargaDisp) + '</div>' +
+        '<div class="bs-lbl">SOLICITABLE hoy para almacenamiento (ALM CEP)</div>' +
         (m.cargaConcurso
             ? '<div class="bs-warn"><b>reservado a CONCURSO de demanda:</b> ' +
-              (m.cargaNoOtorg > 0 ? bsMW(m.cargaNoOtorg) + ' retenidos' : 'nudo de concurso') +
-              (m.cargaMotivo ? ' · ' + m.cargaMotivo : '') + '</div>'
-            : '<div class="bs-lbl">solicitables hoy para almacenamiento</div>') +
+              (m.cargaNoOtorg > 0 ? bsMW(m.cargaNoOtorg) + ' retenidos' : 'nudo de concurso') + '</div>'
+            : '<div class="bs-lbl2">margen total ' + (m.cargaMargenCep == null ? '—' : bsMW(m.cargaMargenCep)) +
+              ' · sin capacidad no otorgable</div>') +
+        '</div>' +
         '<div class="bs-it">Criterio limitante: ' + (m.cargaCrit || '—') +
         (m.cargaConcEstado && !/^\s*no tender/i.test(m.cargaConcEstado) ? ' · concurso de demanda: ' + m.cargaConcEstado : '') +
         (m.cargaConcResuelto ? ' · concurso ya resuelto (ver normativa en la ficha de REE)' : '') +
@@ -5817,9 +5866,13 @@ function bsFichaHTML(m, paraInforme) {
         (m.cargaComent ? '<div class="bs-it">' + m.cargaComent + '</div>' : '') +
         '</td>' +
         '<td class="bs-col bs-col-desc"><div class="bs-col-h">DESCARGA · permiso de generación' + (m.bloqueoConcurso ? ' · reservado a CONCURSO' : '') + '</div>' +
-        '<div class="bs-big bs-must">' + bsMW(m.potencial) + ' <span class="bs-pot">potencial</span></div>' +
-        (m.bloqueoConcurso ? '<div class="bs-warn"><b>pero 0 MW solicitables hoy:</b> toda la capacidad está reservada a <b>CONCURSO</b></div>'
-            : '<div class="bs-lbl">solicitables hoy para almacenamiento (MPE)</div>') +
+        '<div class="bs-head3">' +
+        '<div class="bs-big ' + (m.descDisp > 0 ? 'bs-green' : 'bs-red') + '">' + bsMW(m.descDisp) + '</div>' +
+        '<div class="bs-lbl">SOLICITABLE hoy para almacenamiento (ALM MPE)</div>' +
+        (m.bloqueoConcurso
+            ? '<div class="bs-warn">reservado a <b>CONCURSO</b> · potencial si se convoca: <b>' + bsMW(m.potencial) + '</b></div>'
+            : '<div class="bs-lbl2">potencial máximo ' + bsMW(m.potencial) + ' · mín(margen MPE, posición)</div>') +
+        '</div>' +
         (function () {
             const hayReserva = m.reserva && !/^\s*no tender/i.test(m.reserva);
             const txt = (m.motivo ? 'Motivo: ' + m.motivo : '') + (hayReserva ? (m.motivo ? ' · ' : '') + 'reserva: ' + m.reserva : '');
@@ -5856,7 +5909,7 @@ function bsFichaHTML(m, paraInforme) {
             ? '<table class="bs-accfoot"><tr><td>' +
               '<table class="bs-acc" style="background:' + s.col + '"><tr><td class="bs-acc-n"><span>' + s.num +
               '</span></td><td class="bs-acc-t">' + s.txt + '</td><td class="bs-acc-d">' + s.acc + '</td></tr></table>' +
-              '</td><td class="bs-accfoot-p">' + bsFuente(m) + '</td></tr></table>'
+              '</td><td class="bs-accfoot-p"></td></tr></table>'
             : '<table class="bs-acc" style="background:' + s.col + '"><tr><td class="bs-acc-n"><span>' + s.num +
               '</span></td><td class="bs-acc-t">' + s.txt + '</td><td class="bs-acc-d">' + s.acc + '</td></tr></table>' +
               '<div class="bs-foot">Objetivo: ' + bsMW(cv.t.carga) + ' de carga y ' + bsMW(cv.t.desc) +
@@ -5917,15 +5970,18 @@ function bsPrevHTML(m, compacto) {
     // En el informe los dos gráficos van uno al lado del otro: así se ven
     // ambas series sin gastar el doble de alto, que es lo que obligaba a pasar
     // de hoja.
-    if (compacto) {
-        h += '<table class="bs-duo"><tr><td>' + bsSpark(tr, 'potencial', 'Potencial de descarga') +
-             '</td><td>' + bsSpark(tr, 'carga', 'Carga solicitable') + '</td></tr></table>';
-    } else {
-        h += bsSpark(tr, 'potencial', 'Potencial de descarga');
-        h += bsSpark(tr, 'carga', 'Carga solicitable');
-    }
+    // Las dos series no son la misma magnitud y conviene decirlo: la de
+    // descarga es POTENCIAL (margen acotado por la posición), porque lo
+    // solicitable está a cero mientras haya reserva a concurso; la de carga
+    // es directamente lo SOLICITABLE.
+    const gD = bsSpark(tr, 'potencial', 'DESCARGA · potencial',
+        'mín(margen MPE, límite de posición) · <b>no</b> es lo solicitable: hoy ' + bsMW(m.descDisp) +
+        (m.bloqueoConcurso ? ' por la reserva a CONCURSO' : ''));
+    const gC = bsSpark(tr, 'carga', 'CARGA · solicitable',
+        'disponible de almacenamiento en demanda · margen total hoy ' + (m.cargaMargenCep == null ? '—' : bsMW(m.cargaMargenCep)));
+    h += compacto ? '<table class="bs-duo"><tr><td>' + gD + '</td><td>' + gC + '</td></tr></table>' : gD + gC;
     h += '<div class="bs-sub">' + (tr.suficiente
-        ? 'Pendiente <b>' + (tr.pendDesc >= 0 ? '+' : '') + tr.pendDesc.toFixed(1) + ' MW/mes</b> · proyección: ' +
+        ? 'Pendiente del <b>potencial de descarga</b>: <b>' + (tr.pendDesc >= 0 ? '+' : '') + tr.pendDesc.toFixed(1) + ' MW/mes</b> · proyección: ' +
           bsMW(tr.ultimo) + ' (' + tr.mesUltimo + ') ' + (tr.pendDesc >= 0 ? '+' : '−') + ' 3 × ' +
           Math.abs(tr.pendDesc).toFixed(1) + ' = <b>' + bsMW(tr.proy3) + '</b>'
         : 'Histórico insuficiente para proyectar (' + tr.n + ' de 4 meses)') +
@@ -5937,11 +5993,12 @@ function bsPrevHTML(m, compacto) {
     // estabilidad del propio nudo y tasas observadas de su criterio
     const famA = est.famActual || '—';
     const tf = (tas.fam || {})[famA] || null;
-    const colEst = { 'estable': 'bs-green', 'móvil al alza': 'bs-green', 'móvil a la baja': 'bs-red', 'volátil': 'bs-must' }[est.clase] || '';
-    h += '<div class="bs-sub"><b>Estabilidad:</b> <b class="' + colEst + '">' + est.clase + '</b>' +
-        ' · ' + est.cambios + ' cambio(s) de criterio · ' + est.sube + ' subida(s) / ' + est.baja + ' bajada(s) de margen' +
-        (tf ? ' · los nudos en ' + famA + ' cambian de criterio el ' + bsPct1(tf.pCambio) + ' de los meses y suben margen el ' + bsPct1(tf.pSube) : '') +
-        '</div>';
+    const colEst = { 'quieto': '', 'al alza': 'bs-green', 'a la baja': 'bs-red', 'oscilante': 'bs-must' }[est.margenClase] || '';
+    h += '<div class="bs-sub"><b>Criterio:</b> ' + est.critClase + ' (' + est.cambios + ' cambio(s) en ' + est.n + ' meses)' +
+        ' · <b>Margen:</b> <b class="' + colEst + '">' + est.margenClase + '</b> (' + est.sube + ' subida(s) / ' + est.baja + ' bajada(s) &gt;' + BS_UMBRAL_MW + ' MW)</div>' +
+        (tf ? '<div class="bs-sub">Referencia del histórico, sobre observaciones nudo-mes: los nudos limitados por ' + famA +
+              ' cambian de criterio en el ' + bsPct1(tf.pCambio) + ' de los casos (' + bsFrec(tf.pCambio) +
+              ') y ven subir su margen más de ' + BS_UMBRAL_MW + ' MW en el ' + bsPct1(tf.pSube) + ' (' + bsFrec(tf.pSube) + ').</div>' : '');
     if (est.derivaWscr) h += '<div class="bs-sub bs-red"><b>Ha derivado a WSCR:</b> estado del que casi no se vuelve.</div>';
     h += '</td></tr></table>';
 
@@ -5960,12 +6017,45 @@ function bsPrevHTML(m, compacto) {
     return h + '</td></tr></table>';
 }
 
+/* Portada: recoge una sola vez el objetivo, la metodología y todos los
+   avisos, de modo que las fichas quedan limpias de textos legales.        */
+function bsPortadaHTML(metr, mes, anio) {
+    const nudos = metr.map(function (x) { return x.name; }).join(' · ');
+    return '<div class="bs-card bs-page bs-portada">' +
+        '<div class="bs-wm-w"><div class="bs-wm">FASE DE PRUEBAS</div></div>' +
+        '<h2 class="bs-port-h">BESS stand alone · capacidad solicitable por nudo</h2>' +
+        '<div class="bs-port-s">Red ' + (metr[0] ? metr[0].grid : 'TSO') + ' · periodo ' + mes + ' ' + anio +
+        ' · ' + metr.length + ' nudo(s): ' + nudos + '</div>' +
+        bsObjHTML() +
+        '<div class="bs-port-g"><div>' +
+        '<div class="bs-port-t">Metodología</div>' + bsNotaHTML() +
+        '</div><div>' +
+        '<div class="bs-port-t">Avisos y alcance</div>' +
+        '<div class="bs-port-av">' +
+        '<p><b>⚠ FASE DE PRUEBAS.</b> Los cálculos se apoyan en una lectura propia de los ficheros mensuales ' +
+        'publicados por REE (TSO) y las distribuidoras (DSO). Úsalo para explorar y contrastar, no como base ' +
+        'única de una decisión estratégica o de inversión; verifica siempre con el estudio de red del gestor.</p>' +
+        '<p><b>Fuentes.</b> Ficha de acceso de REE del periodo seleccionado y publicación conjunta de los gestores ' +
+        'de red de distribución. Almacenamiento en TSO: flexible sin reconversión (ap. quinto.5 de la Resolución ' +
+        'CNMC de 31/07/2026); el tipo 3 no aplica (anexo IV.1). Almacenamiento en DSO: flexible obligatorio, ' +
+        'tipos 0, 1 o 2 (anexos I a III), con conversión en 3 meses (ap. quinto.1). Reserva a concurso: ' +
+        'art. 20.5 del RD 1183/2020.</p>' +
+        '<p><b>Limitaciones conocidas.</b> No existe curva horaria por nudo en ninguna publicación. La metodología ' +
+        'oficial para publicar la capacidad flexible por nudo sigue pendiente de resolución (ap. sexto.3), así que ' +
+        'los cupos de 300 MW, 20 % y 3 instalaciones solo pueden estimarse. Los identificadores de zona no son ' +
+        'globales: el mismo código significa cosas distintas en generación y en demanda.</p>' +
+        '<p>Generado por SPAIN CAP VIEWER a partir de los ficheros mensuales de capacidad de acceso. ' +
+        'Documento de uso interno; no constituye asesoramiento jurídico.</p>' +
+        '</div></div></div></div>';
+}
+
 /* ---------- informe descargable ---------- */
 function bsNotaHTML() {
     return '<div class="bs-metod"><b>Metodología</b>' +
         '<ul>' +
         '<li><b>CARGA solicitable</b> = disponible de almacenamiento en la perspectiva de demanda. <b>DESCARGA solicitable</b> = disponible de almacenamiento MPE en generación (una batería conecta por convertidores, por eso se usa MPE y no MGES).</li>' +
         '<li><b>Potencial de descarga</b> = mín(margen técnico MPE, margen por posición). No es capacidad adjudicada ni comprometida: es el techo que podría salir a concurso si se convoca.</li>' +
+        '<li><b>Qué dibujan los gráficos.</b> El de descarga muestra el <b>potencial</b>, es decir mín(margen técnico MPE, límite por posición), no lo solicitable: mientras haya reserva a concurso lo solicitable es cero y la serie sería una línea plana sin información. El de carga muestra directamente lo <b>solicitable</b> en demanda. Cada gráfico lo indica bajo su título, junto al valor del mes activo del otro concepto.</li>' +
         '<li><b>Cobertura</b> = disponible de cada lado sobre el objetivo correspondiente. Carga y descarga son <b>dos permisos distintos</b>, así que se evalúan por separado y no se promedian.</li>' +
         '<li><b>BESS simétrico máximo</b> = mín(carga, descarga): la mayor batería con la misma potencia en ambos sentidos que admitiría el nudo. Si se acepta asimetría, el techo de cada lado es su propio disponible.</li>' +
         '<li><b>Previsión.</b> Tres piezas: <i>techo por criterio</i> (qué margen habría si se levantara el criterio que hoy limita), <i>exposición zonal</i> (los criterios de zona son un fondo común, así que la cola de la zona erosiona el margen de todos sus nudos) y <i>tendencia</i> (pendiente por mínimos cuadrados sobre el histórico; no se proyecta con menos de 4 meses).</li>' +
@@ -6006,7 +6096,7 @@ function bsBuildReport() {
     const y = document.getElementById('bs-year').value, mm = document.getElementById('bs-month').value;
     // El objetivo del proyecto es el mismo para todos los nudos: se imprime una
     // sola vez en la cabecera en lugar de repetirse en cada hoja.
-    let body = bsObjHTML();
+    let body = bsPortadaHTML(metr, mm, y);
     if (metr.length > 1) body += bsResumenHTML(metr);
     body += metr.map(x => bsFichaHTML(x, true)).join('');
     // La última página NO debe forzar salto: si lo hace, el navegador añade una
@@ -6014,20 +6104,41 @@ function bsBuildReport() {
     // no sirve aquí (el último div hermano es el pie del informe).
     const ultima = body.lastIndexOf('class="bs-card bs-page"');
     if (ultima >= 0) body = body.slice(0, ultima) + 'class="bs-card bs-page bs-page-last"' + body.slice(ultima + 'class="bs-card bs-page"'.length);
-    // La escala de impresión se inyecta al generar: así se ajusta desde el
-    // visor, con el navegador delante, sin tocar el CSS del fichero.
-    const z = bsVal('bs-zoom', '0.85');
-    const css = document.getElementById('bs-report-css').textContent +
-        '\n@media print { .bs-page { zoom: ' + z + ' !important; } }' +
-        '\n.bs-page { zoom: ' + z + '; }';
+    // AUTOAJUSTE. En lugar de fijar una escala a ojo, el documento generado
+    // mide cada ficha y le aplica la mayor escala que la deje dentro de una
+    // hoja A4 horizontal, con tope en el 100 %. Para que la medida sea fiable,
+    // las reglas de @media print se aplican también en pantalla: así lo que se
+    // mide es exactamente lo que se imprime.
+    const cssBase = document.getElementById('bs-report-css').textContent;
+    const bloqueImpr = (cssBase.match(/@media print\s*\{([\s\S]*)\}\s*$/) || [])[1] || '';
+    const css = cssBase + '\n/* mismas reglas en pantalla, para que medir = imprimir */\n' + bloqueImpr +
+        '\nbody { max-width: 1047px; }   /* 277 mm: ancho útil de A4 horizontal a 96 ppp */';
+    const autofit = '<script>(function(){' +
+        'var ALTO=718;' +                                /* 190 mm útiles de alto a 96 ppp */
+        'function ajusta(){' +
+        '  var ps=document.querySelectorAll(".bs-page");' +
+        '  for(var i=0;i<ps.length;i++){var p=ps[i];' +
+        '    p.style.zoom="";' +
+        '    var h=p.scrollHeight; if(!h) continue;' +
+        '    var z=Math.min(1,ALTO/h);' +
+        '    z=Math.floor(z*100)/100;' +
+        '    if(z<1){ if("zoom" in p.style){ p.style.zoom=z; }' +
+        '      else { p.style.transformOrigin="top left"; p.style.transform="scale("+z+")";' +
+        '             p.style.width=(100/z)+"%"; } }' +
+        '    p.setAttribute("data-fit",z.toFixed(2));' +
+        '  }' +
+        '}' +
+        'if(document.readyState==="complete")ajusta();else window.addEventListener("load",ajusta);' +
+        'window.addEventListener("beforeprint",ajusta);' +
+        '})();<\/script>';
     const titulo = 'BESS stand alone · ' + mm + ' ' + y;
     const doc = '<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">' +
         '<title>' + titulo + '</title><style>' + css + '</style></head><body>' +
         '<div class="bs-rep-head"><b>Hanwha Energy Europe</b> · BESS stand alone · capacidad solicitable por nudo · ' + mm + ' ' + y +
         '<span>Internal use only</span></div>' +
         body +
-        '<div class="bs-rep-foot"><b>⚠ FASE DE PRUEBAS.</b> Los cálculos se apoyan en una lectura propia de los ficheros mensuales publicados por REE (TSO) y las distribuidoras (DSO). Úsalo para explorar y contrastar, no como base única de una decisión estratégica o de inversión; verifica siempre con el estudio de red del gestor. Generado por SPAIN CAP VIEWER a partir de los ficheros mensuales de capacidad de acceso. Uso interno; no constituye asesoramiento jurídico.</div>' +
-        '</body></html>';
+        '' +
+        autofit + '</body></html>';
     const fname = 'BESS_stand_alone_' + mm + '_' + y + (metr.length > 1 ? '_' + metr.length + 'nudos' : '_' + metr[0].name.replace(/\s+/g, '_'));
     return { doc: doc, fname: fname, n: metr.length };
 }
