@@ -547,6 +547,12 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-fr.bs-mg td { font-style:italic; }
 .bs-frL td.bs-cC { border-bottom:1px solid #1F4E79; border-radius:0 0 8px 8px; }
 .bs-frL td.bs-cD { border-bottom:1px solid #A67C00; border-radius:0 0 8px 8px; }
+.bs-res { width:100%; border-collapse:collapse; table-layout:auto; font-size:9.5px; }
+.bs-res th { background:#222; color:#fff; padding:3px 5px; font-size:8.5px; font-weight:bold; text-align:center;
+  white-space:normal; }
+.bs-res td { border-bottom:1px solid #eef2f6; padding:2px 5px; vertical-align:middle; white-space:normal;
+  word-break:break-word; }
+.bs-res td.bs-num { text-align:right; white-space:nowrap; }
 .bs-nt { font-size:9.5px; color:#5b6472; font-style:italic; white-space:normal !important; padding:3px 9px !important; }
 .bs-cols { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
 .bs-col { width:50%; border:1px solid #cbd5e1; border-radius:8px; vertical-align:top; padding:0 0 6px; }
@@ -720,13 +726,17 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-wm { font-size:104px; opacity:.13; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   .bs-rep-head { font-size:8.5px; padding-bottom:2px; margin-bottom:4px; }
   .bs-tbl { font-size:8px; } .bs-tbl td, .bs-tbl th { padding:2px 4px; }
+  .bs-res { font-size:8px; } .bs-res td, .bs-res th { padding:1px 4px; }
   .bs-page { page-break-after:always; break-after:page; border:none; box-shadow:none; }
   .bs-page-last { page-break-after:auto !important; break-after:auto !important; }
   .bs-rep-foot { page-break-before:avoid; break-before:avoid; }
   .bs-cols, .bs-concl, .bs-acc, .bs-tbl { page-break-inside:avoid; break-inside:avoid; }
   .bs-rep-head { margin-bottom:8px; }
-  .bs-acc, .bs-pill, .bs-col-h, .bs-bar-t td { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-  .bs-col-h, .bs-pill, .bs-mini-tbl tr.bs-hl td { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  /* Los fondos de color son información, no decoración: cabeceras de bloque,
+     píldoras, barras de los gráficos y bandas de aviso. Se fuerza su
+     impresión en todo el documento para no perderlos. */
+  * { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
 }
 </style>
 
@@ -884,6 +894,12 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
 .bs-fr.bs-mg td { font-style:italic; }
 .bs-frL td.bs-cC { border-bottom:1px solid #1F4E79; border-radius:0 0 8px 8px; }
 .bs-frL td.bs-cD { border-bottom:1px solid #A67C00; border-radius:0 0 8px 8px; }
+.bs-res { width:100%; border-collapse:collapse; table-layout:auto; font-size:9.5px; }
+.bs-res th { background:#222; color:#fff; padding:3px 5px; font-size:8.5px; font-weight:bold; text-align:center;
+  white-space:normal; }
+.bs-res td { border-bottom:1px solid #eef2f6; padding:2px 5px; vertical-align:middle; white-space:normal;
+  word-break:break-word; }
+.bs-res td.bs-num { text-align:right; white-space:nowrap; }
 .bs-nt { font-size:9.5px; color:#5b6472; font-style:italic; white-space:normal !important; padding:3px 9px !important; }
 .bs-cols { width:100%; border-collapse:separate; border-spacing:6px 0; table-layout:fixed; }
 .bs-col { width:50%; border:1px solid #cbd5e1; border-radius:8px; vertical-align:top; padding:0 0 6px; }
@@ -1057,13 +1073,17 @@ body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: #
   .bs-wm { font-size:104px; opacity:.13; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   .bs-rep-head { font-size:8.5px; padding-bottom:2px; margin-bottom:4px; }
   .bs-tbl { font-size:8px; } .bs-tbl td, .bs-tbl th { padding:2px 4px; }
+  .bs-res { font-size:8px; } .bs-res td, .bs-res th { padding:1px 4px; }
   .bs-page { page-break-after:always; break-after:page; border:none; box-shadow:none; }
   .bs-page-last { page-break-after:auto !important; break-after:auto !important; }
   .bs-rep-foot { page-break-before:avoid; break-before:avoid; }
   .bs-cols, .bs-concl, .bs-acc, .bs-tbl { page-break-inside:avoid; break-inside:avoid; }
   .bs-rep-head { margin-bottom:8px; }
-  .bs-acc, .bs-pill, .bs-col-h, .bs-bar-t td { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-  .bs-col-h, .bs-pill, .bs-mini-tbl tr.bs-hl td { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  /* Los fondos de color son información, no decoración: cabeceras de bloque,
+     píldoras, barras de los gráficos y bandas de aviso. Se fuerza su
+     impresión en todo el documento para no perderlos. */
+  * { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
 }
 
 body{font-family:Arial,Helvetica,sans-serif;margin:18px;color:#262626;background:#fff;}
@@ -5526,10 +5546,14 @@ function bsTrend(entry) {
         const i = todaLaSerie.map(function (x) { return x.key; }).indexOf(corte);
         if (i > 0) desde = i;
     }
+    // Ventana móvil: solo los ÚLTIMOS 6 MESES. Cada mes nuevo desplaza al más
+    // antiguo, de modo que la pendiente refleja la situación reciente y no la
+    // arrastra un tramo de hace medio año.
+    desde = Math.max(desde, todaLaSerie.length - BS_VENTANA);
     const s = todaLaSerie.slice(desde);
     const nm = s.length;
     const res = { n: nm, serie: s, serieCompleta: todaLaSerie, recortada: desde > 0,
-        desde: desde > 0 ? s[0].key : null, suficiente: nm >= 4,
+        desde: desde > 0 ? s[0].key : null, ventana: BS_VENTANA, suficiente: nm >= 4,
         pendDesc: null, pendCarga: null, proy3: null, cambios: [], estado: 'sin datos' };
     if (!nm) return res;
     const reg = function (vals) {
@@ -5681,6 +5705,7 @@ function bsSpark(tr, campo, etiqueta, aclara) {
 let bsTasasCache = null;
 const BS_UMBRAL_MW = 10;          // cambio de margen que se considera apreciable
 const BS_UMBRAL_ANOM = 0.10;      // fracción de nudos que delata una revisión
+const BS_VENTANA = 6;             // meses de la ventana móvil de tendencia
 
 function bsTasas() {
     if (bsTasasCache) return bsTasasCache;
@@ -6339,7 +6364,7 @@ function bsPrevHTML(m, compacto) {
 
     // ── tendencia y estabilidad, columna derecha ──
     const est = bsEstab(m), tas = bsTasas();
-    h += '<td><div class="bs-prev-t">Tendencia y estabilidad · ' + tr.n + ' meses</div>';
+    h += '<td><div class="bs-prev-t">Tendencia y estabilidad · últimos ' + tr.n + ' meses</div>';
     // En el informe los dos gráficos van uno al lado del otro: así se ven
     // ambas series sin gastar el doble de alto, que es lo que obligaba a pasar
     // de hoja.
@@ -6364,7 +6389,8 @@ function bsPrevHTML(m, compacto) {
           bsMW(tr.ultimo) + ' (' + tr.mesUltimo + ') ' + (tr.pendDesc >= 0 ? '+' : '−') + ' 3 × ' +
           Math.abs(tr.pendDesc).toFixed(1) + ' = <b>' + bsMW(tr.proy3) + '</b>'
         : 'Histórico insuficiente para proyectar (' + tr.n + ' de 4 meses)') +
-        (tr.recortada ? ' · serie desde ' + tr.desde + ', se descartan los meses previos a la última revisión metodológica' : '') +
+        (tr.recortada ? ' · ventana de ' + tr.n + ' meses desde ' + tr.desde +
+            ' (últimos ' + BS_VENTANA + ', descartando lo previo a la última revisión metodológica)' : '') +
         (Math.abs(bsNum(tr.ultimo) - bsNum(m.potencial)) > 0.5
             ? ' · <span class="bs-red">atención: el último valor de la serie (' + bsMW(tr.ultimo) +
               ') no coincide con el potencial del mes activo (' + bsMW(m.potencial) + ')</span>' : '') +
@@ -6414,7 +6440,8 @@ function bsNotaPortada() {
         '<li><b>Gráficos:</b> los dos dibujan la misma magnitud, el <i>margen mensual</i> de cada lado, para que sean ' +
         'comparables. El de descarga va acotado por el límite de posición. Bajo cada título se indica lo solicitable hoy, ' +
         'que es lo que ese margen deja realmente pedir.</li>' +
-        '<li><b>Previsión:</b> techo por criterio, exposición al fondo zonal compartido y tendencia por mínimos cuadrados. ' +
+        '<li><b>Previsión:</b> techo por criterio, exposición al fondo zonal compartido y tendencia por mínimos cuadrados ' +
+        'sobre una <b>ventana móvil de los últimos 6 meses</b>, que se desplaza al incorporar cada mes nuevo. ' +
         'No se proyecta con menos de 4 meses y se excluyen los meses de revisión metodológica de REE.</li>' +
         '<li><b>Cola de solicitudes.</b> El acceso se otorga por prelación temporal, así que una cola pendiente mayor que ' +
         'lo solicitable significa que la capacidad está en la práctica comprometida con solicitudes anteriores. ' +
@@ -6468,6 +6495,7 @@ function bsNotaHTML() {
         '<li><b>Cobertura</b> = disponible de cada lado sobre el objetivo correspondiente. Carga y descarga son <b>dos permisos distintos</b>, así que se evalúan por separado y no se promedian.</li>' +
         '<li><b>BESS simétrico máximo</b> = mín(carga, descarga): la mayor batería con la misma potencia en ambos sentidos que admitiría el nudo. Si se acepta asimetría, el techo de cada lado es su propio disponible.</li>' +
         '<li><b>Dos señales distintas, y conviene no confundirlas.</b> La <b>serie del nudo</b> describe lo observado en su histórico: cuántos incrementos y decrementos de más de 10 MW ha tenido su margen (estacionario, tendencia positiva, tendencia negativa o alta variabilidad) y cuántas veces se ha reclasificado su criterio limitante. El <b>pronóstico</b> es una valoración de lo que cabe esperar, y cruza tres cosas: exposición al fondo zonal, techo por criterio y pendiente del margen. Que la serie sea de tendencia positiva y el pronóstico desfavorable no es una contradicción: significa que el margen propio del nudo ha crecido pero su entorno lo compromete.</li>' +
+        '<li>La tendencia se calcula sobre una <b>ventana móvil de 6 meses</b>: cada mes nuevo desplaza al más antiguo, así que la pendiente describe la situación reciente y no la arrastra un tramo antiguo.</li>' +
         '<li><b>Pronóstico.</b> Tres piezas: <i>techo por criterio</i> (qué margen habría si se levantara el criterio que hoy limita), <i>exposición zonal</i> (los criterios de zona son un fondo común, así que la cola de la zona erosiona el margen de todos sus nudos) y <i>tendencia</i> (pendiente por mínimos cuadrados sobre el histórico; no se proyecta con menos de 4 meses).</li>' +
         '<li>La red de transporte tiene <b>81 zonas dinámicas</b> en generación y 1.836 en demanda, con <b>identificadores que se solapan</b>: el mismo código significa cosas distintas en cada perspectiva. El módulo solo usa las de generación, que son las que gobiernan la evacuación.</li>' +
         '<li>Un nudo puede pertenecer a <b>varias zonas del mismo criterio</b>; en ese caso manda la más restrictiva. Y su margen utilizable puede ser <b>menor que el fondo de su zona</b> si tiene limitación interna por configuración, así que el cálculo usa siempre el valor del nudo.</li>' +
@@ -6482,7 +6510,8 @@ function bsNotaHTML() {
 function bsResumenHTML(rows) {
     let h = '<div class="bs-card bs-page"><h3>Resumen · capacidad para BESS stand alone</h3>' +
         '<div class="bs-sub2">' + rows.length + ' nudos seleccionados · red ' + rows[0].grid + '</div>' +
-        '<table class="bs-tbl"><thead><tr><th>Nudo</th><th>CCAA</th><th>CARGA solicitable</th><th>DESCARGA solicitable</th><th>Potencial descarga</th><th>Cobertura carga / descarga</th><th>Simétrico máx. hoy / con CONCURSO</th><th>Acción</th></tr></thead><tbody>';
+        '<table class="bs-res"><thead><tr><th>Nudo</th><th>CCAA</th><th>CARGA<br>solicitable</th><th>DESCARGA<br>solicitable</th>' +
+        '<th>Potencial<br>descarga</th><th>Cobertura<br>carga / desc.</th><th>Simétrico máx.<br>hoy / concurso</th><th>Acción</th></tr></thead><tbody>';
     for (const r of rows) {
         const s = bsSem(r), cv = bsCover(r);
         h += '<tr><td><b>' + r.name + '</b></td><td>' + (r.ccaa || '—') + '</td>' +
