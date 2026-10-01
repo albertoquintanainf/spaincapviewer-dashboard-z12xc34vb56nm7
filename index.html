@@ -1204,7 +1204,7 @@ body{font-family:Arial,Helvetica,sans-serif;margin:18px;color:#262626;background
     <button class="btn-whats-new" onclick="openGridStatus()" style="background:#F3721F;">📊 GRID STATUS</button>
     <button class="btn-whats-new" onclick="openNodalAnalysis()" style="background:#0f766e;">🔎 ANÁLISIS NODAL</button>
     <button class="btn-whats-new" onclick="openBess()" style="background:#1B7F4B;">🔋 BESS STAND ALONE</button>
-    <button class="btn-whats-new" onclick="openInformeTSO()" style="background:#1F4E79;">📄 INFORME TSO (PDF)</button>
+    <button class="btn-whats-new" onclick="openInformeTSO()" style="background:#F3721F;">📄 INFORME TSO (PDF)</button>
 </div>
 
 <div id="left-search">
@@ -6802,10 +6802,10 @@ function bsDownload() {
 <!-- ===== INFORME TSO (PDF) · selector de periodo y secciones ===== -->
 <div id="ir-modal" style="display:none;position:fixed;inset:0;z-index:400000;background:rgba(15,23,42,.55);align-items:center;justify-content:center;padding:16px;">
   <div id="ir-box" style="background:#fff;border-radius:12px;width:560px;max-width:100%;max-height:92vh;overflow:auto;font-family:Arial,Helvetica,sans-serif;box-shadow:0 14px 40px rgba(0,0,0,.3);">
-    <div style="display:flex;align-items:center;gap:10px;background:#0f172a;color:#fff;padding:10px 16px;border-radius:12px 12px 0 0;">
+    <div style="display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#F3721F 0%,#C85A16 100%);color:#fff;padding:10px 16px;border-radius:12px 12px 0 0;">
       <span class="hw-logo-pill"><span class="hw-logo-img" style="height:20px;width:69px;"></span></span>
       <b style="font-size:15px;letter-spacing:.4px;">📄 INFORME TSO · PDF</b>
-      <button onclick="closeInformeTSO()" style="margin-left:auto;background:#F3721F;color:#fff;border:none;border-radius:6px;padding:5px 11px;font-weight:bold;cursor:pointer;">✕ Cerrar</button>
+      <button onclick="closeInformeTSO()" style="margin-left:auto;background:#fff;color:#F3721F;border:none;border-radius:6px;padding:5px 11px;font-weight:bold;cursor:pointer;">✕ Cerrar</button>
     </div>
     <div style="padding:14px 18px;font-size:13px;color:#262626;">
       <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px;">
@@ -6813,12 +6813,14 @@ function bsDownload() {
           <select id="ir-period" onchange="irSyncPrev()" style="padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:13px;"></select></label>
         <label style="display:flex;flex-direction:column;gap:3px;">Comparar con
           <select id="ir-prev" style="padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:13px;"></select></label>
-        <label style="display:flex;flex-direction:column;gap:3px;">Nudos por ranking
+        <label style="display:flex;flex-direction:column;gap:3px;">Nudos por ranking (subidas y bajadas)
           <select id="ir-topn" style="padding:4px 6px;border:1px solid #cbd5e1;border-radius:6px;font-size:13px;">
-            <option value="10">10</option><option value="12" selected>12</option><option value="15">15</option><option value="20">20</option></select></label>
+            <option value="5">5</option><option value="6" selected>6</option><option value="8">8</option><option value="10">10</option></select></label>
       </div>
-      <div style="font-weight:bold;color:#1F4E79;margin-bottom:4px;">Secciones</div>
+      <div style="font-weight:bold;color:#F3721F;margin-bottom:4px;">Secciones</div>
+      <label style="display:block;margin:3px 0;"><input type="checkbox" id="ir-s-acu" checked> Nudos bloqueados por falta de acuerdo del valor de referencia con la distribuidora</label>
       <label style="display:block;margin:3px 0;"><input type="checkbox" id="ir-s-global" checked> Información global (totales nacionales)</label>
+      <label style="display:block;margin:3px 0;"><input type="checkbox" id="ir-s-esc" checked> Recálculo de capacidades nodales, criterio limitante y marco regulatorio (CNMC)</label>
       <label style="display:block;margin:3px 0;"><input type="checkbox" id="ir-s-reg" checked> Variaciones regionales (por CCAA)</label>
       <label style="display:block;margin:3px 0;"><input type="checkbox" id="ir-s-map" checked> Mapas de España (coropletas por CCAA y mapa de nudos)</label>
       <label style="display:block;margin:3px 0;"><input type="checkbox" id="ir-s-nod" checked> Cambios representativos por nudo</label>
@@ -6840,10 +6842,10 @@ function bsDownload() {
 <script>
 /* =====================================================================
    INFORME TSO (PDF) · módulo añadido en oct-2026
-   Informe mensual descargable de la RED DE TRANSPORTE con el mismo formato
-   que el informe BESS STAND ALONE: reutiliza su hoja de estilos
-   (#bs-report-css), su cabecera/pie, la portada y el autoajuste a A4
-   horizontal. Solo lee datos ya cargados por el visor (MONTHS_DATA,
+   Informe mensual descargable de la RED DE TRANSPORTE. Usa la maquinaria de
+   impresión del informe BESS STAND ALONE (#bs-report-css, páginas A4
+   horizontales y autoajuste) con el sistema visual del visor: bandas con
+   degradado naranja corporativo y tarjetas «gg-card». Solo lee datos ya cargados por el visor (MONTHS_DATA,
    NODOS_BASE, MONTHS_POS, MONTHS_POS_META) y, si existen, los ficheros de
    zonas zonas_val_{gen,dem}_<mes>.json. No modifica ningún otro módulo.
    ===================================================================== */
@@ -6889,39 +6891,121 @@ const IR_BLOQUES = {
   no_otorgable_rdd: 'Capacidad no otorgable en RdD', disp_rdd: 'Disponible para solicitudes · criterio general RdD'
 };
 const IR_CSS = `
-.ir-h4 { font-size:12px; font-weight:bold; color:#1F4E79; margin:8px 0 4px; border-bottom:1px solid #e2e8f0; padding-bottom:2px; }
-.ir-two { width:100%; border-collapse:separate; border-spacing:8px 0; table-layout:fixed; }
-.ir-two > tbody > tr > td { width:50%; vertical-align:top; padding:0; }
-.ir-t { width:100%; border-collapse:collapse; font-size:9.5px; }
-.ir-t th { background:#222; color:#fff; padding:3px 5px; font-size:8.5px; text-align:center; }
-.ir-t th.ir-gh { background:#1F4E79; }
-.ir-t td { border-bottom:1px solid #eef2f6; padding:2px 5px; text-align:center; vertical-align:middle; }
-.ir-t td.ir-l { text-align:left; }
-.ir-t tr:nth-child(even) td { background:#fbfcfe; }
-.ir-t tr.ir-tot td { font-weight:bold; background:#EAF1F8 !important; border-top:1px solid #1F4E79; }
-.ir-t tr.ir-sec td { background:#f1f5f9 !important; font-weight:bold; color:#1F4E79; text-align:left; }
-.ir-up { color:#1B7F4B; font-weight:bold; } .ir-dn { color:#B3261E; font-weight:bold; } .ir-eq { color:#94a3b8; }
-.ir-mut { color:#7a8495; font-size:8.5px; }
-.ir-tag { display:inline-block; color:#fff; font-size:8px; font-weight:bold; padding:1px 5px; border-radius:8px; white-space:nowrap; }
-.ir-kv { font-size:10px; line-height:1.45; margin:0 0 0 14px; padding:0; }
-.ir-kv li { margin-bottom:3px; }
-.ir-note { font-size:8.5px; color:#5b6472; font-style:italic; margin-top:4px; }
-.ir-bar-w { position:relative; height:9px; background:#f1f5f9; border-radius:2px; }
-.ir-bar-m { position:absolute; left:50%; top:0; bottom:0; width:1px; background:#94a3b8; }
-.ir-bar { position:absolute; top:1px; bottom:1px; border-radius:2px; }
-.ir-box { background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:6px 9px; margin-bottom:6px; }
-.ir-kpi-d { font-size:11px; margin-top:2px; }
-.ir-kpis .bs-kpi { flex:1 1 120px; padding:7px 9px; }
-.ir-kpis .bs-kpi-v { font-size:20px; }
-.ir-map { border:1px solid #e2e8f0; border-radius:6px; overflow:hidden; background:#fff; }
-.ir-map-t { font-size:10px; font-weight:bold; color:#1F4E79; padding:3px 6px; border-bottom:1px solid #e2e8f0; }
-.ir-map-t span { font-weight:normal; color:#5b6472; font-size:8.5px; }
-.ir-map-ley { display:flex; gap:8px; align-items:center; flex-wrap:wrap; font-size:8px; color:#5b6472; margin:2px 0 6px; }
-.ir-map-ley i { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:3px; vertical-align:middle; box-sizing:border-box; }
-.ir-map-grad { display:inline-block; width:120px; height:8px; border-radius:2px; border:1px solid #cbd5e1; }
-.ir-bar-v { font-size:7.5px; color:#5b6472; text-align:center; line-height:1; margin-top:1px; }
-@media print { .ir-t { font-size:8px; } .ir-t th { font-size:7.5px; padding:2px 4px; } .ir-t td { padding:1px 4px; }
-  .ir-kv { font-size:8.5px; } .ir-h4 { font-size:10.5px; margin:5px 0 3px; } }
+/* === Informe TSO · sistema visual del visor (naranja corporativo #F3721F) === */
+body { font-family:'Segoe UI',Arial,Helvetica,sans-serif; color:#0f172a; }
+.bs-rep-head { border-bottom:3px solid #F3721F; font-size:12px; }
+.bs-rep-head b { color:#F3721F; }
+.ir-page { padding:8px 14px 6px !important; height:690px; display:flex; flex-direction:column; box-sizing:border-box; overflow:hidden; position:relative; }
+.ir-page > .ir-body { flex:1 1 auto; }
+.ir-page > .bs-pie { margin-top:6px; flex:0 0 auto; }
+.ir-page > .bs-rep-head { margin-bottom:8px; }
+.ir-page .bs-wm { font-size:84px; opacity:.08; letter-spacing:6px; }
+.ir-compacto .ir-hb td { padding:1px 4px; } .ir-compacto .ir-hb-w { height:10px; } .ir-compacto .ir-hb-n, .ir-compacto .ir-hb-v { font-size:12px; }
+.bs-pie { font-size:10px !important; color:#94a3b8; }
+.ir-up { color:#16a34a; font-weight:700; } .ir-dn { color:#dc2626; font-weight:700; } .ir-eq { color:#94a3b8; } .ir-mut { color:#64748b; }
+/* banda de título de página (como la cabecera de Grid Status) */
+.ir-ph { display:flex; align-items:center; gap:12px; background:linear-gradient(135deg,#F3721F 0%,#C85A16 100%); color:#fff;
+  border-radius:10px; padding:9px 16px; margin-bottom:12px; box-shadow:0 1px 5px rgba(0,0,0,.14); }
+.ir-ph-n { background:#fff; color:#F3721F; font-weight:800; font-size:20px; width:34px; height:34px; line-height:34px; text-align:center; border-radius:50%; flex:0 0 34px; }
+.ir-ph-t { font-size:22px; font-weight:800; letter-spacing:.2px; line-height:1.1; }
+.ir-ph-s { font-size:12.5px; opacity:.95; margin-top:2px; }
+/* tarjetas (gg-card del visor, a mayor tamaño) */
+.ir-card { background:#fff; border:1px solid #e2e8f0; border-left:5px solid #F3721F; border-radius:10px; padding:10px 13px; box-shadow:0 1px 4px rgba(0,0,0,.06); height:100%; box-sizing:border-box; }
+.ir-card-flat { box-shadow:none; }
+.ir-card-gris { border-left-color:#94a3b8; }
+.ir-card-gris .ir-card-tot { color:#64748b; }
+.ir-card-h { font-size:15px; font-weight:800; color:#0f172a; line-height:1.2; }
+.ir-card-h small { font-weight:600; color:#94a3b8; font-size:12px; }
+.ir-card-tot { font-size:30px; font-weight:800; color:#F3721F; margin:4px 0 6px; line-height:1; }
+.ir-card-tot small { font-size:13px; color:#64748b; font-weight:600; }
+.ir-card-pie { margin-top:8px; padding-top:6px; border-top:1px dashed #e2e8f0; font-size:12px; color:#475569; line-height:1.4; }
+.ir-chips { display:flex; flex-wrap:wrap; gap:6px; }
+.ir-chip { background:#f8fafc; border:1px solid #e2e8f0; border-radius:7px; padding:4px 9px; font-size:13px; display:inline-flex; flex-direction:column; }
+.ir-chip .k { color:#64748b; font-size:11px; white-space:nowrap; }
+.ir-chip .v { font-weight:700; color:#0f172a; }
+.ir-dch { display:inline-block; font-size:13px; font-weight:800; padding:3px 9px; border-radius:7px; }
+.ir-dch-up { background:#dcfce7; color:#15803d; } .ir-dch-dn { background:#fee2e2; color:#b91c1c; } .ir-dch-eq { background:#f1f5f9; color:#64748b; }
+/* rejillas (tablas: imprimen igual en todos los motores) */
+.ir-grid { width:100%; border-collapse:separate; border-spacing:10px 10px; margin:-10px -10px 0; width:calc(100% + 20px); table-layout:fixed; }
+.ir-grid > tbody > tr > td { vertical-align:top; padding:0; height:1px; }
+.ir-cols { width:100%; border-collapse:separate; border-spacing:14px 0; margin:0 -14px; width:calc(100% + 28px); table-layout:fixed; }
+.ir-cols > tbody > tr > td { vertical-align:top; padding:0; }
+.ir-colh { font-size:15px; font-weight:800; padding:7px 12px; border-radius:8px; margin-bottom:10px; }
+.ir-colh-gen { background:#fff4ec; color:#C85A16; border:1px solid #f6c8a8; }
+.ir-colh-dem { background:#eef4ff; color:#1e40af; border:1px solid #c7d7f5; }
+/* banda nacional (gs-nat) */
+.ir-nat { display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:linear-gradient(135deg,#F3721F 0%,#C85A16 100%); color:#fff; border-radius:10px; padding:8px 12px; margin-bottom:12px; }
+.ir-nat-f { font-size:15px; font-weight:800; text-transform:uppercase; letter-spacing:.4px; margin-right:6px; }
+.ir-nat-c { background:#fff; color:#0f172a; border-radius:7px; padding:4px 10px; font-size:13px; }
+.ir-nat-c b { color:#F3721F; } .ir-nat-c small { color:#64748b; }
+/* portada */
+.ir-cover { display:flex; align-items:center; gap:18px; background:linear-gradient(135deg,#F3721F 0%,#C85A16 100%); color:#fff; border-radius:12px; padding:16px 22px; margin-bottom:14px; }
+.ir-cover-logo { background:#fff; border-radius:10px; padding:8px 12px; display:inline-flex; }
+.ir-cover-logo .hw-logo-img { height:44px; width:152px; }
+.ir-cover-t { font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; opacity:.95; }
+.ir-cover-p { font-size:34px; font-weight:800; line-height:1.1; }
+.ir-cover-p span { font-size:18px; font-weight:600; opacity:.9; }
+.ir-cover-s { font-size:13px; opacity:.92; margin-top:3px; }
+.ir-claves { background:#fff7ed; border:1px solid #fed7aa; border-left:5px solid #F3721F; border-radius:10px; padding:10px 14px; height:100%; box-sizing:border-box; }
+.ir-claves-h { font-size:17px; font-weight:800; color:#C85A16; margin-bottom:6px; }
+.ir-clave { font-size:13px; line-height:1.45; padding:5px 0; border-bottom:1px dashed #fed7aa; }
+.ir-clave:last-child { border-bottom:none; }
+.ir-clave b { color:#C85A16; }
+/* bloques de texto */
+.ir-sh { font-size:16px; font-weight:800; color:#C85A16; margin:4px 0 8px; }
+.ir-sh small { font-size:12px; color:#94a3b8; font-weight:600; }
+.ir-sh2 { font-size:13px; font-weight:800; margin:8px 0 4px; }
+.ir-note { font-size:11.5px; color:#64748b; font-style:italic; margin-top:8px; line-height:1.4; }
+.ir-vacio { font-size:12.5px; color:#94a3b8; font-style:italic; padding:4px 0; }
+.ir-lectura { margin-top:12px; background:#f8fafc; border:1px solid #e2e8f0; border-left:5px solid #F3721F; border-radius:10px; padding:10px 13px; font-size:13.5px; line-height:1.5; }
+.ir-alerta { display:flex; gap:16px; align-items:center; background:#fff7ed; border:1px solid #fed7aa; border-left:6px solid #dc2626; border-radius:10px; padding:12px 16px; margin-bottom:12px; font-size:15px; line-height:1.45; }
+.ir-alerta-n { font-size:46px; font-weight:800; color:#dc2626; line-height:1; }
+.ir-norma { background:#fff; border:1px solid #e2e8f0; border-left:5px solid #1e40af; border-radius:10px; padding:10px 14px; margin-top:12px; }
+.ir-norma-h { font-size:14.5px; font-weight:800; color:#1e40af; margin-bottom:5px; }
+.ir-norma-q { font-size:17px; font-style:italic; color:#0f172a; margin:4px 0 6px; line-height:1.35; }
+.ir-norma-b { font-size:12px; color:#475569; line-height:1.45; margin-top:3px; }
+.ir-aviso { margin-top:12px; background:#fef2f2; border:1px solid #fecaca; border-left:5px solid #dc2626; border-radius:10px; padding:9px 13px; font-size:13px; line-height:1.45; }
+.ir-def { font-size:13px; line-height:1.5; margin-bottom:7px; } .ir-def b { color:#C85A16; }
+/* barras horizontales */
+.ir-hb { width:100%; border-collapse:collapse; }
+.ir-hb td { padding:3px 4px; vertical-align:middle; border-bottom:1px solid #f1f5f9; }
+.ir-hb-n { width:46%; font-size:12.5px; font-weight:700; line-height:1.2; }
+.ir-hb-n span { display:block; font-size:10.5px; font-weight:400; color:#64748b; }
+.ir-hb-b { width:38%; }
+.ir-hb-w { height:13px; background:#f1f5f9; border-radius:3px; overflow:hidden; }
+.ir-hb-w > div { height:100%; border-radius:3px; }
+.ir-hb-v { width:16%; text-align:right; font-size:13px; font-weight:800; white-space:nowrap; }
+.ir-hb-v small { font-weight:400; color:#94a3b8; font-size:10px; }
+.ir-hb-v div { white-space:normal; text-align:right; }
+.ir-tg { display:inline-block; font-style:normal; font-size:10px; font-weight:600; padding:1px 6px; border-radius:6px; margin-top:2px; }
+.ir-tg-c { background:#eef4ff; color:#1e40af; } .ir-tg-r { background:#fee2e2; color:#b91c1c; }
+/* barras divergentes */
+.ir-dv { width:100%; border-collapse:collapse; margin-top:4px; }
+.ir-dv td { padding:2px 4px; vertical-align:middle; }
+.ir-dv-n { width:34%; font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.ir-dv-b { width:48%; }
+.ir-dv-w { position:relative; height:12px; }
+.ir-dv-m { position:absolute; left:50%; top:-2px; bottom:-2px; width:1px; background:#94a3b8; }
+.ir-dv-bar { position:absolute; top:0; bottom:0; border-radius:2px; }
+.ir-dv-v { width:18%; text-align:right; font-size:12.5px; white-space:nowrap; }
+/* aperturas / cierres */
+.ir-ac { display:flex; gap:16px; margin:6px 0 8px; }
+.ir-ac > div { display:flex; flex-direction:column; }
+.ir-ac-n { font-size:30px; font-weight:800; line-height:1; }
+.ir-ac-l { font-size:11px; color:#64748b; line-height:1.15; margin-top:2px; }
+.ir-nm { font-size:12px; line-height:1.4; margin-top:6px; } .ir-nm small { color:#64748b; }
+/* mapas */
+.ir-map { border:1px solid #e2e8f0; border-left:5px solid #F3721F; border-radius:10px; overflow:hidden; background:#fff; }
+.ir-map-t { font-size:14px; font-weight:800; color:#0f172a; padding:6px 10px; border-bottom:1px solid #e2e8f0; }
+.ir-map-t span { font-weight:600; color:#94a3b8; font-size:11.5px; }
+.ir-map-ley { display:flex; gap:10px; align-items:center; flex-wrap:wrap; font-size:11px; color:#475569; padding:4px 2px 0; }
+.ir-map-ley i { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:4px; vertical-align:middle; box-sizing:border-box; }
+.ir-map-grad { display:inline-block; width:140px; height:10px; border-radius:3px; border:1px solid #cbd5e1; }
+@media print {
+  .ir-page { padding:6px 10px 4px !important; height:690px; }
+  .ir-page .bs-wm { font-size:84px; opacity:.08; }
+  * { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+}
 `;
 
 /* ---------- utilidades ---------- */
@@ -7141,293 +7225,490 @@ function irZonasResumen(Z) {
   return out;
 }
 
-/* ---------- páginas ---------- */
+/* ---------- recálculo de capacidades nodales y marco regulatorio ----------
+   REE no publica el escenario con el que simula la red. Un cambio de escenario se
+   reconoce porque la capacidad NODAL (estática, cortocircuito, dinámica) cambia a la
+   vez en la mayoría de nudos sin que cambie la red. Se cuenta un cambio cuando la
+   diferencia supera IR_TOL MW (evita ruido de redondeo).                        */
+const IR_TOL = 1;                       // MW
+const IR_UMBRAL_ESCENARIO = 0.25;       // >25 % de nudos con cambio de capacidad estática → aviso
+const IR_ISLAS = {'Canarias': 1, 'Islas Baleares': 1};
+const IR_NODAL = [
+  ['dem', 'estatico_dem_cap', 'Estático demanda · capacidad de acceso nodal'],
+  ['dem', 'estatico_alm_cap', 'Estático almacenamiento (ficha demanda) · capacidad nodal'],
+  ['dem', 'wscr_cap', 'Cortocircuito WSCR (ficha demanda) · capacidad nodal'],
+  ['dem', 'dinamico1_margen', 'Dinámico 1 (ficha demanda) · margen'],
+  ['dem', 'dinamico2_margen', 'Dinámico 2 (ficha demanda) · margen'],
+  ['gen', 'estatico_gen_cap', 'Estático generación · capacidad nodal'],
+  ['gen', 'estatico_alm_cap', 'Estático almacenamiento (ficha generación) · capacidad nodal'],
+  ['gen', 'wscr_cap', 'Cortocircuito WSCR (ficha generación) · capacidad nodal'],
+  ['gen', 'dinamico_cap', 'Dinámico (ficha generación) · capacidad nodal']
+];
+/* Hitos normativos con fecha de efectos sobre los mapas de capacidad. Se muestran
+   cuando el periodo comparado (mes anterior → mes del informe) cruza la fecha.
+   Para añadir un hito nuevo basta con otra entrada en esta lista.               */
+const IR_NORMAS = [
+  {desde: '26_oct',
+   titulo: 'Nuevo escenario de estudio para la demanda en la red de transporte (apartado 4.3 del anexo 1)',
+   norma: 'Resolución de 1 de diciembre de 2025, de la CNMC, por la que se establecen las especificaciones de detalle para la determinación de la capacidad de acceso de la demanda a las redes de transporte de electricidad (BOE núm. 296, de 10 de diciembre de 2025, BOE-A-2025-25253)',
+   cita: 'Resuelve octavo: «El apartado 4.3 del anexo 1 surtirá efectos a partir de la publicación de los mapas de capacidad de octubre de 2026.»',
+   contenido: 'El apartado 4.3 regula los escenarios de estudio: «El escenario de referencia utilizado para evaluar el acceso a la red se actualizará cada dos años con arreglo a la evolución real observada de generación, demanda y almacenamiento incorporando la red planificada.» Las hipótesis de demanda, generación y almacenamiento se toman de la última actualización del PNIEC o de la planificación vigente.',
+   url: 'https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-25253'}
+];
+function irMesIdx(k) { const p = String(k || '').split('_'); return p.length < 2 ? NaN : parseInt(p[0], 10) * 12 + GS_MONTHS.indexOf(p[1]); }
+function irNormasCruzadas(R) {
+  if (!R.pkey) return IR_NORMAS.filter(function (n) { return irMesIdx(n.desde) === irMesIdx(R.key); });
+  return IR_NORMAS.filter(function (n) { return irMesIdx(R.pkey) < irMesIdx(n.desde) && irMesIdx(n.desde) <= irMesIdx(R.key); });
+}
+function irFamilia(code) {
+  const c = String(code || ''); const f = [];
+  if (/WSCR/i.test(c)) f.push('WSCR'); if (/Est_/i.test(c)) f.push('Estático'); if (/Din|D_Nudo|D_Zona/i.test(c)) f.push('Dinámico');
+  return f;
+}
+function irRecalculo(R) {
+  const E = {param: [], crit: [], cerr: [], escenario: false, critNoCepWscr: 0};
+  if (!R.pkey) return E;
+  IR_NODAL.forEach(function (d) {
+    let n = 0, up = 0, dn = 0, neto = 0;
+    R.pares.forEach(function (x) {
+      const a = (x.p && x.p[d[0]] && x.p[d[0]].nodal) ? irN(x.p[d[0]].nodal[d[1]]) : NaN, b = (x.c && x.c[d[0]] && x.c[d[0]].nodal) ? irN(x.c[d[0]].nodal[d[1]]) : NaN;
+      if (isNaN(a) || isNaN(b)) return;
+      n++; const dd = b - a; if (dd > IR_TOL) up++; else if (dd < -IR_TOL) dn++; if (Math.abs(dd) > IR_TOL) neto += dd;
+    });
+    if (n) E.param.push({lbl: d[2], side: d[0], f: d[1], n: n, up: up, dn: dn, neto: neto, share: (up + dn) / n});
+  });
+  E.escenario = E.param.some(function (p) { return /estatico_(dem|gen|alm)_cap/.test(p.f) && p.share > IR_UMBRAL_ESCENARIO; });
+  // criterio limitante por familia (cuenta tanto el criterio único como los combinados «A/B»)
+  [['dem', 'dem_ch', 'Demanda CEP-CH'], ['dem', 'dem_no_cep', 'Demanda No CEP'], ['dem', 'alm_cep', 'Almacenamiento CEP (ficha dem.)'],
+   ['gen', 'gen_mpe', 'Generación MPE'], ['gen', 'alm_mpe', 'Almacenamiento MPE (ficha gen.)']].forEach(function (d) {
+    const cnt = {prev: {WSCR: 0, 'Estático': 0, 'Dinámico': 0}, cur: {WSCR: 0, 'Estático': 0, 'Dinámico': 0}}, solo = {prev: 0, cur: 0};
+    R.pares.forEach(function (x) {
+      [['prev', x.p], ['cur', x.c]].forEach(function (z) {
+        const cl = z[1] && z[1][d[0]] && z[1][d[0]].crit_lim; if (!cl) return;
+        const fam = irFamilia(cl[d[1]]); fam.forEach(function (f) { cnt[z[0]][f]++; });
+        if (fam.length === 1 && fam[0] === 'WSCR') solo[z[0]]++;
+      });
+    });
+    E.crit.push({lbl: d[2], f: d[1], cnt: cnt, solo: solo});
+  });
+  R.pares.forEach(function (x) { const cl = x.c && x.c.dem && x.c.dem.crit_lim; if (cl && /WSCR/i.test(cl.dem_no_cep || '')) E.critNoCepWscr++; });
+  // nudos sin un solo MW disponible en RdT
+  const sinMW = function (r, side, fs) { if (!r || !r[side] || !r[side].disp) return null; return fs.every(function (f) { const v = irN(r[side].disp[f]); return isNaN(v) || v <= 0; }); };
+  [['Demanda (los 5 campos RdT: CEP-CH, CEP-SH, No CEP, ALM CEP, ALM No CEP)', 'dem', ['dem_ch', 'dem_sh', 'dem_no_cep', 'alm_cep', 'alm_no_cep']],
+   ['Demanda CEP-CH', 'dem', ['dem_ch']],
+   ['Generación (MGES y MPE RdT, GEN y ALM)', 'gen', ['gen_mges_rdt', 'gen_mpe_rdt', 'alm_mges_rdt', 'alm_mpe_rdt']]].forEach(function (d) {
+    let a = 0, b = 0, n = 0;
+    R.pares.forEach(function (x) { if (!x.c || !x.p) return; n++; if (sinMW(x.p, d[1], d[2])) a++; if (sinMW(x.c, d[1], d[2])) b++; });
+    E.cerr.push({lbl: d[0], prev: a, cur: b, n: n});
+  });
+  return E;
+}
+/* ---------- presentación · sistema de tarjetas naranjas del visor ----------
+   Mismo lenguaje visual que Grid Status: banda con degradado naranja corporativo
+   (#F3721F → #C85A16), tarjetas «gg-card» con borde izquierdo naranja, total
+   grande en naranja y chips grises con la variación. Verde/rojo solo para subidas
+   y bajadas. Tipografía grande: el informe se lee impreso.                       */
+function irDeltaChip(d, pct) {
+  if (isNaN(d)) return '';
+  if (Math.abs(d) < 0.5) return '<span class="ir-dch ir-dch-eq">= sin cambio</span>';
+  return '<span class="ir-dch ' + (d > 0 ? 'ir-dch-up' : 'ir-dch-dn') + '">' + (d > 0 ? '▲ +' : '▼ −') + irF(Math.abs(d)) + ' MW' + (pct ? ' · ' + pct : '') + '</span>';
+}
+function irPctTxt(c, p) {
+  if (isNaN(c) || isNaN(p) || Math.abs(p) < 0.5) return '';
+  const v = 100 * (c - p) / p; return (v > 0 ? '+' : '−') + Math.abs(v).toLocaleString('es-ES', {maximumFractionDigits: 1}) + ' %';
+}
+function irChip(k, v, extra) { return '<span class="ir-chip"><span class="k">' + k + '</span><span class="v">' + v + (extra || '') + '</span></span>'; }
+function irDeltaMini(d) {
+  if (isNaN(d) || Math.abs(d) < 0.5) return '';
+  return ' <span class="' + (d > 0 ? 'ir-up' : 'ir-dn') + '" style="font-size:.85em;">' + (d > 0 ? '▲' : '▼') + irF(Math.abs(d)) + '</span>';
+}
+function irCard(titulo, sub, total, unidad, delta, chips, pie, cls) {
+  return '<div class="ir-card' + (cls ? ' ' + cls : '') + '"><div class="ir-card-h">' + titulo + (sub ? ' <small>' + sub + '</small>' : '') + '</div>' +
+    (total !== null && total !== undefined ? '<div class="ir-card-tot">' + total + (unidad ? ' <small>' + unidad + '</small>' : '') + '</div>' : '') +
+    (delta ? '<div style="margin:-2px 0 8px;">' + delta + '</div>' : '') +
+    (chips && chips.length ? '<div class="ir-chips">' + chips.join('') + '</div>' : '') + (pie ? '<div class="ir-card-pie">' + pie + '</div>' : '') + '</div>';
+}
+function irTitulo(num, txt, sub) {
+  return '<div class="ir-ph">' + (num ? '<span class="ir-ph-n">' + num + '</span>' : '') + '<div><div class="ir-ph-t">' + txt + '</div>' + (sub ? '<div class="ir-ph-s">' + sub + '</div>' : '') + '</div></div>';
+}
+/* Marca de agua y cabecera se repiten en cada hoja; el pie va anclado abajo
+   (la hoja es una columna flex de alto fijo y el pie lleva margin-top:auto). */
+function irMarca() { return '<div class="bs-wm-w"><div class="bs-wm">FASE DE PRUEBAS</div></div>'; }
+function irCabecera(R) {
+  return '<div class="bs-rep-head"><b>Hanwha Energy Europe</b> · Informe de capacidad de acceso · red de transporte (TSO) · ' + irLbl(R.key) +
+    (R.pkey ? ' vs ' + irLbl(R.pkey) : '') + '<span>Internal use only</span></div>';
+}
+function irPagina(num, txt, sub, cuerpo, R) {
+  return '<div class="bs-card bs-page ir-page">' + irMarca() + irCabecera(R) + irTitulo(num, txt, sub) + '<div class="ir-body">' + cuerpo + '</div>' + irPie(R) + '</div>';
+}
 function irPie(R) {
   return '<div class="bs-pie">Datos de <b>' + irLbl(R.key) + '</b>' + (R.pkey ? ' · comparados con ' + irLbl(R.pkey) : '') +
     ' · Hanwha Energy Europe · Informe red de transporte (TSO) · uso interno</div>';
 }
-function irKpis(R) {
-  return '<div class="bs-kpis ir-kpis">' + IR_MET.map(function (m) {
-    const o = R.met[m.id];
-    return '<div class="bs-kpi"><div class="bs-kpi-v">' + irF(o.cur) + ' <span style="font-size:12px;">MW</span></div>' +
-      '<div class="bs-kpi-t"><b>' + m.lbl + '</b> · disponible</div>' +
-      (R.pkey ? '<div class="ir-kpi-d">' + irD(o.cur - o.prev) + ' MW · ' + irPct(o.cur, o.prev) + ' · nudos &gt; 0: ' + o.nPosPrev + ' → ' + o.nPosCur + '</div>' : '') + '</div>';
-  }).join('') + '</div>';
+/* Barras horizontales (HTML puro, imprime con colores): filas {name, sub, v, extra} */
+function irBarras(filas, max, opts) {
+  opts = opts || {};
+  if (!filas.length) return '<div class="ir-vacio">' + (opts.vacio || 'Sin datos') + '</div>';
+  max = max || Math.max.apply(null, filas.map(function (f) { return Math.abs(f.v); }).concat([1]));
+  return '<table class="ir-hb">' + filas.map(function (f) {
+    const w = Math.max(1.5, 100 * Math.abs(f.v) / max), col = opts.color || (f.v >= 0 ? '#1B7F4B' : '#B3261E');
+    return '<tr><td class="ir-hb-n">' + irEsc(f.name) + (f.sub ? '<span>' + irEsc(f.sub) + '</span>' : '') + (f.tags || '') + '</td>' +
+      '<td class="ir-hb-b"><div class="ir-hb-w"><div style="width:' + w.toFixed(1) + '%;background:' + col + ';"></div></div></td>' +
+      '<td class="ir-hb-v" style="color:' + (opts.color ? '#0f172a' : col) + ';">' + (opts.signo === false ? irF(f.v) : (f.v > 0 ? '+' : (f.v < 0 ? '−' : '')) + irF(Math.abs(f.v))) + (f.extra || '') + '</td></tr>';
+  }).join('') + '</table>';
 }
-function irClaves(R, N, S) {
-  const L = [];
-  if (!R.pkey) { L.push('No hay mes anterior cargado: el informe muestra valores absolutos sin variaciones.'); return L; }
-  const mets = IR_MET.map(function (m) { return R.met[m.id]; }).sort(function (a, b) { return Math.abs(b.cur - b.prev) - Math.abs(a.cur - a.prev); });
-  mets.slice(0, 3).forEach(function (o) {
-    L.push('<b>' + o.m.lbl + '</b>: ' + irF(o.cur) + ' MW disponibles (' + irD(o.cur - o.prev) + ' MW, ' + irPct(o.cur, o.prev) +
-      '); ' + o.abren.length + ' nudos pasan a tener capacidad y ' + o.cierran.length + ' la pierden.');
-  });
-  ['gen_mpe_rdt', 'dem_ch'].forEach(function (id) {
-    const o = R.met[id], f = o.filas[0]; if (!f) return;
-    L.push('Mayor variación en ' + o.m.lbl + ': <b>' + irEsc(f.x.name) + '</b> (' + irEsc(f.x.ccaa) + ') ' + irD(f.d) + ' MW.');
-  });
-  // CCAA con mayor variación neta de demanda CEP-CH y de generación MPE RdT
-  ['dem_ch', 'gen_mpe_rdt'].forEach(function (id) {
-    let best = null; Object.keys(R.ccaa).forEach(function (k) { const v = R.ccaa[k].v[id]; if (v && (!best || Math.abs(v.cur - v.prev) > Math.abs(best.v.cur - best.v.prev))) best = {k: k, v: v}; });
-    if (best && Math.abs(best.v.cur - best.v.prev) >= 0.5) L.push('CCAA con mayor variación en ' + R.met[id].m.lbl + ': <b>' + irEsc(best.k) + '</b> ' + irD(best.v.cur - best.v.prev) + ' MW.');
-  });
-  if (R.concurso.length) L.push(R.concurso.length + ' cambio(s) de estado de concurso (p. ej. ' + irEsc(R.concurso[0].name) + ': ' + irEsc(R.concurso[0].de) + ' → ' + irEsc(R.concurso[0].a) + ').');
-  const nov = [];
-  if (N.nuevos.length) nov.push(N.nuevos.length + ' nudo(s) nuevo(s)');
-  if (N.idos.length) nov.push(N.idos.length + ' desaparecido(s)');
-  if (N.camposNuevos.length) { const nb = {}; N.camposNuevos.forEach(function (c) { nb[c.s + '.' + c.b] = 1; }); nov.push(Object.keys(nb).length + ' bloque(s) nuevo(s) en la ficha (' + Object.keys(nb).map(function (k) { return k.split('.')[1]; }).join(', ') + ')'); }
-  if (S.compara) nov.push(S.nuevas.length + ' solicitud(es) de demanda nueva(s) (' + irF(S.mwN) + ' MW)');
-  if (nov.length) L.push('Novedades de la publicación de REE: ' + nov.join(' · ') + '.');
-  return L;
+/* Barras divergentes centradas en 0, ordenadas de mayor subida a mayor bajada */
+function irDivergente(filas, max) {
+  if (!filas.length) return '<div class="ir-vacio">Sin variaciones</div>';
+  max = max || Math.max.apply(null, filas.map(function (f) { return Math.abs(f.v); }).concat([1]));
+  return '<table class="ir-dv">' + filas.map(function (f) {
+    const w = 50 * Math.abs(f.v) / max, up = f.v > 0, cero = Math.abs(f.v) < 0.5;
+    const bar = cero ? '' : '<div class="ir-dv-bar" style="' + (up ? 'left:50%' : 'left:' + (50 - w).toFixed(1) + '%') + ';width:' + Math.max(0.8, w).toFixed(1) + '%;background:' + (up ? '#1B7F4B' : '#B3261E') + ';"></div>';
+    return '<tr><td class="ir-dv-n">' + irEsc(f.name) + '</td><td class="ir-dv-b"><div class="ir-dv-w"><div class="ir-dv-m"></div>' + bar + '</div></td>' +
+      '<td class="ir-dv-v ' + (cero ? 'ir-eq' : (up ? 'ir-up' : 'ir-dn')) + '">' + (cero ? '0' : (up ? '+' : '−') + irF(Math.abs(f.v))) + '</td></tr>';
+  }).join('') + '</table>';
 }
-function irPortada(R, N, S) {
-  return '<div class="bs-card bs-page bs-portada">' +
-    '<div class="bs-wm-w"><div class="bs-wm">FASE DE PRUEBAS</div></div>' +
-    '<div class="bs-port-marcas"><span class="hw-logo-img"></span></div>' +
-    '<h2 class="bs-port-h">INFORME DE CAPACIDAD DE ACCESO · RED DE TRANSPORTE (TSO)</h2>' +
-    '<div class="bs-port-s">Datos de ' + irLbl(R.key) + (R.pkey ? ' · comparados con ' + irLbl(R.pkey) : ' · sin mes de comparación') +
-    ' · ' + R.nCur + ' nudos publicados por REE</div>' +
-    irKpis(R) +
-    '<div class="bs-port-g"><div>' +
-    '<div class="bs-port-t">Claves del mes</div><ul class="bs-port-l">' + irClaves(R, N, S).map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
-    '</div><div>' +
-    '<div class="bs-port-t">Metodología y avisos</div><div class="bs-port-av">' +
-    '<p><b>⚠ FASE DE PRUEBAS.</b> Cálculo propio sobre la ficha mensual de capacidad de acceso de REE (generación y demanda) y, si están cargadas, ' +
-    'sus publicaciones por posición, el listado de solicitudes de demanda y los ficheros de zonas. Úsalo para explorar y contrastar; ' +
-    'verifica siempre con la publicación oficial antes de una decisión de inversión.</p>' +
-    '<p><b>Disponible</b> = capacidad de acceso disponible para solicitudes en la red de transporte (RdT), campo a campo tal como lo publica REE. ' +
-    'Los totales nacionales y por CCAA son <b>sumas de nudos</b>: no equivalen a capacidad simultáneamente conectable, porque los criterios zonales ' +
-    'comparten margen entre nudos.</p>' +
-    '<p><b>Variaciones</b>: mes del informe menos mes de comparación, nudo a nudo. Los nudos renombrados se comparan consigo mismos mediante los alias de ' +
-    'nodos_base_REE.json. «Abren» = nudos con disponible 0 o sin dato que pasan a &gt; 0; «cierran» = el caso contrario.</p>' +
-    '<p><b>Saturación</b> (misma definición que Grid Status) = media, en nudos con disponible publicado, de (otorgada + en curso) / (otorgada + en curso + disponible).</p>' +
-    '<p><b>REE no publica el motivo de las variaciones</b> (DIA, desistimientos, caducidades, recálculos): las cifras describen el cambio, no su causa.</p>' +
-    '<p class="bs-port-cr">Generado por SPAIN CAP VIEWER. Uso interno; no constituye asesoramiento jurídico.</p>' +
-    '</div></div></div>' + irPie(R) + '</div>';
-}
-function irPagGlobal(R) {
-  const fila = function (d) {
-    let c = 0, p = 0, nc = 0, np = 0, hayC = false, hayP = false;
-    R.pares.forEach(function (x) {
-      const a = irGet(x.c, d[0], d[1], d[2]), b = irGet(x.p, d[0], d[1], d[2]);
-      if (!isNaN(a)) { c += a; hayC = true; if (a > 0) nc++; }
-      if (!isNaN(b)) { p += b; hayP = true; if (b > 0) np++; }
-    });
-    if (!hayC && !hayP) return '';
-    return '<tr><td class="ir-l">' + d[3] + '</td>' + (R.pkey ? '<td>' + (hayP ? irF(p) : '–') + '</td>' : '') +
-      '<td><b>' + (hayC ? irF(c) : '–') + '</b></td>' +
-      (R.pkey ? '<td>' + irD(c - p) + '</td><td>' + irPct(c, p) + '</td><td>' + np + ' → ' + nc + '</td>' : '<td>' + nc + '</td>') + '</tr>';
-  };
-  const cab = '<thead><tr><th>Concepto (MW)</th>' + (R.pkey ? '<th>' + irLbl(R.pkey) + '</th>' : '') + '<th>' + irLbl(R.key) + '</th>' +
-    (R.pkey ? '<th>Δ MW</th><th>Δ %</th><th>Nudos &gt; 0</th>' : '<th>Nudos &gt; 0</th>') + '</tr></thead>';
-  const tabla = function (side, tit) { return '<div class="ir-h4">' + tit + '</div><table class="ir-t">' + cab + '<tbody>' + IR_GLOBAL[side].map(fila).join('') + '</tbody></table>'; };
-  // indicadores de estado
-  let concG = 0, concD = 0, concGp = 0, concDp = 0;
-  R.pares.forEach(function (x) { if (irEstado(x.c, 'gen')) concG++; if (irEstado(x.c, 'dem')) concD++; if (irEstado(x.p, 'gen')) concGp++; if (irEstado(x.p, 'dem')) concDp++; });
-  const sat = function (s) { const o = R.sat[s]; return (isNaN(o.cur) ? '–' : o.cur.toFixed(0) + ' %') + (R.pkey && !isNaN(o.prev) ? ' <span class="ir-mut">(antes ' + o.prev.toFixed(0) + ' %)</span>' : ''); };
-  const ind = '<div class="ir-box" style="font-size:10px;">' +
-    '<b>Nudos publicados:</b> ' + R.nCur + (R.pkey ? ' <span class="ir-mut">(antes ' + R.nPrev + ')</span>' : '') +
-    ' · <b>Nudos en concurso / reserva:</b> generación ' + concG + (R.pkey ? ' <span class="ir-mut">(antes ' + concGp + ')</span>' : '') +
-    ', demanda ' + concD + (R.pkey ? ' <span class="ir-mut">(antes ' + concDp + ')</span>' : '') +
-    ' · <b>Saturación media:</b> generación ' + sat('gen') + ', demanda ' + sat('dem') + '</div>';
-  return '<div class="bs-card bs-page"><h3>1 · Información global</h3><div class="bs-sub2">Totales nacionales de la red de transporte · suma de nudos · ' +
-    irLbl(R.key) + (R.pkey ? ' frente a ' + irLbl(R.pkey) : '') + '</div>' + ind +
-    '<table class="ir-two"><tbody><tr><td>' + tabla('gen', 'Ficha de GENERACIÓN') + '</td><td>' + tabla('dem', 'Ficha de DEMANDA') + '</td></tr></tbody></table>' +
-    irPie(R) + '</div>';
-}
-function irPagRegional(R) {
-  const ccaa = Object.keys(R.ccaa).filter(function (k) { return R.ccaa[k].n > 0 || Object.keys(R.ccaa[k].v).some(function (m) { return R.ccaa[k].v[m].prev; }); })
-    .sort(function (a, b) { return a.localeCompare(b, 'es'); });
-  const mA = ['gen_mpe_rdt', 'gen_mges_rdt', 'dem_ch', 'dem_no_cep', 'alm_mpe_rdt', 'alm_cep'];
-  const corto = {gen_mpe_rdt: 'GEN MPE', gen_mges_rdt: 'GEN MGES', dem_ch: 'DEM CEP-CH', dem_no_cep: 'DEM No CEP', alm_mpe_rdt: 'ALM MPE (gen)', alm_cep: 'ALM CEP (dem)'};
-  let h = '<thead><tr><th rowspan="2">CCAA</th><th rowspan="2">Nudos</th>' +
-    mA.map(function (id) { return '<th class="ir-gh" colspan="' + (R.pkey ? 3 : 1) + '">' + corto[id] + ' RdT</th>'; }).join('') +
-    '<th rowspan="2">Sat.<br>gen.</th><th rowspan="2">Sat.<br>dem.</th></tr><tr>' +
-    mA.map(function () { return R.pkey ? '<th>Act.</th><th>Δ</th><th>Abren/<br>cierran</th>' : '<th>Act.</th>'; }).join('') + '</tr></thead><tbody>';
-  const tot = {}; mA.forEach(function (id) { tot[id] = {cur: 0, prev: 0, abren: 0, cierran: 0}; });
-  let nTot = 0;
-  ccaa.forEach(function (k) {
-    const cc = R.ccaa[k]; nTot += cc.n;
-    h += '<tr><td class="ir-l">' + irEsc(k) + '</td><td>' + cc.n + '</td>';
-    mA.forEach(function (id) {
-      const v = cc.v[id] || {cur: 0, prev: 0, abren: 0, cierran: 0};
-      tot[id].cur += v.cur; tot[id].prev += v.prev; tot[id].abren += v.abren; tot[id].cierran += v.cierran;
-      h += '<td><b>' + irF(v.cur) + '</b></td>' + (R.pkey ? '<td>' + irD(v.cur - v.prev) + '</td><td>' + (v.abren ? '<span class="ir-up">' + v.abren + '</span>' : '0') + ' / ' + (v.cierran ? '<span class="ir-dn">' + v.cierran + '</span>' : '0') + '</td>' : '');
-    });
-    const sg = R.sat.gen.ccaa[k], sd = R.sat.dem.ccaa[k];
-    h += '<td>' + (isNaN(sg) || sg === undefined ? '–' : sg.toFixed(0) + '%') + '</td><td>' + (isNaN(sd) || sd === undefined ? '–' : sd.toFixed(0) + '%') + '</td></tr>';
-  });
-  h += '<tr class="ir-tot"><td class="ir-l">España</td><td>' + nTot + '</td>' + mA.map(function (id) {
-    const v = tot[id]; return '<td>' + irF(v.cur) + '</td>' + (R.pkey ? '<td>' + irD(v.cur - v.prev) + '</td><td>' + v.abren + ' / ' + v.cierran + '</td>' : '');
-  }).join('') + '<td>' + (isNaN(R.sat.gen.cur) ? '–' : R.sat.gen.cur.toFixed(0) + '%') + '</td><td>' + (isNaN(R.sat.dem.cur) ? '–' : R.sat.dem.cur.toFixed(0) + '%') + '</td></tr></tbody>';
-  // gráfico de barras divergentes de la variación por CCAA (HTML puro para que imprima)
-  let graf = '';
-  if (R.pkey) {
-    const ids = ['gen_mpe_rdt', 'dem_ch', 'dem_no_cep', 'alm_cep'];
-    let max = 1; ccaa.forEach(function (k) { ids.forEach(function (id) { const v = R.ccaa[k].v[id]; if (v) max = Math.max(max, Math.abs(v.cur - v.prev)); }); });
-    graf = '<div class="ir-h4">Variación del disponible por CCAA (barras: verde sube, rojo baja; escala común ±' + irF(max) + ' MW)</div><table class="ir-t"><thead><tr><th>CCAA</th>' +
-      ids.map(function (id) { return '<th>' + corto[id] + '</th>'; }).join('') + '</tr></thead><tbody>' +
-      ccaa.map(function (k) {
-        return '<tr><td class="ir-l">' + irEsc(k) + '</td>' + ids.map(function (id) {
-          const v = R.ccaa[k].v[id] || {cur: 0, prev: 0}, d = v.cur - v.prev, w = Math.min(50, 50 * Math.abs(d) / max);
-          const bar = Math.abs(d) < 0.5 ? '' : '<div class="ir-bar" style="' + (d > 0 ? 'left:50%' : 'left:' + (50 - w) + '%') + ';width:' + w + '%;background:' + (d > 0 ? '#1B7F4B' : '#B3261E') + ';"></div>';
-          return '<td style="width:20%;"><div class="ir-bar-w"><div class="ir-bar-m"></div>' + bar + '</div><div class="ir-bar-v">' + (Math.abs(d) < 0.5 ? '' : irD(d)) + '</div></td>';
-        }).join('') + '</tr>';
-      }).join('') + '</tbody></table>';
+function irRejilla(celdas, n) {
+  let h = '<table class="ir-grid ir-grid-' + n + '"><tbody>';
+  for (let i = 0; i < celdas.length; i += n) {
+    h += '<tr>'; for (let j = 0; j < n; j++) h += '<td>' + (celdas[i + j] || '') + '</td>'; h += '</tr>';
   }
-  // tramitación por CCAA
-  const t2 = '<div class="ir-h4">Tramitación por CCAA · otorgada y en curso (MW)</div><table class="ir-t"><thead><tr><th>CCAA</th>' +
-    '<th class="ir-gh" colspan="' + (R.pkey ? 2 : 1) + '">Otorgada GEN+ALM</th><th class="ir-gh" colspan="' + (R.pkey ? 2 : 1) + '">En curso GEN+ALM</th>' +
-    '<th class="ir-gh" colspan="' + (R.pkey ? 2 : 1) + '">Otorgada DEM+ALM RdT</th><th class="ir-gh" colspan="' + (R.pkey ? 2 : 1) + '">En curso DEM+ALM</th>' +
-    '<th>Concurso<br>gen.</th><th>Concurso<br>dem.</th></tr></thead><tbody>' +
-    ccaa.map(function (k) {
-      const t = R.ccaa[k].t || {otG: [0, 0], ecG: [0, 0], otD: [0, 0], ecD: [0, 0], concG: 0, concD: 0};
-      const c2 = function (a) { return '<td>' + irF(a[0]) + '</td>' + (R.pkey ? '<td>' + irD(a[0] - a[1]) + '</td>' : ''); };
-      return '<tr><td class="ir-l">' + irEsc(k) + '</td>' + c2(t.otG) + c2(t.ecG) + c2(t.otD) + c2(t.ecD) + '<td>' + t.concG + '</td><td>' + t.concD + '</td></tr>';
-    }).join('') + '</tbody></table>';
-  return '<div class="bs-card bs-page"><h3>2 · Variaciones regionales</h3><div class="bs-sub2">Disponible para solicitudes en RdT por comunidad autónoma · suma de nudos · ' +
-    (R.pkey ? 'Δ y aperturas/cierres frente a ' + irLbl(R.pkey) : 'sin mes de comparación') + '</div>' +
-    '<table class="ir-t">' + h + '</table>' + irPie(R) + '</div>' +
-    '<div class="bs-card bs-page"><h3>2 · Variaciones regionales (cont.)</h3><div class="bs-sub2">Distribución de la variación y estado de la tramitación por CCAA</div>' +
-    graf + t2 + irPie(R) + '</div>';
+  return h + '</tbody></table>';
 }
-function irTablaNudos(R, id, topn) {
-  const o = R.met[id], filas = o.filas.slice(0, topn);
-  if (!R.pkey) return '<div class="ir-h4">' + o.m.lbl + '</div><div class="ir-note">Sin mes de comparación.</div>';
-  return '<div class="ir-h4">' + o.m.lbl + ' · ' + o.filas.length + ' nudos con variación (se muestran ' + filas.length + ')</div>' +
-    '<table class="ir-t"><thead><tr><th>#</th><th>Nudo</th><th>CCAA</th><th>' + irLbl(R.pkey) + '</th><th>' + irLbl(R.key) + '</th><th>Δ MW</th><th>Criterio limitante</th><th>Estado / motivo</th></tr></thead><tbody>' +
-    (filas.length ? filas.map(function (f, i) {
-      const cambioCrit = (f.critP && f.crit && f.critP !== f.crit) ? '<div class="ir-mut">antes ' + irEsc(f.critP) + '</div>' : '';
-      const est = f.est ? irTagEstado(f.est) : '';
-      const mot = (!(f.c > 0) && f.mot) ? '<div class="ir-mut" title="' + irEsc(f.mot) + '">' + irEsc(irCorta(f.mot, 70)) + '</div>' : '';
-      return '<tr><td>' + (i + 1) + '</td><td class="ir-l"><b>' + irEsc(f.x.name) + '</b>' + (f.x.renombrado ? '<div class="ir-mut">antes ' + irEsc(f.x.prevName) + '</div>' : '') + '</td><td class="ir-l">' + irEsc(f.x.ccaa) + '</td>' +
-        '<td>' + irF(f.p) + '</td><td><b>' + irF(f.c) + '</b></td><td>' + irD(f.d) + '</td><td>' + irEsc(f.crit || '–') + cambioCrit + '</td><td class="ir-l">' + est + mot + '</td></tr>';
-    }).join('') : '<tr><td colspan="8">Sin variaciones.</td></tr>') + '</tbody></table>';
+
+/* ---------- portada ---------- */
+function irKpis(R) {
+  return irRejilla(IR_MET.map(function (m) {
+    const o = R.met[m.id];
+    return irCard(m.lbl, 'disponible', irF(o.cur), 'MW', R.pkey ? irDeltaChip(o.cur - o.prev, irPctTxt(o.cur, o.prev)) : '',
+      [irChip('Nudos con capacidad', (R.pkey ? o.nPosPrev + ' → ' : '') + '<b>' + o.nPosCur + '</b>')].concat(R.pkey ? [irChip('Abren / cierran', '<span class="ir-up">' + o.abren.length + '</span> / <span class="ir-dn">' + o.cierran.length + '</span>')] : []));
+  }), 3);
+}
+function irClaves(R, N, S, E, A) {
+  const L = [];
+  if (!R.pkey) { L.push(['Sin mes de comparación', 'el informe muestra valores absolutos.']); return L; }
+  if (E && E.escenario) {
+    const p0 = E.param.filter(function (p) { return p.f === 'estatico_dem_cap'; })[0];
+    if (p0) L.push(['Recálculo generalizado', (p0.up + p0.dn) + ' de ' + p0.n + ' nudos cambian su capacidad estática de demanda (' + p0.up + ' suben, ' + p0.dn + ' bajan): señal de cambio de escenario de cálculo, no de red nueva.']);
+  }
+  irNormasCruzadas(R).forEach(function (n) { L.push(['Hito regulatorio', irEsc(n.titulo) + '. ' + irEsc(n.cita.replace(/^Resuelve octavo: /, ''))]); });
+  const ch = R.met.dem_ch, isl = ch.abren.filter(function (f) { return IR_ISLAS[f.x.ccaa]; }).length, islC = ch.cierran.filter(function (f) { return IR_ISLAS[f.x.ccaa]; }).length;
+  L.push(['Demanda CEP-CH', irF(ch.cur) + ' MW disponibles (' + irPctTxt(ch.cur, ch.prev) + '). Abren ' + ch.abren.length + ' nudos, ' + isl + ' en Baleares y Canarias; en el resto el neto es ' +
+    ((ch.abren.length - isl) - (ch.cierran.length - islC) >= 0 ? '+' : '') + ((ch.abren.length - isl) - (ch.cierran.length - islC)) + ' nudo(s).']);
+  if (E && E.crit[0]) { const c = E.crit[0]; L.push(['Criterio limitante', 'en demanda CEP-CH el cortocircuito (WSCR) limita ' + c.cnt.cur.WSCR + ' nudos (' + (c.cnt.cur.WSCR - c.cnt.prev.WSCR >= 0 ? '+' : '') + (c.cnt.cur.WSCR - c.cnt.prev.WSCR) + ') y el dinámico ' + c.cnt.cur['Dinámico'] + ' (' + (c.cnt.cur['Dinámico'] - c.cnt.prev['Dinámico'] >= 0 ? '+' : '') + (c.cnt.cur['Dinámico'] - c.cnt.prev['Dinámico']) + ').']); }
+  if (A && A.total.cur) L.push(['Sin acuerdo con la distribuidora', A.total.cur + ' nudos (' + Math.round(100 * A.total.cur / A.n) + ' %) no tienen capacidad de demanda por no estar acordado el valor de referencia (' + A.propio.cur + ' por el propio nudo y ' + A.zona.cur + ' por su zona estática)' + (R.pkey ? (A.total.cur === A.total.prev ? ', igual que el mes anterior.' : ' (antes ' + A.total.prev + ').') : '.')]);
+  if (E && E.cerr[0]) { const z = E.cerr[0]; L.push(['Red cerrada', z.cur + ' de ' + z.n + ' nudos (' + Math.round(100 * z.cur / z.n) + ' %) siguen sin un solo MW disponible para demanda (antes ' + z.prev + ').']); }
+  const g = R.met.gen_mpe_rdt; L.push(['Generación', 'MPE RdT ' + irF(g.cur) + ' MW (' + (irPctTxt(g.cur, g.prev) || 'sin cambio') + '); la generación sigue prácticamente cerrada.']);
+  const nov = [];
+  if (N.camposNuevos.length) { const nb = {}; N.camposNuevos.forEach(function (c) { nb[c.b] = 1; }); nov.push(Object.keys(nb).length + ' bloques nuevos en la ficha'); }
+  if (N.nuevos.length) nov.push(N.nuevos.length + ' nudos nuevos');
+  if (S.compara) nov.push(S.nuevas.length + ' solicitudes de demanda nuevas');
+  if (R.concurso.length) nov.push(R.concurso.length + ' cambio(s) de estado de concurso');
+  if (nov.length) L.push(['Novedades REE', nov.join(' · ') + '.']);
+  return L.slice(0, 8);
+}
+function irPortada(R, N, S, E, A) {
+  return '<div class="bs-card bs-page bs-portada ir-page">' + irMarca() + irCabecera(R) +
+    '<div class="ir-cover"><span class="ir-cover-logo"><span class="hw-logo-img"></span></span><div>' +
+    '<div class="ir-cover-t">Informe de capacidad de acceso · Red de transporte</div>' +
+    '<div class="ir-cover-p">' + irLbl(R.key) + (R.pkey ? ' <span>frente a ' + irLbl(R.pkey) + '</span>' : '') + '</div>' +
+    '<div class="ir-cover-s">' + R.nCur + ' nudos publicados por REE · capacidad disponible para solicitudes en la red de transporte (RdT)</div></div></div>' +
+    '<table class="ir-cols"><tbody><tr><td style="width:62%;">' + irKpis(R) + '</td><td>' +
+    '<div class="ir-claves"><div class="ir-claves-h">Claves del mes</div>' +
+    irClaves(R, N, S, E, A).map(function (c) { return '<div class="ir-clave"><b>' + c[0] + '.</b> ' + c[1] + '</div>'; }).join('') + '</div>' +
+    '</td></tr></tbody></table><div class="ir-body"></div>' + irPie(R) + '</div>';
+}
+
+/* ---------- 1 · recálculo nodal y marco regulatorio ---------- */
+function irPagRecalculo(R, E) {
+  const normas = irNormasCruzadas(R);
+  const p0 = E.param.filter(function (p) { return p.f === 'estatico_dem_cap'; })[0];
+  const pA = E.param.filter(function (p) { return p.side === 'dem' && p.f === 'estatico_alm_cap'; })[0];
+  const pW = E.param.filter(function (p) { return p.side === 'dem' && p.f === 'wscr_cap'; })[0];
+  const gMax = Math.max.apply(null, E.param.filter(function (p) { return p.side === 'gen' && /estatico|dinamico_cap/.test(p.f); }).map(function (p) { return p.up + p.dn; }).concat([0]));
+  let h = '';
+  if (E.escenario && p0) {
+    h += '<div class="ir-alerta"><div class="ir-alerta-n">' + (p0.up + p0.dn) + '</div><div><b>de ' + p0.n + ' nudos (' + Math.round(100 * p0.share) + ' %) cambian a la vez su capacidad estática de demanda.</b><br>' +
+      'Sin obras de red que lo expliquen: lo que cambia es el <b>escenario con el que REE simula la red</b>. REE no lo anuncia en la ficha; la fecha la fija la norma.</div></div>';
+  }
+  const cards = [];
+  if (p0) cards.push(irCard('Estático demanda', 'capacidad nodal', irF(p0.up + p0.dn), 'nudos cambian', '', [irChip('Suben', '<span class="ir-up">' + p0.up + '</span>'), irChip('Bajan', '<span class="ir-dn">' + p0.dn + '</span>'), irChip('Δ neto capacidad', (p0.neto >= 0 ? '+' : '−') + irF(Math.abs(p0.neto)) + ' MW')]));
+  if (pA) cards.push(irCard('Estático almacenamiento', 'ficha de demanda', irF(pA.up + pA.dn), 'nudos cambian', '', [irChip('Suben', '<span class="ir-up">' + pA.up + '</span>'), irChip('Bajan', '<span class="ir-dn">' + pA.dn + '</span>')]));
+  if (pW) cards.push(irCard('Cortocircuito (WSCR)', 'ficha de demanda', irF(pW.up + pW.dn), 'nudos cambian', '', [irChip('Suben', '<span class="ir-up">' + pW.up + '</span>'), irChip('Bajan', '<span class="ir-dn">' + pW.dn + '</span>')]));
+  cards.push(irCard('Generación', 'estático y dinámico', irF(gMax), 'nudo(s) cambian', '', [irChip('Lectura', gMax < 5 ? 'el recálculo es de la ficha de demanda' : 'también cambia generación')], '', 'ir-card-gris'));
+  h += irRejilla(cards, 4);
+  if (normas.length) {
+    h += normas.map(function (n) {
+      return '<div class="ir-norma"><div class="ir-norma-h">⚖ Marco regulatorio · ' + irEsc(n.titulo) + '</div>' +
+        '<div class="ir-norma-q">' + irEsc(n.cita.replace(/^Resuelve octavo: /, '')) + '</div>' +
+        '<div class="ir-norma-b">' + irEsc(n.norma) + ', resuelve octavo.</div>' +
+        '<div class="ir-norma-b">' + irEsc(n.contenido) + '</div></div>';
+    }).join('');
+  }
+  h += '<div class="ir-note">Se cuenta un cambio cuando la capacidad publicada varía más de ±' + IR_TOL + ' MW entre ' + irLbl(R.pkey) + ' y ' + irLbl(R.key) + '.</div>';
+  let pag = irPagina('1', E.escenario ? 'Este mes cambia el escenario de cálculo' : 'Capacidades nodales y marco regulatorio', 'Recálculo de capacidades nodales · ' + irLbl(R.pkey) + ' → ' + irLbl(R.key), h, R);
+  // segunda hoja: criterio limitante y red cerrada
+  const c = E.crit[0];
+  let h2 = '<table class="ir-cols"><tbody><tr><td style="width:55%;">';
+  if (c) {
+    const filas = [];
+    ['WSCR', 'Estático', 'Dinámico'].forEach(function (f) {
+      filas.push({name: f + ' · ' + irLbl(R.pkey), v: c.cnt.prev[f]}); filas.push({name: f + ' · ' + irLbl(R.key), v: c.cnt.cur[f], extra: irDeltaMini(c.cnt.cur[f] - c.cnt.prev[f])});
+    });
+    h2 += '<div class="ir-sh">¿Qué limita la capacidad de demanda CEP-CH? <small>nº de nudos por criterio</small></div>' +
+      '<table class="ir-hb">' + ['WSCR', 'Estático', 'Dinámico'].map(function (f) {
+        const mx = Math.max(c.cnt.prev.WSCR, c.cnt.cur.WSCR, c.cnt.prev['Estático'], c.cnt.cur['Estático'], c.cnt.prev['Dinámico'], c.cnt.cur['Dinámico'], 1);
+        const d = c.cnt.cur[f] - c.cnt.prev[f];
+        return '<tr><td class="ir-hb-n" rowspan="2"><b>' + (f === 'WSCR' ? 'Cortocircuito (WSCR)' : f) + '</b><span>' + (d >= 0 ? '+' : '−') + Math.abs(d) + ' nudos</span></td>' +
+          '<td class="ir-hb-b"><div class="ir-hb-w"><div style="width:' + (100 * c.cnt.prev[f] / mx).toFixed(1) + '%;background:#f6c8a8;"></div></div></td><td class="ir-hb-v ir-mut">' + c.cnt.prev[f] + ' <small>' + irLbl(R.pkey).split(' ')[0].slice(0, 3) + '</small></td></tr>' +
+          '<tr><td class="ir-hb-b"><div class="ir-hb-w"><div style="width:' + (100 * c.cnt.cur[f] / mx).toFixed(1) + '%;background:#F3721F;"></div></div></td><td class="ir-hb-v"><b>' + c.cnt.cur[f] + '</b> <small>' + irLbl(R.key).split(' ')[0].slice(0, 3) + '</small></td></tr>';
+      }).join('') + '</table>';
+    h2 += '<div class="ir-lectura"><b>Por qué importa.</b> Contra un límite <b>estático</b> se espera red nueva o se reparte la existente. Contra un límite de <b>cortocircuito</b> ' +
+      'lo que cuenta es la potencia de cortocircuito del nudo, y afecta a la demanda conectada con convertidores electrónicos (CEP).' +
+      (E.critNoCepWscr === 0 ? ' La <b>demanda No CEP</b> no está limitada por WSCR en ningún nudo: en esos nudos el proyecto que encaja es otro.' : '') + '</div>';
+  }
+  h2 += '</td><td>';
+  h2 += '<div class="ir-sh">Nudos sin un solo MW disponible <small>red de transporte</small></div>';
+  h2 += E.cerr.map(function (z) {
+    return irCard(z.lbl.replace(/ \(.*\)$/, ''), z.lbl.indexOf('(') > 0 ? z.lbl.replace(/^.*\((.*)\)$/, '$1') : '', irF(z.cur), 'de ' + z.n + ' nudos · ' + Math.round(100 * z.cur / z.n) + ' %',
+      irDeltaChip(NaN), [irChip(irLbl(R.pkey), z.prev), irChip('Variación', (z.cur - z.prev >= 0 ? '+' : '−') + Math.abs(z.cur - z.prev) + ' nudos')]);
+  }).join('<div style="height:8px"></div>');
+  h2 += '</td></tr></tbody></table>';
+  pag += irPagina('1', 'El cuello de botella se desplaza', 'Criterio limitante y red cerrada · ' + irLbl(R.pkey) + ' → ' + irLbl(R.key), h2, R);
+  return pag;
+}
+
+/* ---------- 2 · bloqueos por falta de acuerdo del valor de referencia ----------
+   Ficha de demanda de REE: «Estado acuerdo sobre capacidad de acceso para consumo
+   en la RdD (valor de referencia)» (otorgada.estado_acuerdo_rdd = SI / NO / sin dato)
+   y el motivo de capacidad no otorgable («Valor de referencia no acordado» y/o
+   «… no acordado en la zona estática»).                                         */
+function irAcuerdoNudo(r) {
+  if (!r || !r.dem) return null;
+  const est = String(((r.dem.otorgada || {}).estado_acuerdo_rdd) || '').trim().toUpperCase();
+  const mot = String(((r.dem.no_otorgable || {}).motivo) || '');
+  const propio = est === 'NO';
+  const zona = !propio && /no acordado en la zona est/i.test(mot);
+  const d = r.dem.disp || {};
+  const conMW = ['dem_ch', 'dem_sh', 'dem_no_cep', 'alm_cep', 'alm_no_cep'].some(function (f) { const v = irN(d[f]); return !isNaN(v) && v > 0; });
+  return {est: est === 'SI' ? 'SI' : (propio ? 'NO' : 'ND'), propio: propio, zona: zona, bloq: propio || zona, conMW: conMW};
+}
+function irAcuerdos(R) {
+  const A = {n: 0, propio: {cur: 0, prev: 0}, zona: {cur: 0, prev: 0}, total: {cur: 0, prev: 0}, si: {cur: 0, prev: 0}, nd: {cur: 0, prev: 0},
+             ccaa: {}, nuevos: [], liberados: [], conMW: 0, sinMWdem: 0, sinMWbloq: 0};
+  R.pares.forEach(function (x) {
+    const c = irAcuerdoNudo(x.c), p = irAcuerdoNudo(x.p);
+    if (c) {
+      A.n++;
+      if (c.propio) A.propio.cur++; if (c.zona) A.zona.cur++; if (c.bloq) A.total.cur++;
+      if (c.est === 'SI') A.si.cur++; if (c.est === 'ND') A.nd.cur++;
+      if (c.bloq) { const k = A.ccaa[x.ccaa] || (A.ccaa[x.ccaa] = {cur: 0, prev: 0}); k.cur++; if (c.conMW) A.conMW++; }
+      if (!c.conMW) { A.sinMWdem++; if (c.bloq) A.sinMWbloq++; }
+    }
+    if (p) {
+      if (p.propio) A.propio.prev++; if (p.zona) A.zona.prev++; if (p.bloq) A.total.prev++;
+      if (p.est === 'SI') A.si.prev++; if (p.est === 'ND') A.nd.prev++;
+      if (p.bloq) { const k = A.ccaa[x.ccaa] || (A.ccaa[x.ccaa] = {cur: 0, prev: 0}); k.prev++; }
+    }
+    if (c && p && R.pkey) {
+      if (c.bloq && !p.bloq) A.nuevos.push(x);
+      if (!c.bloq && p.bloq) A.liberados.push({x: x, mw: irGet(x.c, 'dem', 'disp', 'dem_ch')});
+    }
+  });
+  return A;
+}
+function irPagAcuerdos(R, A) {
+  if (!A.n) return '';
+  const pct = Math.round(100 * A.total.cur / A.n);
+  const dl = function (o) { return R.pkey ? (o.cur === o.prev ? '<span class="ir-dch ir-dch-eq">= igual que ' + irLbl(R.pkey) + '</span>' : '<span class="ir-dch ' + (o.cur < o.prev ? 'ir-dch-up' : 'ir-dch-dn') + '">' + (o.cur > o.prev ? '▲ +' : '▼ −') + Math.abs(o.cur - o.prev) + ' nudos</span>') : ''; };
+  let h = '<div class="ir-alerta" style="border-left-color:#F3721F;"><div class="ir-alerta-n" style="color:#F3721F;">' + A.total.cur + '</div><div><b>de ' + A.n + ' nudos (' + pct + ' %) no ofrecen capacidad de demanda porque el valor de referencia con la distribuidora no está acordado.</b><br>' +
+    'En ninguno de ellos publica REE capacidad disponible para demanda ni cuantifica la capacidad retenida: solo indica el motivo. Es un bloqueo administrativo, no de red.' + (R.pkey ? ' ' + (A.total.cur === A.total.prev ? 'La cifra no cambia respecto a ' + irLbl(R.pkey) + '.' : 'Antes eran ' + A.total.prev + '.') : '') + '</div></div>';
+  h += irRejilla([
+    irCard('Sin acuerdo propio', 'estado del acuerdo = NO', irF(A.propio.cur), 'nudos', dl(A.propio), [irChip('Motivo publicado', 'Valor de referencia no acordado')]),
+    irCard('Bloqueados por su zona', 'el nudo sí tiene acuerdo o no lo necesita', irF(A.zona.cur), 'nudos', dl(A.zona), [irChip('Motivo publicado', 'no acordado en la zona estática')]),
+    irCard('Con acuerdo', 'estado del acuerdo = SI', irF(A.si.cur), 'nudos', dl(A.si), [], '', 'ir-card-gris'),
+    irCard('Sin valor de referencia', 'sin dato de acuerdo en la ficha', irF(A.nd.cur), 'nudos', '', [], '', 'ir-card-gris')
+  ], 4);
+  const filas = Object.keys(A.ccaa).map(function (k) { return {name: k, v: A.ccaa[k].cur, extra: R.pkey ? irDeltaMini(A.ccaa[k].cur - A.ccaa[k].prev) : ''}; })
+    .filter(function (f) { return f.v > 0; }).sort(function (a, b) { return b.v - a.v; });
+  let mov;
+  if (!R.pkey) mov = '<div class="ir-vacio">Sin mes de comparación.</div>';
+  else if (!A.nuevos.length && !A.liberados.length) mov = '<div class="ir-vacio" style="font-size:14px;">Ningún nudo se desbloquea ni se bloquea entre ' + irLbl(R.pkey) + ' y ' + irLbl(R.key) + '.</div>';
+  else mov = (A.liberados.length ? '<div class="ir-nm"><b class="ir-up">Se desbloquean (' + A.liberados.length + '):</b> ' + A.liberados.slice(0, 12).map(function (z) { return irEsc(z.x.name) + (z.mw > 0 ? ' <small>' + irF(z.mw) + ' MW CEP-CH</small>' : ''); }).join(' · ') + '</div>' : '') +
+             (A.nuevos.length ? '<div class="ir-nm"><b class="ir-dn">Se bloquean (' + A.nuevos.length + '):</b> ' + A.nuevos.slice(0, 12).map(function (x) { return irEsc(x.name); }).join(' · ') + '</div>' : '');
+  h += '<table class="ir-cols" style="margin-top:12px;"><tbody><tr><td style="width:55%;"><div class="ir-sh">Nudos bloqueados por comunidad <small>' + (R.pkey ? 'variación frente a ' + irLbl(R.pkey) : '') + '</small></div>' +
+    '<div class="ir-compacto">' + irBarras(filas, 0, {color: '#F3721F', signo: false}) + '</div></td><td>' +
+    irCard('Peso en la red cerrada', 'nudos sin un solo MW de demanda', irF(A.sinMWbloq), 'de ' + A.sinMWdem + ' (' + (A.sinMWdem ? Math.round(100 * A.sinMWbloq / A.sinMWdem) : 0) + ' %)', '',
+      [irChip('Explicados por falta de acuerdo', A.sinMWbloq + ' nudos'), irChip('Por otras causas', (A.sinMWdem - A.sinMWbloq) + ' nudos')],
+      'Sin estos bloqueos, la parte de la red de demanda cerrada por falta de capacidad física sería de ' + (A.sinMWdem - A.sinMWbloq) + ' nudos.') +
+    '<div style="height:10px"></div><div class="ir-card"><div class="ir-card-h">Movimientos del mes</div>' + mov + '</div>' +
+    '</td></tr></tbody></table>';
+  h += '<div class="ir-note">Fuente: ficha de demanda de REE · campos «Estado acuerdo sobre capacidad de acceso para consumo en la RdD (valor de referencia)» y «Motivo capacidad no otorgable». ' +
+    (A.conMW ? A.conMW + ' nudo(s) bloqueado(s) sí muestran algún MW disponible en otra variable de demanda.' : '') + '</div>';
+  return irPagina('2', 'Nudos bloqueados por falta de acuerdo', 'Valor de referencia de consumo en la red de distribución no acordado con la distribuidora · ' + irLbl(R.key), h, R);
+}
+
+/* ---------- 3 · situación global ---------- */
+const IR_CARDS = {
+  gen: [
+    {t: 'Disponible RdT', s: 'para solicitudes', tot: ['disp', 'gen_mpe_rdt', 'GEN MPE'], ch: [['disp', 'gen_mges_rdt', 'GEN MGES'], ['disp', 'alm_mpe_rdt', 'ALM MPE'], ['disp', 'alm_mges_rdt', 'ALM MGES']]},
+    {t: 'Disponible RdD', s: 'desde distribución', tot: ['disp', 'gen_mpe_rdd', 'GEN MPE'], ch: [['disp', 'gen_mges_rdd', 'GEN MGES'], ['disp', 'alm_mpe_rdd', 'ALM MPE'], ['disp', 'alm_mges_rdd', 'ALM MGES']]},
+    {t: 'Capacidad otorgada', s: 'total', sum: [['otorgada', 'gen'], ['otorgada', 'alm']], ch: [['otorgada', 'gen', 'GEN'], ['otorgada', 'alm', 'ALM']]},
+    {t: 'En curso', s: 'pendiente de resolver', tot: ['en_curso', 'total', 'Total'], ch: [['en_curso', 'gen', 'GEN'], ['en_curso', 'alm', 'ALM']]}
+  ],
+  dem: [
+    {t: 'Disponible RdT', s: 'para solicitudes', tot: ['disp', 'dem_ch', 'DEM CEP-CH'], ch: [['disp', 'dem_no_cep', 'DEM No CEP'], ['disp', 'alm_cep', 'ALM CEP'], ['disp', 'dem_sh', 'DEM CEP-SH']]},
+    {t: 'Margen de capacidad', s: 'para conexión RdT', tot: ['margen', 'dem_ch', 'DEM CEP-CH'], ch: [['margen', 'dem_no_cep', 'DEM No CEP'], ['margen', 'alm_cep_mpe', 'ALM CEP']]},
+    {t: 'Capacidad otorgada', s: 'RdT', sum: [['otorgada', 'dem_rdt'], ['otorgada', 'alm_rdt']], ch: [['otorgada', 'dem_rdt', 'Demanda'], ['otorgada', 'alm_rdt', 'Almacenamiento']]},
+    {t: 'En curso', s: 'pendiente de resolver', sum: [['en_curso', 'dem'], ['en_curso', 'alm_rdt']], ch: [['en_curso', 'dem', 'Demanda'], ['en_curso', 'alm_rdt', 'Almacenamiento']]}
+  ]
+};
+function irSuma(R, side, sec, f, cual) { let t = 0; R.pares.forEach(function (x) { const v = irGet(cual === 'p' ? x.p : x.c, side, sec, f); if (!isNaN(v)) t += v; }); return t; }
+function irPagGlobal(R) {
+  const col = function (side) {
+    return IR_CARDS[side].map(function (k) {
+      let c, p, lbl = '';
+      if (k.sum) { c = 0; p = 0; k.sum.forEach(function (s) { c += irSuma(R, side, s[0], s[1], 'c'); p += irSuma(R, side, s[0], s[1], 'p'); }); }
+      else { c = irSuma(R, side, k.tot[0], k.tot[1], 'c'); p = irSuma(R, side, k.tot[0], k.tot[1], 'p'); lbl = k.tot[2]; }
+      const chips = k.ch.map(function (z) { const a = irSuma(R, side, z[0], z[1], 'c'), b = irSuma(R, side, z[0], z[1], 'p'); return irChip(z[2], irF(a), R.pkey ? irDeltaMini(a - b) : ''); });
+      return irCard(k.t, k.s + (lbl ? ' · ' + lbl : ''), irF(c), 'MW', R.pkey ? irDeltaChip(c - p, irPctTxt(c, p)) : '', chips);
+    });
+  };
+  let concG = 0, concD = 0;
+  R.pares.forEach(function (x) { if (irEstado(x.c, 'gen')) concG++; if (irEstado(x.c, 'dem')) concD++; });
+  const sat = function (s) { const o = R.sat[s]; return (isNaN(o.cur) ? '–' : o.cur.toFixed(0) + ' %') + (R.pkey && !isNaN(o.prev) && Math.abs(o.cur - o.prev) >= 0.5 ? ' <small>(antes ' + o.prev.toFixed(0) + ' %)</small>' : ''); };
+  const banda = '<div class="ir-nat"><span class="ir-nat-f">España · total nacional</span>' +
+    '<span class="ir-nat-c">Nudos <b>' + R.nCur + '</b></span><span class="ir-nat-c">En concurso o reserva · gen. <b>' + concG + '</b> · dem. <b>' + concD + '</b></span>' +
+    '<span class="ir-nat-c">Saturación · gen. <b>' + sat('gen') + '</b> · dem. <b>' + sat('dem') + '</b></span></div>';
+  const gc = col('gen'), dc = col('dem');
+  const cuerpo = banda + '<table class="ir-cols"><tbody><tr><td><div class="ir-colh ir-colh-gen">Ficha de GENERACIÓN</div>' + irRejilla(gc, 2) +
+    '</td><td><div class="ir-colh ir-colh-dem">Ficha de DEMANDA</div>' + irRejilla(dc, 2) + '</td></tr></tbody></table>' +
+    '<div class="ir-note">Sumas de nudos: no equivalen a capacidad conectable a la vez, porque los criterios zonales comparten margen entre nudos. Saturación = (otorgada + en curso) / (otorgada + en curso + disponible), media de los nudos con disponible publicado.</div>';
+  return irPagina('3', 'Situación global de la red de transporte', 'Totales nacionales · ' + irLbl(R.key) + (R.pkey ? ' frente a ' + irLbl(R.pkey) : ''), cuerpo, R);
+}
+
+/* ---------- 3 · regional ---------- */
+function irPagRegional(R) {
+  const ids = ['dem_ch', 'dem_no_cep', 'alm_cep', 'gen_mpe_rdt'];
+  const ccaa = Object.keys(R.ccaa).filter(function (k) { return k !== '(sin CCAA)'; });
+  const bloque = function (id) {
+    const o = R.met[id];
+    const filas = ccaa.map(function (k) { const v = R.ccaa[k].v[id] || {cur: 0, prev: 0}; return {name: k, v: R.pkey ? v.cur - v.prev : v.cur, cur: v.cur}; })
+      .filter(function (f) { return Math.abs(f.v) >= 0.5; }).sort(function (a, b) { return b.v - a.v; });
+    const tot = R.pkey ? o.cur - o.prev : o.cur;
+    return '<div class="ir-card ir-card-flat"><div class="ir-card-h">' + o.m.lbl + ' <small>' + (R.pkey ? 'Δ disponible por CCAA' : 'disponible por CCAA') + '</small></div>' +
+      '<div class="ir-card-tot" style="font-size:20px;">' + (R.pkey ? (tot >= 0 ? '+' : '−') + irF(Math.abs(tot)) : irF(tot)) + ' <small>MW en España</small></div>' +
+      (R.pkey ? irDivergente(filas) : irBarras(filas, 0, {color: '#F3721F', signo: false})) + '</div>';
+  };
+  return irPagina('4', 'Dónde cambia la capacidad', (R.pkey ? 'Variación del disponible en RdT por comunidad autónoma · ' + irLbl(R.pkey) + ' → ' + irLbl(R.key) : 'Disponible en RdT por comunidad autónoma') +
+    ' · solo comunidades con cambio', irRejilla(ids.map(bloque), 2), R);
+}
+
+/* ---------- 4 · nudos ---------- */
+function irRanking(R, id, topn) {
+  const o = R.met[id];
+  const fila = function (f) {
+    const tags = [];
+    if (f.critP && f.crit && f.critP !== f.crit) tags.push('<i class="ir-tg ir-tg-c">criterio: ' + irEsc(f.critP.replace(/_/g, ' ')) + ' → ' + irEsc(f.crit.replace(/_/g, ' ')) + '</i>');
+    if (f.est) tags.push('<i class="ir-tg ir-tg-r">' + irEsc(irEstTxt(f.est)) + '</i>');
+    return {name: f.x.name, sub: f.x.ccaa + ' · ' + irF(f.p) + ' → ' + irF(f.c) + ' MW', v: f.d, tags: tags.length ? '<div>' + tags.join(' ') + '</div>' : ''};
+  };
+  const sube = o.filas.filter(function (f) { return f.d > 0; }).slice(0, topn).map(fila);
+  const baja = o.filas.filter(function (f) { return f.d < 0; }).slice(0, topn).map(fila);
+  const max = Math.max.apply(null, sube.concat(baja).map(function (f) { return Math.abs(f.v); }).concat([1]));
+  return '<div class="ir-card ir-card-flat"><div class="ir-card-h">' + o.m.lbl + ' <small>' + o.filas.length + ' nudos con variación</small></div>' +
+    '<div class="ir-sh2 ir-up">▲ Mayores subidas</div>' + irBarras(sube, max, {vacio: 'Ningún nudo sube'}) +
+    '<div class="ir-sh2 ir-dn">▼ Mayores bajadas</div>' + irBarras(baja, max, {vacio: 'Ningún nudo baja'}) + '</div>';
 }
 function irPagNudos(R, topn) {
-  const par = [['gen_mpe_rdt', 'gen_mges_rdt', 'Generación'], ['dem_ch', 'dem_no_cep', 'Demanda'], ['alm_mpe_rdt', 'alm_cep', 'Almacenamiento']];
+  if (!R.pkey) return '';
+  const par = [['dem_ch', 'dem_no_cep', 'Demanda'], ['alm_cep', 'alm_mpe_rdt', 'Almacenamiento'], ['gen_mpe_rdt', 'gen_mges_rdt', 'Generación']];
   return par.map(function (p) {
-    return '<div class="bs-card bs-page"><h3>3 · Cambios representativos por nudo · ' + p[2] + '</h3>' +
-      '<div class="bs-sub2">Nudos ordenados por |Δ| del disponible en RdT · ' + (R.pkey ? irLbl(R.pkey) + ' → ' + irLbl(R.key) : irLbl(R.key)) +
-      ' · el estado y el motivo son los publicados por REE en el mes del informe</div>' +
-      '<table class="ir-two"><tbody><tr><td>' + irTablaNudos(R, p[0], topn) + '</td><td>' + irTablaNudos(R, p[1], topn) + '</td></tr></tbody></table>' +
-      irPie(R) + '</div>';
+    return irPagina('5', 'Nudos que más cambian · ' + p[2], 'Variación del disponible en RdT · ' + irLbl(R.pkey) + ' → ' + irLbl(R.key) + ' · bajo cada nudo: CCAA y MW antes → ahora',
+      irRejilla([irRanking(R, p[0], topn), irRanking(R, p[1], topn)], 2), R);
   }).join('');
 }
+
+/* ---------- 5 · aperturas y cierres ---------- */
 function irPagCambios(R) {
   if (!R.pkey) return '';
-  const lista = function (arr, campo) {
-    if (!arr.length) return '<span class="ir-mut">—</span>';
-    return arr.slice(0, 8).map(function (f) { return irEsc(f.x.name) + ' <span class="ir-mut">(' + irF(f[campo]) + ')</span>'; }).join(', ') + (arr.length > 8 ? ' <span class="ir-mut">y ' + (arr.length - 8) + ' más</span>' : '');
-  };
-  const sum = function (arr, campo) { return arr.reduce(function (t, f) { return t + (isNaN(f[campo]) ? 0 : f[campo]); }, 0); };
-  let h = '<div class="ir-h4">Nudos que abren (0 → &gt; 0) y que cierran (&gt; 0 → 0)</div><table class="ir-t"><thead><tr><th>Variable</th><th>Abren</th><th>MW</th><th>Principales (MW actuales)</th><th>Cierran</th><th>MW</th><th>Principales (MW que tenían)</th></tr></thead><tbody>';
-  IR_MET.forEach(function (m) {
-    const o = R.met[m.id];
-    h += '<tr><td class="ir-l"><b>' + m.lbl + '</b></td><td class="ir-up">' + o.abren.length + '</td><td>' + irF(sum(o.abren, 'c')) + '</td><td class="ir-l">' + lista(o.abren, 'c') + '</td>' +
-      '<td class="ir-dn">' + o.cierran.length + '</td><td>' + irF(sum(o.cierran, 'p')) + '</td><td class="ir-l">' + lista(o.cierran, 'p') + '</td></tr>';
+  const isl = function (arr) { return arr.filter(function (f) { return IR_ISLAS[f.x.ccaa]; }).length; };
+  const cards = IR_MET.map(function (m) {
+    const o = R.met[m.id], ia = isl(o.abren), ic = isl(o.cierran), neto = (o.abren.length - ia) - (o.cierran.length - ic);
+    const nombres = function (arr, campo) { return arr.slice(0, 4).map(function (f) { return irEsc(f.x.name) + ' <small>' + irF(f[campo]) + '</small>'; }).join(' · ') + (arr.length > 4 ? ' <small>y ' + (arr.length - 4) + ' más</small>' : ''); };
+    return '<div class="ir-card"><div class="ir-card-h">' + m.lbl + '</div>' +
+      '<div class="ir-ac"><div><span class="ir-ac-n ir-up">' + o.abren.length + '</span><span class="ir-ac-l">abren</span></div><div><span class="ir-ac-n ir-dn">' + o.cierran.length + '</span><span class="ir-ac-l">cierran</span></div>' +
+      '<div><span class="ir-ac-n" style="color:#F3721F;">' + (neto > 0 ? '+' : (neto < 0 ? '−' : '')) + Math.abs(neto) + '</span><span class="ir-ac-l">neto fuera de<br>Baleares y Canarias</span></div></div>' +
+      '<div class="ir-chips">' + irChip('En Baleares y Canarias', ia + ' abren · ' + ic + ' cierran') + '</div>' +
+      (o.abren.length ? '<div class="ir-nm"><b class="ir-up">Abren:</b> ' + nombres(o.abren, 'c') + '</div>' : '') +
+      (o.cierran.length ? '<div class="ir-nm"><b class="ir-dn">Cierran:</b> ' + nombres(o.cierran, 'p') + '</div>' : '') + '</div>';
   });
-  h += '</tbody></table>';
-  // criterio limitante: transiciones más frecuentes por variable
-  h += '<div class="ir-h4">Cambios de criterio limitante</div><table class="ir-t"><thead><tr><th>Variable</th><th>Nudos que cambian</th><th>Transiciones más frecuentes</th><th>Ejemplos</th></tr></thead><tbody>';
-  IR_MET.forEach(function (m) {
-    const o = R.met[m.id], T = {};
-    o.critCambios.forEach(function (f) { const k = f.critP + ' → ' + f.crit; T[k] = (T[k] || 0) + 1; });
-    const tr = Object.keys(T).sort(function (a, b) { return T[b] - T[a]; }).slice(0, 4).map(function (k) { return irEsc(k) + ' <b>(' + T[k] + ')</b>'; }).join('<br>');
-    h += '<tr><td class="ir-l"><b>' + m.lbl + '</b></td><td>' + o.critCambios.length + '</td><td class="ir-l">' + (tr || '<span class="ir-mut">—</span>') + '</td><td class="ir-l">' +
-      (o.critCambios.slice(0, 4).map(function (f) { return irEsc(f.x.name); }).join(', ') || '<span class="ir-mut">—</span>') + '</td></tr>';
-  });
-  h += '</tbody></table>';
-  // concurso
-  h += '<div class="ir-h4">Cambios de estado de concurso / reserva (' + R.concurso.length + ')</div>';
-  if (R.concurso.length) {
-    h += '<table class="ir-t"><thead><tr><th>Nudo</th><th>CCAA</th><th>Ficha</th><th>' + irLbl(R.pkey) + '</th><th>' + irLbl(R.key) + '</th></tr></thead><tbody>' +
-      R.concurso.slice(0, 30).map(function (c) { return '<tr><td class="ir-l"><b>' + irEsc(c.name) + '</b></td><td class="ir-l">' + irEsc(c.ccaa) + '</td><td>' + (c.side === 'gen' ? 'Generación' : 'Demanda') + '</td><td>' + irEsc(c.de) + '</td><td><b>' + irEsc(c.a) + '</b></td></tr>'; }).join('') +
-      '</tbody></table>' + (R.concurso.length > 30 ? '<div class="ir-note">… y ' + (R.concurso.length - 30) + ' más.</div>' : '');
-  } else h += '<div class="ir-note">Sin cambios de estado de concurso entre ambos meses.</div>';
-  return '<div class="bs-card bs-page"><h3>4 · Aperturas, cierres, criterio limitante y concurso</h3><div class="bs-sub2">' + irLbl(R.pkey) + ' → ' + irLbl(R.key) +
-    ' · solo nudos publicados en los dos meses</div>' + h + irPie(R) + '</div>';
+  let h = irRejilla(cards, 3);
+  h += '<div class="ir-sh">Cambios de estado de concurso o reserva <small>' + R.concurso.length + '</small></div>';
+  h += R.concurso.length ? '<div class="ir-chips">' + R.concurso.slice(0, 12).map(function (c) {
+    return irChip(irEsc(c.name) + ' · ' + (c.side === 'gen' ? 'generación' : 'demanda'), irEsc(c.de) + ' → <b>' + irEsc(c.a) + '</b>');
+  }).join('') + '</div>' : '<div class="ir-vacio">Ningún nudo cambia de estado de concurso.</div>';
+  return irPagina('6', 'Nudos que se abren y se cierran', 'Pasan de 0 a tener capacidad, o al revés · ' + irLbl(R.pkey) + ' → ' + irLbl(R.key) + ' · MW junto a cada nombre', h, R);
 }
+
+/* ---------- 6 · novedades de REE ---------- */
 function irPagNovedades(R, N, S, ZR) {
-  const lab = function (c) { return ((((typeof REE_LABELS !== 'undefined') && REE_LABELS[c.s]) || {})[c.b] || {})[c.f] || ''; };
-  let h = '<table class="ir-two"><tbody><tr><td>';
-  // inventario
-  h += '<div class="ir-h4">Inventario de nudos</div><ul class="ir-kv">' +
-    '<li><b>' + R.nCur + '</b> nudos publicados' + (R.pkey ? ' (antes ' + R.nPrev + ')' : '') + '.</li>' +
-    '<li><b>Nudos nuevos (' + N.nuevos.length + '):</b> ' + (N.nuevos.map(function (x) { return irEsc(x.name); }).join(', ') || '—') + '</li>' +
-    '<li><b>Nudos que dejan de publicarse (' + N.idos.length + '):</b> ' + (N.idos.map(function (x) { return irEsc(x.name); }).join(', ') || '—') + '</li>' +
-    '<li><b>Renombrados (' + N.renom.length + '):</b> ' + (N.renom.map(function (x) { return irEsc(x.prevName) + ' → ' + irEsc(x.name); }).join(', ') || '—') + '</li></ul>';
-  // estructura de la ficha
-  h += '<div class="ir-h4">Estructura de la ficha de REE</div>';
-  if (!R.pkey) h += '<div class="ir-note">Sin mes de comparación.</div>';
-  else {
-    if (N.camposNuevos.length) {
-      // Una fila por bloque: nº de campos, nudos con dato y los campos numéricos de mayor suma.
-      const grp = {}; N.camposNuevos.forEach(function (c) { const k = c.s + '|' + c.b; (grp[k] = grp[k] || []).push(c); });
-      const nBloq = Object.keys(grp).length;
-      h += '<div style="font-size:9.5px;margin-bottom:3px;"><b>' + N.camposNuevos.length + ' campo(s) nuevo(s) en ' + nBloq + ' bloque(s)</b> respecto a ' + irLbl(R.pkey) + ':</div>' +
-        '<table class="ir-t"><thead><tr><th>Ficha</th><th>Bloque nuevo</th><th>Campos</th><th>Nudos con dato</th><th>Campos con más MW (suma nacional · nudos &gt; 0)</th></tr></thead><tbody>' +
-        Object.keys(grp).map(function (k) {
-          const L = grp[k], c0 = L[0], nombre = IR_BLOQUES[c0.b] || '';
-          const nDato = Math.max.apply(null, L.map(function (c) { return c.n; }));
-          const num = L.filter(function (c) { return c.sum > 0; }).sort(function (a, b) { return b.sum - a.sum; }).slice(0, 3);
-          const txt = num.length ? num.map(function (c) { return '<b>' + irEsc(c.f) + '</b> ' + irF(c.sum) + ' · ' + c.pos; }).join('<br>')
-            : '<span class="ir-mut">campos de texto (p. ej. ' + irEsc(L.slice(0, 3).map(function (c) { return c.f; }).join(', ')) + ')</span>';
-          return '<tr><td>' + (c0.s === 'gen' ? 'Generación' : 'Demanda') + '</td><td class="ir-l"><b>' + irEsc(c0.b) + '</b>' + (nombre ? '<div class="ir-mut">' + irEsc(nombre) + '</div>' : '') +
-            '</td><td>' + L.length + '</td><td>' + nDato + '</td><td class="ir-l">' + txt + '</td></tr>';
-        }).join('') + '</tbody></table>';
-    } else h += '<div class="ir-note">Sin campos nuevos: la ficha mantiene la estructura de ' + irLbl(R.pkey) + '.</div>';
-    if (N.camposIdos.length) h += '<div style="font-size:9.5px;margin-top:4px;"><b>Campos que dejan de publicarse (' + N.camposIdos.length + '):</b> ' +
-      N.camposIdos.slice(0, 20).map(function (c) { return irEsc(c.s + '.' + c.b + '.' + c.f); }).join(', ') + '</div>';
+  const cards = [];
+  cards.push(irCard('Inventario de nudos', '', irF(R.nCur), 'nudos', '', [irChip('Nuevos', N.nuevos.length), irChip('Dejan de publicarse', N.idos.length), irChip('Renombrados', N.renom.length)],
+    (N.nuevos.length ? 'Nuevos: ' + N.nuevos.slice(0, 6).map(function (x) { return irEsc(x.name); }).join(', ') : '') + (N.renom.length ? ' Renombrados: ' + N.renom.slice(0, 4).map(function (x) { return irEsc(x.prevName) + ' → ' + irEsc(x.name); }).join(', ') : '')));
+  if (R.pkey) {
+    const grp = {}; N.camposNuevos.forEach(function (c) { const k = c.s + '|' + c.b; (grp[k] = grp[k] || []).push(c); });
+    const bl = Object.keys(grp);
+    cards.push(irCard('Estructura de la ficha', 'bloques nuevos', irF(bl.length), 'bloques · ' + N.camposNuevos.length + ' campos', '',
+      bl.map(function (k) { const c0 = grp[k][0]; return irChip((c0.s === 'gen' ? 'Generación' : 'Demanda') + ' · ' + c0.b, irEsc(IR_BLOQUES[c0.b] || (grp[k].length + ' campos'))); }),
+      bl.length ? 'Bloques que REE incorpora este mes a su ficha; el volcado los guarda como campos adicionales y el resto del visor no cambia.' : 'Sin cambios de estructura respecto a ' + irLbl(R.pkey) + '.'));
   }
-  h += '</td><td>';
-  // solicitudes de demanda y publicación por posición
-  h += '<div class="ir-h4">Publicación por posición y solicitudes de demanda</div>';
-  if (!S.hay) h += '<div class="ir-note">No hay fichero pos_' + irLbl(R.key) + ' cargado (pos_AAAA_MM.json).</div>';
-  else {
-    h += '<ul class="ir-kv">' +
-      (S.meta && S.meta.fecha_publicacion ? '<li>Listado de solicitudes publicado el <b>' + irEsc(S.meta.fecha_publicacion) + '</b>' + (S.meta.fecha_cierre ? ' (cierre ' + irEsc(S.meta.fecha_cierre) + ')' : '') + '.</li>' : '') +
-      '<li><b>' + S.C.length + '</b> solicitudes de acceso de demanda publicadas · <b>' + irF(S.mwC) + ' MW</b>.</li>' +
-      (S.compara ? '<li><b>' + S.nuevas.length + '</b> solicitudes nuevas respecto a ' + irLbl(R.pkey) + ' · <b>' + irF(S.mwN) + ' MW</b>.</li>' : '<li class="ir-mut">Sin publicación por posición del mes de comparación: no se pueden identificar las nuevas.</li>') +
-      '</ul>';
+  if (S.hay) {
     const lista = S.compara ? S.nuevas : S.C;
-    if (lista.length) {
-      const top = lista.slice().sort(function (a, b) { return (irN(b.mw) || 0) - (irN(a.mw) || 0); }).slice(0, 10);
-      h += '<table class="ir-t"><thead><tr><th>Nudo</th><th>Tipo</th><th>MW</th><th>Fecha</th><th>Concurso</th></tr></thead><tbody>' +
-        top.map(function (s) {
-          const tipo = /almacen/i.test(s.tipo || '') ? 'Almacenamiento' : (/incremento/i.test(s.tipo || '') ? 'Incremento consumo' : (/consumo/i.test(s.tipo || '') ? 'Consumo' : irCorta(s.tipo, 30)));
-          return '<tr><td class="ir-l"><b>' + irEsc(s.nudo) + '</b></td><td>' + irEsc(tipo) + '</td><td>' + irF(irN(s.mw)) + '</td><td>' + irEsc(s.fecha || '') + '</td><td>' + irEsc(s.concurso || '') + '</td></tr>';
-        }).join('') + '</tbody></table><div class="ir-note">' + (S.compara ? 'Solicitudes nuevas' : 'Solicitudes publicadas') + ' de mayor potencia (máx. 10).</div>';
-    }
-    if (S.aviso) {
-      const av = typeof S.aviso === 'object' ? Object.keys(S.aviso).map(function (k) { return (k === 'gen' ? 'Generación' : 'Demanda') + ': ' + S.aviso[k]; }).join(' · ') : String(S.aviso);
-      h += '<div class="bs-cola bs-cola-g" style="margin-top:6px;"><b>Aviso de calidad del PDF por posición de REE.</b> ' + irEsc(av) + '. Las denominaciones de posición de ese fichero no son fiables este mes.</div>';
-    }
+    cards.push(irCard('Solicitudes de acceso de demanda', S.meta && S.meta.fecha_publicacion ? 'publicadas el ' + irEsc(S.meta.fecha_publicacion) : '', irF(S.C.length), 'solicitudes · ' + irF(S.mwC) + ' MW',
+      S.compara ? irChip('Nuevas', S.nuevas.length + ' · ' + irF(S.mwN) + ' MW') : '',
+      lista.slice().sort(function (a, b) { return (irN(b.mw) || 0) - (irN(a.mw) || 0); }).slice(0, 6).map(function (s) {
+        return irChip(irEsc(s.nudo), irF(irN(s.mw)) + ' MW · ' + (/almacen/i.test(s.tipo || '') ? 'almacenamiento' : 'consumo'));
+      }), S.compara ? '' : 'Sin publicación por posición del mes anterior: no se distinguen las nuevas.'));
   }
-  // normativa y motivos nuevos
-  h += '<div class="ir-h4">Normativa y motivos nuevos en la ficha</div>';
-  if (!R.pkey) h += '<div class="ir-note">Sin mes de comparación.</div>';
-  else {
-    h += '<ul class="ir-kv"><li><b>Normativa nueva (' + N.normNuevas.length + '):</b> ' + (N.normNuevas.map(function (x) { return irEsc(x.t) + ' <span class="ir-mut">(' + x.n + ' nudos)</span>'; }).join('; ') || '—') + '</li>' +
-      '<li><b>Motivos nuevos (' + N.motivosNuevos.length + '):</b> ' + (N.motivosNuevos.slice(0, 8).map(function (x) { return '«' + irEsc(irCorta(x.t, 120)) + '» <span class="ir-mut">(' + x.n + ' nudos)</span>'; }).join('; ') || '—') + '</li></ul>';
-  }
-  // zonas
-  h += '<div class="ir-h4">Zonas de capacidad compartida</div>';
-  const zt = function (persp, tit) {
+  if (R.pkey) cards.push(irCard('Normativa y motivos', 'textos nuevos en la ficha', irF(N.normNuevas.length + N.motivosNuevos.length), 'textos nuevos', '',
+    N.normNuevas.map(function (x) { return irChip('Normativa', irEsc(irCorta(x.t, 60)) + ' · ' + x.n + ' nudos'); }).concat(N.motivosNuevos.slice(0, 3).map(function (x) { return irChip('Motivo · ' + x.n + ' nudos', irEsc(irCorta(x.t, 70))); }))));
+  ['gen', 'dem'].forEach(function (persp) {
     const z = ZR && ZR[persp];
-    if (!z) return '<div class="ir-note">' + tit + ': no hay fichero zonas_val_' + persp + '_' + irZonaKey(R.key) + '.json en el repositorio.</div>';
-    let s = '<div style="font-size:9.5px;"><b>' + tit + ':</b> ' + Object.keys(z.nZ).map(function (c) { return c + ' ' + z.nZ[c] + (z.compara && z.nZp[c] !== undefined && z.nZp[c] !== z.nZ[c] ? ' <span class="ir-mut">(antes ' + z.nZp[c] + ')</span>' : ''); }).join(' · ') + ' zonas';
-    if (!z.compara) return s + ' <span class="ir-mut">· sin fichero del mes de comparación</span></div>';
-    s += ' · nuevas ' + z.nuevas.length + ' · desaparecidas ' + z.idas.length + ' · ' + z.vari.length + ' variaciones de margen zonal</div>';
-    if (z.nuevas.length || z.idas.length) s += '<div class="ir-mut">' + (z.nuevas.length ? 'Nuevas: ' + z.nuevas.slice(0, 8).map(irEsc).join(', ') + '. ' : '') + (z.idas.length ? 'Desaparecidas: ' + z.idas.slice(0, 8).map(irEsc).join(', ') + '.' : '') + '</div>';
-    if (z.vari.length) s += '<table class="ir-t"><thead><tr><th>Criterio</th><th>Zona</th><th>Campo</th><th>Antes</th><th>Ahora</th><th>Δ</th></tr></thead><tbody>' +
-      z.vari.slice(0, 6).map(function (v) { return '<tr><td>' + irEsc(v.crit) + '</td><td>' + irEsc(v.z) + '</td><td class="ir-l">' + irEsc(v.col) + '</td><td>' + irF(v.p) + '</td><td><b>' + irF(v.c) + '</b></td><td>' + irD(v.d) + '</td></tr>'; }).join('') + '</tbody></table>';
-    return s;
-  };
-  h += zt('gen', 'Generación') + zt('dem', 'Demanda');
-  h += '</td></tr></tbody></table>';
-  return '<div class="bs-card bs-page"><h3>5 · Nueva información publicada por REE</h3><div class="bs-sub2">Cambios en lo que publica REE, no solo en las cifras · ' +
-    irLbl(R.key) + (R.pkey ? ' frente a ' + irLbl(R.pkey) : '') + '</div>' + h + irPie(R) + '</div>';
+    const tit = 'Zonas · ' + (persp === 'gen' ? 'generación' : 'demanda');
+    if (!z) { cards.push(irCard(tit, '', '–', '', '', [], 'No hay fichero zonas_val_' + persp + '_' + irZonaKey(R.key) + '.json en zonas_REE/.', 'ir-card-gris')); return; }
+    const n = Object.keys(z.nZ).reduce(function (t, c) { return t + z.nZ[c]; }, 0);
+    cards.push(irCard(tit, 'capacidad compartida', irF(n), 'zonas', '', Object.keys(z.nZ).map(function (c) { return irChip(c, z.nZ[c]); }).concat(z.compara ? [irChip('Nuevas / desaparecen', z.nuevas.length + ' / ' + z.idas.length), irChip('Cambios de margen', z.vari.length)] : []),
+      z.compara ? z.vari.slice(0, 3).map(function (v) { return irEsc(v.z) + ' ' + irF(v.p) + ' → ' + irF(v.c); }).join(' · ') : 'Sin fichero del mes de comparación.'));
+  });
+  let h = irRejilla(cards, 3);
+  if (S.aviso) {
+    const av = typeof S.aviso === 'object' ? Object.keys(S.aviso).map(function (k) { return (k === 'gen' ? 'Generación' : 'Demanda') + ': ' + S.aviso[k]; }).join(' · ') : String(S.aviso);
+    h += '<div class="ir-aviso"><b>⚠ Calidad de la publicación por posición.</b> ' + irEsc(av) + '. Los nombres de posición de ese PDF no son fiables este mes; los MW sí.</div>';
+  }
+  return irPagina('7', 'Qué publica REE de nuevo', 'Cambios en la publicación, no solo en las cifras · ' + irLbl(R.key) + (R.pkey ? ' frente a ' + irLbl(R.pkey) : ''), h, R);
+}
+
+/* ---------- última hoja · cómo leer el informe ---------- */
+function irPagMetodo(R) {
+  const L = [
+    ['Disponible', 'capacidad de acceso disponible para solicitudes en la red de transporte (RdT), campo a campo tal como la publica REE en su ficha mensual.'],
+    ['Sumas nacionales y por CCAA', 'son sumas de nudos. No equivalen a capacidad conectable a la vez: los criterios zonales comparten margen entre varios nudos.'],
+    ['Variaciones', 'mes del informe menos mes de comparación, nudo a nudo. Los nudos renombrados se comparan consigo mismos gracias a los alias de nodos_base_REE.json.'],
+    ['Abren / cierran', 'nudos que pasan de 0 (o sin dato) a tener capacidad, y al revés. Baleares y Canarias (sistemas insulares) se cuentan aparte para que sus aperturas no se confundan con las de la península.'],
+    ['Recálculo nodal', 'nudos cuya capacidad nodal publicada (estática, cortocircuito o dinámica) cambia más de ±' + IR_TOL + ' MW. Si cambia en más del ' + Math.round(100 * IR_UMBRAL_ESCENARIO) + ' % de los nudos a la vez, se avisa de un probable cambio del escenario de cálculo.'],
+    ['Criterio limitante', 'el que publica REE para cada variable. Un nudo con criterio combinado (p. ej. «WSCR_Nudo/Din1_Zona») cuenta en cada familia que contiene.'],
+    ['Bloqueo por falta de acuerdo', 'nudos cuyo «estado del acuerdo sobre la capacidad de acceso para consumo en la RdD (valor de referencia)» es NO, o cuyo motivo de capacidad no otorgable indica que el valor de referencia no está acordado en su zona estática. Son campos de la ficha de demanda de REE.'],
+    ['Saturación', 'media, en los nudos con disponible publicado, de (otorgada + en curso) / (otorgada + en curso + disponible). Es la misma definición que usa Grid Status.']
+  ];
+  const A = [
+    ['⚠ Fase de pruebas', 'cálculo propio sobre la ficha mensual de REE y, si están cargadas, sus publicaciones por posición, el listado de solicitudes de demanda y los ficheros de zonas. Sirve para explorar y contrastar; verifica con la publicación oficial antes de una decisión de inversión.'],
+    ['Causas', 'REE no publica el motivo de las variaciones (DIA, desistimientos, caducidades, recálculos): las cifras describen el cambio, no su causa. Los hitos regulatorios que aparecen se han comprobado en el BOE.'],
+    ['Fuentes', 'ficha de capacidad de acceso de REE (generación y demanda), publicación por posición, listado de solicitudes de demanda (art. 20 quater RD 1183/2020) y Resolución de la CNMC de 1 de diciembre de 2025 (BOE-A-2025-25253).']
+  ];
+  const lista = function (arr) { return arr.map(function (x) { return '<div class="ir-def"><b>' + x[0] + '.</b> ' + x[1] + '</div>'; }).join(''); };
+  return irPagina('', 'Cómo leer este informe', 'Definiciones, fuentes y avisos', '<table class="ir-cols"><tbody><tr><td><div class="ir-sh">Definiciones</div>' + lista(L) +
+    '</td><td><div class="ir-sh">Avisos y fuentes</div>' + lista(A) + '<p class="bs-port-cr" style="font-size:11px;margin-top:10px;">Generado por SPAIN CAP VIEWER. Uso interno; no constituye asesoramiento jurídico.</p></td></tr></tbody></table>', R);
 }
 
 /* ---------- mapas de España (SVG, se imprimen tal cual en el PDF) ----------
@@ -7496,12 +7777,12 @@ function irDivCol(v, max) {
 function irSeqCol(v, max) {
   if (isNaN(v) || !max || v <= 0) return '#eef2f7';
   const k = Math.pow(Math.min(1, v / max), 0.6), m = function (a, b) { return Math.round(a + (b - a) * k); };
-  return 'rgb(' + m(234, 31) + ',' + m(241, 78) + ',' + m(248, 121) + ')';
+  return 'rgb(' + m(254, 200) + ',' + m(243, 90) + ',' + m(234, 22) + ')';
 }
 function irMarco(inner, titulo, sub) {
   const M = IR_MAPA;
   return '<div class="ir-map"><div class="ir-map-t">' + titulo + (sub ? ' <span>' + sub + '</span>' : '') + '</div>' +
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + M.W + ' ' + M.H + '" width="100%" height="262" preserveAspectRatio="xMidYMid meet" style="display:block;">' +
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + M.W + ' ' + M.H + '" width="100%" height="250" preserveAspectRatio="xMidYMid meet" style="display:block;">' +
     '<rect x="0" y="0" width="' + M.W + '" height="' + M.H + '" fill="#f8fbfe"/>' +
     '<rect x="' + M.cx + '" y="' + M.cy + '" width="' + M.cw + '" height="' + M.ch + '" fill="#ffffff" stroke="#94a3b8" stroke-width="0.8"/>' +
     '<text x="' + (M.cx + 4) + '" y="' + (M.cy + 9) + '" font-size="7" fill="#7a8495">Canarias</text>' +
@@ -7528,7 +7809,7 @@ function irMapaCCAA(R, paths, id) {
     inner += '<path d="' + p.d + '" fill="' + (p.ccaa === null ? '#f1f5f9' : (abs ? irSeqCol(v, max) : irDivCol(v, max))) + '" stroke="#64748b" stroke-width="0.5" stroke-linejoin="round"/>';
     if (p.c && p.ccaa && !isNaN(v) && Math.abs(v) >= 0.5) {
       const t = abs ? irF(v) : (v > 0 ? '+' : '−') + irF(Math.abs(v));
-      lbl += '<text x="' + p.c[0].toFixed(1) + '" y="' + p.c[1].toFixed(1) + '" font-size="8" font-weight="bold" text-anchor="middle" fill="#0f172a" stroke="#ffffff" stroke-width="2.2" paint-order="stroke">' + t + '</text>';
+      lbl += '<text x="' + p.c[0].toFixed(1) + '" y="' + p.c[1].toFixed(1) + '" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#0f172a" stroke="#ffffff" stroke-width="2.2" paint-order="stroke">' + t + '</text>';
     }
   });
   return irMarco(inner + lbl, o.m.lbl, abs ? 'disponible por CCAA · MW' : 'Δ disponible por CCAA · ' + irLbl(R.pkey) + ' → ' + irLbl(R.key)) +
@@ -7551,44 +7832,41 @@ function irMapaNudos(R, paths, id) {
     if (!xy) { sinCoord++; return; }
     if (cierra[x.name]) { rings += '<circle cx="' + xy[0].toFixed(1) + '" cy="' + xy[1].toFixed(1) + '" r="' + rad(p).toFixed(1) + '" fill="none" stroke="#B3261E" stroke-width="1.1"/>'; return; }
     const ab = !!abre[x.name];
-    dots += '<circle cx="' + xy[0].toFixed(1) + '" cy="' + xy[1].toFixed(1) + '" r="' + rad(c).toFixed(1) + '" fill="' + (ab ? '#1B7F4B' : '#1F4E79') + '" fill-opacity="' + (ab ? 0.85 : 0.45) + '" stroke="' + (ab ? '#0f5132' : '#1F4E79') + '" stroke-width="0.4"/>';
+    dots += '<circle cx="' + xy[0].toFixed(1) + '" cy="' + xy[1].toFixed(1) + '" r="' + rad(c).toFixed(1) + '" fill="' + (ab ? '#16a34a' : '#F3721F') + '" fill-opacity="' + (ab ? 0.9 : 0.55) + '" stroke="' + (ab ? '#0f5132' : '#C85A16') + '" stroke-width="0.4"/>';
   });
   let lbl = '';
   if (R.pkey) {
     o.filas.slice(0, 8).forEach(function (f) {
       const xy = irNodoXY(f.x.name); if (!xy) return;
       const t = irCorta(f.x.name.replace(/\s+\d+$/, ''), 18) + ' ' + (f.d > 0 ? '+' : '−') + irF(Math.abs(f.d));
-      lbl += '<text x="' + (xy[0] + 5).toFixed(1) + '" y="' + (xy[1] - 4).toFixed(1) + '" font-size="7" font-weight="bold" fill="' + (f.d > 0 ? '#0f5132' : '#8a1c16') + '" stroke="#ffffff" stroke-width="2" paint-order="stroke">' + irEsc(t) + '</text>';
+      lbl += '<text x="' + (xy[0] + 5).toFixed(1) + '" y="' + (xy[1] - 4).toFixed(1) + '" font-size="8.5" font-weight="bold" fill="' + (f.d > 0 ? '#0f5132' : '#8a1c16') + '" stroke="#ffffff" stroke-width="2" paint-order="stroke">' + irEsc(t) + '</text>';
     });
   }
-  const ley = '<div class="ir-map-ley"><span><i style="background:#1F4E79;opacity:.5"></i>disponible actual (área ∝ MW, máx. ' + irF(max) + ')</span>' +
-    (R.pkey ? '<span><i style="background:#1B7F4B"></i>abre (' + o.abren.length + ')</span><span><i style="border:1.5px solid #B3261E;background:none"></i>cierra (' + o.cierran.length + ')</span><span>etiquetas: 8 mayores |Δ|</span>' : '') +
+  const ley = '<div class="ir-map-ley"><span><i style="background:#F3721F;opacity:.6"></i>disponible actual (área ∝ MW, máx. ' + irF(max) + ')</span>' +
+    (R.pkey ? '<span><i style="background:#16a34a"></i>abre (' + o.abren.length + ')</span><span><i style="border:1.5px solid #B3261E;background:none"></i>cierra (' + o.cierran.length + ')</span><span>etiquetas: 8 mayores |Δ|</span>' : '') +
     (sinCoord ? '<span class="ir-mut">' + sinCoord + ' nudo(s) sin coordenadas</span>' : '') + '</div>';
   return irMarco(inner + dots + rings + lbl, o.m.lbl, 'nudos con disponible · ' + irLbl(R.key)) + ley;
 }
 function irPagMapasCCAA(R, paths) {
-  const ids = ['gen_mpe_rdt', 'dem_ch', 'dem_no_cep', 'alm_cep'];
-  const cuerpo = paths
-    ? '<table class="ir-two"><tbody><tr><td>' + irMapaCCAA(R, paths, ids[0]) + '</td><td>' + irMapaCCAA(R, paths, ids[1]) + '</td></tr>' +
-      '<tr><td>' + irMapaCCAA(R, paths, ids[2]) + '</td><td>' + irMapaCCAA(R, paths, ids[3]) + '</td></tr></tbody></table>'
-    : '<div class="bs-cola">No se ha podido cargar <b>es_ccaa.geojson</b> de la raíz del repositorio: sin contornos de CCAA no se pueden dibujar las coropletas. Los mapas de nudos sí se incluyen.</div>';
-  return '<div class="bs-card bs-page"><h3>Mapas · variación regional</h3><div class="bs-sub2">' +
-    (R.pkey ? 'Δ del disponible en RdT por comunidad autónoma, ' + irLbl(R.pkey) + ' → ' + irLbl(R.key) + ' · verde sube, rojo baja · cada mapa con su propia escala'
-      : 'Disponible en RdT por comunidad autónoma · ' + irLbl(R.key)) + '</div>' + cuerpo + irPie(R) + '</div>';
+  const ids = ['dem_ch', 'dem_no_cep', 'alm_cep', 'gen_mpe_rdt'];
+  const cuerpo = paths ? irRejilla(ids.map(function (id) { return irMapaCCAA(R, paths, id); }), 2)
+    : '<div class="ir-aviso">No se ha podido cargar <b>es_ccaa.geojson</b> de la raíz del repositorio: sin contornos de las comunidades no se pueden dibujar estos mapas. Los mapas de nudos sí se incluyen.</div>';
+  return irPagina('4', 'Mapa de la variación por comunidad', (R.pkey ? 'Δ del disponible en RdT · verde sube, rojo baja · cada mapa con su escala · ' + irLbl(R.pkey) + ' → ' + irLbl(R.key) : 'Disponible en RdT · ' + irLbl(R.key)), cuerpo, R);
 }
 function irPagMapasNudos(R, paths) {
-  const ids = ['gen_mpe_rdt', 'dem_ch', 'dem_no_cep', 'alm_cep'];
-  return '<div class="bs-card bs-page"><h3>Mapas · nudos con capacidad disponible</h3><div class="bs-sub2">Situación de cada nudo según las coordenadas de nodos_base_REE.json · ' +
-    irLbl(R.key) + (R.pkey ? ' · aperturas y cierres frente a ' + irLbl(R.pkey) : '') + '</div>' +
-    '<table class="ir-two"><tbody><tr><td>' + irMapaNudos(R, paths, ids[0]) + '</td><td>' + irMapaNudos(R, paths, ids[1]) + '</td></tr>' +
-    '<tr><td>' + irMapaNudos(R, paths, ids[2]) + '</td><td>' + irMapaNudos(R, paths, ids[3]) + '</td></tr></tbody></table>' + irPie(R) + '</div>';
+  const ids = ['dem_ch', 'dem_no_cep', 'alm_cep', 'gen_mpe_rdt'];
+  return irPagina('5', 'Mapa de nudos con capacidad', 'Tamaño proporcional a los MW disponibles · ' + irLbl(R.key) + (R.pkey ? ' · en verde los que abren, aro rojo los que cierran' : ''),
+    irRejilla(ids.map(function (id) { return irMapaNudos(R, paths, id); }), 2), R);
 }
 
 /* ---------- documento ---------- */
 function irBuildReport(key, pkey, topn, sec, Z, geo) {
   const R = irCalcular(key, pkey), N = irNovedades(R), S = irSolicitudes(key, pkey), ZR = Z ? irZonasResumen(Z) : null;
   const paths = sec.mapas ? irGeoPaths(geo, Object.keys(R.ccaa)) : null;
-  let body = irPortada(R, N, S);
+  const E = irRecalculo(R), A = irAcuerdos(R);
+  let body = irPortada(R, N, S, E, A);
+  if (sec.esc && R.pkey && (E.escenario || irNormasCruzadas(R).length)) body += irPagRecalculo(R, E);
+  if (sec.acu) body += irPagAcuerdos(R, A);
   if (sec.global) body += irPagGlobal(R);
   if (sec.reg) body += irPagRegional(R);
   if (sec.mapas) body += irPagMapasCCAA(R, paths);
@@ -7596,23 +7874,30 @@ function irBuildReport(key, pkey, topn, sec, Z, geo) {
   if (sec.mapas) body += irPagMapasNudos(R, paths);
   if (sec.cam) body += irPagCambios(R);
   if (sec.nuevo) body += irPagNovedades(R, N, S, ZR);
+  body += irPagMetodo(R);
   // la última página no fuerza salto (evita la hoja en blanco final), igual que en BESS
-  const ultima = body.lastIndexOf('class="bs-card bs-page"');
-  if (ultima >= 0) body = body.slice(0, ultima) + 'class="bs-card bs-page bs-page-last"' + body.slice(ultima + 'class="bs-card bs-page"'.length);
+  const ultima = body.lastIndexOf('class="bs-card bs-page');
+  if (ultima >= 0) body = body.slice(0, ultima) + 'class="bs-card bs-page-last bs-page' + body.slice(ultima + 'class="bs-card bs-page'.length);
   const cssBase = document.getElementById('bs-report-css').textContent;
-  const bloqueImpr = (cssBase.match(/@media print\s*\{([\s\S]*)\}\s*$/) || [])[1] || '';
-  const css = cssBase + '\n' + IR_CSS + '\n/* mismas reglas en pantalla, para que medir = imprimir */\n' + bloqueImpr +
-    '\nbody { max-width: 1047px; }';
+  // Contenido del bloque @media print de la hoja BESS, cortado por llaves equilibradas
+  // (una expresión regular codiciosa arrastraba las reglas posteriores y dejaba una
+  // llave sin cerrar que anulaba todo el CSS añadido detrás).
+  const bloqueImpr = (function () {
+    const i = cssBase.indexOf('@media print'); if (i < 0) return '';
+    const a = cssBase.indexOf('{', i); let n = 0;
+    for (let j = a; j < cssBase.length; j++) { if (cssBase[j] === '{') n++; else if (cssBase[j] === '}') { n--; if (n === 0) return cssBase.slice(a + 1, j); } }
+    return '';
+  })();
+  const css = cssBase + '\n/* mismas reglas en pantalla, para que medir = imprimir */\n' + bloqueImpr + '\n' + IR_CSS + '\nbody { max-width: 1047px; }';
   // mismo autoajuste a una hoja A4 horizontal por página que el informe BESS
-  const autofit = '<script>(function(){var ALTO=718;function ajusta(){var ps=document.querySelectorAll(".bs-page");' +
-    'for(var i=0;i<ps.length;i++){var p=ps[i];p.style.zoom="";var h=p.scrollHeight;if(!h)continue;var z=Math.min(1,ALTO/h);z=Math.floor(z*100)/100;' +
-    'if(z<1){if("zoom" in p.style){p.style.zoom=z;}else{p.style.transformOrigin="top left";p.style.transform="scale("+z+")";p.style.width=(100/z)+"%";}}' +
+  const autofit = '<script>(function(){var ALTO=690;function ajusta(){var ps=document.querySelectorAll(".bs-page");' +
+    'for(var i=0;i<ps.length;i++){var p=ps[i];p.style.zoom="";p.style.height="";var h=p.scrollHeight;if(!h)continue;var z=Math.min(1,ALTO/h);z=Math.floor(z*100)/100;' +
+    'if(z<1){p.style.height=(ALTO/z)+"px";if("zoom" in p.style){p.style.zoom=z;}else{p.style.transformOrigin="top left";p.style.transform="scale("+z+")";p.style.width=(100/z)+"%";}}' +
     'p.setAttribute("data-fit",z.toFixed(2));}}if(document.readyState==="complete")ajusta();else window.addEventListener("load",ajusta);' +
     'window.addEventListener("beforeprint",ajusta);})();<\/script>';
   const titulo = 'Informe TSO · ' + irLbl(key);
   const doc = '<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><title>' + titulo + '</title><style>' + css + '</style></head><body>' +
-    '<div class="bs-rep-head"><b>Hanwha Energy Europe</b> · Informe de capacidad de acceso · red de transporte (TSO) · ' + irLbl(key) +
-    (pkey ? ' vs ' + irLbl(pkey) : '') + '<span>Internal use only</span></div>' + body + autofit + '</body></html>';
+    body + autofit + '</body></html>';
   const fname = 'Informe_TSO_' + irLbl(key).replace(/\s+/g, '_') + (pkey ? '_vs_' + irLbl(pkey).replace(/\s+/g, '_') : '');
   return {doc: doc, fname: fname};
 }
@@ -7640,9 +7925,9 @@ function irSyncPrev() {
 }
 function irGenerar(modo) {
   const key = document.getElementById('ir-period').value, pkey = document.getElementById('ir-prev').value || null;
-  const topn = parseInt(document.getElementById('ir-topn').value, 10) || 12;
+  const topn = parseInt(document.getElementById('ir-topn').value, 10) || 6;
   const chk = function (id) { const e = document.getElementById(id); return !!(e && e.checked); };
-  const sec = {global: chk('ir-s-global'), reg: chk('ir-s-reg'), mapas: chk('ir-s-map'), nod: chk('ir-s-nod'), cam: chk('ir-s-cam'), nuevo: chk('ir-s-new')};
+  const sec = {global: chk('ir-s-global'), esc: chk('ir-s-esc'), acu: chk('ir-s-acu'), reg: chk('ir-s-reg'), mapas: chk('ir-s-map'), nod: chk('ir-s-nod'), cam: chk('ir-s-cam'), nuevo: chk('ir-s-new')};
   const st = document.getElementById('ir-status');
   // La ventana se abre YA, dentro del clic, para que el navegador no la bloquee;
   // se rellena cuando terminan de cargarse (o fallan) los ficheros de zonas.
