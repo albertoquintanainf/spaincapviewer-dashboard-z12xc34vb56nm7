@@ -6826,6 +6826,7 @@ function bsDownload() {
       <label style="display:block;margin:3px 0;"><input type="checkbox" id="ir-s-nod" checked> Cambios representativos por nudo</label>
       <label style="display:block;margin:3px 0;"><input type="checkbox" id="ir-s-cam" checked> Aperturas, cierres, criterio limitante y concurso</label>
       <label style="display:block;margin:3px 0;"><input type="checkbox" id="ir-s-new" checked> Nueva información publicada por REE</label>
+      <label style="display:block;margin:3px 0;"><input type="checkbox" id="ir-s-opp" checked> Oportunidades a futuro: dónde y cómo puede aflorar capacidad</label>
       <div style="margin-top:10px;padding:8px 11px;background:#FBF3DC;border-left:4px solid #A67C00;border-radius:6px;font-size:11.5px;line-height:1.45;">
         Solo red de transporte (TSO). El PDF se genera con la impresión del navegador: en el diálogo elige
         <b>«Guardar como PDF»</b>, orientación horizontal. Si el navegador bloquea la ventana emergente, permítela o usa el botón HTML.
@@ -7001,6 +7002,13 @@ body { font-family:'Segoe UI',Arial,Helvetica,sans-serif; color:#0f172a; }
 .ir-map-ley { display:flex; gap:10px; align-items:center; flex-wrap:wrap; font-size:11px; color:#475569; padding:4px 2px 0; }
 .ir-map-ley i { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:4px; vertical-align:middle; box-sizing:border-box; }
 .ir-map-grad { display:inline-block; width:140px; height:10px; border-radius:3px; border:1px solid #cbd5e1; }
+/* palancas de oportunidad */
+.ir-pal { position:relative; padding-top:12px; }
+.ir-pal-hz { position:absolute; top:-1px; right:10px; color:#fff; font-size:10.5px; font-weight:800; padding:2px 9px; border-radius:0 0 7px 7px; letter-spacing:.3px; text-transform:uppercase; }
+.ir-pal .ir-card-tot { font-size:26px; }
+.ir-pal-sub { font-size:12px; color:#475569; line-height:1.35; margin:-2px 0 6px; }
+.ir-pal-k { font-size:12.5px; line-height:1.4; margin-top:5px; padding-top:5px; border-top:1px dashed #e2e8f0; }
+.ir-pal-k b { color:#C85A16; }
 @media print {
   .ir-page { padding:6px 10px 4px !important; height:690px; }
   .ir-page .bs-wm { font-size:84px; opacity:.08; }
@@ -7689,6 +7697,137 @@ function irPagNovedades(R, N, S, ZR) {
   return irPagina('7', 'Qué publica REE de nuevo', 'Cambios en la publicación, no solo en las cifras · ' + irLbl(R.key) + (R.pkey ? ' frente a ' + irLbl(R.pkey) : ''), h, R);
 }
 
+
+/* ---------- 8 · oportunidades a futuro: de dónde y cómo puede aflorar capacidad ----------
+   Cada palanca se cuantifica con campos publicados por REE (ficha mensual y, si está
+   cargada, publicación por posición). Las cifras marcadas como «techo» son sumas de
+   nudos que comparten zona: indican orden de magnitud, no capacidad que vaya a aparecer.
+   Los MW nunca se suman entre palancas.                                               */
+function irOportunidades(R) {
+  const O = {}, P = MONTHS_POS[R.key] || null;
+  const v = function (r, s, b, f) { const x = irGet(r, s, b, f); return isNaN(x) ? 0 : x; };
+  const conSol = {}; if (P) Object.keys(P).forEach(function (k) { if ((P[k].solicitudes_dem || []).length) conSol[k] = 1; });
+  const L = function () { return {n: 0, mw: 0, mw2: 0, top: []}; };
+  ['libre', 'conCola', 'nocep', 'genM', 'genP', 'libAuto', 'colaG', 'colaD', 'penG', 'penD', 'bloq', 'zona', 'conc', 'pos', 'posPlanG', 'posPlanD'].forEach(function (k) { O[k] = L(); });
+  const add = function (o, nombre, mw, mw2, x) { o.n++; o.mw += mw || 0; o.mw2 += mw2 || 0; o.top.push({name: nombre, ccaa: x ? x.ccaa : '', v: mw || 0}); };
+  // cola en curso: se resta la capacidad solicitada y pendiente de resolver del propio nudo (cota prudente; ver Método)
+  ['conCola', 'nocep', 'genM', 'genP'].forEach(function (k) { O[k].neto = 0; O[k].abs = 0; O[k].nCola = 0; });
+  const neta = function (o, nombre, bruto, cola, x, base) {
+    const b0 = base || 0, net = Math.max(0, bruto + b0 - Math.max(b0, cola));
+    add(o, nombre, bruto, 0, x); o.top[o.top.length - 1].v = net; o.neto += net;
+    if (cola > 0) o.nCola++; if (cola >= bruto + b0) o.abs++;
+  };
+  R.pares.forEach(function (x) {
+    const r = x.c; if (!r) return;
+    const ch = v(r, 'dem', 'disp', 'dem_ch'), nc = v(r, 'dem', 'disp', 'dem_no_cep');
+    const colaD = v(r, 'dem', 'en_curso', 'dem') + v(r, 'dem', 'en_curso', 'alm_rdt'), colaG = v(r, 'gen', 'en_curso', 'total');
+    // 1 · disponible hoy: sin cola publicada (ficha REE «en curso» = 0 y sin solicitudes en el listado) / con cola (neto de cola)
+    if (ch > 0) { if (colaD <= 0 && !conSol[x.name]) add(O.libre, x.name, ch, 0, x); else neta(O.conCola, x.name, ch, colaD, x); }
+    // 2 · demanda No CEP con más capacidad que la CEP (el CEP lo limita el cortocircuito), neta de cola
+    if (nc > ch && /WSCR/i.test(irCrit(r, {side: 'dem', crit: 'dem_ch'}))) neta(O.nocep, x.name, nc - ch, colaD, x, ch);
+    // 2b · generación disponible en RdT, neta de cola de generación
+    const gm = v(r, 'gen', 'disp', 'gen_mges_rdt'), gp = v(r, 'gen', 'disp', 'gen_mpe_rdt');
+    if (gm > 0) neta(O.genM, x.name, gm, colaG, x); if (gp > 0) neta(O.genP, x.name, gp, colaG, x);
+    // 3 · liberada para autoconsumo (RDL 7/2026)
+    const lm = v(r, 'gen', 'liberada', 'disp_mges'), lp = v(r, 'gen', 'liberada', 'disp_mpe');
+    if (lm > 0 || lp > 0) add(O.libAuto, x.name, lm, lp, x);
+    // 4 · cola en curso en nudos hoy cerrados
+    if (v(r, 'gen', 'disp', 'gen_mges_rdt') <= 0 && v(r, 'gen', 'disp', 'gen_mpe_rdt') <= 0 && v(r, 'gen', 'en_curso', 'total') > 0) add(O.colaG, x.name, v(r, 'gen', 'en_curso', 'total'), 0, x);
+    if (ch <= 0 && nc <= 0 && (v(r, 'dem', 'en_curso', 'dem') + v(r, 'dem', 'en_curso', 'alm_rdt')) > 0) add(O.colaD, x.name, v(r, 'dem', 'en_curso', 'dem'), v(r, 'dem', 'en_curso', 'alm_rdt'), x);
+    // 6 · bloqueados por falta de acuerdo: capacidad nodal estática publicada (techo)
+    const ac = irAcuerdoNudo(r); if (ac && ac.bloq) add(O.bloq, x.name, v(r, 'dem', 'nodal', 'estatico_dem_cap'), 0, x);
+    // 7 · limitados por la zona, no por el nudo
+    if (!(ac && ac.bloq) && nc <= 0 && /Zona/i.test(irCrit(r, {side: 'dem', crit: 'dem_no_cep'})) && v(r, 'dem', 'nodal', 'estatico_dem_margen') > 0) add(O.zona, x.name, v(r, 'dem', 'nodal', 'estatico_dem_margen'), 0, x);
+    // 8 · reserva a concurso / NTJ (no disponible en generación)
+    if (irEstado(r, 'gen')) add(O.conc, x.name, v(r, 'gen', 'no_disp', 'gen_mges'), v(r, 'gen', 'no_disp', 'gen_mpe'), x);
+    // 9 · margen técnico sin posición disponible / posiciones planificadas
+    const lpz = r.gen && r.gen.lim_posicion;
+    if (lpz && /^S[IÍ]$/i.test(String(lpz.existe || '').trim()) && v(r, 'gen', 'lim_posicion', 'margen_mges') <= 0 && v(r, 'gen', 'margen', 'gen_mges') > 0) add(O.pos, x.name, v(r, 'gen', 'margen', 'gen_mges'), 0, x);
+    const pp = function (val) { const m = String(val == null ? '' : val).match(/\d+/); return m ? parseInt(m[0], 10) : 0; };
+    if (pp(((r.gen || {}).posiciones || {}).transporte_P) > 0) add(O.posPlanG, x.name, 0, 0, x);
+    if (pp(((r.dem || {}).posiciones || {}).consumo_transporte_P) > 0) add(O.posPlanD, x.name, 0, 0, x);
+  });
+  // 5 · capacidad otorgada pendiente de puesta en servicio (publicación por posición)
+  if (P) Object.keys(P).forEach(function (k) {
+    let g = 0, d = 0;
+    (P[k].gen_pos || []).forEach(function (p) { g += (irN(p.pen_mges) || 0) + (irN(p.pen_mpe) || 0); });
+    (P[k].dem_pos || []).forEach(function (p) { d += (irN(p.pen_dem) || 0) + (irN(p.pen_alm) || 0); });
+    const b = NODOS_BASE[k] || {};
+    if (g > 0) add(O.penG, k, g, 0, {ccaa: b.ccaa || ''}); if (d > 0) add(O.penD, k, d, 0, {ccaa: b.ccaa || ''});
+  });
+  Object.keys(O).forEach(function (k) { O[k].top.sort(function (a, b) { return b.v - a.v; }); });
+  O.hayPos = !!P; O.hayLista = !!P;
+  return O;
+}
+const IR_HORIZ = {ya: ['Inmediato', '#16a34a'], corto: ['Corto plazo', '#F3721F'], medio: ['Medio plazo', '#C85A16'], reg: ['Regulatorio', '#1e40af']};
+function irPalanca(h, titulo, cifra, unidad, sub, como, senal, gris) {
+  const hz = IR_HORIZ[h];
+  return '<div class="ir-card ir-pal' + (gris ? ' ir-card-gris' : '') + '" style="border-left-color:' + hz[1] + ';">' +
+    '<div class="ir-pal-hz" style="background:' + hz[1] + ';">' + hz[0] + '</div>' +
+    '<div class="ir-card-h">' + titulo + '</div>' +
+    '<div class="ir-card-tot" style="color:' + hz[1] + ';">' + cifra + ' <small>' + unidad + '</small></div>' +
+    (sub ? '<div class="ir-pal-sub">' + sub + '</div>' : '') +
+    '<div class="ir-pal-k"><b>Cómo aflora.</b> ' + como + '</div>' +
+    '<div class="ir-pal-k"><b>Qué vigilar.</b> ' + senal + '</div></div>';
+}
+function irPagOportunidades(R, O, A) {
+  const mw = function (x) { return irF(x); };
+  const prox = (function () { const i = irMesIdx('26_oct') + 24; return (GS_MLBL[GS_MONTHS[i % 12]] || '') + ' 20' + Math.floor(i / 12); })();
+  const fuenteCola = O.hayLista ? 'ficha REE «en curso» y listado de solicitudes de demanda' : 'ficha REE «en curso»';
+  const absT = function (o) { return o.abs ? '; en ' + o.abs + ' la cola lo absorbe todo' : ''; };
+  const p1 = [
+    irPalanca('ya', 'Disponible y sin cola publicada', mw(O.libre.mw), 'MW CEP-CH', O.libre.n + ' nudos con capacidad de demanda y sin solicitudes en curso (' + fuenteCola + ')',
+      'ya se puede pedir. El acceso se otorga por orden de llegada, así que la ventaja es temporal.', 'la cola «en curso» del nudo y el listado mensual de solicitudes: si aparecen, la ventaja se reduce.'),
+    irPalanca('ya', 'Disponible con cola delante', '≈' + mw(O.conCola.neto), 'MW netos de cola', O.conCola.n + ' nudos · ' + mw(O.conCola.mw) + ' MW publicados' + absT(O.conCola),
+      'solo lo que quede tras resolver las solicitudes anteriores. Pedir aquí es ponerse detrás de la cola.', 'resoluciones o desistimientos de la cola del nudo.'),
+    irPalanca('ya', 'Demanda No CEP donde el CEP lo limita el cortocircuito', '≈+' + mw(O.nocep.neto), 'MW netos de cola', O.nocep.n + ' nudos · +' + mw(O.nocep.mw) + ' MW publicados sobre CEP-CH' + absT(O.nocep),
+      'el límite WSCR solo afecta a la demanda con convertidores. Un proyecto No CEP encaja donde un CEP no cabe.', 'nudos que pasen a estar limitados por WSCR (sección 1).'),
+    irPalanca('ya', 'Generación disponible en la RdT', '≈' + mw(O.genM.neto), 'MW MGES netos de cola', mw(O.genM.mw) + ' MW MGES publicados en ' + O.genM.n + ' nudos' + absT(O.genM) + ' · MPE: ' + mw(O.genP.mw) + ' → ≈' + mw(O.genP.neto) + ' MW netos',
+      'casi toda la capacidad de generación publicada ya tiene solicitudes delante: el margen real es pequeño.', 'bajadas de la cola de generación en los nudos con disponible.'),
+    irPalanca('ya', 'Liberada para autoconsumo', mw(O.libAuto.mw), 'MW MGES', O.libAuto.n + ' nudos · ' + mw(O.libAuto.mw2) + ' MW MPE · ya neta de lo otorgado (definición de REE)',
+      'solicitudes de autoconsumo según el RDL 7/2026; no la puede usar un proyecto sin consumidor asociado.', 'el bloque «liberada» de la ficha de generación.'),
+    irPalanca('corto', 'Cola en curso en nudos hoy cerrados', mw(O.colaD.mw + O.colaD.mw2), 'MW de demanda', O.colaD.n + ' nudos (' + mw(O.colaD.mw2) + ' MW almacenamiento) · generación: ' + O.colaG.n + ' nudos, ' + mw(O.colaG.mw) + ' MW · techo bruto',
+      'si las solicitudes se deniegan, archivan o desisten, la capacidad vuelve al nudo. No hay base para estimar qué parte.', 'bajadas de «en curso» sin subida equivalente de la otorgada.')
+  ];
+  const p2 = [
+    O.hayPos ? irPalanca('medio', 'Otorgada pendiente de puesta en servicio', mw(O.penG.mw), 'MW generación', O.penG.n + ' nudos · demanda: ' + mw(O.penD.mw) + ' MW · techo bruto',
+      'capacidad concedida sin conectar. Si un permiso no alcanza sus hitos o se renuncia, se libera.', 'bajadas de «pendiente de puesta en servicio» y caducidades publicadas.')
+      : irPalanca('medio', 'Otorgada pendiente de puesta en servicio', '–', '', 'Sin publicación por posición cargada.', 'capacidad concedida sin conectar que se libera si el permiso decae.', 'publicación por posición de REE.', true),
+    irPalanca('medio', 'Limitados por la zona, no por el nudo', irF(O.zona.n), 'nudos', 'Margen estático propio: ' + mw(O.zona.mw) + ' MW (techo: la zona lo comparte)',
+      'aflora si se libera capacidad en otro nudo de la zona o se refuerza la red zonal.', 'el margen zonal (zonas_val) y desistimientos en nudos de la misma zona.'),
+    irPalanca('medio', 'Margen técnico sin posición disponible', mw(O.pos.mw), 'MW MGES', O.pos.n + ' nudos con la posición agotada · planificadas: ' + O.posPlanG.n + ' nudos gen. y ' + O.posPlanD.n + ' consumo',
+      'una posición nueva o una ampliación de la subestación desbloquea el margen existente.', 'el paso de posiciones «P» a «E» en la ficha.'),
+    irPalanca('reg', 'Nudos bloqueados por falta de acuerdo', irF(A.total.cur), 'nudos', 'Capacidad estática publicada en ' + O.bloq.top.filter(function (t) { return t.v > 0; }).length + ' de ellos: ' + mw(O.bloq.mw) + ' MW (techo teórico)',
+      'cuando REE y la distribuidora acuerden el valor de referencia. Hoy ningún margen es visible.', 'el estado del acuerdo de NO a SI (sección 2).'),
+    irPalanca('reg', 'Reserva a concurso', irF(O.conc.n), 'nudos', mw(O.conc.mw) + ' MW MGES · ' + mw(O.conc.mw2) + ' MW MPE reservados (techo)',
+      'solo mediante concurso de capacidad (art. 20 del RD 1183/2020).', 'convocatorias y resoluciones en el BOE; cambios de estado (sección 6).'),
+    irPalanca('reg', 'Próximo cambio de escenario', prox, '(estimación)', 'Apartado 4.3 de la Resolución CNMC de 1-12-2025: escenario actualizado cada dos años, con la red planificada',
+      'un nuevo escenario recalcula todas las capacidades nodales a la vez, como en octubre de 2026.', '% de nudos con cambio nodal (sección 1) y la planificación de la red de transporte.')
+  ];
+  const nota = '<div class="ir-note">No sumables: un nudo puede estar en varias palancas y las cifras «techo» son compartidas. «Neto de cola» resta la solicitada en curso del nudo: cota prudente (ver Método).</div>';
+  let h = irPagina('8', 'Dónde pueden estar las oportunidades', 'Palancas que pueden hacer aflorar capacidad · cuantificadas con la publicación de ' + irLbl(R.key) + ' · 1 de 3', irRejilla(p1, 3) + nota, R);
+  h += irPagina('8', 'Lo que depende de la red, la zona o la regulación', 'Palancas de medio plazo y regulatorias · cifras brutas (techo) · 2 de 3', irRejilla(p2, 3) + nota, R);
+  // nudos candidatos
+  const lista = function (tit, sub, arr, hz) {
+    const filas = arr.slice(0, 6).map(function (t) { return {name: t.name, sub: t.ccaa, v: t.v}; });
+    return '<div class="ir-card ir-card-flat" style="border-left-color:' + IR_HORIZ[hz][1] + ';"><div class="ir-card-h">' + tit + ' <small>' + sub + '</small></div>' +
+      '<div class="ir-compacto">' + irBarras(filas, 0, {color: IR_HORIZ[hz][1], signo: false, vacio: 'Sin nudos en esta palanca'}) + '</div></div>';
+  };
+  const conNeto = function (arr) { return arr.filter(function (t) { return t.v > 0; }); };
+  const cand = [
+    lista('Sin cola publicada', 'MW CEP-CH', O.libre.top, 'ya'),
+    lista('Con cola delante', 'MW netos de cola', conNeto(O.conCola.top), 'ya'),
+    lista('No CEP por WSCR', 'MW netos de cola', conNeto(O.nocep.top), 'ya'),
+    lista('Generación RdT', 'MW MGES netos de cola', conNeto(O.genM.top), 'ya'),
+    lista('Liberada autoconsumo', 'MW MGES', O.libAuto.top, 'ya'),
+    lista('Cola en nudos cerrados', 'MW en curso', O.colaD.top, 'corto'),
+    lista('Limitados por la zona', 'MW margen propio', O.zona.top, 'medio'),
+    lista('Margen sin posición', 'MW MGES', O.pos.top, 'medio')
+  ];
+  h += irPagina('8', 'Nudos candidatos por palanca', 'Los 6 primeros por MW (netos de cola donde se indica) · ' + irLbl(R.key) + ' · 3 de 3 · revisar cada nudo en el Análisis Nodal del visor', irRejilla(cand, 4), R);
+  return h;
+}
+
 /* ---------- última hoja · cómo leer el informe ---------- */
 function irPagMetodo(R) {
   const L = [
@@ -7699,6 +7838,7 @@ function irPagMetodo(R) {
     ['Recálculo nodal', 'nudos cuya capacidad nodal publicada (estática, cortocircuito o dinámica) cambia más de ±' + IR_TOL + ' MW. Si cambia en más del ' + Math.round(100 * IR_UMBRAL_ESCENARIO) + ' % de los nudos a la vez, se avisa de un probable cambio del escenario de cálculo.'],
     ['Criterio limitante', 'el que publica REE para cada variable. Un nudo con criterio combinado (p. ej. «WSCR_Nudo/Din1_Zona») cuenta en cada familia que contiene.'],
     ['Bloqueo por falta de acuerdo', 'nudos cuyo «estado del acuerdo sobre la capacidad de acceso para consumo en la RdD (valor de referencia)» es NO, o cuyo motivo de capacidad no otorgable indica que el valor de referencia no está acordado en su zona estática. Son campos de la ficha de demanda de REE.'],
+    ['Oportunidades a futuro', 'palancas cuantificadas con los campos publicados. Las cifras «techo» son capacidades nodales o zonales compartidas: dan orden de magnitud, no capacidad que vaya a aparecer. Los MW no se suman entre palancas. «Neto de cola» = disponible publicado menos la capacidad solicitada en curso y pendiente de resolver del mismo nudo (ficha REE; en demanda, demanda + almacenamiento RdT; en No CEP, se resta la cola sobre el total No CEP). La leyenda de REE define el disponible como el mínimo de los «márgenes no ocupados» sin aclarar si incluye la cola: si REE ya la descontara, el neto la contaría dos veces. Por eso es una cota prudente, no la capacidad real; pendiente de confirmar con REE o con las Especificaciones de Detalle.'],
     ['Saturación', 'media, en los nudos con disponible publicado, de (otorgada + en curso) / (otorgada + en curso + disponible). Es la misma definición que usa Grid Status.']
   ];
   const A = [
@@ -7874,6 +8014,7 @@ function irBuildReport(key, pkey, topn, sec, Z, geo) {
   if (sec.mapas) body += irPagMapasNudos(R, paths);
   if (sec.cam) body += irPagCambios(R);
   if (sec.nuevo) body += irPagNovedades(R, N, S, ZR);
+  if (sec.opp) body += irPagOportunidades(R, irOportunidades(R), A);
   body += irPagMetodo(R);
   // la última página no fuerza salto (evita la hoja en blanco final), igual que en BESS
   const ultima = body.lastIndexOf('class="bs-card bs-page');
@@ -7927,7 +8068,7 @@ function irGenerar(modo) {
   const key = document.getElementById('ir-period').value, pkey = document.getElementById('ir-prev').value || null;
   const topn = parseInt(document.getElementById('ir-topn').value, 10) || 6;
   const chk = function (id) { const e = document.getElementById(id); return !!(e && e.checked); };
-  const sec = {global: chk('ir-s-global'), esc: chk('ir-s-esc'), acu: chk('ir-s-acu'), reg: chk('ir-s-reg'), mapas: chk('ir-s-map'), nod: chk('ir-s-nod'), cam: chk('ir-s-cam'), nuevo: chk('ir-s-new')};
+  const sec = {global: chk('ir-s-global'), esc: chk('ir-s-esc'), acu: chk('ir-s-acu'), opp: chk('ir-s-opp'), reg: chk('ir-s-reg'), mapas: chk('ir-s-map'), nod: chk('ir-s-nod'), cam: chk('ir-s-cam'), nuevo: chk('ir-s-new')};
   const st = document.getElementById('ir-status');
   // La ventana se abre YA, dentro del clic, para que el navegador no la bloquee;
   // se rellena cuando terminan de cargarse (o fallan) los ficheros de zonas.
